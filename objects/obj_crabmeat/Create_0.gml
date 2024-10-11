@@ -1,0 +1,38 @@
+#region METHODS
+
+/// @method is_on_slope()
+is_on_slope = function()
+{
+	return angle >= 8.44 && angle <= 351.56;
+}
+
+/// @method update_move_animation()
+update_move_animation = function()
+{
+	if (is_on_slope())
+	{
+		image_xscale = angle >= 180 ? -1 : 1;
+		sprite_index = spr_crabmeat_move_angled;
+	}
+	else
+	{
+		image_xscale = 1;
+		sprite_index = spr_crabmeat_move;
+	}
+}
+
+#endregion
+
+// Inherit the parent event
+event_inherited();
+
+state = 0;
+state_timer = 0;
+shot_flag = true;
+vel_x = 0.5 * image_xscale;
+vel_y = 0;
+angle = 0;
+
+obj_set_priority(3);
+obj_set_hitbox(16, 16);
+obj_set_culling(CULLING.RESPAWN);
