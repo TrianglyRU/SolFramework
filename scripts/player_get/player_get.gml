@@ -14,6 +14,5 @@ function player_get(_player_index)
 	
 	return noone;
 	
-	// TODO: LTS'24
 	// return instance_find(obj_player, _player_index);
 }

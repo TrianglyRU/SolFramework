@@ -123,6 +123,7 @@ function scr_player_balance()
 
 	if (on_object == noone)
 	{
+		/// @feather ignore GM1041
 		if (math_get_quadrant(angle) != QUADRANT.DOWN)
 		{
 			exit;

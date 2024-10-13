@@ -18,7 +18,7 @@ audio_channel_bgms = array_create(AUDIO_CHANNEL_COUNT, -1);
 audio_emitter_sfx = audio_emitter_create();
 audio_emitter_bgm = array_create(AUDIO_CHANNEL_COUNT, undefined);
 
-// TODO: LTS'24
+// TODO: LTS'25
 // audio_bus_sfx = audio_bus_create();
 // audio_bus_bgm = audio_bus_create();
 
@@ -235,9 +235,9 @@ palette_bound = room_height;
 palette_colours = ds_list_create();
 palette_durations = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
 palette_timers = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
-palette_indexes = array_create(PALETTE_TOTAL_SLOT_COUNT, 1);
-palette_loop_indexes = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
-palette_end_indexes = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
+palette_indices = array_create(PALETTE_TOTAL_SLOT_COUNT, 1);
+palette_loop_indices = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
+palette_end_indices = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
 palette_data = array_create(4, []);
 
 // Load default global palette

@@ -23,5 +23,6 @@ function tile_get_width(_tiledata, _y)
 		_width_index = _y % TILE_SIZE;
 	}
 	
+	/// @feather ignore GM1045
 	return obj_framework.tile_widths[_index][_width_index];
 }

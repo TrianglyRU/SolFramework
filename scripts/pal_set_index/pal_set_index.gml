@@ -1,24 +1,29 @@
 /// @self
-/// @description Sets the palette index for the given colour indexes and optionally stops their rotation.
-/// @param {Array<Real>} _colour_indexes An array of colour indexes to modify.
-/// @param {Real} _index The new palette index.
+/// @description Sets the "global" palette index for the given colour indices and optionally stops their rotation.
+/// @param {Array<Real>} _colour_indices An array of colour indices to modify.
+/// @param {Real} _replacement_index The new palette index.
 /// @param {Bool} [_stop_rotation] Whether to stop the rotation (default is false).
-function pal_set_index(_colour_indexes, _index, _stop_rotation = false)
+function pal_set_index(_colour_indices, _replacement_index, _stop_rotation = false)
 {
 	with (obj_framework)
 	{
-		for (var _i = array_length(_colour_indexes) - 1; _i >= 0; _i--)
+		for (var _i = array_length(_colour_indices) - 1; _i >= 0; _i--)
 		{
-			var _colour_index = _colour_indexes[_i];
+			var _index = _colour_indices[_i];
 			
-			if !_stop_rotation
+			if (_index >= PALETTE_GLOBAL_SLOT_COUNT)
 			{
-				palette_timers[_colour_index] = palette_durations[_colour_index];
-				palette_indexes[_colour_index] = _index;
+				continue;
+			}
+			
+			if (!_stop_rotation)
+			{
+				palette_timers[_index] = palette_durations[_index];
+				palette_indices[_index] = _replacement_index;
 			}
 			else
 			{
-				palette_durations[_colour_index] = 0;
+				palette_durations[_index] = 0;
 			}
 		}
 	}

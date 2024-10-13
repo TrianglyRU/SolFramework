@@ -74,7 +74,7 @@ function scr_player_dropdash()
 	    animation = ANIM.SPIN;
 		
 	    instance_create(x, y + radius_y, obj_dust_dropdash, { image_xscale: facing });
-	    audio_stop_sound(snd_charge3);
+	    audio_stop_sound(snd_charge_drop);
 	    audio_play_sfx(snd_release);
 	    set_camera_delay(8);
 		
@@ -91,7 +91,7 @@ function scr_player_dropdash()
 		{
 		    if (++dropdash_charge == PARAM_DROPDASH_CHARGE)
 		    {
-		        audio_play_sfx(snd_charge3);
+		        audio_play_sfx(snd_charge_drop);
 		    }
 		}
 		

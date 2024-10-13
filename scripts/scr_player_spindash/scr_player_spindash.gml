@@ -26,52 +26,55 @@ function scr_player_spindash()
 			vel_y = 0;
 			
 			instance_create(0, 0, obj_dust_spindash, { vd_target_player: id });
-			audio_play_sfx(snd_charge);
+			audio_play_sfx(snd_charge_spin);
 		}
 		
 		return false;
 	}
-
+	
 	if (input_down.down)
 	{
-		if (!input_press.action_any)
+		if (spindash_charge > 0)
 		{
 			spindash_charge -= floor(spindash_charge / 0.125) / 256;
-			return false;
 		}
-	
-		spindash_charge = min(spindash_charge + 2, 8);
-	
-		if (audio_is_playing(snd_charge) && spindash_charge > 0)
-		{
-			spindash_pitch = min(spindash_pitch + 0.1, 1.5);
-		}
-		else
-		{
-			spindash_pitch = 1;
-		}
-	
-		var _sound = audio_play_sfx(snd_charge);
 		
-		audio_sound_pitch(_sound, spindash_pitch);
-		obj_restart_anim();
+		if (input_press.action_any)
+		{
+			spindash_charge = min(spindash_charge + 2, 8);
+	
+			if (audio_is_playing(snd_charge_spin) && spindash_charge > 0)
+			{
+				spindash_pitch = min(spindash_pitch + 0.1, 1.5);
+			}
+			else
+			{
+				spindash_pitch = 1;
+			}
+	
+			var _sound = audio_play_sfx(snd_charge_spin);
+		
+			audio_sound_pitch(_sound, spindash_pitch);
+			obj_restart_anim();		
+		}
 		
 		return false;
 	}
 	
-	set_camera_delay(16);
-	
-	var _base_speed = super_timer > 0 ? 11 : 8;
+	var _min_speed = 8;
+	var _speed = (super_timer > 0 ? 11 : _min_speed) + round(spindash_charge) / 2;
+	var _raw_camera_delay = -((_speed - _min_speed) * 2) + 32;
 	
 	y += radius_y - radius_y_spin;	
 	radius_x = radius_x_spin;
 	radius_y = radius_y_spin;
 	animation = ANIM.SPIN;
 	action = ACTION.NONE;
-	spd_ground = (_base_speed + round(spindash_charge) / 2) * facing;
+	spd_ground = _speed * facing;
 	
+	set_camera_delay(floor(_raw_camera_delay / 2));
 	set_velocity();
-	audio_stop_sound(snd_charge);
+	audio_stop_sound(snd_charge_spin);
 	audio_play_sfx(snd_release);
 	
 	// Exit the player control routine

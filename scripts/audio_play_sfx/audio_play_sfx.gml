@@ -9,6 +9,7 @@ function audio_play_sfx(_sound_id, _loop = undefined)
 	
     if (_do_loop)
     {
+		// TODO: LTS'25
         // audio_sound_loop_start(_soundid, _loop[0]);
         // audio_sound_loop_end(_soundid, _loop[1]);
     }

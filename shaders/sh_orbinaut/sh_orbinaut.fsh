@@ -19,7 +19,7 @@ uniform bool u_fade_active;
 uniform int u_fade_type;
 uniform float u_fade_step;
 
-uniform float u_pal_indexes[PALETTE_LIMIT];
+uniform float u_pal_indices[PALETTE_LIMIT];
 uniform float u_pal_bound;
 uniform bool u_pal_active;
 
@@ -101,7 +101,7 @@ vec4 getSwappedColourA(vec4 target) {
         vec4 texColour = texture2D(u_pal_tex_a_global, colourPos);
 
         if (texColour == target) {
-            float replacementIndex = u_pal_indexes[int((i - u_pal_uv_a_global.y) / texelSizeGlobalY)];
+            float replacementIndex = u_pal_indices[int((i - u_pal_uv_a_global.y) / texelSizeGlobalY)];
             colourPos.x += texelSizeGlobalX * floor(replacementIndex + 1.0);
             
             return mix(texture2D(u_pal_tex_a_global, vec2(colourPos.x - texelSizeGlobalX, colourPos.y)), texture2D(u_pal_tex_a_global, colourPos), fract(replacementIndex));
@@ -117,7 +117,7 @@ vec4 getSwappedColourA(vec4 target) {
 		vec4 texColour = texture2D(u_pal_tex_a_local, colourPos);
 
         if (texColour == target) {
-            float replacementIndex = u_pal_indexes[int((i - u_pal_uv_a_local.y) / texelSizeLocalY + float(PALETTE_GLOBAL_SIZE))];
+            float replacementIndex = u_pal_indices[int((i - u_pal_uv_a_local.y) / texelSizeLocalY + float(PALETTE_GLOBAL_SIZE))];
             colourPos.x += texelSizeLocalX * floor(replacementIndex + 1.0);
             
             return mix(texture2D(u_pal_tex_a_local, vec2(colourPos.x - texelSizeLocalX, colourPos.y)), texture2D(u_pal_tex_a_local, colourPos), fract(replacementIndex));
@@ -141,7 +141,7 @@ vec4 getSwappedColourB(vec4 target) {
         vec4 texColour = texture2D(u_pal_tex_b_global, colourPos);
 
         if (texColour == target) {
-            float replacementIndex = u_pal_indexes[int((i - u_pal_uv_b_global.y) / texelSizeGlobalY)];
+            float replacementIndex = u_pal_indices[int((i - u_pal_uv_b_global.y) / texelSizeGlobalY)];
             colourPos.x += texelSizeGlobalX * floor(replacementIndex + 1.0);
             
             return mix(texture2D(u_pal_tex_b_global, vec2(colourPos.x - texelSizeGlobalX, colourPos.y)), texture2D(u_pal_tex_b_global, colourPos), fract(replacementIndex));
@@ -157,7 +157,7 @@ vec4 getSwappedColourB(vec4 target) {
 		vec4 texColour = texture2D(u_pal_tex_b_local, colourPos);
 
         if (texColour == target) {
-            float replacementIndex = u_pal_indexes[int((i - u_pal_uv_b_local.y) / texelSizeLocalY + float(PALETTE_GLOBAL_SIZE))];
+            float replacementIndex = u_pal_indices[int((i - u_pal_uv_b_local.y) / texelSizeLocalY + float(PALETTE_GLOBAL_SIZE))];
             colourPos.x += texelSizeLocalX * floor(replacementIndex + 1.0);
             
             return mix(texture2D(u_pal_tex_b_local, vec2(colourPos.x - texelSizeLocalX, colourPos.y)), texture2D(u_pal_tex_b_local, colourPos), fract(replacementIndex));

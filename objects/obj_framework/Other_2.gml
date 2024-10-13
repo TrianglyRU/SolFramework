@@ -45,7 +45,7 @@ global.sh_bg_map_size = shader_get_uniform(sh_orbinaut, "u_bg_map_size");
 
 global.sh_pal_active = shader_get_uniform(sh_orbinaut, "u_pal_active");
 global.sh_pal_bound = shader_get_uniform(sh_orbinaut, "u_pal_bound");
-global.sh_pal_index = shader_get_uniform(sh_orbinaut, "u_pal_indexes");
+global.sh_pal_indices = shader_get_uniform(sh_orbinaut, "u_pal_indices");
 global.sh_pal_uv_a_global = shader_get_uniform(sh_orbinaut, "u_pal_uv_a_global");
 global.sh_pal_texel_size_a_global = shader_get_uniform(sh_orbinaut, "u_pal_texel_size_a_global");
 global.sh_pal_tex_a_global = shader_get_sampler_index(sh_orbinaut, "u_pal_tex_a_global");

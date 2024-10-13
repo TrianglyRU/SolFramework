@@ -21,7 +21,7 @@ switch (vd_target_player.shield)
 		{
 			obj_set_priority(3);
 		}
-		else if (anim_order_index == 0)
+		else if (anim_order_index == 0 || anim_order_index == 39)
 		{
 			obj_set_priority(1);
 		}

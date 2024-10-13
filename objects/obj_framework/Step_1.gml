@@ -38,7 +38,7 @@ if (global.dev_mode)
 	}
 	else if (keyboard_check_pressed(_key_profiler))
 	{
-		// TODO: LTS'24
+		// TODO: LTS'25
 		// show_debug_overlay(!is_debug_overlay_open());
 	}
 	else if (keyboard_check_pressed(_key_console))
@@ -240,6 +240,7 @@ if (state != FWSTATE.NORMAL)
 }
 else 
 {
+	/// @feather ignore GM2016
 	cull_restore_paused();
 	
 	for (var _i = 0; _i < CAMERA_COUNT; _i++)
@@ -292,9 +293,9 @@ if (state != FWSTATE.PAUSED)
 		
 	    if (--palette_timers[_col_ind] <= 0)
 	    {
-	        if (++palette_indexes[_col_ind] > palette_end_indexes[_col_ind])
+	        if (++palette_indices[_col_ind] > palette_end_indices[_col_ind])
 	        {
-	            palette_indexes[_col_ind] = palette_loop_indexes[_col_ind];
+	            palette_indices[_col_ind] = palette_loop_indices[_col_ind];
 	        }
 			
 	        palette_timers[_col_ind] = _duration;

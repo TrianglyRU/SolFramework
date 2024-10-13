@@ -24,7 +24,7 @@ function scr_stage_setup()
 			sprite_set_animation(spr_asset_ghz_00, 16);
 			sprite_set_animation(spr_asset_ghz_01, 8);
 			
-			pal_load_local(spr_pal_ghz_primary_local);
+			pal_load_local(spr_pal_ghz_primary_local, undefined);
 			
 			tile_load_data_binary("widths_s1", "heights_s1", "angles_s1", "CollisionA", "CollisionB");
 			
@@ -34,8 +34,8 @@ function scr_stage_setup()
 		
 			setup_level(99, "TEST STAGE", 1, snd_bgm_ehz, [spr_animal_flicky, spr_animal_ricky], room_height, -1, rm_stage_tsz2, false);
 			
-			player_spawn(96, 655 + 21, global.player_main, "Objects");
-			player_spawn(80, 655 + 21, global.player_cpu, "Objects");
+			player_spawn(96, 676, global.player_main, "Objects");
+			player_spawn(80, 676, global.player_cpu, "Objects");
 			
 			dist_set_bg(dist_get_data(EFFECTDATA.EHZ), undefined, 0.125, 80, 111);
 			
@@ -53,7 +53,7 @@ function scr_stage_setup()
 			sprite_set_animation(spr_asset_ehz_03, 8);
 			sprite_set_animation(spr_asset_ehz_04, 2);
 			
-			pal_load_local(spr_pal_ehz_primary_local);
+			pal_load_local(spr_pal_ehz_primary_local, undefined);
 			
 			tile_load_data_binary("widths_s2", "heights_s2", "angles_s2", "CollisionA", "CollisionB");
 			

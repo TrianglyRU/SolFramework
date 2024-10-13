@@ -9,7 +9,7 @@ var _floor_angle;
 
 switch (state)
 {
-	case 0:
+	case CRABMEATSTATE.INIT:
 	
 		y += vel_y;
 		vel_y += 0.21875;
@@ -23,12 +23,12 @@ switch (state)
 			y += _floor_dist;
 			angle = _floor_angle;
 			vel_y = 0;
-			state = 2;
+			state = CRABMEATSTATE.WAIT;
 		}
 		
 	break;
 	
-	case 2:
+	case CRABMEATSTATE.WAIT:
 		
 		if (--state_timer >= 0)
 		{
@@ -54,16 +54,16 @@ switch (state)
 		}
 		
 		visible = true;
-		state = 4;
+		state = CRABMEATSTATE.MOVE;
 		state_timer = 127;
 		vel_x *= -1;
 		
-		update_move_animation();
+		update_move_sprite();
 		obj_set_anim(sprite_index, 16);
 		
 	break;
 	
-	case 4:
+	case CRABMEATSTATE.MOVE:
 	
 		if (--state_timer >= 0)
 		{
@@ -86,7 +86,7 @@ switch (state)
 				y += _floor_dist;
 				angle = _floor_angle;
 				
-				update_move_animation();
+				update_move_sprite();
 				break;
 			}
 			
@@ -96,10 +96,10 @@ switch (state)
 			}
 		}
 		
-		state = 2;
+		state = CRABMEATSTATE.WAIT;
 		state_timer = 59;
 		
-		obj_set_anim(spr_crabmeat_idle, 0, is_on_slope());
+		obj_set_anim(spr_crabmeat_idle, 0, is_on_slope() ? 1 : 0);
 		
 	break;
 }

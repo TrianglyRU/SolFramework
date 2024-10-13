@@ -68,7 +68,7 @@ if (_palette_bound_ss < _view_height)
 	}
 }
 
-shader_set_uniform_f_array(global.sh_pal_index, palette_indexes);
+shader_set_uniform_f_array(global.sh_pal_indices, palette_indices);
 shader_set_uniform_f(global.sh_pal_bound, _palette_bound_ss * _y_multiplier);
 shader_set_uniform_i(global.sh_pal_active, true);
 	

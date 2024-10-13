@@ -7,6 +7,7 @@ enum COCONUTSSTATE
 	THROW
 }
 
+// Inherit the parent event
 event_inherited();
 	
 state = COCONUTSSTATE.IDLE;

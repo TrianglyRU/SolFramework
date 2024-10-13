@@ -5,8 +5,6 @@ enum BUZZBOMBERSTATE
 	FIRE
 }
 
-#macro BUZZBOMBER_ROAM_TIMER 127
-
 // Inherit the parent event
 event_inherited();
 

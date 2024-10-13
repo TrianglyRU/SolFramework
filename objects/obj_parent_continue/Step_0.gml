@@ -5,7 +5,7 @@ if (!start_pressed)
 		exit;
 	}
 	
-	audio_play_sfx(snd_charge);
+	audio_play_sfx(snd_charge_spin);
 	obj_set_anim(animation_data[1], 5);
 	
 	start_pressed = true;

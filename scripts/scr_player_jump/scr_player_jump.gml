@@ -153,21 +153,15 @@ function scr_player_jump()
 				break;
 			}
 			
+			grv = PARAM_GRV_TAILS_DOWN;
 			carry_target = noone;
 			air_lock_flag = false;
 			is_jumping = false;
-			grv = PARAM_GRV_TAILS_DOWN;
 			action = ACTION.FLIGHT;
 			flight_timer = 480;
 			ascend_timer = 0;
 			radius_x = radius_x_normal;
 			radius_y = radius_y_normal;
-			
-			if (!is_underwater)
-			{
-				audio_play_sfx(snd_flight);
-			}
-			
 			input_down.action_any = false;
 			input_press.action_any = false;
 			
@@ -214,4 +208,6 @@ function scr_player_jump()
 			
 		break;
 	}
+	
+	return false;
 }

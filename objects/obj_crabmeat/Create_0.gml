@@ -6,8 +6,8 @@ is_on_slope = function()
 	return angle >= 8.44 && angle <= 351.56;
 }
 
-/// @method update_move_animation()
-update_move_animation = function()
+/// @method update_move_sprite()
+update_move_sprite = function()
 {
 	if (is_on_slope())
 	{
@@ -23,10 +23,17 @@ update_move_animation = function()
 
 #endregion
 
+enum CRABMEATSTATE
+{
+	INIT,
+	MOVE,
+	WAIT
+}
+
 // Inherit the parent event
 event_inherited();
 
-state = 0;
+state = CRABMEATSTATE.INIT;
 state_timer = 0;
 shot_flag = true;
 vel_x = 0.5 * image_xscale;

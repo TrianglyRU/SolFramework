@@ -96,7 +96,6 @@ function scr_player_init()
 
 	spindash_charge = 0;
 	spindash_pitch = 0;
-	dash_charge = 0;
 	dash_vel = 0;
 	dropdash_charge = 0;
 	flight_timer = 0;

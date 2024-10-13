@@ -23,5 +23,6 @@ function tile_get_height(_tiledata, _x)
 		_height_index = _x % TILE_SIZE;
 	}
 	
+	/// @feather ignore GM1045
 	return obj_framework.tile_heights[_index][_height_index];
 }

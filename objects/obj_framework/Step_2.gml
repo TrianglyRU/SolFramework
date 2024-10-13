@@ -207,6 +207,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 #region CULLING
 
+/// @feather ignore GM2016
 cull_restore_paused();
 
 with (obj_instance)

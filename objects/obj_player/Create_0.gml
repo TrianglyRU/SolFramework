@@ -34,7 +34,7 @@ reset_state = function()
 	switch (action)
 	{
 		case ACTION.DASH:
-			audio_stop_sound(snd_charge2);
+			audio_stop_sound(snd_charge_dash);
 		break;
 
 		case ACTION.FLIGHT:
@@ -338,11 +338,11 @@ play_tails_sound = function()
 /// @method get_flip_order_data()
 get_flip_order_data = function()
 {
+	// TODO: LTS'25: array_concat
 	if (animation == ANIM.FLIP_EXTENDED)
 	{
 		animation = ANIM.FLIP;
 		
-		// TODO: LTS'24: array_concat
 		return
 		[
 			0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
@@ -505,7 +505,6 @@ enum ANIM
 #macro PARAM_GRV_TAILS_UP -0.125
 #macro PARAM_GRV_TAILS_DOWN 0.03125
 #macro PARAM_DROPDASH_CHARGE 22
-#macro PARAM_DASH_CHARGE 30
 #macro PARAM_SKID_SPEED_THRESHOLD 4
 #macro PARAM_RECORD_LENGTH 32
 #macro PARAM_CPU_DELAY 16
