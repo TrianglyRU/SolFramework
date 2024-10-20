@@ -5,7 +5,7 @@ function game_save_data(_slot)
 {
 	if (_slot == -1)
 	{
-		exit;
+		return;
 	}
 
 	var _filename = "save" + string(_slot) + ".bin";

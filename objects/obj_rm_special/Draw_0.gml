@@ -1,10 +1,10 @@
 if (state == SPECIALSTAGESTATE.RESULTS)
 {
-    exit;
+    return;
 }
 
-var _half_width = camera_get_width(view_current) / 2;
-var _half_height = camera_get_height(view_current) / 2;
+var _half_width = camera_get_width(0) / 2;
+var _half_height = camera_get_height(0) / 2;
 
 var _title_string = "* SPECIAL STAGE *";
 var _length = string_length(_title_string);

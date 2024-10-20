@@ -1,6 +1,6 @@
 if (!vd_is_screen_space)
 {
-	exit;
+	return;
 }
 	
 if (display_timer > 60)

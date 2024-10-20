@@ -1,7 +1,7 @@
 if (!instance_exists(vd_target_player) || vd_target_player.shield == SHIELD.NONE)
 {
     instance_destroy();
-    exit;
+    return;
 }
 
 switch (vd_target_player.shield)

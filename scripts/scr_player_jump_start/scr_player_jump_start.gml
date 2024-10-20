@@ -6,12 +6,12 @@ function scr_player_jump_start()
 	
 	if (forced_roll || action == ACTION.SPINDASH || action == ACTION.DASH)
 	{
-		exit;
+		return;
 	}
 
 	if (!input_press.action_any)
 	{
-		exit;
+		return;
 	}
 
 	var _max_dist = 6;
@@ -38,7 +38,7 @@ function scr_player_jump_start()
 
 	if (_ceil_dist < _max_dist)
 	{
-		exit;
+		return;
 	}
 
 	if (animation != ANIM.SPIN)

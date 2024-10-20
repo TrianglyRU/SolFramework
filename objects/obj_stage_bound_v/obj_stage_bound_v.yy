@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_stage_bound_v",
   "spriteId": {
-    "name": "spr_stage_bound_v",
-    "path": "sprites/spr_stage_bound_v/spr_stage_bound_v.yy",
+    "name": "spr_trigger_h_directional",
+    "path": "sprites/spr_trigger_h_directional/spr_trigger_h_directional.yy",
   },
   "solid": false,
   "visible": false,
@@ -47,7 +47,7 @@
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Triggers",
-    "path": "folders/Objects/Triggers.yy",
+    "name": "Stage Common",
+    "path": "folders/Objects/Stage Common.yy",
   },
 }

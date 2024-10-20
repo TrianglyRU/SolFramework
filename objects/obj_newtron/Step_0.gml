@@ -32,7 +32,7 @@ switch (state)
 	
 	case NEWTRONSTATE.FIRE:
 		
-		if (image_index == 1)
+		if (image_index == 1 || shot_flag && image_index == 0)
 		{
 			obj_act_enemy();
 		}
@@ -45,14 +45,6 @@ switch (state)
 	break;
 	
 	case NEWTRONSTATE.FALL:
-		
-		if (image_index == 1)
-		{
-			if (!obj_act_enemy())
-			{
-				exit;
-			}
-		}
 		
 		if (image_index < 3)
 		{
@@ -82,7 +74,7 @@ switch (state)
 		
 		if (!obj_act_enemy())
 		{
-			exit;
+			return;
 		}
 		
 		x -= 2 * sign(image_xscale);

@@ -6,7 +6,7 @@ function scr_player_climb()
 	
 	if (action != ACTION.CLIMB)
 	{
-		exit;
+		return;
 	}
 
 	var _steps_per_climb_value = 4;

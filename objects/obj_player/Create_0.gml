@@ -90,7 +90,7 @@ land = function()
 			spd_ground = dash_vel;
 		}
 
-		exit;
+		return;
 	}
 	
 	if (shield == SHIELD.BUBBLE && shield_state == SHIELDSTATE.ACTIVE)
@@ -112,7 +112,7 @@ land = function()
 			}
 		}
 		
-		exit;
+		return;
 	}
 
 	if (state == PLAYERSTATE.HURT)
@@ -183,7 +183,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 	if (_is_shielded_player1 && global.player_rings == 0)
 	{
 		kill(_sound);
-		exit;
+		return;
 	}
 	
 	reset_state();
@@ -254,7 +254,7 @@ kill = function(_sound = snd_hurt)
 {
 	if (state == PLAYERSTATE.DEATH)
 	{
-		exit;
+		return;
 	}
 
 	audio_play_sfx(_sound);
@@ -305,7 +305,7 @@ record_data = function(_insert_pos)
 {
 	if (_insert_pos >= ds_record_length)
 	{
-		exit;
+		return;
 	}
 
 	var _data =
@@ -322,7 +322,7 @@ play_tails_sound = function()
 {
 	if ((obj_framework.frame_counter + 8) % 16 != 0 || is_underwater || !obj_is_visible())
 	{
-		exit;
+		return;
 	}
 
 	if (cpu_state != CPUSTATE.RESPAWN)
@@ -379,9 +379,9 @@ enum PLAYERSTATE
 {
 	CONTROL,
 	HURT,
-	DEATH,
 	NO_CONTROL,
 	DEBUG_MODE,
+	DEATH,
 	RESPAWN
 }
 

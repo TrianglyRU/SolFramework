@@ -6,7 +6,7 @@ function scr_player_camera()
 	
 	if (camera_data.target != noone || player_index != camera_data.index)
 	{
-		exit;
+		return;
 	}
 	
 	var _border_x = !global.cd_camera * 16;
@@ -77,7 +77,7 @@ function scr_player_camera()
 
 	if (_do_shift_down || _do_shift_up)
 	{
-		if (camera_view_timer > 0 && state != PLAYERSTATE.DEBUG_MODE)
+		if (camera_view_timer > 0 && state == PLAYERSTATE.CONTROL)
 		{
 			camera_view_timer--;
 		}

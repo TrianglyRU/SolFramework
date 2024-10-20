@@ -2,7 +2,7 @@ interact_flag = true;
 		
 if (cull_behaviour <= CULLING.ACTIVE)
 {
-	exit;
+	return;
 }
 
 // Were we just respawned?
@@ -92,18 +92,18 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	// If no flag has been set, do not continue
 	if (_cull_action == CULLING.NONE)
 	{
-		exit;
+		return;
 	}
 }
 
 if (_cull_action != CULLING.REMOVE)
 {
-	x = xstart;
-	y = ystart;
-	
 	// Trigger Create Event next on respawn
 	if (cull_behaviour >= CULLING.RESPAWN)
 	{
+		x = xstart;
+		y = ystart;
+	
 		cull_respawn_flag = true;
 	}
 	

@@ -1,4 +1,14 @@
+if (room == rm_startup)
+{
+	return;
+}
+
 #region DEBUG
+
+if (keyboard_check_pressed(vk_f11))
+{
+	window_set_fullscreen(!window_get_fullscreen());
+}
 
 if (global.dev_mode)
 {
@@ -21,11 +31,11 @@ if (global.dev_mode)
 	{
 		if (game_get_speed(gamespeed_fps) != 2)
 		{
-		    game_set_speed(2, gamespeed_fps);
+			game_set_speed(2, gamespeed_fps);
 		}
 		else
 		{
-		    game_set_speed(60, gamespeed_fps);
+			game_set_speed(60, gamespeed_fps);
 		}
 	}
 	else if (keyboard_check_pressed(_key_restart_room))
@@ -47,7 +57,7 @@ if (global.dev_mode)
 	}
 	else if (keyboard_check_pressed(_key_devmenu))
 	{
-		room_goto(rm_devmenu);
+		room_goto(rm_dev_menu);
 	}
 }
 
@@ -167,7 +177,7 @@ for (var _i = 0; _i < INPUT_SLOT_COUNT; _i++)
 #region FADE
 
 if (fade_routine != FADEROUTINE.NONE)
-{		
+{
 	if (++fade_frequency_timer >= fade_frequency_target)
 	{
 		fade_timer = fade_routine == FADEROUTINE.IN ? min(fade_timer + fade_step, FADE_TIMER_MAX) : max(0, fade_timer - fade_step);

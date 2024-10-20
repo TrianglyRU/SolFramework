@@ -6,12 +6,12 @@ function scr_player_roll_start()
 	
 	if (action == ACTION.SPINDASH || action == ACTION.HAMMERDASH)
 	{
-	    exit;
+	    return;
 	}
 	
 	if (!forced_roll && (input_down.left || input_down.right))
 	{
-	    exit;
+	    return;
 	}
 
 	var _allowed_to_roll = false;

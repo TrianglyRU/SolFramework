@@ -5,7 +5,7 @@ function scr_player_init()
 	if (vd_player_type == PLAYER.NONE)
 	{
 		instance_destroy();
-		exit;
+		return;
 	}
 	
 	var _is_respawned = variable_instance_exists(id, "player_index");
@@ -143,7 +143,7 @@ function scr_player_init()
 
 	var _ring_data = global.giant_ring_data;
 	var _checkpoint_data = global.checkpoint_data;
-
+	
 	if (is_not_null_array(_ring_data))
 	{
 		x = _ring_data[0];
@@ -152,12 +152,18 @@ function scr_player_init()
 	else if (is_not_null_array(_checkpoint_data))
 	{
 		x = _checkpoint_data[0];
-		y = _checkpoint_data[1] - radius_y - 1;
+		y = _checkpoint_data[1];
+		
+		var _floor_dist = tile_find_2v(x - radius_x, y + radius_y, x + radius_x, y + radius_y, DIRECTION.POSITIVE, TILELAYER.MAIN)[0];
+		
+		if (_floor_dist < 14)
+		{
+			y += _floor_dist;
+		}
 	}
 	else
 	{
-		x = xstart;
-		y = ystart - radius_y - 1;
+		y -= radius_y + 1;
 	}
 	
 	for (var _i = 0; _i < ds_record_length; _i++)
@@ -200,11 +206,8 @@ function scr_player_init()
 	
 	if (!_is_respawned && camera_data.index == player_index)
 	{
-		var _x = x - camera_get_width(camera_data.index) / 2;
-		var _y = y - camera_get_height(camera_data.index) / 2 + 16;
-		
-		camera_data.pos_x = _x;
-		camera_data.pos_y = _y;
+		camera_data.pos_x = x - camera_get_width(camera_data.index) / 2;
+		camera_data.pos_y = y - camera_get_height(camera_data.index) / 2 + 16;
 	}
 
 	scr_player_animate();

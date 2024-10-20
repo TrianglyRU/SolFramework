@@ -2,7 +2,7 @@ var _player = player_get(view_current);
 
 if (_player == noone)
 {
-	exit;
+	return;
 }
 
 var _camera_x = camera_get_x(view_current);

@@ -12,7 +12,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		
 		if (_attach_type == SOLIDATTACH.NONE)
 		{
-			exit;
+			return;
 		}
 		
 		if (_attach_type == SOLIDATTACH.RESET_PLAYER)
@@ -42,9 +42,9 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 	var _orx = solid_radius_x;
 	var _ory = solid_radius_y;
 	
-	if (_orx <= 0 || _ory <= 0 || _prx <= 0 || _pry <= 0 || _player.state >= PLAYERSTATE.DEATH)
+	if (_orx <= 0 || _ory <= 0 || _prx <= 0 || _pry <= 0 || _player.state >= PLAYERSTATE.NO_CONTROL)
 	{
-		exit;
+		return;
 	}
 	
 	var _ox_prev = floor(xprevious) + solid_offset_x;
@@ -117,7 +117,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 			
 			if (_player.is_grounded && _relative_x >= 0 && _relative_x < _combined_width * 2)
 			{
-				exit;
+				return;
 			}
 		}
 		else
@@ -126,14 +126,14 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 			
 			if (_player.is_grounded && _relative_x >= -_ext_x && _relative_x < _orx * 2 + _ext_x)
 			{
-				exit;
+				return;
 			}
 		}
 		
 		solid_touch_flags[_pid] = SOLIDCOLLISION.NONE;
 		_player.on_object = noone;
 		
-		exit;
+		return;
 	}
 	
 	// Handle collision detection for non-platform objects
@@ -147,7 +147,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		if (_x_dist < 0 || _x_dist > _combined_width * 2 || _y_dist < 0 || _y_dist > _combined_height * 2)
 		{
 			obj_clear_solid_push(_player);
-			exit;
+			return;
 		}
 		
 		var _x_clip = _px < _ox ? _x_dist : (_x_dist - _combined_width * 2);
@@ -168,7 +168,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 					if (abs(_x_clip) >= 16)
 					{
 						_player.kill();
-						exit;
+						return;
 					}
 					
 					// If not crushed, fallthrough to horizontal collision
@@ -189,7 +189,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 					solid_touch_flags[_pid] = SOLIDCOLLISION.BOTTOM;
 					
 					// Do not run horizontal collision
-					exit;							
+					return;							
 				}
 			}
 			else
@@ -212,7 +212,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 				}
 				
 				// Do not run horizontal collision
-				exit;	
+				return;	
 			}
 		}
 		
@@ -221,7 +221,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		if (!_s3_method && abs(_y_clip) <= _grip_y)
 		{
 			obj_clear_solid_push(_player);
-			exit;
+			return;
 		}
 
 		solid_touch_flags[_pid] = _px < _ox ? SOLIDCOLLISION.LEFT : SOLIDCOLLISION.RIGHT;
@@ -253,14 +253,14 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		
 		if (_relative_x < -_ext_x || _relative_x > _orx * 2 + _ext_x)
 		{
-			exit;
+			return;
 		}
 		
 		var _y_clip = (_oy - _ory - _grip_y + _slope_offset) - (_py + _pry);
 		
 		if (_y_clip < -16 || _y_clip >= 0)
 		{
-			exit;
+			return;
 		}
 		
 		_attach_player(_player, id, _attach_type, -_y_clip - _grip_y);

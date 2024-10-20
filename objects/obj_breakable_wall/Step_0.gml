@@ -29,6 +29,11 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	with (_player)
 	{
+		if (action == ACTION.GLIDE && action_state == GLIDESTATE.AIR)
+		{
+			release_glide(0);
+		}
+		
 		x -= 4 * sign(_smash_vel);
 		vel_x = _smash_vel;
 		spd_ground = vel_x;

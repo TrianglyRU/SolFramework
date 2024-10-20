@@ -7,7 +7,7 @@ function obj_clear_solid_push(_player)
 	{
 		if (set_push_anim_by != other.id)
 		{
-			exit;
+			return;
 		}
 		
 		if (animation != ANIM.SPIN && animation != ANIM.SPINDASH)

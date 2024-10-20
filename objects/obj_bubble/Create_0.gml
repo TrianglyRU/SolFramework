@@ -26,7 +26,7 @@ obj_set_culling(CULLING.REMOVE);
 
 if (vd_bubble_type == BUBBLE.COUNTDOWN)
 {
-	obj_set_anim(sprite_index, 6, [0, 1, 1, 2, 3]);
+	obj_set_anim(sprite_index, 6, [0, 1, 1, 2, 3], 4);
 }
 else
 {

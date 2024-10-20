@@ -1,6 +1,6 @@
 if (state != LAMPSTATE.ROTATE)
 {
-	exit;
+	return;
 }
 
 if (angle < 720)

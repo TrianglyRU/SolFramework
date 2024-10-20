@@ -5,7 +5,7 @@ function scr_player_movement_air()
 	if (action == ACTION.CARRIED || action == ACTION.CLIMB || action == ACTION.SPINDASH 
 	|| action == ACTION.DASH || action == ACTION.GLIDE && action_state != GLIDESTATE.FALL)
 	{
-		exit;
+		return;
 	}
 	
 	if (angle != 0)
@@ -37,7 +37,7 @@ function scr_player_movement_air()
 	
 	if (action == ACTION.HAMMERDASH)
 	{
-		exit;
+		return;
 	}
 
 	if (!air_lock_flag)

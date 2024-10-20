@@ -1,6 +1,6 @@
 if (state != STARPOSTSTATE.IDLE)
 {
-	exit;
+	return;
 }
 
 var _checkpoint_data = global.checkpoint_data;
@@ -10,14 +10,14 @@ if (is_not_null_array(_checkpoint_data) && _checkpoint_data[7] >= vd_id)
 	state = STARPOSTSTATE.ACTIVE;
 	lamp_obj.activate();
 	
-	exit;
+	return;
 }
 
 var _player = player_get(0);
 
 if (_player.state >= PLAYERSTATE.NO_CONTROL)
 {
-	exit;
+	return;
 }
 
 var _dist_x = floor(_player.x) - x + 8;
@@ -25,13 +25,13 @@ var _dist_y = floor(_player.y) - y + 64;
 
 if (_dist_x < 0 || _dist_x >= 16 || _dist_y < 0 || _dist_y >= 104)
 {
-	exit;
+	return;
 }
 
 global.checkpoint_data =
 [
 	x,
-	y + 24 + tile_find_v(x, y + 24, DIRECTION.POSITIVE)[0] + 1,
+	y,
 	obj_framework.frame_counter, 
 	obj_rm_stage.bound_upper[0], 
 	obj_rm_stage.bound_lower[0], 

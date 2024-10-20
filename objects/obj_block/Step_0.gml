@@ -55,7 +55,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		}
 	}
 
-	// Play sound effect and destroy the block
 	audio_play_sfx(snd_break_block);
 	instance_destroy();
 

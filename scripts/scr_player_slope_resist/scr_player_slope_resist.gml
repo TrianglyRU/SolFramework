@@ -6,12 +6,12 @@ function scr_player_slope_resist()
 	
 	if (action == ACTION.HAMMERDASH || action == ACTION.DASH)
 	{
-		exit;
+		return;
 	}
 	
 	if (angle >= 135 && angle < 225)
 	{
-		exit;
+		return;
 	}
 	
 	var _slope_grv = 0.125 * dsin(angle);

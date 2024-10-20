@@ -9,7 +9,7 @@ if (vd_bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_rm_stage.water_level)
         instance_destroy();
     }
 	
-    exit;
+    return;
 }
 
 wobble_offset = (++wobble_offset) % (array_length(wobble_data) - 1);
@@ -27,14 +27,14 @@ if (vd_bubble_type != BUBBLE.COUNTDOWN)
 else if (obj_is_anim_ended())
 {
     instance_destroy();
-    instance_create(x, y, obj_countdown, { vd_countdown_frame: vd_countdown_frame });
+    instance_create(x, y, obj_countdown, { image_index: vd_countdown_frame });
 	
-    exit;
+    return;
 }
 
 if (vd_bubble_type != BUBBLE.LARGE || !obj_is_anim_stopped())
 {
-    exit;
+    return;
 }
 
 for (var _p = 0; _p < PLAYER_COUNT; _p++)

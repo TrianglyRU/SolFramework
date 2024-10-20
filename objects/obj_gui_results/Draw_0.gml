@@ -1,6 +1,6 @@
 if (state == RESULTSSTATE.LOAD)
 {
-    exit;
+    return;
 }
 
 var _width = camera_get_width(view_current);

@@ -6,7 +6,7 @@ function scr_player_spindash()
 	
 	if (!global.spin_dash)
 	{
-		exit;
+		return;
 	}
 
 	if (action != ACTION.SPINDASH)

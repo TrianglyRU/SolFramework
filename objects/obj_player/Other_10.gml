@@ -82,12 +82,8 @@ switch (state)
 			break;
 		}
 		
-		if (state != PLAYERSTATE.DEATH)
-		{
-			scr_player_carry();
-			scr_player_water();
-		}
-		
+		scr_player_carry();
+		scr_player_water();
 		scr_player_update_status();
 		scr_player_animate();
 		

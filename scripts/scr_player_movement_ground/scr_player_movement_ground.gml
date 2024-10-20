@@ -4,7 +4,7 @@ function scr_player_movement_ground()
 {
 	if (action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH)
 	{
-		exit;
+		return;
 	}
 	
 	if (animation == ANIM.GLIDE_GROUND || animation == ANIM.GLIDE_LAND) && (input_down.down || spd_ground != 0)

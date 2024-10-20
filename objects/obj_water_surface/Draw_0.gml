@@ -4,7 +4,7 @@ var _ss_position = _water_level - camera_get_y(view_current);
 
 if (_ss_position < -sprite_height || _ss_position >= camera_get_height(view_current) + sprite_height)
 {
-	exit;
+	return;
 }
 
 var _draw_count = ceil(camera_get_width(view_current) / sprite_width);

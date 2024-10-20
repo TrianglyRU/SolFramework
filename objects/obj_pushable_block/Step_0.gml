@@ -24,13 +24,13 @@ switch (state)
 				continue;
 			}
 			
-			var _push_force = direction_x;
+			var _push_force = 0.25;
 			
-			_player.spd_ground = 0.25 * direction_x;
+			_player.spd_ground = _push_force * direction_x;
 			_player.vel_x = 0;
-			_player.x += _push_force;
+			_player.x += direction_x;
 			
-			x = floor(x + _push_force);
+			x += direction_x;
 			
 			if (!audio_is_playing(snd_push))
 			{

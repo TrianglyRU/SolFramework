@@ -8,7 +8,7 @@ function discord_set_data(_upper_text, _lower_text, _large_image_key, _small_ima
 {
 	if (!global.discord_ready)
 	{
-		exit;
+		return;
 	}
 	
 	if (_lower_text != undefined)

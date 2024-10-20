@@ -2,12 +2,12 @@ anim_frame_change_flag = false;
 
 if (anim_timer <= 0)
 {
-	exit;
+	return;
 }
 
 if (--anim_timer > 0)
 {
-	exit;
+	return;
 }
 
 var _last_frame = anim_order_length == 0 ? image_number - 1 : anim_order_length - 1;
@@ -20,13 +20,13 @@ if (_end_reached)
         anim_timer = -4;
         anim_end_routine();
 		
-        exit;
+        return;
     }
 	
     if (anim_end_routine == _last_frame)
     {
         anim_timer = -4;
-        exit;
+        return;
     }
 
     if (anim_order_length == 0)

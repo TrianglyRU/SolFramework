@@ -5,7 +5,7 @@ function scr_player_dash()
 	
 	if (!global.dash || vd_player_type != PLAYER.SONIC || player_index > 0 && cpu_timer_input == 0)
 	{
-	    exit;
+	    return;
 	}
 	
 	if (action != ACTION.DASH)

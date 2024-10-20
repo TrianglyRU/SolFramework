@@ -95,7 +95,7 @@ function scr_player_animate_knuckles()
 				6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11
 			];
 			
-			obj_set_anim(spr_knuckles_balance, 4, _balance_order_data, 0, 33);
+			obj_set_anim(spr_knuckles_balance, 4, _balance_order_data, 33);
 			
 			if (animation == ANIM.BALANCE_FLIP && image_index < 2)
 			{

@@ -8,7 +8,7 @@ function input_set_rumble(_slot_id, _time, _left_motor, _right_motor = _left_mot
 {
 	if (!global.gamepad_rumble || _slot_id >= INPUT_SLOT_COUNT)
 	{
-		exit;
+		return;
 	}
 	
 	var _pad_id = input_get_gamepad_id(_slot_id);

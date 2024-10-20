@@ -11,7 +11,7 @@ function dist_set_bg(_data1, _data2, _speed, _range_start, _range_end)
 	
 	if (_effect == -1)
 	{
-		exit;
+		return;
 	}
 	
 	with (obj_framework)

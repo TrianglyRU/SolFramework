@@ -1,3 +1,8 @@
+if (room == rm_startup)
+{
+	return;
+}
+
 if (global.gfx_enabled)
 {
     shader_reset();
@@ -7,7 +12,7 @@ if (global.gfx_enabled)
 
 if (!global.dev_mode)
 {
-	exit;
+	return;
 }
 
 var _list;

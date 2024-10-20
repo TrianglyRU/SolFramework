@@ -39,14 +39,14 @@ function scr_player_input()
 			input_down[$ _key] = _inputs[_i];
 		}
 
-		exit;
+		return;
 	}
 	
 	if (input_no_control)
 	{
-		exit;
+		return;
 	}
-
+	
 	if (player_index < INPUT_SLOT_COUNT)
 	{
 		input_press = struct_copy(input_get_pressed(player_index));

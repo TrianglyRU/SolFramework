@@ -1,12 +1,12 @@
 if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR)
 {
     room_goto(global.previous_room_id);
-	exit;
+	return;
 }
 
 if (obj_framework.state == FWSTATE.PAUSED)
 {
-    exit;
+    return;
 }
 
 var _input_press = input_get_pressed(0);

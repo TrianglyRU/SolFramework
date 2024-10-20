@@ -6,7 +6,7 @@ function scr_player_hammerspin()
 
 	if (action != ACTION.HAMMERSPIN)
 	{
-		exit;
+		return;
 	}
 	
 	if (is_grounded && dropdash_charge >= PARAM_DROPDASH_CHARGE)
@@ -24,7 +24,7 @@ function scr_player_hammerspin()
 		audio_stop_sound(snd_charge_drop);
 		audio_play_sfx(snd_release);
 		
-		exit;
+		return;
 	}
 
 	if (input_down.action_any)

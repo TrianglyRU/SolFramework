@@ -1,6 +1,6 @@
 if (!variable_instance_exists(id, "player_index"))
 {
-	exit;
+	return;
 }
 
 ds_list_destroy(ds_record_data);

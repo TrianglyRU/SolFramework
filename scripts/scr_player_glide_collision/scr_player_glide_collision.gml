@@ -6,7 +6,7 @@ function scr_player_glide_collision()
 
 	if (action != ACTION.GLIDE)
 	{
-	    exit;
+	    return;
 	}
 	
 	var _move_quad = math_get_quadrant(math_get_vector_rounded(vel_x, vel_y));
@@ -85,7 +85,7 @@ function scr_player_glide_collision()
 	            angle = _floor_angle;
 	        }
 			
-	        exit;
+	        return;
 	    }
 		
 	    if (_floor_dist < 0)
@@ -137,7 +137,7 @@ function scr_player_glide_collision()
 	{
 	    if (action_state != GLIDESTATE.AIR)
 	    {
-	        exit;
+	        return;
 	    }
 		
 	    var _wall_dist = tile_find_h(x + _wall_radius * facing, _climb_y - radius_y, facing, tile_layer)[0];	
@@ -149,7 +149,7 @@ function scr_player_glide_collision()
 	        if  (_floor_dist < 0 || _floor_dist >= 12)
 	        {
 	            release_glide(0);
-	            exit;
+	            return;
 	        }
 			
 	        y += _floor_dist;

@@ -1,6 +1,6 @@
 if (!obj_act_enemy())
 {
-	exit;
+	return;
 }
 	
 switch (state)

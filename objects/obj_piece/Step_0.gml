@@ -1,7 +1,7 @@
 if vd_wait_time > 0
 {
     vd_wait_time--;
-    exit;
+    return;
 }
 
 visible = vd_do_flicker ? obj_framework.frame_counter % 2 == 0 : true;

@@ -5,7 +5,7 @@
 /// @returns {Bool}
 function obj_check_solid(_player, _type)
 {
-	if (_player.state >= PLAYERSTATE.DEATH)
+	if (_player.state >= PLAYERSTATE.NO_CONTROL)
 	{
 		return false;
 	}

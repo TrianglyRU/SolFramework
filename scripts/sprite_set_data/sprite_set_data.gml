@@ -5,7 +5,7 @@ function sprite_set_data()
 {
 	if (argument_count == 0)
 	{
-		exit;
+		return;
 	}
 	
 	for (var _i = 0; _i < argument_count; _i++)

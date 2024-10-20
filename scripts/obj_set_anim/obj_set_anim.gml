@@ -15,12 +15,12 @@ function obj_set_anim(_sprite_id, _duration, _playback_data = 0, _end_routine = 
 		if (_update_duration)
 		{
 			anim_duration = _duration;	
-			exit;
+			return;
 		}
 		
 		if (anim_duration == _duration)
 		{
-			exit;
+			return;
 		}
 	}
 	

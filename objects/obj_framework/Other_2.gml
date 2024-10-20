@@ -28,6 +28,9 @@ global.enable_debug_mode = false;
 global.player_rings = 0;
 global.player_shields = array_create(PLAYER_MAX_COUNT, SHIELD.NONE);
 global.life_rewards = [RINGS_THRESHOLD, SCORE_THRESHOLD];
+global.selected_level_entry = 0;
+global.selected_sound_index = 0;
+global.selected_player_index = 0;
 
 // Shaders
 global.sh_fade_active = shader_get_uniform(sh_orbinaut, "u_fade_active");
@@ -69,11 +72,10 @@ gpu_set_alphatestenable(true);
 gpu_set_alphatestref(0);
 window_set_caption(global.window_name);
 window_set_size(global.init_resolution_w * global.window_scale, global.init_resolution_h * global.window_scale);
-window_center();
 
 application_surface_draw_enable(false);
 surface_depth_disable(true);
 display_reset(0, global.use_vsync);
 
 // Load into the target room
-room_goto(global.start_room);
+alarm[0] = 4;
