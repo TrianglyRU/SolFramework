@@ -1,12 +1,12 @@
 if (!instance_exists(vd_target_player) || !vd_target_player.is_underwater)
 {
     instance_destroy();
-    exit;
+    return;
 }
 
 if (vd_target_player.state == PLAYERSTATE.HURT || vd_target_player.state == PLAYERSTATE.DEBUG_MODE || vd_target_player.shield == SHIELD.BUBBLE)
 {
-	exit;
+	return;
 }
 
 var _x = vd_target_player.x + 6 * vd_target_player.facing;
@@ -65,7 +65,7 @@ else if (bubbles_spawned_no_air < 12)
     if (next_bubble_timer_no_air > 0)
     {
         next_bubble_timer_no_air--;
-        exit;
+        return;
     }
 
     var _type = irandom(3) > 0 ? BUBBLE.SMALL : BUBBLE.MEDIUM;

@@ -22,20 +22,20 @@ function scr_player_carry()
 	
 	if (vd_player_type != PLAYER.TAILS)
 	{
-		exit;
+		return;
 	}
 
 	if (carry_cooldown > 0)
 	{
 		carry_cooldown--;
-		exit;
+		return;
 	}
 
 	if (carry_target == noone)
 	{
 		if (action != ACTION.FLIGHT)
 		{
-			exit;
+			return;
 		}
 
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
@@ -47,7 +47,7 @@ function scr_player_carry()
 		
 			var _player = player_get(_p);
 		
-			if (_player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state >= PLAYERSTATE.NO_CONTROL)
+			if (_player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state != PLAYERSTATE.CONTROL)
 			{
 				continue;
 			}

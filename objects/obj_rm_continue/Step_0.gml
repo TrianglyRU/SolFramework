@@ -4,6 +4,12 @@ if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR)
 	
     if (time_left == 0 || continue_count == 0)
     {
+		global.continue_count = 0;
+		global.emerald_count = 0;
+		
+		// We load into the stage either from Level Select or Main Menu where all other 
+		// data is set or overwritten, so don't need to clear anything else here
+		
         room_goto(global.start_room);
     }
     else
@@ -11,12 +17,12 @@ if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR)
         room_goto(global.previous_room_id);
     }
 	
-    exit;
+    return;
 }
 
 if (obj_framework.state == FWSTATE.PAUSED)
 {
-    exit;
+    return;
 }
 
 if (character_main.vel_charge == 0)
@@ -26,7 +32,7 @@ if (character_main.vel_charge == 0)
         fade_perform_black(FADEROUTINE.OUT, 1);
         audio_stop_bgm(0.5);
 		
-        exit;
+        return;
     }
 }
 else if (continue_count > 1)
@@ -42,7 +48,7 @@ var _bound = camera_get_width(0) + 64;
 
 if (character_main.x < _bound || character_buddy != noone && character_buddy.x < _bound)
 {
-    exit;
+    return;
 }
 
 if (global.continue_count > 0)

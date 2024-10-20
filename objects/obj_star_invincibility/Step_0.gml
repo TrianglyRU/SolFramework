@@ -1,7 +1,7 @@
 if (!instance_exists(vd_target_player) || vd_target_player.item_inv_timer == 0)
 {
 	instance_destroy();
-	exit;
+	return;
 }
 
 frame_number[0] = (frame_number[0] + 1) % 12;

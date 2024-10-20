@@ -1,6 +1,13 @@
 // Inherit the parent event
 event_inherited();
 
+switch (room)
+{
+	case rm_stage_tsz0:
+		sprite_index = spr_bridge_ghz;
+	break;
+}
+
 log_size = 16;
 log_size_half = floor(log_size / 2);
 active_log = 0;

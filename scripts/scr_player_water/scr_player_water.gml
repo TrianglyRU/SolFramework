@@ -9,12 +9,12 @@ function scr_player_water()
 	{
 		if (vel_y == 0)
 		{
-			exit;
+			return;
 		}
 		
 		if (cpu_state == CPUSTATE.RESPAWN || action == ACTION.CLIMB || action == ACTION.GLIDE && action_state != GLIDESTATE.FALL)
 		{
-			exit;
+			return;
 		}
 		
 		instance_create(x, obj_rm_stage.water_level, obj_water_splash);
@@ -32,14 +32,14 @@ function scr_player_water()
 	
 	if (!instance_exists(obj_rm_stage) || !obj_rm_stage.water_enabled || state == PLAYERSTATE.DEATH)
 	{
-		exit;
+		return;
 	}
 
 	if (!is_underwater)
 	{
 		if (floor(y) < obj_rm_stage.water_level)
 		{
-			exit;
+			return;
 		}
 	
 		is_underwater = true;
@@ -114,13 +114,13 @@ function scr_player_water()
 					camera_data.allow_movement = false;
 				}
 				
-				exit;
+				return;
 		}
 	}
 	
 	if (floor(y) >= obj_rm_stage.water_level)
 	{
-		exit;
+		return;
 	}
 
 	is_underwater = false;

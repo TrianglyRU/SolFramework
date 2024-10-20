@@ -5,10 +5,10 @@ enum GIANTRINGSTATE
 	TRANSITION
 }
 
-if ds_list_find_index(global.ds_giant_rings, id) != -1
+if (ds_list_find_index(global.ds_giant_rings, id) != -1)
 {
 	instance_destroy();
-	exit;
+	return;
 }
 	
 // Inherit the parent event

@@ -8,7 +8,7 @@ function audio_mute_bgm(_time, _index = 0)
     {
         if (audio_channel_bgms[_index] == -1)
 		{
-			exit;
+			return;
 		}
         
         if (audio_channel_states[_index] != CHANNELSTATE.TEMPMUTE)

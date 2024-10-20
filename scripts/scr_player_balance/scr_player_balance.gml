@@ -6,14 +6,14 @@ function scr_player_balance()
 	
 	if (action == ACTION.SPINDASH || action == ACTION.DASH || spd_ground != 0)
 	{
-		exit;
+		return;
 	}
 	
 	if (global.player_physics == PHYSICS.SK)
 	{
 		if (input_down.down || input_down.up && global.dash)
 		{
-			exit;
+			return;
 		}
 	}
 
@@ -126,7 +126,7 @@ function scr_player_balance()
 		/// @feather ignore GM1041
 		if (math_get_quadrant(angle) != QUADRANT.DOWN)
 		{
-			exit;
+			return;
 		}
 		
 		var _y = y + radius_y;
@@ -134,7 +134,7 @@ function scr_player_balance()
 		
 		if (_floor_dist < 12)
 		{
-			exit;
+			return;
 		}
 		
 		var _angle_left = tile_find_v(x - radius_x, _y, DIRECTION.POSITIVE, tile_layer)[1];
@@ -143,7 +143,7 @@ function scr_player_balance()
 		if (_angle_left == TILE_EMPTY_ANGLE && _angle_right == TILE_EMPTY_ANGLE
 		|| _angle_left != TILE_EMPTY_ANGLE && _angle_right != TILE_EMPTY_ANGLE)
 		{
-			exit;
+			return;
 		}
 		
 		if (_angle_left == TILE_EMPTY_ANGLE)
@@ -159,7 +159,7 @@ function scr_player_balance()
 			_balance_right(_right_dist >= 12);
 		}
 		
-		exit;
+		return;
 	}
 	else if (instance_exists(on_object))
 	{
@@ -167,7 +167,7 @@ function scr_player_balance()
 		
 		if (_obj.solid_disable_balance)
 		{
-			exit;
+			return;
 		}
 		
 		var _left_edge = 2;

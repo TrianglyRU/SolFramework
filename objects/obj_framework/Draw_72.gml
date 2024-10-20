@@ -1,8 +1,13 @@
+if (room == rm_startup)
+{
+	return;
+}
+
 #region EFFECTS
 
 if (!global.gfx_enabled)
 {
-	exit;
+	return;
 }
 
 var _view_y = camera_get_y(view_current);
@@ -14,16 +19,16 @@ var _perspective_factor_y = (bg_perspective_data[2] - _half_height) / (bg_perspe
 shader_set(sh_orbinaut);
 	
 // FADE
-	
+
 var _timer = fade_timer;
 
 if (fade_type == FADETYPE.DULLORDER || fade_type == FADETYPE.DULLSYNC || fade_type == FADETYPE.FLASHORDER || fade_type == FADETYPE.FLASHSYNC)
 {
-	_timer = floor(_timer / 3);
+	_timer /= 3;
 }
 
 shader_set_uniform_i(global.sh_fade_type, fade_type);
-shader_set_uniform_f(global.sh_fade_timer, _timer);
+shader_set_uniform_f(global.sh_fade_timer, round(_timer));
 shader_set_uniform_i(global.sh_fade_active, true);
 
 // PALETTE

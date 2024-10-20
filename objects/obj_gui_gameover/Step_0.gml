@@ -15,8 +15,8 @@ if (obj_framework.fade_state  == FADESTATE.PLAINCOLOUR)
 		global.life_count = 3;
 		global.score_count = 0;
 		
-		game_save_data(global.current_save_slot);
 		game_clear_temp_data();
+		game_save_data(global.current_save_slot);
 		
 		if (global.continue_count > 0)
 		{
@@ -28,7 +28,7 @@ if (obj_framework.fade_state  == FADESTATE.PLAINCOLOUR)
 		}
 	}
 	
-	exit;
+	return;
 }
 	
 switch (state)

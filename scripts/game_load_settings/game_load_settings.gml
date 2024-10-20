@@ -10,11 +10,7 @@ function game_load_settings()
 	global.sound_volume = ini_read_real("AUDIO", "sfxVolume", global.sound_volume);
 	global.use_vsync = ini_read_real("VIDEO", "vSync", global.use_vsync);
 	global.window_scale = ini_read_real("VIDEO", "windowScale", global.window_scale);
-	
-	if (ini_read_real("VIDEO", "windowMode", false))
-	{
-		window_set_fullscreen(true);
-	}
+	global.start_fullscreen = ini_read_real("VIDEO", "windowMode", false);
 	
 	ini_close();
 }

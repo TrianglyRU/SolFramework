@@ -6,18 +6,18 @@ function scr_player_slope_repel()
 	
 	if (stick_to_convex)
 	{
-		exit;
+		return;
 	}
 
 	if (ground_lock_timer > 0)
 	{
 		ground_lock_timer--;
-		exit;
+		return;
 	}
 
 	if (abs(spd_ground) >= 2.5)
 	{
-		exit;
+		return;
 	}
 	
 	if (global.player_physics < PHYSICS.S3)

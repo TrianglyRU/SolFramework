@@ -1,3 +1,8 @@
+if (room == rm_startup)
+{
+	return;
+}
+
 #region BACKGROUND
 
 var _gfx_enabled = global.gfx_enabled;

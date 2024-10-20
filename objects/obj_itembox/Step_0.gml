@@ -1,6 +1,6 @@
 if (state == ITEMBOXSTATE.DESTROYED)
 {
-	exit;
+	return;
 }
 
 for (var _p = 0; _p < PLAYER_COUNT; _p++)

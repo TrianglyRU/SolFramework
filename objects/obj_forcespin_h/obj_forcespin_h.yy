@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_forcespin_h",
   "spriteId": {
-    "name": "spr_forcespin_h",
-    "path": "sprites/spr_forcespin_h/spr_forcespin_h.yy",
+    "name": "spr_trigger_h",
+    "path": "sprites/spr_trigger_h/spr_trigger_h.yy",
   },
   "solid": false,
   "visible": false,
@@ -31,7 +31,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Triggers",
-    "path": "folders/Objects/Triggers.yy",
+    "name": "Stage Common",
+    "path": "folders/Objects/Stage Common.yy",
   },
 }

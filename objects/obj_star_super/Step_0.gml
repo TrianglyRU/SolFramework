@@ -5,7 +5,7 @@ if (!instance_exists(vd_target_player) || vd_target_player.super_timer <= 0)
 		instance_destroy();
 	}
 	
-	exit;
+	return;
 }
 
 var _do_update = !obj_is_anim_stopped();

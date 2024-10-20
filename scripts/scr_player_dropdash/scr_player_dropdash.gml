@@ -6,7 +6,7 @@ function scr_player_dropdash()
 	
 	if (!global.drop_dash || action != ACTION.DROPDASH)
 	{
-	    exit;
+	    return;
 	}
 	
 	if (is_grounded && dropdash_charge >= PARAM_DROPDASH_CHARGE)
@@ -78,7 +78,7 @@ function scr_player_dropdash()
 	    audio_play_sfx(snd_release);
 	    set_camera_delay(8);
 		
-	    exit;
+	    return;
 	}
 	
 	if (shield > SHIELD.NORMAL && super_timer <= 0 && item_inv_timer == 0)

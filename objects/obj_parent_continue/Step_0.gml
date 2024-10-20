@@ -2,7 +2,7 @@ if (!start_pressed)
 {
 	if (!input_get_pressed(0).start)
 	{
-		exit;
+		return;
 	}
 	
 	audio_play_sfx(snd_charge_spin);
@@ -20,7 +20,7 @@ vel_charge += vel_charge_acc;
 
 if (sprite_index == animation_data[1] && !anim_frame_change_flag)
 {
-	exit;
+	return;
 }
 
 var _sprite = animation_data[2];
@@ -34,4 +34,4 @@ else if (vel_charge >= 6)
 	_sprite = animation_data[3];
 }
 
-obj_set_anim(_sprite, floor(max(1, 9 - abs(vel_charge))));
+obj_set_anim(_sprite, floor(max(1, 9 - abs(vel_charge))), 0, 0, true);

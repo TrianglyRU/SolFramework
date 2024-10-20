@@ -8,7 +8,7 @@ function scr_player_cpu()
 
 	if (player_index == 0)
 	{
-	    exit;
+	    return;
 	}
 
 	/// @method _try_to_respawn()
@@ -49,14 +49,12 @@ function scr_player_cpu()
 	{
 	    case CPUSTATE.RESPAWN_INIT:
 			
-			if (cpu_target.state >= PLAYERSTATE.NO_CONTROL)
-			{
-				break;
-			}
-			
-	        if (_can_receive_input && !(input_down.action_any || input_down.start) && obj_framework.frame_counter % 64 != 0)
+	        if (_can_receive_input && !input_down.action_any && !input_down.start)
 	        {
-	            break;
+				if (obj_framework.frame_counter % 64 != 0 || cpu_target.state >= PLAYERSTATE.NO_CONTROL)
+				{
+					break;
+				}
 	        }
 			
 	        x = cpu_target.x;
@@ -180,7 +178,7 @@ function scr_player_cpu()
 	            break;
 	        }
 
-	        if (carry_target != noone || action == ACTION.CARRIED || state != PLAYERSTATE.CONTROL)
+	        if (carry_target != noone || action == ACTION.CARRIED || state >= PLAYERSTATE.NO_CONTROL)
 	        {
 	            break;
 	        }

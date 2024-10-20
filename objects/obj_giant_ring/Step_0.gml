@@ -39,7 +39,7 @@ switch (state)
     
     case GIANTRINGSTATE.ENTRY:
         
-        if (!obj_is_anim_stopped())
+        if (!obj_is_anim_ended())
         {
             break;
         }

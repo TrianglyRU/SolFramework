@@ -1,6 +1,6 @@
 if (room == rm_startup)
 {
-	exit;
+	return;
 }
 
 #region AUDIO

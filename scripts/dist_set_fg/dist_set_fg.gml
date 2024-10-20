@@ -12,7 +12,7 @@ function dist_set_fg(_data1, _data2, _speed, _range_start, _range_end, _layers)
 	
 	if (_effect == -1)
 	{
-		exit;
+		return;
 	}
 	
 	with (obj_framework)
@@ -41,7 +41,7 @@ function dist_set_fg(_data1, _data2, _speed, _range_start, _range_end, _layers)
 	
 	if (!is_not_null_array(_layers))
 	{
-		exit;
+		return;
 	}
 	
 	fx_set_single_layer(_effect, true);

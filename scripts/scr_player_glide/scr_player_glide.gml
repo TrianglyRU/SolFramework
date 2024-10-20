@@ -6,7 +6,7 @@ function scr_player_glide()
 	
 	if (action != ACTION.GLIDE || action_state == GLIDESTATE.FALL)
 	{
-	    exit;
+	    return;
 	}
 
 	var _angle_inc = 2.8125;

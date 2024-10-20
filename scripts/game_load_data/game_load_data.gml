@@ -7,7 +7,7 @@ function game_load_data(_slot)
 
 	if (_slot == -1 || !file_exists(_filename))
 	{
-		exit;
+		return;
 	}
 	
 	var _file = file_bin_open(_filename, 0);

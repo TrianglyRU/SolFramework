@@ -9,11 +9,17 @@
 function instance_create(_x, _y, _object, _vars = {}, _parent = noone)
 {
 	var _new_obj = instance_create_depth(_x, _y, depth, _object, _vars);
-	 
-	if (_parent != noone)
+	
+	if (_parent != noone && object_get_parent(object_index) == obj_instance)
 	{
-		_new_obj.cull_behaviour = CULLING.ACTIVE;
-		_new_obj.cull_parent = _parent;
+		with (_new_obj)
+		{
+			cull_behaviour = CULLING.ACTIVE;
+			cull_parent = _parent;
+		}
+		
+		// Set a new culling type for the parent
+		cull_behaviour = CULLING.RESPAWN;
 	}
 	
 	return _new_obj;

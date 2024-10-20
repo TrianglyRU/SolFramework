@@ -104,11 +104,6 @@ function tile_find_h(_x, _y, _dir, _layer, _behaviour = TILEBEHAVIOUR.DEFAULT)
 			{
 				_ang = 360 - _ang;
 			}
-			
-			if (_ang >= 180 && _dir == DIRECTION.POSITIVE || _ang < 180 && _dir == DIRECTION.NEGATIVE)
-			{
-				_width = TILE_SIZE;
-			}
 		}
 		else
 		{

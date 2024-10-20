@@ -106,12 +106,16 @@ function tile_find_v(_x, _y, _dir, _layer = TILELAYER.MAIN, _behaviour = TILEBEH
 		}
 		else
 		{
-			_ang = _dir == DIRECTION.POSITIVE ? 0 : 180;
-			
-			if (_ang == 0 && _flip || _ang == 180 && !_flip)
+			// Force full height if found the tile from the opposide side
+			if (_height > 0)
 			{
-				_height = TILE_SIZE;
+				if (_dir == DIRECTION.POSITIVE && _flip || _dir == DIRECTION.NEGATIVE && !_flip)
+				{
+					_height = TILE_SIZE;
+				}
 			}
+			
+			_ang = _dir == DIRECTION.POSITIVE ? 0 : 180;
 		}
 	}
 

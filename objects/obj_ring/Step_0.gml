@@ -31,7 +31,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	instance_create(x, y, obj_sparkle);
 	instance_destroy();
 	
-	exit;
+	return;
 }
 
 switch (vd_state)

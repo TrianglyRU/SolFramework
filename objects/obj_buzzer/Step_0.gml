@@ -1,6 +1,6 @@
 if (!obj_act_enemy())
 {
-	exit;
+	return;
 }
 
 if (turn_timer <= 0)

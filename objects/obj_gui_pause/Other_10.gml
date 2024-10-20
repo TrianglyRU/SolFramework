@@ -84,7 +84,7 @@ switch (state)
 		else
 		{
 			game_clear_temp_data();
-			room_goto(rm_devmenu);
+			room_goto(rm_level_select);
 		}
 		
 	break;

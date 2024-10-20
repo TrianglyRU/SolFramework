@@ -5,7 +5,7 @@ switch (state)
 		var _player = player_get(0);
 		var _dist = floor(_player.x) - x;
 		
-		if (_dist < 0 || _dist >= 32 || _player.state >= PLAYERSTATE.NO_CONTROL)
+		if (_dist < 0 || _dist >= 32 || _player.state > PLAYERSTATE.DEBUG_MODE)
 		{
 			break;
 		}
@@ -22,6 +22,7 @@ switch (state)
 		
 		state = SIGNPOSTSTATE.ROTATE;
 		player_object = _player;
+		
 		obj_gui_hud.update_timer = false;
 		
 		audio_play_sfx(snd_signpost);
@@ -67,17 +68,8 @@ switch (state)
 				break;
 				
 				case 3:
-					
+				
 					state = SIGNPOSTSTATE.MOVE_PLAYER;
-					
-					with (obj_player)
-					{
-						cpu_timer_input = 0;
-						input_no_control = true;
-						input_down = input_create();
-						input_press = input_create();
-					}
-					
 					obj_stop_anim(0);
 					
 				break;
@@ -106,14 +98,43 @@ switch (state)
 	break;
 	
 	case SIGNPOSTSTATE.MOVE_PLAYER:
-	
-		player_object.input_down.right = true;
-			
-		if (floor(player_object.x) >= obj_rm_stage.bound_end - 24)
+		
+		if (player_object.state == PLAYERSTATE.NO_CONTROL)
 		{
-			instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);		
-			state++;
+			// Fallthrough to obj_gui_results
 		}
+		else
+		{
+			if (player_object.state >= PLAYERSTATE.DEBUG_MODE || !player_object.is_grounded)
+			{
+				break;
+			}
+			
+			with (obj_player)
+			{
+				if (!input_no_control)
+				{
+					input_no_control = true;
+					input_down = input_create();
+					input_press = input_create();
+				}
+				
+				if (player_index == camera_data.index)
+				{
+					input_down.right = true;
+				}
+				
+				cpu_timer_input = 0;
+			}
+				
+			if (floor(player_object.x) < obj_rm_stage.bound_end - 24)
+			{
+				break;
+			}
+		}
+		
+		instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);		
+		state++;
 		
 	break;
 }

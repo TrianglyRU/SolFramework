@@ -6,7 +6,7 @@ function scr_player_jump()
 	
 	if (!is_jumping)
 	{
-		exit;
+		return;
 	}
 
 	if (!input_down.action_any)
@@ -16,7 +16,7 @@ function scr_player_jump()
 
 	if (vel_y < jump_min_vel || player_index > 0 && cpu_timer_input == 0)
 	{
-		exit;
+		return;
 	}
 	
 	if (input_press.action3 && super_timer == 0 && global.player_rings >= 50 && global.emerald_count == 7)
@@ -29,6 +29,7 @@ function scr_player_jump()
 		animation = ANIM.TRANSFORM;
 		action = ACTION.TRANSFORM;
 		inv_frames = 0;
+		item_inv_timer = 0;
 		super_timer = 1;
 		transform_timer = global.player_physics >= PHYSICS.S3 ? 26 : 36;
 		image_alpha = 1.0;

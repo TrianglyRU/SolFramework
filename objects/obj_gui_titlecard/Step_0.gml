@@ -22,7 +22,7 @@ else
         obj_framework.allow_pause = true;
 		
         instance_destroy();
-		exit;
+		return;
     }
     else if (timer >= 160)
     {

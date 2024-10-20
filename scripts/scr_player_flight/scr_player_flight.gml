@@ -6,7 +6,7 @@ function scr_player_flight()
 	
 	if (action != ACTION.FLIGHT)
 	{
-	    exit;
+	    return;
 	}
 	
 	if (flight_timer > 0)

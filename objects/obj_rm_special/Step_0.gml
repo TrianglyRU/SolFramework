@@ -30,9 +30,7 @@ if (state != SPECIALSTAGESTATE.EMERALD)
 	
     if (_input_press.action1)
     {
-        audio_stop_bgm(0);
-        audio_play_sfx(snd_emerald);
-		
+        audio_play_bgm(snd_bgm_emerald);
         state = SPECIALSTAGESTATE.EMERALD;
     }    
     else if (_input_press.start)
@@ -42,7 +40,7 @@ if (state != SPECIALSTAGESTATE.EMERALD)
         audio_play_sfx(snd_warp2);
     }
 }
-else if (!audio_is_playing(snd_emerald))
+else if (!audio_is_playing(snd_bgm_emerald))
 {
     fade_perform_white(FADEROUTINE.OUT, 3);
     audio_play_sfx(snd_warp2);

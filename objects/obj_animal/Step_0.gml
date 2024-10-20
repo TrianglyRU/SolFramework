@@ -6,7 +6,7 @@ if (state == ANIMALSTATE.CAPSULE)
 		obj_set_priority(1);
     }
 	
-    exit;
+    return;
 }
 
 x += vel_x;
@@ -20,14 +20,14 @@ if (state == ANIMALSTATE.MOVE && obj_is_anim_stopped())
 
 if (vel_y < 0)
 {
-    exit;
+    return;
 }
 
 var _floor_dist = tile_find_v(x, y + 12, DIRECTION.POSITIVE, TILELAYER.MAIN)[0];
 
 if (_floor_dist >= 0)
 {
-    exit;
+    return;
 }
 
 y += _floor_dist;
@@ -35,7 +35,7 @@ vel_y = vel_y_bounce;
 
 if (state != ANIMALSTATE.APPEAR)
 {
-    exit;
+    return;
 }
 
 image_xscale = vd_random_direction ? choose(1, -1) : -1;

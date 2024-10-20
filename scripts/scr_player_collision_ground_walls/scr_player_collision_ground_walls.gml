@@ -8,7 +8,7 @@ function scr_player_collision_ground_walls()
 	{
 	    if (global.player_physics < PHYSICS.SK || angle % 90 != 0)
 	    {
-	        exit;
+	        return;
 	    }
 	}
 	
@@ -57,7 +57,7 @@ function scr_player_collision_ground_walls()
 
 	    if (_wall_dist >= 0)
 	    {
-	        exit;
+	        return;
 	    }
 		
 	    switch (_angle_quad)
@@ -122,7 +122,7 @@ function scr_player_collision_ground_walls()
 
 	    if (_wall_dist >= 0)
 	    {
-	        exit;
+	        return;
 	    }
 		
 	    switch (_angle_quad)

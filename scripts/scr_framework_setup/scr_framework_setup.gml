@@ -5,14 +5,16 @@ function scr_framework_setup()
 	global.dev_mode = true;
 	
 	global.window_name = "GameMaker - Sol Framework"
-	global.init_resolution_w = 400;
-	global.init_resolution_h = 224;
+	global.init_resolution_w = 424;
+	global.init_resolution_h = 240;
+	global.start_fullscreen = false;
 	global.window_scale = 2;
 	global.use_vsync = true;
 	global.gamepad_rumble = false;
 	global.music_volume = 0.5;
 	global.sound_volume = 0.5;
-	global.start_room = rm_devmenu;
+	global.skip_branding = true;
+	global.start_room = rm_branding;
 	global.discord_ready = np_initdiscord("1286956015241265174", true, 0);
 	
 	global.player_physics = PHYSICS.S2;
@@ -49,4 +51,5 @@ function scr_framework_setup()
 	audio_set_bgm_loop(snd_bgm_ghz, 14.80, 53.20);
 	audio_set_bgm_loop(snd_bgm_ehz, 3.47, 44.94);
 	audio_set_bgm_loop(snd_bgm_aiz, 0.00, 65.54);
+	audio_set_bgm_loop(snd_bgm_level_select, 0.92, 60.65);
 }

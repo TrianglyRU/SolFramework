@@ -1,15 +1,10 @@
-var _do_update = obj_framework.state != FWSTATE.PAUSED;
-
 if (water_enabled)
 {
-	if (_do_update)
+	switch (room)
 	{
-		switch (room)
-		{
-			case rm_stage_tsz2:
-				water_level = math_oscillate_y(water_level_init, obj_framework.frame_counter * ANGLE_INCREMENT, 10, 1, 90);
-			break;
-		}
+		case rm_stage_tsz2:
+			water_level = math_oscillate_y(water_level_init, obj_framework.frame_counter * ANGLE_INCREMENT, 10, 1, 90);
+		break;
 	}
 	
 	obj_framework.distortion_bound = water_level;
@@ -17,9 +12,9 @@ if (water_enabled)
 	obj_framework.bg_perspective_data[0] = water_level;
 }
 
-if (!_do_update)
+if (obj_framework.state == FWSTATE.PAUSED)
 {
-	exit;
+	return;
 }
 
 // Palette Rotation

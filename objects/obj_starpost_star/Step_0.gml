@@ -1,18 +1,18 @@
 if (transition_flag && obj_framework.fade_state == FADESTATE.PLAINCOLOUR)
 {	
 	room_goto(rm_bonus);
-	exit;
+	return;
 }
 
 if (obj_framework.state == FWSTATE.PAUSED)
 {
-	exit;
+	return;
 }
 
 if (timer >= 512)
 {
 	instance_destroy();
-	exit;
+	return;
 }
 
 if (timer >= 384)

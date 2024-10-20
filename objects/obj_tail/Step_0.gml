@@ -1,7 +1,7 @@
 if (!instance_exists(vd_target_player) || vd_target_player.vd_player_type != PLAYER.TAILS)
 {
 	instance_destroy();
-	exit;
+	return;
 }
 
 tail_offset_x = 0;

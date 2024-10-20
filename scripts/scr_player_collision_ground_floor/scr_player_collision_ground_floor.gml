@@ -8,7 +8,7 @@ function scr_player_collision_ground_floor()
 
 	if (on_object != noone)
 	{
-		exit;
+		return;
 	}
 
 	/// @method _snap_angle()
@@ -134,10 +134,10 @@ function scr_player_collision_ground_floor()
 			var _floor_data = tile_find_2v(x + radius_x, _y, x - radius_x, _y, DIRECTION.NEGATIVE, tile_layer, tile_behaviour);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
-		
-			if !stick_to_convex
+			
+			if (!stick_to_convex)
 			{
-				var _tolerance = _player_physics ? _max_tolerance : min(_min_tolerance + abs(floor(vel_x)), _max_tolerance);
+				var _tolerance = _player_physics < PHYSICS.S2 ? _max_tolerance : min(_min_tolerance + abs(floor(vel_x)), _max_tolerance);
 			
 				if (_floor_dist > _tolerance)
 				{
