@@ -1,3 +1,5 @@
+/// @feather ignore GM2016
+
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	if (global.ring_spill_counter >= 226)

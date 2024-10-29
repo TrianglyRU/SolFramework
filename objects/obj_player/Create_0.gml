@@ -1,3 +1,5 @@
+/// @feather ignore GM1041
+
 #region METHODS
 
 /// @method set_velocity()

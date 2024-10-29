@@ -1,10 +1,11 @@
 /// @self
+/// @feather ignore GM1041
 /// @description Finds a tile along a vertical axis at the given position within a specified tile layer and returns an array containing two values: the distance to the tile's edge and its angle.
 /// @param {Real} _x The x-coordinate of the position.
 /// @param {Real} _y The y-coordinate of the position.
-/// @param {Enum.DIRECTION|Real} _dir The direction in which to perform the search.
-/// @param {Enum.TILELAYER|Real} [_layer] The index of the tile layer to search within (default is TILELAYER.MAIN).
-/// @param {Enum.TILEBEHAVIOUR|Real} [_behaviour] The behaviour type of the tile (default is TILEBEHAVIOUR.DEFAULT).
+/// @param {Enum.DIRECTION} _dir The direction in which to perform the search.
+/// @param {Enum.TILELAYER} [_layer] The index of the tile layer to search within (default is TILELAYER.MAIN).
+/// @param {Enum.TILEBEHAVIOUR} [_behaviour] The behaviour type of the tile (default is TILEBEHAVIOUR.DEFAULT).
 /// @returns {Array<Real>}
 function tile_find_v(_x, _y, _dir, _layer = TILELAYER.MAIN, _behaviour = TILEBEHAVIOUR.DEFAULT)
 {

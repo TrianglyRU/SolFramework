@@ -1,9 +1,8 @@
 /// @function scr_player_collision_ground_floor()
 /// @self obj_player
+/// @feather ignore GM2044
 function scr_player_collision_ground_floor()
 {
-	/// @feather ignore GM2044
-	
 	gml_pragma("forceinline");
 
 	if (on_object != noone)

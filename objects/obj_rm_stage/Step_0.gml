@@ -1,5 +1,6 @@
 if (water_enabled)
 {
+	/// @feather ignore GM1041
 	switch (room)
 	{
 		case rm_stage_tsz2:

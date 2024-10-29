@@ -1,4 +1,5 @@
 /// @self
+/// @feather ignore GM1045
 /// @description Retrieves the height of a specific tile in the room at a given x-coordinate within itself. Returns 0 if the tile index is invalid.
 /// @param {Real} _tiledata The tile data.
 /// @param {Real} _x The x-coordinate within the tile.
@@ -23,6 +24,5 @@ function tile_get_height(_tiledata, _x)
 		_height_index = _x % TILE_SIZE;
 	}
 	
-	/// @feather ignore GM1045
 	return obj_framework.tile_heights[_index][_height_index];
 }

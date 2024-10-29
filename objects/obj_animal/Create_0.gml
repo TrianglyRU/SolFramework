@@ -15,6 +15,7 @@ vel_y = -4;
 vel_x_bounce = 0;
 vel_y_bounce = 0;
 
+/// @feather ignore GM1041
 var _animal_count = array_length(obj_rm_stage.animal_set);
 
 if (_animal_count > 0)

@@ -1,8 +1,8 @@
 /// @self
 /// @description Evaluates the validity of a tile along a vertical axis based on the specified direction and tile behaviour.
 /// @param {Real} _tiledata The tile data.
-/// @param {Enum.DIRECTION|Real} _dir The direction to check the tile's validity.
-/// @param {Enum.TILEBEHAVIOUR|Real} _behaviour The behaviour of the tile to consider when evaluating validity.
+/// @param {Enum.DIRECTION} _dir The direction to check the tile's validity.
+/// @param {Enum.TILEBEHAVIOUR} _behaviour The behaviour of the tile to consider when evaluating validity.
 /// @returns {Bool}
 function tile_get_validity_v(_tiledata, _dir, _behaviour)
 {

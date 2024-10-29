@@ -1,4 +1,5 @@
 /// @self
+/// @feather ignore GM1045
 /// @description Retrieves the width of a specific tile in the room at a given y-coordinate within itself. Returns 0 if the tile index is invalid.
 /// @param {Real} _tiledata The tile data.
 /// @param {Real} _y The y-coordinate within the tile.
@@ -23,6 +24,5 @@ function tile_get_width(_tiledata, _y)
 		_width_index = _y % TILE_SIZE;
 	}
 	
-	/// @feather ignore GM1045
 	return obj_framework.tile_widths[_index][_width_index];
 }

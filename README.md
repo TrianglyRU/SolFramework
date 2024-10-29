@@ -15,7 +15,7 @@ Yes and no. The idea and overall presentation is practically the same, but there
 Latest available LTS only. As of now, it’s 2022.0.2.51. Due to the absence of certain features, like native track looping support, some parts of the code are either missing or temporarily rewritten.
 
 # Is there documentation or support?
-No, and there won't be. This is a personal modification I made for myself, but decided to share with others.
+No, and there won't be. This is a personal modification I made for myself, but decided to share with others. Therefore, I am not accepting any bug reports and/or feature requests. The framework is provided 'as is'.
 
-# Is the framework stable? What about updates?
-Based on my tests, everything is stable and works as intended. The main branch of this repository may (and will) be updated without notice according to my needs or upon discovery of bugs and issues, approximately once a week.
+# So, is it stable then? What about updates?
+Based on my tests, core framework systems are stable and work as intended. The main branch of this repository may (and will) be updated without notice according to my needs or upon discovery of bugs and issues, but no more than once a week.

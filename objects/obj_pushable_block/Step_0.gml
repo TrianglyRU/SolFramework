@@ -17,6 +17,7 @@ switch (state)
 				continue;
 			}
 			
+			/// @feather ignore GM1041
 			var _wall_dist = tile_find_h(x + (direction_x == DIRECTION.POSITIVE ? 15 : -16), y, direction_x, TILELAYER.MAIN)[0];
 			
 			if (_wall_dist <= 0)

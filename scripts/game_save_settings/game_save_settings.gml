@@ -1,6 +1,6 @@
 /// @self
-/// @description Saves settings to the configuration file ("config.ini")
 /// @feather ignore GM1041
+/// @description Saves settings to the configuration file ("config.ini")
 function game_save_settings()
 {
 	ini_open("config.ini");

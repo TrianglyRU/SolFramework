@@ -290,7 +290,6 @@
     {"id":{"name":"spr_shield_fire","path":"sprites/spr_shield_fire/spr_shield_fire.yy",},"order":4,},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},"order":6,},
     {"id":{"name":"spr_knuckles_glide","path":"sprites/spr_knuckles_glide/spr_knuckles_glide.yy",},"order":10,},
-    {"id":{"name":"sprite_set_data","path":"scripts/sprite_set_data/sprite_set_data.yy",},"order":109,},
     {"id":{"name":"spr_pal_ghz_primary_local","path":"sprites/spr_pal_ghz_primary_local/spr_pal_ghz_primary_local.yy",},"order":0,},
     {"id":{"name":"scr_player_water","path":"scripts/scr_player_water/scr_player_water.yy",},"order":44,},
     {"id":{"name":"M68000","path":"notes/M68000/M68000.yy",},"order":0,},

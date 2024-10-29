@@ -6,6 +6,10 @@ switch (room)
 	case rm_stage_tsz0:
 		sprite_index = spr_bridge_ghz;
 	break;
+	
+	case rm_stage_tsz1:
+		sprite_index = spr_bridge_ehz;
+	break;
 }
 
 log_size = 16;

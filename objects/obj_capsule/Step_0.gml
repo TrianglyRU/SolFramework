@@ -71,17 +71,19 @@ switch (state)
     
     case CAPSULESTATE.WAIT_ANIMALS:
 		
-		var _no_animals = true;
+		var _start_results = false;
 		
-		with (obj_animal) 
+		with (obj_animal)
 		{
-			if (obj_is_visible())
+			_start_results = !obj_is_visible();
+			
+			if (!_start_results)
 			{
-				_no_animals = false;
+				break;
 			}
 		}
 		
-        if (_no_animals)
+        if (_start_results)
         {
             instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);
             audio_play_bgm(snd_bgm_actclear);
