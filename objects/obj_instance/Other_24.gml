@@ -1,3 +1,5 @@
+/// Called in obj_framework -> Begin Step -> CULLING
+
 interact_flag = true;
 		
 if (cull_behaviour <= CULLING.ACTIVE)

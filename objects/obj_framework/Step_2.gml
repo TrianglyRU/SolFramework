@@ -3,9 +3,10 @@ if (room == rm_startup)
 	return;
 }
 
-with (obj_player)
+with (obj_instance)
 {
-    event_perform(ev_other, ev_user1);
+	event_perform(ev_other, ev_user11);
+	event_perform(ev_other, ev_user12);
 }
 
 #region AUDIO

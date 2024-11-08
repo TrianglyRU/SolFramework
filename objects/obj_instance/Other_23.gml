@@ -1,3 +1,5 @@
+/// Called in obj_framework -> Begin Step -> INSTANCE ANIMATOR
+
 anim_frame_change_flag = false;
 
 if (anim_timer <= 0)

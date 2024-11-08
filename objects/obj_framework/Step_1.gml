@@ -329,7 +329,8 @@ if (state != FWSTATE.PAUSED)
 
 #endregion
 
-with (obj_player)
+with (obj_instance)
 {
-	event_perform(ev_other, ev_user0);
+	event_perform(ev_other, ev_user9);
+	event_perform(ev_other, ev_user10);
 }
