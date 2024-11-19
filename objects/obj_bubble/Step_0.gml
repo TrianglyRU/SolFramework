@@ -41,7 +41,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
 	
-    if (_player.state >= PLAYERSTATE.NO_CONTROL || _player.shield == SHIELD.BUBBLE)
+    if (_player.state >= PLAYERSTATE.LOCKED || _player.shield == SHIELD.BUBBLE)
     {
         continue;
     }
@@ -66,7 +66,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		if (action != ACTION.FLIGHT && (action != ACTION.GLIDE || action_state == GLIDESTATE.FALL))
 	    {
 			animation = ANIM.BREATHE;
-			reset_state();
+			reset_substate();
 	    }
 		
 		air_timer = AIR_TIMER_DEFAULT;

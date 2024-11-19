@@ -99,7 +99,7 @@ switch (state)
 	
 	case SIGNPOSTSTATE.MOVE_PLAYER:
 		
-		if (player_object.state == PLAYERSTATE.NO_CONTROL)
+		if (player_object.state == PLAYERSTATE.LOCKED)
 		{
 			// Fallthrough to obj_gui_results
 		}

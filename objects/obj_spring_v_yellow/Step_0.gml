@@ -37,7 +37,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	    y += other.image_yscale * 8;
 	    vel_y = other.image_yscale * -other.launch_force;
 		
-	    reset_state();
+	    reset_substate();
 	}
 	
 	obj_set_anim(sprite_index, 1, [1, 1, 2, 2, 2, 2, 2, 2, 1], function(){ obj_stop_anim(0); });

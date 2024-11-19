@@ -9,7 +9,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		visible |= _player.state == PLAYERSTATE.DEBUG_MODE;
 	}
 	
-	if (_player.state >= PLAYERSTATE.NO_CONTROL)
+	if (_player.state >= PLAYERSTATE.LOCKED)
 	{
 		continue;
 	}

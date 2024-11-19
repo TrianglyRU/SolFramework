@@ -1,7 +1,7 @@
 /// @self
 /// @description Generates collision data for the tilemap associated with the specified sprite.
 /// @param {Asset.GMSprite} _sprite_id The sprite used in the tilemap.
-/// @param {Array<Real>} _angle_data An array of values representing the angles for each tile.
+/// @param {Array<Real>|Undefined} _angle_data An array of values representing the angles for each tile.
 /// @param {Real} _off_x The horizontal offset of the sprite on the tilemap.
 /// @param {Real} _off_y The vertical offset of the sprite on the tilemap.
 /// @param {Real} _sep_x The horizontal spacing between tiles on the tilemap.
@@ -56,11 +56,82 @@ function tile_generate_data(_sprite_id, _angle_data, _off_x = 0, _off_y = 0, _se
 			}
 		}
 		
-		var _angle_index = _i - 1;
-		
-		if (_angle_index < _angle_data_length)
+		if (_angle_data != undefined)
 		{
-			_angle_arr[_i] = math_get_angle_degree(_angle_data[_angle_index]);
+			var _angle_index = _i - 1;
+		
+			if (_angle_index < _angle_data_length)
+			{
+				_angle_arr[_i] = math_get_angle_degree(_angle_data[_angle_index]);
+			}
+		}
+		else
+		{
+			#region ANGLE CALCULATION
+			/*
+			
+			TODO: Finish this
+			
+			var _x1 = obj_tile.x;
+			var _x2 = obj_tile.x + TILE_SIZE - 1;
+			var _y1 = obj_tile.y + TILE_SIZE - 1;
+			var _y2 = _y1;
+			
+			// Regular tile
+			var _is_upside_down = !collision_point(_x1, _y1, obj_tile, true, false) && collision_point(_x1, obj_tile.y, obj_tile, true, false) 
+							   || !collision_point(_x2, _y2, obj_tile, true, false) && collision_point(_x2, obj_tile.y, obj_tile, true, false);
+			
+			if (!_is_upside_down)
+			{
+				while (collision_point(_x1, _y1 - 1, obj_tile, true, false))
+				{
+					_y1--;
+				}
+				
+				while (collision_point(_x2, _y2 - 1, obj_tile, true, false))
+				{
+					_y2--;
+				}
+			}
+			
+			// Upside down tile
+			else
+			{
+				while (!collision_point(_x1, _y1, obj_tile, true, false) && _y1 > obj_tile.y)
+				{
+					_y1--;
+				}
+			
+				while (!collision_point(_x2, _y2, obj_tile, true, false) && _y2 > obj_tile.y)
+				{
+					_y2--;
+				}
+			}
+			
+			
+			while (!collision_point(_x1, _y1, obj_tile, true, false) && _x1 < obj_tile.x + TILE_SIZE)
+			{
+				_x1++;
+			}
+			
+			while (!collision_point(_x2, _y2, obj_tile, true, false) && _x2 > obj_tile.x)
+			{
+				_x2--;
+			}
+			
+			_angle_arr[_i] = math_get_angle_rounded(point_direction(_x1, _y1, _x2, _y2));
+			
+			if (_is_upside_down)
+			{
+				_angle_arr[_i] -= 180;
+				
+				if (_angle_arr[_i] < 0)
+				{
+					_angle_arr[_i] += 360;
+				}
+			}
+			*/
+			#endregion
 		}
 		
 		sprite_delete(_tile);
@@ -69,7 +140,7 @@ function tile_generate_data(_sprite_id, _angle_data, _off_x = 0, _off_y = 0, _se
 	surface_free(_surface);
 	instance_destroy(obj_tile);
 	
-	if !global.tools_binary_collision
+	if (!global.tools_binary_collision)
 	{
 		global.tile_height_data[? _sprite_id] = _height_arr;
 		global.tile_width_data[? _sprite_id] = _width_arr;
@@ -82,7 +153,7 @@ function tile_generate_data(_sprite_id, _angle_data, _off_x = 0, _off_y = 0, _se
 		show_debug_message
 		(
 			"=============================================================================================================\n"
-	      + "GENERATED COLLISION FOR " + _prefix + " IS SAVED INTO THE BINARY FILES. IT IS NOT REGISTERED IN THE GAME!\n"
+	      + "GENERATED COLLISION FOR " + _prefix + " WAS SAVED INTO THE BINARY FILES. IT IS NOT REGISTERED IN THE GAME!\n"
 	      + "============================================================================================================="
 		);
 		

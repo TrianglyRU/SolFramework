@@ -17,7 +17,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		
 		if (_attach_type == SOLIDATTACH.RESET_PLAYER)
 		{
-			_player.reset_state();
+			_player.reset_substate();
 		}
 		
 		_player.y -= (_distance + 1);
@@ -42,7 +42,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 	var _orx = solid_radius_x;
 	var _ory = solid_radius_y;
 	
-	if (_orx <= 0 || _ory <= 0 || _prx <= 0 || _pry <= 0 || _player.state >= PLAYERSTATE.NO_CONTROL)
+	if (_orx <= 0 || _ory <= 0 || _prx <= 0 || _pry <= 0 || _player.state >= PLAYERSTATE.LOCKED)
 	{
 		return;
 	}

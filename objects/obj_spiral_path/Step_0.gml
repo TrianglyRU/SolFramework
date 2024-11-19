@@ -18,7 +18,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			_bound_inner = 176;
 			_bound_outer = 192;
 		}
-		else if (_player.state >= PLAYERSTATE.NO_CONTROL)
+		else if (_player.state >= PLAYERSTATE.LOCKED)
 		{
 			continue;
 		}

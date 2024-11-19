@@ -68,8 +68,6 @@ get_setting = function(_id)
         case 1: return ": " + string(round(global.music_volume * 100)) + "%";
         case 2: return ": " + string(round(global.sound_volume * 100)) + "%";
         case 3: return ": " + string(global.window_scale) + "X";
-        case 4: return window_get_fullscreen() ? ": TRUE" : ": FALSE";
-        case 5: return global.use_vsync ? ": TRUE" : ": FALSE";
     }
 }
 
@@ -126,9 +124,7 @@ add_category    // ID 3
 	    "GAMEPAD RUMBLE",
 	    "BGM VOLUME",
 	    "SFX VOLUME",
-	    "WINDOW SCALE",
-	    "FULLSCREEN",
-	    "VSYNC"
+	    "WINDOW SCALE"
 	]
 );
 

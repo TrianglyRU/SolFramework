@@ -99,7 +99,7 @@ function scr_player_water()
 			case 0:
 			
 				audio_play_sfx(snd_drown);
-				reset_state();
+				reset_substate();
 				
 				depth = RENDERER_DEPTH_HIGHEST + player_index;
 				grv = PARAM_GRV_UNDERWATER;

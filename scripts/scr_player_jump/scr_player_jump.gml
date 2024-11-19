@@ -21,11 +21,11 @@ function scr_player_jump()
 	
 	if (input_press.action3 && super_timer == 0 && global.player_rings >= 50 && global.emerald_count == 7)
 	{
-		reset_state();
+		reset_substate();
 		audio_play_sfx(snd_transform);
 		audio_play_bgm(snd_bgm_super);
 		
-		state = PLAYERSTATE.NO_CONTROL;
+		state = PLAYERSTATE.LOCKED;
 		animation = ANIM.TRANSFORM;
 		action = ACTION.TRANSFORM;
 		inv_frames = 0;

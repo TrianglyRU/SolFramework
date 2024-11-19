@@ -47,7 +47,7 @@ function scr_player_carry()
 		
 			var _player = player_get(_p);
 		
-			if (_player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state != PLAYERSTATE.CONTROL)
+			if (_player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state != PLAYERSTATE.DEFAULT)
 			{
 				continue;
 			}
@@ -57,7 +57,7 @@ function scr_player_carry()
 		
 			if (abs(_dist_x) < 16 && abs(_dist_y) - 32 < 16)
 			{
-				_player.reset_state();		
+				_player.reset_substate();		
 				_player.animation = ANIM.GRAB;
 				_player.action = ACTION.CARRIED;
 				carry_target = _player;

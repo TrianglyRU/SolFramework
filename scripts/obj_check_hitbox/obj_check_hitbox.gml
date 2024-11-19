@@ -5,7 +5,7 @@
 /// @returns {Bool}
 function obj_check_hitbox(_target, _use_target_ext = false)
 {
-	if (_target.object_index == obj_player && _target.state != PLAYERSTATE.CONTROL)
+	if (_target.object_index == obj_player && _target.state != PLAYERSTATE.DEFAULT)
 	{
 		return false;
 	}

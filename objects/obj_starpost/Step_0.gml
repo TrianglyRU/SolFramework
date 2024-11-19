@@ -15,7 +15,7 @@ if (is_not_null_array(_checkpoint_data) && _checkpoint_data[7] >= vd_id)
 
 var _player = player_get(0);
 
-if (_player.state >= PLAYERSTATE.NO_CONTROL)
+if (_player.state >= PLAYERSTATE.LOCKED)
 {
 	return;
 }

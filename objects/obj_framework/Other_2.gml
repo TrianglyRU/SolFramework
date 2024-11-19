@@ -62,20 +62,22 @@ global.sh_pal_uv_b_local = shader_get_uniform(sh_orbinaut, "u_pal_uv_b_local");
 global.sh_pal_texel_size_b_local = shader_get_uniform(sh_orbinaut, "u_pal_texel_size_b_local");
 global.sh_pal_tex_b_local = shader_get_sampler_index(sh_orbinaut, "u_pal_tex_b_local");
 
-// Game Setup
-scr_framework_setup();
-
-game_load_settings();
+application_surface_draw_enable(false);
+surface_depth_disable(true);
 gpu_set_zwriteenable(false);
 gpu_set_ztestenable(false);
 gpu_set_alphatestenable(true);
 gpu_set_alphatestref(0);
-window_set_caption(global.window_name);
-window_set_size(global.init_resolution_w * global.window_scale, global.init_resolution_h * global.window_scale);
 
-application_surface_draw_enable(false);
-surface_depth_disable(true);
-display_reset(0, global.use_vsync);
+// Game Setup
+scr_framework_setup();
+game_load_settings();
+
+var _window_w = global.init_resolution_w * global.window_scale;
+var _window_h = global.init_resolution_h * global.window_scale;
+
+window_set_rectangle(display_get_width() / 2 - _window_w / 2, display_get_height() / 2 - _window_h / 2, _window_w, _window_h);
+window_set_caption(global.window_name);
 
 // Load into the target room
-alarm[0] = 4;
+room_goto(global.start_room);

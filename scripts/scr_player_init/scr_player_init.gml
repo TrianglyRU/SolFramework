@@ -50,7 +50,7 @@ function scr_player_init()
 			radius_y_spin = 14;
 	}
 	
-	state = PLAYERSTATE.CONTROL;
+	state = PLAYERSTATE.DEFAULT;
 	is_grounded = true;
 	is_jumping = false;
 	is_underwater = false;

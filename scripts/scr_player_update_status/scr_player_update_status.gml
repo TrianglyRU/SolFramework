@@ -44,8 +44,8 @@ function scr_player_update_status()
 		{
 			if (--transform_timer == 0)
 			{
-				state = PLAYERSTATE.CONTROL;
-				reset_state();
+				state = PLAYERSTATE.DEFAULT;
+				reset_substate();
 				
 				instance_create(x, y, obj_star_super, { vd_target_player: id });
 			}

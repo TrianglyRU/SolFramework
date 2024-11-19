@@ -4,8 +4,8 @@ scr_player_input();
 
 switch (state)
 {
-	case PLAYERSTATE.CONTROL:
-	case PLAYERSTATE.NO_CONTROL:
+	case PLAYERSTATE.DEFAULT:
+	case PLAYERSTATE.LOCKED:
 		
 		if (scr_player_debug_mode_enter())
 		{
@@ -15,7 +15,7 @@ switch (state)
 		scr_player_parameters();
 		scr_player_cpu();
 		
-		if (state != PLAYERSTATE.NO_CONTROL) then switch (is_grounded)
+		if (state != PLAYERSTATE.LOCKED) then switch (is_grounded)
 		{
 			// Grounded
 			case true:
@@ -129,7 +129,7 @@ switch (state)
 	
 		if (camera_data.vel_x == 0 && camera_data.vel_y == 0)
 		{
-			state = PLAYERSTATE.CONTROL;
+			state = PLAYERSTATE.DEFAULT;
 		}
 		
 	break;

@@ -20,7 +20,7 @@ respawn = function()
 		y = 0;
 		depth = RENDERER_DEPTH_HIGHEST + player_index;	
 		cpu_state = CPUSTATE.RESPAWN_INIT;
-		state = PLAYERSTATE.NO_CONTROL;
+		state = PLAYERSTATE.LOCKED;
 		is_grounded = false;
 	}
 	else
@@ -30,8 +30,8 @@ respawn = function()
 	}
 }
 
-/// @method reset_state()
-reset_state = function()
+/// @method reset_substate()
+reset_substate = function()
 {
 	switch (action)
 	{
@@ -123,7 +123,7 @@ land = function()
 	}
 	
 	animation = ANIM.MOVE;
-	state = PLAYERSTATE.CONTROL;
+	state = PLAYERSTATE.DEFAULT;
 	cpu_state = CPUSTATE.MAIN;
 	shield_state = SHIELDSTATE.NONE;
 	air_lock_flag = false;
@@ -175,7 +175,7 @@ is_invincible = function()
 /// @method hurt()
 hurt = function(_sound = snd_hurt, _hazard = other)
 {
-	if (state != PLAYERSTATE.CONTROL || is_invincible())
+	if (state != PLAYERSTATE.DEFAULT || is_invincible())
 	{
 		return;
 	}
@@ -188,7 +188,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 		return;
 	}
 	
-	reset_state();
+	reset_substate();
 	
 	vel_x = floor(x) < floor(_hazard.x) ? -2 : 2;
 	vel_y = -4;
@@ -260,7 +260,7 @@ kill = function(_sound = snd_hurt)
 	}
 
 	audio_play_sfx(_sound);
-	reset_state();
+	reset_substate();
 
 	if (player_index == 0)
 	{
@@ -379,9 +379,9 @@ enum PLAYER
 
 enum PLAYERSTATE
 {
-	CONTROL,
+	DEFAULT,
 	HURT,
-	NO_CONTROL,
+	LOCKED,
 	DEBUG_MODE,
 	DEATH,
 	RESPAWN

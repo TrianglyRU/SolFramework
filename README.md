@@ -12,7 +12,7 @@ Yes and no. The idea and overall presentation is practically the same, but there
 - The animation system has been reworked to more closely match the original Mega Drive engine.
 
 # For what GameMaker version is this for?
-Latest available LTS only. As of now, it’s 2022.0.2.51. Due to the absence of certain features, like native track looping support, some parts of the code are either missing or temporarily rewritten.
+Latest available **LTS** (Long-Term Stable) build only. Due to the absence of certain features, like native track looping support, some parts of the code are either missing or temporarily rewritten.
 
 # Is there documentation or support?
 No, and there won't be. This is a personal modification I made for myself, but decided to share with others. Therefore, I am not accepting any bug reports and/or feature requests. The framework is provided 'as is'.

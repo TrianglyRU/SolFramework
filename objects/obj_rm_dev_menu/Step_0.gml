@@ -229,17 +229,6 @@ switch (category_id)
 				window_center();
 				
 			break;
-
-			case 4:
-				window_set_fullscreen(!window_get_fullscreen());				
-			break;
-
-			case 5:
-			
-				global.use_vsync = !global.use_vsync;
-				display_reset(0, global.use_vsync);
-				
-			break;
 		}
 		
 		alter_setting(option_id);

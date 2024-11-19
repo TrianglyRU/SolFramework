@@ -67,7 +67,7 @@ function scr_player_debug_mode()
 	}
 	else if (_input_press.action2)
 	{
-	    state = PLAYERSTATE.CONTROL;
+	    state = PLAYERSTATE.DEFAULT;
 	    animation = ANIM.MOVE;
 	    air_lock_flag = false;
 	    is_underwater = false;
@@ -80,6 +80,6 @@ function scr_player_debug_mode()
 		y = floor(y);
 		
 	    reset_gravity();
-	    reset_state();
+	    reset_substate();
 	}
 }

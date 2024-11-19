@@ -25,7 +25,7 @@ switch (state)
 		with (_player)
 		{
 			visible = false;
-			state = PLAYERSTATE.NO_CONTROL;
+			state = PLAYERSTATE.LOCKED;
 		}
         
         global.giant_ring_data =
