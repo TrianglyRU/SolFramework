@@ -9,6 +9,7 @@ function game_load_settings()
 	global.music_volume = ini_read_real("AUDIO", "bgmVolume", global.music_volume);
 	global.sound_volume = ini_read_real("AUDIO", "sfxVolume", global.sound_volume);
 	global.window_scale = ini_read_real("VIDEO", "windowScale", global.window_scale);
+	global.start_fullscreen = ini_read_real("VIDEO", "windowMode", false);
 	
 	ini_close();
 }

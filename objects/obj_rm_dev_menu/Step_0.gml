@@ -225,9 +225,12 @@ switch (category_id)
 				var _w = global.init_resolution_w * global.window_scale;
 				var _h = global.init_resolution_h * global.window_scale;
 				
-				window_set_size(_w, _h);
-				window_center();
+				window_resize();
 				
+			break;
+			
+			case 4:
+				window_set_fullscreen(!window_get_fullscreen());				
 			break;
 		}
 		

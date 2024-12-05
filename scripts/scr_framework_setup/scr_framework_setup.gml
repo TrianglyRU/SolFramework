@@ -5,8 +5,7 @@ function scr_framework_setup()
 	global.dev_mode = true;
 	
 	global.window_name = "GameMaker - Sol Framework"
-	global.init_resolution_w = 396;
-	global.init_resolution_h = 224;
+	global.start_fullscreen = false;
 	global.window_scale = 2;
 	global.gamepad_rumble = false;
 	global.music_volume = 0.5;

@@ -101,6 +101,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	// Doing so in a Draw Event will result in a "blank" frame
 	if (!surface_exists(view_surface_id[_i]))
     {
+		// Draw views to their surfaces
 		view_surface_id[_i] = surface_create(_camera_data.surface_w, _camera_data.surface_h);
 		
 		surface_set_target(view_surface_id[_i]);

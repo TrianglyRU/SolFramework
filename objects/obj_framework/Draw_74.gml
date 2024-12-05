@@ -8,6 +8,7 @@ if (room == rm_startup)
 gpu_set_blendmode_ext_sepalpha(bm_one, bm_inv_src_alpha, bm_one, bm_one);
 gpu_set_blendenable(false);
 
+// Draw view_surface_ids
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
     var _camera_data = camera_get_data(_i);

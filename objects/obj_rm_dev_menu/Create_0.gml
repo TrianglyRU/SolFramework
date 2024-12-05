@@ -62,13 +62,32 @@ alter_setting = function(_setting_id)
 /// @method get_setting()
 get_setting = function(_id)
 {
+	var _display = "GET_SETTING() NOT SET";
+	
     switch (_id)
     {
-        case 0: return global.gamepad_rumble ? ": TRUE" : ": FALSE";
-        case 1: return ": " + string(round(global.music_volume * 100)) + "%";
-        case 2: return ": " + string(round(global.sound_volume * 100)) + "%";
-        case 3: return ": " + string(global.window_scale) + "X";
+        case 0: 
+			_display = global.gamepad_rumble ? "TRUE" : "FALSE";
+		break;
+		
+        case 1:
+			_display = string(round(global.music_volume * 100)) + "%";
+		break;
+		
+        case 2:
+			_display = string(round(global.sound_volume * 100)) + "%";
+		break;
+		
+        case 3: 
+			_display = string(global.window_scale) + "X";
+		break;
+		
+		case 4:
+			_display = window_get_fullscreen() ? "TRUE" : "FALSE";
+		break;
     }
+	
+	return ": " + _display;
 }
 
 #endregion
@@ -124,7 +143,8 @@ add_category    // ID 3
 	    "GAMEPAD RUMBLE",
 	    "BGM VOLUME",
 	    "SFX VOLUME",
-	    "WINDOW SCALE"
+	    "WINDOW SCALE",
+	    "FULLSCREEN"
 	]
 );
 

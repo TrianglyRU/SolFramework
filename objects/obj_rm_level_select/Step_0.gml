@@ -12,8 +12,8 @@ if (obj_framework.fade_state != FADESTATE.NONE)
             global.score_count = 0;
             global.life_count = 3;
             
-			// global.emerald_count and global.continue_count are not set here,
-			// we keep whatever amount of each we have at the moment
+			// We keep whatever amount of Emeralds and Continues we have at the moment,
+			// so global.emerald_count and global.continue_count are not set here
 			
             game_clear_temp_data();
             room_goto(room_to_load);

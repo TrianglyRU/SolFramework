@@ -62,7 +62,6 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	view_visible[_i] = false;
 }
 
-surface_resize(application_surface, _w, _h);
 camera_new(0, _w, _h, _w, _h);
 
 #endregion

@@ -1,6 +1,12 @@
 // Set random seed
 random_set_seed(randomise());
 
+// Change the rm_startup's size to set up the game's default
+// internal (application_surface) and camera resolution
+
+global.init_resolution_w = room_width;
+global.init_resolution_h = room_height;
+
 // Common
 global.player_main = PLAYER.NONE;
 global.player_cpu = PLAYER.NONE;
@@ -62,22 +68,22 @@ global.sh_pal_uv_b_local = shader_get_uniform(sh_orbinaut, "u_pal_uv_b_local");
 global.sh_pal_texel_size_b_local = shader_get_uniform(sh_orbinaut, "u_pal_texel_size_b_local");
 global.sh_pal_tex_b_local = shader_get_sampler_index(sh_orbinaut, "u_pal_tex_b_local");
 
+// Draw only view_surface_ids
 application_surface_draw_enable(false);
+
+// Game Setup
+scr_framework_setup();
+game_load_settings();
+
+window_set_caption(global.window_name);
+window_resize();
+
 surface_depth_disable(true);
 gpu_set_zwriteenable(false);
 gpu_set_ztestenable(false);
 gpu_set_alphatestenable(true);
 gpu_set_alphatestref(0);
 
-// Game Setup
-scr_framework_setup();
-game_load_settings();
-
-var _window_w = global.init_resolution_w * global.window_scale;
-var _window_h = global.init_resolution_h * global.window_scale;
-
-window_set_rectangle(display_get_width() / 2 - _window_w / 2, display_get_height() / 2 - _window_h / 2, _window_w, _window_h);
-window_set_caption(global.window_name);
-
-// Load into the target room
-room_goto(global.start_room);
+// Load into the target room after a slight delay
+// to let the game set up the window
+alarm[0] = 5;

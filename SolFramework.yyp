@@ -512,6 +512,7 @@
     {"id":{"name":"snd_hurt","path":"sounds/snd_hurt/snd_hurt.yy",},"order":23,},
     {"id":{"name":"scr_player_hammerspin","path":"scripts/scr_player_hammerspin/scr_player_hammerspin.yy",},"order":25,},
     {"id":{"name":"obj_waterfall_sound","path":"objects/obj_waterfall_sound/obj_waterfall_sound.yy",},"order":15,},
+    {"id":{"name":"window_resize","path":"scripts/window_resize/window_resize.yy",},"order":117,},
     {"id":{"name":"snd_shield_lightning","path":"sounds/snd_shield_lightning/snd_shield_lightning.yy",},"order":40,},
     {"id":{"name":"math_get_vector","path":"scripts/math_get_vector/math_get_vector.yy",},"order":15,},
     {"id":{"name":"scr_framework_setup","path":"scripts/scr_framework_setup/scr_framework_setup.yy",},"order":0,},
@@ -859,6 +860,6 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"angles_s3.bin","CopyToMask":-1,"filePath":"datafiles/collision",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.0.3.83",
+    "IDEVersion": "2022.0.3.85",
   },
 }
