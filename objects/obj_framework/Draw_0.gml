@@ -9,7 +9,7 @@ var _gfx_enabled = global.gfx_enabled;
 var _view_x = camera_get_x(view_current);
 var _view_y = camera_get_y(view_current);
 var _half_height = camera_get_height(view_current) / 2;
-var _perspective_factor_y = (bg_perspective_data[2] - _half_height) / (bg_perspective_data[1] - _half_height);
+var _perspective_factor_y = (bg_perspective_data[BG_PERSPECTIVE_LAYER_Y] - _half_height) / (bg_perspective_data[BG_PERSPECTIVE_TARGET_Y_INIT] - _half_height);
 
 if (bg_layer_count > 0)
 {
@@ -22,7 +22,7 @@ if (bg_layer_count > 0)
     {
         var _pd = bg_parallax_data[_i];
 		
-        if (bg_perspective_data[3] != -1)
+        if (bg_perspective_data[BG_PERSPECTIVE_LAYER_INDEX] != -1)
 		{
             _pd.factor_y = _perspective_factor_y;
 		}
@@ -37,9 +37,9 @@ if (bg_layer_count > 0)
             _frame = floor(frame_counter / _pd.anim_duration) % sprite_get_number(_pd.sprite);
 		}
 		
-        if (_i == bg_perspective_data[3])
+        if (_i == bg_perspective_data[BG_PERSPECTIVE_LAYER_INDEX])
 		{
-            _scaling = clamp((bg_perspective_data[0] - _draw_y) / _pd.height_y, -1, 1);
+            _scaling = clamp((bg_perspective_data[BG_PERSPECTIVE_TARGET_Y] - _draw_y) / _pd.height_y, -1, 1);
 		}
 		
         if (_gfx_enabled)

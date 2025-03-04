@@ -61,6 +61,9 @@ function scr_player_jump_start()
 	stick_to_convex = false;
 	animation = ANIM.SPIN;
 	
+	// We manually call scr_player_position() in Post-Begin Step, so the position must be inlined to the ground here
+	y -= vel_y; 
+	
 	audio_play_sfx(snd_jump);
 	return true;
 }

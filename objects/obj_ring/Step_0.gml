@@ -9,7 +9,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	var _player = player_get(_p);
 	
-	var _use_target_ext = vd_state == RINGSTATE.DROP && _player.shield_state == SHIELDSTATE.DOUBLESPIN;
+	var _use_target_ext = vd_state == RINGSTATE.DROP && (_player.shield_state == SHIELDSTATE.DOUBLESPIN || _player.action == ACTION.HAMMERSPIN);
 	
 	if (!obj_check_hitbox(_player, _use_target_ext))
 	{

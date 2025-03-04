@@ -14,7 +14,7 @@ var _view_y = camera_get_y(view_current);
 var _view_height = camera_get_height(view_current);
 var _y_multiplier = surface_get_height(view_surface_id[view_current]) / _view_height;
 var _half_height = _view_height / 2;
-var _perspective_factor_y = (bg_perspective_data[2] - _half_height) / (bg_perspective_data[1] - _half_height);
+var _perspective_factor_y = (bg_perspective_data[BG_PERSPECTIVE_LAYER_Y] - _half_height) / (bg_perspective_data[BG_PERSPECTIVE_TARGET_Y_INIT] - _half_height);
 
 shader_set(sh_orbinaut);
 	
@@ -94,7 +94,7 @@ for (var _i = 0; _i < 2; _i++)
 	// Align with the background vertical parallax factor
 	if (_i > 0)
 	{
-		_draw_y *= (bg_perspective_data[3] == -1 ? bg_min_factor_y : _perspective_factor_y);
+		_draw_y *= (bg_perspective_data[BG_PERSPECTIVE_LAYER_INDEX] == -1 ? bg_min_factor_y : _perspective_factor_y);
 	}
 		
 	var _has_data = distortion_has_data[_i];

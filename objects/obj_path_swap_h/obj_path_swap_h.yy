@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_path_swap_h",
   "spriteId": {
-    "name": "spr_trigger_h",
-    "path": "sprites/spr_trigger_h/spr_trigger_h.yy",
+    "name": "spr_path_swap_h",
+    "path": "sprites/spr_path_swap_h/spr_path_swap_h.yy",
   },
   "solid": false,
   "visible": false,

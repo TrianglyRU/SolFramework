@@ -20,8 +20,15 @@ switch (state)
 			// Grounded
 			case true:
 				
-				if (scr_player_spindash() || scr_player_dash() || scr_player_jump_start())
+				if (scr_player_spindash() || scr_player_dash())
 				{
+					break;
+				}
+				
+				if (scr_player_jump_start())
+				{
+					// Just like above, originals skip this, causing a one-frame lag. Avoiding that for jumps!
+					scr_player_position(); 
 					break;
 				}
 				

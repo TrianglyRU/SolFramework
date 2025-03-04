@@ -503,6 +503,7 @@
     {"id":{"name":"spr_amy_run","path":"sprites/spr_amy_run/spr_amy_run.yy",},"order":15,},
     {"id":{"name":"obj_gui_hud","path":"objects/obj_gui_hud/obj_gui_hud.yy",},"order":5,},
     {"id":{"name":"input_get_pressed","path":"scripts/input_get_pressed/input_get_pressed.yy",},"order":19,},
+    {"id":{"name":"spr_path_swap_h","path":"sprites/spr_path_swap_h/spr_path_swap_h.yy",},"order":75,},
     {"id":{"name":"snd_bgm_actclear","path":"sounds/snd_bgm_actclear/snd_bgm_actclear.yy",},"order":8,},
     {"id":{"name":"obj_spring_h_yellow","path":"objects/obj_spring_h_yellow/obj_spring_h_yellow.yy",},"order":20,},
     {"id":{"name":"spr_shield_lightning","path":"sprites/spr_shield_lightning/spr_shield_lightning.yy",},"order":6,},
@@ -725,6 +726,7 @@
     {"id":{"name":"obj_is_visible","path":"scripts/obj_is_visible/obj_is_visible.yy",},"order":84,},
     {"id":{"name":"spr_shield_fire_dash","path":"sprites/spr_shield_fire_dash/spr_shield_fire_dash.yy",},"order":5,},
     {"id":{"name":"spr_collision_s2","path":"sprites/spr_collision_s2/spr_collision_s2.yy",},"order":1,},
+    {"id":{"name":"spr_path_swap_v","path":"sprites/spr_path_swap_v/spr_path_swap_v.yy",},"order":76,},
     {"id":{"name":"rm_startup","path":"rooms/rm_startup/rm_startup.yy",},"order":0,},
   ],
   "Options": [

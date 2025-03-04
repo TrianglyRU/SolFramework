@@ -78,35 +78,36 @@ if (level_entries[global.selected_level_entry] == "SOUND TEST")
     }
     else if (_input_press.action3)
     {
-        var _sound_index = global.selected_sound_index;
-        var _audio_name = audio_get_name(_sound_index);
-        
-        if (_audio_name == "<undefined>")
-        {
-            return;
-        }
-        
-        cheat_code_string = string_concat(cheat_code_string, dec_to_hex(_sound_index));
-        
-        if (string_starts_with(_audio_name, "snd_bgm"))
-        {
-            audio_play_bgm(_sound_index, string_ends_with(_audio_name, "extralife") ? AUDIO_CHANNEL_JINGLE : 0);
-        }
-        else
-        {
-            audio_play_sfx(_sound_index);
-        }
-        
+		// Register the input
+        cheat_code_string = string_concat(cheat_code_string, dec_to_hex(global.selected_sound_index));
+		
         for (var _i = 0; _i < array_length(cheat_codes); _i++)
         {
             var _cheat = cheat_codes[_i];
             
             if (string_ends_with(cheat_code_string, _cheat.code))
             {
-                _cheat.action();
+                _cheat.execute();
                 break;
             }
         }
+		
+		// Play the sound
+		var _sound_id = sound_ids[global.selected_sound_index];
+		
+		if (_sound_id != -1)
+		{
+			var _sound_name = audio_get_name(_sound_id);
+			
+			if (string_starts_with(_sound_name, "snd_bgm"))
+	        {
+	            audio_play_bgm(_sound_id, string_ends_with(_sound_name, "extralife") ? AUDIO_CHANNEL_JINGLE : 0);
+	        }
+	        else
+	        {
+	            audio_play_sfx(_sound_id);
+	        }  
+		}		
     }
 }
 else if (_input_press.left || _input_press.right)

@@ -10,7 +10,7 @@ if (water_enabled)
 	
 	obj_framework.distortion_bound = water_level;
 	obj_framework.palette_bound = water_level;
-	obj_framework.bg_perspective_data[0] = water_level;
+	obj_framework.bg_perspective_data[BG_PERSPECTIVE_TARGET_Y] = water_level;
 }
 
 if (obj_framework.state == FWSTATE.PAUSED)

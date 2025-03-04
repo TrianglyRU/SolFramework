@@ -37,11 +37,19 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 
 #region BACKGROUND
 
+#macro BG_PERSPECTIVE_TARGET_Y 0
+#macro BG_PERSPECTIVE_TARGET_Y_INIT 1
+#macro BG_PERSPECTIVE_LAYER_Y 2
+#macro BG_PERSPECTIVE_LAYER_INDEX 3
+
 bg_layer_count = 0;
 bg_scroll_offset = 0;
 bg_min_factor_y = 0;
 bg_parallax_data = [];
-bg_perspective_data = [0, 0, 0, -1];	// target_y, target_y (read-only), layer_y, layer_index
+bg_perspective_data[BG_PERSPECTIVE_TARGET_Y] = 0;
+bg_perspective_data[BG_PERSPECTIVE_TARGET_Y_INIT] = 0;
+bg_perspective_data[BG_PERSPECTIVE_LAYER_Y] = 0;
+bg_perspective_data[BG_PERSPECTIVE_LAYER_INDEX] = -1;
 
 #endregion
 

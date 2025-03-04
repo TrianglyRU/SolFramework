@@ -102,11 +102,31 @@ level_rediretions =
 	32, rm_bonus
 ];
 
+sound_ids = [];
+
+for (var _i = 0; _i < 256; _i++)
+{
+	var _sound_name = audio_get_name(_i);
+	
+    if (_sound_name == "<undefined>")
+    {
+        array_push(sound_ids, -1);
+    }
+	else if (string_starts_with(_sound_name, "snd_bgm"))
+	{
+		array_insert(sound_ids, 0, _i);
+	}
+	else
+	{
+		array_push(sound_ids, _i);
+	}
+}
+
 cheat_codes =
 [
 	{
 		code: "04010206",
-		action: function()
+		execute: function()
 		{
 			if (global.emerald_count < 7)
 			{
@@ -117,7 +137,7 @@ cheat_codes =
 	},
 	{
 		code: "01010204",
-		action: function()
+		execute: function()
 		{
 			if (global.continue_count < 14)
 			{
@@ -128,7 +148,7 @@ cheat_codes =
 	},
 	{
 		code: "0200020400090007",
-		action: function()
+		execute: function()
 		{
 			if (!global.enable_debug_mode)
 			{
