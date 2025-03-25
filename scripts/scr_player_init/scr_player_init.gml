@@ -133,7 +133,6 @@ function scr_player_init()
 	image_alpha = 1.0;
 
 	tile_layer = TILELAYER.MAIN;
-	tile_behaviour = TILEBEHAVIOUR.DEFAULT;
 
 	shield = SHIELD.NONE;
 	shield_state = SHIELDSTATE.NONE;

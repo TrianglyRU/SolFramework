@@ -26,8 +26,8 @@ function scr_player_dash()
 	    }
 	}
 	
-	var _min_speed = 11.71875;			// is _increment_value * 30;
 	var _increment_value = 0.390625;
+	var _min_speed = _increment_value * 30;
 	var _speed_cap = (item_speed_timer > 0 || super_timer > 0) ? acc_top * 1.5 : acc_top * 2;
 
 	if (input_down.up)
@@ -38,7 +38,7 @@ function scr_player_dash()
 	    return false;
 	}
 	
-	if (abs(spd_ground) >= _min_speed)
+	if (abs(spd_ground) >= min(_min_speed, _speed_cap))
 	{
 		action = ACTION.NONE;
 		

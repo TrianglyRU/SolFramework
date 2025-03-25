@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "snd_shield_bubble2",
+  "name": "snd_shield_fire_2",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -14,8 +14,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "snd_shield_bubble2.wav",
-  "duration": 0.534014,
+  "soundFile": "snd_shield_fire_2.wav",
+  "duration": 0.85068,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

@@ -13,7 +13,7 @@ function scr_player_collision_ground_floor()
 	/// @method _snap_angle()
 	var _snap_angle = function(_angle)
 	{
-		var _diff = abs(angle % 180 - _angle % 180);		
+		var _diff = abs(angle % 180 - _angle % 180);
 		
 		if (_diff >= 45 && _diff <= 135)
 		{
@@ -23,34 +23,17 @@ function scr_player_collision_ground_floor()
 		return _angle;
 	}
 	
-	if (angle <= 45 || angle >= 315)
-	{
-		tile_behaviour = TILEBEHAVIOUR.DEFAULT;
-	}
-	else if (angle > 45 && angle < 135)
-	{
-		tile_behaviour = TILEBEHAVIOUR.ROTATE_90;
-	}
-	else if (angle >= 135 && angle <= 225)
-	{
-		tile_behaviour = TILEBEHAVIOUR.ROTATE_180;
-	}
-	else
-	{
-		tile_behaviour = TILEBEHAVIOUR.ROTATE_270;
-	}
-	
+	var _angle_quad = math_get_quadrant(angle);
 	var _min_tolerance = 4;
 	var _max_tolerance = 14;
-	
 	var _player_physics = global.player_physics;
-
-	switch (tile_behaviour)
+	
+	switch (_angle_quad)
 	{
-		case TILEBEHAVIOUR.DEFAULT:
+		case QUADRANT.DOWN:
 			
 			var _y = y + radius_y;
-			var _floor_data = tile_find_2v(x - radius_x, _y, x + radius_x, _y, DIRECTION.POSITIVE, tile_layer, tile_behaviour);
+			var _floor_data = tile_find_2v(x - radius_x, _y, x + radius_x, _y, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.DEFAULT);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 		
@@ -87,10 +70,10 @@ function scr_player_collision_ground_floor()
 		
 		break;
 		
-		case TILEBEHAVIOUR.ROTATE_90:
+		case QUADRANT.RIGHT:
 			
 			var _x = x + radius_y;
-			var _floor_data = tile_find_2h(_x, y + radius_x, _x, y - radius_x, DIRECTION.POSITIVE, tile_layer, tile_behaviour);
+			var _floor_data = tile_find_2h(_x, y + radius_x, _x, y - radius_x, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_90);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 		
@@ -127,10 +110,10 @@ function scr_player_collision_ground_floor()
 		
 		break;
 		
-		case TILEBEHAVIOUR.ROTATE_180:
+		case QUADRANT.UP:
 			
 			var _y = y - radius_y;
-			var _floor_data = tile_find_2v(x + radius_x, _y, x - radius_x, _y, DIRECTION.NEGATIVE, tile_layer, tile_behaviour);
+			var _floor_data = tile_find_2v(x + radius_x, _y, x - radius_x, _y, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_180);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -167,10 +150,10 @@ function scr_player_collision_ground_floor()
 		
 		break;
 		
-		case TILEBEHAVIOUR.ROTATE_270:
+		case QUADRANT.LEFT:
 			
 			var _x = x - radius_y;
-			var _floor_data = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.NEGATIVE, tile_layer, tile_behaviour);
+			var _floor_data = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_270);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 		

@@ -3,7 +3,7 @@ if (state = SPECIALSTAGESTATE.RESULTS)
     exit;
 }
 
-if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp2))
+if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp_2))
 {
     var _give_emerald = state == SPECIALSTAGESTATE.EMERALD;
 	
@@ -37,11 +37,11 @@ if (state != SPECIALSTAGESTATE.EMERALD)
     {
         fade_perform_white(FADEROUTINE.OUT, 3);
         audio_stop_bgm(0.5);
-        audio_play_sfx(snd_warp2);
+        audio_play_sfx(snd_warp_2);
     }
 }
 else if (!audio_is_playing(snd_bgm_emerald))
 {
     fade_perform_white(FADEROUTINE.OUT, 3);
-    audio_play_sfx(snd_warp2);
+    audio_play_sfx(snd_warp_2);
 }

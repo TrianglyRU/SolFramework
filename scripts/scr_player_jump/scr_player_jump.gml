@@ -95,7 +95,7 @@ function scr_player_jump()
 						}
 					}
 					
-					audio_play_sfx(snd_shield_bubble2);
+					audio_play_sfx(snd_shield_bubble_2);
 					
 				break;
 
@@ -126,7 +126,7 @@ function scr_player_jump()
 						}
 					}
 					
-					audio_play_sfx(snd_shield_fire2);
+					audio_play_sfx(snd_shield_fire_2);
 					
 				break;
 
@@ -140,7 +140,7 @@ function scr_player_jump()
 						instance_create(x, y, obj_shield_sparkle, { vd_sparkle_id: _i });
 					}
 					
-					audio_play_sfx(snd_shield_lightning2);
+					audio_play_sfx(snd_shield_lightning_2);
 					
 				break;
 			}

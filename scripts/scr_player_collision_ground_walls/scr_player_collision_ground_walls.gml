@@ -12,22 +12,23 @@ function scr_player_collision_ground_walls()
 	    }
 	}
 	
-	var _angle_quad = math_get_quadrant(angle);
 	var _wall_radius = radius_x_normal + 1;
 	var _y_offset = angle == 0 ? 8 : 0;
-	var _cast_dir = QUADRANT.DOWN;
+	var _wall_quad = QUADRANT.DOWN;
+	var _angle_quad = math_get_quadrant(angle);
 	
+	// _wall_quad's angle ranges are differnt from the math_get_quadrant() ones
 	if (angle >= 45 && angle <= 128)
 	{
-	    _cast_dir = QUADRANT.RIGHT;
+	    _wall_quad = QUADRANT.RIGHT;
 	}
 	else if (angle > 128 && angle < 225)
 	{
-	    _cast_dir = QUADRANT.UP;
+	    _wall_quad = QUADRANT.UP;
 	}
 	else if (angle >= 225 && angle < 315)
 	{
-	    _cast_dir = QUADRANT.LEFT;
+	    _wall_quad = QUADRANT.LEFT;
 	}
 
 	if (spd_ground < 0)
@@ -36,22 +37,22 @@ function scr_player_collision_ground_walls()
 	    var _x = x + vel_x;
 	    var _y = y + vel_y;
 		
-	    switch (_cast_dir)
+	    switch (_wall_quad)
 	    {
 	        case QUADRANT.DOWN:
-	            _wall_dist = tile_find_h(_x - _wall_radius, _y + _y_offset, DIRECTION.NEGATIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_h(_x - _wall_radius, _y + _y_offset, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.DEFAULT)[0];
 	        break;
 			
 	        case QUADRANT.RIGHT:
-	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_90)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = tile_find_h(_x + _wall_radius, _y, DIRECTION.POSITIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_h(_x + _wall_radius, _y, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_180)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_270)[0];
 	        break;
 	    }
 
@@ -101,22 +102,22 @@ function scr_player_collision_ground_walls()
 	    var _x = x + vel_x;
 	    var _y = y + vel_y;
 		
-	    switch (_cast_dir)
+	    switch (_wall_quad)
 	    {
 	        case QUADRANT.DOWN:
-	            _wall_dist = tile_find_h(_x + _wall_radius, _y + _y_offset, DIRECTION.POSITIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_h(_x + _wall_radius, _y + _y_offset, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.DEFAULT)[0];
 	        break;
 			
 	        case QUADRANT.RIGHT:
-	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_90)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = tile_find_h(_x - _wall_radius, _y, DIRECTION.NEGATIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_h(_x - _wall_radius, _y, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_180)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, tile_layer, tile_behaviour)[0];
+	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_270)[0];
 	        break;
 	    }
 

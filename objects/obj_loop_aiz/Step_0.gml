@@ -3,8 +3,9 @@ visible = global.debug_collision > 0;
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
+	var _angle_quad = math_get_quadrant(_player.angle);
 	
-	if (!_player.is_grounded || _player.tile_behaviour != TILEBEHAVIOUR.ROTATE_90)
+	if (!_player.is_grounded || _angle_quad != QUADRANT.RIGHT)
 	{
 		continue;
 	}

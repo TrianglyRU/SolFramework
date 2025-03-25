@@ -10,7 +10,7 @@ function dist_set_fg(_data1, _data2, _speed, _range_start, _range_end, _layers)
 {
 	var _effect = fx_create("_filter_sol_distortion");
 	
-	if (_effect == -1)
+	if (_effect == -1 || !is_not_null_array(_layers))
 	{
 		return;
 	}
@@ -24,24 +24,29 @@ function dist_set_fg(_data1, _data2, _speed, _range_start, _range_end, _layers)
 		
 		if (is_not_null_array(_data1))
 		{
-			fx_set_parameter(_effect, "g_DataA", _data1);
-			fx_set_parameter(_effect, "g_DataSizeA", array_length(_data1));
-			
 			distortion_has_data[0][0] = true;
 		}
-
+		else
+		{
+			// TODO: temp workaround until LTS'25
+			_data1 = [0];
+		}
+		
+		fx_set_parameter(_effect, "g_DataA", _data1);
+		fx_set_parameter(_effect, "g_DataSizeA", array_length(_data1));
+			
 		if (is_not_null_array(_data2))
 		{
-			fx_set_parameter(_effect, "g_DataB", _data2);
-			fx_set_parameter(_effect, "g_DataSizeB", array_length(_data2));
-			
 			distortion_has_data[0][1] = true;
 		}
-	}
-	
-	if (!is_not_null_array(_layers))
-	{
-		return;
+		else
+		{
+			// TODO: temp workaround until LTS'25
+			_data2 = [0];
+		}
+		
+		fx_set_parameter(_effect, "g_DataB", _data2);
+		fx_set_parameter(_effect, "g_DataSizeB", array_length(_data2));
 	}
 	
 	fx_set_single_layer(_effect, true);

@@ -14,25 +14,26 @@ function scr_player_jump_start()
 		return;
 	}
 
+	var _angle_quad = math_get_quadrant(angle);
 	var _max_dist = 6;
 	var _ceil_dist = _max_dist;
 	var _x, _y;
 
-	switch (tile_behaviour)
+	switch (_angle_quad)
 	{
-		case TILEBEHAVIOUR.DEFAULT:	
+		case QUADRANT.DOWN:	
 			_y = y - radius_y;
-			_ceil_dist = tile_find_2v(x - radius_x, _y, x + radius_x, _y, DIRECTION.NEGATIVE, tile_layer, tile_behaviour)[0];		
+			_ceil_dist = tile_find_2v(x - radius_x, _y, x + radius_x, _y, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.DEFAULT)[0];		
 		break;
 
-		case TILEBEHAVIOUR.ROTATE_90:
+		case QUADRANT.RIGHT:
 			_x = x - radius_y;
-			_ceil_dist = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.NEGATIVE, tile_layer, tile_behaviour)[0];
+			_ceil_dist = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_90)[0];
 		break;
 
-		case TILEBEHAVIOUR.ROTATE_270:
+		case QUADRANT.LEFT:
 			_x = x + radius_y;
-			_ceil_dist = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.POSITIVE, tile_layer, tile_behaviour)[0];
+			_ceil_dist = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_270)[0];
 		break;
 	}
 

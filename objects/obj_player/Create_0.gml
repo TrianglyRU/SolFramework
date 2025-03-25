@@ -41,7 +41,7 @@ reset_substate = function()
 
 		case ACTION.FLIGHT:
 			audio_stop_sound(snd_flight);
-			audio_stop_sound(snd_flight2);
+			audio_stop_sound(snd_flight_2);
 		break;
 	}
 	
@@ -104,7 +104,7 @@ land = function()
 		on_object = noone;
 		is_grounded = false;
 		
-		audio_play_sfx(snd_shield_bubble2);
+		audio_play_sfx(snd_shield_bubble_2);
 		
 		with (obj_shield)
 		{
@@ -130,7 +130,6 @@ land = function()
 	is_jumping = false;
 	set_push_anim_by = noone;
 	score_combo = 0;
-	tile_behaviour = TILEBEHAVIOUR.DEFAULT;
 	visual_angle = angle > 22.5 && angle < 337.5 ? angle : 0;
 	
 	clear_carry();
@@ -329,7 +328,7 @@ play_tails_sound = function()
 
 	if (cpu_state != CPUSTATE.RESPAWN)
 	{
-		audio_play_sfx(flight_timer > 0 ? snd_flight : snd_flight2);
+		audio_play_sfx(flight_timer > 0 ? snd_flight : snd_flight_2);
 	}
 	else if (global.cpu_behaviour == CPUBEHAVIOUR.S3)
 	{

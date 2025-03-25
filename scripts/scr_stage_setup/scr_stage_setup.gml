@@ -4,7 +4,7 @@ function scr_stage_setup()
 {
 	switch (room)
 	{
-		#region TEST STAGE ZONE
+		#region TEST STAGE
 		
 		case rm_stage_tsz0:
 		
