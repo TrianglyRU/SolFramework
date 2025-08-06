@@ -1,5 +1,5 @@
-/// @function scr_player_slope_resist_roll()
 /// @self obj_player
+/// @function scr_player_slope_resist_roll()
 function scr_player_slope_resist_roll()
 {
 	gml_pragma("forceinline");

@@ -3,15 +3,18 @@
   "resourceVersion": "1.0",
   "name": "obj_force_spin_h",
   "spriteId": {
-    "name": "spr_trigger_h",
-    "path": "sprites/spr_trigger_h/spr_trigger_h.yy",
+    "name": "spr_force_spin_h",
+    "path": "sprites/spr_force_spin_h/spr_force_spin_h.yy",
   },
   "solid": false,
   "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_game_object",
+    "path": "objects/obj_game_object/obj_game_object.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -31,7 +34,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Objects/Stage.yy",
   },
 }

@@ -1,8 +1,7 @@
-/// Called in obj_framework -> Begin Step
+/// Called in obj_game -> Begin Step
 /// @self obj_gui_pause
 
 var _input = input_get_pressed(0);
-
 switch (state)
 {
 	case PAUSESTATE.NAVIGATION:
@@ -10,7 +9,6 @@ switch (state)
 		highlight_timer = (highlight_timer + 1) % 16;
 		
 		var _option_id = option_id;
-		
 		if (_input.down)
 		{
 			if (++option_id > 2)
@@ -38,13 +36,11 @@ switch (state)
 		
 		if (option_id == 0)
 		{
-			obj_framework.state = FWSTATE.NORMAL;
-			
+			obj_game.state = GAMESTATE.NORMAL;
 			audio_resume_all();
 			instance_destroy();
 			input_reset(_input);	
 			audio_play_sfx(snd_starpost);
-			
 			break;
 		}
 		
@@ -71,19 +67,19 @@ switch (state)
 	case PAUSESTATE.RESTART:
 	case PAUSESTATE.EXIT:
 	
-		if (obj_framework.fade_state != FADESTATE.PLAINCOLOUR || audio_is_playing(snd_starpost))
+		if (obj_game.fade_state != FADESTATE.PLAINCOLOUR || audio_is_playing(snd_starpost))
 		{
 			break;
 		}	
 		
 		if (state == PAUSESTATE.RESTART)
 		{
-			game_clear_temp_data(false);
+			game_clear_level_data(false);
 			room_restart();
 		}
 		else
 		{
-			game_clear_temp_data();
+			game_clear_level_data();
 			room_goto(rm_level_select);
 		}
 		

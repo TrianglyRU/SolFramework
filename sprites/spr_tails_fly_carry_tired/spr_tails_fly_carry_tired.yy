@@ -28,8 +28,8 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"f205c376-b3c9-4ab2-be97-84305b7e8498",},
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"85b34ab4-4ec0-4015-95cd-49dfea3a1698",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"55282a6a-c6cd-4360-9ee5-8a3a3e94f820",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"01b3476f-d703-492b-8a08-c7e3d04b4e58",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -46,8 +46,8 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"e973d9c7-28cc-46f2-a750-a9ee2ef8a5c9","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f205c376-b3c9-4ab2-be97-84305b7e8498","path":"sprites/spr_tails_fly_carry_tired/spr_tails_fly_carry_tired.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"674cd062-b34a-4e96-81fa-675c3e3d9be3","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"85b34ab4-4ec0-4015-95cd-49dfea3a1698","path":"sprites/spr_tails_fly_carry_tired/spr_tails_fly_carry_tired.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"b276e861-d5a3-4b3a-a7be-45213d68c17b","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"55282a6a-c6cd-4360-9ee5-8a3a3e94f820","path":"sprites/spr_tails_fly_carry_tired/spr_tails_fly_carry_tired.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"2b9ec737-6835-4998-aef3-e9bcdc295fd6","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"01b3476f-d703-492b-8a08-c7e3d04b4e58","path":"sprites/spr_tails_fly_carry_tired/spr_tails_fly_carry_tired.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -66,7 +66,7 @@
     "eventStubScript": null,
   },
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"5b0abcbb-7f91-4870-973d-d56240fc0178","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"15d246eb-140b-45b4-9047-063cb522892b","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {

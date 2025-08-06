@@ -1,10 +1,11 @@
-if (!instance_exists(vd_target_player) || vd_target_player.shield == SHIELD.NONE)
+var _shield = global.player_shields[vd_target_player.player_index];
+if (!instance_exists(vd_target_player) || _shield == SHIELD.NONE)
 {
-    instance_destroy();
+    instance_destroy();	
     return;
 }
 
-switch (vd_target_player.shield)
+switch (_shield)
 {
     case SHIELD.FIRE:
 	
@@ -17,11 +18,11 @@ switch (vd_target_player.shield)
     
     case SHIELD.LIGHTNING:
 		
-		if (anim_order_index == 21)
+		if (image_index == 21)
 		{
 			obj_set_priority(3);
 		}
-		else if (anim_order_index == 0 || anim_order_index == 39)
+		else if (image_index == 0 || image_index == 39)
 		{
 			obj_set_priority(1);
 		}

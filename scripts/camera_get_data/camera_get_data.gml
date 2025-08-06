@@ -4,5 +4,5 @@
 /// @returns {Struct | Undefined}
 function camera_get_data(_index)
 {
-    return obj_framework.camera_data[_index];
+    return obj_game.camera_data[_index];
 }

@@ -4,20 +4,24 @@ if (!instance_exists(vd_target_player) || !vd_target_player.is_underwater)
     return;
 }
 
-if (vd_target_player.state == PLAYERSTATE.HURT || vd_target_player.state == PLAYERSTATE.DEBUG_MODE || vd_target_player.shield == SHIELD.BUBBLE)
+if (global.player_shields[vd_target_player.player_index] == SHIELD.BUBBLE)
+{
+	return;
+}
+
+if (vd_target_player.state == PLAYERSTATE.HURT || vd_target_player.state == PLAYERSTATE.DEBUG_MODE)
 {
 	return;
 }
 
 var _x = vd_target_player.x + 6 * vd_target_player.facing;
 var _y = vd_target_player.y;
-
 var _spawn_direction = vd_target_player.forced_roll ? DIRECTION.POSITIVE : vd_target_player.facing;
 var _air_timer = vd_target_player.air_timer;
 
 if (_air_timer > 0)
 {
-    if _air_timer <= 720 && _air_timer % 120 == 0
+    if (_air_timer <= 720 && _air_timer % 120 == 0)
     {	
 		if (_air_timer == 720)
 		{
@@ -60,6 +64,8 @@ if (_air_timer > 0)
         }
     }
 }
+
+// Drowning
 else if (bubbles_spawned_no_air < 12)
 {
     if (next_bubble_timer_no_air > 0)
@@ -67,9 +73,8 @@ else if (bubbles_spawned_no_air < 12)
         next_bubble_timer_no_air--;
         return;
     }
-
-    var _type = irandom(3) > 0 ? BUBBLE.SMALL : BUBBLE.MEDIUM;
 	
+    var _type = irandom(3) > 0 ? BUBBLE.SMALL : BUBBLE.MEDIUM;	
     instance_create(_x, _y - 12, obj_bubble,
     {
         vd_bubble_type: _type, vd_wobble_direction: _spawn_direction, depth: RENDERER_DEPTH_HIGHEST - 1

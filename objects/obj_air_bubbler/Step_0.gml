@@ -18,18 +18,23 @@ switch (state)
 		bubble_id = 0;
 		state = AIRBUBBLERSTATE.PRODUCE;
 		
-		// fallthrough to AIRBUBBLER_STATE_PRODUCE
+		// fallthrough to AIRBUBBLERSTATE.PRODUCE
 		
 	case AIRBUBBLERSTATE.PRODUCE:
-	
+		
 		if (--random_time > 0)
 		{
 			break;
 		}
 		
-		var _bubble_type = BUBBLE.LARGE;
+		// Define bubble type to produce
+		var _bubble_type;
 		
-		if (bubble_id != bubble_id_large || ((wait_cycle + 1) % (vd_cycles_to_skip + 1)) == 1)
+		if (bubble_id == bubble_id_large && wait_cycle % vd_rate == 0)
+		{
+			_bubble_type = BUBBLE.LARGE;
+		}
+		else
 		{
 			_bubble_type = type_array[type_array_to_use][bubble_id];
 		}
@@ -40,16 +45,12 @@ switch (state)
 			vd_wobble_direction: choose(DIRECTION.NEGATIVE, DIRECTION.POSITIVE)
 		});
 		
-		with (_object)
-		{
-			image_index = _bubble_type == BUBBLE.LARGE ? 1 : 0;
-		}
+		_object.image_index = _bubble_type == BUBBLE.LARGE ? 1 : 0;
 		
 		if (--bubbles_to_spawn > 0)
 		{
 			bubble_id++;
 			random_time = irandom_range(0, 31);
-			
 			break;
 		}
 		

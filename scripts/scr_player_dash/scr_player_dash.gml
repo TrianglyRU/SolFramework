@@ -1,3 +1,4 @@
+/// @self obj_player
 /// @function scr_player_dash
 function scr_player_dash()
 {
@@ -16,8 +17,10 @@ function scr_player_dash()
 	        action = ACTION.DASH;
 	        dash_vel = 0;
 			
-			// TODO: LTS'25
+			// TODO: enable in LTS'25
 	        // audio_play_sfx(snd_charge_dash, [1.00, 2.30]);
+			
+			// TODO: remove in LTS'25
 	        audio_play_sfx(snd_charge_dash_no_loop);
 	    }
 	    else
@@ -34,7 +37,6 @@ function scr_player_dash()
 	{
 	    dash_vel = min(dash_vel + _increment_value, _speed_cap);
 	    spd_ground = dash_vel * facing;
-		
 	    return false;
 	}
 	
@@ -45,13 +47,12 @@ function scr_player_dash()
 		// There is no camera delay for Dash in CD, so we assume it uses the same logic as the Spin Dash camera delay
 		var _raw_camera_delay = -((abs(spd_ground) - _min_speed) * 2) + 32;
 		
-	    set_camera_delay(floor(_raw_camera_delay / 2));
-		set_velocity();
-		audio_play_sfx(snd_release_dash);
-		
 		// TODO: LTS'25
 		// audio_stop_sound(snd_charge_dash);
 		audio_stop_sound(snd_charge_dash_no_loop);
+		audio_play_sfx(snd_release_dash);
+	    set_camera_delay(floor(_raw_camera_delay * 0.5));
+		set_velocity();
 		
 		// Exit the player control routine
 	    return true;

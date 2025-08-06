@@ -1,13 +1,13 @@
-/// @function scr_player_movement_ground()
 /// @self obj_player
+/// @function scr_player_movement_ground()
 function scr_player_movement_ground()
-{
+{	
 	if (action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH)
 	{
 		return;
 	}
 	
-	if (animation == ANIM.GLIDE_GROUND || animation == ANIM.GLIDE_LAND) && (input_down.down || spd_ground != 0)
+	if ((animation == ANIM.GLIDE_GROUND || animation == ANIM.GLIDE_LAND) && (input_down.down || spd_ground != 0))
 	{
 		ground_lock_timer = 0;
 	}
@@ -15,13 +15,11 @@ function scr_player_movement_ground()
 	if (ground_lock_timer == 0)
 	{
 		var _do_skid = false;
-		
 		if (input_down.left)
 		{	
 			if (spd_ground > 0)
 			{
 				spd_ground -= dec;
-				
 				if (spd_ground < 0)
 				{
 					spd_ground = -0.5;
@@ -41,7 +39,6 @@ function scr_player_movement_ground()
 					facing = DIRECTION.NEGATIVE;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
-					
 					obj_restart_anim();
 				}
 				
@@ -56,8 +53,7 @@ function scr_player_movement_ground()
 		{
 			if (spd_ground < 0)
 			{
-				spd_ground += dec;
-				
+				spd_ground += dec;			
 				if (spd_ground >= 0)
 				{
 					spd_ground = 0.5;
@@ -77,7 +73,6 @@ function scr_player_movement_ground()
 					facing = DIRECTION.POSITIVE;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
-					
 					obj_restart_anim();
 				}
 				
@@ -94,7 +89,6 @@ function scr_player_movement_ground()
 		}
 
 		var _angle_quad = math_get_quadrant(angle);
-
 		if (_angle_quad != QUADRANT.DOWN || spd_ground != 0)
 		{
 			if (animation != ANIM.SKID && animation != ANIM.PUSH && animation != ANIM.FLIP)
@@ -106,7 +100,6 @@ function scr_player_movement_ground()
 			{
 				skid_timer = 0;
 				animation = ANIM.SKID;
-				
 				audio_play_sfx(snd_skid);
 			}
 		}

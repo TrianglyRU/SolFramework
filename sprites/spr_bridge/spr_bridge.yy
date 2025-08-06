@@ -21,8 +21,8 @@
   "width": 16,
   "height": 16,
   "textureGroupId": {
-    "name": "texgroup_stage_common",
-    "path": "texturegroups/texgroup_stage_common",
+    "name": "texgroup_basic_objects",
+    "path": "texturegroups/texgroup_basic_objects",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -64,7 +64,7 @@
     "eventStubScript": null,
   },
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"1c8f99cb-66c5-460f-b040-a2f5fb261349","visible":true,"isLocked":false,"blendMode":0,"opacity":50.0,"displayName":"default",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"1c8f99cb-66c5-460f-b040-a2f5fb261349","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": {
     "left": 0,
@@ -92,7 +92,7 @@
     "resourceType": "GMNineSliceData",
   },
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Sprites/Stage Common.yy",
+    "name": "Basic Objects",
+    "path": "folders/Sprites/Basic Objects.yy",
   },
 }

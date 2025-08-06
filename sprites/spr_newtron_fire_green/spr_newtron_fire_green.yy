@@ -21,8 +21,8 @@
   "width": 39,
   "height": 39,
   "textureGroupId": {
-    "name": "texgroup_ghz",
-    "path": "texturegroups/texgroup_ghz",
+    "name": "texgroup_ghz_objects",
+    "path": "texturegroups/texgroup_ghz_objects",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -30,7 +30,11 @@
   "frames": [
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"9ddf36ff-11a0-40a2-bbbb-e4ded05b4319",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"26bc5a5a-2bf4-4f34-9d4f-35139a166407",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"dee9ae7b-ad82-43c7-97ad-ae6d9ad87e7e",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bf52eb4e-1262-40e3-b048-3f5bc88c42c0",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"d07c371a-57cd-4af4-9290-cb2ee07129cb",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"c8086127-1c13-4696-8f85-ecf4e632bc79",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a313a45d-235b-4b03-9061-307c47a3ced0",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -42,14 +46,18 @@
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 3.0,
+    "length": 7.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"ac1cabbb-0684-4329-8710-954dfca90d13","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"9ddf36ff-11a0-40a2-bbbb-e4ded05b4319","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"3929c026-029b-4bc6-8c9e-71d72321506b","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"26bc5a5a-2bf4-4f34-9d4f-35139a166407","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"719ddba4-49db-4f63-9e8d-0c2addeed633","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bf52eb4e-1262-40e3-b048-3f5bc88c42c0","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"b21a41c6-73fe-41a6-834e-8ee3a6348dc1","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"dee9ae7b-ad82-43c7-97ad-ae6d9ad87e7e","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"719ddba4-49db-4f63-9e8d-0c2addeed633","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bf52eb4e-1262-40e3-b048-3f5bc88c42c0","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"d23a62ed-687a-452d-b3f9-2adcfc3c9c99","Key":4.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"d07c371a-57cd-4af4-9290-cb2ee07129cb","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"5e2c380f-759f-49b8-8660-ff1f50ac2f1a","Key":5.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"c8086127-1c13-4696-8f85-ecf4e632bc79","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"b006c36c-3b9b-4444-9de9-4f87d5b4beca","Key":6.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"a313a45d-235b-4b03-9061-307c47a3ced0","path":"sprites/spr_newtron_fire_green/spr_newtron_fire_green.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,

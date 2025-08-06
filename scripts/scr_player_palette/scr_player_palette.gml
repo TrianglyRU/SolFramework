@@ -1,5 +1,5 @@
-/// @function scr_player_palette()
 /// @self obj_player
+/// @function scr_player_palette()
 function scr_player_palette()
 {
 	gml_pragma("forceinline");

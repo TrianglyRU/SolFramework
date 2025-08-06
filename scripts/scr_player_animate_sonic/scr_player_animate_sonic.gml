@@ -1,5 +1,5 @@
-/// @function scr_player_animate_sonic()
 /// @self obj_player
+/// @function scr_player_animate_sonic()
 function scr_player_animate_sonic()
 {
 	gml_pragma("forceinline");
@@ -15,16 +15,7 @@ function scr_player_animate_sonic()
 				break;
 			}
 			
-			var _idle_order_data =
-			[
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				1,
-				2, 2, 2, 2, 2,
-				3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3, 4, 4, 4,
-				5, 5, 5, 5, 5, 5, 5, 5, 5
-			];
-			
-			obj_set_anim(spr_sonic_idle, 6, _idle_order_data, 36);
+			obj_set_anim(spr_sonic_idle, 6, 0, 31);
 			
 			if (image_index > 0)
 			{
@@ -36,7 +27,6 @@ function scr_player_animate_sonic()
 		case ANIM.MOVE:
 		
 			var _move_sprite = spr_sonic_walk;
-			
 			if (super_timer > 0)
 			{
 				_move_sprite = abs(spd_ground) < 8 ? spr_sonic_walk_super : spr_sonic_dash_super;
@@ -46,11 +36,12 @@ function scr_player_animate_sonic()
 				_move_sprite = abs(spd_ground) < 10 || !global.dash ? spr_sonic_run : spr_sonic_dash;
 			}
 			
-			obj_set_anim(_move_sprite, floor(max(1, 9 - abs(spd_ground))), 0, 0, true);
+			obj_set_anim(_move_sprite, floor(max(1, 9 - abs(spd_ground))), 0, 0);
 			
-			if (_move_sprite == spr_sonic_walk_super && obj_framework.frame_counter % 4 <= 1)
+			// Override the displayed frame
+			if (_move_sprite == spr_sonic_walk_super && obj_game.frame_counter % 4 <= 1)
 			{
-				image_index = (image_index + floor(image_number / 2)) % image_number;
+				image_index = (image_index + floor(image_number * 0.5)) % image_number;
 			}
 			
 		break;
@@ -63,17 +54,17 @@ function scr_player_animate_sonic()
 			}
 			else
 			{
-				obj_set_anim(spr_sonic_spin, floor(max(1, 5 - abs(spd_ground))), [0, 4, 1, 4, 2, 4, 3, 4], 0, true);
+				obj_set_anim(spr_sonic_spin, floor(max(1, 5 - abs(spd_ground))), 0, 0);
 			}
 			
 		break;
 		
 		case ANIM.SPINDASH:
-			obj_set_anim(spr_sonic_spindash, 1, [0, 5, 1, 5, 2, 5, 3, 5, 4, 5], 0);
+			obj_set_anim(spr_sonic_spindash, 1, 0, 0);
 		break;
 		
 		case ANIM.PUSH:
-			obj_set_anim(super_timer > 0 ? spr_sonic_push_super : spr_sonic_push, floor(max(1, 9 - abs(spd_ground)) * 4), 0, 0, true);
+			obj_set_anim(super_timer > 0 ? spr_sonic_push_super : spr_sonic_push, floor(max(1, 9 - abs(spd_ground)) * 4), 0, 0);
 		break;
 		
 		case ANIM.DUCK:
@@ -114,14 +105,7 @@ function scr_player_animate_sonic()
 		break;
 		
 		case ANIM.TRANSFORM:
-			
-			var _transform_order_data =
-			[
-				0, 0, 1, 1, 2, 3, 4, 3, 4, 3, 4, 3, 4
-			];
-			
-			obj_set_anim(spr_sonic_transform, 3, _transform_order_data, function(){ animation = ANIM.MOVE; });
-			
+			obj_set_anim(spr_sonic_transform, 3, 0, function(){ animation = ANIM.MOVE; });
 		break;
 		
 		case ANIM.BREATHE:
@@ -150,9 +134,16 @@ function scr_player_animate_sonic()
 		
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
+		
+			obj_set_anim(spr_sonic_flip, 1, 0, function()
+			{
+				if (animation == ANIM.FLIP || anim_play_count > 1)
+				{
+					animation = ANIM.MOVE;
+				}; 
+			});
 			
-			obj_set_anim(spr_sonic_flip, 1, get_flip_order_data(), function(){ animation = ANIM.MOVE; });
-			
+			// Override the displayed sprite
 			if (facing == DIRECTION.NEGATIVE)
 			{
 				sprite_index = spr_sonic_flip_flipped;

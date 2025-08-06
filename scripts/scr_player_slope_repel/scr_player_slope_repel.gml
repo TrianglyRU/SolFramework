@@ -1,5 +1,5 @@
-/// @function scr_player_slope_repel()
 /// @self obj_player
+/// @function scr_player_slope_repel()
 function scr_player_slope_repel()
 {
 	gml_pragma("forceinline");

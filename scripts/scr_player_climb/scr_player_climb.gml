@@ -1,5 +1,5 @@
-/// @function scr_player_climb()
 /// @self obj_player
+/// @function scr_player_climb()
 function scr_player_climb()
 {
 	gml_pragma("forceinline");
@@ -9,8 +9,7 @@ function scr_player_climb()
 		return;
 	}
 
-	var _steps_per_climb_value = 4;
-	
+	var _steps_per_climb_frame = 4;
 	switch (action_state)
 	{
 		case CLIMBSTATE.NORMAL:
@@ -21,8 +20,7 @@ function scr_player_climb()
 				break;
 			}
 			
-			var _max_animation_value = image_number * _steps_per_climb_value;
-		
+			var _max_animation_value = image_number * _steps_per_climb_frame;
 			if (input_down.up)
 			{
 				if (++climb_value > _max_animation_value)
@@ -47,7 +45,6 @@ function scr_player_climb()
 			}
 		
 			var _radius_x = radius_x;
-			
 			if (facing == DIRECTION.NEGATIVE)
 			{
 				_radius_x++;
@@ -55,8 +52,7 @@ function scr_player_climb()
 		
 			if (vel_y < 0)
 			{
-				var _wall_dist = tile_find_h(x + _radius_x * facing, y - radius_y - 1, facing, tile_layer)[0];
-				
+				var _wall_dist = tile_find_h(x + _radius_x * facing, y - radius_y - 1, facing, secondary_layer)[0];
 				if (_wall_dist >= 4)
 				{
 					action_state = CLIMBSTATE.LEDGE;
@@ -71,8 +67,7 @@ function scr_player_climb()
 					vel_y = 0;
 				}
 			
-				var _ceil_dist = tile_find_v(x + _radius_x * facing, y - radius_y_normal + 1, DIRECTION.NEGATIVE, tile_layer)[0];
-				
+				var _ceil_dist = tile_find_v(x + _radius_x * facing, y - radius_y_normal + 1, DIRECTION.NEGATIVE, secondary_layer)[0];
 				if (_ceil_dist < 0)
 				{
 					y -= _ceil_dist;
@@ -81,27 +76,24 @@ function scr_player_climb()
 			}
 			else
 			{
-				var _wall_dist = tile_find_h(x + _radius_x * facing, y + radius_y + 1, facing, tile_layer)[0];
-				
+				var _wall_dist = tile_find_h(x + _radius_x * facing, y + radius_y + 1, facing, secondary_layer)[0];
 				if (_wall_dist != 0)
 				{
 					release_glide(1);
 					break;
 				}
 				
-				var _floor_data = tile_find_v(x + _radius_x * facing, y + radius_y_normal, DIRECTION.POSITIVE, tile_layer);
+				var _floor_data = tile_find_v(x + _radius_x * facing, y + radius_y_normal, DIRECTION.POSITIVE, secondary_layer);
 				var _floor_dist = _floor_data[0];
 				var _floor_angle = _floor_data[1];
 				
 				if (_floor_dist < 0)
 				{
 					land();
-					
 					y += _floor_dist + radius_y;
 					angle = _floor_angle;
 					animation = ANIM.IDLE;
 					vel_y = 0;
-					
 					break;
 				}
 			}
@@ -119,13 +111,12 @@ function scr_player_climb()
 				
 				audio_play_sfx(snd_jump);
 				reset_gravity();
-				
 				break;
 			}
 			
 			if (vel_y != 0)
 			{
-				image_index = floor(climb_value / _steps_per_climb_value);
+				image_index = floor(climb_value / _steps_per_climb_frame);
 			}
 	
 		break;

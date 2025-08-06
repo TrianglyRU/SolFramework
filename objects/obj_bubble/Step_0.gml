@@ -1,6 +1,6 @@
 if (vd_bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_rm_stage.water_level)
 {
-    if (image_index == image_number - 1)
+    if (image_index == 5)
     {
         burst();
     }
@@ -28,7 +28,6 @@ else if (obj_is_anim_ended())
 {
     instance_destroy();
     instance_create(x, y, obj_countdown, { image_index: vd_countdown_frame });
-	
     return;
 }
 
@@ -40,8 +39,7 @@ if (vd_bubble_type != BUBBLE.LARGE || !obj_is_anim_stopped())
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
-	
-    if (_player.state >= PLAYERSTATE.LOCKED || _player.shield == SHIELD.BUBBLE)
+    if (_player.state >= PLAYERSTATE.LOCKED || global.player_shields[_p] == SHIELD.BUBBLE)
     {
         continue;
     }
@@ -61,21 +59,18 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
         audio_reset_bgm(obj_rm_stage.bgm_track, _player);
     }
 	
-	with (_player)
+	if (_player.action != ACTION.FLIGHT && (_player.action != ACTION.GLIDE || _player.action_state == GLIDESTATE.FALL))
 	{
-		if (action != ACTION.FLIGHT && (action != ACTION.GLIDE || action_state == GLIDESTATE.FALL))
-	    {
-			animation = ANIM.BREATHE;
-			reset_substate();
-	    }
-		
-		air_timer = AIR_TIMER_DEFAULT;
-	    ground_lock_timer = 35;
-	    vel_x = 0;
-	    vel_y = 0;
-	    spd_ground = 0;
+		_player.animation = ANIM.BREATHE;
+		_player.reset_substate();
 	}
-    
+		
+	_player.air_timer = AIR_TIMER_DEFAULT;
+	_player.ground_lock_timer = 35;
+	_player.vel_x = 0;
+	_player.vel_y = 0;
+	_player.spd_ground = 0;
+	
     audio_play_sfx(snd_breathe);
 	break;
 }

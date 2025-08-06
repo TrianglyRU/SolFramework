@@ -33,7 +33,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Objects/Stage.yy",
   },
 }

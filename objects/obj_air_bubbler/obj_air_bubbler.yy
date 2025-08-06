@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_instance",
-    "path": "objects/obj_instance/obj_instance.yy",
+    "name": "obj_game_object",
+    "path": "objects/obj_game_object/obj_game_object.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -32,11 +32,11 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
   ],
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_cycles_to_skip","varType":1,"value":"0","rangeEnabled":true,"rangeMin":0.0,"rangeMax":2.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_rate","varType":1,"value":"1","rangeEnabled":true,"rangeMin":1.0,"rangeMax":3.0,"listItems":[],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Objects/Stage.yy",
   },
 }

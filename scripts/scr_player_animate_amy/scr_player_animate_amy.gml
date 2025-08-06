@@ -1,5 +1,5 @@
-/// @function scr_player_animate_amy()
 /// @self obj_player
+/// @function scr_player_animate_amy()
 function scr_player_animate_amy()
 {
 	gml_pragma("forceinline");
@@ -9,20 +9,7 @@ function scr_player_animate_amy()
 		case ANIM.IDLE:
 		case ANIM.WAIT:
 			
-			var _idle_order_data =
-			[
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				1, 1, 1, 1, 1, 1, 1, 1,
-				2, 2, 2, 2, 2,
-				3, 3, 3, 3, 3, 3, 3, 3,
-				2, 2, 2, 2, 2
-			];
-			
-			obj_set_anim(spr_amy_idle, 2, _idle_order_data, 120);
+			obj_set_anim(spr_amy_idle, 2, 0, 120);
 			
 			if (image_index > 0)
 			{
@@ -34,37 +21,33 @@ function scr_player_animate_amy()
 		case ANIM.MOVE:
 		
 			var _move_sprite = spr_amy_walk;
-			
 			if (abs(spd_ground) >= 6)
 			{
 				_move_sprite = abs(spd_ground) < 10 ? spr_amy_run : spr_amy_dash;
 			}
 			
-			obj_set_anim(_move_sprite, floor(max(1, 9 - abs(spd_ground))), 0, 0, true);
+			obj_set_anim(_move_sprite, floor(max(1, 9 - abs(spd_ground))), 0, 0);
 			
 		break;
 			
 		case ANIM.SPIN:
 		
-			var _spin_duration = floor(max(1, 5 - abs(spd_ground)));
+			obj_set_anim(spr_amy_spin, floor(max(1, 5 - abs(spd_ground))), image_index, 0);
 			
+			// Override the displayed sprite
 			if (action == ACTION.HAMMERSPIN)
 			{
-				obj_set_anim(spr_amy_spin_hammer, _spin_duration, anim_order_index, 0, true);
-			}
-			else
-			{
-				obj_set_anim(spr_amy_spin, _spin_duration, [0, 4, 1, 4, 2, 4, 3, 4], 0, true);
+				sprite_index = spr_amy_spin_hammer;
 			}
 			
 		break;
 		
 		case ANIM.SPINDASH:	
-			obj_set_anim(spr_amy_spindash, 1, [0, 5, 1, 5, 2, 5, 3, 5, 4, 5], 0);
+			obj_set_anim(spr_amy_spindash, 1, 0, 0);
 		break;
 		
 		case ANIM.PUSH:
-			obj_set_anim(spr_amy_push, floor(max(1, 9 - abs(spd_ground)) * 4), 0, 0, true);	
+			obj_set_anim(spr_amy_push, floor(max(1, 9 - abs(spd_ground)) * 4), 0, 0);	
 		break;
 		
 		case ANIM.DUCK:	
@@ -96,14 +79,7 @@ function scr_player_animate_amy()
 		break;
 		
 		case ANIM.TRANSFORM:
-			
-			var _transform_order_data =
-			[
-				0, 0, 1, 1, 2, 3, 2, 3, 2, 3, 2, 3
-			];
-			
-			obj_set_anim(spr_amy_transform, 3, _transform_order_data, function(){ animation = ANIM.MOVE; });
-			
+			obj_set_anim(spr_amy_transform, 3, 0, function(){ animation = ANIM.MOVE; });
 		break;
 		
 		case ANIM.BREATHE:
@@ -111,7 +87,7 @@ function scr_player_animate_amy()
 		break;
 		
 		case ANIM.BOUNCE:
-			obj_set_anim(spr_amy_bounce, 4, [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1], function(){ animation = ANIM.MOVE; });
+			obj_set_anim(spr_amy_bounce, 4, 0, function(){ animation = ANIM.MOVE; });
 		break;
 		
 		case ANIM.BALANCE:
@@ -121,8 +97,15 @@ function scr_player_animate_amy()
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
 			
-			obj_set_anim(spr_amy_flip, 1, get_flip_order_data(), function(){ animation = ANIM.MOVE; });
+			obj_set_anim(spr_amy_flip, 1, 0, function()
+			{
+				if (animation == ANIM.FLIP || anim_play_count > 1)
+				{
+					animation = ANIM.MOVE;
+				}; 
+			});
 			
+			// Override the displayed sprite
 			if (facing == DIRECTION.NEGATIVE)
 			{
 				sprite_index = spr_amy_flip_flipped;

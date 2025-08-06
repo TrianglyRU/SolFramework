@@ -1,1 +1,0 @@
-depth = RENDERER_DEPTH_HIGHEST;

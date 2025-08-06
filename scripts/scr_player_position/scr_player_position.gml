@@ -1,5 +1,5 @@
-/// @function scr_player_position()
 /// @self obj_player
+/// @function scr_player_position()
 function scr_player_position()
 {
 	gml_pragma("forceinline");

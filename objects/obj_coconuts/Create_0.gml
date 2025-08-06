@@ -30,4 +30,4 @@ climb_data =
 
 obj_set_priority(4);
 obj_set_hitbox(12, 16);
-obj_set_culling(CULLING.RESPAWN);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

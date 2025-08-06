@@ -9,8 +9,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_instance",
-    "path": "objects/obj_instance/obj_instance.yy",
+    "name": "obj_game_object",
+    "path": "objects/obj_game_object/obj_game_object.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -32,7 +32,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Objects/Stage.yy",
   },
 }

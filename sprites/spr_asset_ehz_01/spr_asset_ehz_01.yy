@@ -21,8 +21,8 @@
   "width": 16,
   "height": 16,
   "textureGroupId": {
-    "name": "texgroup_ehz_assets",
-    "path": "texturegroups/texgroup_ehz_assets",
+    "name": "texgroup_ehz_graphics",
+    "path": "texturegroups/texgroup_ehz_graphics",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -256,7 +256,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Assets",
-    "path": "folders/Sprites/Emerald Hill/Assets.yy",
+    "name": "Graphics",
+    "path": "folders/Sprites/Emerald Hill/Graphics.yy",
   },
 }

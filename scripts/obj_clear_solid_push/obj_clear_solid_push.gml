@@ -3,18 +3,15 @@
 /// @param {Id.Instance} _player The player object instance.
 function obj_clear_solid_push(_player)
 {
-	with (_player)
+	if (_player.set_push_anim_by != id)
 	{
-		if (set_push_anim_by != other.id)
-		{
-			return;
-		}
-		
-		if (animation != ANIM.SPIN && animation != ANIM.SPINDASH)
-		{
-			animation = ANIM.MOVE;
-		}
-		
-		set_push_anim_by = noone;
+		return;
 	}
+	
+	if (_player.animation != ANIM.SPIN && _player.animation != ANIM.SPINDASH)
+	{
+		_player.animation = ANIM.MOVE;
+	}
+		
+	_player.set_push_anim_by = noone;
 }

@@ -34,5 +34,5 @@ type_array =
 ];
 
 obj_set_priority(1);
-obj_set_culling(CULLING.SUSPEND);
-obj_set_anim(sprite_index, 16);
+obj_set_culling(ACTIVEIF.INBOUNDS);
+obj_set_anim(sprite_index, 16, 0, 0);

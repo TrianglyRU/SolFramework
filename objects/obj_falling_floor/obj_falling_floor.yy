@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_falling_floor",
   "spriteId": {
-    "name": "spr_falling_floor_basic",
-    "path": "sprites/spr_falling_floor_basic/spr_falling_floor_basic.yy",
+    "name": "spr_falling_floor",
+    "path": "sprites/spr_falling_floor/spr_falling_floor.yy",
   },
   "solid": false,
   "visible": true,
@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_instance",
-    "path": "objects/obj_instance/obj_instance.yy",
+    "name": "obj_game_object",
+    "path": "objects/obj_game_object/obj_game_object.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -34,7 +34,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Basic",
+    "path": "folders/Objects/Basic.yy",
   },
 }

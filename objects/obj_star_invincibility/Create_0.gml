@@ -10,4 +10,4 @@ frame_table3 = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2];
 frame_table4 = [6, 3, 5, 3, 3, 5, 3, 6, 3, 5, 5, 3];
 
 obj_set_priority(1);
-obj_set_culling(CULLING.PAUSEONLY);
+obj_set_culling(ACTIVEIF.ENGINE_RUNNING);

@@ -28,8 +28,8 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"0e733a56-d568-475b-bc77-30333f341fe5",},
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"7abcc9da-62a2-4ee3-a315-856d06454947",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"097d3e04-bf91-4cd1-97ee-d0c7710baa73",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"34cdeb0c-8c42-48fe-806a-4819a7d99ec1",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -46,8 +46,8 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"e0b4d6db-2fa9-4e37-830e-c5bf852593a3","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"0e733a56-d568-475b-bc77-30333f341fe5","path":"sprites/spr_tails_tail_fly/spr_tails_tail_fly.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"019d787b-e1c7-4e4f-8259-2a6780986422","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"7abcc9da-62a2-4ee3-a315-856d06454947","path":"sprites/spr_tails_tail_fly/spr_tails_tail_fly.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"ee4f390d-ad1f-4888-8549-71e511fdecf7","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"097d3e04-bf91-4cd1-97ee-d0c7710baa73","path":"sprites/spr_tails_tail_fly/spr_tails_tail_fly.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"8ac5e7e0-bfe5-41bd-90fe-4edef9e978c3","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"34cdeb0c-8c42-48fe-806a-4819a7d99ec1","path":"sprites/spr_tails_tail_fly/spr_tails_tail_fly.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -66,7 +66,7 @@
     "eventStubScript": null,
   },
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"5e9b45d2-84bd-4bd3-8d85-06515f93cbac","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"62946e79-0eda-4563-8ca4-e2b40ad483a5","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {

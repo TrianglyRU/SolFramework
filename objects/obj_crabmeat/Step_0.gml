@@ -38,17 +38,15 @@ switch (state)
 		if (obj_is_visible())
 		{
 			shot_flag = !shot_flag;
-			
 			if (shot_flag)
 			{
-				state_timer = 59;
-				
 				for (var _i = -1; _i <= 1; _i += 2)
 				{
 					instance_create(x + 10 * _i, y, obj_crabmeat_projectile, { image_xscale: _i });
 				}
 				
-				obj_set_anim(spr_crabmeat_fire, 0);
+				state_timer = 59;
+				obj_set_anim(spr_crabmeat_fire, 0, 0, 0);
 				break;
 			}
 		}
@@ -56,10 +54,9 @@ switch (state)
 		visible = true;
 		state = CRABMEATSTATE.MOVE;
 		state_timer = 127;
-		vel_x *= -1;
-		
+		vel_x *= -1;	
 		update_move_sprite();
-		obj_set_anim(sprite_index, 16);
+		obj_set_anim(sprite_index, 16, 0, 0);
 		
 	break;
 	
@@ -84,8 +81,7 @@ switch (state)
 			if (!_check_side)
 			{
 				y += _floor_dist;
-				angle = _floor_angle;
-				
+				angle = _floor_angle;				
 				update_move_sprite();
 				break;
 			}
@@ -98,8 +94,7 @@ switch (state)
 		
 		state = CRABMEATSTATE.WAIT;
 		state_timer = 59;
-		
-		obj_set_anim(spr_crabmeat_idle, 0, is_on_slope() ? 1 : 0);
+		obj_set_anim(spr_crabmeat_idle, 0, is_on_slope() ? 1 : 0, 0);
 		
 	break;
 }

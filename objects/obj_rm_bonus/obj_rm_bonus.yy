@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "obj_rm_bonus",
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_object",
+    "path": "sprites/spr_object/spr_object.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,

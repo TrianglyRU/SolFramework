@@ -1,5 +1,5 @@
-/// @function scr_player_balance
 /// @self obj_player
+/// @function scr_player_balance
 function scr_player_balance()
 {
 	gml_pragma("forceinline");
@@ -130,15 +130,15 @@ function scr_player_balance()
 		}
 		
 		var _y = y + radius_y;
-		var _floor_dist = tile_find_v(x, _y, DIRECTION.POSITIVE, tile_layer)[0];	
+		var _floor_dist = tile_find_v(x, _y, DIRECTION.POSITIVE, secondary_layer)[0];	
 		
 		if (_floor_dist < 12)
 		{
 			return;
 		}
 		
-		var _angle_left = tile_find_v(x - radius_x, _y, DIRECTION.POSITIVE, tile_layer)[1];
-		var _angle_right = tile_find_v(x + radius_x, _y, DIRECTION.POSITIVE, tile_layer)[1];
+		var _angle_left = tile_find_v(x - radius_x, _y, DIRECTION.POSITIVE, secondary_layer)[1];
+		var _angle_right = tile_find_v(x + radius_x, _y, DIRECTION.POSITIVE, secondary_layer)[1];
 		
 		if (_angle_left == TILE_EMPTY_ANGLE && _angle_right == TILE_EMPTY_ANGLE
 		|| _angle_left != TILE_EMPTY_ANGLE && _angle_right != TILE_EMPTY_ANGLE)
@@ -148,15 +148,11 @@ function scr_player_balance()
 		
 		if (_angle_left == TILE_EMPTY_ANGLE)
 		{	
-			var _left_dist = tile_find_v(x + 6, _y, DIRECTION.POSITIVE, tile_layer)[0];
-			
-			_balance_left(_left_dist >= 12);
+			_balance_left(tile_find_v(x + 6, _y, DIRECTION.POSITIVE, secondary_layer)[0] >= 12);
 		}
 		else if (_angle_right == TILE_EMPTY_ANGLE)
 		{
-			var _right_dist = tile_find_v(x - 6, _y, DIRECTION.POSITIVE, tile_layer)[0];
-			
-			_balance_right(_right_dist >= 12);
+			_balance_right(tile_find_v(x - 6, _y, DIRECTION.POSITIVE, secondary_layer)[0] >= 12);
 		}
 		
 		return;
@@ -164,7 +160,6 @@ function scr_player_balance()
 	else if (instance_exists(on_object))
 	{
 		var _obj = on_object;
-		
 		if (_obj.solid_disable_balance)
 		{
 			return;

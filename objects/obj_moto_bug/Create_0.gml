@@ -16,4 +16,4 @@ vel_y = 0;
 
 obj_set_priority(5);
 obj_set_hitbox(20, 14);
-obj_set_culling(CULLING.RESPAWN);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

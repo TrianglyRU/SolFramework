@@ -9,6 +9,15 @@ set_velocity = function()
 	vel_y = spd_ground * -dsin(angle);
 }
 
+/// @method set_extra_hitbox()
+set_extra_hitbox = function(_radius_x, _radius_y, _offset_x = 0, _offset_y = 0)
+{
+	ext_hitbox_radius_x = _radius_x;
+	ext_hitbox_radius_y = _radius_y;
+	ext_hitbox_offset_x = _offset_x;
+	ext_hitbox_offset_y = _offset_y;
+}
+
 /// @method respawn()
 respawn = function()
 {
@@ -95,7 +104,8 @@ land = function()
 		return;
 	}
 	
-	if (shield == SHIELD.BUBBLE && shield_state == SHIELDSTATE.ACTIVE)
+	var _shield = global.player_shields[player_index];
+	if (_shield == SHIELD.BUBBLE && shield_state == SHIELDSTATE.ACTIVE)
 	{
 		var _force = is_underwater ? -4 : -7.5;
 		vel_y = _force * dcos(angle);
@@ -110,7 +120,10 @@ land = function()
 		{
 			if (vd_target_player == other.id)
 			{
-				obj_set_anim(spr_shield_bubble_bounce, 6, [0, 0, 1], function(){ set_bubble_shield_animation(); });
+				obj_set_anim(spr_shield_bubble_bounce, 6, 0, function()
+				{ 
+					obj_set_anim(spr_shield_bubble, 2, 0, 0); 
+				});
 			}
 		}
 		
@@ -148,6 +161,7 @@ land = function()
 		radius_x = radius_x_normal;
 		radius_y = radius_y_normal;
 		
+		// This is not in the original engine
 		y = angle > 90 && angle <= 270 ? y + _diff : y - _diff;
 	}
 }
@@ -179,9 +193,8 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 		return;
 	}
 	
-	var _is_shielded_player1 = player_index == 0 && shield == SHIELD.NONE;
-
-	if (_is_shielded_player1 && global.player_rings == 0)
+	var _is_not_shielded_player1 = player_index == 0 && global.player_shields[0] == SHIELD.NONE;
+	if (_is_not_shielded_player1 && global.player_rings == 0)
 	{
 		kill(_sound);
 		return;
@@ -205,7 +218,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 		grv -= 0.15625;
 	}
 
-	if (_is_shielded_player1)
+	if (_is_not_shielded_player1)
 	{
 		var _ring_direction = -1;
 		var _ring_angle = 101.25;
@@ -243,7 +256,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 	}
 	else
 	{
-		shield = SHIELD.NONE;
+		global.player_shields[player_index] = SHIELD.NONE;
 		audio_play_sfx(_sound);
 	}
 
@@ -263,7 +276,7 @@ kill = function(_sound = snd_hurt)
 
 	if (player_index == 0)
 	{
-		obj_framework.state = FWSTATE.STOP_OBJECTS;
+		obj_game.state = GAMESTATE.STOP_OBJECTS;
 	}
 	
 	depth = RENDERER_DEPTH_HIGHEST + player_index;
@@ -311,7 +324,7 @@ record_data = function(_insert_pos)
 
 	var _data =
 	[
-		struct_copy(input_press), struct_copy(input_down), floor(x), floor(y), set_push_anim_by, facing
+		input_copy(input_press), input_copy(input_down), floor(x), floor(y), set_push_anim_by, facing
 	];
 	
 	ds_list_insert(ds_record_data, _insert_pos, _data);
@@ -321,7 +334,7 @@ record_data = function(_insert_pos)
 /// @method play_tails_sound()
 play_tails_sound = function()
 {
-	if ((obj_framework.frame_counter + 8) % 16 != 0 || is_underwater || !obj_is_visible())
+	if ((obj_game.frame_counter + 8) % 16 != 0 || is_underwater || !obj_is_visible())
 	{
 		return;
 	}
@@ -334,33 +347,6 @@ play_tails_sound = function()
 	{
 		audio_play_sfx(snd_flight);
 	}
-}
-
-/// @method get_flip_order_data()
-get_flip_order_data = function()
-{
-	// TODO: LTS'25: array_concat
-	if (animation == ANIM.FLIP_EXTENDED)
-	{
-		animation = ANIM.FLIP;
-		
-		return
-		[
-			0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
-			3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6,
-			6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11, 11, 11, 0, 0,
-			0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
-			3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6,
-			6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11, 11, 11, 0, 0
-		];
-	}
-	
-	return
-	[
-		0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
-		3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6,
-		6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11, 11, 11, 0, 0
-	];
 }
 
 #endregion
@@ -498,6 +484,16 @@ enum ANIM
 	CLIMB_LEDGE
 }
 
+enum ROTATION
+{
+	CLASSIC, MANIA
+}
+
+enum RANGE
+{
+	DEFAULT, SHALLOW
+}
+
 #macro PLAYER_COUNT instance_number(obj_player)
 #macro PLAYER_MAX_COUNT 8
 #macro AIR_TIMER_DEFAULT 1800
@@ -516,7 +512,7 @@ enum ANIM
 event_inherited();
 
 obj_set_priority(2);
-obj_set_culling(CULLING.PAUSEONLY);
+obj_set_culling(ACTIVEIF.ENGINE_RUNNING);
 
 scr_player_init();
 scr_player_debug_mode_init();

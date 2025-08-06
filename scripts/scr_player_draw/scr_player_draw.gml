@@ -1,6 +1,6 @@
-/// @function scr_player_draw()
 /// @self obj_player
 /// @feather ignore GM2040
+/// @function scr_player_draw()
 function scr_player_draw()
 {
 	gml_pragma("forceinline");
@@ -15,8 +15,7 @@ function scr_player_draw()
 			}
 			
 			var _x = floor(other.x) + tail_offset_x * image_xscale;
-		    var _y = floor(other.y) + tail_offset_y * image_yscale;
-			
+		    var _y = floor(other.y) + tail_offset_y * image_yscale;			
 		    draw_sprite_ext(sprite_index, image_index, _x, _y, image_xscale, image_yscale, image_angle, c_white, 1.0);
 	    }
 	}

@@ -1,7 +1,5 @@
 // Inherit the parent event
 event_inherited();
-
-display_timer = 0;
 	
 switch (global.player_main)
 {
@@ -18,4 +16,4 @@ switch (global.player_main)
 	break;
 }
 	
-obj_set_anim(sprite_index, 20);
+obj_set_anim(sprite_index, 20, 0, 0);

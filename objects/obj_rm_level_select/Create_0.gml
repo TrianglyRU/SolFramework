@@ -25,10 +25,17 @@ dec_to_hex = function(_number)
     return _hex;
 }
 
-/// @method is_regular_entry()
-is_regular_entry = function(_entry_index)
+/// @method get_entry_text_array()
+get_entry_text_array = function(_entry_index)
 {
-	return string_char_at(level_entries[_entry_index], 1) != "/";
+	return string_split(level_entries[_entry_index], "|", false);
+}
+
+/// @method is_level_entry()
+is_level_entry = function(_entry_index)
+{
+	var _char = string_char_at(string_trim(level_entries[_entry_index]), 1);
+	return _char != "/" && _char != "";
 }
 
 /// @method update_stage_selection()
@@ -52,76 +59,71 @@ update_stage_selection = function()
 cheat_code_string = "";
 down_cooldown = 0;
 room_to_load = -1;
-
 level_entries =
 [
-	"TEST STAGE|1",
-	"|2",
-	"|3",
-	"/",
+	"GREEN HILL|1",
+	"		   |2",
+	"		   |3",
+	"",
+	"EMERALD HILL|1",
+	"		     |2",
+	"",
 	"ZONEENTRY|1",
-	"|2",
-	"/",
+	"		  |2",
+	"",
 	"ZONEENTRY|1",
-	"|2",
-	"/",
+	"		  |2",
+	"",
 	"ZONEENTRY|1",
-	"|2",
-	"/",
+	"		  |2",
+	"",
 	"ZONEENTRY|1",
-	"|2",
-	"/",
+	"		  |2",
+	"",
 	"ZONEENTRY|1",
-	"|2",
-	"/",
-	"ZONEENTRY|1",
-	"|2",
+	"		  |2",
 	"/n",
 	"ZONEENTRY|1",
-	"|2",
+	"		  |2",
 	"/p",
-	"/",
+	"",
 	"ZONEENTRY|1",
-	"|2",
-	"/",
+	"		  |2",
+	"",
+	"DELTA WORLD",
+	"",
+	"",
 	"SPECIAL STAGE",
-	"/",
-	"/",
+	"",
+	"",
 	"BONUS STAGE",
-	"/",
-	"/",
+	"",
+	"",
 	"SOUND TEST"
 ];
-
 level_rediretions =
 [
-	0,  rm_stage_tsz0,
-	1,  rm_stage_tsz1,
-	2,  rm_stage_tsz2,
-	29, rm_special,
-	32, rm_bonus
+	0,  rm_stage_ghz0,
+	4,  rm_stage_ehz0,
+	29, rm_stage_dwz0,
+	32, rm_special,
+	35, rm_bonus
 ];
-
-sound_ids = [];
-
-for (var _i = 0; _i < 256; _i++)
-{
-	var _sound_name = audio_get_name(_i);
-	
-    if (_sound_name == "<undefined>")
-    {
-        array_push(sound_ids, -1);
-    }
-	else if (string_starts_with(_sound_name, "snd_bgm"))
-	{
-		array_insert(sound_ids, 0, _i);
-	}
-	else
-	{
-		array_push(sound_ids, _i);
-	}
-}
-
+bg_playback_data = 
+[
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 2, 2, 2,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    2, 2, 2, 1, 1, 1
+];
 cheat_codes =
 [
 	{
@@ -153,7 +155,6 @@ cheat_codes =
 			if (!global.enable_debug_mode)
 			{
 			    global.enable_debug_mode = true;
-			
 				audio_play_sfx(snd_ring_left);
 			    audio_play_sfx(snd_ring_right);
 			}
@@ -161,7 +162,27 @@ cheat_codes =
 	},
 ];
 
+sound_ids = [];
+for (var _i = 0; _i < 256; _i++)
+{
+	var _sound_name = audio_get_name(_i);
+    if (_sound_name == "<undefined>")
+    {
+        array_push(sound_ids, -1);
+    }
+	else if (string_starts_with(_sound_name, "snd_bgm"))
+	{
+		array_insert(sound_ids, 0, _i);
+	}
+	else
+	{
+		array_push(sound_ids, _i);
+	}
+}
+
 update_stage_selection();
-fade_perform_black(FADEROUTINE.IN, 1);
+
 audio_play_bgm(snd_bgm_level_select);
+bg_convert("Background", 0, 0, 0, 0, 0);
 discord_set_data("LEVEL SELECT", "", "room_levels", "");
+fade_perform_black(FADEROUTINE.IN, 1);

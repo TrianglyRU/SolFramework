@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_pushable_block",
   "spriteId": {
-    "name": "spr_pushable_block_basic",
-    "path": "sprites/spr_pushable_block_basic/spr_pushable_block_basic.yy",
+    "name": "spr_pushable_block",
+    "path": "sprites/spr_pushable_block/spr_pushable_block.yy",
   },
   "solid": false,
   "visible": true,
@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_instance",
-    "path": "objects/obj_instance/obj_instance.yy",
+    "name": "obj_game_object",
+    "path": "objects/obj_game_object/obj_game_object.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -36,7 +36,7 @@
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Basic",
+    "path": "folders/Objects/Basic.yy",
   },
 }

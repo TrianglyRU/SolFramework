@@ -8,4 +8,4 @@ retract_offset = 0;
 
 obj_set_priority(5);
 obj_set_solid(16, 16);
-obj_set_culling(CULLING.ORIGINRESPAWN);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

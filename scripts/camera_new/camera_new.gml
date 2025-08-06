@@ -5,11 +5,9 @@
 /// @param {Real} _height The vertical resolution of the camera.
 /// @param {Real} _canvas_width The horizontal size of the surface.
 /// @param {Real} _canvas_height The vertical size of the surface.
-/// @param {Real} [_pos_x] The initial x position of the camera in the room (default is 0).
-/// @param {Real} [_pos_y] The initial y position of the camera in the room (default is 0).
 /// @param {Real} [_canvas_x] The horizontal offset of the surface on the screen (default is 0).
 /// @param {Real} [_canvas_y] The vertical offset of the surface on the screen (default is 0).
-function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _pos_x = 0, _pos_y = 0, _canvas_x = 0, _canvas_y = 0)
+function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _canvas_x = 0, _canvas_y = 0)
 {
     camera_delete(_index);
 	
@@ -20,18 +18,18 @@ function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _pos
         target: noone,
         vel_x: 0,
         vel_y: 0,
-        pos_x: _pos_x,
-        pos_y: _pos_y,
+        pos_x: 0,
+        pos_y: 0,
         pos_x_prev: 0,
         pos_y_prev: 0,
         delay_x: 0,
         delay_y: 0,
         offset_x: 0,
         offset_y: 0,
-        bound_left: 0,
-        bound_upper: 0,
-        bound_right: room_width,
-        bound_lower: room_height,
+		top_bound: 0,
+        left_bound: 0,
+        right_bound: room_width,
+        bottom_bound: room_height,
         shake_offset: 0,
         shake_timer: 0,
         coarse_x: -1,
@@ -43,9 +41,10 @@ function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _pos
         surface_w: _canvas_width + CAMERA_HORIZONTAL_BUFFER * 2,
         surface_h: _canvas_height
     };
-    
-    view_camera[_index] = camera_create_view(_pos_x, _pos_y, _width + CAMERA_HORIZONTAL_BUFFER * 2, _height);
-    view_visible[_index] = true;
-    
-    obj_framework.camera_data[_index] = _camera_data;
+	
+    view_camera[_index] = camera_create_view(0, 0, _width + CAMERA_HORIZONTAL_BUFFER * 2, _height);
+	view_visible[_index] = true;
+	view_enabled = true;
+	
+    obj_game.camera_data[_index] = _camera_data;
 }

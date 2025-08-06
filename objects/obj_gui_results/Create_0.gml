@@ -7,6 +7,7 @@ enum RESULTSSTATE
 	EXIT
 }
 
+obj_game.allow_pause = false;
 offset_line1 = -256;
 offset_line2 = 256;
 offset_time = 512;
@@ -19,12 +20,10 @@ state_timer = 40;
 total_bonus = 0;
 ring_bonus = global.player_rings * 100;
 player_object = player_get(0);
-obj_framework.allow_pause = false;
 
 audio_play_bgm(snd_bgm_actclear);
 
 var _stage_time = obj_gui_hud.local_timer;
-
 if (_stage_time < 1800)			// < 0:30
 {
 	time_bonus = 50000;

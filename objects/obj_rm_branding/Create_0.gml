@@ -1,9 +1,3 @@
-if (global.previous_room_id == rm_startup && global.skip_branding)
-{
-	room_goto(rm_level_select);
-	return;
-}
-
 orbinaut_scale = 1.5;
 orbinaut_alpha = 0.0;
 logo_scale = 1.5;

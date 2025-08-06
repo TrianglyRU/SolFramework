@@ -12,8 +12,7 @@ switch (state)
 		y += vel_y;
 		vel_y += 0.21875;
 		
-		_floor_dist = tile_find_v(x, y + 14, DIRECTION.POSITIVE, TILELAYER.MAIN)[0];
-		
+		_floor_dist = tile_find_v(x, y + 14, DIRECTION.POSITIVE)[0];
 		if (_floor_dist < 0)
 		{
 			y += _floor_dist;
@@ -32,7 +31,6 @@ switch (state)
 			vel_x = sign(image_xscale);
 			image_xscale *= -1;
 			visible = true;
-			
 			obj_set_anim(sprite_index, 8, 0, 0);
 		}
 		
@@ -42,14 +40,12 @@ switch (state)
 	
 		x += vel_x;
 		
-		_floor_dist = tile_find_v(x, y + 14, DIRECTION.POSITIVE, TILELAYER.MAIN)[0];
-		
+		_floor_dist = tile_find_v(x, y + 14, DIRECTION.POSITIVE)[0];
 		if (_floor_dist > 11 || _floor_dist < -8)
 		{
 			state = MOTOBUGSTATE.WAIT;
 			move_timer = 59;
-			vel_x *= -1;
-			
+			vel_x *= -1;		
 			obj_stop_anim(0);
 			break;
 		}

@@ -1,7 +1,7 @@
 var _width = camera_get_width(0);
 var _height = camera_get_height(0);
-var _draw_x = _width / 2;
-var _draw_y = _height / 2;
+var _draw_x = _width * 0.5;
+var _draw_y = _height * 0.5;
 
 var _options_per_page = 7;
 var _current_page = floor(option_id / _options_per_page);
@@ -24,7 +24,6 @@ for (var _i = _current_page * _options_per_page; _i < _last_option_id; _i++)
     }
     
     var _length = string_length(_string) * 8;
-    
-    draw_text((_width - _length) / 2 - 8, _option_y, ">");
-    draw_text((_width + _length) / 2 + 8, _option_y, "<");
+    draw_text((_width - _length) * 0.5 - 8, _option_y, ">");
+    draw_text((_width + _length) * 0.5 + 8, _option_y, "<");
 }

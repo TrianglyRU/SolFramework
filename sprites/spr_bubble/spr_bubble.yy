@@ -11,9 +11,9 @@
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
   "bbox_left": 0,
-  "bbox_right": 31,
+  "bbox_right": 30,
   "bbox_top": 0,
-  "bbox_bottom": 31,
+  "bbox_bottom": 30,
   "HTile": false,
   "VTile": false,
   "For3D": false,
@@ -21,8 +21,8 @@
   "width": 32,
   "height": 32,
   "textureGroupId": {
-    "name": "texgroup_stage_common",
-    "path": "texturegroups/texgroup_stage_common",
+    "name": "texgroup_stage",
+    "path": "texturegroups/texgroup_stage",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -34,7 +34,6 @@
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"7508642d-11db-41c9-b8b8-f5627d412c88",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"ce0d39fa-c7b7-4a40-a6b3-d1ebc5211bdf",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"107848bf-3629-4a08-8b76-4517169d02d8",},
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b97865b8-6d05-4b58-878d-567fe38ae84e",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -46,7 +45,7 @@
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 7.0,
+    "length": 6.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
@@ -57,7 +56,6 @@
             {"id":"bf5fa3b2-23cb-4f00-a51a-257c66b09b07","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"7508642d-11db-41c9-b8b8-f5627d412c88","path":"sprites/spr_bubble/spr_bubble.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"847d00e5-70af-44f2-957f-c9ced37df57f","Key":4.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ce0d39fa-c7b7-4a40-a6b3-d1ebc5211bdf","path":"sprites/spr_bubble/spr_bubble.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"99ac2d7c-1862-43f8-9244-71eef5049f05","Key":5.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"107848bf-3629-4a08-8b76-4517169d02d8","path":"sprites/spr_bubble/spr_bubble.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"e48c9324-7a57-46b0-b275-2fd89e02e3f7","Key":6.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b97865b8-6d05-4b58-878d-567fe38ae84e","path":"sprites/spr_bubble/spr_bubble.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -80,7 +78,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Sprites/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Sprites/Stage.yy",
   },
 }

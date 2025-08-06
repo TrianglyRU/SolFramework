@@ -13,7 +13,6 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 	var _destroy_badnik = function(_player)
 	{
 		_player.add_score(++_player.score_combo);
-		
 		instance_create(x, y, obj_score, { vd_score_combo: _player.score_combo });
 		instance_create(x, y, obj_animal);
 		instance_create(x, y, obj_explosion_dust);
@@ -25,7 +24,6 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 		if (instance_exists(obj_water_flash) && y >= obj_rm_stage.water_level)
 		{
 			_destroy_badnik(player_get(0));
-			
 			return false;
 		}
 	}
@@ -42,8 +40,8 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 			continue;
 		}
 		
-		if (_player.action == ACTION.GLIDE && _player.action_state != GLIDESTATE.FALL 
-		|| _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN || _player.action == ACTION.SPINDASH)
+		var _glide_not_fall = _player.action == ACTION.GLIDE && _player.action_state != GLIDESTATE.FALL;
+		if (_glide_not_fall || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN || _player.action == ACTION.SPINDASH)
 		{
 			_action_check = true;
 		}
@@ -51,7 +49,6 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 		if (_player.action == ACTION.FLIGHT)
 		{
 			var _vector = math_get_vector_rounded(_player.x - x, _player.y - y);
-			
 			if (math_get_quadrant(_vector) == QUADRANT.DOWN)
 			{
 				_tails_check = true;
@@ -79,7 +76,6 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 			
 			audio_play_sfx(snd_boss_hit);
 			input_set_rumble(_player.player_index, 0.15, INPUT_RUMBLE_MEDIUM);	
-			
 			return false;
 		}
 		
@@ -97,7 +93,6 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 		
 		_destroy_badnik(_player);
 		input_set_rumble(_p, 0.05, INPUT_RUMBLE_LIGHT);
-		
 		return false;
 	}
 	

@@ -42,4 +42,4 @@ angle = 0;
 
 obj_set_priority(3);
 obj_set_hitbox(16, 16);
-obj_set_culling(CULLING.RESPAWN);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

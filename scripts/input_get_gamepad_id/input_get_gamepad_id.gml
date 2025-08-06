@@ -4,5 +4,5 @@
 /// @returns {Real|Undefined}
 function input_get_gamepad_id(_slot)
 {
-	return obj_framework.input_list_gamepads[| _slot];
+	return obj_game.input_list_gamepads[| _slot];
 }

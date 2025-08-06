@@ -1,4 +1,4 @@
-/// @self obj_instance
+/// @self obj_game_object
 /// @description Checks for solid collision between the calling object and a player object.
 /// @param {Id.Instance} _player The player object instance.
 /// @param {Enum.SOLIDCOLLISION} _type The type of collision.
@@ -13,8 +13,8 @@ function obj_check_solid(_player, _type)
 	var _side_colour = $00FF00;
 	var _push_colour = $FFFF00;
 	
-	var _ds_list_side = obj_framework.debug_solids_sides;
-	var _ds_list_push = obj_framework.debug_solids_push;
+	var _ds_list_side = obj_game.debug_solids_sides;
+	var _ds_list_push = obj_game.debug_solids_push;
 	var _pid = _player.player_index;
 	var _rx = solid_radius_x;
 	var _ry = solid_radius_y;

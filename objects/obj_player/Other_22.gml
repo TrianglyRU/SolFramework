@@ -1,4 +1,4 @@
-/// @description Pre-End Step
+/// @description End Step (Pre-Framework)
 
 if (state != PLAYERSTATE.DEATH)
 {

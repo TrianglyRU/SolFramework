@@ -1,10 +1,10 @@
-if (transition_flag && obj_framework.fade_state == FADESTATE.PLAINCOLOUR)
+if (transition_flag && obj_game.fade_state == FADESTATE.PLAINCOLOUR)
 {	
 	room_goto(rm_bonus);
 	return;
 }
 
-if (obj_framework.state == FWSTATE.PAUSED)
+if (obj_game.state == GAMESTATE.PAUSED)
 {
 	return;
 }
@@ -27,14 +27,12 @@ else if (timer < 128)
 if (!transition_flag && timer >= 128 && obj_check_hitbox(player_get(0)))
 {
 	transition_flag = true;
-	
 	fade_perform_black(FADEROUTINE.OUT, 1);
 	audio_stop_bgm(0.5);
-	obj_set_culling(CULLING.NONE);
+	obj_set_culling(ACTIVEIF.ALWAYS);
 }
 
 timer++;
-
 var _radius = floor(radius);
 var _angle = 90 * vd_star_id + timer * 12.65625;
 var _x = dsin(_angle) * 512;

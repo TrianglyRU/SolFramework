@@ -20,4 +20,4 @@ image_xscale = 1;
 
 obj_set_priority(3);
 obj_set_hitbox(8, 16);
-obj_set_culling(CULLING.SUSPEND);
+obj_set_culling(ACTIVEIF.INBOUNDS);

@@ -1,5 +1,5 @@
 /// @self
-/// @description Gets the horizontal resolution of the camera for the given viewport index.
+/// @description A wrapper around camera_get_view_width().
 /// @param {Real} _index The viewport index.
 /// @returns {Real}
 function camera_get_width(_index)

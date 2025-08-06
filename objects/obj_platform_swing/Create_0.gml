@@ -11,4 +11,4 @@ sprite_index = spr_platform_swing_base;
 
 obj_set_priority(4);
 obj_set_solid(24, 8);
-obj_set_culling(CULLING.ORIGINSUSPEND);
+obj_set_culling(ACTIVEIF.INBOUNDS);

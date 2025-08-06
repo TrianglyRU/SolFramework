@@ -3,14 +3,15 @@
 /// @param {Real} _index The viewport index.
 function camera_delete(_index)
 {
-	view_visible[_index] = false;
-	
-    if (surface_exists(view_surface_id[_index]))
-    {
-        surface_free(view_surface_id[_index]);
-    }
-	
 	camera_destroy(view_camera[_index]);
-    
-    obj_framework.camera_data[_index] = undefined;
+	surface_free(view_surface_id[_index]);
+	surface_free(obj_game.view_surface_palette[_index]);
+	surface_free(obj_game.view_surface_palette_faded[_index]);
+	
+	obj_game.view_surface_palette[_index] = -1;
+	obj_game.view_surface_palette_faded[_index] = -1;
+	obj_game.camera_data[_index] = undefined;
+	
+	view_camera[_index] = -1;
+	view_visible[_index] = false;
 }

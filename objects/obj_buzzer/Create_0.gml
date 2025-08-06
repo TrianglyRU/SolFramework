@@ -18,4 +18,4 @@ shot_flag = true;
 
 obj_set_priority(4);
 obj_set_hitbox(16, 8);
-obj_set_culling(CULLING.RESPAWN);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

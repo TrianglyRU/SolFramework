@@ -1,4 +1,4 @@
-/// @self obj_instance
+/// @self obj_game_object
 /// @description Handles collision detection and response between the player and a solid object.
 /// @param {Id.Instance} _player The player object instance.
 /// @param {Enum.SOLIDOBJECT} _type The type of solid object.
@@ -62,7 +62,6 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 	if array_length(solid_height_map) > 0
 	{
 		var _index;
-		
 		if (image_xscale >= 0)
 		{
 			_index = _px - _ox + _orx;
@@ -86,7 +85,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 	
 	if (global.debug_collision == 3)
 	{
-		var _ds_list = obj_framework.debug_solids;
+		var _ds_list = obj_game.debug_solids;
 		var _solid_colour = $00FFFF;
 		
 		if (ds_list_find_index(_ds_list, _player) == -1)
@@ -114,7 +113,6 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		if (_type != SOLIDOBJECT.TOP)
 		{
 			var _relative_x = _px - _ox + _combined_width;
-			
 			if (_player.is_grounded && _relative_x >= 0 && _relative_x < _combined_width * 2)
 			{
 				return;
@@ -123,7 +121,6 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		else
 		{
 			var _relative_x = _px - _ox + _orx;
-			
 			if (_player.is_grounded && _relative_x >= -_ext_x && _relative_x < _orx * 2 + _ext_x)
 			{
 				return;
@@ -140,7 +137,6 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 	if (_type != SOLIDOBJECT.TOP)
 	{
 		var _s3_method = global.player_physics >= PHYSICS.S3;
-		
 		var _x_dist = _px - _ox + _combined_width;
 		var _y_dist = _py - _oy + _combined_height - _slope_offset + _grip_y;
 		
@@ -199,7 +195,6 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 					if (_player.vel_y >= 0)
 					{
 						var _relative_x = _px - _ox + _orx;
-						
 						if (_relative_x >= 0 - _ext_x && _relative_x < _orx * 2 + _ext_x)
 						{
 							_attach_player(_player, id, _attach_type, _y_clip - _grip_y);
@@ -249,15 +244,13 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 	// Handle collision detection for platform objects
 	else if (_player.vel_y >= 0)
 	{
-		var _relative_x = _px - _ox + _orx;
-		
+		var _relative_x = _px - _ox + _orx;	
 		if (_relative_x < -_ext_x || _relative_x > _orx * 2 + _ext_x)
 		{
 			return;
 		}
 		
 		var _y_clip = (_oy - _ory - _grip_y + _slope_offset) - (_py + _pry);
-		
 		if (_y_clip < -16 || _y_clip >= 0)
 		{
 			return;

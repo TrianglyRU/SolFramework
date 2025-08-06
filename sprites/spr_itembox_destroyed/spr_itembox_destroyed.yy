@@ -21,8 +21,8 @@
   "width": 30,
   "height": 30,
   "textureGroupId": {
-    "name": "texgroup_stage_common",
-    "path": "texturegroups/texgroup_stage_common",
+    "name": "texgroup_stage",
+    "path": "texturegroups/texgroup_stage",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -72,7 +72,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Sprites/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Sprites/Stage.yy",
   },
 }

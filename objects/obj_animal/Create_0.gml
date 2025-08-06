@@ -17,7 +17,6 @@ vel_y_bounce = 0;
 
 /// @feather ignore GM1041
 var _animal_count = array_length(obj_rm_stage.animal_set);
-
 if (_animal_count > 0)
 {
     sprite_index = obj_rm_stage.animal_set[irandom(_animal_count - 1)];
@@ -76,4 +75,4 @@ switch (sprite_index)
 }
 
 obj_set_priority(7);
-obj_set_culling(CULLING.REMOVE);
+obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);

@@ -2,10 +2,10 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
 	var _speed = abs(_player.spd_ground);
-		
+	
 	if (_player.on_object != id)
 	{
-		if (!_player.is_grounded || _speed < 6)
+		if (!_player.is_grounded || _player.action == ACTION.DASH || _speed < 6)
 		{
 			continue;
 		}
@@ -42,13 +42,16 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			continue;
 		}
-			
+		
+		// Not in the original Sonic 2, but is required in some scenarios
+		_player.facing = sign(_player.vel_x);
+		
 		_player.spd_ground = _player.vel_x;
 		_player.vel_y = 0;
 		_player.angle = 0;
 		_player.on_object = id;
 		_player.action = ACTION.NONE;
-			
+		
 		if (_player.animation != ANIM.SPIN)
 		{
 			_player.animation = ANIM.FLIP;
@@ -57,51 +60,28 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	else
 	{
 		var _dist_x = floor(_player.x) - x + 208;
-		
 		if (_dist_x < 0 || abs(_dist_x) >= 416 || !_player.is_grounded || _speed < 6)
 		{
-			with (_player)
+			if (_speed >= 6 && _player.animation == ANIM.FLIP)
 			{
-				on_object = noone;
-			
-				if (_player.animation != ANIM.FLIP)
-				{
-					break;
-				}
-				
-				if (_speed < 6)
-				{
-					// Resume the animation from the current frame
-					obj_set_order_frame(image_index);
-				}
-				else
-				{
-					animation = ANIM.MOVE;
-				}
+				_player.animation = ANIM.MOVE;
 			}
+			
+			_player.on_object = noone;
 		}
 		else
 		{
-			with (_player)
+			if (_player.animation == ANIM.FLIP)
 			{
-				if (animation != ANIM.FLIP)
+				var _frame_index = floor(_dist_x / 32);
+				if (_player.facing == DIRECTION.NEGATIVE)
 				{
-					break;
+					_frame_index = array_length(flip_frame_table) - _frame_index - 1;
 				}
 				
-				var _frame_index = floor(_dist_x / 8);
-				
-				if (facing == DIRECTION.NEGATIVE)
-				{
-					_frame_index = array_length(other.flip_frame_table) - _frame_index - 1;
-				}
-				
-				image_index = other.flip_frame_table[_frame_index];
-				
-				// Stop the animation
-				anim_timer = 0;
+				_player.image_index = flip_frame_table[_frame_index];
 			}
-		
+			
 			_player.y = y + offset_table[_dist_x] + _player.radius_y_normal - _player.radius_y;
 		}
 	}

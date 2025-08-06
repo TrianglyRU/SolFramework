@@ -1,5 +1,5 @@
-/// @function scr_player_collision_ground_walls()
 /// @self obj_player
+/// @function scr_player_collision_ground_walls()
 function scr_player_collision_ground_walls()
 {
 	gml_pragma("forceinline");
@@ -40,19 +40,19 @@ function scr_player_collision_ground_walls()
 	    switch (_wall_quad)
 	    {
 	        case QUADRANT.DOWN:
-	            _wall_dist = tile_find_h(_x - _wall_radius, _y + _y_offset, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.DEFAULT)[0];
+	            _wall_dist = tile_find_h(_x - _wall_radius, _y + _y_offset, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.RIGHT:
-	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_90)[0];
+	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = tile_find_h(_x + _wall_radius, _y, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_180)[0];
+	            _wall_dist = tile_find_h(_x + _wall_radius, _y, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_270)[0];
+	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
 	        break;
 	    }
 
@@ -105,19 +105,19 @@ function scr_player_collision_ground_walls()
 	    switch (_wall_quad)
 	    {
 	        case QUADRANT.DOWN:
-	            _wall_dist = tile_find_h(_x + _wall_radius, _y + _y_offset, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.DEFAULT)[0];
+	            _wall_dist = tile_find_h(_x + _wall_radius, _y + _y_offset, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.RIGHT:
-	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_90)[0];
+	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = tile_find_h(_x - _wall_radius, _y, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_180)[0];
+	            _wall_dist = tile_find_h(_x - _wall_radius, _y, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_270)[0];
+	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
 	        break;
 	    }
 

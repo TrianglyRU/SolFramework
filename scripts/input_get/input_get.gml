@@ -5,5 +5,5 @@
 /// @returns {Struct}
 function input_get(_slot)
 {
-	return obj_framework.input_list_down[| _slot];
+	return obj_game.input_list_down[| _slot];
 }

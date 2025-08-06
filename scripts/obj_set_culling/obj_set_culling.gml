@@ -1,6 +1,6 @@
-/// @self obj_instance
+/// @self obj_game_object
 /// @description Sets the culling behavior.
-/// @param {Enum.CULLING} _type The new culling behavior type to be set.
+/// @param {Enum.ACTIVEIF} _type The culling rule that determines when the object stays active.
 function obj_set_culling(_type)
 {
 	cull_behaviour = _type;

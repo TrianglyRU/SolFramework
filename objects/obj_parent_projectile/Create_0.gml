@@ -7,4 +7,4 @@ vel_y = 0;
 grv = 0;
 depth -= 1;
 
-obj_set_culling(CULLING.REMOVE);
+obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);

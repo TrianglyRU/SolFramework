@@ -1,5 +1,5 @@
-/// @function scr_player_hammerspin()
 /// @self obj_player
+/// @function scr_player_hammerspin()
 function scr_player_hammerspin()
 {
 	gml_pragma("forceinline");

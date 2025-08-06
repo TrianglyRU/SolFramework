@@ -1,6 +1,6 @@
-/// @function scr_player_draw_debug_mode()
 /// @self obj_player
 /// @feather ignore GM2040
+/// @function scr_player_draw_debug_mode()
 function scr_player_draw_debug_mode()
 {
 	gml_pragma("forceinline");

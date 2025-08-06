@@ -21,8 +21,8 @@
   "width": 32,
   "height": 40,
   "textureGroupId": {
-    "name": "texgroup_ghz_assets",
-    "path": "texturegroups/texgroup_ghz_assets",
+    "name": "texgroup_ghz_graphics",
+    "path": "texturegroups/texgroup_ghz_graphics",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -102,7 +102,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Assets",
-    "path": "folders/Sprites/Green Hill/Assets.yy",
+    "name": "Graphics",
+    "path": "folders/Sprites/Green Hill/Graphics.yy",
   },
 }

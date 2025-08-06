@@ -1,5 +1,5 @@
-/// @function scr_player_spindash()
 /// @self obj_player
+/// @function scr_player_spindash()
 function scr_player_spindash()
 {
 	gml_pragma("forceinline");
@@ -42,7 +42,6 @@ function scr_player_spindash()
 		if (input_press.action_any)
 		{
 			spindash_charge = min(spindash_charge + 2, 8);
-	
 			if (audio_is_playing(snd_charge_spin) && spindash_charge > 0)
 			{
 				spindash_pitch = min(spindash_pitch + 0.1, 1.5);
@@ -53,7 +52,6 @@ function scr_player_spindash()
 			}
 	
 			var _sound = audio_play_sfx(snd_charge_spin);
-		
 			audio_sound_pitch(_sound, spindash_pitch);
 			obj_restart_anim();		
 		}
@@ -62,7 +60,7 @@ function scr_player_spindash()
 	}
 	
 	var _min_speed = 8;
-	var _speed = (super_timer > 0 ? 11 : _min_speed) + round(spindash_charge) / 2;
+	var _speed = (super_timer > 0 ? 11 : _min_speed) + round(spindash_charge) * 0.5;
 	var _raw_camera_delay = -((_speed - _min_speed) * 2) + 32;
 	
 	y += radius_y - radius_y_spin;	
@@ -72,7 +70,7 @@ function scr_player_spindash()
 	action = ACTION.NONE;
 	spd_ground = _speed * facing;
 	
-	set_camera_delay(floor(_raw_camera_delay / 2));
+	set_camera_delay(floor(_raw_camera_delay * 0.5));
 	set_velocity();
 	audio_stop_sound(snd_charge_spin);
 	audio_play_sfx(snd_release);

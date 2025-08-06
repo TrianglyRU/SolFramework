@@ -21,8 +21,8 @@
   "width": 128,
   "height": 32,
   "textureGroupId": {
-    "name": "texgroup_ghz",
-    "path": "texturegroups/texgroup_ghz",
+    "name": "texgroup_ghz_objects",
+    "path": "texturegroups/texgroup_ghz_objects",
   },
   "swatchColours": null,
   "gridX": 0,

@@ -5,5 +5,5 @@
 /// @param {Real} _duration The duration for each frame in game steps.
 function sprite_set_animation(_sprite_id, _duration)
 {
-	array_push(obj_framework.sprite_array, _sprite_id, _duration);
+	array_push(obj_game.sprite_array, _sprite_id, _duration);
 }

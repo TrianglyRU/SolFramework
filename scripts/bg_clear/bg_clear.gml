@@ -1,15 +1,12 @@
 /// @self
-/// @description Clears all background layers and effects.
-function bg_clear()
+/// @description Destroys a background object located on the specified layer, and removes that layer as well.
+function bg_clear(_layer)
 {
-	with (obj_framework)
+	with (obj_game_layer)
 	{
-		bg_perspective_data[BG_PERSPECTIVE_LAYER_INDEX] = -1;
-		bg_parallax_data = [];
-		bg_layer_count = 0;
-		bg_scroll_offset = 0;
-		bg_min_factor_y = 0;
+		if (layer_get_name(layer) == _layer)
+		{
+			instance_destroy();
+		}
 	}
-	
-	dist_clear_bg();
 }

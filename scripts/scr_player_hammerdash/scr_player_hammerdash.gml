@@ -1,5 +1,5 @@
-/// @function scr_player_hammerdash()
 /// @self obj_player
+/// @function scr_player_hammerdash()
 function scr_player_hammerdash()
 {
 	gml_pragma("forceinline");
@@ -22,7 +22,7 @@ function scr_player_hammerdash()
 	
 	if (is_grounded)
 	{
-		spd_ground = 6 * facing;
+		spd_ground = acc_top * facing;
 		set_velocity();
 	}
 }

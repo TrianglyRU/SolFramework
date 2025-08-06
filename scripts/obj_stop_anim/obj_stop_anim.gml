@@ -1,5 +1,5 @@
-/// @self obj_instance
-/// @description Stops the animation by setting the frame to a specified index and resetting the animation timer. It ignores any custom playback order by directly setting image_index.
+/// @self obj_game_object
+/// @description Stops the animation by setting the frame to a specified index and resetting the duration.
 /// @param {Real} _image_index The frame index to set when stopping the animation (default is image_index).
 function obj_stop_anim(_image_index = image_index)
 {
@@ -9,6 +9,6 @@ function obj_stop_anim(_image_index = image_index)
 	}
 	
 	anim_timer = 0;
-	anim_duration = 0;
+	anim_duration = -1;
 	image_index = _image_index;
 }

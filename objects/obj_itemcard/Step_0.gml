@@ -5,8 +5,7 @@ switch (state)
         if (vel_y < 0)
         {
             y += vel_y;
-            vel_y += 0.09375;
-			
+            vel_y += 0.09375;	
             break;
         }
 
@@ -14,7 +13,7 @@ switch (state)
         wait_timer = 29;
 		
         var _player = player_get(0);
-        var _player_shield = _player.shield;
+        var _player_shield = global.player_shields[0];
         
         switch (image_index)
         {
@@ -30,7 +29,6 @@ switch (state)
             case 2:
 			
                 global.player_rings = min(global.player_rings + 10, 999);
-				
                 audio_play_sfx(snd_ring_left);
                 audio_play_sfx(snd_ring_right);
 				
@@ -51,7 +49,7 @@ switch (state)
             // Shields
             case 4:
 			
-                _player.shield = SHIELD.NORMAL;
+                global.player_shields[0] = SHIELD.NORMAL;
                 audio_play_sfx(snd_shield);
 				
             break;
@@ -63,21 +61,21 @@ switch (state)
                     audio_reset_bgm(obj_rm_stage.bgm_track, _player);
                 }
 				
-                _player.shield = SHIELD.BUBBLE;
+                global.player_shields[0] = SHIELD.BUBBLE;
 				audio_play_sfx(snd_shield_bubble);
 				
             break;
                 
             case 6:
 			
-                _player.shield = SHIELD.FIRE;
+                global.player_shields[0] = SHIELD.FIRE;
                 audio_play_sfx(snd_shield_fire);
 				
             break;
                 
             case 7:
 			
-                _player.shield = SHIELD.LIGHTNING;
+                global.player_shields[0] = SHIELD.LIGHTNING;
                 audio_play_sfx(snd_shield_lightning);
 				
             break;
@@ -113,7 +111,7 @@ switch (state)
             break;
         }
         
-        if (_player.shield != _player_shield)
+        if (global.player_shields[0] != _player_shield)
         {
             with (obj_shield)
             {
@@ -123,7 +121,6 @@ switch (state)
 				}
             }
 			
-			global.player_shields[0] = _player.shield;
             instance_create(0, 0, obj_shield, { vd_target_player: _player });
         }
 		

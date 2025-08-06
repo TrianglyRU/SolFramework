@@ -1,11 +1,11 @@
-/// @function scr_player_collision_ground_floor()
 /// @self obj_player
 /// @feather ignore GM2044
+/// @function scr_player_collision_ground_floor()
 function scr_player_collision_ground_floor()
 {
 	gml_pragma("forceinline");
-
-	if (on_object != noone)
+	
+	if (on_object != noone && instance_exists(on_object))
 	{
 		return;
 	}
@@ -14,7 +14,6 @@ function scr_player_collision_ground_floor()
 	var _snap_angle = function(_angle)
 	{
 		var _diff = abs(angle % 180 - _angle % 180);
-		
 		if (_diff >= 45 && _diff <= 135)
 		{
 			_angle = round(angle / 90) % 4 * 90;
@@ -23,7 +22,7 @@ function scr_player_collision_ground_floor()
 		return _angle;
 	}
 	
-	var _angle_quad = math_get_quadrant(angle);
+	var _angle_quad = QUADRANT.DOWN; _angle_quad = math_get_quadrant(angle);
 	var _min_tolerance = 4;
 	var _max_tolerance = 14;
 	var _player_physics = global.player_physics;
@@ -33,14 +32,23 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.DOWN:
 			
 			var _y = y + radius_y;
-			var _floor_data = tile_find_2v(x - radius_x, _y, x + radius_x, _y, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.DEFAULT);
+			var _floor_data = tile_find_2v(x - radius_x, _y, x + radius_x, _y, DIRECTION.POSITIVE, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
-		
+			
+			if (_player_physics >= PHYSICS.S2 || global.better_angle_snap)
+			{
+				_floor_angle = _snap_angle(_floor_angle);
+			}
+			
 			if (!stick_to_convex)
 			{
 				var _tolerance = _player_physics < PHYSICS.S2 ? _max_tolerance : min(_min_tolerance + abs(floor(vel_x)), _max_tolerance);
-
+				if (_floor_angle != _floor_data[1] && global.better_angle_snap)
+				{
+					_tolerance = 0;
+				}
+				
 				if (_floor_dist > _tolerance)
 				{
 					set_push_anim_by = noone;
@@ -54,15 +62,10 @@ function scr_player_collision_ground_floor()
 					break;
 				}
 			}
-		
+			
 			if (_floor_dist < -_max_tolerance)
 			{
 				break;
-			}
-		
-			if (_player_physics >= PHYSICS.S2)
-			{
-				_floor_angle = _snap_angle(_floor_angle);
 			}
 		
 			y += _floor_dist;
@@ -73,14 +76,23 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.RIGHT:
 			
 			var _x = x + radius_y;
-			var _floor_data = tile_find_2h(_x, y + radius_x, _x, y - radius_x, DIRECTION.POSITIVE, tile_layer, TILEBEHAVIOUR.ROTATE_90);
+			var _floor_data = tile_find_2h(_x, y + radius_x, _x, y - radius_x, DIRECTION.POSITIVE, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
-		
+			
+			if (_player_physics >= PHYSICS.S2 || global.better_angle_snap)
+			{
+				_floor_angle = _snap_angle(_floor_angle);
+			}
+			
 			if (!stick_to_convex)
 			{
 				var _tolerance = _player_physics < PHYSICS.S2 ? _max_tolerance : min(_min_tolerance + abs(floor(vel_y)), _max_tolerance);
-			
+				if (_floor_angle != _floor_data[1] && global.better_angle_snap)
+				{
+					_tolerance = 0;
+				}
+				
 				if (_floor_dist > _tolerance)
 				{
 					set_push_anim_by = noone;
@@ -94,17 +106,12 @@ function scr_player_collision_ground_floor()
 					break;
 				}
 			}
-		
+			
 			if (_floor_dist < -_max_tolerance)
 			{
 				break;
 			}
-		
-			if (_player_physics >= PHYSICS.S2)
-			{
-				_floor_angle = _snap_angle(_floor_angle);
-			}
-		
+			
 			x += _floor_dist;
 			angle = _floor_angle;
 		
@@ -113,14 +120,23 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.UP:
 			
 			var _y = y - radius_y;
-			var _floor_data = tile_find_2v(x + radius_x, _y, x - radius_x, _y, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_180);
+			var _floor_data = tile_find_2v(x + radius_x, _y, x - radius_x, _y, DIRECTION.NEGATIVE, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
+			
+			if (_player_physics >= PHYSICS.S2 || global.better_angle_snap)
+			{
+				_floor_angle = _snap_angle(_floor_angle);
+			}
 			
 			if (!stick_to_convex)
 			{
 				var _tolerance = _player_physics < PHYSICS.S2 ? _max_tolerance : min(_min_tolerance + abs(floor(vel_x)), _max_tolerance);
-			
+				if (_floor_angle != _floor_data[1] && global.better_angle_snap)
+				{
+					_tolerance = 0;
+				}
+				
 				if (_floor_dist > _tolerance)
 				{
 					set_push_anim_by = noone;
@@ -138,11 +154,6 @@ function scr_player_collision_ground_floor()
 			if (_floor_dist < -_max_tolerance)
 			{
 				break;
-			}
-		
-			if (_player_physics >= PHYSICS.S2)
-			{
-				_floor_angle = _snap_angle(_floor_angle);
 			}
 		
 			y -= _floor_dist;
@@ -153,14 +164,23 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.LEFT:
 			
 			var _x = x - radius_y;
-			var _floor_data = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.NEGATIVE, tile_layer, TILEBEHAVIOUR.ROTATE_270);
+			var _floor_data = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.NEGATIVE, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 		
+			if (_player_physics >= PHYSICS.S2 || global.better_angle_snap)
+			{
+				_floor_angle = _snap_angle(_floor_angle);
+			}
+			
 			if (!stick_to_convex)
 			{
 				var _tolerance = _player_physics < PHYSICS.S2 ? _max_tolerance : min(_min_tolerance + abs(floor(vel_y)), _max_tolerance);
-			
+				if (_floor_angle != _floor_data[1] && global.better_angle_snap)
+				{
+					_tolerance = 0;
+				}
+				
 				if (_floor_dist > _tolerance)
 				{
 					set_push_anim_by = noone;
@@ -178,11 +198,6 @@ function scr_player_collision_ground_floor()
 			if (_floor_dist < -_max_tolerance)
 			{
 				break;
-			}
-		
-			if (_player_physics >= PHYSICS.S2)
-			{
-				_floor_angle = _snap_angle(_floor_angle);
 			}
 		
 			x -= _floor_dist;

@@ -1,7 +1,11 @@
 // Override draw
-var _player = vd_target_player;
+if (sprite_index < 0)
+{
+	return;
+}
 
-if (_player.super_timer <= 0 && _player.item_inv_timer == 0 && _player.state != PLAYERSTATE.DEATH && _player.visible)
+var _player = vd_target_player;
+if (_player.super_timer <= 0 && _player.item_inv_timer == 0 && _player.state != PLAYERSTATE.DEATH)
 {
 	draw_sprite_ext
 	(

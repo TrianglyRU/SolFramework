@@ -5,5 +5,5 @@
 /// @returns {Struct}
 function input_get_pressed(_slot)
 {
-	return obj_framework.input_list_press[| _slot];
+	return obj_game.input_list_press[| _slot];
 }

@@ -1,5 +1,5 @@
-/// @function scr_player_update_status()
 /// @self obj_player
+/// @function scr_player_update_status()
 function scr_player_update_status()
 {
 	gml_pragma("forceinline");
@@ -8,14 +8,13 @@ function scr_player_update_status()
 	{
 		if (skid_timer++ % 4 == 0)
 		{
-			instance_create(x, y + radius_y, obj_dust_skid);
+			instance_create(x, y + radius_y + 1, obj_dust_skid);
 		}
 	}
 
 	if (inv_frames > 0)
 	{
 		image_alpha = (inv_frames & 4 > 0) * 1.0;
-		
 		if (--inv_frames == 0)
 		{
 			image_alpha = 1.0;
@@ -46,7 +45,6 @@ function scr_player_update_status()
 			{
 				state = PLAYERSTATE.DEFAULT;
 				reset_substate();
-				
 				instance_create(x, y, obj_star_super, { vd_target_player: id });
 			}
 		}
@@ -75,7 +73,7 @@ function scr_player_update_status()
 		}
 	}
 	
-	if (obj_framework.frame_counter == 36000 && player_index == 0)
+	if (obj_game.frame_counter == 36000 && player_index == 0)
 	{
 		kill();
 	}

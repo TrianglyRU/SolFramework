@@ -21,8 +21,8 @@
   "width": 30,
   "height": 30,
   "textureGroupId": {
-    "name": "texgroup_stage_common",
-    "path": "texturegroups/texgroup_stage_common",
+    "name": "texgroup_stage",
+    "path": "texturegroups/texgroup_stage",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -30,7 +30,10 @@
   "frames": [
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a3d58d41-41ed-4928-9c06-af800d873ed5",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b51ea5cb-bd01-48b3-9995-8fb2bbc1fb8b",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"e8988a6c-40e3-4089-ae4c-f063179972e5",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"167810df-c010-457f-bb1f-38e6b60c0bda",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"042cd521-748a-4e05-96a1-dad45eaa3a6a",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"ffc964d4-2bf0-478f-ad57-c53f04fb24cd",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -42,14 +45,17 @@
     "playbackSpeedType": 1,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 3.0,
+    "length": 6.0,
     "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
             {"id":"3f78c509-c2c3-4897-9502-8f84472bd2e5","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"a3d58d41-41ed-4928-9c06-af800d873ed5","path":"sprites/spr_itembox_invincibility/spr_itembox_invincibility.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
             {"id":"236d05e7-8031-4cc1-b6ba-9f0af58852db","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b51ea5cb-bd01-48b3-9995-8fb2bbc1fb8b","path":"sprites/spr_itembox_invincibility/spr_itembox_invincibility.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"34b06b47-52b1-4ea0-97b5-171294cabc09","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"042cd521-748a-4e05-96a1-dad45eaa3a6a","path":"sprites/spr_itembox_invincibility/spr_itembox_invincibility.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"8a23d13d-b7bc-41a5-929b-1299287b7a06","Key":2.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"e8988a6c-40e3-4089-ae4c-f063179972e5","path":"sprites/spr_itembox_invincibility/spr_itembox_invincibility.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"45ec956d-ef05-4f47-8909-a6ce59d2ce8b","Key":3.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"167810df-c010-457f-bb1f-38e6b60c0bda","path":"sprites/spr_itembox_invincibility/spr_itembox_invincibility.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"34b06b47-52b1-4ea0-97b5-171294cabc09","Key":4.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"042cd521-748a-4e05-96a1-dad45eaa3a6a","path":"sprites/spr_itembox_invincibility/spr_itembox_invincibility.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"0d484091-c761-4b3e-ba56-8def7eb4cf66","Key":5.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"ffc964d4-2bf0-478f-ad57-c53f04fb24cd","path":"sprites/spr_itembox_invincibility/spr_itembox_invincibility.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -72,7 +78,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Sprites/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Sprites/Stage.yy",
   },
 }

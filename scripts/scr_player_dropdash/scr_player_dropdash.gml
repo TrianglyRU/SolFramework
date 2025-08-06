@@ -1,5 +1,5 @@
-/// @function scr_player_dropdash()
 /// @self obj_player
+/// @function scr_player_dropdash()
 function scr_player_dropdash()
 {
 	gml_pragma("forceinline");
@@ -35,7 +35,6 @@ function scr_player_dropdash()
 	        if (vel_x <= 0)
 	        {
 	            spd_ground = (spd_ground >> 2) - _force;  // is floor(spd_ground / 4)
-				
 	            if (spd_ground < -_max_speed)
 	            {
 	                spd_ground = -_max_speed;
@@ -55,7 +54,6 @@ function scr_player_dropdash()
 	        if (vel_x >= 0)
 	        {
 	            spd_ground = (spd_ground >> 2) + _force;
-				
 	            if (spd_ground > _max_speed)
 	            {
 	                spd_ground = _max_speed;
@@ -73,15 +71,14 @@ function scr_player_dropdash()
 		
 	    animation = ANIM.SPIN;
 		
-	    instance_create(x, y + radius_y, obj_dust_dropdash, { image_xscale: facing });
+	    instance_create(x, y + radius_y + 1, obj_dust_dropdash, { image_xscale: facing });
 	    audio_stop_sound(snd_charge_drop);
 	    audio_play_sfx(snd_release);
 	    set_camera_delay(8);
-		
 	    return;
 	}
 	
-	if (shield > SHIELD.NORMAL && super_timer <= 0 && item_inv_timer == 0)
+	if (global.player_shields[player_index] > SHIELD.NORMAL && super_timer <= 0 && item_inv_timer == 0)
 	{
 	    action = ACTION.NONE;
 	}

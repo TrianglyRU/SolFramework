@@ -1,5 +1,5 @@
-/// @function scr_player_jump()
 /// @self obj_player
+/// @function scr_player_jump()
 function scr_player_jump()
 {
 	gml_pragma("forceinline");
@@ -41,9 +41,10 @@ function scr_player_jump()
 	{
 		case PLAYER.SONIC:
 			
+			var _shield = global.player_shields[player_index];
 			if (global.drop_dash && action == ACTION.NONE && shield_state == SHIELDSTATE.NONE && !input_down.action_any)
 			{
-				if (shield <= SHIELD.NORMAL || super_timer > 0 || item_inv_timer > 0)
+				if (_shield <= SHIELD.NORMAL || super_timer > 0 || item_inv_timer > 0)
 				{
 					action = ACTION.DROPDASH;
 					dropdash_charge = 0;
@@ -58,7 +59,7 @@ function scr_player_jump()
 			shield_state = SHIELDSTATE.ACTIVE;
 			air_lock_flag = false;
 			
-			switch (shield)
+			switch (_shield)
 			{
 				case SHIELD.NONE:
 				
@@ -76,7 +77,6 @@ function scr_player_jump()
 					}
 					
 					shield_state = SHIELDSTATE.DOUBLESPIN;
-					
 					instance_create(0, 0, obj_double_spin, { vd_target_player: id });
 					audio_play_sfx(snd_double_spin);
 					
@@ -91,7 +91,10 @@ function scr_player_jump()
 					{
 						if (vd_target_player == other.id)
 						{
-							obj_set_anim(spr_shield_bubble_drop, 6, [0, 1, 1, 1], function(){ set_bubble_shield_animation(); });
+							obj_set_anim(spr_shield_bubble_drop, 6, 0, function()
+							{ 
+								obj_set_anim(spr_shield_bubble, 2, 0, 0); 
+							});
 						}
 					}
 					
@@ -112,10 +115,9 @@ function scr_player_jump()
 						if (vd_target_player == other.id)
 						{
 							var _dash_sprite = spr_shield_fire_dash;
-							
 							if (sprite_index != _dash_sprite)
 							{
-								obj_set_anim(_dash_sprite, 2, [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3], function(){ clear_fire_shield_dash(); });
+								obj_set_anim(_dash_sprite, 2, 0, function(){ clear_fire_shield_dash(); });
 							}
 							else
 							{
@@ -204,7 +206,6 @@ function scr_player_jump()
 			
 			action = ACTION.HAMMERSPIN;
 			dropdash_charge = 0;
-			
 			audio_play_sfx(snd_hammer);
 			
 		break;

@@ -1,28 +1,25 @@
 /// @self
-/// @description Loads palette data into the "global" slot from two sprite textures.
+/// @description Loads the primary (A) and the secondary (B) palette data from two sprite textures.
 /// @param {Asset.GMSprite|Undefined} _primary The primary palette sprite.
 /// @param {Asset.GMSprite|Undefined} _secondary The secondary palette sprite.
 function pal_load(_primary, _secondary)
 {
-	var _tex, _uvs, _texel_x, _texel_y;
-	
-	if (_primary != undefined)
+	var _sprites = [_primary, _secondary];
+	for (var _i = 0; _i < 2; _i++)
 	{
-		_tex = sprite_get_texture(_primary, 0);
-		_uvs = sprite_get_uvs(_primary, 0);
-		_texel_x = texture_get_texel_width(_tex);
-		_texel_y = texture_get_texel_height(_tex);
+		var _sprite = _sprites[_i];
+		if (_sprites[_i] != undefined)
+		{
+			var _texture = sprite_get_texture(_sprite, 0);
+			var _uvs = sprite_get_uvs(_sprite, 0);
+			var _texel_x = texture_get_texel_width(_texture);
+			var _texel_y = texture_get_texel_height(_texture);
 		
-		obj_framework.palette_data[0] = [_tex, _texel_x, _texel_y, _uvs[0] + _texel_x / 2, _uvs[1] + _texel_y / 2, _uvs[3]];
-	}
-	
-	if (_secondary != undefined)
-	{
-		_tex = sprite_get_texture(_secondary, 0);
-		_uvs = sprite_get_uvs(_secondary, 0);
-		_texel_x = texture_get_texel_width(_tex);
-		_texel_y = texture_get_texel_height(_tex);
-		
-		obj_framework.palette_data[1] = [_tex, _texel_x, _texel_y, _uvs[0] + _texel_x / 2, _uvs[1] + _texel_y / 2, _uvs[3]];
+			obj_game.palette_data[_i] = [_texture, _texel_x, _texel_y, _uvs[0], _uvs[1], _uvs[3]];
+		}
+		else
+		{
+			obj_game.palette_data[_i] = undefined;
+		}
 	}
 }

@@ -8,6 +8,7 @@ enum SIGNPOSTSTATE
 // Inherit the parent event
 event_inherited();
 
+obj_rm_stage.end_bound = x + camera_get_width(0) * 0.5;
 state = SIGNPOSTSTATE.IDLE;
 sign_spin_timer = 0;
 sign_spin_cycle = 0;
@@ -21,7 +22,5 @@ ring_sparkle_pos =
 	-16, 8,  0, -8, -8, 0,   8,  16		// y
 ];
 
-obj_rm_stage.bound_end = x + camera_get_width(0) / 2;
-
 obj_set_priority(5);
-obj_set_culling(CULLING.SUSPEND);
+obj_set_culling(ACTIVEIF.INBOUNDS);

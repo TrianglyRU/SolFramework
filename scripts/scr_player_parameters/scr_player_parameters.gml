@@ -1,5 +1,5 @@
-/// @function scr_player_parameters()
 /// @self obj_player
+/// @function scr_player_parameters()
 function scr_player_parameters()
 {
 	gml_pragma("forceinline");
@@ -112,7 +112,7 @@ function scr_player_parameters()
 	{
 		if (vd_player_type == PLAYER.TAILS)
 		{
-			dec_roll = dec / 4;
+			dec_roll = dec * 0.25;
 		}
 	}
 	else if (super_timer > 0)

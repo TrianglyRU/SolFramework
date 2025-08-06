@@ -11,7 +11,10 @@
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_game_object",
+    "path": "objects/obj_game_object/obj_game_object.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -30,18 +33,10 @@
   ],
   "properties": [
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_ground_only","varType":3,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_layer_left","varType":6,"value":"TILELAYER.SECONDARY","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
-        "TILELAYER.SECONDARY",
-        "TILELAYER.MAIN",
-      ],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_layer_right","varType":6,"value":"TILELAYER.MAIN","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
-        "TILELAYER.MAIN",
-        "TILELAYER.SECONDARY",
-      ],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Stage",
+    "path": "folders/Objects/Stage.yy",
   },
 }

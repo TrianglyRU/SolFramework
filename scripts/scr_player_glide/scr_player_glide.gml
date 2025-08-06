@@ -1,5 +1,5 @@
-/// @function scr_player_glide()
 /// @self obj_player
+/// @function scr_player_glide()
 function scr_player_glide()
 {
 	gml_pragma("forceinline");
@@ -13,6 +13,7 @@ function scr_player_glide()
 	var _glide_grv = 0.125;
 	var _slide_frc = 0.09375;
 
+	// spd_ground is a gliding speed value
 	switch (action_state)
 	{
 	    case GLIDESTATE.AIR:
@@ -52,6 +53,7 @@ function scr_player_glide()
 	            glide_angle += _angle_inc;
 	        }
 			
+			facing = abs(glide_angle) < 90 ? DIRECTION.NEGATIVE : DIRECTION.POSITIVE; 
 	        vel_x = spd_ground * -dcos(glide_angle);
 			
 	        if (vel_y < 0.5)
@@ -62,22 +64,6 @@ function scr_player_glide()
 	        {
 	            grv = -_glide_grv;
 	        }
-			
-	        var _angle = abs(glide_angle) % 180;
-			
-	        if (_angle < 30 || _angle > 150)
-	        {
-	            image_index = 0;
-	        }
-	        else if (_angle < 60 || _angle > 120)
-	        {
-	            image_index = 1;
-	        }
-	        else
-	        {
-				image_index = 2;
-	            facing = _angle < 90 ? DIRECTION.NEGATIVE : DIRECTION.POSITIVE; 
-			}
 			
 	        if (!input_down.action_any)
 	        {
@@ -104,8 +90,7 @@ function scr_player_glide()
 			
 	        if (vel_x == 0)
 	        {
-	            land();
-				
+	            land();	
 	            animation = ANIM.GLIDE_GROUND;	// Keep the animation
 	            ground_lock_timer = 16;
 	            spd_ground = 0;
@@ -116,7 +101,7 @@ function scr_player_glide()
 			
 	        if (glide_value % 4 == 0)
 	        {
-	            instance_create(x, y + radius_y, obj_dust_skid);
+	            instance_create(x, y + radius_y + 1, obj_dust_skid);
 	        }
 			
 	        if (glide_value > 0 && glide_value % 8 == 0)

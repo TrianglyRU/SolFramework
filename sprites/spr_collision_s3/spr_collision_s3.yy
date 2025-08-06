@@ -21,8 +21,8 @@
   "width": 286,
   "height": 862,
   "textureGroupId": {
-    "name": "texgroup_collision_common",
-    "path": "texturegroups/texgroup_collision_common",
+    "name": "texgroup_collision",
+    "path": "texturegroups/texgroup_collision",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -68,7 +68,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Collision Common",
-    "path": "folders/Sprites/Collision Common.yy",
+    "name": "Collision",
+    "path": "folders/Sprites/Collision.yy",
   },
 }

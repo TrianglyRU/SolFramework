@@ -63,7 +63,6 @@ alter_setting = function(_setting_id)
 get_setting = function(_id)
 {
 	var _display = "GET_SETTING() NOT SET";
-	
     switch (_id)
     {
         case 0: 
@@ -102,7 +101,7 @@ room_to_load = -1;
 
 add_category    // ID 0
 (
-    "GAMEMAKER - SOL FRAMEWORK" + "\n" + "DEVELOPER MENU",
+    "ORBINAUT FRAMEWORK DEV MENU\n(Sol Version)",
     [
 		"START GAME",
 		"ROOM SELECT",
@@ -113,7 +112,7 @@ add_category    // ID 0
 
 add_category    // ID 1
 (
-    "START GAME" + "\n" + "press action 3 to delete a save file",
+    "START GAME\nPress action 3 to delete a save file",
 	[
 	    "NO SAVE",
 	    "SAVE 0",
@@ -125,7 +124,6 @@ add_category    // ID 1
 
 // Automatically generate room list
 var _room_list = [];
-
 for (var _i = 1; _i <= room_last; _i++)
 {
 	_room_list[_i - 1] = string_upper(room_get_name(_i));

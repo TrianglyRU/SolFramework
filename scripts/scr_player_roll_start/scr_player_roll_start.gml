@@ -1,5 +1,5 @@
-/// @function scr_player_roll_start()
 /// @self obj_player
+/// @function scr_player_roll_start()
 function scr_player_roll_start()
 {
 	gml_pragma("forceinline");
@@ -15,7 +15,6 @@ function scr_player_roll_start()
 	}
 
 	var _allowed_to_roll = false;
-
 	if (input_down.down)
 	{
 	    if (global.player_physics == PHYSICS.SK)
@@ -35,13 +34,12 @@ function scr_player_roll_start()
 	    }
 	}
 	
-	if _allowed_to_roll || forced_roll
+	if (_allowed_to_roll || forced_roll)
 	{
 		y += radius_y - radius_y_spin;
 		radius_x = radius_x_spin;
 		radius_y = radius_y_spin;
 		animation = ANIM.SPIN;
-		
 		audio_play_sfx(snd_roll);
 	}
 }

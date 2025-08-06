@@ -7,7 +7,7 @@ switch (state)
             break;
         }
         
-        obj_set_culling(CULLING.ACTIVE);
+        obj_set_culling(ACTIVEIF.OBJECTS_ACTIVE);
         instance_create(x, lock_obj.y, obj_explosion_dust);
 		
         with (obj_player)
@@ -24,8 +24,7 @@ switch (state)
         {
 			vel_x = 8;
 			vel_y = -4;
-			
-            obj_set_culling(CULLING.REMOVE);
+            obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
         }
         
         state = CAPSULESTATE.BREAK;
@@ -58,7 +57,7 @@ switch (state)
       
     case CAPSULESTATE.SPAWN_ANIMALS:
         
-        if (obj_framework.frame_counter % 8 == 0)
+        if (obj_game.frame_counter % 8 == 0)
         {
 			instance_create(x + irandom_range(-25, 25), y, obj_animal, { vd_release_timer: 12, vd_random_direction: true });
         }
@@ -72,11 +71,9 @@ switch (state)
     case CAPSULESTATE.WAIT_ANIMALS:
 		
 		var _start_results = false;
-		
 		with (obj_animal)
 		{
 			_start_results = !obj_is_visible();
-			
 			if (!_start_results)
 			{
 				break;
@@ -87,7 +84,6 @@ switch (state)
         {
             instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);
             audio_play_bgm(snd_bgm_actclear);
-            
             state++;
         }
         

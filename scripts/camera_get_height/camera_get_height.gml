@@ -1,5 +1,5 @@
 /// @self
-/// @description Gets the vertical resolution of the camera for the given viewport index.
+/// @description A wrapper around camera_get_view_height().
 /// @param {Real} _index The viewport index.
 /// @returns {Real}
 function camera_get_height(_index)

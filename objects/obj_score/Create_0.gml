@@ -13,4 +13,3 @@ else
 }
 
 obj_set_priority(1);
-obj_set_culling(CULLING.REMOVE);

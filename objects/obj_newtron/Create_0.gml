@@ -23,4 +23,4 @@ shot_flag = false;
 
 obj_set_priority(4);
 obj_set_hitbox(20, 16);
-obj_set_culling(CULLING.RESPAWN);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

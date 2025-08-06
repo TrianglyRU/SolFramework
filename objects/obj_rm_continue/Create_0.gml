@@ -3,8 +3,8 @@ character_main = noone;
 character_buddy = noone;
 continue_count = global.continue_count;
 continue_icons = [];
-half_width = camera_get_width(0) / 2;
-half_height = camera_get_height(0) / 2;
+half_width = camera_get_width(0) * 0.5;
+half_height = camera_get_height(0) * 0.5;
 
 switch (global.player_main)
 {
@@ -43,12 +43,11 @@ if (character_buddy != noone)
 if (continue_count > 1)
 {
     var _shift = max(continue_count - 1, 0) * 10 + 2;
-	
     for (var _i = 0; _i < continue_count; _i++)
     {
-        continue_icons[_i] = instance_create(half_width + 20 * _i - _shift, half_height - 20, obj_gui_continue, { vd_is_screen_space: false });
+        continue_icons[_i] = instance_create(half_width + 20 * _i - _shift, half_height - 20, obj_gui_continue);
     }
 }
 
-fade_perform_black(FADEROUTINE.IN, 1);
 audio_play_bgm(snd_bgm_continue);
+fade_perform_black(FADEROUTINE.IN, 1);

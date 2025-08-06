@@ -3,23 +3,23 @@ if (state = SPECIALSTAGESTATE.RESULTS)
     exit;
 }
 
-if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp_2))
+if (obj_game.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp_2))
 {
     var _give_emerald = state == SPECIALSTAGESTATE.EMERALD;
-	
     if (_give_emerald && global.emerald_count < 7)
     {
         global.emerald_count++;
     }
 	
-    bg_clear();
+	bg_clear_all();
+	dist_clear_all();
     fade_perform_white(FADEROUTINE.IN, 0);
     instance_create(0, 0, obj_gui_results_special, { EmeraldEarned: _give_emerald });
 	
     state = SPECIALSTAGESTATE.RESULTS;
 }
 
-if (obj_framework.state == FWSTATE.PAUSED)
+if (obj_game.state == GAMESTATE.PAUSED)
 {
     exit;
 }
@@ -27,7 +27,6 @@ if (obj_framework.state == FWSTATE.PAUSED)
 if (state != SPECIALSTAGESTATE.EMERALD)
 {
     var _input_press = input_get_pressed(0);
-	
     if (_input_press.action1)
     {
         audio_play_bgm(snd_bgm_emerald);

@@ -11,8 +11,7 @@ switch (state)
 		{
 			state = BUZZBOMBERSTATE.ROAM;
 			state_timer = 127;
-		
-			obj_set_anim(spr_buzz_bomber_roam, 2);
+			obj_set_anim(spr_buzz_bomber_roam, 2, 0, 0);
 		}
 		
 	break;
@@ -24,9 +23,8 @@ switch (state)
 			state = BUZZBOMBERSTATE.HOVER;
 			state_timer = 59;
 			shot_flag = true;
-			
 			instance_create(x - 29 * image_xscale, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale }, id);
-			obj_set_anim(spr_buzz_bomber_fire, 2);
+			obj_set_anim(spr_buzz_bomber_fire, 2, 0, 0);
 		}
 		
 	break;
@@ -39,8 +37,7 @@ switch (state)
 			shot_flag = false;
 			state_timer = 59;
 			image_xscale *= -1;
-			
-			obj_set_anim(spr_buzz_bomber_hover, 2);
+			obj_set_anim(spr_buzz_bomber_hover, 2, 0, 0);
 			break;
 		}
 		
@@ -51,7 +48,7 @@ switch (state)
 			break;
 		}
 		
-		var _player = player_get(obj_framework.frame_counter % PLAYER_COUNT);
+		var _player = player_get(obj_game.frame_counter % PLAYER_COUNT);
 	    var _dist_x = x - floor(_player.x);
 		
 		if (_dist_x < 0)
@@ -63,8 +60,7 @@ switch (state)
 		{
 			state = BUZZBOMBERSTATE.FIRE;
 			state_timer = 29;
-			
-			obj_set_anim(spr_buzz_bomber_hover, 2);
+			obj_set_anim(spr_buzz_bomber_hover, 2, 0, 0);
 		}
 		
 	break;

@@ -13,22 +13,22 @@
   "bbox_left": 0,
   "bbox_right": 511,
   "bbox_top": 0,
-  "bbox_bottom": 255,
+  "bbox_bottom": 100,
   "HTile": false,
   "VTile": false,
   "For3D": false,
   "DynamicTexturePage": false,
   "width": 512,
-  "height": 256,
+  "height": 113,
   "textureGroupId": {
-    "name": "texgroup_ehz_scenery",
-    "path": "texturegroups/texgroup_ehz_scenery",
+    "name": "texgroup_ehz_graphics",
+    "path": "texturegroups/texgroup_ehz_graphics",
   },
   "swatchColours": null,
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"2baad052-87f0-456f-8ce8-14b94abc996a",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"1d4f1bf4-b2f3-48c7-97fa-b25f357499d8",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -45,7 +45,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"5f67970e-fba3-4f9f-8666-5bdd4bf0c896","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"2baad052-87f0-456f-8ce8-14b94abc996a","path":"sprites/spr_bg_ehz_00/spr_bg_ehz_00.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"f84b6906-22cc-41fc-9d52-fa31e3b58dbe","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1d4f1bf4-b2f3-48c7-97fa-b25f357499d8","path":"sprites/spr_bg_ehz_00/spr_bg_ehz_00.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -59,16 +59,16 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 256,
-    "yorigin": 128,
+    "yorigin": 56,
     "eventToFunction": {},
     "eventStubScript": null,
   },
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"5ec7d23d-0a20-4a0d-a6a1-b14ad2817027","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"eceb2374-5593-4030-8609-72368a6d7fb3","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Scenery",
-    "path": "folders/Sprites/Emerald Hill/Scenery.yy",
+    "name": "Graphics",
+    "path": "folders/Sprites/Emerald Hill/Graphics.yy",
   },
 }

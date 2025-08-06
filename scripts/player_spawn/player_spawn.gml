@@ -3,9 +3,9 @@
 /// @param {Real} _x The x-coordinate of the spawn location.
 /// @param {Real} _y The y-coordinate of the spawn location.
 /// @param {Enum.PLAYER} _player_type The character to spawn.
-/// @param {String} _layer The name of the layer where the player object will be placed.
+/// @param {Real} _depth The depth the player object will be drawn with.
 /// @returns {Id.Instance}
-function player_spawn(_x, _y, _player_type, _layer)
+function player_spawn(_x, _y, _player_type, _depth)
 {
 	if (PLAYER_COUNT > PLAYER_MAX_COUNT)
 	{
@@ -14,6 +14,6 @@ function player_spawn(_x, _y, _player_type, _layer)
 	
 	return instance_create(_x, _y, obj_player,
 	{
-		vd_player_type: _player_type, depth: layer_get_depth(_layer)
+		vd_player_type: _player_type, depth: _depth
 	});
 }

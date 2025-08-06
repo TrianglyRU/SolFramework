@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_instance",
-    "path": "objects/obj_instance/obj_instance.yy",
+    "name": "obj_game_object",
+    "path": "objects/obj_game_object/obj_game_object.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -32,12 +32,12 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_type","varType":6,"value":"\"None\"","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
-        "\"None\"",
-        "\"Falls\"",
-        "\"Horizontal\"",
-        "\"Vertical\"",
-        "\"Circular\"",
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_type","varType":6,"value":"PLATFORMTYPE.DEFAULT","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
+        "PLATFORMTYPE.DEFAULT",
+        "PLATFORMTYPE.FALL",
+        "PLATFORMTYPE.HORIZONTAL",
+        "PLATFORMTYPE.VERTICAL",
+        "PLATFORMTYPE.CIRCULAR",
       ],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_angle_offset","varType":1,"value":"0","rangeEnabled":true,"rangeMin":0.0,"rangeMax":360.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_distance","varType":0,"value":"64","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
@@ -45,7 +45,7 @@
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage Common",
-    "path": "folders/Objects/Stage Common.yy",
+    "name": "Basic",
+    "path": "folders/Objects/Basic.yy",
   },
 }

@@ -3,13 +3,23 @@
 /// @param {String} _width_data The filename (without extension) containing width data.
 /// @param {String} _height_data The filename (without extension) containing height data.
 /// @param {String} _angle_data The filename (without extension) containing angle data.
-/// @param {String} _layer_a The name of the primary layer in the room.
-/// @param {String} _layer_b The name of the secondary layer in the room.
-function tile_load_data_binary(_width_data, _height_data, _angle_data, _layer_a, _layer_b)
+/// @param {String} _layer_main The name of the main collision layer (TILELAYER.MAIN) in the room.
+/// @param {String|Undefined} _layer_secondary_a The name of the first additional collision layer (TILELAYER.SECONDARY_A) in the room.
+/// @param {String|Undefined} _layer_secondary_b The name of the second additional collision layer (TILELAYER.SECONDARY_B) in the room.
+function tile_load_data_binary(_width_data, _height_data, _angle_data, _layer_main, _layer_secondary_a, _layer_secondary_b)
 {
-	var _fw = obj_framework;
-	var _data;
+	obj_game.tile_layers = 
+	[
+		layer_tilemap_get_id(_layer_main),			// TILELAYER.MAIN (0)
+		layer_tilemap_get_id(_layer_secondary_a),	// TILELAYER.SECONDARY_A (1)	
+		layer_tilemap_get_id(_layer_secondary_b)	// TILELAYER.SECONDARY_B (2)
+	];
 	
+	var _data;
+	var _widths = obj_game.tile_widths;
+	var _heights = obj_game.tile_heights;
+	var _angles = obj_game.tile_angles;
+		
 	for (var _k = 0; _k < 3; _k++)
 	{
 		switch _k
@@ -35,7 +45,7 @@ function tile_load_data_binary(_width_data, _height_data, _angle_data, _layer_a,
 		{
 			continue;
 		}
-
+		
 		for (var _i = 0; _i < TILE_COUNT; _i++) 
 		{
 			switch (_k)
@@ -44,7 +54,7 @@ function tile_load_data_binary(_width_data, _height_data, _angle_data, _layer_a,
 				
 					for (var _j = 0; _j < TILE_SIZE; _j++) 
 					{
-						_fw.tile_widths[_i][_j] = _i * TILE_SIZE < _size ? file_bin_read_byte(_file) : 0;
+						_widths[_i][_j] = _i * TILE_SIZE < _size ? file_bin_read_byte(_file) : 0;
 					}
 					
 				break;
@@ -53,21 +63,17 @@ function tile_load_data_binary(_width_data, _height_data, _angle_data, _layer_a,
 				
 					for (var _j = 0; _j < TILE_SIZE; _j++) 
 					{
-						_fw.tile_heights[_i][_j] = _i * TILE_SIZE < _size ? file_bin_read_byte(_file) : 0;
+						_heights[_i][_j] = _i * TILE_SIZE < _size ? file_bin_read_byte(_file) : 0;
 					}
 					
 				break;
 			
 				case 2:
-				
-					_fw.tile_angles[_i] = _i < _size ? math_get_angle_degree(file_bin_read_byte(_file)) : 0;
-					
+					_angles[_i] = _i < _size ? math_get_angle_degree(file_bin_read_byte(_file)) : 0;
 				break;
 			}
 		}
 		
 		file_bin_close(_file);									 
 	}
-	
-	_fw.tile_layers = [layer_tilemap_get_id(_layer_a), layer_tilemap_get_id(_layer_b)];
 }

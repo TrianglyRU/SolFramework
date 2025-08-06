@@ -9,13 +9,12 @@ if (!instance_exists(vd_target_player) || vd_target_player.super_timer <= 0)
 }
 
 var _do_update = !obj_is_anim_stopped();
-
 if (vd_target_player.action != ACTION.DASH && abs(vd_target_player.spd_ground) >= vd_target_player.acc_top)
 {
 	if (!_do_update)
 	{
 		attach_to_player = true;
-		obj_set_anim(sprite_index, 2);
+		obj_set_anim(sprite_index, 2, 0, 0);
 	}
 	
 	if (attach_to_player || image_index == 0 && anim_frame_change_flag)

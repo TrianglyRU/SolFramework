@@ -20,13 +20,12 @@ switch (vd_target_player.animation)
 	case ANIM.FLY_TIRED:
 	
 		var _duration = 1;
-		
 		if (vd_target_player.vel_y >= 0 || vd_target_player.animation == ANIM.FLY_TIRED)
 		{
 			_duration = 2;
 		}
 		
-		obj_set_anim(spr_tails_tail_fly, _duration, 0, 0, true);
+		obj_set_anim(spr_tails_tail_fly, _duration, 0, 0);
 		
 	break;
 	

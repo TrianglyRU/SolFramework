@@ -5,31 +5,28 @@
 /// @returns {Id.Sound}
 function audio_play_bgm(_sound_id, _index = 0)
 {
-	var _do_loop = false; // ds_list_find_index(global.looped_audio, _sound_id) != -1;
-    var _gain_buffer = 1.0;
-    
-    with (obj_framework)
+	// TODO: replace false with ds_list_find_index(global.looped_audio, _sound_id) != -1 in LTS'25
+	var _do_loop = false; 
+	
+    if (obj_game.audio_channel_states[_index] == CHANNELSTATE.STOP)
     {
-        if (audio_channel_states[_index] == CHANNELSTATE.STOP)
+        if (obj_game.audio_channel_bgms[AUDIO_CHANNEL_JINGLE] == -1)
         {
-            if (audio_channel_bgms[AUDIO_CHANNEL_JINGLE] == -1)
-            {
-                audio_channel_states[_index] = CHANNELSTATE.DEFAULT;
-            }
-            else
-            {
-                audio_channel_states[_index] = CHANNELSTATE.TEMPMUTE;
-                _gain_buffer = 0.0;
-            }
+            obj_game.audio_channel_states[_index] = CHANNELSTATE.DEFAULT;
         }
-        else if (audio_channel_bgms[_index] != -1)
+        else
         {
-            _gain_buffer = audio_sound_get_gain(audio_channel_bgms[_index]);
+            obj_game.audio_channel_states[_index] = CHANNELSTATE.TEMPMUTE;
         }
-        
-        audio_stop_sound(audio_channel_bgms[_index]);
-        audio_channel_bgms[_index] = audio_play_sound_on(audio_emitter_bgm[_index], _sound_id, _do_loop, 0, _gain_buffer);
     }
+		
+    audio_stop_sound(obj_game.audio_channel_bgms[_index]);
+		
+	var _emitter = obj_game.audio_emitter_bgm[_index];
+	var _gain = obj_game.audio_channel_states[_index] == CHANNELSTATE.TEMPMUTE ? 0.0 : 1.0;
+	
+    obj_game.audio_channel_bgms[_index] = audio_play_sound_on(_emitter, _sound_id, _do_loop, 0, _gain);
+	obj_game.audio_current_loop_data[_index] = ds_map_find_value(global.looped_audio_data, _sound_id);	// TODO: remove this in LTS'25
     
-    return obj_framework.audio_channel_bgms[_index];
+    return obj_game.audio_channel_bgms[_index];
 }

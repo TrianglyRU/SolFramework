@@ -3,11 +3,9 @@ switch (state)
 	case PLATFORMSTATE.MOVE:
 	
 		var _player_touch = false;
-
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			var _player = player_get(_p);
-			
 			if (obj_check_solid(_player, SOLIDCOLLISION.TOP))
 			{
 				_player_touch = true;
@@ -15,7 +13,6 @@ switch (state)
 		}
 		
 		var _weight_inc = 5.625;
-
 		if (_player_touch)
 		{
 			if (weight < 90)
@@ -28,37 +25,36 @@ switch (state)
 			weight -= _weight_inc;
 		}
 		
-		var _osc_angle = obj_framework.frame_counter * ANGLE_INCREMENT;
+		var _osc_angle = obj_game.frame_counter * ANGLE_INCREMENT;
 		var _spd = 256 / vd_speed_multiplier;
 
 		switch (vd_type)
 		{
-			case "None":
+			case PLATFORMTYPE.DEFAULT:
 				y = ystart;
 			break;
 			
-			case "Horizontal":
+			case PLATFORMTYPE.HORIZONTAL:
 			
 				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
 				y = ystart;
 				
 			break;
 
-			case "Vertical":
+			case PLATFORMTYPE.VERTICAL:
 				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
 			break;
 
-			case "Circular":
+			case PLATFORMTYPE.CIRCULAR:
 			
 				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
 				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
 				
 			break;
 
-			case "Falls":
+			case PLATFORMTYPE.FALL:
 				
 				y = ystart;
-				
 				if (wait_timer == 0)
 				{
 					if (_player_touch)
@@ -76,7 +72,6 @@ switch (state)
 		}
 
 		y += dsin(weight) * 4;
-		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			obj_act_solid(player_get(_p), SOLIDOBJECT.TOP);
@@ -111,4 +106,15 @@ switch (state)
 		}
 
 	break;
+}
+
+var _itembox = instance_place(xprevious, yprevious - 1, obj_itembox);
+if (_itembox != noone)
+{
+	// This Step event is manually triggered from the Create event, so the Item Box's state may not be initialised yet
+	if (!variable_instance_exists(_itembox, "state") || _itembox.state != ITEMBOXSTATE.FALL)
+	{
+		_itembox.x += x - xprevious;
+		_itembox.y += y - yprevious;
+	}
 }

@@ -1,4 +1,4 @@
-if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR)
+if (obj_game.fade_state == FADESTATE.PLAINCOLOUR)
 {
     game_save_data(global.current_save_slot);
 	
@@ -20,7 +20,7 @@ if (obj_framework.fade_state == FADESTATE.PLAINCOLOUR)
     return;
 }
 
-if (obj_framework.state == FWSTATE.PAUSED)
+if (obj_game.state == GAMESTATE.PAUSED)
 {
     return;
 }
@@ -37,15 +37,12 @@ if (character_main.vel_charge == 0)
 }
 else if (continue_count > 1)
 {
-    with (continue_icons[continue_count - 1])
-    {
-        anim_timer = -1;
-        visible = obj_framework.frame_counter % 2 == 0;
-    }
+	var _last_icon = continue_icons[continue_count - 1];
+    _last_icon.anim_timer = -1;
+    _last_icon.visible = obj_game.frame_counter % 2 == 0;
 }
 
 var _bound = camera_get_width(0) + 64;
-
 if (character_main.x < _bound || character_buddy != noone && character_buddy.x < _bound)
 {
     return;

@@ -1,9 +1,9 @@
 if (update_timer)
 {
-	local_timer = obj_framework.frame_counter;
+	local_timer = obj_game.frame_counter;
 }
 
-dynamic_frame = floor((obj_framework.frame_counter - 1) / 8) % 2;
+dynamic_frame = floor((obj_game.frame_counter - 1) / 8) % 2;
 
 var _min = 9;
 var _sec = 59;

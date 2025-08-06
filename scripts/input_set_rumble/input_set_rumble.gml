@@ -12,11 +12,10 @@ function input_set_rumble(_slot_id, _time, _left_motor, _right_motor = _left_mot
 	}
 	
 	var _pad_id = input_get_gamepad_id(_slot_id);
-	
 	if (_pad_id != undefined)
 	{
 		gamepad_set_vibration(_pad_id, clamp(_left_motor, 0, 1) / 8, clamp(_right_motor, 0, 1) / 8);
 	}
 	
-	obj_framework.input_vibrations[_slot_id] = _time * 60;
+	obj_game.input_vibrations[_slot_id] = _time * 60;
 }

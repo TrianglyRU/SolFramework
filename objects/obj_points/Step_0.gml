@@ -3,7 +3,6 @@ if (!visible)
 	for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	{
 		var _player = player_get(_p);
-		
 		if (_player.state >= PLAYERSTATE.DEBUG_MODE)
 		{
 			continue;
@@ -14,12 +13,10 @@ if (!visible)
 		
 		if (_dist_x >= 0 && _dist_x < 32 && _dist_y >= 0 && _dist_y < 32)
 		{
-			global.score_count += power(10, image_index + 2);
 			visible = true;
-			
+			global.score_count += power(10, image_index + 2);
 			audio_play_sfx(snd_points);
-			obj_set_culling(CULLING.REMOVE);
-			
+			obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
 			break;
 		}
 	}

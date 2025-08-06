@@ -1,12 +1,12 @@
-/// @function scr_player_debug_mode()
 /// @self obj_player
+/// @function scr_player_debug_mode()
 function scr_player_debug_mode()
 {
 	gml_pragma("forceinline");
 	
 	if (input_down.up || input_down.down || input_down.left || input_down.right)
 	{
-	    debug_mode_spd = min(debug_mode_spd + (global.dev_mode ? 0.1875 : 0.046875), 16);
+	    debug_mode_spd = min(debug_mode_spd + 0.046875, 16);
 		
 	    if (input_down.up)
 	    {
@@ -28,8 +28,8 @@ function scr_player_debug_mode()
 	        x += debug_mode_spd;
 	    }
 		
-		x = clamp(x, camera_data.bound_left, camera_data.bound_right - 1);
-		y = clamp(y, camera_data.bound_upper, camera_data.bound_lower - 1);
+		x = clamp(x, camera_data.left_bound, camera_data.right_bound - 1);
+		y = clamp(y, camera_data.top_bound, camera_data.bottom_bound - 1);
 	}
 	else
 	{
@@ -57,11 +57,10 @@ function scr_player_debug_mode()
 	    }
 	    else
 	    {
-			var _object = instance_create(x, y, debug_mode_array[debug_mode_ind], { image_xscale: facing, depth: cull_depth });
-			
+			var _object = instance_create(x, y, debug_mode_array[debug_mode_ind], { image_xscale: facing, depth: cull_depth });	
 	        with (_object)
 	        {
-	            obj_set_culling(CULLING.REMOVE);
+	            obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
 	        }
 	    }
 	}

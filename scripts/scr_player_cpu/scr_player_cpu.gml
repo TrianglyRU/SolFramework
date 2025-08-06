@@ -1,6 +1,6 @@
-/// @function scr_player_cpu()
 /// @self obj_player
 /// @feather ignore GM2044
+/// @function scr_player_cpu()
 function scr_player_cpu()
 {
 	gml_pragma("forceinline");
@@ -13,7 +13,7 @@ function scr_player_cpu()
 	/// @method _try_to_respawn()
 	var _try_to_respawn = function()
 	{
-	    if (obj_is_visible() || x >= camera_data.bound_right)
+	    if (obj_is_visible() || x >= camera_data.right_bound)
 	    {
 	        cpu_timer_respawn = 0;
 	        return false;
@@ -35,7 +35,6 @@ function scr_player_cpu()
 	cpu_target = player_get(0);
 	
 	var _can_receive_input = player_index < INPUT_SLOT_COUNT;
-
 	if (_can_receive_input)
 	{
 	    if (input_down.action_any || input_down.up || input_down.down || input_down.left || input_down.right)
@@ -50,7 +49,7 @@ function scr_player_cpu()
 			
 	        if (_can_receive_input && !input_down.action_any && !input_down.start)
 	        {
-				if (obj_framework.frame_counter % 64 != 0 || cpu_target.state >= PLAYERSTATE.LOCKED)
+				if (obj_game.frame_counter % 64 != 0 || cpu_target.state >= PLAYERSTATE.LOCKED)
 				{
 					break;
 				}
@@ -103,11 +102,9 @@ function scr_player_cpu()
 	        }
 			
 	        var _dist_x = floor(x) - _target_x;
-			
 	        if (_dist_x != 0)
 	        {
 	            var _vel_x = abs(cpu_target.vel_x) + min(floor(abs(_dist_x) / 16), 12) + 1;
-				
 	            if (_dist_x >= 0)
 	            {
 	                if (_vel_x < _dist_x)
@@ -125,7 +122,6 @@ function scr_player_cpu()
 	            else
 	            {
 	                _dist_x *= -1;
-					
 	                if (_vel_x >= _dist_x)
 	                {
 	                    _vel_x = _dist_x;
@@ -139,13 +135,12 @@ function scr_player_cpu()
 	        }
 			
 	        var _dist_y = floor(y) - _target_y;
-			
 	        if (_dist_y != 0)
 	        {
 	            y -= sign(_dist_y);
 	        }
 			  
-	        if (_cpu_behaviour == CPUBEHAVIOUR.S3 && (obj_framework.state != FWSTATE.NORMAL || cpu_target.state == PLAYERSTATE.DEATH))
+	        if (_cpu_behaviour == CPUBEHAVIOUR.S3 && (obj_game.state != GAMESTATE.NORMAL || cpu_target.state == PLAYERSTATE.DEATH))
 	        {
 	            break;
 	        }
@@ -185,7 +180,6 @@ function scr_player_cpu()
 	        if (cpu_timer_input > 0)
 	        {
 	            cpu_timer_input--;
-				
 	            if (!input_no_control)
 	            {
 	                break;
@@ -193,8 +187,8 @@ function scr_player_cpu()
 	        }
 			
 	        var _follow_data = cpu_target.ds_record_data[| _delay];
-	        var _target_input_press = struct_copy(_follow_data[0]);
-	        var _target_input_down = struct_copy(_follow_data[1]);
+	        var _target_input_press = input_copy(_follow_data[0]);
+	        var _target_input_down = input_copy(_follow_data[1]);
 	        var _target_x = _follow_data[2];
 	        var _target_y = _follow_data[3];
 	        var _target_push_flag = _follow_data[4];
@@ -215,11 +209,9 @@ function scr_player_cpu()
 	        if (set_push_anim_by == noone || _target_push_flag != noone)
 	        {   
 	            var _dist_x = _target_x - floor(x);
-				
 	            if (_dist_x != 0)
 	            {
 	                var _max_dist_x = _cpu_behaviour == CPUBEHAVIOUR.S3 ? 48 : 16;
-					
 	                if (_dist_x > 0)
 	                {
 	                    if _dist_x > _max_dist_x
@@ -239,7 +231,6 @@ function scr_player_cpu()
 	                }
 					
 	                var _dist_sign = sign(_dist_x);
-					
 	                if (spd_ground != 0 && sign(facing) == _dist_sign)
 	                {
 	                    x += _dist_sign;
@@ -252,7 +243,7 @@ function scr_player_cpu()
 
 	            if (!cpu_jump_flag)
 	            {	
-	                if (_dist_x >= 64 && obj_framework.frame_counter % (_jump_freq * 4) != 0 || _target_y - floor(y) > -32)
+	                if (_dist_x >= 64 && obj_game.frame_counter % (_jump_freq * 4) != 0 || _target_y - floor(y) > -32)
 	                {
 	                    _do_jump = false;  
 	                }
@@ -272,7 +263,7 @@ function scr_player_cpu()
 	            }
 	        }
 			
-	        if (_do_jump && animation != ANIM.DUCK && cpu_target.animation != ANIM.WAIT && obj_framework.frame_counter % _jump_freq == 0)
+	        if (_do_jump && animation != ANIM.DUCK && cpu_target.animation != ANIM.WAIT && obj_game.frame_counter % _jump_freq == 0)
 	        {
 	            _target_input_press.action_any = true;
 	            _target_input_down.action_any = true;
@@ -310,13 +301,13 @@ function scr_player_cpu()
 
 	        input_down.down = true;
 			
-			if (obj_framework.frame_counter % 128 == 0)
+			if (obj_game.frame_counter % 128 == 0)
 			{
 				input_down.down = false;
 				input_press.action_any = false;
 				cpu_state = CPUSTATE.MAIN;
 			}
-			else if (obj_framework.frame_counter % 32 == 0)
+			else if (obj_game.frame_counter % 32 == 0)
 			{
 				input_press.action_any = true;
 			}

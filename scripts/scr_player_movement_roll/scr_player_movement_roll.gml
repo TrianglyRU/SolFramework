@@ -1,5 +1,5 @@
-/// @function scr_player_movement_roll()
 /// @self obj_player
+/// @function scr_player_movement_roll()
 function scr_player_movement_roll()
 {
 	gml_pragma("forceinline");
@@ -11,7 +11,6 @@ function scr_player_movement_roll()
 	        if (spd_ground > 0)
 	        {
 	            spd_ground -= dec_roll;
-				
 	            if (spd_ground < 0)
 	            {
 	                spd_ground = -0.5;
@@ -29,7 +28,6 @@ function scr_player_movement_roll()
 	        if (spd_ground < 0)
 	        {
 	            spd_ground += dec_roll;
-				
 	            if (spd_ground >= 0)
 	            {
 	                spd_ground = 0.5;
@@ -78,6 +76,8 @@ function scr_player_movement_roll()
 	}
 	
 	set_velocity();
-	
-	vel_x = clamp(vel_x, -16, 16);
+	if (global.roll_speed_cap)
+	{
+		vel_x = clamp(vel_x, -16, 16);
+	}
 }

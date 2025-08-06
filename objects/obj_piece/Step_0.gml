@@ -4,8 +4,7 @@ if vd_wait_time > 0
     return;
 }
 
-visible = vd_do_flicker ? obj_framework.frame_counter % 2 == 0 : true;
-
+visible = vd_do_flicker ? obj_game.frame_counter % 2 == 0 : true;
 x += vd_vel_x;
 y += vd_vel_y;
 vd_vel_y += 0.21875;

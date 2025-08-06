@@ -10,38 +10,34 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		continue;
 	}
 	
+	var _shield = global.player_shields[_p];
 	if not (_player.animation == ANIM.SPIN && _player.is_grounded && abs(_smash_vel) >= 4
 	  || _player.vd_player_type == PLAYER.KNUCKLES
 	  || _player.action == ACTION.HAMMERSPIN
 	  || _player.animation == ANIM.HAMMERDASH
-	  || _player.shield == SHIELD.FIRE && _player.shield_state == SHIELDSTATE.ACTIVE
-	  || _player.super_timer > 0)
+	  || _player.super_timer > 0
+	  || _shield == SHIELD.FIRE && _player.shield_state == SHIELDSTATE.ACTIVE)
 	{
 		continue;
 	}
 	
-	var _side = floor(_player.x) < floor(x) ? SOLIDCOLLISION.LEFT : SOLIDCOLLISION.RIGHT;
-
+	var _side = _smash_vel >= 0 ? SOLIDCOLLISION.LEFT : SOLIDCOLLISION.RIGHT;
 	if (!obj_check_solid(_player, _side))
 	{
 		continue;
 	}
 	
-	with (_player)
+	if (_player.action == ACTION.GLIDE && _player.action_state == GLIDESTATE.AIR)
 	{
-		if (action == ACTION.GLIDE && action_state == GLIDESTATE.AIR)
-		{
-			release_glide(0);
-		}
-		
-		x -= 4 * sign(_smash_vel);
-		vel_x = _smash_vel;
-		spd_ground = vel_x;
-		set_push_anim_by = noone;
+		_player.release_glide(0);
 	}
+		
+	_player.x -= 4 * sign(_smash_vel);
+	_player.vel_x = _smash_vel;
+	_player.spd_ground = _player.vel_x;
+	_player.set_push_anim_by = noone;
 
 	var _smash_dir = floor(_player.x) >= floor(x) ? 1 : -1;
-
 	for (var _i = 0; _i < 2; _i ++)
 	{
 		for (var _j = 0; _j < 4; _j++)
@@ -71,6 +67,5 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	audio_play_sfx(snd_break_block);
 	instance_destroy();
-
 	break;
 }

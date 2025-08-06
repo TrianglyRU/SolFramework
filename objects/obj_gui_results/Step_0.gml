@@ -30,14 +30,13 @@ switch (state)
         }
 		
         if (state == RESULTSSTATE.WAIT_EXIT)
-        {
-			state = RESULTSSTATE.EXIT;
-			
+        {	
             if (obj_rm_stage.save_progress)
             {
                 game_save_data(global.current_save_slot);
             }
 			
+			state = RESULTSSTATE.EXIT;
             fade_perform_black(FADEROUTINE.OUT, 1);
         }
 		else
@@ -65,7 +64,7 @@ switch (state)
                 global.score_count += 100;
             }
 			
-            if (obj_framework.frame_counter % 4 == 0)
+            if (obj_game.frame_counter % 4 == 0)
             {
                 audio_play_sfx(snd_beep);
             }
@@ -73,32 +72,30 @@ switch (state)
             break;
         }
 		
-        state = RESULTSSTATE.WAIT_EXIT;
-		
         if (total_bonus >= 10000)
         {
             state_timer = 300;
             global.continue_count++;
-			
-            instance_create(0, 0, obj_gui_continue, { visible: false });    
+            instance_create(0, 0, obj_gui_continue_results, { visible: false });    
         }
         else
         {
             state_timer = 180;
         }
 		
+		state = RESULTSSTATE.WAIT_EXIT;
         audio_play_sfx(snd_tally);
 		
     break;
     
     case RESULTSSTATE.EXIT:
 	
-        if (obj_framework.fade_state != FADESTATE.PLAINCOLOUR)
+        if (obj_game.fade_state != FADESTATE.PLAINCOLOUR)
         {
             break;
         }
 		
-        game_clear_temp_data();
+        game_clear_level_data();
 		
         if (obj_rm_stage.next_stage == -1)
         {

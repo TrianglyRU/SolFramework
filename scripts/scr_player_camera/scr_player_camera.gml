@@ -1,5 +1,5 @@
-/// @function scr_player_camera()
 /// @self obj_player
+/// @function scr_player_camera()
 function scr_player_camera()
 {
 	gml_pragma("forceinline");
@@ -13,8 +13,8 @@ function scr_player_camera()
 	var _border_y = 32;
 	var _width = camera_get_width(camera_data.index);
 	var _height = camera_get_height(camera_data.index);
-	var _target_x = floor(x) - camera_data.pos_x - _width / 2;
-	var _target_y = floor(y) - camera_data.pos_y - _height / 2 + 16;
+	var _target_x = floor(x) - camera_data.pos_x - _width * 0.5;
+	var _target_y = floor(y) - camera_data.pos_y - _height * 0.5 + 16;
 	
 	if (_target_x > 0)
 	{
@@ -37,7 +37,6 @@ function scr_player_camera()
 		}
 		
 		var _limit = abs(spd_ground) < 8 ? 6 : 16;
-		
 		camera_data.vel_y = clamp(_target_y, -_limit, _limit);
 	}
 	else if (_target_y > _border_y)

@@ -7,7 +7,6 @@
 function fade_perform_flash(_routine, _step_duration, _game_control = true)
 {
 	var _speed = _step_duration > 0 ? (1 / _step_duration) : 0;
-	
 	fade_perform
 	(
 		_routine, _routine == FADEROUTINE.IN ? FADETYPE.FLASHORDER : FADETYPE.FLASHSYNC, _speed, _step_duration, _game_control

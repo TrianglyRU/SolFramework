@@ -8,4 +8,4 @@ do_update = false;
 attach_to_player = false;
 
 obj_set_priority(1);
-obj_set_culling(CULLING.PAUSEONLY);
+obj_set_culling(ACTIVEIF.ENGINE_RUNNING);

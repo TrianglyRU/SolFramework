@@ -17,27 +17,24 @@ function fade_perform(_routine, _type, _speed, _frequency = 1, _game_control = t
 		_speed *= 3;
 	}
 	
-	with (obj_framework)
+	obj_game.fade_frequency_timer = 0;
+	obj_game.fade_frequency_target = _frequency;
+	obj_game.fade_type = _type;
+	obj_game.fade_step = _speed;
+	obj_game.fade_routine = _routine;
+	obj_game.fade_game_control = _game_control;
+	
+	if (_speed = 0)
 	{
-		fade_frequency_timer = 0;
-		fade_frequency_target = _frequency;
-		fade_type = _type;
-		fade_step = _speed;
-		fade_routine = _routine;
-		fade_game_control = _game_control;
-		
-		if (_speed = 0)
+		if (_game_control)
 		{
-			if (_game_control)
-			{
-				state = _routine == FADEROUTINE.IN ? FWSTATE.NORMAL : FWSTATE.PAUSED;
-			}
+			obj_game.state = _routine == FADEROUTINE.IN ? GAMESTATE.NORMAL : GAMESTATE.PAUSED;
+		}
 			
-			fade_timer = _routine == FADEROUTINE.IN ? FADE_TIMER_MAX : 0;
-		}
-		else
-		{
-			fade_timer = _routine == FADEROUTINE.IN ? 0 : FADE_TIMER_MAX;
-		}
+		obj_game.fade_timer = _routine == FADEROUTINE.IN ? FADE_TIMER_MAX : 0;
+	}
+	else
+	{
+		obj_game.fade_timer = _routine == FADEROUTINE.IN ? 0 : FADE_TIMER_MAX;
 	}
 }

@@ -1,5 +1,5 @@
-/// @function scr_player_flight()
 /// @self obj_player()
+/// @function scr_player_flight()
 function scr_player_flight()
 {
 	gml_pragma("forceinline");
@@ -19,7 +19,6 @@ function scr_player_flight()
 	    if (vel_y >= -1)
 	    {
 	        grv = PARAM_GRV_TAILS_UP;
-			
 	        if (++ascend_timer == 31)
 	        {
 	            ascend_timer = 0;

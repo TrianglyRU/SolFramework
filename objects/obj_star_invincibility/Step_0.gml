@@ -19,7 +19,6 @@ switch (vd_star_id)
 }
 
 var _delay = 0;
-
 switch (vd_star_id)
 {
 	case 0:

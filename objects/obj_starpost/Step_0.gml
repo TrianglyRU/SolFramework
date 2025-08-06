@@ -4,17 +4,14 @@ if (state != STARPOSTSTATE.IDLE)
 }
 
 var _checkpoint_data = global.checkpoint_data;
-
 if (is_not_null_array(_checkpoint_data) && _checkpoint_data[7] >= vd_id)
 {
 	state = STARPOSTSTATE.ACTIVE;
-	lamp_obj.activate();
-	
+	lamp_obj.activate();	
 	return;
 }
 
 var _player = player_get(0);
-
 if (_player.state >= PLAYERSTATE.LOCKED)
 {
 	return;
@@ -32,18 +29,16 @@ global.checkpoint_data =
 [
 	x,
 	y,
-	obj_framework.frame_counter, 
-	obj_rm_stage.bound_upper[0], 
-	obj_rm_stage.bound_lower[0], 
-	obj_rm_stage.bound_left[0], 
-	obj_rm_stage.bound_right[0],
+	obj_game.frame_counter, 
+	obj_rm_stage.top_bound[0], 
+	obj_rm_stage.bottom_bound[0], 
+	obj_rm_stage.left_bound[0], 
+	obj_rm_stage.right_bound[0],
 	vd_id
 ];
 
 state = STARPOSTSTATE.ACTIVE;
 lamp_obj.state = LAMPSTATE.ROTATE;
-
-audio_play_sfx(snd_starpost);
 
 if (global.player_rings >= 20)
 {
@@ -52,3 +47,5 @@ if (global.player_rings >= 20)
 		instance_create(x, y - 50, obj_starpost_star, { vd_star_id: _i }, id);
 	}
 }
+
+audio_play_sfx(snd_starpost);

@@ -1,5 +1,5 @@
-/// @function scr_player_death()
 /// @self obj_player
+/// @function scr_player_death()
 function scr_player_death()
 {
 	gml_pragma("forceinline");
@@ -9,11 +9,9 @@ function scr_player_death()
 	    case DEATHSTATE.WAIT:
 			
 			var _pos_y = floor(y);
-			
 	        if (air_timer == 0)
 	        {
 	            var _index = camera_data.index;
-				
 	            if (_pos_y <= camera_get_y(_index) + camera_get_height(_index) + 276)
 	            {
 	                break;
@@ -21,7 +19,7 @@ function scr_player_death()
 				
 	            if (player_index == 0)
 	            {
-	                obj_framework.state = FWSTATE.STOP_OBJECTS;
+	                obj_game.state = GAMESTATE.STOP_OBJECTS;
 	            }
 	        }
         
@@ -30,7 +28,7 @@ function scr_player_death()
 			
 	        if (global.player_physics < PHYSICS.S3)
 	        {
-	            _bound += camera_data.bound_lower;
+	            _bound += camera_data.bottom_bound;
 	        }
 	        else
 	        {
@@ -46,7 +44,7 @@ function scr_player_death()
 	        {
 	            obj_gui_hud.update_timer = false;
 				
-	            if (--global.life_count > 0 && obj_framework.frame_counter < 36000)
+	            if (--global.life_count > 0 && obj_game.frame_counter < 36000)
 	            {
 	                death_state = DEATHSTATE.RESTART;
 	                restart_timer = 60;
@@ -73,17 +71,17 @@ function scr_player_death()
 	                break;
 	            }
 				
-	            obj_set_culling(CULLING.NONE);
+	            obj_set_culling(ACTIVEIF.ALWAYS);
 	            audio_stop_bgm(0.5);
 	            fade_perform_black(FADEROUTINE.OUT, 1);    
 	        }
 			
-	        if (obj_framework.fade_state != FADESTATE.PLAINCOLOUR)
+	        if (obj_game.fade_state != FADESTATE.PLAINCOLOUR)
 	        {
 	            break;
 	        }
 			
-	        game_clear_temp_data(false);
+	        game_clear_level_data(false);
 	        room_restart();
 			
 	    break;

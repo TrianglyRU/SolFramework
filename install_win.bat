@@ -5,7 +5,7 @@ REM Script directory
 set "SCRIPT_DIR=%~dp0"
 
 REM Source directory
-set "SOURCE_DIR=%SCRIPT_DIR%_filter_sol_distortion"
+set "SOURCE_DIR=%SCRIPT_DIR%_filter_layer_distortion"
 
 REM Check if source directory exists
 if not exist "%SOURCE_DIR%" (
@@ -35,13 +35,13 @@ REM FiltersAndEffects path
 set "DEST_DIR=%DEST_DIR_BASE%\%LATEST_DIR%\bin\FiltersAndEffects"
 
 REM Copy folder
-xcopy /e /i /y "%SOURCE_DIR%" "%DEST_DIR%\_filter_sol_distortion"
+xcopy /e /i /y "%SOURCE_DIR%" "%DEST_DIR%\_filter_layer_distortion"
 
 REM Check if copying was successful
 if %errorlevel% equ 0 (
-    echo "Effect has been successfully installed for runtime %LATEST_DIR%"
+    echo "Effect has been successfully installed for runtime %LATEST_DIR%!"
 ) else (
-    echo "An error has occurred while installing the effect..."
+    echo "An error has occurred while installing the effect."
 )
 
 pause

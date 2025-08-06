@@ -5,7 +5,6 @@ switch (state)
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
         {
             var _player = player_get(_p);
-
             obj_act_solid(_player, SOLIDOBJECT.TOP);
             
             if (!fall_flag)
@@ -51,22 +50,20 @@ switch (state)
             
             // Move to the next piece
             _i = _is_flipped ? _i - 16 : _i + 16;
-			
 			_column++;
 			_row = 0;
             
-            // Exit if out of bounds
-            if (_i < 0 || _i > width)
+            // Exit if it's out of bounds
+            if (_i < 0 || _i >= width)
             {
                 break;
             }
         }
         
         visible = false;
-        audio_play_sfx(snd_break_ledge);
-        
         state = FALLINGFLOORSTATE.FALL;
         wait_timer = _wait_timer;
+        audio_play_sfx(snd_break_ledge);
 
     break;
     

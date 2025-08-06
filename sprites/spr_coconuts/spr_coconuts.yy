@@ -21,8 +21,8 @@
   "width": 26,
   "height": 45,
   "textureGroupId": {
-    "name": "texgroup_ehz",
-    "path": "texturegroups/texgroup_ehz",
+    "name": "texgroup_ehz_objects",
+    "path": "texturegroups/texgroup_ehz_objects",
   },
   "swatchColours": null,
   "gridX": 0,

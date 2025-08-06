@@ -17,4 +17,4 @@ height = sprite_get_height(sprite_index);
 
 obj_set_priority(5);
 obj_set_solid(32, 8);
-obj_set_culling(CULLING.RESPAWN);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

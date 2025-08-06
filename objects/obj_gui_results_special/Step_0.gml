@@ -46,7 +46,7 @@ switch (state)
             total_score += 100;
             global.score_count += 100;
 			
-            if (obj_framework.frame_counter % 4 == 0)
+            if (obj_game.frame_counter % 4 == 0)
             {
                 audio_play_sfx(snd_beep);
             }
@@ -84,7 +84,7 @@ switch (state)
 
     case SPECIALRESULTSSTATE.EXIT:
 	
-        if (obj_framework.fade_state != FADESTATE.PLAINCOLOUR)
+        if (obj_game.fade_state != FADESTATE.PLAINCOLOUR)
         {
             break;
         }

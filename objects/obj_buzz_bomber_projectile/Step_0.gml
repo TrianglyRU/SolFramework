@@ -15,7 +15,7 @@ switch (sprite_index)
 	
 		if (obj_is_anim_ended())
 		{
-			obj_set_anim(spr_buzz_bomber_projectile_ball, 2);
+			obj_set_anim(spr_buzz_bomber_projectile_ball, 2, 0, 0);
 		}
 	
 	break;

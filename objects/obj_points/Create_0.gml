@@ -4,4 +4,4 @@ event_inherited();
 wait_timer = 119;
 depth = RENDERER_DEPTH_HIGHEST;
 
-obj_set_culling(CULLING.SUSPEND);
+obj_set_culling(ACTIVEIF.INBOUNDS);

@@ -1,4 +1,9 @@
 // Override draw
+if (sprite_index < 0 || obj_game.frame_counter % 2 != 0)
+{
+	return;
+}
+
 var _water_level = obj_rm_stage.water_level;
 var _ss_position = _water_level - camera_get_y(view_current);
 
@@ -12,8 +17,8 @@ var _raw_x = floor(camera_get_x(view_current) / sprite_width);
 
 for (var _i = 0; _i <= _draw_count; _i++)
 {
-	var _x = (_raw_x + _i) * sprite_width + sprite_width / 2;
+	var _x = (_raw_x + _i) * sprite_width + sprite_width * 0.5;
 	var _y = _water_level;
 	
-	draw_sprite_ext(sprite_index, image_index, _x, _y, 1, 1, 0, c_white, 0.5);
+	draw_sprite(sprite_index, image_index, _x, _y);
 }

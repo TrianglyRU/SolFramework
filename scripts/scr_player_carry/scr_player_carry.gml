@@ -1,5 +1,5 @@
-/// @function scr_player_carry()
 /// @self obj_player
+/// @function scr_player_carry()
 function scr_player_carry()
 {
 	gml_pragma("forceinline");
@@ -45,8 +45,7 @@ function scr_player_carry()
 				continue;
 			}
 		
-			var _player = player_get(_p);
-		
+			var _player = player_get(_p);	
 			if (_player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state != PLAYERSTATE.DEFAULT)
 			{
 				continue;
@@ -64,7 +63,6 @@ function scr_player_carry()
 				
 				audio_play_sfx(snd_grab);
 				_attach_to_tails(_player, id);
-				
 				break;
 			}	
 		}
@@ -75,27 +73,24 @@ function scr_player_carry()
 	}
 	else if (carry_target.input_press.action_any)
 	{
+		carry_target.is_jumping = true;
+		carry_target.action = ACTION.NONE;
+		carry_target.animation = ANIM.SPIN;
+		carry_target.radius_x = carry_target.radius_x_spin;
+		carry_target.radius_y = carry_target.radius_y_spin;
+		carry_target.vel_y = carry_target.jump_min_vel;
+		
+		if (carry_target.input_down.left)
+		{
+			carry_target.vel_x = -2;
+		}
+		else if (carry_target.input_down.right)
+		{
+			carry_target.vel_x = 2;
+		}
+		
 		carry_target = noone;
 		carry_cooldown = 18;
-		
-		with (carry_target)
-		{
-			is_jumping = true;
-			action = ACTION.NONE;
-			animation = ANIM.SPIN;
-			radius_x = radius_x_spin;
-			radius_y = radius_y_spin;
-			vel_y = jump_min_vel;
-			
-			if (input_down.left)
-			{
-				vel_x = -2;
-			}
-			else if (input_down.right)
-			{
-				vel_x = 2;
-			}
-		}
 		
 		audio_play_sfx(snd_jump);
 	}
@@ -106,7 +101,6 @@ function scr_player_carry()
 	else
 	{
 		_attach_to_tails(carry_target, id);
-		
 		with (carry_target)
 		{
 			scr_player_collision_air();

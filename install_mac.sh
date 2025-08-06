@@ -4,7 +4,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Source directory
-SOURCE_DIR="${SCRIPT_DIR}/_filter_sol_distortion"
+SOURCE_DIR="${SCRIPT_DIR}/_filter_layer_distortion"
 
 # Check if source directory exists
 if [ ! -d "$SOURCE_DIR" ]; then
@@ -32,8 +32,8 @@ cp -r "$SOURCE_DIR" "$DEST_DIR"
 
 # Check if copying was successful
 if [ $? -eq 0 ]; then
-  echo "Effect has been succesfully installed for runtime ${LATEST_DIR}"
+  echo "Effect has been succesfully installed for runtime ${LATEST_DIR}!"
 else
-  echo "An error has occured while installing the effect..."
+  echo "An error has occured while installing the effect."
   exit 1
 fi

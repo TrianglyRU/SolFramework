@@ -21,7 +21,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	_player.vel_y = -3;
 	_player.add_score(++_player.score_combo);
-	
 	instance_create(x, y, obj_score, { vd_score_combo: _player.score_combo });
 	
 	for (var _i = 0; _i < 2; _i++)
@@ -38,8 +37,8 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 
 			if (_j > 0)
 			{
-				_vel_y = _vel_y / 2;
-				_vel_x = _vel_x / 2;
+				_vel_y = _vel_y * 0.5;
+				_vel_x = _vel_x * 0.5;
 			}
 
 			instance_create(x - 8 + _i * 16, y - 8 + _j * 16, obj_piece,

@@ -13,22 +13,22 @@
   "bbox_left": 0,
   "bbox_right": 383,
   "bbox_top": 0,
-  "bbox_bottom": 89,
+  "bbox_bottom": 69,
   "HTile": false,
   "VTile": false,
   "For3D": false,
   "DynamicTexturePage": false,
   "width": 384,
-  "height": 90,
+  "height": 71,
   "textureGroupId": {
-    "name": "texgroup_ehz",
-    "path": "texturegroups/texgroup_ehz",
+    "name": "texgroup_ehz_objects",
+    "path": "texturegroups/texgroup_ehz_objects",
   },
   "swatchColours": null,
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b74d42cb-a51a-4d65-a6de-ebfadbac15d9",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"6b5ee8cb-44f9-42e2-8933-e94c81903041",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -45,7 +45,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"1f953cb8-440f-449c-973b-22ab4c6fc848","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b74d42cb-a51a-4d65-a6de-ebfadbac15d9","path":"sprites/spr_spiral_path/spr_spiral_path.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"d8e88f79-ca72-41b8-89e5-08f870ad2741","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6b5ee8cb-44f9-42e2-8933-e94c81903041","path":"sprites/spr_spiral_path/spr_spiral_path.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,

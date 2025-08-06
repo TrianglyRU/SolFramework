@@ -1,10 +1,10 @@
+/// @self obj_player
 /// @function scr_player_input()
 function scr_player_input()
 {
 	gml_pragma("forceinline");
 	
 	var _replay_data_buttons = array_length(replay_data);
-	
 	if (_replay_data_buttons > 0)
 	{
 		var _inputs = array_create(_replay_data_buttons, false);	
@@ -49,8 +49,8 @@ function scr_player_input()
 	
 	if (player_index < INPUT_SLOT_COUNT)
 	{
-		input_press = struct_copy(input_get_pressed(player_index));
-		input_down = struct_copy(input_get(player_index));
+		input_press = input_copy(input_get_pressed(player_index));
+		input_down = input_copy(input_get(player_index));
 	}
 	else
 	{

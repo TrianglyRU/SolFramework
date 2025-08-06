@@ -1,5 +1,5 @@
-/// @function scr_player_debug_mode_enter()
 /// @self obj_player
+/// @function scr_player_debug_mode_enter()
 function scr_player_debug_mode_enter()
 {
 	if (player_index > 0 || !global.dev_mode && !global.enable_debug_mode)
@@ -25,9 +25,9 @@ function scr_player_debug_mode_enter()
 			camera_data.allow_movement = true;
 		}
 		
-		if (obj_framework.state == FWSTATE.STOP_OBJECTS)
+		if (obj_game.state == GAMESTATE.STOP_OBJECTS)
 	    {
-	        obj_framework.state = FWSTATE.NORMAL;
+	        obj_game.state = GAMESTATE.NORMAL;
 	    }
 		
 		if (instance_exists(obj_rm_stage) && (audio_is_playing(snd_bgm_drowning) || !audio_is_bgm_playing()))

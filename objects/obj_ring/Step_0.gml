@@ -8,7 +8,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	var _player = player_get(_p);
-	
 	var _use_target_ext = vd_state == RINGSTATE.DROP && (_player.shield_state == SHIELDSTATE.DOUBLESPIN || _player.action == ACTION.HAMMERSPIN);
 	
 	if (!obj_check_hitbox(_player, _use_target_ext))
@@ -32,7 +31,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	instance_create(x, y, obj_sparkle);
 	instance_destroy();
-	
 	return;
 }
 
@@ -42,20 +40,20 @@ switch (vd_state)
 	case RINGSTATE.ATTRACT:
 	
 		var _player = player_get(0);
+		var _shield = global.player_shields[0];
 		
 		if (vd_state == RINGSTATE.STATIC)
 		{
-			if (_player.shield != SHIELD.LIGHTNING || distance_to_object(_player) > 64)
+			if (_shield != SHIELD.LIGHTNING || distance_to_object(_player) > 64)
 			{
 				break;
 			}
 			
 			vd_state = RINGSTATE.ATTRACT;
-			
-			obj_set_culling(CULLING.REMOVE);
+			obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
 		}
 		
-		if (_player.shield == SHIELD.LIGHTNING)
+		if (_shield == SHIELD.LIGHTNING)
 		{
 			var _acc_fast = 0.75;
 			var _acc_slow = 0.1875;
@@ -87,14 +85,13 @@ switch (vd_state)
 	case RINGSTATE.DROP:
 		
 		var _spill_timer = global.ring_spill_counter;
-		
 		if (_spill_timer == 0)
 		{
 			instance_destroy();
 			break;
 		}
 		
-		obj_set_anim(sprite_index, floor(512 / (_spill_timer)), 0, 0, true);
+		obj_set_anim(sprite_index, floor(512 / (_spill_timer)), 0, 0);
 		
 		x += vd_vel_x;
 		y += vd_vel_y;
@@ -105,8 +102,7 @@ switch (vd_state)
 			break;
 		}
 		
-		var _floor_dist = tile_find_v(x, y + 8, DIRECTION.POSITIVE, TILELAYER.MAIN)[0];
-		
+		var _floor_dist = tile_find_v(x, y + 8, DIRECTION.POSITIVE)[0];
 		if (_floor_dist < 0)
 		{
 			vd_vel_y *= -0.75;

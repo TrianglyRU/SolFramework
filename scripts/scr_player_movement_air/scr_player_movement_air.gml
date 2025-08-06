@@ -1,24 +1,20 @@
-/// @function scr_player_movement_air()
 /// @self obj_player
+/// @function scr_player_movement_air()
 function scr_player_movement_air()
 {
-	if (action == ACTION.CARRIED || action == ACTION.CLIMB || action == ACTION.SPINDASH 
-	|| action == ACTION.DASH || action == ACTION.GLIDE && action_state != GLIDESTATE.FALL)
+	if (action == ACTION.CARRIED || action == ACTION.CLIMB || action == ACTION.SPINDASH)
+	{
+		return;
+	}
+	
+	if (action == ACTION.GLIDE && action_state != GLIDESTATE.FALL)
 	{
 		return;
 	}
 	
 	if (angle != 0)
 	{
-		if (angle >= 180)
-		{
-			angle += 2.8125;
-		}
-		else
-		{
-			angle -= 2.8125;
-		}
-		
+		angle += angle >= 180 ? 2.8125 : -2.8125;
 		if (angle < 0 || angle >= 360)
 		{
 			angle = 0;

@@ -14,8 +14,8 @@
   "tilevsep": 2,
   "spriteNoExport": false,
   "textureGroupId": {
-    "name": "texgroup_collision_common",
-    "path": "texturegroups/texgroup_collision_common",
+    "name": "texgroup_collision",
+    "path": "texturegroups/texgroup_collision",
   },
   "out_tilehborder": 2,
   "out_tilevborder": 2,

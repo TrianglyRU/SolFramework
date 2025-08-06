@@ -1,8 +1,13 @@
-// Override draw	
+// Override draw
+if (vd_sprite < 0)
+{
+	return;
+}
+
 var _scale_x = vd_flip_x ? -1 : 1;
 var _scale_y = vd_flip_y ? -1 : 1;
-var _x = x - floor(vd_width / 2) * _scale_x;
-var _y = y - floor(vd_height / 2) * _scale_y;
+var _x = x - floor(vd_width * 0.5) * _scale_x;
+var _y = y - floor(vd_height * 0.5) * _scale_y;
 	
 draw_sprite_part_ext
 (

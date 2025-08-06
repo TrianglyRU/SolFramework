@@ -5,7 +5,7 @@ switch (state)
 		var _player = player_get(0);
 		var _dist = floor(_player.x) - x;
 		
-		if (_dist < 0 || _dist >= 32 || _player.state > PLAYERSTATE.DEBUG_MODE)
+		if (_dist < 0 || _dist >= 32)
 		{
 			break;
 		}
@@ -20,11 +20,9 @@ switch (state)
 			super_timer = -1;
 		}
 		
+		obj_gui_hud.update_timer = false;
 		state = SIGNPOSTSTATE.ROTATE;
 		player_object = _player;
-		
-		obj_gui_hud.update_timer = false;
-		
 		audio_play_sfx(snd_signpost);
 		
 	break;
@@ -46,8 +44,7 @@ switch (state)
 						break;
 					}
 					
-					var _sign_sprite = spr_signpost_sonic;
-					
+					var _sign_sprite;
 					switch (player_object.vd_player_type)
 					{
 						case PLAYER.TAILS:
@@ -61,6 +58,10 @@ switch (state)
 						case PLAYER.AMY:
 							_sign_sprite = spr_signpost_amy;
 						break;
+						
+						default:
+							_sign_sprite = spr_signpost_sonic;
+						break;
 					}
 					
 					obj_set_anim(_sign_sprite, 2, 0, 0);
@@ -68,7 +69,7 @@ switch (state)
 				break;
 				
 				case 3:
-				
+					
 					state = SIGNPOSTSTATE.MOVE_PLAYER;
 					obj_stop_anim(0);
 					
@@ -85,7 +86,6 @@ switch (state)
 		
 		var _off_x = ring_sparkle_pos[ring_sparkle_id];
 		var _off_y = ring_sparkle_pos[ring_sparkle_id + 8];
-		
 		instance_create(x + _off_x, y + _off_y, obj_sparkle);
 		
 		if (++ring_sparkle_id > 7)
@@ -99,42 +99,39 @@ switch (state)
 	
 	case SIGNPOSTSTATE.MOVE_PLAYER:
 		
-		if (player_object.state == PLAYERSTATE.LOCKED)
+		if (player_object.state >= PLAYERSTATE.LOCKED)
 		{
-			// Fallthrough to obj_gui_results
+			break;
 		}
-		else
+		
+		with (obj_player)
 		{
-			if (player_object.state >= PLAYERSTATE.DEBUG_MODE || !player_object.is_grounded)
+			// This is what causes a player to keep their control during the act results screen
+			/*if (!is_grounded)
 			{
 				break;
-			}
+			}*/
 			
-			with (obj_player)
+			if (!input_no_control)
 			{
-				if (!input_no_control)
-				{
-					input_no_control = true;
-					input_down = input_create();
-					input_press = input_create();
-				}
+				input_no_control = true;
+				input_down = input_create();
+				input_press = input_create();
 				
 				if (player_index == camera_data.index)
 				{
 					input_down.right = true;
 				}
-				
-				cpu_timer_input = 0;
 			}
 				
-			if (floor(player_object.x) < obj_rm_stage.bound_end - 24)
-			{
-				break;
-			}
+			cpu_timer_input = 0;
 		}
 		
-		instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);		
-		state++;
+		if (floor(player_object.x) >= obj_rm_stage.end_bound - 24)
+		{
+			instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);		
+			state++;
+		}
 		
 	break;
 }
