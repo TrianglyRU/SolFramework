@@ -12,56 +12,66 @@ var _game_state = state;
 var _act_1a = ord("A"), _act_1b = ord("Z");
 var _act_2a = ord("S"), _act_2b = ord("X");
 var _act_3a = ord("D"), _act_3b = ord("C");
-
-ds_list_clear(input_list_gamepads);
-
-var _max_gamepad_slots = gamepad_get_device_count();
-for (var _pad_id = 0; _pad_id < _max_gamepad_slots; _pad_id++)
-{
-	if (gamepad_is_connected(_pad_id))
-	{
-		ds_list_add(input_list_gamepads, _pad_id);
-	}
-}
+var _face1, _face2, _face4;
+var _pads = global.gamepad_list;
 
 for (var _i = 0; _i < INPUT_SLOT_COUNT; _i++)
 {
 	var _down = input_list_down[| _i];
 	var _press = input_list_press[| _i];
-	var _pad_id = input_list_gamepads[| _i];
+	var _pad_index = _pads[| _i];
 	
-	if (input_vibrations[_i] >= 0)
+	// >= 0 to reset rumble if the current room has changed
+	if (input_rumble_time_left[_i] >= 0)
 	{
-		if (input_vibrations[_i] == 0 && _pad_id != undefined)
+		if (--input_rumble_time_left[_i] <= 0 && _pad_index != undefined)
 		{
-			gamepad_set_vibration(_pad_id, 0, 0);
+			gamepad_set_vibration(_pad_index, 0, 0);
+		}
+	}
+	
+	if (_pad_index != undefined)
+	{
+	    var _lv_value = gamepad_axis_value(_pad_index, gp_axislv);
+	    var _lh_value = gamepad_axis_value(_pad_index, gp_axislh);
+		
+		// TODO: This is fixed in the latest GameMaker releases
+		var _hat_value = gamepad_hat_value(_pad_index, 0);
+		if (_pad_index < 4)
+		{
+			_face1 = gp_face1;
+			_face2 = gp_face2;
+			_face4 = gp_face4;
+		}
+		else
+		{
+			_face1 = gp_face2;
+			_face2 = gp_face3;
+			_face4 = gp_face4;
 		}
 		
-		input_vibrations[_i]--; 
-	}
+		var _analog_up = _hat_value == 1 || _lv_value < 0;
+		var _analog_down = _hat_value == 4 || _lv_value > 0;
+		var _analog_left = _hat_value == 8 || _lh_value < 0;
+		var _analog_right = _hat_value == 2 || _lh_value > 0;
 		
-	if (_pad_id != undefined)
-	{
-	    var _lv_value = gamepad_axis_value(_pad_id, gp_axislv);
-	    var _lh_value = gamepad_axis_value(_pad_id, gp_axislh);
-
-	    _press.up = gamepad_button_check_pressed(_pad_id, gp_padu) || _lv_value < 0 && !_down.up;
-	    _press.down = gamepad_button_check_pressed(_pad_id, gp_padd) || _lv_value > 0 && !_down.down;
-	    _press.left = gamepad_button_check_pressed(_pad_id, gp_padl) || _lh_value < 0 && !_down.left;
-	    _press.right = gamepad_button_check_pressed(_pad_id, gp_padr) || _lh_value > 0 && !_down.right;
-	    _press.start = gamepad_button_check_pressed(_pad_id, gp_start);
-	    _press.action1 = gamepad_button_check_pressed(_pad_id, gp_face1);
-	    _press.action2 = gamepad_button_check_pressed(_pad_id, gp_face2);
-	    _press.action3 = gamepad_button_check_pressed(_pad_id, gp_face4);
-
-	    _down.up = gamepad_button_check(_pad_id, gp_padu) || _lv_value < 0;
-	    _down.down = gamepad_button_check(_pad_id, gp_padd) || _lv_value > 0;
-	    _down.left = gamepad_button_check(_pad_id, gp_padl) || _lh_value < 0;
-	    _down.right = gamepad_button_check(_pad_id, gp_padr) || _lh_value > 0;
-	    _down.start = gamepad_button_check(_pad_id, gp_start);
-	    _down.action1 = gamepad_button_check(_pad_id, gp_face1);
-	    _down.action2 = gamepad_button_check(_pad_id, gp_face2);
-	    _down.action3 = gamepad_button_check(_pad_id, gp_face4);
+	    _press.up = gamepad_button_check_pressed(_pad_index, gp_padu) || _analog_up && !_down.up;
+	    _press.down = gamepad_button_check_pressed(_pad_index, gp_padd) || _analog_down && !_down.down;
+	    _press.left = gamepad_button_check_pressed(_pad_index, gp_padl) || _analog_left && !_down.left;
+	    _press.right = gamepad_button_check_pressed(_pad_index, gp_padr) || _analog_right && !_down.right;
+	    _press.start = gamepad_button_check_pressed(_pad_index, gp_start);
+	    _press.action1 = gamepad_button_check_pressed(_pad_index, _face1);
+	    _press.action2 = gamepad_button_check_pressed(_pad_index, _face2);
+	    _press.action3 = gamepad_button_check_pressed(_pad_index, _face4);
+		
+	    _down.up = gamepad_button_check(_pad_index, gp_padu) || _analog_up;
+	    _down.down = gamepad_button_check(_pad_index, gp_padd) || _analog_down;
+	    _down.left = gamepad_button_check(_pad_index, gp_padl) || _analog_left;
+	    _down.right = gamepad_button_check(_pad_index, gp_padr) || _analog_right;
+	    _down.start = gamepad_button_check(_pad_index, gp_start);
+	    _down.action1 = gamepad_button_check(_pad_index, _face1);
+	    _down.action2 = gamepad_button_check(_pad_index, _face2);
+	    _down.action3 = gamepad_button_check(_pad_index, _face4);
 	}
 	else
 	{
@@ -179,7 +189,7 @@ else with (obj_gui_pause)
 
 if (state != GAMESTATE.NORMAL)
 {
-	var _banned_behaviour = state == GAMESTATE.STOP_OBJECTS ? ACTIVEIF.OBJECTS_ACTIVE : ACTIVEIF.ENGINE_RUNNING;
+	var _banned_behaviour = state == GAMESTATE.STOP_OBJECTS ? ACTIVEIF.OBJECTS_RUNNING : ACTIVEIF.ENGINE_RUNNING;
 	var _list = cull_game_paused_list;
 	var _is_empty_list = ds_list_size(_list) == 0;
 	
@@ -221,11 +231,12 @@ if (state != GAMESTATE.PAUSED)
 		
 	    if (--palette_timers[_col_ind] <= 0)
 	    {
-			palette_timers[_col_ind] = _duration;
 	        if (++palette_indices[_col_ind] > palette_end_indices[_col_ind])
 	        {
 	            palette_indices[_col_ind] = palette_loop_indices[_col_ind];
 	        }
+			
+			palette_timers[_col_ind] = _duration;
 	    }
 	}
 	
@@ -246,7 +257,7 @@ if (state != GAMESTATE.PAUSED)
 
 #endregion
 
-// Run post-framework Begin Step for objects
+// Run post-framework Begin Step for game objects
 with (obj_game_object)
 {
 	event_user(10);

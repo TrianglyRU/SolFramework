@@ -1,18 +1,20 @@
-/// @self
-/// @description Defines the behaviour and logic for an enemy object. Returns true if the enemy was not destroyed, false otherwise.
-/// @param {Enum.ENEMYTYPE} [_type] The type of enemy (default is ENEMYTYPE.BADNIK)
-/// @returns {Bool} 
 enum ENEMYTYPE
 {
 	BADNIK, BOSS
 }
-
+	
+/// @self
+/// @description Defines the behaviour and logic for an enemy object. Returns true if the enemy was not destroyed, false otherwise.
+/// @param {Enum.ENEMYTYPE} [_type] The type of enemy (default is ENEMYTYPE.BADNIK)
+/// @returns {Bool} 
 function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 {
 	/// @method _destroy_badnik()
 	var _destroy_badnik = function(_player)
 	{
-		_player.add_score(++_player.score_combo);
+		_player.score_combo++;
+		_player.add_score(_player.score_combo);
+	
 		instance_create(x, y, obj_score, { vd_score_combo: _player.score_combo });
 		instance_create(x, y, obj_animal);
 		instance_create(x, y, obj_explosion_dust);

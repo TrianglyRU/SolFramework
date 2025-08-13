@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_newtron_projectile",
   "spriteId": {
-    "name": "spr_buzz_bomber_projectile_ball",
-    "path": "sprites/spr_buzz_bomber_projectile_ball/spr_buzz_bomber_projectile_ball.yy",
+    "name": "spr_badnik_projectile",
+    "path": "sprites/spr_badnik_projectile/spr_badnik_projectile.yy",
   },
   "solid": false,
   "visible": true,
@@ -34,7 +34,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Green Hill",
-    "path": "folders/Objects/Green Hill.yy",
+    "name": "Badniks",
+    "path": "folders/Objects/Badniks.yy",
   },
 }

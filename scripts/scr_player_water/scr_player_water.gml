@@ -36,7 +36,10 @@ function scr_player_water()
 		return;
 	}
 	
+	var _shield = global.player_shields[player_index];
 	var _water_run_level = obj_rm_stage.water_level - radius_y - 1;
+	
+	// This code is run by the water trail object itself in S3K
 	if (!is_water_running)
 	{
 		if (vel_y == 0 && abs(vel_x) >= 7 && floor(y) == _water_run_level)
@@ -48,19 +51,16 @@ function scr_player_water()
 	}	
 	else if (input_press.action_any)
 	{
-		// S3K introduces a chopped-off version of the jump routine to make a player jump if they weren't grounded
+		// S3K's chopped-off version of the jump routine to make a player jump if they weren't grounded
 		is_water_running = false;
 		radius_x = radius_x_spin;
 		radius_y = radius_y_spin;
 		is_jumping = true;
 		is_grounded = false;
 		animation = ANIM.SPIN;
+		vel_y = jump_vel;			// S3K does not check if the player is Knuckles and overrides vel_y with -6.5
 		
-		// S3K does not check if the player is Knuckles and overrides vel_y with -6.5
-		vel_y = jump_vel;
-		
-		// S3K does not play the sound, so if the game hasn't processed a jump via its default routine yet... yikes!
-		audio_play_sfx(snd_jump);
+		audio_play_sfx(snd_jump);	// S3K does not play the sound, so if the game hasn't processed a jump via its default routine yet... yikes!
 	}
 	else if (floor(y) >= _water_run_level && abs(vel_x) >= 7)
 	{
@@ -77,7 +77,6 @@ function scr_player_water()
 		is_water_running = false;
 	}
 	
-	var _shield = global.player_shields[player_index];
 	if (!is_underwater)
 	{
 		if (floor(y) < obj_rm_stage.water_level)

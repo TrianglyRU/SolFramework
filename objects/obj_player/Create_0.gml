@@ -1,4 +1,5 @@
 /// @feather ignore GM1041
+obj_game.player_count++;
 
 #region METHODS
 
@@ -135,7 +136,6 @@ land = function()
 		spd_ground = 0;
 	}
 	
-	animation = ANIM.MOVE;
 	state = PLAYERSTATE.DEFAULT;
 	cpu_state = CPUSTATE.MAIN;
 	shield_state = SHIELDSTATE.NONE;
@@ -145,8 +145,12 @@ land = function()
 	score_combo = 0;
 	visual_angle = angle > 22.5 && angle < 337.5 ? angle : 0;
 	
-	clear_carry();
+	if (!is_water_running)
+	{
+		animation = ANIM.MOVE;
+	}
 	
+	clear_carry();
 	scr_player_dropdash();
 	scr_player_hammerspin();
 	
@@ -157,12 +161,9 @@ land = function()
 	
 	if (animation != ANIM.SPIN)
 	{
-		var _diff = radius_y_normal - radius_y;
+		y += (radius_y_normal - radius_y) * (angle > 90 && angle <= 270 ? 1 : -1);
 		radius_x = radius_x_normal;
 		radius_y = radius_y_normal;
-		
-		// This is not in the original engine
-		y = angle > 90 && angle <= 270 ? y + _diff : y - _diff;
 	}
 }
 
@@ -494,7 +495,7 @@ enum RANGE
 	DEFAULT, SHALLOW
 }
 
-#macro PLAYER_COUNT instance_number(obj_player)
+#macro PLAYER_COUNT obj_game.player_count
 #macro PLAYER_MAX_COUNT 8
 #macro AIR_TIMER_DEFAULT 1800
 #macro PARAM_GRV_DEFAULT 0.21875

@@ -5,6 +5,7 @@ enum GAMEOVERSTATE
 }
 
 obj_game.allow_pause = false;
+
 state = GAMEOVERSTATE.SLIDE_IN;
 wait_timer = 720;
 offset_x = 208;

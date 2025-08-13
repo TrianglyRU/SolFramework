@@ -8,6 +8,9 @@ enum ANIMALSTATE
 // Inherit the parent event
 event_inherited();
 
+obj_set_priority(7);
+obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
+
 state = vd_release_timer == 0 ? ANIMALSTATE.APPEAR : ANIMALSTATE.CAPSULE;
 grv = 0.21875;
 vel_x = 0;
@@ -73,6 +76,3 @@ switch (sprite_index)
 		
 	break;
 }
-
-obj_set_priority(7);
-obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);

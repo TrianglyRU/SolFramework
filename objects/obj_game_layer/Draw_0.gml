@@ -6,9 +6,12 @@ var _camera_h = camera_get_height(view_current);
 var _height = sprite_get_height(sprite_index);
 var _texture = sprite_get_texture(sprite_index, image_index);
 
-var _x = floor((_camera_x - obj_game.bg_distance_x) * (1 - factor_x) + obj_game.bg_scroll_x * scroll_mult_x) + offset_x;
-var _y = floor((_camera_y - obj_game.bg_distance_y) * (1 - factor_y) + obj_game.bg_scroll_y * scroll_mult_y) + offset_y;
+var _scroll_x = obj_game.bg_scroll_x * scroll_mult_x;
+var _scroll_y = obj_game.bg_scroll_y * scroll_mult_y
 var _scale = 1.0;
+
+var _x = (_camera_x - obj_game.bg_distance_x) * (1 - factor_x) + offset_x;
+var _y = (_camera_y - obj_game.bg_distance_y) * (1 - factor_y) + offset_y + _scroll_y;
 
 if (anim_duration > 0)
 {
@@ -29,7 +32,11 @@ if (scale_target_y != -1)
 var _do_line_scroll = line_height >= 0;
 if (_do_line_scroll)
 {
-	shader_line_scroll(_camera_x, _x, _y, _height, _scale, _texture, line_factor_x - factor_x, line_height);
+	shader_line_scroll(_camera_x, _scroll_x, _x, _y, _height, _scale, _texture, line_factor_x - factor_x, line_height);
+}
+else
+{
+	_x += _scroll_x;
 }
 
 if (vtiled)

@@ -87,8 +87,8 @@ switch (state)
 			{
 				if (on_object == other.id)
 				{
-					is_grounded = false;
 					on_object = noone;
+					is_grounded = false;
 					vel_y = other.vel_y;
 				}
 			}
@@ -108,13 +108,16 @@ switch (state)
 	break;
 }
 
-var _itembox = instance_place(xprevious, yprevious - 1, obj_itembox);
-if (_itembox != noone)
+if (vd_type == PLATFORMTYPE.DEFAULT)
 {
-	// This Step event is manually triggered from the Create event, so the Item Box's state may not be initialised yet
-	if (!variable_instance_exists(_itembox, "state") || _itembox.state != ITEMBOXSTATE.FALL)
+	var _itembox = instance_place(xprevious, yprevious - 1, obj_itembox);
+	if (_itembox != noone)
 	{
-		_itembox.x += x - xprevious;
-		_itembox.y += y - yprevious;
+		// Item Box's state may not be initialised yet
+		if (!variable_instance_exists(_itembox, "state") || _itembox.state != ITEMBOXSTATE.FALL)
+		{
+			_itembox.x += x - xprevious;
+			_itembox.y += y - yprevious;
+		}
 	}
 }

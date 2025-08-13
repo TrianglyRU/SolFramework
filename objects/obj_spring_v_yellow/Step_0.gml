@@ -24,6 +24,11 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			_player.animation = ANIM.BOUNCE;
 		}
+		
+		with (_player)
+		{
+			obj_restart_anim();
+		}
 	}
 	else
 	{

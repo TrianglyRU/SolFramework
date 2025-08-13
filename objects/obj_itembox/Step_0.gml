@@ -39,13 +39,13 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
             {
                 _player.vel_y *= -1;
             }
-            	
+            
 			with (obj_player)
             {
 				if (on_object == other.id)
 				{
-					is_grounded = false;
 					on_object = noone;
+					is_grounded = false;
 				}
             }
 			

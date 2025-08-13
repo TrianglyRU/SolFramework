@@ -23,10 +23,6 @@ else switch (obj_rm_level_select.room_to_load)
 	case rm_stage_ehz0:
 		_icon_index = 5;
 	break;
-	
-	case rm_stage_dwz0:
-		_icon_index = 6;
-	break;
 }
 
 draw_sprite(spr_level_select_icon, _icon_index, _x, _y);

@@ -39,7 +39,7 @@
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Green Hill",
-    "path": "folders/Objects/Green Hill.yy",
+    "name": "Badniks",
+    "path": "folders/Objects/Badniks.yy",
   },
 }

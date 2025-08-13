@@ -3,14 +3,14 @@
 /// @param {Asset.GMSprite} _sprite_id The sprite used for the animation.
 /// @param {Real} _duration Duration of a single frame in game steps.
 /// @param {Real} _start_frame Index of a starting frame.
-/// @param {Real|Function} _end_routine A function executed after the last frame or a frame index to loop back to.
+/// @param {Real|Function} _end_routine A frame index to loop back to or a function to execute at the very beginning of the next tick after the last frame has ended.
 function obj_set_anim(_sprite_id, _duration, _start_frame, _end_routine)
 {
 	sprite_index = _sprite_id;
 	image_speed = 0;
 	
 	// If trying to set the same sprite while the animation is not stopped, simply update the duration
-	if (sprite_index == anim_registered_sprite && anim_duration >= 0)
+	if (anim_registered_sprite == sprite_index && anim_duration >= 0)
 	{
 		anim_duration = _duration;	
 		return;
@@ -22,5 +22,5 @@ function obj_set_anim(_sprite_id, _duration, _start_frame, _end_routine)
     anim_end_routine = _end_routine;
 	anim_timer = anim_duration;
 	anim_play_count = 0;
-	anim_frame_change_flag = false; 
+	anim_frame_changed = false; 
 }

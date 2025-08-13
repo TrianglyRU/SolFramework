@@ -6,6 +6,7 @@ enum PAUSESTATE
 }
 
 obj_game.state = GAMESTATE.PAUSED;
+
 state = PAUSESTATE.NAVIGATION;
 highlight_timer = 0;
 option_id = 0;

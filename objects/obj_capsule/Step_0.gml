@@ -7,7 +7,7 @@ switch (state)
             break;
         }
         
-        obj_set_culling(ACTIVEIF.OBJECTS_ACTIVE);
+        obj_set_culling(ACTIVEIF.OBJECTS_RUNNING);
         instance_create(x, lock_obj.y, obj_explosion_dust);
 		
         with (obj_player)

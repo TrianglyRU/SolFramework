@@ -121,7 +121,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		else
 		{
 			var _relative_x = _px - _ox + _orx;
-			if (_player.is_grounded && _relative_x >= -_ext_x && _relative_x < _orx * 2 + _ext_x)
+			if (_player.is_grounded && _relative_x >= -_ext_x && _relative_x <= _orx * 2 + _ext_x)
 			{
 				return;
 			}

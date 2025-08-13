@@ -8,6 +8,7 @@ enum RESULTSSTATE
 }
 
 obj_game.allow_pause = false;
+
 offset_line1 = -256;
 offset_line2 = 256;
 offset_time = 512;

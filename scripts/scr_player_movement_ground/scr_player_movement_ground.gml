@@ -14,7 +14,8 @@ function scr_player_movement_ground()
 	
 	if (ground_lock_timer == 0)
 	{
-		var _do_skid = false;
+		var _can_start_skid = false;
+		
 		if (input_down.left)
 		{	
 			if (spd_ground > 0)
@@ -25,7 +26,7 @@ function scr_player_movement_ground()
 					spd_ground = -0.5;
 				}
 				
-				_do_skid = true;
+				_can_start_skid = true;
 			}
 			else
 			{
@@ -39,9 +40,11 @@ function scr_player_movement_ground()
 					facing = DIRECTION.NEGATIVE;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
+					
 					obj_restart_anim();
 				}
 				
+				// Cancel skid animation
 				if (animation == ANIM.SKID)
 				{
 					animation = ANIM.MOVE;
@@ -59,7 +62,7 @@ function scr_player_movement_ground()
 					spd_ground = 0.5;
 				}
 				
-				_do_skid = true;
+				_can_start_skid = true;
 			} 
 			else
 			{
@@ -73,9 +76,11 @@ function scr_player_movement_ground()
 					facing = DIRECTION.POSITIVE;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
+					
 					obj_restart_anim();
 				}
 				
+				// Cancel skid animation
 				if (animation == ANIM.SKID)
 				{
 					animation = ANIM.MOVE;
@@ -83,27 +88,15 @@ function scr_player_movement_ground()
 			}
 		}
 		
-		if (set_push_anim_by != noone && anim_frame_change_flag)
+		// Set push animation
+		if (set_push_anim_by != noone && anim_frame_changed)
 		{
 			animation = ANIM.PUSH;
 		}
-
+		
+		// Set static animation
 		var _angle_quad = math_get_quadrant(angle);
-		if (_angle_quad != QUADRANT.DOWN || spd_ground != 0)
-		{
-			if (animation != ANIM.SKID && animation != ANIM.PUSH && animation != ANIM.FLIP)
-			{
-				animation = ANIM.MOVE;
-			}
-			
-			if (animation != ANIM.SKID && _angle_quad == QUADRANT.DOWN && _do_skid && abs(spd_ground) >= PARAM_SKID_SPEED_THRESHOLD )
-			{
-				skid_timer = 0;
-				animation = ANIM.SKID;
-				audio_play_sfx(snd_skid);
-			}
-		}
-		else
+		if (_angle_quad == QUADRANT.DOWN && spd_ground == 0)
 		{
 			if (input_down.up)
 			{
@@ -113,12 +106,27 @@ function scr_player_movement_ground()
 			{
 				animation = ANIM.DUCK;
 			}
-			else
+			else if (animation != ANIM.WAIT)
 			{
 				animation = ANIM.IDLE;
 			}
 			
 			set_push_anim_by = noone;
+		}
+		
+		// Set move or skid animation
+		else if (animation != ANIM.SKID)
+		{	
+			if (_can_start_skid && _angle_quad == QUADRANT.DOWN && abs(spd_ground) >= PARAM_SKID_SPEED_THRESHOLD)
+			{
+				skid_timer = 0;
+				animation = ANIM.SKID;
+				audio_play_sfx(snd_skid);
+			}
+			else if (animation != ANIM.PUSH && animation != ANIM.FLIP)
+			{
+				animation = ANIM.MOVE;
+			}
 		}
 	}
 	

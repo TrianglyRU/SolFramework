@@ -1,21 +1,19 @@
 /// @self
 /// @description Pre-calculates collision data for the tilemap associated with the specified sprite.
 /// @param {Asset.GMSprite} _sprite_id The sprite used in the tilemap.
-/// @param {Array<Real>|Undefined} _angle_data An array of values representing the angles for each tile. Leave undefined to let the framework calculate it automatically.
-/// @param {Real} _off_x The horizontal offset of the sprite on the tilemap.
-/// @param {Real} _off_y The vertical offset of the sprite on the tilemap.
-/// @param {Real} _sep_x The horizontal spacing between tiles on the tilemap.
-/// @param {Real} _sep_y The vertical spacing between tiles on the tilemap.
+/// @param {Array<Real>|Undefined} _raw_angle_data An array of values representing a raw angle for each tile. Leave undefined to let the framework calculate it automatically.
 /// @param {Real} _row_length The amount of tiles in each row.
-function tile_calculate_data(_sprite_id, _angle_data, _off_x, _off_y, _sep_x, _sep_y, _row_length)
+function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 {
-	var _surface = surface_create(sprite_get_width(_sprite_id), sprite_get_height(_sprite_id));
-	var _height_arr = array_create(TILE_COUNT, 0);
-	var _width_arr = array_create(TILE_COUNT, 0);
-	var _angle_arr = array_create(TILE_COUNT, 0);
-	var _angle_data_length = array_length(_angle_data);
-	var _xcell_size = TILE_SIZE + _sep_x;
-	var _ycell_size = TILE_SIZE + _sep_y;
+	var _width = sprite_get_width(_sprite_id);
+	var _height = sprite_get_height(_sprite_id);
+	var _surface = surface_create(_width, _height);
+	
+	var _tile_count = (_width / TILE_SIZE) * (_height / TILE_SIZE);
+	var _height_arr = array_create(_tile_count, 0);
+	var _width_arr = array_create(_tile_count, 0);
+	var _angle_arr = array_create(_tile_count, 0);
+	var _angle_data_length = array_length(_raw_angle_data);
 	
 	sprite_set_offset(_sprite_id, 0, 0);
 	surface_set_target(_surface);
@@ -24,7 +22,7 @@ function tile_calculate_data(_sprite_id, _angle_data, _off_x, _off_y, _sep_x, _s
 	surface_reset_target();
 	
 	var _obj = instance_create(0, 0, obj_game_tile);
-	for (var _i = 0; _i < TILE_COUNT; _i++)
+	for (var _i = 0; _i < _tile_count; _i++)
 	{
 		_height_arr[_i] = array_create(TILE_SIZE, 0);
 		_width_arr[_i] = array_create(TILE_SIZE, 0);
@@ -37,9 +35,9 @@ function tile_calculate_data(_sprite_id, _angle_data, _off_x, _off_y, _sep_x, _s
 		
 		var _tile = sprite_create_from_surface
 		(
-			_surface, 
-			_off_x + _xcell_size * (_i % _row_length), 
-			_off_y + _ycell_size * floor(_i / _row_length), 
+			_surface,
+			TILE_SIZE * (_i % _row_length), 
+			TILE_SIZE * floor(_i / _row_length), 
 			TILE_SIZE, 
 			TILE_SIZE,
 			false, 
@@ -55,12 +53,12 @@ function tile_calculate_data(_sprite_id, _angle_data, _off_x, _off_y, _sep_x, _s
 		_height_arr[_i] = _data[0];
 		_width_arr[_i] = _data[1];
 		
-		if (_angle_data != undefined)
+		if (_raw_angle_data != undefined)
 		{
 			var _angle_index = _i - 1;
 			if (_angle_index < _angle_data_length)
 			{
-				_angle_arr[_i] = math_get_angle_degree(_angle_data[_angle_index]);
+				_angle_arr[_i] = math_get_angle_degree(_raw_angle_data[_angle_index]);
 			}
 		}
 		else
@@ -203,55 +201,10 @@ function tile_calculate_data(_sprite_id, _angle_data, _off_x, _off_y, _sep_x, _s
 	surface_free(_surface);
 	instance_destroy(_obj);
 	
-	if (!global.tools_binary_collision)
-	{
-		global.tile_generated_height_data[? _sprite_id] = _height_arr;
-		global.tile_generated_width_data[? _sprite_id] = _width_arr;
-		global.tile_generated_angle_data[? _sprite_id] = _angle_arr;
-	}
-	else
-	{
-		var _prefix = sprite_get_name(_sprite_id);
-		
-		show_debug_message
-		(
-			"=============================================================================================================\n"
-	      + "GENERATED COLLISION FOR " + _prefix + " WAS SAVED INTO THE BINARY FILES. IT IS NOT REGISTERED IN THE GAME!\n"
-	      + "============================================================================================================="
-		);
-		
-	    var _width_filename = _prefix + "_widths.bin";
-	    var _height_filename = _prefix + "_heights.bin";
-	    var _angle_filename = _prefix + "_angles.bin";
-		
-	    var _width_file = file_bin_open(_width_filename, 1);
-	    for (var _i = 0; _i < TILE_COUNT; _i++)
-	    {
-	        for (var _j = 0; _j < TILE_SIZE; _j++)
-	        {
-	            file_bin_write_byte(_width_file, _width_arr[_i][_j]);
-	        }
-	    }
-    
-	    file_bin_close(_width_file);
-		
-	    var _height_file = file_bin_open(_height_filename, 1);
-	    for (var _i = 0; _i < TILE_COUNT; _i++)
-	    {
-	        for (var _j = 0; _j < TILE_SIZE; _j++)
-	        {
-	            file_bin_write_byte(_height_file, _height_arr[_i][_j]);
-	        }
-	    }
-		
-	    file_bin_close(_height_file);
-    
-	    var _angle_file = file_bin_open(_angle_filename, 1);
-		for (var _i = 0; _i < TILE_COUNT; _i++)
-		{
-		    file_bin_write_byte(_angle_file, math_get_angle_raw(_angle_arr[_i]));
-		}
-		
-	    file_bin_close(_angle_file);
-	}
+	global.tile_stored_height_data[? _sprite_id] = _height_arr;	
+	global.tile_stored_width_data[? _sprite_id] = _width_arr;
+	global.tile_stored_angle_data[? _sprite_id] = _angle_arr;
+	
+	show_debug_message("[INFO] Calculated collision data for " + sprite_get_name(_sprite_id)
+					+ (_raw_angle_data != undefined ? " with predefined angle map" : ""));
 }

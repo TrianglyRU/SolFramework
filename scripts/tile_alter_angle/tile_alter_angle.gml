@@ -5,5 +5,5 @@
 /// @param {Real} _angle A new angle to assign (in degrees).
 function tile_alter_angle(_sprite_id, _index, _angle)
 {
-	global.tile_generated_angle_data[? _sprite_id][_index] = _angle;
+	global.tile_stored_angle_data[? _sprite_id][_index] = _angle;
 }

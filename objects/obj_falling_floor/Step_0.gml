@@ -70,26 +70,26 @@ switch (state)
     case FALLINGFLOORSTATE.FALL:
 	
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
-        {
-            obj_act_solid(player_get(_p), SOLIDOBJECT.TOP, SOLIDATTACH.NONE);
-        }
-        
-        if (wait_timer > 0)
-        {
-            wait_timer--;
-            break;
-        }
-        
-        with (obj_player)
-        {
-			if (on_object == other.id)
+		{
+	        obj_act_solid(player_get(_p), SOLIDOBJECT.TOP, SOLIDATTACH.NONE);
+		}
+		
+		if (wait_timer > 0)
+		{
+			wait_timer--;
+		}
+		else
+		{
+			state++;
+			with (obj_player)
 			{
-				is_grounded = false;
-				on_object = noone;
+				if (on_object == other.id)
+				{
+					on_object = noone;
+					is_grounded = false;
+				}
 			}
-        }
-        
-        state++;
-        
+		}
+		
     break;
 }

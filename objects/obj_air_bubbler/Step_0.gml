@@ -54,7 +54,7 @@ switch (state)
 			break;
 		}
 		
-		wait_time = define_delay();
+		wait_time = set_delay();
 		wait_cycle++;
 		state = AIRBUBBLERSTATE.IDLE;
 

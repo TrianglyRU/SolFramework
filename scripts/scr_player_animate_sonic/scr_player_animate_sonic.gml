@@ -7,21 +7,20 @@ function scr_player_animate_sonic()
 	switch (animation)
 	{
 		case ANIM.IDLE:
-		case ANIM.WAIT:
-		
+			
 			if (super_timer > 0)
 			{
 				obj_set_anim(spr_sonic_idle_super, 8, 0, 0);
-				break;
 			}
-			
-			obj_set_anim(spr_sonic_idle, 6, 0, 31);
-			
-			if (image_index > 0)
+			else
 			{
-				animation = ANIM.WAIT;
+				obj_set_anim(spr_sonic_idle, 180, 0, function() { animation = ANIM.WAIT });
 			}
-			
+		
+		break;
+		
+		case ANIM.WAIT:
+			obj_set_anim(spr_sonic_wait, 6, 0, 6);
 		break;
 		
 		case ANIM.MOVE:
@@ -137,7 +136,7 @@ function scr_player_animate_sonic()
 		
 			obj_set_anim(spr_sonic_flip, 1, 0, function()
 			{
-				if (animation == ANIM.FLIP || anim_play_count > 1)
+				if (animation == ANIM.FLIP || anim_play_count == 2)
 				{
 					animation = ANIM.MOVE;
 				}; 

@@ -9,7 +9,11 @@ enum COCONUTSSTATE
 
 // Inherit the parent event
 event_inherited();
-	
+
+obj_set_priority(4);
+obj_set_hitbox(12, 16);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
+
 state = COCONUTSSTATE.IDLE;
 state_timer = 16;
 vel_y = 0;
@@ -27,7 +31,3 @@ climb_data =
     -1,			32,
 	 1,			16
 ];
-
-obj_set_priority(4);
-obj_set_hitbox(12, 16);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

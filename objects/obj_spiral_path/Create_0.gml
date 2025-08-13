@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+obj_set_culling(ACTIVEIF.INBOUNDS);
 
 offset_table = 
 [
@@ -30,9 +31,9 @@ offset_table =
 	31,  31,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,
 	32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32,  32
 ];
+
+// floor(distance / 32)
 flip_frame_table =
 [
 	0, 2, 7, 13, 18, 24, 29, 35, 40, 46, 51, 57, 60
 ];
-
-obj_set_culling(ACTIVEIF.INBOUNDS);

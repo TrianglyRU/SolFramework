@@ -129,7 +129,7 @@ function scr_player_climb()
 				x += 3 * facing;
 				y -= 3;
 			}
-			else if (anim_frame_change_flag)
+			else if (anim_frame_changed)
 			{
 				switch (image_index)
 				{

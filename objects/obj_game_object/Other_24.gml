@@ -1,9 +1,8 @@
 /// Called in obj_game -> Begin Step -> CULLING
 /// @description Culling
-
 hitbox_allow = true;
 		
-if (cull_behaviour <= ACTIVEIF.OBJECTS_ACTIVE)
+if (cull_behaviour <= ACTIVEIF.OBJECTS_RUNNING)
 {
 	return;
 }

@@ -27,6 +27,7 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 		ds_list_add(obj_game.debug_tile_sensors, _x, _y, x, _y, _dir == DIRECTION.POSITIVE ? $5961E9 : $F84AEA);
 	}
 	
+	var _markers = obj_game.tile_markers;
 	var _layers = obj_game.tile_layers;
 	var _widths = obj_game.tile_widths;
 	var _angles = obj_game.tile_angles;
@@ -53,21 +54,21 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 		var _result_distance = _best_distance;
         var _cell_id_x = _start_cell_id_x;
         var _cell_id_y = _start_cell_id_y;
-        var _tiledata, _index, _width, _flip;
+        var _tile, _index, _width, _flip;
 		
         for (var _i = 0; _i <= 2; _i++)
         {
-			var _is_valid, _tile_buffer, _index_buffer, _width_buffer, _flip_buffer, _raw_index;
+			var _is_valid, _tile_buffer, _index_buffer, _width_buffer, _flip_buffer;
 			
-            _tiledata = tilemap_get(_tile_layer, _cell_id_x, _cell_id_y);
-			_flip = tile_get_flip(_tiledata);
-			_raw_index = tile_get_index(_tiledata);
-			_index = _raw_index % TILE_COUNT;
+			_tile = tilemap_get(_tile_layer, _cell_id_x, _cell_id_y);
+			_flip = tile_get_flip(_tile);
+			_index = tile_get_index(_tile);	
 			
 			// Get width
-			if (_index <= 0)
+			if (_tile == -1 || _index == 0)
 			{
 				_width = 0;
+				_is_valid = false;
 			}
 			else
 			{
@@ -80,30 +81,42 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 				{
 					_width_index = _mod_y;
 				}
-	
+				
 				_width = _widths[_index][_width_index];
+			
+				// Check validity
+				var _marker_index = 0;
+				var _marker_layer = _markers[_j];
+				
+				if (_marker_layer != -1)
+				{
+					var _marker_tile = tilemap_get(_markers[_j], _cell_id_x, _cell_id_y);
+					if (_marker_tile != -1)
+					{
+						_marker_index = tile_get_index(_marker_tile);
+					}
+				}
+				
+				var _is_right = _quadrant == QUADRANT.RIGHT;
+				var _is_left = _quadrant == QUADRANT.LEFT;
+				var _is_positive = _dir == DIRECTION.POSITIVE;
+			
+				switch (_marker_index)
+				{	
+					// Top Solid
+					case 1:
+						_is_valid = _is_right && _is_positive || _is_left && !_is_positive;
+					break;
+					// LBR Solid
+					case 2:
+						_is_valid = _is_right && !_is_positive || _is_left && _is_positive || !_is_right && !_is_left;
+					break;
+					// All Solid
+					default:
+						_is_valid = true;
+				}
 			}
 			
-			// Check validity
-			var _is_right = _quadrant == QUADRANT.RIGHT;
-			var _is_left = _quadrant == QUADRANT.LEFT;
-			var _is_positive = _dir == DIRECTION.POSITIVE;
-			
-			switch (floor(_raw_index / TILE_COUNT))
-			{
-				// All Solid
-				case 0:
-					_is_valid = true;
-				break;
-				// Top Solid
-				case 1:
-					_is_valid = _is_right && _is_positive || _is_left && !_is_positive;
-				break;
-				// LBR Solid & Invalid
-				default:
-					_is_valid = _is_right && !_is_positive || _is_left && _is_positive || !_is_right && !_is_left;
-			}
-		
 			// Initial tile check
 			if (_i == 0)
 			{
@@ -113,7 +126,7 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 				}
 				else if (_width == TILE_SIZE)
 				{
-					_tile_buffer = _tiledata;
+					_tile_buffer = _tile;
 					_index_buffer = _index;
 					_width_buffer = _width;
 					_flip_buffer = _flip;
@@ -138,11 +151,11 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 			
 				break;
 			}
-		
+			
 			// Closer tile check
-			else if (_i == 2 && (_width == 0 || !_is_valid))
+			else if (!_is_valid)
 			{
-				_tiledata = _tile_buffer;
+				_tile = _tile_buffer;
 				_index = _index_buffer;
 				_width = _width_buffer;
 				_flip = _flip_buffer;
@@ -154,7 +167,7 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
         
         if (_found)
         {
-			var _mirror = tile_get_mirror(_tiledata);
+			var _mirror = tile_get_mirror(_tile);
 			
 			// Get angle
 			var _ang = _index <= 0 ? TILE_EMPTY_ANGLE : _angles[_index];

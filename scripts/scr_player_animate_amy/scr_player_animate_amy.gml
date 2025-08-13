@@ -4,23 +4,30 @@ function scr_player_animate_amy()
 {
 	gml_pragma("forceinline");
 	
-	switch animation
+	switch (animation)
 	{
 		case ANIM.IDLE:
+			obj_set_anim(spr_amy_idle, 240, 0, function(){ animation = ANIM.WAIT });
+		break;
+			
 		case ANIM.WAIT:
 			
-			obj_set_anim(spr_amy_idle, 2, 0, 120);
-			
-			if (image_index > 0)
+			if (sprite_index != spr_amy_wait_2)
 			{
-				animation = ANIM.WAIT;
+				obj_set_anim(spr_amy_wait, 2, 0, 0);
+				
+				if (anim_play_count == 16)
+				{
+					obj_set_anim(spr_amy_wait_2, 2, 0, 18);
+				}
 			}
 			
 		break;
-			
+		
 		case ANIM.MOVE:
 		
 			var _move_sprite = spr_amy_walk;
+			
 			if (abs(spd_ground) >= 6)
 			{
 				_move_sprite = abs(spd_ground) < 10 ? spr_amy_run : spr_amy_dash;
@@ -99,10 +106,14 @@ function scr_player_animate_amy()
 			
 			obj_set_anim(spr_amy_flip, 1, 0, function()
 			{
-				if (animation == ANIM.FLIP || anim_play_count > 1)
+				if (animation == ANIM.FLIP || anim_play_count == 2)
 				{
 					animation = ANIM.MOVE;
-				}; 
+				}
+				else
+				{
+					obj_restart_anim();
+				}
 			});
 			
 			// Override the displayed sprite

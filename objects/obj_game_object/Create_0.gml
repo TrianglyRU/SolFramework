@@ -1,6 +1,6 @@
 // ANIMATOR
 
-anim_frame_change_flag = false;
+anim_frame_changed = false;
 anim_registered_sprite = sprite_index;
 anim_duration = -1;
 anim_timer = 0;
@@ -12,9 +12,9 @@ image_speed = 0;
 
 enum ACTIVEIF
 {
-    ALWAYS,					// Always active
+    ALWAYS,					// Sol does not perform any culling on the object
     ENGINE_RUNNING,			// Active while the framework is not paused (state != GAMESTATE.PAUSED); otherwise suspended
-    OBJECTS_ACTIVE,			// Active while object processing is active (state == GAMESTATE.NORMAL); otherwise suspended
+    OBJECTS_RUNNING,		// Active while object processing is active (state == GAMESTATE.NORMAL); otherwise suspended
 	INBOUNDS,				// Active while current x position or x initial position is within active area bounds; otherwise suspended
     INBOUNDS_RESET,			// Active while current x position or x initial position is within active area bounds; otherwise reset to initial state and position
 	INBOUNDS_XY,			// Active while current position or initial position is within active area bounds; otherwise suspended
@@ -22,7 +22,7 @@ enum ACTIVEIF
 	INBOUNDS_DELETE,		// Active while current position is within active area bounds; otherwise deleted
 }
 
-cull_behaviour = ACTIVEIF.OBJECTS_ACTIVE;
+cull_behaviour = ACTIVEIF.OBJECTS_RUNNING;
 cull_parent = noone;
 cull_is_respawned = false;
 cull_reset_object = false;

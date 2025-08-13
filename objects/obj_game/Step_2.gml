@@ -4,7 +4,7 @@ if (room == rm_startup)
 	return;
 }
 
-// Run Path Step and pre-framework End Step for objects
+// Run Path Step and pre-framework End Step for game objects
 with (obj_game_object)
 {
 	event_user(11);
@@ -31,8 +31,8 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
     {
 		audio_channel_states[_i] = CHANNELSTATE.DEFAULT;
 		audio_channel_bgms[_i] = -1;
-		
 		audio_stop_sound(_bgm);
+		
         continue;
     }
 	
@@ -249,23 +249,21 @@ if (state != GAMESTATE.PAUSED)
         global.ring_spill_counter--;
     }
 	
-    var _ring_count = global.player_rings;
-    var _score_count = global.score_count;
-	var _life_count = global.life_count;
+	var _life_count_prev = global.life_count;
 	
-    if (_ring_count >= global.life_rewards[0] && global.life_rewards[0] <= 200)
+    if (global.player_rings >= global.life_rewards[0] && global.life_rewards[0] <= 200)
     {
         global.life_rewards[0] += RINGS_THRESHOLD;
 		global.life_count++;
     }
 	
-    if (_score_count >= global.life_rewards[1])
+    if (global.score_count >= global.life_rewards[1])
     {
         global.life_rewards[1] += SCORE_THRESHOLD;
 		global.life_count++;
     }
 	
-	if (_life_count != global.life_count)
+	if (_life_count_prev != global.life_count)
 	{
 		audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
 	}

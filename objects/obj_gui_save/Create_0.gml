@@ -6,8 +6,6 @@ with (obj_gui_save)
 	}
 }
 
-timer = 0;
-
 switch (global.player_main)
 {
 	case PLAYER.TAILS:
@@ -22,3 +20,5 @@ switch (global.player_main)
 		sprite_index = spr_gui_save_amy;
 	break;
 }
+
+timer = 0;

@@ -84,7 +84,7 @@ function scr_player_animate()
 		break;
 	}
 	
-	if (animation != ANIM.SPIN || anim_frame_change_flag)
+	if (animation != ANIM.SPIN || anim_frame_changed)
 	{
 		image_xscale = facing;
 	}

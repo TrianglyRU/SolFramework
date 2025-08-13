@@ -1,6 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
+// Override data
 var _height_map = 
 [
 	0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,

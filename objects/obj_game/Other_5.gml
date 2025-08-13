@@ -45,6 +45,7 @@ ds_list_destroy(debug_interact);
 ds_list_destroy(debug_solids);
 ds_list_destroy(debug_solids_push);
 ds_list_destroy(debug_solids_sides);
+
 debug_tile_sensors = -1;
 debug_interact = -1;
 debug_solids = -1;
@@ -64,6 +65,7 @@ distortion_data = -1;
 
 ds_list_destroy(input_list_down);
 ds_list_destroy(input_list_press);
+
 input_list_down = -1;
 input_list_press = -1;
 

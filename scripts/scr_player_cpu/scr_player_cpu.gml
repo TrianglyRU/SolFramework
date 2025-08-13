@@ -9,7 +9,7 @@ function scr_player_cpu()
 	{
 	    return;
 	}
-
+	
 	/// @method _try_to_respawn()
 	var _try_to_respawn = function()
 	{

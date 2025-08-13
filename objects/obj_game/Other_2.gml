@@ -4,10 +4,11 @@
 global.init_resolution_w = room_width;	// See scr_game_setup()
 global.init_resolution_h = room_height;
 global.looped_audio_data = ds_map_create();
-global.tile_generated_width_data = ds_map_create();
-global.tile_generated_height_data = ds_map_create();
-global.tile_generated_angle_data = ds_map_create();
+global.tile_stored_width_data = ds_map_create();
+global.tile_stored_height_data = ds_map_create();
+global.tile_stored_angle_data = ds_map_create();
 global.font_data = ds_map_create();
+global.gamepad_list = ds_list_create();
 global.discord_data = ["", "", "", ""];
 global.previous_room_id = room;
 global.current_save_slot = -1;
@@ -36,10 +37,11 @@ global.ds_giant_rings = ds_list_create();
 
 // Game setup
 scr_game_setup();
+
 game_load_settings();
-surface_depth_disable(true);
 randomise();
 
+surface_depth_disable(true);
 window_set_caption(global.window_name);
 window_resize();
 

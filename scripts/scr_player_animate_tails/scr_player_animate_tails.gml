@@ -7,15 +7,11 @@ function scr_player_animate_tails()
 	switch (animation)
 	{
 		case ANIM.IDLE:
-		case ANIM.WAIT:
+			obj_set_anim(spr_tails_idle, 8, 0, function() { animation = ANIM.WAIT });
+		break;
 		
-			obj_set_anim(spr_tails_idle, 8, 0, 32);
-			
-			if (image_index > 2)
-			{
-				animation = ANIM.WAIT;
-			}
-			
+		case ANIM.WAIT:
+			obj_set_anim(spr_tails_wait, 8, 0, 0);
 		break;
 		
 		case ANIM.MOVE:
@@ -88,7 +84,7 @@ function scr_player_animate_tails()
 			
 			obj_set_anim(spr_tails_flip, 1, 0, function()
 			{
-				if (animation == ANIM.FLIP || anim_play_count > 1)
+				if (animation == ANIM.FLIP || anim_play_count == 2)
 				{
 					animation = ANIM.MOVE;
 				}; 

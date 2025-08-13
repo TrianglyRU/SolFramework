@@ -24,7 +24,9 @@ enum DIRECTION
 
 state = GAMESTATE.NORMAL; 
 frame_counter = 0;
+player_count = 0;
 allow_pause = false;
+
 depth = 16000;
 
 #endregion
@@ -93,6 +95,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	view_visible[_i] = false;
 }
 
+surface_resize(application_surface, global.init_resolution_w, global.init_resolution_h);
 camera_new(0, _w, _h, _w, _h);
 
 #endregion
@@ -175,12 +178,11 @@ fade_frequency_target = 0;
 
 #macro INPUT_SLOT_COUNT 4
 #macro INPUT_GAMEPAD_DEADZONE 0.15
-#macro INPUT_RUMBLE_LIGHT 0.25
-#macro INPUT_RUMBLE_MEDIUM 0.5
-#macro INPUT_RUMBLE_STRONG 0.75
+#macro INPUT_RUMBLE_LIGHT 0.5
+#macro INPUT_RUMBLE_MEDIUM 0.75
+#macro INPUT_RUMBLE_STRONG 1.0
 
-input_vibrations = array_create(INPUT_SLOT_COUNT, 0);
-input_list_gamepads = ds_list_create();
+input_rumble_time_left = array_create(INPUT_SLOT_COUNT, 0);
 input_list_down = ds_list_create();
 input_list_press = ds_list_create();
 
@@ -188,7 +190,6 @@ for (var _i = 0; _i < INPUT_SLOT_COUNT; _i++)
 {
 	input_list_down[| _i] = input_create();
 	input_list_press[| _i] = input_create();
-	gamepad_set_axis_deadzone(_i, INPUT_GAMEPAD_DEADZONE);
 }
 
 #endregion
@@ -229,8 +230,34 @@ enum TILELAYER
 #macro TILE_EMPTY_ANGLE -4
 
 tile_layers = [];
+tile_marker_layer = -1;
 tile_angles = array_create(TILE_COUNT);
 tile_widths = array_create(TILE_COUNT);
 tile_heights = array_create(TILE_COUNT);
+
+/// @method register_layers()
+register_layers = function()
+{
+	var _collision_layers = ["Collision_Main", "Collision_A", "Collision_B"];
+	var _marker_layers = ["Markers_Main", "Markers_A", "Markers_B"];
+	
+	for (var _i = 0; _i < array_length(_collision_layers); _i++)
+	{
+	    var _c_id = layer_tilemap_get_id(_collision_layers[_i]);
+	    if (_c_id == -1)
+		{
+	        show_debug_message("[WARN] Could not register collision layer " + _collision_layers[_i] + ". Skipping");
+	    }
+		
+	    var _m_id = layer_tilemap_get_id(_marker_layers[_i]);
+	    if (_m_id == -1)
+		{
+	        show_debug_message("[INFO] Could not register marker layer " + _marker_layers[_i] + ". Skipping");
+	    }
+		
+		tile_layers[_i] = _c_id;
+		tile_markers[_i] = _m_id;
+	}
+}
 
 #endregion

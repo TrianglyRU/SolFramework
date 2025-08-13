@@ -1,7 +1,6 @@
 /// Called in obj_game -> Begin Step -> INSTANCE ANIMATOR
 /// @description Animation
-
-anim_frame_change_flag = false;
+anim_frame_changed = false;
 
 if (anim_duration < 0 || anim_timer <= 0)
 {
@@ -21,6 +20,7 @@ if (image_index == image_number - 1)
     {
         anim_timer = -1;
         anim_end_routine();
+		
         return;
     }
 	
@@ -38,4 +38,4 @@ else
 }
 
 anim_timer = anim_duration;
-anim_frame_change_flag = true;
+anim_frame_changed = true;

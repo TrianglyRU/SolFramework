@@ -14,8 +14,8 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	{
 		if (on_object == other.id)
 		{
-			is_grounded = false;
 			on_object = noone;
+			is_grounded = false;
 		}
 	}
 	

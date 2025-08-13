@@ -26,6 +26,7 @@ if (global.dev_mode)
 			{
 				var _line_col1 = _list[| _i + 4];
 				var _line_col2 = make_colour_hsv(colour_get_hue(_line_col1), colour_get_saturation(_line_col1) - 128, 255);
+				
 				draw_line_floored(_list[| _i], _list[| _i + 1], _list[| _i + 2], _list[| _i + 3], _line_col1, _line_col2);
 			}
 		

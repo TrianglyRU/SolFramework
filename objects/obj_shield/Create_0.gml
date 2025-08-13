@@ -19,6 +19,10 @@ clear_fire_shield_dash = function()
 event_inherited();
 
 var _shield = global.player_shields[vd_target_player.player_index];
+
+obj_set_priority(_shield == SHIELD.FIRE ? 3 : 1);
+obj_set_culling(ACTIVEIF.ENGINE_RUNNING);
+
 switch (_shield)
 {
 	case SHIELD.NORMAL:
@@ -37,6 +41,3 @@ switch (_shield)
 		obj_set_anim(spr_shield_lightning, 2, 0, 0);
 	break;
 }
-
-obj_set_priority(_shield == SHIELD.FIRE ? 3 : 1);
-obj_set_culling(ACTIVEIF.ENGINE_RUNNING);

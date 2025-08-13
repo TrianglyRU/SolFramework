@@ -23,7 +23,7 @@ switch (state)
 			state = BUZZBOMBERSTATE.HOVER;
 			state_timer = 59;
 			shot_flag = true;
-			instance_create(x - 29 * image_xscale, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale }, id);
+			instance_create_child(x - 29 * image_xscale, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale });
 			obj_set_anim(spr_buzz_bomber_fire, 2, 0, 0);
 		}
 		

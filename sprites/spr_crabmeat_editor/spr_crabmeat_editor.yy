@@ -21,8 +21,8 @@
   "width": 55,
   "height": 31,
   "textureGroupId": {
-    "name": "texgroup_ghz_objects",
-    "path": "texturegroups/texgroup_ghz_objects",
+    "name": "texgroup_badniks",
+    "path": "texturegroups/texgroup_badniks",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -68,7 +68,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Green Hill",
-    "path": "folders/Sprites/Green Hill.yy",
+    "name": "Badniks",
+    "path": "folders/Sprites/Badniks.yy",
   },
 }

@@ -29,6 +29,7 @@ if (_input_press.action1)
 else if (_input_press.action2)
 {
     var _shield = choose(SHIELD.NORMAL, SHIELD.FIRE, SHIELD.BUBBLE, SHIELD.LIGHTNING);
+	
     for (var _i = 0; _i < PLAYER_MAX_COUNT; _i++)
     {
         global.player_shields[_i] = _shield;

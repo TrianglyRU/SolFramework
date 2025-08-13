@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+obj_set_culling(ACTIVEIF.INBOUNDS);
 
 depth = RENDERER_DEPTH_HIGHEST;
 layer_data = [];
@@ -19,5 +20,3 @@ switch (image_index)
 		layer_data = [TILELAYER.SECONDARY_B, TILELAYER.SECONDARY_B];
 	break;
 }
-
-obj_set_culling(ACTIVEIF.INBOUNDS);

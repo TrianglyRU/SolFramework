@@ -12,4 +12,4 @@ obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
 
 image_index = 1;
 state = STARPOSTSTATE.IDLE;
-lamp_obj = instance_create(x, y - 32, obj_starpost_lamp, {}, id);
+lamp_obj = instance_create_child(x, y - 32, obj_starpost_lamp);

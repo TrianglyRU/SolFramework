@@ -90,9 +90,6 @@ level_entries =
 	"ZONEENTRY|1",
 	"		  |2",
 	"",
-	"DELTA WORLD",
-	"",
-	"",
 	"SPECIAL STAGE",
 	"",
 	"",
@@ -105,9 +102,8 @@ level_rediretions =
 [
 	0,  rm_stage_ghz0,
 	4,  rm_stage_ehz0,
-	29, rm_stage_dwz0,
-	32, rm_special,
-	35, rm_bonus
+	29, rm_special,
+	32, rm_bonus
 ];
 bg_playback_data = 
 [

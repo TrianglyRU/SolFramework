@@ -9,7 +9,7 @@ Yes and no. The core idea and overall presentation remain the same, but several 
 - The rendering system has been overhauled: shaders are now separated, and palette and fade effects are applied at the camera level rather than per sprite.
 - The background and distortion systems have been reworked, allowing for greater flexibility and fewer limitations.
 - The entire codebase has been reviewed, with slight changes to the coding style.
-- Tile collision now introduces a common layer that objects always collide with, along with automatically calculated angles for generated collision data.
+- Tile collision now introduces a common layer that objects always collide with, along with automatically calculated angles and three-tile-type system being replaced by marker layers.
 - Function names and descriptions have been updated.
 
 # For what GameMaker version is this for?
@@ -22,4 +22,4 @@ No, and there won't be. This is a personal modification I made for myself, but d
 Based on my tests, core framework systems are stable and work as intended. The main branch of this repository may (and will) be updated without notice according to my needs or upon discovery of bugs and issues, but no more than once a week.
 
 # How can I download it?
-Click `Code` -> `Download ZIP` or clone it with Github.
+Click `Code` -> `Download ZIP` or clone it with your git CLI or client.

@@ -1,7 +1,5 @@
 // Inherit the parent event
 event_inherited();
-
-launch_force = 10;
 	
 var _height_map = 
 [
@@ -11,3 +9,5 @@ var _height_map =
 obj_set_priority(5);
 obj_set_solid_sloped(_height_map);
 obj_set_culling(ACTIVEIF.INBOUNDS);	
+
+launch_force = 10;

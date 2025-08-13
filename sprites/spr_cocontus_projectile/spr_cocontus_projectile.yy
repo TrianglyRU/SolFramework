@@ -21,8 +21,8 @@
   "width": 12,
   "height": 13,
   "textureGroupId": {
-    "name": "texgroup_ehz_objects",
-    "path": "texturegroups/texgroup_ehz_objects",
+    "name": "texgroup_badniks",
+    "path": "texturegroups/texgroup_badniks",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -68,7 +68,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Emerald Hill",
-    "path": "folders/Sprites/Emerald Hill.yy",
+    "name": "Badniks",
+    "path": "folders/Sprites/Badniks.yy",
   },
 }

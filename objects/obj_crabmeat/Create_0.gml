@@ -33,13 +33,13 @@ enum CRABMEATSTATE
 // Inherit the parent event
 event_inherited();
 
+obj_set_priority(3);
+obj_set_hitbox(16, 16);
+obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
+
 state = CRABMEATSTATE.INIT;
 state_timer = 0;
 shot_flag = true;
 vel_x = 0.5 * image_xscale;
 vel_y = 0;
 angle = 0;
-
-obj_set_priority(3);
-obj_set_hitbox(16, 16);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);

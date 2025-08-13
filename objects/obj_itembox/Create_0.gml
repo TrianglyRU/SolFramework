@@ -8,14 +8,14 @@ enum ITEMBOXSTATE
 // Inherit the parent event
 event_inherited();
 
-state = ITEMBOXSTATE.IDLE;
-vel_y = 0;
-itembox_type = image_index;
-
 obj_set_priority(4);
 obj_set_hitbox(16, 16);
 obj_set_solid(15, 15);
 obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
+
+state = ITEMBOXSTATE.IDLE;
+vel_y = 0;
+itembox_type = image_index;
 
 if (itembox_type >= 9)
 {

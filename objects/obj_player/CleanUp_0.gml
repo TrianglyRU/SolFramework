@@ -1,16 +1,17 @@
-if (!variable_instance_exists(id, "player_index"))
-{
-	return;
-}
+obj_game.player_count--;
 
-ds_list_destroy(ds_record_data);
-
-with (obj_player)
+if (variable_instance_exists(id, "player_index"))
 {
-	if (player_index > other.player_index)
+	ds_list_destroy(ds_record_data);
+	
+	var _this_index = player_index;
+	with (obj_player)
 	{
-		player_index--;
+		if (player_index > _this_index)
+		{
+			player_index--;
+		}
 	}
+	
+	ds_record_data = -1;
 }
-
-ds_record_data = -1;

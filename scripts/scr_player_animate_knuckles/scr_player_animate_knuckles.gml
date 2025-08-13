@@ -4,18 +4,14 @@ function scr_player_animate_knuckles()
 {
 	gml_pragma("forceinline");
 	
-	switch animation
+	switch (animation)
 	{
 		case ANIM.IDLE:
+			obj_set_anim(spr_knuckles_idle, 300, 0, function() { animation = ANIM.WAIT });
+		break;
+		
 		case ANIM.WAIT:
-			
-			obj_set_anim(spr_knuckles_idle, 6, 0, 0);
-			
-			if (image_index > 0)
-			{
-				animation = ANIM.WAIT;
-			}
-			
+			obj_set_anim(spr_knuckles_wait, 6, 0, function() { animation = ANIM.IDLE });
 		break;
 		
 		case ANIM.MOVE:
@@ -84,7 +80,7 @@ function scr_player_animate_knuckles()
 			
 			obj_set_anim(spr_knuckles_flip, 1, 0, function()
 			{
-				if (animation == ANIM.FLIP || anim_play_count > 1)
+				if (animation == ANIM.FLIP || anim_play_count == 2)
 				{
 					animation = ANIM.MOVE;
 				}; 

@@ -3,8 +3,8 @@
 /// @method activate()
 activate = function()
 {
-	obj_set_anim(sprite_index, 4, 0, 0);
 	state = LAMPSTATE.ACTIVE;
+	obj_set_anim(sprite_index, 4, 0, 0);
 }
 
 #endregion
