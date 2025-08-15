@@ -6,7 +6,7 @@ function scr_game_setup()
 	// internal (application_surface) and camera resolution
 
 	global.dev_mode = true;
-	global.window_name = "GameMaker - Sol Framework"
+	global.window_name = "GameMaker - Orbinaut Framework"
 	global.start_fullscreen = true;
 	global.window_scale = 2;
 	global.gamepad_rumble = false;
@@ -15,7 +15,7 @@ function scr_game_setup()
 	global.start_room = rm_branding;
 	global.discord_ready = np_initdiscord("1286956015241265174", true, 0);
 	
-	global.player_physics = PHYSICS.S2;
+	global.player_physics = PHYSICS.S3;
 	global.cpu_behaviour = CPUBEHAVIOUR.S3;
 	global.rotation_mode = ROTATION.MANIA;
 	global.rotation_range = RANGE.DEFAULT;

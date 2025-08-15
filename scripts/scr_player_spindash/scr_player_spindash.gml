@@ -42,7 +42,7 @@ function scr_player_spindash()
 		if (input_press.action_any)
 		{
 			spindash_charge = min(spindash_charge + 2, 8);
-			if (audio_is_playing(snd_charge_spin) && spindash_charge > 0)
+			if (spindash_charge > 0 && audio_is_playing(snd_charge_spin))
 			{
 				spindash_pitch = min(spindash_pitch + 0.1, 1.5);
 			}
@@ -50,8 +50,9 @@ function scr_player_spindash()
 			{
 				spindash_pitch = 1;
 			}
-	
+			
 			var _sound = audio_play_sfx(snd_charge_spin);
+			
 			audio_sound_pitch(_sound, spindash_pitch);
 			obj_restart_anim();		
 		}

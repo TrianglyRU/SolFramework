@@ -14,7 +14,7 @@ function scr_player_movement_ground()
 	
 	if (ground_lock_timer == 0)
 	{
-		var _can_start_skid = false;
+		var _is_braking = false;
 		
 		if (input_down.left)
 		{	
@@ -26,7 +26,7 @@ function scr_player_movement_ground()
 					spd_ground = -0.5;
 				}
 				
-				_can_start_skid = true;
+				_is_braking = true;
 			}
 			else
 			{
@@ -62,7 +62,7 @@ function scr_player_movement_ground()
 					spd_ground = 0.5;
 				}
 				
-				_can_start_skid = true;
+				_is_braking = true;
 			} 
 			else
 			{
@@ -92,10 +92,12 @@ function scr_player_movement_ground()
 		if (set_push_anim_by != noone && anim_frame_changed)
 		{
 			animation = ANIM.PUSH;
-		}
+		}	
+		
+		var _angle_quad = math_get_quadrant(angle);
+		var _is_fast = abs(spd_ground) >= PARAM_SKID_SPEED_THRESHOLD;
 		
 		// Set static animation
-		var _angle_quad = math_get_quadrant(angle);
 		if (_angle_quad == QUADRANT.DOWN && spd_ground == 0)
 		{
 			if (input_down.up)
@@ -116,8 +118,8 @@ function scr_player_movement_ground()
 		
 		// Set move or skid animation
 		else if (animation != ANIM.SKID)
-		{	
-			if (_can_start_skid && _angle_quad == QUADRANT.DOWN && abs(spd_ground) >= PARAM_SKID_SPEED_THRESHOLD)
+		{
+			if (_is_braking && _is_fast && _angle_quad == QUADRANT.DOWN)
 			{
 				skid_timer = 0;
 				animation = ANIM.SKID;

@@ -60,7 +60,7 @@ function scr_player_animate_tails()
 		break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_tails_skid, 8, 0, 1);
+			obj_set_anim(spr_tails_skid, 8, 0, function(){ animation = ANIM.MOVE; });
 		break;
 		
 		case ANIM.TRANSFORM:

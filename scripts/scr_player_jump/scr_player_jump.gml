@@ -14,7 +14,7 @@ function scr_player_jump()
 		vel_y = max(vel_y, jump_min_vel);
 	}
 
-	if (vel_y < jump_min_vel || player_index > 0 && cpu_timer_input == 0)
+	if (vel_y < jump_min_vel || player_index > 0 && cpu_control_timer == 0)
 	{
 		return;
 	}

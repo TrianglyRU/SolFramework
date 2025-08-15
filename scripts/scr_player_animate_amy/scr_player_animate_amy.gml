@@ -82,7 +82,7 @@ function scr_player_animate_amy()
 		break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_amy_skid, 6, 0, 3);
+			obj_set_anim(spr_amy_skid, 6, 0, function(){ animation = ANIM.MOVE; });
 		break;
 		
 		case ANIM.TRANSFORM:

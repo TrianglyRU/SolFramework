@@ -10,8 +10,8 @@ function scr_player_cpu()
 	    return;
 	}
 	
-	/// @method _try_to_respawn()
-	var _try_to_respawn = function()
+	/// @method _start_respawn()
+	var _start_respawn = function()
 	{
 	    if (obj_is_visible() || x >= camera_data.right_bound)
 	    {
@@ -39,7 +39,7 @@ function scr_player_cpu()
 	{
 	    if (input_down.action_any || input_down.up || input_down.down || input_down.left || input_down.right)
 	    {
-	        cpu_timer_input = 600;
+	        cpu_control_timer = 600;
 	    }
 	}
 
@@ -57,6 +57,7 @@ function scr_player_cpu()
 			
 	        x = cpu_target.x;
 	        y = cpu_target.y - camera_get_height(cpu_target.camera_data.index) + 32;
+			visible = true;
 	        cpu_state = CPUSTATE.RESPAWN;
 			
 			if (camera_data.index == player_index)
@@ -68,7 +69,7 @@ function scr_player_cpu()
 
 	    case CPUSTATE.RESPAWN:
 		
-	        if (_try_to_respawn())
+	        if (_start_respawn())
 	        {
 	            break;
 	        }
@@ -150,6 +151,7 @@ function scr_player_cpu()
 	            cpu_state = CPUSTATE.MAIN;
 	            animation = ANIM.MOVE;
 	            state = PLAYERSTATE.DEFAULT;
+				secondary_layer = cpu_target.secondary_layer;
 	        }
 			
 	    break;
@@ -167,7 +169,7 @@ function scr_player_cpu()
 	            break;
 	        }
 			
-	        if (_try_to_respawn())
+	        if (_start_respawn())
 	        {
 	            break;
 	        }
@@ -177,9 +179,9 @@ function scr_player_cpu()
 	            break;
 	        }
 			
-	        if (cpu_timer_input > 0)
+	        if (cpu_control_timer > 0)
 	        {
-	            cpu_timer_input--;
+	            cpu_control_timer--;
 	            if (!input_no_control)
 	            {
 	                break;
@@ -277,12 +279,12 @@ function scr_player_cpu()
 
 	    case CPUSTATE.STUCK:
 		
-	        if (_try_to_respawn())
+	        if (_start_respawn())
 	        {
 	            break;
 	        }
 
-	        if (ground_lock_timer != 0 || cpu_timer_input != 0 || spd_ground != 0)
+	        if (ground_lock_timer != 0 || cpu_control_timer != 0 || spd_ground != 0)
 	        {
 	            break;
 	        }

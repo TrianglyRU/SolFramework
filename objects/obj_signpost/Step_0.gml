@@ -124,7 +124,7 @@ switch (state)
 				}
 			}
 				
-			cpu_timer_input = 0;
+			cpu_control_timer = 0;
 		}
 		
 		if (floor(player_object.x) >= obj_rm_stage.end_bound - 24)

@@ -4,7 +4,7 @@ function scr_player_dash()
 {
 	gml_pragma("forceinline");
 	
-	if (!global.dash || vd_player_type != PLAYER.SONIC || player_index > 0 && cpu_timer_input == 0)
+	if (!global.dash || vd_player_type != PLAYER.SONIC || player_index > 0 && cpu_control_timer == 0)
 	{
 	    return;
 	}

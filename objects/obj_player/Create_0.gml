@@ -28,6 +28,7 @@ respawn = function()
 	{
 		x = 127;
 		y = 0;
+		visible = false;
 		depth = RENDERER_DEPTH_HIGHEST + player_index;	
 		cpu_state = CPUSTATE.RESPAWN_INIT;
 		state = PLAYERSTATE.LOCKED;
@@ -94,7 +95,6 @@ land = function()
 	reset_gravity();
 	
 	is_grounded = true;
-
 	if (action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH)
 	{
 		if (action == ACTION.DASH)
@@ -109,6 +109,7 @@ land = function()
 	if (_shield == SHIELD.BUBBLE && shield_state == SHIELDSTATE.ACTIVE)
 	{
 		var _force = is_underwater ? -4 : -7.5;
+		
 		vel_y = _force * dcos(angle);
 		vel_x = _force * dsin(angle);
 		shield_state = SHIELDSTATE.NONE;
@@ -151,6 +152,8 @@ land = function()
 	}
 	
 	clear_carry();
+	
+	// Handle actions' is_grounded routines
 	scr_player_dropdash();
 	scr_player_hammerspin();
 	
@@ -260,8 +263,6 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 		global.player_shields[player_index] = SHIELD.NONE;
 		audio_play_sfx(_sound);
 	}
-
-	return;
 }
 
 /// @method kill()

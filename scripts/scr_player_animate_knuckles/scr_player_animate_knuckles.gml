@@ -55,7 +55,7 @@ function scr_player_animate_knuckles()
 		break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_knuckles_skid, 4, 0, 3);
+			obj_set_anim(spr_knuckles_skid, 4, 0, function(){ animation = ANIM.MOVE; });
 		break;
 		
 		case ANIM.TRANSFORM:

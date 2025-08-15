@@ -118,7 +118,7 @@ function scr_player_init()
 	cpu_target = noone;
 	cpu_state = CPUSTATE.MAIN;
 	cpu_timer_respawn = 0;
-	cpu_timer_input = 0;
+	cpu_control_timer = 0;
 	cpu_jump_flag = false;
 	
 	ext_hitbox_radius_x = 0;

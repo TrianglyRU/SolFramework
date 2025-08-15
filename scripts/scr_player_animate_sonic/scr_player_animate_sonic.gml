@@ -100,7 +100,7 @@ function scr_player_animate_sonic()
 		break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_sonic_skid, 6, 0, 3);
+			obj_set_anim(spr_sonic_skid, 6, 0, function(){ animation = ANIM.MOVE; });
 		break;
 		
 		case ANIM.TRANSFORM:

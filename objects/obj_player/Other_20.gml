@@ -1,5 +1,4 @@
 /// @description Begin Step (Post-Framework)
-
 scr_player_input();
 
 switch (state)
