@@ -60,14 +60,6 @@ function scr_player_animate()
 		visual_angle = _use_mania ? angle : _ceil_angle(angle);
 	}
 	
-	if (animation == ANIM.SKID && obj_is_anim_ended())
-	{
-		if (!input_down.left && !input_down.right || !is_grounded || abs(spd_ground) < PARAM_SKID_SPEED_THRESHOLD)
-		{
-			animation = ANIM.MOVE;
-		}			
-	}
-	
 	switch (vd_player_type)
 	{
 		case PLAYER.SONIC:
