@@ -6,4 +6,4 @@ offset_banner = -224;
 speed_x = 16;
 speed_y = 16;
 
-fade_perform_black(FADEROUTINE.OUT, 0);
+fade_perform_black(FADEDIRECTION.OUT, 0);

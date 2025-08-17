@@ -1,17 +1,13 @@
-#region METHODS
+enum AIRBUBBLERSTATE
+{
+	IDLE,
+	PRODUCE
+}
 
 /// @method set_delay()
 set_delay = function()
 {
 	return irandom_range(128, 255);
-}
-
-#endregion
-
-enum AIRBUBBLERSTATE
-{
-	IDLE,
-	PRODUCE
 }
 
 // Inherit the parent event

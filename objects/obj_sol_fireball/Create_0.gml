@@ -1,5 +1,3 @@
-#region METHODS
-
 /// @method hurt_players()
 hurt_players = function()
 {
@@ -12,8 +10,6 @@ hurt_players = function()
 		}
 	}
 }
-
-#endregion
 
 // Inherit the parent event
 event_inherited();

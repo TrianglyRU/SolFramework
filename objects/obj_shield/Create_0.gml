@@ -1,5 +1,3 @@
-#region METHODS
-
 /// @method clear_fire_shield_dash()
 clear_fire_shield_dash = function()
 {
@@ -12,8 +10,6 @@ clear_fire_shield_dash = function()
 				
 	vd_target_player.air_lock_flag = false;
 }
-
-#endregion
 
 // Inherit the parent event
 event_inherited();

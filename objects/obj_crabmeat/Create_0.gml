@@ -1,4 +1,9 @@
-#region METHODS
+enum CRABMEATSTATE
+{
+	INIT,
+	MOVE,
+	WAIT
+}
 
 /// @method is_on_slope()
 is_on_slope = function()
@@ -19,15 +24,6 @@ update_move_sprite = function()
 		image_xscale = 1;
 		sprite_index = spr_crabmeat_move;
 	}
-}
-
-#endregion
-
-enum CRABMEATSTATE
-{
-	INIT,
-	MOVE,
-	WAIT
 }
 
 // Inherit the parent event

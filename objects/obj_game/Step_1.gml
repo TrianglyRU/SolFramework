@@ -129,20 +129,21 @@ for (var _i = 0; _i < INPUT_SLOT_COUNT; _i++)
 
 #region FADE
 
-if (fade_routine != FADEROUTINE.NONE)
+if (fade_direction != FADEDIRECTION.NONE)
 {
 	if (++fade_frequency_timer >= fade_frequency_target)
 	{
-		fade_timer = fade_routine == FADEROUTINE.IN ? min(fade_timer + fade_step, FADE_TIMER_MAX) : max(0, fade_timer - fade_step);
+		fade_timer = fade_direction == FADEDIRECTION.IN ? min(fade_timer + fade_step, FADE_TIMER_MAX) : max(0, fade_timer - fade_step);
 		fade_frequency_timer = 0;
 		
+		// Once reached target, change fade_state on the next frame
 		if (fade_timer == 0 || fade_timer == FADE_TIMER_MAX)
 		{
-			fade_routine = FADEROUTINE.NONE;
+			fade_direction = FADEDIRECTION.NONE;
 		}
 	}
 	
-	if (fade_game_control && fade_state != FADESTATE.ACTIVE)
+	if (fade_state != FADESTATE.ACTIVE && fade_game_control)
 	{
 		state = GAMESTATE.PAUSED;
 	}
@@ -151,15 +152,28 @@ if (fade_routine != FADEROUTINE.NONE)
 }
 else if (fade_timer == FADE_TIMER_MAX)
 {
-	if (fade_game_control && fade_state != FADESTATE.NONE)
+	if (fade_state != FADESTATE.NONE)
 	{
-		state = GAMESTATE.NORMAL;
-	}
+		if (fade_game_control)
+		{
+			state = GAMESTATE.NORMAL;
+		}
 		
+		if (fade_end_routine != -1)
+		{
+			fade_end_routine();
+		}	
+	}
+	
 	fade_state = FADESTATE.NONE;
 }
 else if (fade_timer == 0)
 {
+	if (fade_state != FADESTATE.PLAINCOLOUR && fade_end_routine != -1)
+	{
+		fade_end_routine();	
+	}
+	
 	fade_state = FADESTATE.PLAINCOLOUR;
 }
 
@@ -193,6 +207,7 @@ if (state != GAMESTATE.NORMAL)
 	var _list = cull_game_paused_list;
 	var _is_empty_list = ds_list_size(_list) == 0;
 	
+	// Stop game objects
 	with (obj_game_object)
 	{
 	    if (cull_behaviour >= _banned_behaviour)
@@ -206,10 +221,16 @@ if (state != GAMESTATE.NORMAL)
 			instance_deactivate_object(id);
 		}
 	}
+	
+	// Stop room directors
+	if (state == GAMESTATE.PAUSED)
+	{
+		instance_deactivate_object(obj_game_director);
+	}
 }
 else
 {
-	// Run culling
+	// Run active culling
 	event_user(0);
 }
 
@@ -263,7 +284,7 @@ with (obj_game_object)
 	event_user(10);
 }
 
-// Run culling if previous was skipped due to game state just returning to normal
+// Run active culling if previous was skipped due to game state just returning to normal
 if (_game_state != GAMESTATE.NORMAL && state == GAMESTATE.NORMAL)
 {
 	event_user(0);

@@ -1,4 +1,4 @@
-#region METHODS
+#macro ACT_SINGLE 3
 
 /// @method setup_level()
 setup_level = function(_stage_index, _name, _act_id, _bgm, _animals, _bottom_bound, _water_pos, _next_room, _do_save)
@@ -16,9 +16,12 @@ setup_level = function(_stage_index, _name, _act_id, _bgm, _animals, _bottom_bou
     bottom_bound_init = _bottom_bound;
 }
 
-#endregion
-
-#macro ACT_SINGLE 3
+/// @method set_water_effects_bound()
+set_water_effects_bound = function()
+{
+	obj_game.distortion_bound = water_level;
+	obj_game.palette_bound = water_level;
+}
 
 zone_name = "TEMPLATE";
 act_id = 0;
@@ -40,17 +43,8 @@ bound_speed = array_create(CAMERA_COUNT, 0);
 default_physics = global.player_physics;
 default_range = global.rotation_range;
 
-// Stage Setup
+// Stage setup
 scr_stage_setup();
-
-if (water_enabled)
-{
-    instance_create_depth(0, 0, RENDERER_DEPTH_HIGHEST, obj_water_surface);
-}
-
-instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_titlecard);
-instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_hud);
-audio_play_bgm(bgm_track);
 
 var _ring_data = global.giant_ring_data;
 var _checkpoint_data = global.checkpoint_data;
@@ -99,6 +93,18 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
     }
 }
 
+if (water_enabled)
+{
+	set_water_effects_bound();
+    instance_create_depth(0, 0, RENDERER_DEPTH_HIGHEST, obj_water_surface);
+}
+
+instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_titlecard);
+instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_hud);
+
+audio_play_bgm(bgm_track);
+
+// Discord
 var _player_icon = "";
 switch (global.player_main)
 {

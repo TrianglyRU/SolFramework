@@ -31,13 +31,26 @@ switch (state)
 		
         if (state == RESULTSSTATE.WAIT_EXIT)
         {	
+			state = RESULTSSTATE.EXIT;
+			
             if (obj_rm_stage.save_progress)
             {
                 game_save_data(global.current_save_slot);
             }
 			
-			state = RESULTSSTATE.EXIT;
-            fade_perform_black(FADEROUTINE.OUT, 1);
+            fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+			{
+				game_clear_level_data();
+				
+		        if (obj_rm_stage.next_stage == -1)
+		        {
+		            room_restart();
+		        }
+		        else
+		        {
+		            room_goto(obj_rm_stage.next_stage);
+		        }
+			});
         }
 		else
 		{
@@ -85,26 +98,6 @@ switch (state)
 		
 		state = RESULTSSTATE.WAIT_EXIT;
         audio_play_sfx(snd_tally);
-		
-    break;
-    
-    case RESULTSSTATE.EXIT:
-	
-        if (obj_game.fade_state != FADESTATE.PLAINCOLOUR)
-        {
-            break;
-        }
-		
-        game_clear_level_data();
-		
-        if (obj_rm_stage.next_stage == -1)
-        {
-            room_restart();
-        }
-        else
-        {
-            room_goto(obj_rm_stage.next_stage);
-        }
 		
     break;
 }

@@ -1,14 +1,3 @@
-if (obj_game.fade_state == FADESTATE.PLAINCOLOUR)
-{
-    room_goto(global.previous_room_id);
-	return;
-}
-
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-    return;
-}
-
 var _input_press = input_get_pressed(0);
 if (_input_press.action1)
 {
@@ -54,8 +43,11 @@ else if (_input_press.action2)
         break;
     }
 }
-else if (_input_press.start )
+else if (_input_press.start)
 {
-    fade_perform_black(FADEROUTINE.OUT, 1);
-    audio_stop_bgm(0.5);
+    audio_stop_bgm(0.25);
+	fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+	{
+		room_goto(global.previous_room_id);
+	});
 }

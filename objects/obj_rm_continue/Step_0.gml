@@ -1,41 +1,15 @@
-if (obj_game.fade_state == FADESTATE.PLAINCOLOUR)
-{
-    game_save_data(global.current_save_slot);
-	
-    if (time_left == 0 || continue_count == 0)
-    {
-		global.continue_count = 0;
-		global.emerald_count = 0;
-		
-		// We load into the stage either from Level Select or Main Menu where all other 
-		// data is set or overwritten, so don't need to clear anything else here
-		
-        room_goto(global.start_room);
-    }
-    else
-    {
-        room_goto(global.previous_room_id);
-    }
-	
-    return;
-}
-
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-    return;
-}
-
 if (character_main.vel_charge == 0)
 {
     if (--time_left == 0)
     {
-        fade_perform_black(FADEROUTINE.OUT, 1);
-        audio_stop_bgm(0.5);
-		
-        return;
+		audio_stop_bgm(0.25);
+        fade_perform_black(FADEDIRECTION.OUT, 1,, leave_room);
     }
+	
+	return;
 }
-else if (continue_count > 1)
+
+if (continue_count > 1)
 {
 	var _last_icon = continue_icons[continue_count - 1];
 	
@@ -55,5 +29,5 @@ if (global.continue_count > 0)
     global.continue_count--;
 }
 
-fade_perform_black(FADEROUTINE.OUT, 1);
-audio_stop_bgm(0.5);
+audio_stop_bgm(0.25);
+fade_perform_black(FADEDIRECTION.OUT, 1,, leave_room);

@@ -60,7 +60,7 @@ switch (state)
 		}
 		
 		audio_play_sfx(snd_starpost);
-		fade_perform_black(FADEROUTINE.OUT, 1);
+		fade_perform_black(FADEDIRECTION.OUT, 1);
 		
 	break;
 

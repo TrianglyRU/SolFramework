@@ -1,14 +1,3 @@
-if (transition_flag && obj_game.fade_state == FADESTATE.PLAINCOLOUR)
-{	
-	room_goto(rm_bonus);
-	return;
-}
-
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-	return;
-}
-
 if (timer >= 512)
 {
 	instance_destroy();
@@ -24,12 +13,13 @@ else if (timer < 128)
 	radius += 0.25;
 }
 
-if (!transition_flag && timer >= 128 && obj_check_hitbox(player_get(0)))
+if (timer >= 128 && obj_check_hitbox(player_get(0)))
 {
-	transition_flag = true;
-	fade_perform_black(FADEROUTINE.OUT, 1);
-	audio_stop_bgm(0.5);
-	obj_set_culling(ACTIVEIF.ALWAYS);
+	audio_stop_bgm(0.25);
+	fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+	{
+		room_goto(rm_bonus);
+	});
 }
 
 timer++;

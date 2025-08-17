@@ -27,9 +27,25 @@ switch (state)
         if (state == SPECIALRESULTSSTATE.WAIT_EXIT)
         {
 			state = SPECIALRESULTSSTATE.EXIT;
-				
+			
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADEROUTINE.OUT, 1);
+            fade_perform_white(FADEDIRECTION.OUT, 1,, function()
+			{
+				// Hide the object after the first fade and then start the second one
+				visible = false;
+				
+	            fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+				{
+					while (true)
+					{
+						if (!audio_is_playing(snd_warp))
+				        {
+				            room_goto(global.previous_room_id);
+							break;
+				        }
+					}
+				});
+			});
         }
 		else
 		{
@@ -78,26 +94,6 @@ switch (state)
             message_super = true;
             state_timer = 180;
             state = SPECIALRESULTSSTATE.WAIT_EXIT;
-        }
-		
-    break;
-
-    case SPECIALRESULTSSTATE.EXIT:
-	
-        if (obj_game.fade_state != FADESTATE.PLAINCOLOUR)
-        {
-            break;
-        }
-		
-        if (visible)
-        {
-			visible = false;
-            fade_perform_black(FADEROUTINE.OUT, 1); 
-        }
-		
-        if (!audio_is_playing(snd_warp))
-        {
-            room_goto(global.previous_room_id);
         }
 		
     break;

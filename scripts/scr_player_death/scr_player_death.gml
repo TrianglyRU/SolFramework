@@ -64,25 +64,15 @@ function scr_player_death()
 
 	    case DEATHSTATE.RESTART:
 			
-	        if (restart_timer > 0)
+	        if (restart_timer > 0 && --restart_timer == 0)
 	        {
-	            if (--restart_timer != 0)
-	            {
-	                break;
-	            }
-				
-	            obj_set_culling(ACTIVEIF.ALWAYS);
-	            audio_stop_bgm(0.5);
-	            fade_perform_black(FADEROUTINE.OUT, 1);    
-	        }
-			
-	        if (obj_game.fade_state != FADESTATE.PLAINCOLOUR)
-	        {
-	            break;
-	        }
-			
-	        game_clear_level_data(false);
-	        room_restart();
+			    audio_stop_bgm(0.25);	
+			    fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+				{
+					game_clear_level_data(false);
+					room_restart();
+				}); 
+		    }
 			
 	    break;
 	}

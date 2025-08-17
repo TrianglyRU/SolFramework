@@ -5,4 +5,4 @@ logo_alpha = 0.0;
 logo_offset_x = 16;
 digit_offset_x = camera_get_width(0);
 
-fade_perform_black(FADEROUTINE.IN, 1);
+fade_perform_black(FADEDIRECTION.IN, 1);

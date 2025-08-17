@@ -1,12 +1,4 @@
-#region METHODS
-
-/// @method burst()
-burst = function()
-{
-	obj_set_anim(spr_bubble_burst, 6, 0, function(){ instance_destroy(); });
-}
-
-#endregion
+#macro BUBBLE_FINAL_FRAME 5
 
 enum BUBBLE
 {
@@ -16,7 +8,11 @@ enum BUBBLE
 	COUNTDOWN
 }
 
-#macro BUBBLE_FINAL_FRAME 5
+/// @method burst()
+burst = function()
+{
+	obj_set_anim(spr_bubble_burst, 6, 0, function(){ instance_destroy(); });
+}
 
 // Inherit the parent event
 event_inherited();

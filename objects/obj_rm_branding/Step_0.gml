@@ -1,14 +1,3 @@
-if (obj_game.fade_state == FADESTATE.PLAINCOLOUR)
-{
-    room_goto(rm_level_select);
-    return;
-}
-
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-    return;
-}
-
 orbinaut_alpha = lerp(orbinaut_alpha, 1.0, 0.05);
 orbinaut_scale = lerp(orbinaut_scale, 1.0, 0.125);
 
@@ -28,5 +17,8 @@ logo_offset_x = lerp(logo_offset_x, 1, digit_offset_x < 16 ? 0.25 : 0.0);
 
 if (obj_game.frame_counter == 96 || input_get_pressed(0).start)
 {
-    fade_perform_black(FADEROUTINE.OUT, 1);
+    fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+	{
+		room_goto(rm_level_select); 
+	});
 }

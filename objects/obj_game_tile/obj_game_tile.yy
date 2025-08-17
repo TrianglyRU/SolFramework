@@ -28,6 +28,6 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Components",
-    "path": "folders/Controllers/Components.yy",
+    "path": "folders/> Game/Components.yy",
   },
 }

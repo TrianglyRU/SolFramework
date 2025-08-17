@@ -1,19 +1,15 @@
-#region METHODS
+enum LAMPSTATE
+{
+	IDLE,
+	ROTATE,
+	ACTIVE
+}
 
 /// @method activate()
 activate = function()
 {
 	state = LAMPSTATE.ACTIVE;
 	obj_set_anim(sprite_index, 4, 0, 0);
-}
-
-#endregion
-
-enum LAMPSTATE
-{
-	IDLE,
-	ROTATE,
-	ACTIVE
 }
 
 // Inherit the parent event

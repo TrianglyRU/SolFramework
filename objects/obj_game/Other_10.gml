@@ -1,7 +1,10 @@
-/// @description Culling Event
+/// @description Active Culling
 /// This is a user event because of a posibillity of it being called at various points of game loop
 
-// Restore everything that was deactivated
+// Keep room directors active
+instance_activate_object(obj_game_director);
+
+// Restore every game object that was deactivated
 var _list_size = ds_list_size(cull_game_paused_list);
 if (_list_size > 0)
 {
@@ -40,7 +43,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	instance_activate_region(_camera_data.coarse_x, _camera_data.coarse_y, _width - 1, _height - 1, true);
 }
 
-// Cull objects by their *position* (this will also cancel "false" activations by instance_activate_region)
+// Cull game objects by their *position* (this will also cancel "false" activations by instance_activate_region)
 with (obj_game_object)
 {
 	event_perform(ev_other, ev_user14);

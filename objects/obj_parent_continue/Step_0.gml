@@ -16,7 +16,7 @@ if (vel_charge >= vel_charge_target)
 }
 
 vel_charge += vel_charge_acc;
-if (sprite_index == animation_data[1] && !anim_frame_changed)
+if (sprite_index == animation_data[1] && !anim_frame_changed && !obj_is_anim_ended())
 {
 	return;
 }

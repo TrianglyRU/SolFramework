@@ -3,22 +3,6 @@ if (state = SPECIALSTAGESTATE.RESULTS)
     exit;
 }
 
-if (obj_game.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp_2))
-{
-    var _give_emerald = state == SPECIALSTAGESTATE.EMERALD;
-    if (_give_emerald && global.emerald_count < 7)
-    {
-        global.emerald_count++;
-    }
-	
-	bg_clear_all();
-	dist_clear_all();
-    fade_perform_white(FADEROUTINE.IN, 0);
-    instance_create(0, 0, obj_gui_results_special, { EmeraldEarned: _give_emerald });
-	
-    state = SPECIALSTAGESTATE.RESULTS;
-}
-
 if (obj_game.state == GAMESTATE.PAUSED)
 {
     exit;
@@ -34,13 +18,13 @@ if (state != SPECIALSTAGESTATE.EMERALD)
     }    
     else if (_input_press.start)
     {
-        fade_perform_white(FADEROUTINE.OUT, 3);
-        audio_stop_bgm(0.5);
+		audio_stop_bgm(0.25);
         audio_play_sfx(snd_warp_2);
+        fade_perform_white(FADEDIRECTION.OUT, 3,, start_results);  
     }
 }
 else if (!audio_is_playing(snd_bgm_emerald))
 {
-    fade_perform_white(FADEROUTINE.OUT, 3);
-    audio_play_sfx(snd_warp_2);
+	audio_play_sfx(snd_warp_2);
+    fade_perform_white(FADEDIRECTION.OUT, 3,, start_results);
 }

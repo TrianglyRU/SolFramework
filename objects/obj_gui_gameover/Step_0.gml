@@ -1,31 +1,6 @@
 if (obj_game.fade_state  == FADESTATE.PLAINCOLOUR)
 {	
-	if (image_index == 1)
-	{
-		if (is_not_null_array(global.checkpoint_data))
-		{
-			global.checkpoint_data[2] = 0;
-		}
-		
-		game_clear_level_data(false);
-		room_restart();
-	}
-	else
-	{
-		global.life_count = 3;
-		global.score_count = 0;
-		game_clear_level_data();
-		game_save_data(global.current_save_slot);
-		
-		if (global.continue_count > 0)
-		{
-			room_goto(rm_continue);
-		}
-		else
-		{
-			room_goto(global.start_room);
-		}
-	}
+	
 	
 	return;
 }
@@ -47,8 +22,38 @@ switch (state)
 		if (input_get_pressed(0).action_any || wait_timer == 0)
 		{
 			state++;
-			audio_stop_bgm(0.5);
-			fade_perform_black(FADEROUTINE.OUT, 1);	
+			
+			audio_stop_bgm(0.25);
+			fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+			{
+				if (image_index == 1)
+				{
+					if (is_not_null_array(global.checkpoint_data))
+					{
+						global.checkpoint_data[2] = 0;
+					}
+		
+					game_clear_level_data(false);
+					room_restart();
+				}
+				else
+				{
+					global.life_count = 3;
+					global.score_count = 0;
+					game_clear_level_data();
+					game_save_data(global.current_save_slot);
+		
+					if (global.continue_count > 0)
+					{
+						room_goto(rm_continue);
+					}
+					else
+					{
+						room_goto(global.start_room);
+					}
+				}
+			});	
+			
 			break;
 		}
 		

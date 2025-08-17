@@ -14,7 +14,10 @@ function scr_player_animate_sonic()
 			}
 			else
 			{
-				obj_set_anim(spr_sonic_idle, 180, 0, function() { animation = ANIM.WAIT });
+				obj_set_anim(spr_sonic_idle, 180, 0, function()
+				{ 
+					animation = ANIM.WAIT 
+				});
 			}
 		
 		break;
@@ -100,19 +103,39 @@ function scr_player_animate_sonic()
 		break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_sonic_skid, 6, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_sonic_skid, 6, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.TRANSFORM:
-			obj_set_anim(spr_sonic_transform, 3, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_sonic_transform, 3, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.BREATHE:
-			obj_set_anim(spr_sonic_breathe, 24, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_sonic_breathe, 24, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.BOUNCE:
-			obj_set_anim(spr_sonic_bounce, 48, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_sonic_bounce, 48, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.BALANCE:

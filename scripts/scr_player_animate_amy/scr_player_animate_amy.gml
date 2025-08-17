@@ -7,7 +7,12 @@ function scr_player_animate_amy()
 	switch (animation)
 	{
 		case ANIM.IDLE:
-			obj_set_anim(spr_amy_idle, 240, 0, function(){ animation = ANIM.WAIT });
+		
+			obj_set_anim(spr_amy_idle, 240, 0, function()
+			{
+				animation = ANIM.WAIT 
+			});
+			
 		break;
 			
 		case ANIM.WAIT:
@@ -82,19 +87,39 @@ function scr_player_animate_amy()
 		break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_amy_skid, 6, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_amy_skid, 6, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.TRANSFORM:
-			obj_set_anim(spr_amy_transform, 3, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_amy_transform, 3, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.BREATHE:
-			obj_set_anim(spr_amy_breathe, 24, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_amy_breathe, 24, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.BOUNCE:
-			obj_set_anim(spr_amy_bounce, 4, 0, function(){ animation = ANIM.MOVE; });
+		
+			obj_set_anim(spr_amy_bounce, 4, 0, function()
+			{ 
+				animation = ANIM.MOVE; 
+			});
+			
 		break;
 		
 		case ANIM.BALANCE:

@@ -1,5 +1,3 @@
-#region METHODS
-
 /// @method dec_to_hex()
 dec_to_hex = function(_number)
 {
@@ -54,7 +52,34 @@ update_stage_selection = function()
 	}
 }
 
-#endregion
+/// @method load_selected_room()
+load_selected_room = function()
+{
+	while (true)
+	{
+		if (!audio_is_playing(snd_warp))
+		{
+			var _player_index = global.selected_player_index;
+			if (room_to_load != -1)
+			{
+			    global.player_main = _player_index < 2 ? PLAYER.SONIC : _player_index - 1;
+			    global.player_cpu = _player_index == 0 ? PLAYER.TAILS : PLAYER.NONE;
+			    global.current_save_slot = -1;
+			    global.score_count = 0;
+			    global.life_count = 3;
+				
+			    game_clear_level_data();
+			    room_goto(room_to_load);
+			}
+			else
+			{
+			    room_goto(global.start_room);
+			}
+			
+			break;
+		}
+	}
+}
 
 cheat_code_string = "";
 down_cooldown = 0;
@@ -181,4 +206,4 @@ update_stage_selection();
 audio_play_bgm(snd_bgm_level_select);
 bg_convert("Background", 0, 0, 0, 0, 0);
 discord_set_data("LEVEL SELECT", "", "room_levels", "");
-fade_perform_black(FADEROUTINE.IN, 1);
+fade_perform_black(FADEDIRECTION.IN, 1);

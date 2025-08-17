@@ -1,34 +1,6 @@
-if (obj_game.fade_state != FADESTATE.NONE)
-{
-    if (obj_game.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp))
-    {
-        var _player_index = global.selected_player_index;
-        if (room_to_load != -1)
-        {
-            global.player_main = _player_index < 2 ? PLAYER.SONIC : _player_index - 1;
-            global.player_cpu = _player_index == 0 ? PLAYER.TAILS : PLAYER.NONE;
-            global.current_save_slot = -1;
-            global.score_count = 0;
-            global.life_count = 3;
-            
-			// We keep whatever amount of Emeralds and Continues we have at the moment,
-			// so global.emerald_count and global.continue_count are not set here
-			
-            game_clear_level_data();
-            room_goto(room_to_load);
-        }
-        else
-        {
-            room_goto(global.start_room);
-        }
-    }
-	
-    return;
-}
-
 var _frame = floor(obj_game.frame_counter * 0.5);
 var _last_frame = array_length(bg_playback_data);
-
+	
 with (obj_game_layer)
 {
 	if (sprite_index == spr_level_select_bg)
@@ -68,8 +40,8 @@ if (level_entries[global.selected_level_entry] == "SOUND TEST")
 {
     if (_input_press.start)
     {
-        audio_stop_bgm(0.5);
-        fade_perform_black(FADEROUTINE.OUT, 1);
+        audio_stop_bgm(0.25);
+        fade_perform_black(FADEDIRECTION.OUT, 1,, load_selected_room);
     }
     else if (_input_press.left)
     {
@@ -187,14 +159,14 @@ else if (_input_press.action1 || _input_press.start)
         if (room_to_load == rm_special)
         {
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADEROUTINE.OUT, 1);
+            fade_perform_white(FADEDIRECTION.OUT, 1,, load_selected_room);
         }
         else
         {
-            fade_perform_black(FADEROUTINE.OUT, 1);
+            fade_perform_black(FADEDIRECTION.OUT, 1,, load_selected_room);
         }
-        
-        audio_mute_bgm(0.5);
+		
+		audio_stop_bgm(0.25);
     }
     else
     {

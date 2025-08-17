@@ -7,16 +7,10 @@ if (water_enabled)
 			water_level = math_oscillate_y(water_level_init, obj_game.frame_counter * ANGLE_INCREMENT, 10, 1, 90);
 	}
 	
-	obj_game.distortion_bound = water_level;
-	obj_game.palette_bound = water_level;
+	set_water_effects_bound();
 }
 
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-	return;
-}
-
-// Palette Rotation
+// Palette rotation
 scr_stage_palette_rotation();
 
 for (var _i = 0; _i < CAMERA_COUNT; _i++)

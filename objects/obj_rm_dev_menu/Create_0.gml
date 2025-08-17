@@ -1,5 +1,3 @@
-#region METHODS
-
 /// @method add_category()
 add_category = function(_title, _entry_array)
 {
@@ -88,8 +86,6 @@ get_setting = function(_id)
 	
 	return ": " + _display;
 }
-
-#endregion
 
 all_categories_data = ds_map_create();
 category_data = [];	

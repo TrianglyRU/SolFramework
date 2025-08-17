@@ -43,20 +43,21 @@ switch (state)
         if (--wait_timer == 0)
         {
             state = GIANTRINGSTATE.TRANSITION;
-            audio_stop_bgm(0.5);
+            audio_stop_bgm(0.25);
             audio_play_sfx(snd_warp);
-			obj_set_culling(ACTIVEIF.ALWAYS);
-            fade_perform_white(FADEROUTINE.OUT, 1);
+			
+            fade_perform_white(FADEDIRECTION.OUT, 1,, function()
+			{
+				while (true)
+				{
+					if (!audio_is_playing(snd_warp))
+			        {
+			            room_goto(rm_special);
+						break;
+			        }
+				}
+			});
         }
         
-    break;
-    
-    case GIANTRINGSTATE.TRANSITION:
-    
-        if (obj_game.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp))
-        {
-            room_goto(rm_special);
-        }
-   
-	break;    
+    break;  
 }

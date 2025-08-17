@@ -1,3 +1,21 @@
+/// @method leave_room()
+leave_room = function()
+{
+	game_save_data(global.current_save_slot);
+	
+	if (time_left == 0 || continue_count == 0)
+	{
+		global.continue_count = 0;
+		global.emerald_count = 0;
+		
+	    room_goto(global.start_room);
+	}
+	else
+	{
+	    room_goto(global.previous_room_id);
+	}
+}
+
 time_left = 659;
 character_main = noone;
 character_buddy = noone;
@@ -50,4 +68,4 @@ if (continue_count > 1)
 }
 
 audio_play_bgm(snd_bgm_continue);
-fade_perform_black(FADEROUTINE.IN, 1);
+fade_perform_black(FADEDIRECTION.IN, 1);

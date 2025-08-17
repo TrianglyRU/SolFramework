@@ -154,7 +154,7 @@ enum FADETYPE
     BLACKORDER = 0, BLACKSYNC = 1, DULLORDER = 2, DULLSYNC = 3, WHITEORDER = 4, WHITESYNC = 5, FLASHORDER = 6, FLASHSYNC = 7, NONE = -1
 }
 
-enum FADEROUTINE
+enum FADEDIRECTION
 {
     IN, OUT, NONE
 }
@@ -163,7 +163,7 @@ enum FADEROUTINE
 #macro FADE_STEP 36.4285714286	// 255 / 7
 
 fade_update = false;
-fade_routine = FADEROUTINE.NONE;
+fade_direction = FADEDIRECTION.NONE;
 fade_type = FADETYPE.NONE;
 fade_state = FADESTATE.NONE;
 fade_game_control = false;
@@ -171,6 +171,7 @@ fade_timer = FADE_TIMER_MAX;
 fade_step = 0;
 fade_frequency_timer = 0;
 fade_frequency_target = 0;
+fade_end_routine = function(){};
 
 #endregion
 

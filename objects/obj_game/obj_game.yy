@@ -52,7 +52,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Controllers",
-    "path": "folders/Controllers.yy",
+    "name": "> Game",
+    "path": "folders/> Game.yy",
   },
 }
