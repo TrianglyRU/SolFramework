@@ -11,13 +11,13 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "audiogroup_branding",
+    "path": "audiogroups/audiogroup_branding",
   },
   "soundFile": "snd_branding.wav",
   "duration": 0.494127,
   "parent": {
-    "name": "SFX",
-    "path": "folders/Sounds/SFX.yy",
+    "name": "Branding",
+    "path": "folders/Sounds/SFX/Branding.yy",
   },
 }

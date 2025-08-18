@@ -18,7 +18,6 @@ if (_input_press.action3 && category_id == 1 && option_id > 0)
 {	
 	alter_option(option_id, "SAVE " + string(option_id - 1));
 	game_delete_data(option_id - 1);
-	
 	return;
 }
 
@@ -29,9 +28,7 @@ if (_input_press.action2)
 		game_save_settings();
 	}
 	
-	var _category_data = all_categories_data[? category_id];
-	
-	load_category(_category_data[0]);
+	load_category(all_categories_data[? category_id][0]);
 	return;
 }
 
@@ -47,7 +44,6 @@ switch (category_id)
 		}
 		
 	break;
-	
 	default:
 		
 		// For everything else, react only to action1 and start inputs
@@ -60,8 +56,7 @@ switch (category_id)
 // Handle actions for each menu category
 switch (category_id)
 {	
-	// Main menu
-	case 0:
+	case 0:	// Main menu
 	
 		switch (option_id)
 		{
@@ -77,7 +72,6 @@ switch (category_id)
 				}
 				
 			break;
-
 			case 1:	
 			
 				if (global.dev_mode)
@@ -90,20 +84,16 @@ switch (category_id)
 				}	
 				
 			break;
-
 			case 2:
 				load_category(3);
 			break;
-
 			case 3:
 				game_end();
 			break;
 		}
 		
 	break;
-	
-	// Start game
-	case 1:
+	case 1:	// Start game
 	
 		global.current_save_slot = option_id - 1;
 
@@ -125,12 +115,11 @@ switch (category_id)
 		}
 		
 	break;
+	case 2:	// Room selection
 	
-	// Room selection
-	case 2:
-			
 		// Add 1 because we're skipping the rm_startup entry
 		room_to_load = option_id + 1;
+		
 		if (room_to_load < 0)
 		{
 			audio_play_sfx(snd_fail);
@@ -142,9 +131,7 @@ switch (category_id)
 		}
 		
 	break;
-	
-	// Settings menu
-	case 3:
+	case 3:	// Settings menu
 	
 		switch (option_id)
 		{
@@ -157,7 +144,6 @@ switch (category_id)
 				}
 				
 			break;
-
 			case 1:
 			
 				if (_input_press.left)
@@ -177,7 +163,6 @@ switch (category_id)
 				audio_play_bgm(snd_bgm_actclear);
 				
 			break;
-
 			case 2:
 			
 				if (_input_press.left)
@@ -194,12 +179,10 @@ switch (category_id)
 				}
 
 				global.sound_volume = clamp(global.sound_volume, 0, 1);
-				
 				audio_play_sfx(snd_ring_left);
 				audio_play_sfx(snd_ring_right);
 				
 			break;
-
 			case 3:
 			
 				if (_input_press.left)
@@ -217,33 +200,30 @@ switch (category_id)
 				
 				/// @feather ignore GM1041
 				global.window_scale = clamp(global.window_scale, 1, 4);	
-				
-				var _w = global.init_resolution_w * global.window_scale;
-				var _h = global.init_resolution_h * global.window_scale;
-				
 				window_resize();
 				
 			break;
-			
 			case 4:
-				window_set_fullscreen(!window_get_fullscreen());				
+				window_set_fullscreen(_input_press.right);				
+			break;
+			case 5:
+			
+				global.use_vsync = _input_press.right;
+				display_reset(0, global.use_vsync);
+				
 			break;
 		}
 		
 		alter_setting(option_id);
 		
-	break;
-	
-	// Player 1 selection
-	case 4:
+	break;	
+	case 4:	// Player 1 selection
 	
 		global.player_main = option_id;
 		load_category(5);
 		
 	break;
-	
-	// Player 2 selection
-	case 5:
+	case 5:	// Player 2 selection
 	
 		global.player_cpu = option_id == (category_options_count - 1) ? PLAYER.NONE : option_id;
 		global.continue_count = 3;

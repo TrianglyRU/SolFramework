@@ -4,11 +4,12 @@ function scr_game_setup()
 {
 	// Change the rm_startup's size to set up the game's default
 	// internal (application_surface) and camera resolution
-
+	
 	global.dev_mode = true;
 	global.window_name = "GameMaker - Orbinaut Framework"
 	global.start_fullscreen = true;
 	global.window_scale = 2;
+	global.use_vsync = true;
 	global.gamepad_rumble = false;
 	global.music_volume = 0.5;
 	global.sound_volume = 0.5;

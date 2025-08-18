@@ -20,6 +20,8 @@ function scr_player_balance()
 	/// @method _balance_left()
 	var _balance_left = function(_panic_cond)
 	{
+		gml_pragma("forceinline");
+		
 		switch (vd_player_type)
 		{
 			case PLAYER.SONIC:
@@ -72,6 +74,8 @@ function scr_player_balance()
 	/// @method _balance_right()
 	var _balance_right = function(_panic_cond)
 	{
+		gml_pragma("forceinline");
+		
 		switch (vd_player_type)
 		{
 			case PLAYER.SONIC:
@@ -94,9 +98,8 @@ function scr_player_balance()
 				{
 					animation = ANIM.BALANCE_PANIC;
 				}
-			
+
 			break;
-			
 			case PLAYER.TAILS:
 			case PLAYER.AMY:
 				
@@ -104,7 +107,6 @@ function scr_player_balance()
 				facing = DIRECTION.POSITIVE;
 			
 			break;
-			
 			case PLAYER.KNUCKLES:
 			
 				if (facing == DIRECTION.POSITIVE)
@@ -123,7 +125,6 @@ function scr_player_balance()
 
 	if (on_object == noone)
 	{
-		/// @feather ignore GM1041
 		if (math_get_quadrant(angle) != QUADRANT.DOWN)
 		{
 			return;

@@ -8,8 +8,7 @@
 function fade_perform_dull(_direction, _step_duration, _game_control = true, _end_routine = -1)
 {
 	var _speed = _step_duration > 0 ? (1 / _step_duration) : 0;
-	fade_perform
-	(
-		_direction, _direction == FADEDIRECTION.IN ? FADETYPE.DULLSYNC : FADETYPE.DULLORDER, _speed, _step_duration, _game_control, _end_routine
-	);
+	var _type = _direction == FADEDIRECTION.IN ? FADETYPE.DULLSYNC : FADETYPE.DULLORDER;
+	
+	fade_perform(_direction, _type, _speed, _step_duration, _game_control, _end_routine);
 }

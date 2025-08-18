@@ -25,8 +25,7 @@ void main() {
 	float distanceFactor = line * u_increment;
 	float offsetFactor = line / u_lines_total;
 	
-	if (u_increment < 0.0)
-	{
+	if (u_increment < 0.0){
 		offsetFactor = 1.0 - offsetFactor;
 	}
 	

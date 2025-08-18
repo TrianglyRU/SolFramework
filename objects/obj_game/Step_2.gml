@@ -17,6 +17,8 @@ audio_emitter_gain(audio_emitter_sfx, global.sound_volume);
 
 for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 {
+	audio_emitter_gain(audio_emitter_bgm[_i], global.music_volume);
+	 
 	var _state = audio_channel_states[_i];
     var _bgm = audio_channel_bgms[_i];
 	
@@ -25,8 +27,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
         continue;
     }
 	
-    audio_emitter_gain(audio_emitter_bgm[_i], global.music_volume);
-	
+	// audio_sound_length == -1 checks if the audio playback has ended
     if (audio_sound_length(_bgm) == -1 || _state == CHANNELSTATE.STOP && audio_sound_get_gain(_bgm) == 0)
     {
 		audio_channel_states[_i] = CHANNELSTATE.DEFAULT;
@@ -109,7 +110,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	    {
 			instance_activate_object(_target);
 			
-			// Built-in object tracking system. The player object uses its own
+			// Object tracking system. The player object uses its own
 			if (instance_exists(_target))
 			{
 		        var _width = camera_get_width(_i);

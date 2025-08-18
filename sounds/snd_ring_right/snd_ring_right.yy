@@ -11,13 +11,13 @@
   "type": 1,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "audiogroup_global",
+    "path": "audiogroups/audiogroup_global",
   },
   "soundFile": "snd_ring_right.wav",
   "duration": 0.614853,
   "parent": {
-    "name": "SFX",
-    "path": "folders/Sounds/SFX.yy",
+    "name": "Global",
+    "path": "folders/Sounds/SFX/Global.yy",
   },
 }

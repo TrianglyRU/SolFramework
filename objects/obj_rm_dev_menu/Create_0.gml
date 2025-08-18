@@ -9,9 +9,7 @@ add_category = function(_title, _entry_array)
         array_push(_data, _entry_array[_i]);
     }
 	
-    ds_map_add(all_categories_data, categories_count, _data);
-	
-    categories_count++;
+    ds_map_add(all_categories_data, categories_count++, _data);
 }
 
 /// @method load_category()
@@ -60,27 +58,26 @@ alter_setting = function(_setting_id)
 /// @method get_setting()
 get_setting = function(_id)
 {
-	var _display = "GET_SETTING() NOT SET";
+	var _display = "GET_SETTING() NOT SET";	
     switch (_id)
     {
         case 0: 
 			_display = global.gamepad_rumble ? "TRUE" : "FALSE";
 		break;
-		
         case 1:
 			_display = string(round(global.music_volume * 100)) + "%";
 		break;
-		
         case 2:
 			_display = string(round(global.sound_volume * 100)) + "%";
 		break;
-		
         case 3: 
 			_display = string(global.window_scale) + "X";
 		break;
-		
 		case 4:
 			_display = window_get_fullscreen() ? "TRUE" : "FALSE";
+		break;
+		case 5:
+			_display = global.use_vsync ? "TRUE" : "FALSE";
 		break;
     }
 	
@@ -94,6 +91,13 @@ category_id = 0;
 category_options_count = 0;
 option_id = 0;
 room_to_load = -1;
+
+// Automatically generate room list
+var _room_list = [];
+for (var _i = 1; _i <= room_last; _i++)
+{
+	_room_list[_i - 1] = string_upper(room_get_name(_i));
+}
 
 add_category    // ID 0
 (
@@ -118,13 +122,6 @@ add_category    // ID 1
 	]
 );
 
-// Automatically generate room list
-var _room_list = [];
-for (var _i = 1; _i <= room_last; _i++)
-{
-	_room_list[_i - 1] = string_upper(room_get_name(_i));
-}
-
 add_category    // ID 2
 (
     "ROOM SELECT", _room_list
@@ -138,7 +135,8 @@ add_category    // ID 3
 	    "BGM VOLUME",
 	    "SFX VOLUME",
 	    "WINDOW SCALE",
-	    "FULLSCREEN"
+	    "FULLSCREEN",
+		"FULLSCREEN VSYNC"
 	]
 );
 

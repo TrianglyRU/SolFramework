@@ -105,36 +105,39 @@ instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_hud);
 audio_play_bgm(bgm_track);
 
 // Discord
-var _player_icon = "";
+var _player_icon, _stage_icon;
+
 switch (global.player_main)
 {
     case PLAYER.SONIC:
         _player_icon = "player_sonic"; 
     break;
-	
     case PLAYER.TAILS: 
         _player_icon = "player_tails";
     break;
-	
     case PLAYER.KNUCKLES:
         _player_icon = "player_knuckles";
     break;
-	
     case PLAYER.AMY:
         _player_icon = "player_amy"; 
     break;
+	default:
+		_player_icon = "";
 }
 
-var _stage_icon = "";
 switch (room)
 {
 	case rm_stage_ghz0:
 		_stage_icon = "stage_ghz";
 	break;
-	
 	case rm_stage_ehz0:
 		_stage_icon = "stage_ehz";
 	break;
+	case rm_stage_dwz0:
+		_stage_icon = "stage_dwz";
+	break;
+	default:
+		_player_icon = "";
 }
 
 discord_set_data(zone_name, act_id == ACT_SINGLE ? "Single Act" : "Act " + string(act_id + 1), _stage_icon, _player_icon);
