@@ -1,6 +1,7 @@
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
+	
 	obj_act_solid(_player, SOLIDOBJECT.FULL);
 	
 	if (!obj_is_anim_stopped() || !_player.is_grounded)
@@ -9,6 +10,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 		
 	var _collision_side = image_xscale >= 0 ? SOLIDCOLLISION.RIGHT : SOLIDCOLLISION.LEFT;
+	
 	if (!obj_check_solid(_player, _collision_side))
 	{
 		if (sign(_player.vel_x) != sign(image_xscale) && _player.vel_x != 0)

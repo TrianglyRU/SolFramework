@@ -1,8 +1,5 @@
 #macro BUMPER_FORCE 7 
 
-/// @method reset_anim()
-reset_anim = 
-
 // Inherit the parent event
 event_inherited();
 

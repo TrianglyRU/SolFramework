@@ -19,18 +19,17 @@ switch (vd_star_id)
 }
 
 var _delay = 0;
+
 switch (vd_star_id)
 {
 	case 0:
 	case 4: 
 		_delay = 9;
 	break;
-	
 	case 1:
 	case 5: 
 		_delay = 6;
 	break;
-	
 	case 2:
 	case 6:
 		_delay = 3;

@@ -71,15 +71,17 @@ else if (bubbles_spawned_no_air < 12)
     if (next_bubble_timer_no_air > 0)
     {
         next_bubble_timer_no_air--;
-        return;
     }
-	
-    var _type = irandom(3) > 0 ? BUBBLE.SMALL : BUBBLE.MEDIUM;	
-    instance_create(_x, _y - 12, obj_bubble,
-    {
-        vd_bubble_type: _type, vd_wobble_direction: _spawn_direction, depth: RENDERER_DEPTH_HIGHEST - 1
-    });
-	
-    bubbles_spawned_no_air++;
-    next_bubble_timer_no_air = irandom_range(0, 7);
+	else
+	{
+		var _type = irandom(3) > 0 ? BUBBLE.SMALL : BUBBLE.MEDIUM;
+		
+	    instance_create(_x, _y - 12, obj_bubble,
+	    {
+	        vd_bubble_type: _type, vd_wobble_direction: _spawn_direction, depth: RENDERER_DEPTH_HIGHEST - 1
+	    });
+		
+	    bubbles_spawned_no_air++;
+	    next_bubble_timer_no_air = irandom_range(0, 7);
+	}
 }

@@ -4,6 +4,7 @@ if (cull_behaviour == ACTIVEIF.ALWAYS && obj_game.state == GAMESTATE.NORMAL)
 }
 
 var _target_bg = vd_bg_id;
+
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
 	var _camera = camera_get_data(_i);

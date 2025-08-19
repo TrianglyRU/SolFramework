@@ -1,5 +1,5 @@
 /// @self obj_game_object
-/// @description Resets the animation playback to the first frame, restarts the animation timer and resets the play counter.
+/// @description Resets and restarts the animation playback from the first frame.
 function obj_restart_anim()
 {
 	image_index = 0;

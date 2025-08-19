@@ -1,5 +1,5 @@
 // Override draw
-if (sprite_index < 0 || obj_game.frame_counter % 2 != 0)
+if (obj_game.frame_counter % 2 != 0)
 {
 	return;
 }

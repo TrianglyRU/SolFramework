@@ -54,6 +54,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
             instance_create(x, y - 3, obj_itemcard, { image_index: itembox_type });
             instance_create(x, y, obj_explosion_dust);
 			input_set_rumble(_p, 0.05, INPUT_RUMBLE_LIGHT);	
+			
             break;
         }
     }

@@ -26,7 +26,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		var _dist_x = floor(_player.x) - x;
 		var _dist_y = floor(_player.y) - y - 16;
 		
-		if abs(_dist_y) >= 48
+		if (abs(_dist_y) >= 48)
 		{
 			continue;
 		}
@@ -74,6 +74,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			if (_player.animation == ANIM.FLIP)
 			{
 				var _frame_index = floor(_dist_x / 32);
+				
 				if (_player.facing == DIRECTION.NEGATIVE)
 				{
 					_frame_index = array_length(flip_frame_table) - _frame_index - 1;

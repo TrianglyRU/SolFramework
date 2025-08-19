@@ -1,4 +1,5 @@
 var _shield = global.player_shields[vd_target_player.player_index];
+
 if (!instance_exists(vd_target_player) || _shield == SHIELD.NONE)
 {
     instance_destroy();	
@@ -15,7 +16,6 @@ switch (_shield)
         }
 		
     break;
-    
     case SHIELD.LIGHTNING:
 		
 		if (image_index == 21)

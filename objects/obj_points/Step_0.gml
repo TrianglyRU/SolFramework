@@ -15,6 +15,7 @@ if (!visible)
 		{
 			visible = true;
 			global.score_count += power(10, image_index + 2);
+			
 			audio_play_sfx(snd_points);
 			obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
 			break;

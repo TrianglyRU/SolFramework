@@ -11,6 +11,7 @@ var _factor_x = _width / 320;
 var _x = 0;
 var _y = 0;
 var _is_single_act = obj_rm_stage.act_id == ACT_SINGLE;
+var _player_text;
 
 _x = _draw_x + offset_line1 * _factor_x;
 _y = _draw_y - 56;
@@ -20,20 +21,19 @@ if (!_is_single_act && player_object.vd_player_type == PLAYER.KNUCKLES)
     _x -= 28;
 }
 
-var _player_text = "SONIC";
 switch (player_object.vd_player_type)
 {
     case PLAYER.TAILS:
         _player_text = "TAILS";
     break;
-	
     case PLAYER.KNUCKLES:
         _player_text = "KNUCKLES";
     break;
-	
     case PLAYER.AMY:
         _player_text = "AMY";
     break;
+	default:
+		_player_text = "SONIC";
 }
 
 surface_set_target(application_surface);

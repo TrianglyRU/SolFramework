@@ -33,42 +33,36 @@ switch (sprite_index)
         vel_y_bounce = -4;
 		
     break;
-	
     case spr_animal_pocky:
 	
         vel_x_bounce = 2;
         vel_y_bounce = -4;
 		
     break;
-
     case spr_animal_cucky:
 	
         vel_x_bounce = 2;
         vel_y_bounce = -3;
 		
     break;
-
     case spr_animal_pecky:
 	
         vel_x_bounce = 1.5;
         vel_y_bounce = -3;
 		
     break;
-
     case spr_animal_picky:
 	
         vel_x_bounce = 1.75;
         vel_y_bounce = -3;
 		
     break;
-
     case spr_animal_ricky:
 	
         vel_x_bounce = 2.5;
         vel_y_bounce = -3.5;
 		
     break;
-
     case spr_animal_rocky:
 	
         vel_x_bounce = 1.25;

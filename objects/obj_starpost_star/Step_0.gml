@@ -23,6 +23,7 @@ if (timer >= 128 && obj_check_hitbox(player_get(0)))
 }
 
 timer++;
+
 var _radius = floor(radius);
 var _angle = 90 * vd_star_id + timer * 12.65625;
 var _x = dsin(_angle) * 512;

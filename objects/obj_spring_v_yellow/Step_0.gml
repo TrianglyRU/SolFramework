@@ -1,7 +1,8 @@
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
-    obj_act_solid(_player, SOLIDOBJECT.FULL, SOLIDATTACH.RESET_PLAYER);
+   
+	obj_act_solid(_player, SOLIDOBJECT.FULL, SOLIDATTACH.RESET_PLAYER);
 	
     if (!obj_is_anim_stopped())
     {
@@ -9,7 +10,8 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
     }
 	
     var _collision_side = image_yscale >= 0 ? SOLIDCOLLISION.TOP : SOLIDCOLLISION.BOTTOM;
-    if (!obj_check_solid(_player, _collision_side))
+    
+	if (!obj_check_solid(_player, _collision_side))
     {
         continue;
     }

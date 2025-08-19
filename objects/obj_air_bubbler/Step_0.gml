@@ -51,12 +51,13 @@ switch (state)
 		{
 			bubble_id++;
 			random_time = irandom_range(0, 31);
-			break;
+		}
+		else
+		{
+			wait_time = set_delay();
+			wait_cycle++;
+			state = AIRBUBBLERSTATE.IDLE;
 		}
 		
-		wait_time = set_delay();
-		wait_cycle++;
-		state = AIRBUBBLERSTATE.IDLE;
-
 	break;
 }

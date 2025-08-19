@@ -13,7 +13,6 @@ if (vd_bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_rm_stage.water_level)
 }
 
 wobble_offset = (++wobble_offset) % (array_length(wobble_data) - 1);
-
 x = xstart + wobble_data[wobble_offset] * vd_wobble_direction;
 y += vel_y;
 
@@ -64,7 +63,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		_player.animation = ANIM.BREATHE;
 		_player.reset_substate();
 	}
-		
+	
 	_player.air_timer = AIR_TIMER_DEFAULT;
 	_player.ground_lock_timer = 35;
 	_player.vel_x = 0;

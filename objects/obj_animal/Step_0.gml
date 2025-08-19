@@ -32,25 +32,23 @@ if (_floor_dist >= 0)
 y += _floor_dist;
 vel_y = vel_y_bounce;
 
-if (state != ANIMALSTATE.APPEAR)
+if (state == ANIMALSTATE.APPEAR)
 {
-    return;
-}
-
-image_xscale = vd_random_direction ? choose(1, -1) : -1;
-vel_x = vel_x_bounce * image_xscale;
-state = ANIMALSTATE.MOVE;
-
-switch (sprite_index)
-{
-    case spr_animal_flicky:
+    image_xscale = vd_random_direction ? choose(1, -1) : -1;
+	vel_x = vel_x_bounce * image_xscale;
+	state = ANIMALSTATE.MOVE;
 	
-        obj_set_anim(sprite_index, 4, 1, 1);
-		grv = 0.09375;
+	switch (sprite_index)
+	{
+	    case spr_animal_flicky:
 		
-	break;
-	
-    case spr_animal_cucky:
-        obj_set_anim(sprite_index, 2, 1, 1);
-    break;
+			grv = 0.09375;
+	        obj_set_anim(sprite_index, 4, 1, 1);
+			
+		break;
+	    case spr_animal_cucky:
+	        obj_set_anim(sprite_index, 2, 1, 1);
+	    break;
+	}
 }
+

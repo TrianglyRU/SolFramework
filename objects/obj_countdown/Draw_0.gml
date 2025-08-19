@@ -1,12 +1,7 @@
 // Override draw
-if (sprite_index < 0)
-{
-	return;
-}
-
 var _x = camera_get_x(view_current);
 var _y = camera_get_y(view_current);
-	
+
 if (offset_x[view_current] == undefined)
 {
 	offset_x[view_current] = x - _x;

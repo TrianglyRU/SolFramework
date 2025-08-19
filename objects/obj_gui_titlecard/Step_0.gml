@@ -4,6 +4,7 @@ if (timer < 128)
     {
         speed_x *= 2;
         speed_y *= 2;
+		
 		fade_perform_black(FADEDIRECTION.IN, 1);
     }
     else if (timer >= 8)
@@ -18,7 +19,8 @@ else
 {
     if (timer == 192)
     {
-        obj_game.allow_pause = true;		
+        obj_game.allow_pause = true;	
+		
         instance_destroy();
 		return;
     }

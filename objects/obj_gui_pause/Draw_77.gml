@@ -3,7 +3,6 @@ var _y = surface_get_height(application_surface) * 0.5;
 
 surface_set_target(application_surface);
 shader_rgb_fade();
-
 draw_sprite(sprite_index, 0, _x, _y);
 
 if (highlight_timer < 8)

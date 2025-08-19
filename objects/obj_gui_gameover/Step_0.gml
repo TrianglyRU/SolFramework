@@ -1,14 +1,7 @@
-if (obj_game.fade_state  == FADESTATE.PLAINCOLOUR)
-{	
-	
-	
-	return;
-}
-	
 switch (state)
 {
 	case GAMEOVERSTATE.SLIDE_IN:
-			
+		
 		offset_x = max(offset_x - speed_x, 0);
 		if (offset_x == 0)
 		{
@@ -16,7 +9,6 @@ switch (state)
 		}
 		
 	break;
-		
 	case GAMEOVERSTATE.WAIT:
 			
 		if (input_get_pressed(0).action_any || wait_timer == 0)
@@ -40,6 +32,7 @@ switch (state)
 				{
 					global.life_count = 3;
 					global.score_count = 0;
+					
 					game_clear_level_data();
 					game_save_data(global.current_save_slot);
 		

@@ -10,24 +10,24 @@ var _draw_y = _height * 0.5;
 var _factor_x = _width / 320;
 var _x = 0;
 var _y = 0;
+var _player_text;
 
 _x = _draw_x + offset_line1 * _factor_x;
 _y = _draw_y - 88;
 
-var _player_text = "SONIC";
 switch (global.player_main)
 {
     case PLAYER.TAILS:
         _player_text = "TAILS";
     break;
-	
     case PLAYER.KNUCKLES:
         _player_text = "KNUCKLES";
     break;
-	
     case PLAYER.AMY:
         _player_text = "AMY";
     break;
+	default:
+		_player_text = "SONIC";
 }
 
 draw_set_font(global.font_data[? spr_font_large_alt]);
@@ -91,6 +91,5 @@ for (var _i = 0; _i < global.emerald_count; _i++)
 }
 
 draw_set_alpha(1.0);
-
 shader_reset();
 surface_reset_target();

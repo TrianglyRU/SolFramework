@@ -10,6 +10,7 @@ if (vd_move_spikes)
     else
     {
         retract_offset += 8 * retract_direction;
+		
         if (abs(retract_offset) >= retract_distance || sign(image_yscale) != sign(retract_offset))
         {
             if (image_yscale > 0)

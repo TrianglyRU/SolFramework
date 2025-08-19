@@ -1,9 +1,4 @@
 // Override draw
-if (sprite_index < 0)
-{
-	return;
-}
-
 var _x = floor(vd_target_player.x);
 var _y = floor(vd_target_player.y) + vd_target_player.radius_y + 1;
 

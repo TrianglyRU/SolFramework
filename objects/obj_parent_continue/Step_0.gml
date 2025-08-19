@@ -5,9 +5,10 @@ if (!start_pressed)
 		return;
 	}
 	
+	start_pressed = true;
+	
 	audio_play_sfx(snd_charge_spin);
 	obj_set_anim(animation_data[1], 5, 0, 0);
-	start_pressed = true;
 }
 
 if (vel_charge >= vel_charge_target)
@@ -16,12 +17,14 @@ if (vel_charge >= vel_charge_target)
 }
 
 vel_charge += vel_charge_acc;
+
 if (sprite_index == animation_data[1] && !anim_frame_changed && !obj_is_anim_ended())
 {
 	return;
 }
 
 var _sprite = animation_data[2];
+
 if (vel_charge >= 7 && array_length(animation_data) > 4)
 {
 	_sprite = animation_data[4];

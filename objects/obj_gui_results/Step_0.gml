@@ -89,6 +89,7 @@ switch (state)
         {
             state_timer = 300;
             global.continue_count++;
+			
             instance_create(0, 0, obj_gui_continue_results, { visible: false });    
         }
         else

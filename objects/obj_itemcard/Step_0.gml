@@ -5,7 +5,8 @@ switch (state)
         if (vel_y < 0)
         {
             y += vel_y;
-            vel_y += 0.09375;	
+            vel_y += 0.09375;
+			
             break;
         }
 
@@ -19,21 +20,19 @@ switch (state)
         {
             // Nothing
             case 0: break;
-            
             // Eggman Mark
             case 1:
                _player.hurt();
             break;
-                
             // Super Ring
             case 2:
 			
                 global.player_rings = min(global.player_rings + 10, 999);
+				
                 audio_play_sfx(snd_ring_left);
                 audio_play_sfx(snd_ring_right);
 				
-            break;
-                
+            break; 
             // Power Sneakers
             case 3:
 			
@@ -44,8 +43,7 @@ switch (state)
 				
                 _player.item_speed_timer = 1200;
 				
-            break;
-                
+            break; 
             // Shields
             case 4:
 			
@@ -53,33 +51,29 @@ switch (state)
                 audio_play_sfx(snd_shield);
 				
             break;
-                
             case 5:
 				
-				if audio_is_playing(snd_bgm_drowning)
+				global.player_shields[0] = SHIELD.BUBBLE;
+				
+				audio_play_sfx(snd_shield_bubble);
+				if (audio_is_playing(snd_bgm_drowning))
                 {
                     audio_reset_bgm(obj_rm_stage.bgm_track, _player);
                 }
 				
-                global.player_shields[0] = SHIELD.BUBBLE;
-				audio_play_sfx(snd_shield_bubble);
-				
-            break;
-                
+            break;      
             case 6:
 			
                 global.player_shields[0] = SHIELD.FIRE;
                 audio_play_sfx(snd_shield_fire);
 				
             break;
-                
             case 7:
 			
                 global.player_shields[0] = SHIELD.LIGHTNING;
                 audio_play_sfx(snd_shield_lightning);
 				
             break;
-                
             // Invincibility
             case 8:
 			
@@ -101,7 +95,6 @@ switch (state)
                 _player.item_inv_timer = 1200;
 				
             break;
-                
             // 1-UP
             default:
 			
