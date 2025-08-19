@@ -1,20 +1,19 @@
 if (state = SPECIALSTAGESTATE.RESULTS)
 {
-    exit;
+    return;
 }
 
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-    exit;
-}
-
-if (state != SPECIALSTAGESTATE.EMERALD)
+if (state == SPECIALSTAGESTATE.IDLE)
 {
     var _input_press = input_get_pressed(0);
+    var _input_held = input_get(0);
+	
     if (_input_press.action1)
-    {
-        audio_play_bgm(snd_bgm_emerald);
-        state = SPECIALSTAGESTATE.EMERALD;
+    { 
+		state = _input_held.action2 ? SPECIALSTAGESTATE.ALL_EMERALDS
+									: SPECIALSTAGESTATE.EMERALD;
+									
+		audio_play_bgm(snd_bgm_emerald);
     }    
     else if (_input_press.start)
     {

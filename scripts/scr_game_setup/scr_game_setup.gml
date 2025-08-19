@@ -16,7 +16,7 @@ function scr_game_setup()
 	global.start_room = rm_branding;
 	global.discord_ready = np_initdiscord("1286956015241265174", true, 0);
 	
-	global.player_physics = PHYSICS.S3;
+	global.player_physics = PHYSICS.S2;
 	global.cpu_behaviour = CPUBEHAVIOUR.S3;
 	global.rotation_mode = ROTATION.MANIA;
 	global.rotation_range = RANGE.DEFAULT;
@@ -122,6 +122,7 @@ function scr_game_setup()
 	tile_calculate_data(spr_collision_s2, _s2_angle_data, 16);
 	
 	// Sonic 3K collision
+	/*
 	var _s3_angle_data =
 	[
 			 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 
@@ -143,6 +144,7 @@ function scr_game_setup()
 	]
 	
 	tile_calculate_data(spr_collision_s3, _s3_angle_data, 16);
+	*/
 	
 	#endregion
 }

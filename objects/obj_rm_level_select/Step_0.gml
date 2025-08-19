@@ -101,6 +101,7 @@ else if (_input_press.left || _input_press.right)
 		{
 			_this_page_current = _current_index - _i - 1;
 			_prev_page_last = _i - 1;
+			
 			break;
 		}
 		

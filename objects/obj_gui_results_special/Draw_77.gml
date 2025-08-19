@@ -36,6 +36,7 @@ draw_set_halign(fa_center);
 surface_set_target(application_surface);
 shader_rgb_fade();
 
+// Upper text
 if (message_super)
 {
     draw_text(_x, _y, "NOW " + string(_player_text) + " CAN BE");
@@ -48,6 +49,7 @@ else if (vd_emerald_earned)
 _x = _draw_x + offset_line2 * _factor_x;
 _y = _draw_y - 70;
 
+// Lower text
 if (global.emerald_count >= 7)
 {
     draw_text(_x, _y, message_super ? "SUPER " + string(_player_text) : "CHAOS EMERALDS");
@@ -78,7 +80,7 @@ draw_set_alpha(obj_game.frame_counter % 2 == 0 ? 1.0 : 0);
 
 for (var _i = 0; _i < global.emerald_count; _i++)
 {
-    switch _i
+    switch (_i)
     {
         case 0: draw_sprite(spr_gui_emerald, _i, _x, _y); break;    
         case 1: draw_sprite(spr_gui_emerald, _i, _x + 24, _y + 12); break;
