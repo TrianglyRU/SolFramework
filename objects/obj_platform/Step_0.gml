@@ -3,9 +3,11 @@ switch (state)
 	case PLATFORMSTATE.MOVE:
 	
 		var _player_touch = false;
+		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			var _player = player_get(_p);
+
 			if (obj_check_solid(_player, SOLIDCOLLISION.TOP))
 			{
 				_player_touch = true;
@@ -33,28 +35,25 @@ switch (state)
 			case PLATFORMTYPE.DEFAULT:
 				y = ystart;
 			break;
-			
 			case PLATFORMTYPE.HORIZONTAL:
 			
 				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
 				y = ystart;
 				
 			break;
-
 			case PLATFORMTYPE.VERTICAL:
 				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
 			break;
-
 			case PLATFORMTYPE.CIRCULAR:
 			
 				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
 				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
 				
 			break;
-
 			case PLATFORMTYPE.FALL:
 				
 				y = ystart;
+				
 				if (wait_timer == 0)
 				{
 					if (_player_touch)
@@ -70,15 +69,15 @@ switch (state)
 				
 			break;
 		}
-
+		
 		y += dsin(weight) * 4;
+		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			obj_act_solid(player_get(_p), SOLIDOBJECT.TOP);
 		}
 
 	break;
-
 	case PLATFORMSTATE.FALL:
 	
 		if (--wait_timer == 0)

@@ -22,7 +22,6 @@ switch (state)
 		}
 		
 	break;
-	
 	case MOTOBUGSTATE.WAIT:
 	
 		if (--move_timer < 0)
@@ -31,11 +30,11 @@ switch (state)
 			vel_x = sign(image_xscale);
 			image_xscale *= -1;
 			visible = true;
+			
 			obj_set_anim(sprite_index, 8, 0, 0);
 		}
 		
 	break;
-	
 	case MOTOBUGSTATE.ROAM:
 	
 		x += vel_x;
@@ -45,13 +44,14 @@ switch (state)
 		{
 			state = MOTOBUGSTATE.WAIT;
 			move_timer = 59;
-			vel_x *= -1;		
+			vel_x *= -1;
+			
 			obj_stop_anim(0);
 			break;
 		}
 		
 		y += _floor_dist;
-		
+
 		if (--smoke_timer < 0)
 		{
 			smoke_timer = 15;

@@ -24,6 +24,7 @@ switch (state)
 			}
 			
 			var _push_force = 0.25;
+			
 			_player.spd_ground = _push_force * direction_x;
 			_player.vel_x = 0;
 			_player.x += direction_x;
@@ -34,28 +35,28 @@ switch (state)
 				audio_play_sfx(snd_push);
 			}
 			
-			if (vd_no_gravity)
+			if (!vd_no_gravity)
 			{
-				continue;
+				_floor_dist = tile_find_v(x, y + 15, DIRECTION.POSITIVE)[0];
+				if (_floor_dist <= 4)
+				{
+					y += _floor_dist;
+				}
+				else
+				{
+					vel_x = 4 * direction_x;
+					state = PUSHABLEBLOCKSTATE.LEDGE;
+					
+					obj_clear_solid_push(_player);
+				}
 			}
-			
-			_floor_dist = tile_find_v(x, y + 15, DIRECTION.POSITIVE)[0];
-			if (_floor_dist <= 4)
-			{
-				y += _floor_dist;
-				continue;
-			}
-			
-			vel_x = 4 * direction_x;
-			state = PUSHABLEBLOCKSTATE.LEDGE;
-			obj_clear_solid_push(_player);
 		}
 		
 	break;
-	
 	case PUSHABLEBLOCKSTATE.LEDGE:
 	
-		x += vel_x;		
+		x += vel_x;	
+		
 		if floor(x / vel_x) % vel_x == 0
 		{
 			x = round(x / solid_radius_x) * solid_radius_x; 
@@ -63,7 +64,6 @@ switch (state)
 		}
 		
 	break;
-	
 	case PUSHABLEBLOCKSTATE.FALL:
 	
 		y += vel_y;

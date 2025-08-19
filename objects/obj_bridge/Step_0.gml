@@ -4,19 +4,20 @@ var _player_touch = false;
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
-	obj_act_solid(_player, SOLIDOBJECT.TOP);
 	
+	obj_act_solid(_player, SOLIDOBJECT.TOP);
 	if (!obj_check_solid(_player, SOLIDCOLLISION.TOP))
 	{
 		continue;
 	}
 	
 	_player_touch = true;
+	
 	var _active_log = clamp
 	(
 		floor(floor(_player.x - x + log_amount * log_size_half) / log_size) + 1, 1, log_amount
 	);
-		
+	
 	var _dip_value = dip[_active_log - 1];
 	if (_dip_value > _max_dip)
 	{

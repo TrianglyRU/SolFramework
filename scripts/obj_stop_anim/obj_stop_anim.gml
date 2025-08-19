@@ -1,6 +1,6 @@
 /// @self obj_game_object
-/// @description Stops the animation playback by setting the frame to a specified index and clearing the duration. Additionally clears the play counter.
-/// @param {Real} _image_index The frame index to set when stopping the animation (default is image_index).
+/// @description Resets and stops the animation playback.
+/// @param {Real} _image_index The frame index to set when stopping the animation (default is current image_index).
 function obj_stop_anim(_image_index = image_index)
 {
 	if (image_index != _image_index)

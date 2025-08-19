@@ -5,6 +5,7 @@ switch (state)
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
         {
             var _player = player_get(_p);
+			
             obj_act_solid(_player, SOLIDOBJECT.TOP);
             
             if (!fall_flag)
@@ -63,10 +64,10 @@ switch (state)
         visible = false;
         state = FALLINGFLOORSTATE.FALL;
         wait_timer = _wait_timer;
+		
         audio_play_sfx(snd_break_ledge);
 
-    break;
-    
+    break; 
     case FALLINGFLOORSTATE.FALL:
 	
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
@@ -80,7 +81,6 @@ switch (state)
 		}
 		else
 		{
-			state++;
 			with (obj_player)
 			{
 				if (on_object == other.id)
@@ -89,6 +89,8 @@ switch (state)
 					is_grounded = false;
 				}
 			}
+			
+			state++;
 		}
 		
     break;

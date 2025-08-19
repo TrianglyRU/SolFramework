@@ -10,6 +10,7 @@ switch (state)
 		var _player = instance_nearest(x, y, obj_player);
 		var _dist_x = floor(x) - floor(_player.x);
 		var _total_dist_x = _dist_x + 96;
+		
 		image_xscale = sign(_dist_x);
 		
 		if (_total_dist_x >= 0 && _total_dist_x < 192)
@@ -19,7 +20,7 @@ switch (state)
 				state = COCONUTSSTATE.START_THROW;
 				break;
 			}
-				
+			
 			attack_timer--;
 		}
 			
@@ -28,8 +29,7 @@ switch (state)
 			state = COCONUTSSTATE.START_CLIMB;
 		}
 			
-	break;
-		
+	break;	
 	case COCONUTSSTATE.START_CLIMB:
 		
 		if (climb_table_index >= 12)
@@ -41,16 +41,17 @@ switch (state)
 		state_timer = climb_data[climb_table_index + 1];		
 		climb_table_index += 2;
 		state = COCONUTSSTATE.CLIMB;
+		
 		obj_set_anim(sprite_index, 6, 0, 0);
 		
 	break;
-	
 	case COCONUTSSTATE.CLIMB:
 			
 		if (--state_timer == 0)
 		{
 			state = COCONUTSSTATE.IDLE;
 			state_timer = 16;
+			
 			obj_stop_anim(0);
 			break;
 		}
@@ -59,7 +60,6 @@ switch (state)
 		y += vel_y;
 			
 	break;
-		
 	case COCONUTSSTATE.START_THROW:
 		
 		state = COCONUTSSTATE.THROW;
@@ -67,8 +67,7 @@ switch (state)
 		attack_timer = 32;	
 		hand_frame = 2;
 		
-	break;
-		
+	break;	
 	case COCONUTSSTATE.THROW:
 			
 		if (--state_timer >= 0)
@@ -81,12 +80,14 @@ switch (state)
 			attack_flag = true;
 			state_timer = 8;
 			hand_frame = image_index;
+			
 			instance_create(x + 11 * image_xscale, y - 13, obj_coconuts_projectile, { image_xscale: image_xscale });
-			break;
 		}
-			
-		state = COCONUTSSTATE.START_CLIMB;
-		attack_flag = false;
-			
+		else
+		{
+			state = COCONUTSSTATE.START_CLIMB;
+			attack_flag = false;
+		}
+		
 	break;
 }

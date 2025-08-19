@@ -11,6 +11,8 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	var _shield = global.player_shields[_p];
+	
+	// Conditions upon players CAN destroy the wall
 	if not (_player.animation == ANIM.SPIN && _player.is_grounded && abs(_smash_vel) >= 4
 	  || _player.vd_player_type == PLAYER.KNUCKLES
 	  || _player.action == ACTION.HAMMERSPIN
