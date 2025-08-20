@@ -36,14 +36,12 @@ switch (state)
 				
 	            fade_perform_black(FADEDIRECTION.OUT, 1,, function()
 				{
-					while (true)
+					while (audio_is_playing(snd_warp))
 					{
-						if (!audio_is_playing(snd_warp))
-				        {
-				            room_goto(global.previous_room_id);
-							break;
-				        }
+						// Wait until snd_warp is no longer playing
 					}
+					
+					room_goto(global.previous_room_id);
 				});
 			});
         }

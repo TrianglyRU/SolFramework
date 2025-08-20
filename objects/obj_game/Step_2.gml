@@ -88,19 +88,15 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
         continue;
     }
 	
-	// Create a surface for the camera if it's non-existent. Doing so in a Draw event results in a blank frame
+	// Create all needed surfaces for the camera if they're non-existent. Doing so in a Draw event results in a blank frame
 	if (!surface_exists(view_surface_id[_i]))
 	{
 		var _w = _camera_data.surface_w;
 		var _h = _camera_data.surface_h;
 		
+		view_surface_id[_i] = surface_create(_w, _h);
 		view_surface_palette[_i] = surface_create(_w, _h);
 		view_surface_palette_faded[_i] = surface_create(_w, _h);
-		view_surface_id[_i] = surface_create(_w, _h);
-		
-		surface_set_target(view_surface_id[_i]);
-		draw_clear_alpha(c_fuchsia, 0);
-		surface_reset_target();
 	}
 	
 	if (state != GAMESTATE.PAUSED && _camera_data.allow_movement)

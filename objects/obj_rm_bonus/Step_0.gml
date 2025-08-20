@@ -42,7 +42,7 @@ else if (_input_press.action2)
 }
 else if (_input_press.start)
 {
-    audio_stop_bgm(0.25);
+    audio_stop_bgm(1.0);
 	fade_perform_black(FADEDIRECTION.OUT, 1,, function()
 	{
 		room_goto(global.previous_room_id);

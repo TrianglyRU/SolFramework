@@ -15,7 +15,7 @@ switch (state)
 		{
 			state++;
 			
-			audio_stop_bgm(0.25);
+			audio_stop_bgm(1.0);
 			fade_perform_black(FADEDIRECTION.OUT, 1,, function()
 			{
 				if (image_index == 1)

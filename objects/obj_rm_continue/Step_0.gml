@@ -2,7 +2,7 @@ if (character_main.vel_charge == 0)
 {
     if (--time_left == 0)
     {
-		audio_stop_bgm(0.25);
+		audio_stop_bgm(1.0);
         fade_perform_black(FADEDIRECTION.OUT, 1,, leave_room);
     }
 	
@@ -29,5 +29,5 @@ if (global.continue_count > 0)
     global.continue_count--;
 }
 
-audio_stop_bgm(0.25);
+audio_stop_bgm(1.0);
 fade_perform_black(FADEDIRECTION.OUT, 1,, leave_room);

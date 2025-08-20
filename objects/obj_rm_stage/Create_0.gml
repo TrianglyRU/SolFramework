@@ -99,8 +99,8 @@ if (water_enabled)
     instance_create_depth(0, 0, RENDERER_DEPTH_HIGHEST, obj_water_surface);
 }
 
-instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_titlecard);
-instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_hud);
+instance_create(0, 0, obj_gui_titlecard);
+instance_create(0, 0, obj_gui_hud);
 
 audio_play_bgm(bgm_track);
 
@@ -137,7 +137,7 @@ switch (room)
 		_stage_icon = "stage_dwz";
 	break;
 	default:
-		_player_icon = "";
+		_stage_icon = "";
 }
 
 discord_set_data(zone_name, act_id == ACT_SINGLE ? "Single Act" : "Act " + string(act_id + 1), _stage_icon, _player_icon);

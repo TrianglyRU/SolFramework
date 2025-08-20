@@ -14,11 +14,12 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		continue;
 	}
 	
+	// All surfaces exist by this point, see End Step -> CAMERA
 	var _surface = view_surface_id[_i];
 	var _palette_surface = view_surface_palette[_i];
 	var _fade_surface = view_surface_palette_faded[_i];
 	
-	// Draw the camera's own surface onto a first temporary surface with a palette swap applied to it
+	// Draw the view surface to the first temporary surface with the palette shader applied
 	surface_set_target(_palette_surface);
 	draw_clear_alpha(c_black, 0);
 	shader_palette_map(_i);
@@ -26,7 +27,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	shader_reset();
 	surface_reset_target();
 	
-	// Now draw that onto a second temporary surface with a fade effect applied on top of it
+	// Now draw that to the second temporary surface with the fade shader applied
 	surface_set_target(_fade_surface);
 	draw_clear_alpha(c_black, 0);
 	shader_rgb_fade();
@@ -34,7 +35,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	shader_reset();
 	surface_reset_target();
 	
-	// Draw the final result onto the application surface
+	// Draw the final result to the application surface
 	surface_set_target(application_surface);
 	draw_surface_part(_fade_surface, CAMERA_HORIZONTAL_BUFFER, 0, surface_get_width(_surface) - CAMERA_HORIZONTAL_BUFFER * 2, surface_get_height(_surface), _camera_data.surface_x, _camera_data.surface_y);
 	surface_reset_target();

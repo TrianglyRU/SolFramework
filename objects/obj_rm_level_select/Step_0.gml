@@ -40,7 +40,7 @@ if (level_entries[global.selected_level_entry] == "SOUND TEST")
 {
     if (_input_press.start)
     {
-        audio_stop_bgm(0.25);
+        audio_stop_bgm(1.0);
         fade_perform_black(FADEDIRECTION.OUT, 1,, load_selected_room);
     }
     else if (_input_press.left)
@@ -167,7 +167,7 @@ else if (_input_press.action1 || _input_press.start)
             fade_perform_black(FADEDIRECTION.OUT, 1,, load_selected_room);
         }
 		
-		audio_stop_bgm(0.25);
+		audio_stop_bgm(1.0);
     }
     else
     {

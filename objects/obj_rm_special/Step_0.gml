@@ -17,7 +17,7 @@ if (state == SPECIALSTAGESTATE.IDLE)
     }    
     else if (_input_press.start)
     {
-		audio_stop_bgm(0.25);
+		audio_stop_bgm(1.0);
         audio_play_sfx(snd_warp_2);
         fade_perform_white(FADEDIRECTION.OUT, 3,, start_results);  
     }

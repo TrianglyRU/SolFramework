@@ -233,6 +233,7 @@ function scr_player_cpu()
 	                }
 					
 	                var _dist_sign = sign(_dist_x);
+					
 	                if (spd_ground != 0 && sign(facing) == _dist_sign)
 	                {
 	                    x += _dist_sign;
@@ -265,10 +266,11 @@ function scr_player_cpu()
 	            }
 	        }
 			
-	        if (_do_jump && animation != ANIM.DUCK && cpu_target.animation != ANIM.WAIT && obj_game.frame_counter % _jump_freq == 0)
+	        if (_do_jump && obj_game.frame_counter % _jump_freq == 0 && animation != ANIM.DUCK && cpu_target.animation != ANIM.WAIT)
 	        {
 	            _target_input_press.action_any = true;
 	            _target_input_down.action_any = true;
+				
 	            cpu_jump_flag = true;
 	        }
 			

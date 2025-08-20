@@ -15,12 +15,11 @@ for (var _i = _current_page * _options_per_page; _i < _last_option_id; _i++)
     var _option_y = _draw_y - 12 + (_i % _options_per_page) * 10;
     var _string = category_data[3 + _i];
 	
+	if (_i != option_id)
+	{
+		draw_set_colour(#6D6D6D);
+	}
+	
     draw_text(_draw_x, _option_y, _string);
-    
-    if (_i == option_id)
-    {
-        var _length = string_length(_string) * 8;
-	    draw_text((_width - _length) * 0.5 - 8, _option_y, ">");
-	    draw_text((_width + _length) * 0.5 + 8, _option_y, "<");
-    }
+	draw_set_colour(c_white);
 }

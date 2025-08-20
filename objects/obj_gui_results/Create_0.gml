@@ -9,6 +9,7 @@ enum RESULTSSTATE
 
 obj_game.allow_pause = false;
 
+temp_surface = array_create(CAMERA_COUNT, -1);
 offset_line1 = -256;
 offset_line2 = 256;
 offset_time = 512;

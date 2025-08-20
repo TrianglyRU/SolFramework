@@ -46,19 +46,17 @@ switch (state)
         {
             state = GIANTRINGSTATE.TRANSITION;
 			
-            audio_stop_bgm(0.25);
+            audio_stop_bgm(1.0);
             audio_play_sfx(snd_warp);
 			
             fade_perform_white(FADEDIRECTION.OUT, 1,, function()
 			{
-				while (true)
+				while (audio_is_playing(snd_warp))
 				{
-					if (!audio_is_playing(snd_warp))
-			        {
-			            room_goto(rm_special);
-						break;
-			        }
+					// Wait until snd_warp is no longer playing
 				}
+	
+				room_goto(rm_special);
 			});
         }
         
