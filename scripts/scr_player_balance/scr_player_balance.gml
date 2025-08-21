@@ -1,3 +1,111 @@
+/// @function _balance_left()
+function _balance_left(_panic_cond)
+{
+	gml_pragma("forceinline");
+	
+	switch (vd_player_type)
+	{
+		case PLAYER.SONIC:
+			
+			if (super_timer > 0)
+			{
+				animation = ANIM.BALANCE;
+				facing = DIRECTION.NEGATIVE;
+			}
+			else if (!_panic_cond)
+			{
+				animation = facing == DIRECTION.NEGATIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
+			}
+			else if (facing == DIRECTION.POSITIVE)
+			{
+				animation = ANIM.BALANCE_TURN;
+				facing = DIRECTION.NEGATIVE;
+			}
+			else if (animation != ANIM.BALANCE_TURN)
+			{
+				animation = ANIM.BALANCE_PANIC;
+			}
+			
+		break;
+			
+		case PLAYER.TAILS:
+		case PLAYER.AMY:
+				
+			animation = ANIM.BALANCE;
+			facing = DIRECTION.NEGATIVE;
+			
+		break;
+			
+		case PLAYER.KNUCKLES:
+			
+			if (facing == DIRECTION.NEGATIVE)
+			{
+				animation = ANIM.BALANCE;
+			}
+			else if (animation != ANIM.BALANCE_FLIP)
+			{
+				animation = ANIM.BALANCE_FLIP;
+				facing = DIRECTION.NEGATIVE;
+			}
+			
+		break;
+	}
+}
+
+/// @function _balance_right()
+function _balance_right(_panic_cond)
+{
+	gml_pragma("forceinline");
+		
+	switch (vd_player_type)
+	{
+		case PLAYER.SONIC:
+			
+			if (super_timer > 0)
+			{
+				animation = ANIM.BALANCE;
+				facing = DIRECTION.POSITIVE;
+			}
+			else if (!_panic_cond)
+			{
+				animation = facing == DIRECTION.POSITIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
+			}
+			else if (facing == DIRECTION.NEGATIVE)
+			{
+				animation = ANIM.BALANCE_TURN;
+				facing = DIRECTION.POSITIVE;
+			}
+			else if animation != ANIM.BALANCE_TURN
+			{
+				animation = ANIM.BALANCE_PANIC;
+			}
+
+		break;
+		
+		case PLAYER.TAILS:
+		case PLAYER.AMY:
+				
+			animation = ANIM.BALANCE;
+			facing = DIRECTION.POSITIVE;
+			
+		break;
+		
+		case PLAYER.KNUCKLES:
+			
+			if (facing == DIRECTION.POSITIVE)
+			{
+				animation = ANIM.BALANCE;
+			}
+			else if (animation != ANIM.BALANCE_FLIP)
+			{
+				animation = ANIM.BALANCE_FLIP;
+				facing = DIRECTION.POSITIVE;
+			}
+			
+		break;
+	}
+}
+	
 /// @self obj_player
 /// @function scr_player_balance
 function scr_player_balance()
@@ -16,113 +124,7 @@ function scr_player_balance()
 			return;
 		}
 	}
-
-	/// @method _balance_left()
-	var _balance_left = function(_panic_cond)
-	{
-		gml_pragma("forceinline");
-		
-		switch (vd_player_type)
-		{
-			case PLAYER.SONIC:
-			
-				if (super_timer > 0)
-				{
-					animation = ANIM.BALANCE;
-					facing = DIRECTION.NEGATIVE;
-				}
-				else if (!_panic_cond)
-				{
-					animation = facing == DIRECTION.NEGATIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
-				}
-				else if (facing == DIRECTION.POSITIVE)
-				{
-					animation = ANIM.BALANCE_TURN;
-					facing = DIRECTION.NEGATIVE;
-				}
-				else if (animation != ANIM.BALANCE_TURN)
-				{
-					animation = ANIM.BALANCE_PANIC;
-				}
-			
-			break;
-			
-			case PLAYER.TAILS:
-			case PLAYER.AMY:
-				
-				animation = ANIM.BALANCE;
-				facing = DIRECTION.NEGATIVE;
-			
-			break;
-			
-			case PLAYER.KNUCKLES:
-			
-				if (facing == DIRECTION.NEGATIVE)
-				{
-					animation = ANIM.BALANCE;
-				}
-				else if (animation != ANIM.BALANCE_FLIP)
-				{
-					animation = ANIM.BALANCE_FLIP;
-					facing = DIRECTION.NEGATIVE;
-				}
-			
-			break;
-		}
-	}
 	
-	/// @method _balance_right()
-	var _balance_right = function(_panic_cond)
-	{
-		gml_pragma("forceinline");
-		
-		switch (vd_player_type)
-		{
-			case PLAYER.SONIC:
-			
-				if (super_timer > 0)
-				{
-					animation = ANIM.BALANCE;
-					facing = DIRECTION.POSITIVE;
-				}
-				else if (!_panic_cond)
-				{
-					animation = facing == DIRECTION.POSITIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
-				}
-				else if (facing == DIRECTION.NEGATIVE)
-				{
-					animation = ANIM.BALANCE_TURN;
-					facing = DIRECTION.POSITIVE;
-				}
-				else if animation != ANIM.BALANCE_TURN
-				{
-					animation = ANIM.BALANCE_PANIC;
-				}
-
-			break;
-			case PLAYER.TAILS:
-			case PLAYER.AMY:
-				
-				animation = ANIM.BALANCE;
-				facing = DIRECTION.POSITIVE;
-			
-			break;
-			case PLAYER.KNUCKLES:
-			
-				if (facing == DIRECTION.POSITIVE)
-				{
-					animation = ANIM.BALANCE;
-				}
-				else if (animation != ANIM.BALANCE_FLIP)
-				{
-					animation = ANIM.BALANCE_FLIP;
-					facing = DIRECTION.POSITIVE;
-				}
-			
-			break;
-		}
-	}
-
 	if (on_object == noone)
 	{
 		if (math_get_quadrant(angle) != QUADRANT.DOWN)

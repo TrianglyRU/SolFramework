@@ -29,12 +29,15 @@ else if (_input_press.action2)
         case SHIELD.NORMAL:
             audio_play_sfx(snd_shield);
         break;
+		
         case SHIELD.FIRE:
             audio_play_sfx(snd_shield_fire);
         break;
+		
         case SHIELD.BUBBLE:
             audio_play_sfx(snd_shield_bubble);
         break;
+		
         case SHIELD.LIGHTNING:
             audio_play_sfx(snd_shield_lightning);
         break;

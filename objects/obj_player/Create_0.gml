@@ -218,7 +218,7 @@ reset_substate = function()
 	radius_y = radius_y_normal;
 	visual_angle = 0;
 	
-	clear_carry();
+	self.clear_carry();
 }
 
 /// @method reset_gravity()
@@ -236,16 +236,15 @@ release_glide = function(_frame)
 	action_state = GLIDESTATE.FALL;
 	radius_x = radius_x_normal;
 	radius_y = radius_y_normal;
-	
-	reset_gravity();
+	self.reset_gravity();
 }
 
 /// @method land()
 land = function()
 {
-	reset_gravity();
-	
+	self.reset_gravity();
 	is_grounded = true;
+	
 	if (action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH)
 	{
 		if (action == ACTION.DASH)
@@ -302,7 +301,7 @@ land = function()
 		animation = ANIM.MOVE;
 	}
 	
-	clear_carry();
+	self.clear_carry();
 	
 	// Handle actions' is_grounded routines
 	scr_player_dropdash();
@@ -343,7 +342,7 @@ is_invincible = function()
 /// @method hurt()
 hurt = function(_sound = snd_hurt, _hazard = other)
 {
-	if (state != PLAYERSTATE.DEFAULT || is_invincible())
+	if (state != PLAYERSTATE.DEFAULT || self.is_invincible())
 	{
 		return;
 	}
@@ -351,11 +350,11 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 	var _is_not_shielded_player1 = player_index == 0 && global.player_shields[0] == SHIELD.NONE;
 	if (_is_not_shielded_player1 && global.player_rings == 0)
 	{
-		kill(_sound);
+		self.kill(_sound);
 		return;
 	}
 	
-	reset_substate();
+	self.reset_substate();
 	
 	vel_x = floor(x) < floor(_hazard.x) ? -2 : 2;
 	vel_y = -4;
@@ -423,16 +422,15 @@ kill = function(_sound = snd_hurt)
 	{
 		return;
 	}
-
+	
 	audio_play_sfx(_sound);
-	reset_substate();
-
+	
 	if (player_index == 0)
 	{
 		obj_game.state = GAMESTATE.STOP_OBJECTS;
 	}
 	
-	depth = RENDERER_DEPTH_HIGHEST + player_index;
+	self.reset_substate();
 	action = ACTION.NONE;
 	animation = ANIM.DEATH;
 	state = PLAYERSTATE.DEATH;
@@ -440,6 +438,7 @@ kill = function(_sound = snd_hurt)
 	vel_y = -7;
 	vel_x = 0;
 	spd_ground = 0;
+	depth = RENDERER_DEPTH_HIGHEST + player_index;
 	
 	if (camera_data.index == player_index)
 	{
@@ -500,6 +499,18 @@ play_tails_sound = function()
 	{
 		audio_play_sfx(snd_flight);
 	}
+}
+
+/// @method is_not_true_glide()
+is_not_true_glide = function()
+{
+	return action != ACTION.GLIDE || action_state == GLIDESTATE.FALL;
+}
+
+/// @method is_true_glide()
+is_true_glide = function()
+{
+	return action == ACTION.GLIDE && action_state != GLIDESTATE.FALL;
 }
 
 // Inherit the parent event

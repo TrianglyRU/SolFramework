@@ -32,7 +32,8 @@ switch (state)
 	        state = GIANTRINGSTATE.ENTRY;
 		}
 		
-    break;  
+    break;
+	
     case GIANTRINGSTATE.ENTRY:
         
         if (!obj_is_anim_ended())

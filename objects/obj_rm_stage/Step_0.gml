@@ -2,12 +2,14 @@ if (water_enabled)
 {
 	switch (room)
 	{
-		case rm_stage_dwz0: break;
+		case rm_stage_dwz0:
+		break;
+		
 		default:
 			water_level = math_oscillate_y(water_level_init, obj_game.frame_counter * ANGLE_INCREMENT, 10, 1, 90);
 	}
 	
-	set_water_effects_bound();
+	self.set_water_effects_bound();
 }
 
 // Palette rotation

@@ -44,7 +44,8 @@ function scr_player_update_status()
 			if (--transform_timer == 0)
 			{
 				state = PLAYERSTATE.DEFAULT;
-				reset_substate();
+				self.reset_substate();
+				
 				instance_create(x, y, obj_star_super, { vd_target_player: id });
 			}
 		}
@@ -75,6 +76,6 @@ function scr_player_update_status()
 	
 	if (obj_game.frame_counter == 36000 && player_index == 0)
 	{
-		kill();
+		self.kill();
 	}
 }

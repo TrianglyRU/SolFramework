@@ -106,10 +106,12 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 	                case 1: 
 	                    _is_valid = _is_down && _is_positive ||  _is_up && !_is_positive;
 	                break;
+					
 	                // LBR Solid
 	                case 2: 
 	                    _is_valid = _is_down && !_is_positive || _is_up && _is_positive || !_is_down && !_is_up;
 					break;
+					
 					// All Solid
 					default:
 						_is_valid = true;

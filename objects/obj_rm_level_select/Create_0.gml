@@ -182,6 +182,7 @@ cheat_codes =
 ];
 
 sound_ids = [];
+
 for (var _i = 0; _i < 256; _i++)
 {
 	var _sound_name = audio_get_name(_i);
@@ -199,7 +200,7 @@ for (var _i = 0; _i < 256; _i++)
 	}
 }
 
-update_stage_selection();
+self.update_stage_selection();
 
 audio_play_bgm(snd_bgm_level_select);
 bg_convert("Background", 0, 0, 0, 0, 0);

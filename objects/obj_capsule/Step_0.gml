@@ -31,6 +31,7 @@ switch (state)
         }
         
     break;
+	
 	case CAPSULESTATE.BREAK:
         
         if (--wait_timer < 0)
@@ -50,6 +51,7 @@ switch (state)
         }
         
     break; 
+	
     case CAPSULESTATE.SPAWN_ANIMALS:
         
         if (obj_game.frame_counter % 8 == 0)
@@ -62,6 +64,7 @@ switch (state)
         }
         
     break;
+	
     case CAPSULESTATE.WAIT_ANIMALS:
 		
 		var _start_results = false;

@@ -15,7 +15,9 @@ function scr_player_debug_mode_init()
 		obj_spring_h_red,
 		obj_spring_d_yellow,
 		obj_spring_d_red,
-		obj_giant_ring
+		obj_giant_ring,
+		obj_signpost,
+		obj_capsule
 	];
 	
 	// array_push()

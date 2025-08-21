@@ -24,6 +24,14 @@ switch (state)
             offset_total = max(offset_total - speed_x, 0);
         }
 		
+		if (continue_timer >= 0)
+		{
+			if (++continue_timer == 60)
+			{
+				audio_play_sfx(snd_continue);
+			}
+		}
+		
         if (--state_timer != 0)
         {
             break;
@@ -87,10 +95,9 @@ switch (state)
 		
         if (total_bonus >= 10000)
         {
+			continue_timer = 0;
             state_timer = 300;
-            global.continue_count++;
-			
-            instance_create(0, 0, obj_gui_continue_results, { visible: false });    
+            global.continue_count++;  
         }
         else
         {

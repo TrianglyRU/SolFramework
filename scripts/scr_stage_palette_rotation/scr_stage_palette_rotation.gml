@@ -13,8 +13,10 @@ function scr_stage_palette_rotation()
 		break;
 		
 		case rm_stage_dwz0:
+		
 			pal_run_rotation([13, 14, 15, 16], 6, 1, 4);
 			pal_run_rotation([17], 20, 1, 8);
+			
 		break;
 		
 		default:

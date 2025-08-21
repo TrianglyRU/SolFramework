@@ -1,35 +1,34 @@
+/// @function _spawn_splash()
+function _spawn_splash()
+{
+	gml_pragma("forceinline");
+	
+	if (vel_y != 0)
+	{
+		if (action != ACTION.CLIMB && cpu_state != CPUSTATE.RESPAWN && self.is_not_true_glide())
+		{
+			instance_create(x, obj_rm_stage.water_level, obj_water_splash);
+			audio_play_sfx(snd_splash);
+		}
+	}	
+}
+
+/// @function _set_gravity()
+function _set_gravity()
+{
+	gml_pragma("forceinline");
+	
+	if (action != ACTION.FLIGHT && self.is_not_true_glide())
+	{
+		self.reset_gravity();
+	}
+}
+
 /// @self obj_player
 /// @function scr_player_water()
 function scr_player_water()
 {
 	gml_pragma("forceinline");
-	
-	/// @method _spawn_splash()
-	var _spawn_splash = function()
-	{
-		if (vel_y == 0)
-		{
-			return;
-		}
-		
-		var _glide_not_fall = action == ACTION.GLIDE && action_state != GLIDESTATE.FALL;
-		if (_glide_not_fall || action == ACTION.CLIMB || cpu_state == CPUSTATE.RESPAWN)
-		{
-			return;
-		}
-		
-		instance_create(x, obj_rm_stage.water_level, obj_water_splash);
-		audio_play_sfx(snd_splash);
-	}
-
-	/// @method _set_gravity()
-	var _set_gravity = function()
-	{
-		if (action != ACTION.FLIGHT && (action != ACTION.GLIDE || action_state == GLIDESTATE.FALL))
-		{
-			reset_gravity();
-		}
-	}
 	
 	if (!instance_exists(obj_rm_stage) || !obj_rm_stage.water_enabled || state == PLAYERSTATE.DEATH)
 	{
@@ -46,6 +45,7 @@ function scr_player_water()
 		{
 			is_water_running = true;
 			facing = sign(vel_x);
+			
 			instance_create(0, 0, obj_water_trail, { vd_target_player: id });
 		}
 	}	
@@ -140,22 +140,22 @@ function scr_player_water()
 			case 0:
 			
 				audio_play_sfx(snd_drown);
-				reset_substate();
 				
-				depth = RENDERER_DEPTH_HIGHEST + player_index;
+				self.reset_substate();
 				grv = PARAM_GRV_UNDERWATER;
 				state = PLAYERSTATE.DEATH;
 				animation = ANIM.DROWN;
 				vel_x = 0;
 				vel_y = 0;
 				spd_ground = 0;
+				depth = RENDERER_DEPTH_HIGHEST + player_index;
 				
 				if (player_index == camera_data.index)
 				{
 					camera_data.allow_movement = false;
 				}
 				
-			return;
+				return;
 		}
 	}
 	

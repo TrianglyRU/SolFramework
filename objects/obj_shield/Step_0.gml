@@ -16,6 +16,7 @@ switch (_shield)
         }
 		
     break;
+	
     case SHIELD.LIGHTNING:
 		
 		if (image_index == 21)

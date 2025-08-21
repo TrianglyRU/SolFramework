@@ -14,7 +14,7 @@ is_on_slope = function()
 /// @method update_move_sprite()
 update_move_sprite = function()
 {
-	if (is_on_slope())
+	if (self.is_on_slope())
 	{
 		image_xscale = angle >= 180 ? -1 : 1;
 		sprite_index = spr_crabmeat_move_angled;

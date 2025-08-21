@@ -18,8 +18,6 @@ function scr_player_init()
 	else
 	{
 		ds_list_destroy(ds_record_data);
-		ds_record_data = -1;
-		
 		global.player_shields[player_index] = SHIELD.NONE;
 	}
 	
@@ -35,7 +33,7 @@ function scr_player_init()
 		break;
 		
 		case PLAYER.AMY:
-		
+
 			radius_x_normal = 9;
 			radius_y_normal = 16;
 			radius_x_spin = 7;
@@ -58,8 +56,9 @@ function scr_player_init()
 	forced_roll = false;
 	air_lock_flag = false;
 	death_state = DEATHSTATE.WAIT;
-	
+	stick_to_convex = false;
 	is_water_running = false;
+	on_object = noone;
 	
 	radius_x = radius_x_normal;
 	radius_y = radius_y_normal;
@@ -69,9 +68,7 @@ function scr_player_init()
 	water_vel = -1;
 	angle = 0;
 	grv = PARAM_GRV_DEFAULT;
-	stick_to_convex = false;
-	on_object = noone;
-
+	
 	acc_glide = 0;
 	acc_climb = 0;
 	acc = 0;
@@ -152,6 +149,7 @@ function scr_player_init()
 	animation = ANIM.IDLE;
 	visual_angle = 0;
 	set_push_anim_by = noone;
+	
 	image_angle = 0;
 	image_alpha = 1.0;
 	
@@ -161,14 +159,14 @@ function scr_player_init()
 	var _ring_data = global.giant_ring_data;
 	var _checkpoint_data = global.checkpoint_data;
 	
-	if (is_not_null_array(_ring_data))
+	if (array_length(_ring_data) > 0)
 	{
 		x = _ring_data[0];
 		y = _ring_data[1];
 	}
 	else
 	{
-		if (is_not_null_array(_checkpoint_data))
+		if (array_length(_checkpoint_data) > 0)
 		{
 			x = _checkpoint_data[0];
 			y = _checkpoint_data[1];
@@ -188,7 +186,7 @@ function scr_player_init()
 	
 	for (var _i = 0; _i < ds_record_length; _i++)
 	{
-		record_data(_i);
+		self.record_data(_i);
 	}
 	
 	var _saved_shield = global.player_shields[player_index];
@@ -211,6 +209,7 @@ function scr_player_init()
 	}
 	
 	camera_data = camera_get_data(0);
+	
 	if (player_index > 0)
 	{
 		var _camera_data = camera_get_data(player_index);

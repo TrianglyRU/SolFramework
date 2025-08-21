@@ -23,6 +23,6 @@ function scr_player_hammerdash()
 	if (is_grounded)
 	{
 		spd_ground = acc_top * facing;
-		set_velocity();
+		self.set_velocity();
 	}
 }

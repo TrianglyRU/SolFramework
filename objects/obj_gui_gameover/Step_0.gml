@@ -9,6 +9,7 @@ switch (state)
 		}
 		
 	break;
+	
 	case GAMEOVERSTATE.WAIT:
 			
 		if (input_get_pressed(0).action_any || wait_timer == 0)
@@ -20,9 +21,10 @@ switch (state)
 			{
 				if (image_index == 1)
 				{
-					if (is_not_null_array(global.checkpoint_data))
+					var _checkpoint_data = global.checkpoint_data;			
+					if (array_length(_checkpoint_data) > 0)
 					{
-						global.checkpoint_data[2] = 0;
+						_checkpoint_data[2] = 0;
 					}
 		
 					game_clear_level_data(false);

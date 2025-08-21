@@ -53,6 +53,7 @@ switch (state)
 		}
 		
 	break;
+	
 	case PUSHABLEBLOCKSTATE.LEDGE:
 	
 		x += vel_x;	
@@ -64,6 +65,7 @@ switch (state)
 		}
 		
 	break;
+	
 	case PUSHABLEBLOCKSTATE.FALL:
 	
 		y += vel_y;

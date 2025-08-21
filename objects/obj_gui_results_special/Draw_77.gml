@@ -20,12 +20,15 @@ switch (global.player_main)
     case PLAYER.TAILS:
         _player_text = "TAILS";
     break;
+	
     case PLAYER.KNUCKLES:
         _player_text = "KNUCKLES";
     break;
+	
     case PLAYER.AMY:
         _player_text = "AMY";
     break;
+	
 	default:
 		_player_text = "SONIC";
 }

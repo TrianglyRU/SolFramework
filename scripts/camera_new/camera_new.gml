@@ -9,7 +9,10 @@
 /// @param {Real} [_canvas_y] The vertical offset of the surface on the screen (default is 0).
 function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _canvas_x = 0, _canvas_y = 0)
 {
-    camera_delete(_index);
+	if (view_camera[_index] != -1)
+	{
+		camera_delete(_index);
+	}
 	
     var _camera_data =
     {
@@ -47,4 +50,12 @@ function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _can
 	view_enabled = true;
 	
     obj_game.camera_data[_index] = _camera_data;
+	
+	// Trigger custom Async Event
+	var _map = ds_map_create();
+	
+	_map[? "event_type"] = "camera created";
+	_map[? "camera_index"] = _index;
+	
+	event_perform_async(ev_async_system_event, _map);
 }

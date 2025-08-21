@@ -1,3 +1,23 @@
+/// @function _start_respawn()
+function _start_respawn()
+{
+	gml_pragma("forceinline");
+	
+	if (obj_is_visible() || x >= camera_data.right_bound)
+	{
+	    cpu_timer_respawn = 0;
+	    return false;
+	}
+	
+	if (++cpu_timer_respawn >= 300 || on_object != noone && !instance_exists(on_object))
+	{
+	    self.respawn();
+	    return true;
+	}
+
+	return false;
+}
+
 /// @self obj_player
 /// @feather ignore GM2044
 /// @function scr_player_cpu()
@@ -8,24 +28,6 @@ function scr_player_cpu()
 	if (player_index == 0)
 	{
 	    return;
-	}
-	
-	/// @method _start_respawn()
-	var _start_respawn = function()
-	{
-	    if (obj_is_visible() || x >= camera_data.right_bound)
-	    {
-	        cpu_timer_respawn = 0;
-	        return false;
-	    }
-		
-	    if (++cpu_timer_respawn >= 300 || on_object != noone && !instance_exists(on_object))
-	    {
-	        respawn();
-	        return true;
-	    }
-
-	    return false;
 	}
 	
 	var _jump_freq = 64;
@@ -84,7 +86,7 @@ function scr_player_cpu()
 	            case PLAYER.TAILS:
 				
 	                animation = is_underwater ? ANIM.SWIM : ANIM.FLY;
-	                play_tails_sound();
+	                self.play_tails_sound();
 					
 	            break;
 
@@ -164,8 +166,8 @@ function scr_player_cpu()
 	        {
 	            state = PLAYERSTATE.LOCKED;
 	            cpu_state = CPUSTATE.RESPAWN;
+	            self.reset_substate();
 				
-	            reset_substate();
 	            break;
 	        }
 			

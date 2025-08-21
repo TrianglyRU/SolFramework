@@ -23,13 +23,16 @@ switch (_shield)
 {
 	case SHIELD.NORMAL:
 		obj_set_anim(spr_shield, 1, 0, 0);
-	break;	
+	break;
+	
 	case SHIELD.BUBBLE:
 		obj_set_anim(spr_shield_bubble, 2, 0, 0);
 	break;
+	
 	case SHIELD.FIRE:
 		obj_set_anim(spr_shield_fire, 2, 0, 0);	
 	break;
+	
 	case SHIELD.LIGHTNING:
 		obj_set_anim(spr_shield_lightning, 2, 0, 0);
 	break;

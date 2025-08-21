@@ -46,6 +46,7 @@ if (state == ANIMALSTATE.APPEAR)
 	        obj_set_anim(sprite_index, 4, 1, 1);
 			
 		break;
+		
 	    case spr_animal_cucky:
 	        obj_set_anim(sprite_index, 2, 1, 1);
 	    break;

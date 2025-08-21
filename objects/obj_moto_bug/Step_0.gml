@@ -22,6 +22,7 @@ switch (state)
 		}
 		
 	break;
+	
 	case MOTOBUGSTATE.WAIT:
 	
 		if (--move_timer < 0)
@@ -35,6 +36,7 @@ switch (state)
 		}
 		
 	break;
+	
 	case MOTOBUGSTATE.ROAM:
 	
 		x += vel_x;

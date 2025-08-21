@@ -1,7 +1,7 @@
 // If detached from Sol, run hurt routine
 if (vel_x != 0)
 {
-	hurt_players();
+	self.hurt_players();
 }
 
 if (flip_timer++ == 8)

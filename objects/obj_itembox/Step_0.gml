@@ -10,8 +10,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if (!obj_check_solid(_player, SOLIDCOLLISION.TOP))
     {
-		var _glide_not_fall = _player.action == ACTION.GLIDE && _player.action_state != GLIDESTATE.FALL;
-	    if (_glide_not_fall || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN)
+	    if (_player.is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN)
 	    {
 	        _can_destroy = (_p == 0);
 		}

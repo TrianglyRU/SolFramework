@@ -10,17 +10,19 @@ function scr_player_climb()
 	}
 
 	var _steps_per_climb_frame = 4;
+	
 	switch (action_state)
 	{
 		case CLIMBSTATE.NORMAL:
 	
 			if (x != xprevious || vel_x != 0)
 			{
-				release_glide(1);
+				self.release_glide(1);
 				break;
 			}
 			
 			var _max_animation_value = image_number * _steps_per_climb_frame;
+			
 			if (input_down.up)
 			{
 				if (++climb_value > _max_animation_value)
@@ -43,8 +45,9 @@ function scr_player_climb()
 			{
 				vel_y = 0;
 			}
-		
+			
 			var _radius_x = radius_x;
+			
 			if (facing == DIRECTION.NEGATIVE)
 			{
 				_radius_x++;
@@ -79,7 +82,7 @@ function scr_player_climb()
 				var _wall_dist = tile_find_h(x + _radius_x * facing, y + radius_y + 1, facing, secondary_layer)[0];
 				if (_wall_dist != 0)
 				{
-					release_glide(1);
+					self.release_glide(1);
 					break;
 				}
 				
@@ -89,11 +92,13 @@ function scr_player_climb()
 				
 				if (_floor_dist < 0)
 				{
-					land();
+					self.land();
+					
 					y += _floor_dist + radius_y;
 					angle = _floor_angle;
 					animation = ANIM.IDLE;
 					vel_y = 0;
+					
 					break;
 				}
 			}
@@ -108,9 +113,9 @@ function scr_player_climb()
 				vel_y = jump_min_vel;
 				radius_x = radius_x_spin;
 				radius_y = radius_y_spin;
+				self.reset_gravity();
 				
 				audio_play_sfx(snd_jump);
-				reset_gravity();
 				break;
 			}
 			
@@ -150,7 +155,7 @@ function scr_player_climb()
 			}
 			else if (obj_is_anim_ended())
 			{
-				land();
+				self.land();
 				
 				animation = ANIM.IDLE;
 				x += 8 * facing;

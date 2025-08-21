@@ -14,7 +14,7 @@ function scr_player_animate_amy()
 			});
 			
 		break;
-			
+		
 		case ANIM.WAIT:
 			
 			if (sprite_index != spr_amy_wait_2)
@@ -41,7 +41,7 @@ function scr_player_animate_amy()
 			obj_set_anim(_move_sprite, floor(max(1, 9 - abs(spd_ground))), 0, 0);
 			
 		break;
-			
+		
 		case ANIM.SPIN:
 		
 			obj_set_anim(spr_amy_spin, floor(max(1, 5 - abs(spd_ground))), image_index, 0);

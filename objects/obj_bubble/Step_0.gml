@@ -2,7 +2,7 @@ if (vd_bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_rm_stage.water_level)
 {
     if (image_index == 5)
     {
-        burst();
+        self.burst();
     }
     else
     {
@@ -58,7 +58,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
         audio_reset_bgm(obj_rm_stage.bgm_track, _player);
     }
 	
-	if (_player.action != ACTION.FLIGHT && (_player.action != ACTION.GLIDE || _player.action_state == GLIDESTATE.FALL))
+	if (_player.action != ACTION.FLIGHT && _player.is_not_true_glide())
 	{
 		_player.animation = ANIM.BREATHE;
 		_player.reset_substate();

@@ -54,7 +54,6 @@
     {"id":{"name":"obj_giant_ring","path":"objects/obj_giant_ring/obj_giant_ring.yy",},"order":14,},
     {"id":{"name":"ts_fg_ghz_a","path":"tilesets/ts_fg_ghz_a/ts_fg_ghz_a.yy",},"order":0,},
     {"id":{"name":"obj_gui_continue","path":"objects/obj_gui_continue/obj_gui_continue.yy",},"order":0,},
-    {"id":{"name":"obj_gui_continue_results","path":"objects/obj_gui_continue_results/obj_gui_continue_results.yy",},"order":1,},
     {"id":{"name":"obj_gui_gameover","path":"objects/obj_gui_gameover/obj_gui_gameover.yy",},"order":2,},
     {"id":{"name":"obj_gui_hud","path":"objects/obj_gui_hud/obj_gui_hud.yy",},"order":3,},
     {"id":{"name":"obj_gui_pause","path":"objects/obj_gui_pause/obj_gui_pause.yy",},"order":4,},

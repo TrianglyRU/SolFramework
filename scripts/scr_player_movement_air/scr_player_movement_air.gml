@@ -2,12 +2,7 @@
 /// @function scr_player_movement_air()
 function scr_player_movement_air()
 {
-	if (action == ACTION.CARRIED || action == ACTION.CLIMB || action == ACTION.SPINDASH)
-	{
-		return;
-	}
-	
-	if (action == ACTION.GLIDE && action_state != GLIDESTATE.FALL)
+	if (action == ACTION.CARRIED || action == ACTION.CLIMB || action == ACTION.SPINDASH || self.is_true_glide())
 	{
 		return;
 	}

@@ -29,7 +29,8 @@ switch (state)
 			state = COCONUTSSTATE.START_CLIMB;
 		}
 			
-	break;	
+	break;
+	
 	case COCONUTSSTATE.START_CLIMB:
 		
 		if (climb_table_index >= 12)
@@ -45,6 +46,7 @@ switch (state)
 		obj_set_anim(sprite_index, 6, 0, 0);
 		
 	break;
+	
 	case COCONUTSSTATE.CLIMB:
 			
 		if (--state_timer == 0)
@@ -60,6 +62,7 @@ switch (state)
 		y += vel_y;
 			
 	break;
+	
 	case COCONUTSSTATE.START_THROW:
 		
 		state = COCONUTSSTATE.THROW;
@@ -67,7 +70,8 @@ switch (state)
 		attack_timer = 32;	
 		hand_frame = 2;
 		
-	break;	
+	break;
+	
 	case COCONUTSSTATE.THROW:
 			
 		if (--state_timer >= 0)

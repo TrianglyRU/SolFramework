@@ -17,32 +17,35 @@ function scr_player_update_collision()
 	
 	if (action == ACTION.HAMMERSPIN)
 	{
-		set_extra_hitbox(25, 25);
+		self.set_extra_hitbox(25, 25);
 	}
 	else if (animation == ANIM.HAMMERDASH)
 	{
 		switch (image_index % 4)
 		{
 			case 0:
-				set_extra_hitbox(16, 16, 6 * facing, 0);
+				self.set_extra_hitbox(16, 16, 6 * facing, 0);
 			break;
+			
 			case 1:
-				set_extra_hitbox(16, 16, -7 * facing, 0);
+				self.set_extra_hitbox(16, 16, -7 * facing, 0);
 			break;
+			
 			case 2:
-				set_extra_hitbox(14, 20, -4 * facing, -4);
+				self.set_extra_hitbox(14, 20, -4 * facing, -4);
 			break;
+			
 			case 3:
-				set_extra_hitbox(17, 21, 7 * facing, -5);
+				self.set_extra_hitbox(17, 21, 7 * facing, -5);
 			break;
 		}
 	}
 	else if (shield_state == SHIELDSTATE.DOUBLESPIN)
 	{
-		set_extra_hitbox(24, 24);
+		self.set_extra_hitbox(24, 24);
 	}
 	else
 	{
-		set_extra_hitbox(0, 0);
+		self.set_extra_hitbox(0, 0);
 	}
 }

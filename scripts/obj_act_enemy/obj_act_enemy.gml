@@ -2,25 +2,27 @@ enum ENEMYTYPE
 {
 	BADNIK, BOSS
 }
+
+/// @function _destroy_badnik()
+function _destroy_badnik(_player)
+{
+	gml_pragma("forceinline");
 	
-/// @self
+	_player.score_combo++;
+	_player.add_score(_player.score_combo);
+	
+	instance_create(x, y, obj_score, { vd_score_combo: _player.score_combo });
+	instance_create(x, y, obj_animal);
+	instance_create(x, y, obj_explosion_dust);
+	instance_destroy();
+}
+
+/// @self obj_game_object
 /// @description Defines the behaviour and logic for an enemy object. Returns true if the enemy was not destroyed, false otherwise.
 /// @param {Enum.ENEMYTYPE} [_type] The type of enemy (default is ENEMYTYPE.BADNIK)
 /// @returns {Bool} 
 function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 {
-	/// @method _destroy_badnik()
-	var _destroy_badnik = function(_player)
-	{
-		_player.score_combo++;
-		_player.add_score(_player.score_combo);
-	
-		instance_create(x, y, obj_score, { vd_score_combo: _player.score_combo });
-		instance_create(x, y, obj_animal);
-		instance_create(x, y, obj_explosion_dust);
-		instance_destroy();
-	}
-	
 	if (_type == ENEMYTYPE.BADNIK)
 	{
 		if (instance_exists(obj_water_flash) && y >= obj_rm_stage.water_level)
@@ -42,8 +44,7 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 			continue;
 		}
 		
-		var _glide_not_fall = _player.action == ACTION.GLIDE && _player.action_state != GLIDESTATE.FALL;
-		if (_glide_not_fall || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN || _player.action == ACTION.SPINDASH)
+		if (_player.is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN || _player.action == ACTION.SPINDASH)
 		{
 			_action_check = true;
 		}
@@ -95,6 +96,7 @@ function obj_act_enemy(_type = ENEMYTYPE.BADNIK)
 		
 		_destroy_badnik(_player);
 		input_set_rumble(_p, 0.05, INPUT_RUMBLE_LIGHT);
+		
 		return false;
 	}
 	

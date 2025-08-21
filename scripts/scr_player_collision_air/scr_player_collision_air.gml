@@ -71,9 +71,9 @@ function scr_player_collision_air()
 			{
 				angle = _roof_angle;
 				spd_ground = _roof_angle < 180 ? -vel_y : vel_y;
-				vel_y = 0;
+				vel_y = 0;	
+				self.land();
 				
-				land();
 				return;
 			}
 		
@@ -161,6 +161,7 @@ function scr_player_collision_air()
 		
 		y += _floor_dist;
 		angle = _floor_angle;
-		land();
+		
+		self.land();
 	}
 }

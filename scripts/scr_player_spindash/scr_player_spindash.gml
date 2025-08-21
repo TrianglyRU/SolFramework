@@ -71,8 +71,9 @@ function scr_player_spindash()
 	action = ACTION.NONE;
 	spd_ground = _speed * facing;
 	
-	set_camera_delay(floor(_raw_camera_delay * 0.5));
-	set_velocity();
+	self.set_camera_delay(floor(_raw_camera_delay * 0.5));
+	self.set_velocity();
+	
 	audio_stop_sound(snd_charge_spin);
 	audio_play_sfx(snd_release);
 	

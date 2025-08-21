@@ -54,7 +54,7 @@ function scr_player_level_bound()
 	{
 		if (air_timer > 0 && floor(y) >= max(_bottom_bound, obj_rm_stage.bottom_bound[camera_data.index]))
 		{
-			kill();
+			self.kill();
 		}
 	}
 }

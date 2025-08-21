@@ -39,7 +39,7 @@ function scr_player_flight()
 	    grv = PARAM_GRV_TAILS_DOWN;
 	}
 	
-	play_tails_sound();
+	self.play_tails_sound();
 	
 	if (is_underwater)
 	{

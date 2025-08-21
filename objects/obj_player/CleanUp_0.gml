@@ -12,6 +12,4 @@ if (variable_instance_exists(id, "player_index"))
 			player_index--;
 		}
 	}
-	
-	ds_record_data = -1;
 }

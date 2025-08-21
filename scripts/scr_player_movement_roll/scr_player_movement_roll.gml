@@ -75,7 +75,8 @@ function scr_player_movement_roll()
 	    }
 	}
 	
-	set_velocity();
+	self.set_velocity();
+	
 	if (global.roll_speed_cap)
 	{
 		vel_x = clamp(vel_x, -16, 16);

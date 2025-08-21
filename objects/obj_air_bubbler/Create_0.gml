@@ -18,7 +18,7 @@ obj_set_culling(ACTIVEIF.INBOUNDS);
 obj_set_anim(sprite_index, 16, 0, 0);
 
 state = AIRBUBBLERSTATE.IDLE;
-wait_time = set_delay();
+wait_time = self.set_delay();
 wait_cycle = 0;
 random_time = 0;
 bubbles_to_spawn = 0;

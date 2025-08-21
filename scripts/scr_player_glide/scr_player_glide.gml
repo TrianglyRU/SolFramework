@@ -4,7 +4,7 @@ function scr_player_glide()
 {
 	gml_pragma("forceinline");
 	
-	if (action != ACTION.GLIDE || action_state == GLIDESTATE.FALL)
+	if (self.is_not_true_glide())
 	{
 	    return;
 	}
@@ -68,7 +68,7 @@ function scr_player_glide()
 	        if (!input_down.action_any)
 	        {
 				vel_x *= 0.25;
-				release_glide(0);
+				self.release_glide(0);
 	        }
 			
 	    break;
@@ -90,7 +90,8 @@ function scr_player_glide()
 			
 	        if (vel_x == 0)
 	        {
-	            land();	
+	            self.land();
+				
 	            animation = ANIM.GLIDE_GROUND;	// Keep the animation
 	            ground_lock_timer = 16;
 	            spd_ground = 0;

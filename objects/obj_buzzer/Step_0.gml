@@ -50,6 +50,7 @@ switch (state)
 	    }
 		
 	break;
+	
 	case BUZZERSTATE.SHOOT:
 	
 	    if (--shot_timer < 0)

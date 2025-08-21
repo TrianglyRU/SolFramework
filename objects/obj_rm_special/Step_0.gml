@@ -19,11 +19,11 @@ if (state == SPECIALSTAGESTATE.IDLE)
     {
 		audio_stop_bgm(1.0);
         audio_play_sfx(snd_warp_2);
-        fade_perform_white(FADEDIRECTION.OUT, 3,, start_results);  
+        fade_perform_white(FADEDIRECTION.OUT, 3,, self.start_results);  
     }
 }
 else if (!audio_is_playing(snd_bgm_emerald))
 {
 	audio_play_sfx(snd_warp_2);
-    fade_perform_white(FADEDIRECTION.OUT, 3,, start_results);
+    fade_perform_white(FADEDIRECTION.OUT, 3,, self.start_results);
 }

@@ -35,21 +35,25 @@ switch (state)
 			case PLATFORMTYPE.DEFAULT:
 				y = ystart;
 			break;
+			
 			case PLATFORMTYPE.HORIZONTAL:
 			
 				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
 				y = ystart;
 				
 			break;
+			
 			case PLATFORMTYPE.VERTICAL:
 				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
 			break;
+			
 			case PLATFORMTYPE.CIRCULAR:
 			
 				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
 				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
 				
 			break;
+			
 			case PLATFORMTYPE.FALL:
 				
 				y = ystart;
@@ -78,6 +82,7 @@ switch (state)
 		}
 
 	break;
+	
 	case PLATFORMSTATE.FALL:
 	
 		if (--wait_timer == 0)

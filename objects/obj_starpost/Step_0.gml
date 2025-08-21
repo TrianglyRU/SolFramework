@@ -4,7 +4,7 @@ if (state != STARPOSTSTATE.IDLE)
 }
 
 var _checkpoint_data = global.checkpoint_data;
-if (is_not_null_array(_checkpoint_data) && _checkpoint_data[7] >= vd_id)
+if (array_length(_checkpoint_data) > 0 && _checkpoint_data[7] >= vd_id)
 {
 	state = STARPOSTSTATE.ACTIVE;
 	lamp_obj.activate();	

@@ -107,10 +107,12 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 					case 1:
 						_is_valid = _is_right && _is_positive || _is_left && !_is_positive;
 					break;
+					
 					// LBR Solid
 					case 2:
 						_is_valid = _is_right && !_is_positive || _is_left && _is_positive || !_is_right && !_is_left;
 					break;
+					
 					// All Solid
 					default:
 						_is_valid = true;

@@ -31,9 +31,9 @@ if (_direction != 0)
     {
         global.selected_level_entry = (global.selected_level_entry + _direction + array_length(level_entries)) % array_length(level_entries);
     }
-    until (is_level_entry(global.selected_level_entry));
+    until (self.is_level_entry(global.selected_level_entry));
     
-    update_stage_selection();
+    self.update_stage_selection();
 }
 
 if (level_entries[global.selected_level_entry] == "SOUND TEST")
@@ -41,7 +41,7 @@ if (level_entries[global.selected_level_entry] == "SOUND TEST")
     if (_input_press.start)
     {
         audio_stop_bgm(1.0);
-        fade_perform_black(FADEDIRECTION.OUT, 1,, load_selected_room);
+        fade_perform_black(FADEDIRECTION.OUT, 1,, self.load_selected_room);
     }
     else if (_input_press.left)
     {
@@ -58,7 +58,7 @@ if (level_entries[global.selected_level_entry] == "SOUND TEST")
     else if (_input_press.action3)
     {
 		// Register the input
-        cheat_code_string = string_concat(cheat_code_string, dec_to_hex(global.selected_sound_index));
+        cheat_code_string = string_concat(cheat_code_string, self.dec_to_hex(global.selected_sound_index));
 		
         for (var _i = 0; _i < array_length(cheat_codes); _i++)
         {
@@ -121,7 +121,7 @@ else if (_input_press.left || _input_press.right)
 		}
 		
 		var _new_index = min(_prev_page_last, _prev_page_first + _this_page_current);
-		while (_new_index > 0 && !is_level_entry(_new_index))
+		while (_new_index > 0 && !self.is_level_entry(_new_index))
 		{
 			_new_index--;
 		}
@@ -143,7 +143,7 @@ else if (_input_press.left || _input_press.right)
 		}
 		
 		var _new_index = min(_next_page_first + _this_page_current, _next_page_last);
-		while (!is_level_entry(_new_index))
+		while (!self.is_level_entry(_new_index))
 		{
 			_new_index--;
 		}
@@ -151,7 +151,7 @@ else if (_input_press.left || _input_press.right)
 		global.selected_level_entry = _new_index;
 	}
 	
-	update_stage_selection();
+	self.update_stage_selection();
 }
 else if (_input_press.action1 || _input_press.start)
 {
@@ -160,11 +160,11 @@ else if (_input_press.action1 || _input_press.start)
         if (room_to_load == rm_special)
         {
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADEDIRECTION.OUT, 1,, load_selected_room);
+            fade_perform_white(FADEDIRECTION.OUT, 1,, self.load_selected_room);
         }
         else
         {
-            fade_perform_black(FADEDIRECTION.OUT, 1,, load_selected_room);
+            fade_perform_black(FADEDIRECTION.OUT, 1,, self.load_selected_room);
         }
 		
 		audio_stop_bgm(1.0);

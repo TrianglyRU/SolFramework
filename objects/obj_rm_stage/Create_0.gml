@@ -49,7 +49,7 @@ scr_stage_setup();
 var _ring_data = global.giant_ring_data;
 var _checkpoint_data = global.checkpoint_data;
 
-if (is_not_null_array(_ring_data))
+if (array_length(_ring_data) > 0)
 {
 	obj_game.frame_counter = _ring_data[2];
 	
@@ -61,7 +61,7 @@ if (is_not_null_array(_ring_data))
         right_bound[_i] = _ring_data[6];
     }
 }
-else if (is_not_null_array(_checkpoint_data))
+else if (array_length(_checkpoint_data) > 0)
 {
 	obj_game.frame_counter = _checkpoint_data[2];
 	
@@ -95,7 +95,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 if (water_enabled)
 {
-	set_water_effects_bound();
+	self.set_water_effects_bound();
     instance_create_depth(0, 0, RENDERER_DEPTH_HIGHEST, obj_water_surface);
 }
 
@@ -112,15 +112,19 @@ switch (global.player_main)
     case PLAYER.SONIC:
         _player_icon = "player_sonic"; 
     break;
+	
     case PLAYER.TAILS: 
         _player_icon = "player_tails";
     break;
+	
     case PLAYER.KNUCKLES:
         _player_icon = "player_knuckles";
     break;
+	
     case PLAYER.AMY:
         _player_icon = "player_amy"; 
     break;
+	
 	default:
 		_player_icon = "";
 }

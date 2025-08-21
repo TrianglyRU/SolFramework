@@ -31,6 +31,7 @@ switch (state)
 		target_player = _player;
 	
 	break;
+	
 	case NEWTRONSTATE.FIRE:
 		
 		if (image_index == 3 && !shot_flag)
@@ -44,6 +45,7 @@ switch (state)
 		}
 	
 	break;
+	
 	case NEWTRONSTATE.FALL:
 		
 		if (image_index < 3)

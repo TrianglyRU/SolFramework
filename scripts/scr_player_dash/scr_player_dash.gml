@@ -51,8 +51,9 @@ function scr_player_dash()
 		// audio_stop_sound(snd_charge_dash);
 		audio_stop_sound(snd_charge_dash_no_loop);
 		audio_play_sfx(snd_release_dash);
-	    set_camera_delay(floor(_raw_camera_delay * 0.5));
-		set_velocity();
+		
+	    self.set_camera_delay(floor(_raw_camera_delay * 0.5));
+		self.set_velocity();
 		
 		// Exit the player control routine
 	    return true;

@@ -73,7 +73,7 @@ function scr_player_glide_collision()
 	    {
 	        if (_floor_dist > 14)
 	        {
-	            release_glide(0);
+	            self.release_glide(0);
 	        }
 	        else
 	        {
@@ -96,6 +96,7 @@ function scr_player_glide_collision()
 	if (_collision_flag_floor)
 	{
 		var _floor_quad = math_get_quadrant(angle);
+		
 		if (action_state == GLIDESTATE.AIR)
 		{
 			if (_floor_quad == QUADRANT.DOWN)
@@ -106,14 +107,13 @@ function scr_player_glide_collision()
 			}
 			else
 			{
-			    spd_ground = angle < 180 ? vel_x : -vel_x;
-			    land();
+				self.land();
+			    spd_ground = angle < 180 ? vel_x : -vel_x; 
 			}
 		}
 		else if (action_state == GLIDESTATE.FALL)
 		{
-		    land();
-		    audio_play_sfx(snd_land);
+		    self.land();
 			
 		    if (_floor_quad == QUADRANT.DOWN)
 		    {
@@ -126,6 +126,8 @@ function scr_player_glide_collision()
 		    {
 		        spd_ground = vel_x;
 		    }
+			
+			audio_play_sfx(snd_land);
 		}
 	}
 	else if (_collision_flag_wall)
@@ -141,7 +143,7 @@ function scr_player_glide_collision()
 	        var _floor_dist = tile_find_v(x + (_wall_radius + 1) * facing, _climb_y - radius_y - 1, DIRECTION.POSITIVE, secondary_layer, QUADRANT.UP)[0];
 	        if  (_floor_dist < 0 || _floor_dist >= 12)
 	        {
-	            release_glide(0);
+	            self.release_glide(0);
 	            return;
 	        }
 			

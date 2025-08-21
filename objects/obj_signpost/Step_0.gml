@@ -28,6 +28,7 @@ switch (state)
 		audio_play_sfx(snd_signpost);
 		
 	break;
+	
 	case SIGNPOSTSTATE.ROTATE:
 	
 		if (--sign_spin_timer < 0)
@@ -37,6 +38,7 @@ switch (state)
 				case 1:
 					obj_set_anim(sprite_index, 2, 1, 0);
 				break;
+				
 				case 2:
 					
 					if (sprite_index != spr_signpost)
@@ -50,12 +52,15 @@ switch (state)
 						case PLAYER.TAILS:
 							_sign_sprite = spr_signpost_tails;
 						break;
+						
 						case PLAYER.KNUCKLES:
 							_sign_sprite = spr_signpost_knuckles;
 						break;
+						
 						case PLAYER.AMY:
 							_sign_sprite = spr_signpost_amy;
 						break;
+						
 						default:
 							_sign_sprite = spr_signpost_sonic;
 					}
@@ -63,6 +68,7 @@ switch (state)
 					obj_set_anim(_sign_sprite, 2, 0, 0);
 					
 				break;
+				
 				case 3:
 					
 					state = SIGNPOSTSTATE.MOVE_PLAYER;
@@ -92,6 +98,7 @@ switch (state)
 		ring_sparkle_timer = 12;
 		
 	break;
+	
 	case SIGNPOSTSTATE.MOVE_PLAYER:
 		
 		if (player_object.state >= PLAYERSTATE.LOCKED)

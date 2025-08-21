@@ -1,3 +1,32 @@
+/// @function _attach_player()
+function _attach_player(_player, _obj, _attach_type, _distance)
+{
+	gml_pragma("forceinline");
+	
+	solid_touch_flags[_player.player_index] = SOLIDCOLLISION.TOP;
+	
+	if (_attach_type == SOLIDATTACH.NONE)
+	{
+		return;
+	}
+		
+	if (_attach_type == SOLIDATTACH.RESET_PLAYER)
+	{
+		_player.reset_substate();
+	}
+		
+	_player.y -= (_distance + 1);
+	_player.spd_ground	= _player.vel_x;
+	_player.vel_y = 0;
+	_player.angle = 0;
+	_player.on_object = _obj;
+		
+	if (!_player.is_grounded)
+	{
+		_player.land();
+	}
+}
+
 /// @self obj_game_object
 /// @description Handles collision detection and response between the player and a solid object.
 /// @param {Id.Instance} _player The player object instance.
@@ -5,33 +34,6 @@
 /// @param {Enum.SOLIDATTACH} [_attach_type] Whether the player is allowed to land on this object or should they be reset (default is SOLIDATTACH.DEFAULT).
 function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 {
-	/// @method _attach_player()
-	var _attach_player = function(_player, _obj, _attach_type, _distance)
-	{
-		solid_touch_flags[_player.player_index] = SOLIDCOLLISION.TOP;
-		
-		if (_attach_type == SOLIDATTACH.NONE)
-		{
-			return;
-		}
-		
-		if (_attach_type == SOLIDATTACH.RESET_PLAYER)
-		{
-			_player.reset_substate();
-		}
-		
-		_player.y -= (_distance + 1);
-		_player.spd_ground	= _player.vel_x;
-		_player.vel_y = 0;
-		_player.angle = 0;
-		_player.on_object = _obj;
-		
-		if (!_player.is_grounded)
-		{
-			_player.land();
-		}
-	}
-	
 	var _pid = _player.player_index;
 	
 	solid_touch_flags[_pid] = SOLIDCOLLISION.NONE;

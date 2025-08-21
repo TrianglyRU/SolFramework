@@ -15,6 +15,7 @@ switch (vd_target_player.animation)
 	case ANIM.LOOKUP:
 		obj_set_anim(spr_tails_tail_idle, 8, 0, 0);
 	break;
+	
 	case ANIM.FLY:
 	case ANIM.FLY_TIRED:
 	
@@ -28,6 +29,7 @@ switch (vd_target_player.animation)
 		obj_set_anim(spr_tails_tail_fly, _duration, 0, 0);
 		
 	break;
+	
 	case ANIM.PUSH:
 	case ANIM.SKID:
 	case ANIM.SPIN:
@@ -48,6 +50,7 @@ switch (vd_target_player.animation)
 		obj_set_anim(spr_tails_tail, 4, 0, 0);
 		
 	break;
+	
 	default:
 		sprite_index = -1;
 }

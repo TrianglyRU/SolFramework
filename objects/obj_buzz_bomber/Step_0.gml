@@ -16,6 +16,7 @@ switch (state)
 		}
 		
 	break;
+	
 	case BUZZBOMBERSTATE.FIRE:
 	
 		if (--state_timer < 0)
@@ -29,6 +30,7 @@ switch (state)
 		}
 		
 	break;
+	
 	case BUZZBOMBERSTATE.ROAM:
 	
 		if (--state_timer < 0)

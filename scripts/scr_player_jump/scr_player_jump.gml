@@ -21,10 +21,10 @@ function scr_player_jump()
 	
 	if (input_press.action3 && super_timer == 0 && global.player_rings >= 50 && global.emerald_count == 7)
 	{
-		reset_substate();
 		audio_play_sfx(snd_transform);
 		audio_play_bgm(snd_bgm_super);
 		
+		self.reset_substate();
 		state = PLAYERSTATE.LOCKED;
 		animation = ANIM.TRANSFORM;
 		action = ACTION.TRANSFORM;
@@ -104,7 +104,7 @@ function scr_player_jump()
 
 				case SHIELD.FIRE:
 				
-					set_camera_delay(16);
+					self.set_camera_delay(16);
 					
 					air_lock_flag = true;
 					vel_x = 8 * facing;
@@ -115,9 +115,13 @@ function scr_player_jump()
 						if (vd_target_player == other.id)
 						{
 							var _dash_sprite = spr_shield_fire_dash;
+							
 							if (sprite_index != _dash_sprite)
 							{
-								obj_set_anim(_dash_sprite, 2, 0, function(){ clear_fire_shield_dash(); });
+								obj_set_anim(_dash_sprite, 2, 0, function()
+								{ 
+									self.clear_fire_shield_dash();
+								});
 							}
 							else
 							{

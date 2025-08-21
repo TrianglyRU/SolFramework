@@ -54,7 +54,7 @@ switch (state)
 		}
 		else
 		{
-			wait_time = set_delay();
+			wait_time = self.set_delay();
 			wait_cycle++;
 			state = AIRBUBBLERSTATE.IDLE;
 		}

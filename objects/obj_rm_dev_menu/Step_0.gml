@@ -16,7 +16,8 @@ else if (_input_press.up)
 
 if (_input_press.action3 && category_id == 1 && option_id > 0)
 {	
-	alter_option(option_id, "SAVE " + string(option_id - 1));
+	self.alter_option(option_id, "SAVE " + string(option_id - 1));
+	
 	game_delete_data(option_id - 1);
 	return;
 }
@@ -28,7 +29,7 @@ if (_input_press.action2)
 		game_save_settings();
 	}
 	
-	load_category(all_categories_data[? category_id][0]);
+	self.load_category(all_categories_data[? category_id][0]);
 	return;
 }
 
@@ -44,6 +45,7 @@ switch (category_id)
 		}
 		
 	break;
+	
 	default:
 		
 		// For everything else, react only to action1 and start inputs
@@ -56,27 +58,30 @@ switch (category_id)
 // Handle actions for each menu category
 switch (category_id)
 {	
-	case 0:	// Main menu
+	// Main menu
+	case 0:
 	
 		switch (option_id)
 		{
 			case 0:
 			
-				load_category(1);	
+				self.load_category(1);	
+				
 				for (var _i = 0; _i < 4; _i++)
 				{
 					if (game_check_data(_i))
 					{
-						alter_option(_i + 1, "SAVED GAME " + string(_i));
+						self.alter_option(_i + 1, "SAVED GAME " + string(_i));
 					}
 				}
 				
 			break;
+			
 			case 1:	
 			
 				if (global.dev_mode)
 				{
-					load_category(2);
+					self.load_category(2);
 				}
 				else
 				{
@@ -84,24 +89,28 @@ switch (category_id)
 				}	
 				
 			break;
+			
 			case 2:
-				load_category(3);
+				self.load_category(3);
 			break;
+			
 			case 3:
 				game_end();
 			break;
 		}
 		
 	break;
-	case 1:	// Start game
+	
+	// Start game
+	case 1:	
 	
 		global.current_save_slot = option_id - 1;
 
 		if (!game_check_data(global.current_save_slot))
 		{
 			room_to_load = rm_stage_ghz0;
+			self.load_category(4);
 			
-			load_category(4);
 			break;
 		}
 		
@@ -115,7 +124,9 @@ switch (category_id)
 		}
 		
 	break;
-	case 2:	// Room selection
+	
+	// Room selection
+	case 2:	
 	
 		// Add 1 because we're skipping the rm_startup entry
 		room_to_load = option_id + 1;
@@ -126,12 +137,14 @@ switch (category_id)
 		}
 		else
 		{
-			load_category(4);
+			self.load_category(4);
 			global.current_save_slot = -1;
 		}
 		
 	break;
-	case 3:	// Settings menu
+	
+	// Settings menu
+	case 3:	
 	
 		switch (option_id)
 		{
@@ -144,6 +157,7 @@ switch (category_id)
 				}
 				
 			break;
+			
 			case 1:
 			
 				if (_input_press.left)
@@ -163,6 +177,7 @@ switch (category_id)
 				audio_play_bgm(snd_bgm_actclear);
 				
 			break;
+			
 			case 2:
 			
 				if (_input_press.left)
@@ -183,6 +198,7 @@ switch (category_id)
 				audio_play_sfx(snd_ring_right);
 				
 			break;
+			
 			case 3:
 			
 				if (_input_press.left)
@@ -203,9 +219,11 @@ switch (category_id)
 				window_resize();
 				
 			break;
+			
 			case 4:
 				window_set_fullscreen(_input_press.right);				
 			break;
+			
 			case 5:
 			
 				global.use_vsync = _input_press.right;
@@ -214,16 +232,20 @@ switch (category_id)
 			break;
 		}
 		
-		alter_setting(option_id);
-		
-	break;	
-	case 4:	// Player 1 selection
-	
-		global.player_main = option_id;
-		load_category(5);
+		self.alter_setting(option_id);
 		
 	break;
-	case 5:	// Player 2 selection
+	
+	// Player 1 selection
+	case 4:	
+	
+		global.player_main = option_id;
+		self.load_category(5);
+		
+	break;
+	
+	// Player 2 selection
+	case 5:
 	
 		global.player_cpu = option_id == (category_options_count - 1) ? PLAYER.NONE : option_id;
 		global.continue_count = 3;

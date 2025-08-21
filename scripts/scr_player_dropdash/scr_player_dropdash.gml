@@ -70,11 +70,12 @@ function scr_player_dropdash()
 	    }
 		
 	    animation = ANIM.SPIN;
+		self.set_camera_delay(8);
 		
 	    instance_create(x, y + radius_y + 1, obj_dust_dropdash, { image_xscale: facing });
 	    audio_stop_sound(snd_charge_drop);
 	    audio_play_sfx(snd_release);
-	    set_camera_delay(8);
+		
 	    return;
 	}
 	

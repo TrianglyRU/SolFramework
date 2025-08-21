@@ -1,3 +1,17 @@
+/// @function _snap_angle()
+function _snap_angle(_angle)
+{
+	gml_pragma("forceinline");
+		
+	var _diff = abs(angle % 180 - _angle % 180);
+	if (_diff >= 45 && _diff <= 135)
+	{
+		_angle = round(angle / 90) % 4 * 90;
+	}
+		
+	return _angle;
+}
+
 /// @self obj_player
 /// @feather ignore GM2044
 /// @function scr_player_collision_ground_floor()
@@ -8,18 +22,6 @@ function scr_player_collision_ground_floor()
 	if (on_object != noone && instance_exists(on_object))
 	{
 		return;
-	}
-
-	/// @method _snap_angle()
-	var _snap_angle = function(_angle)
-	{
-		var _diff = abs(angle % 180 - _angle % 180);
-		if (_diff >= 45 && _diff <= 135)
-		{
-			_angle = round(angle / 90) % 4 * 90;
-		}
-		
-		return _angle;
 	}
 	
 	var _angle_quad = QUADRANT.DOWN; _angle_quad = math_get_quadrant(angle);

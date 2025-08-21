@@ -78,7 +78,7 @@ function scr_player_debug_mode()
 		x = floor(x);
 		y = floor(y);
 		
-	    reset_gravity();
-	    reset_substate();
+	    self.reset_gravity();
+	    self.reset_substate();
 	}
 }

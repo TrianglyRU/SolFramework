@@ -57,7 +57,7 @@ function scr_player_death()
 	        }
 	        else
 	        {
-	            respawn();
+	            self.respawn();
 	        }
 			
 	    break;

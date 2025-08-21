@@ -8,6 +8,6 @@ if (state == LAMPSTATE.ROTATE)
 	}
 	else
 	{
-		activate();
+		self.activate();
 	}
 }

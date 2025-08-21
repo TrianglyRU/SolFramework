@@ -144,5 +144,5 @@ function scr_player_movement_ground()
 		}
 	}
 
-	set_velocity();
+	self.set_velocity();
 }

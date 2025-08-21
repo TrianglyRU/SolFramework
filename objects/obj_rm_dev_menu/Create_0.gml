@@ -64,18 +64,23 @@ get_setting = function(_id)
         case 0: 
 			_display = global.gamepad_rumble ? "TRUE" : "FALSE";
 		break;
+		
         case 1:
 			_display = string(round(global.music_volume * 100)) + "%";
 		break;
+		
         case 2:
 			_display = string(round(global.sound_volume * 100)) + "%";
 		break;
+		
         case 3: 
 			_display = string(global.window_scale) + "X";
 		break;
+		
 		case 4:
 			_display = window_get_fullscreen() ? "TRUE" : "FALSE";
 		break;
+		
 		case 5:
 			_display = global.use_vsync ? "TRUE" : "FALSE";
 		break;
@@ -99,7 +104,7 @@ for (var _i = 1; _i <= room_last; _i++)
 	_room_list[_i - 1] = string_upper(room_get_name(_i));
 }
 
-add_category    // ID 0
+self.add_category    // ID 0
 (
     "ORBINAUT FRAMEWORK DEV MENU\n(Sol Version)",
     [
@@ -109,8 +114,7 @@ add_category    // ID 0
 		"CLOSE GAME"
 	]
 );
-
-add_category    // ID 1
+self.add_category    // ID 1
 (
     "START GAME\nPress action 3 to delete a save file",
 	[
@@ -121,13 +125,11 @@ add_category    // ID 1
 	    "SAVE 3"
 	]
 );
-
-add_category    // ID 2
+self.add_category    // ID 2
 (
     "ROOM SELECT", _room_list
 );
-
-add_category    // ID 3
+self.add_category    // ID 3
 (
     "SETTINGS",
 	[
@@ -139,8 +141,7 @@ add_category    // ID 3
 		"FULLSCREEN VSYNC"
 	]
 );
-
-add_category    // ID 4
+self.add_category    // ID 4
 (
     "PLAYER 1 SELECT",
 	[
@@ -150,8 +151,7 @@ add_category    // ID 4
 	    "AMY"
 	]
 );
-
-add_category    // ID 5
+self.add_category    // ID 5
 (
     "PLAYER 2 SELECT",
 	[
@@ -162,6 +162,6 @@ add_category    // ID 5
 	    "NO PLAYER 2"
 	]
 );
+self.load_category(0);
 
-load_category(0);
 discord_set_data("In Menus", "", "", "");

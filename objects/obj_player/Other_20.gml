@@ -85,7 +85,7 @@ switch (state)
 		scr_player_update_status();
 		scr_player_animate();
 		
-		record_data(0);
+		self.record_data(0);
 		
 	break;
 
@@ -101,7 +101,7 @@ switch (state)
 		scr_player_collision_air();
 		scr_player_animate();
 		
-		record_data(0);
+		self.record_data(0);
 		
 	break;
 
@@ -116,7 +116,7 @@ switch (state)
 		scr_player_position();
 		scr_player_animate();
 		
-		record_data(0);
+		self.record_data(0);
 		
 	break;
 

@@ -15,14 +15,17 @@ var _player_text;
 switch (player_object.vd_player_type)
 {
     case PLAYER.TAILS:
-        _player_text = "TAILS";
+        _player_text = "TAILS";	
     break;
+	
     case PLAYER.KNUCKLES:
         _player_text = "KNUCKLES";
     break;
+	
     case PLAYER.AMY:
         _player_text = "AMY";
     break;
+	
 	default:
 		_player_text = "SONIC";
 }
@@ -75,6 +78,39 @@ _y = _centre_y + 56;
 
 draw_sprite(spr_gui_results_score, 0, _x - 55, _y);
 draw_text(_x + 97, _y - 7, total_bonus);
+
+if (continue_timer > 60)
+{
+	var _timer = (continue_timer - 2) % 32;
+	if (_timer >= 16 && _timer < 32)
+	{
+		var _sprite;
+		var _index = view_current > 0 ? global.player_cpu : global.player_main;
+		
+		switch (_index)
+		{
+			case PLAYER.TAILS:
+				_sprite = spr_gui_continue_tails;
+			break;
+			
+			case PLAYER.KNUCKLES:
+				_sprite = spr_gui_continue_knuckles;
+			break;
+			
+			case PLAYER.AMY:
+				_sprite = spr_gui_continue_amy;
+			break;
+			
+			default:
+				_sprite = spr_gui_continue_sonic;
+		}
+		
+		_x = _centre_x + 112;
+		_y = _centre_y + 52;
+		
+		draw_sprite(_sprite, floor(continue_timer / 20) % 2, _x, _y);
+	}
+}
 
 shader_reset();
 surface_reset_target();

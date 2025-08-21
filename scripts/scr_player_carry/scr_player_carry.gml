@@ -1,24 +1,26 @@
+/// @function _attach_to_tails()
+function _attach_to_tails(_who, _tails)
+{
+	gml_pragma("forceinline");
+		
+	var _target_x = _tails.x;
+	var _target_y = _tails.y + 28;
+	
+	_who.x = _target_x;
+	_who.y = _target_y;
+	_who.image_xscale = _tails.facing;
+	_who.facing = _tails.facing;
+	_who.vel_x = _tails.vel_x;
+	_who.vel_y = _tails.vel_y;
+	_tails.carry_target_x = _target_x;
+	_tails.carry_target_y = _target_y;
+}
+
 /// @self obj_player
 /// @function scr_player_carry()
 function scr_player_carry()
 {
 	gml_pragma("forceinline");
-	
-	/// @method _attach_to_tails()
-	var _attach_to_tails = function(_who, _tails)
-	{
-		var _target_x = _tails.x;
-		var _target_y = _tails.y + 28;
-	
-		_who.x = _target_x;
-		_who.y = _target_y;
-		_who.image_xscale = _tails.facing;
-		_who.facing = _tails.facing;
-		_who.vel_x = _tails.vel_x;
-		_who.vel_y = _tails.vel_y;
-		_tails.carry_target_x = _target_x;
-		_tails.carry_target_y = _target_y;
-	}
 	
 	if (vd_player_type != PLAYER.TAILS)
 	{
@@ -59,17 +61,19 @@ function scr_player_carry()
 				_player.reset_substate();		
 				_player.animation = ANIM.GRAB;
 				_player.action = ACTION.CARRIED;
+				
 				carry_target = _player;
 				
 				audio_play_sfx(snd_grab);
 				_attach_to_tails(_player, id);
+				
 				break;
 			}	
 		}
 	}
 	else if (carry_target.action != ACTION.CARRIED)
 	{
-		clear_carry();
+		self.clear_carry();
 	}
 	else if (carry_target.input_press.action_any)
 	{
@@ -96,11 +100,12 @@ function scr_player_carry()
 	}
 	else if floor(carry_target.x) != floor(carry_target_x) || floor(carry_target.y) != floor(carry_target_y)
 	{
-		clear_carry();
+		self.clear_carry();
 	}
 	else
 	{
 		_attach_to_tails(carry_target, id);
+		
 		with (carry_target)
 		{
 			scr_player_collision_air();

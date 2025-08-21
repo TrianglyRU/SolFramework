@@ -10,12 +10,15 @@ switch (image_index)
 	case 0:
 		layer_data = [TILELAYER.SECONDARY_A, TILELAYER.SECONDARY_B];
 	break;
+	
 	case 1:
 		layer_data = [TILELAYER.SECONDARY_B, TILELAYER.SECONDARY_A];
 	break;
+	
 	case 2:
 		layer_data = [TILELAYER.SECONDARY_A, TILELAYER.SECONDARY_A];
 	break;
+	
 	case 3:
 		layer_data = [TILELAYER.SECONDARY_B, TILELAYER.SECONDARY_B];
 	break;

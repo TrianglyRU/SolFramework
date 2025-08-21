@@ -51,6 +51,7 @@ switch (state)
 		}
         		
     break;
+	
     case SPECIALRESULTSSTATE.TALLY:
 	
         if (ring_bonus > 0)
@@ -80,6 +81,7 @@ switch (state)
         audio_play_sfx(snd_tally);
 		
     break;
+	
     case SPECIALRESULTSSTATE.SUPER_MSG:
 	
         offset_line1 = max(offset_line1 - speed_x * 2, SPECIALRESULTS_OFFSET_LINE_1);

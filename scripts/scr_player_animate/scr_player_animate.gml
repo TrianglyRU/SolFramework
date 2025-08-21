@@ -1,14 +1,15 @@
+/// @function _ceil_angle()
+function _ceil_angle(_angle)
+{
+	gml_pragma("forceinline");
+	return ceil((_angle - 22.5) / 45) * 45;
+}
+
 /// @self obj_player
-/// @function scr_player_animate
+/// @function scr_player_animate()
 function scr_player_animate()
 {
 	gml_pragma("forceinline");
-	
-	/// @method _ceil_angle
-	var _ceil_angle = function(_angle)
-	{
-		return ceil((_angle - 22.5) / 45) * 45;
-	}
 	
 	var _use_mania = global.rotation_mode == ROTATION.MANIA;
 	var _range = global.rotation_range;
@@ -65,12 +66,15 @@ function scr_player_animate()
 		case PLAYER.SONIC:
 			scr_player_animate_sonic();
 		break;
+		
 		case PLAYER.TAILS:
 			scr_player_animate_tails();
 		break;
+		
 		case PLAYER.KNUCKLES:
 			scr_player_animate_knuckles();
 		break;
+		
 		case PLAYER.AMY:
 			scr_player_animate_amy();
 		break;
