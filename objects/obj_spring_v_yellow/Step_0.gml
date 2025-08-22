@@ -41,7 +41,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.vel_y = image_yscale * -launch_force;
 	_player.reset_substate();
 	
-	obj_set_anim(sprite_index, 1, 1, function(){ obj_stop_anim(0); });
+	obj_set_anim(sprite_index, 1, 1, self.stop_anim);
     audio_play_sfx(snd_spring);
 	input_set_rumble(_p, 0.20, INPUT_RUMBLE_MEDIUM);
 }

@@ -3,7 +3,7 @@
 /// @param {Asset.GMSprite} _sprite_id The sprite used for the animation.
 /// @param {Real} _duration Duration of a single frame in game steps.
 /// @param {Real} _start_frame Index of a starting frame.
-/// @param {Real|Function} _end_routine A frame index to loop back to or a function to execute at the very beginning of the next tick after the last frame has ended.
+/// @param {Real|Function} _end_routine A frame index to loop back to (or an argumentless method variable to execute) at the very beginning of the next tick after the last frame has ended.
 function obj_set_anim(_sprite_id, _duration, _start_frame, _end_routine)
 {
 	sprite_index = _sprite_id;

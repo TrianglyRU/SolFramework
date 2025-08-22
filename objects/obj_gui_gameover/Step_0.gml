@@ -17,42 +17,12 @@ switch (state)
 			state++;
 			
 			audio_stop_bgm(1.0);
-			fade_perform_black(FADEDIRECTION.OUT, 1,, function()
-			{
-				if (image_index == 1)
-				{
-					var _checkpoint_data = global.checkpoint_data;			
-					if (array_length(_checkpoint_data) > 0)
-					{
-						_checkpoint_data[2] = 0;
-					}
-		
-					game_clear_level_data(false);
-					room_restart();
-				}
-				else
-				{
-					global.life_count = 3;
-					global.score_count = 0;
-					
-					game_clear_level_data();
-					game_save_data(global.current_save_slot);
-		
-					if (global.continue_count > 0)
-					{
-						room_goto(rm_continue);
-					}
-					else
-					{
-						room_goto(global.start_room);
-					}
-				}
-			});	
-			
-			break;
+			fade_perform_black(FADEDIRECTION.OUT, 1,, self.handle_gameover_end);	
 		}
-		
-		wait_timer--;
+		else
+		{
+			wait_timer--;
+		}
 			
 	break;
 }

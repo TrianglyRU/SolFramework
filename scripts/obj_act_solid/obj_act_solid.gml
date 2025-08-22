@@ -9,7 +9,7 @@ function _attach_player(_player, _obj, _attach_type, _distance)
 	{
 		return;
 	}
-		
+	
 	if (_attach_type == SOLIDATTACH.RESET_PLAYER)
 	{
 		_player.reset_substate();
@@ -64,6 +64,7 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 	if array_length(solid_height_map) > 0
 	{
 		var _index;
+		
 		if (image_xscale >= 0)
 		{
 			_index = _px - _ox + _orx;
@@ -131,12 +132,10 @@ function obj_act_solid(_player, _type, _attach_type = SOLIDATTACH.DEFAULT)
 		
 		solid_touch_flags[_pid] = SOLIDCOLLISION.NONE;
 		_player.on_object = noone;
-		
-		return;
 	}
 	
 	// Handle collision detection for non-platform objects
-	if (_type != SOLIDOBJECT.TOP)
+	else if (_type != SOLIDOBJECT.TOP)
 	{
 		var _s3_method = global.player_physics >= PHYSICS.S3;
 		var _x_dist = _px - _ox + _combined_width;

@@ -8,10 +8,16 @@ enum BUBBLE
 	COUNTDOWN
 }
 
+/// @method destroy()
+destroy = function()
+{
+	instance_destroy();
+}
+
 /// @method burst()
 burst = function()
 {
-	obj_set_anim(spr_bubble_burst, 6, 0, function(){ instance_destroy(); });
+	obj_set_anim(spr_bubble_burst, 6, 0, self.destroy);
 }
 
 // Inherit the parent event

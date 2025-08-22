@@ -45,20 +45,11 @@ switch (state)
 		
         if (--wait_timer == 0)
         {
-            state = GIANTRINGSTATE.TRANSITION;
+            state++;
 			
             audio_stop_bgm(1.0);
             audio_play_sfx(snd_warp);
-			
-            fade_perform_white(FADEDIRECTION.OUT, 1,, function()
-			{
-				while (audio_is_playing(snd_warp))
-				{
-					// Wait until snd_warp is no longer playing
-				}
-	
-				room_goto(rm_special);
-			});
+            fade_perform_white(FADEDIRECTION.OUT, 1,, self.load_special_room);
         }
         
     break;  

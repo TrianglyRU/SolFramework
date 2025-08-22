@@ -7,12 +7,7 @@ function scr_player_animate_tails()
 	switch (animation)
 	{
 		case ANIM.IDLE:
-		
-			obj_set_anim(spr_tails_idle, 8, 0, function()
-			{ 
-				animation = ANIM.WAIT
-			});
-			
+			obj_set_anim(spr_tails_idle, 8, 0, self.set_wait_anim);	
 		break;
 		
 		case ANIM.WAIT:
@@ -22,6 +17,7 @@ function scr_player_animate_tails()
 		case ANIM.MOVE:
 		
 			var _move_sprite = spr_tails_walk;	
+			
 			if (abs(spd_ground) >= 6)
 			{
 				_move_sprite = abs(spd_ground) < 10 ? spr_tails_run : spr_tails_dash;
@@ -65,39 +61,19 @@ function scr_player_animate_tails()
 		break;
 		
 		case ANIM.SKID:
-		
-			obj_set_anim(spr_tails_skid, 8, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_tails_skid, 8, 0, self.set_move_anim);		
 		break;
 		
 		case ANIM.TRANSFORM:
-		
-			obj_set_anim(spr_tails_transform, 3, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_tails_transform, 3, 0, self.set_move_anim);
 		break;
 		
 		case ANIM.BREATHE:
-		
-			obj_set_anim(spr_tails_breathe, 24, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_tails_breathe, 24, 0, self.set_move_anim);
 		break;
 		
 		case ANIM.BOUNCE:
-		
-			obj_set_anim(spr_tails_bounce, 4, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_tails_bounce, 4, 0, self.set_move_anim);
 		break;
 		
 		case ANIM.BALANCE:
@@ -107,13 +83,7 @@ function scr_player_animate_tails()
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
 			
-			obj_set_anim(spr_tails_flip, 1, 0, function()
-			{
-				if (animation == ANIM.FLIP || anim_play_count == 2)
-				{
-					animation = ANIM.MOVE;
-				}; 
-			});
+			obj_set_anim(spr_tails_flip, 1, 0, self.end_flip_anim);
 			
 			// Override the displayed sprite
 			if (facing == DIRECTION.NEGATIVE)

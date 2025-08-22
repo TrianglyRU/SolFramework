@@ -1,3 +1,9 @@
+/// @method load_bonus_stage()
+load_bonus_stage = function()
+{
+	room_goto(rm_bonus);
+}
+
 // Inherit the parent event
 event_inherited();
 

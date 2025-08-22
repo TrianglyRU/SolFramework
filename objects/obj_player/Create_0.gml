@@ -272,10 +272,7 @@ land = function()
 		{
 			if (vd_target_player == other.id)
 			{
-				obj_set_anim(spr_shield_bubble_bounce, 6, 0, function()
-				{ 
-					obj_set_anim(spr_shield_bubble, 2, 0, 0); 
-				});
+				obj_set_anim(spr_shield_bubble_bounce, 6, 0, self.set_bubble_shield_anim);
 			}
 		}
 		
@@ -511,6 +508,44 @@ is_not_true_glide = function()
 is_true_glide = function()
 {
 	return action == ACTION.GLIDE && action_state != GLIDESTATE.FALL;
+}
+
+/// @method set_idle_anim()
+set_idle_anim = function()
+{
+	animation = ANIM.IDLE;
+}
+
+/// @method set_wait_anim()
+set_wait_anim = function()
+{
+	animation = ANIM.WAIT;
+}
+
+/// @method set_move_anim()
+set_move_anim = function()
+{
+	animation = ANIM.MOVE;
+}
+
+/// @method end_flip_anim()
+end_flip_anim = function()
+{
+	if (animation == ANIM.FLIP || anim_play_count == 2)
+	{
+		animation = ANIM.MOVE;
+	}
+	else
+	{
+		obj_restart_anim(false);
+	}
+}
+
+/// @method restart_after_death()
+restart_after_death = function()
+{
+	game_clear_level_data(false);
+	room_restart();
 }
 
 // Inherit the parent event

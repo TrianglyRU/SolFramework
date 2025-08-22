@@ -7,12 +7,8 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
         continue;
     }
 	
-	obj_set_anim(sprite_index, 4, 1, function()
-	{
-		obj_stop_anim(0); 
-	});
-	
-    audio_play_sfx(snd_bumper);
+	audio_play_sfx(snd_bumper);
+	obj_set_anim(sprite_index, 4, 1, self.stop_anim);
     
     if (hits_left != 0)
     {

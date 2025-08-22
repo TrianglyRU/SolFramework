@@ -1,7 +1,19 @@
+/// @method set_bubble_shield_anim()
+set_bubble_shield_anim = function()
+{
+	obj_set_anim(spr_shield_bubble, 2, 0, 0)
+}
+
+/// @method set_fire_shield_anim()
+set_fire_shield_anim = function()
+{
+	obj_set_anim(spr_shield_fire, 2, 0, 0);
+}
+
 /// @method clear_fire_shield_dash()
 clear_fire_shield_dash = function()
 {
-	obj_set_anim(spr_shield_fire, 2, 0, 0);
+	self.set_fire_shield_anim();
 	
 	if (vd_target_player.shield_state == SHIELDSTATE.ACTIVE)
 	{
@@ -26,11 +38,11 @@ switch (_shield)
 	break;
 	
 	case SHIELD.BUBBLE:
-		obj_set_anim(spr_shield_bubble, 2, 0, 0);
+		self.set_bubble_shield_anim();
 	break;
 	
 	case SHIELD.FIRE:
-		obj_set_anim(spr_shield_fire, 2, 0, 0);	
+		self.set_fire_shield_anim();
 	break;
 	
 	case SHIELD.LIGHTNING:

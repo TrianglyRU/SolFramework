@@ -11,6 +11,22 @@ enum SPECIALRESULTSSTATE
 #macro SPECIALRESULTS_OFFSET_LINE_1 -288
 #macro SPECIALRESULTS_OFFSET_LINE_2 288
 
+/// @method start_black_fade_out()
+start_black_fade_out = function()
+{
+	visible = false;
+				
+	fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+	{
+		while (audio_is_playing(snd_warp))
+		{
+			// Wait until snd_warp is no longer playing
+		}
+					
+		room_goto(global.previous_room_id);
+	});
+}
+
 offset_line1 = SPECIALRESULTS_OFFSET_LINE_1;
 offset_line2 = SPECIALRESULTS_OFFSET_LINE_2;
 offset_score = 528;	

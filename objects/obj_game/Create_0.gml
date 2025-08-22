@@ -119,7 +119,7 @@ debug_solids = ds_list_create();
 debug_solids_sides = ds_list_create();
 debug_solids_push = ds_list_create();
 
-// Functions
+/// @method debug_get_game_state_name()
 debug_get_game_state_name = function()
 {
 	switch (state)
@@ -172,7 +172,7 @@ fade_timer = FADE_TIMER_MAX;
 fade_step = 0;
 fade_frequency_timer = 0;
 fade_frequency_target = 0;
-fade_end_routine = function(){};
+fade_end_method = function(){};
 
 #endregion
 

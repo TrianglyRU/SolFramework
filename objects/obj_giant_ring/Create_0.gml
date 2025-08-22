@@ -1,14 +1,24 @@
 enum GIANTRINGSTATE
 {
 	IDLE,
-	ENTRY,
-	TRANSITION
+	ENTRY
 }
 
 if (ds_list_find_index(global.ds_giant_rings, id) != -1)
 {
 	instance_destroy();
 	return;
+}
+
+/// @method load_special_room()
+load_special_room = function()
+{
+	while (audio_is_playing(snd_warp))
+	{
+		// Wait until snd_warp is no longer playing
+	}
+	
+	room_goto(rm_special);
 }
 
 // Inherit the parent event

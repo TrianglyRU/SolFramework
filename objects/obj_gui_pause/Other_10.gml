@@ -61,25 +61,6 @@ else
 {
 	state = PAUSESTATE.EXIT;
 }
-		
+
 audio_play_sfx(snd_starpost);
-fade_perform_black(FADEDIRECTION.OUT, 1,, function()
-{
-	while (audio_is_playing(snd_starpost))
-	{
-		// Wait until snd_starpost is no longer playing
-	}
-					
-	if (state == PAUSESTATE.RESTART)
-	{
-		global.life_count--;
-				
-		game_clear_level_data(false);
-		room_restart();
-	}
-	else
-	{
-		game_clear_level_data();
-		room_goto(rm_level_select);
-	}	
-});
+fade_perform_black(FADEDIRECTION.OUT, 1,, self.handle_option);

@@ -17,8 +17,5 @@ logo_offset_x = lerp(logo_offset_x, 1, digit_offset_x < 16 ? 0.25 : 0.0);
 
 if (obj_game.frame_counter == 96 || input_get_pressed(0).start)
 {
-    fade_perform_black(FADEDIRECTION.OUT, 1,, function()
-	{
-		room_goto(rm_level_select); 
-	});
+    fade_perform_black(FADEDIRECTION.OUT, 1,, self.load_next_room);
 }

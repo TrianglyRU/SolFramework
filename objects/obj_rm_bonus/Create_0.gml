@@ -1,3 +1,9 @@
+/// @method return_to_prev_room()
+return_to_prev_room = function()
+{
+	room_goto(global.previous_room_id);
+};
+
 rings_earned = 0;
 continue_earned = false;
 

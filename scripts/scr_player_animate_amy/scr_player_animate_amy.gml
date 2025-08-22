@@ -7,12 +7,7 @@ function scr_player_animate_amy()
 	switch (animation)
 	{
 		case ANIM.IDLE:
-		
-			obj_set_anim(spr_amy_idle, 240, 0, function()
-			{
-				animation = ANIM.WAIT 
-			});
-			
+			obj_set_anim(spr_amy_idle, 240, 0, self.set_wait_anim);	
 		break;
 		
 		case ANIM.WAIT:
@@ -87,39 +82,19 @@ function scr_player_animate_amy()
 		break;
 		
 		case ANIM.SKID:
-		
-			obj_set_anim(spr_amy_skid, 6, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_amy_skid, 6, 0, self.set_move_anim);	
 		break;
 		
 		case ANIM.TRANSFORM:
-		
-			obj_set_anim(spr_amy_transform, 3, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_amy_transform, 3, 0, self.set_move_anim);
 		break;
 		
 		case ANIM.BREATHE:
-		
-			obj_set_anim(spr_amy_breathe, 24, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_amy_breathe, 24, 0, self.set_move_anim);	
 		break;
 		
 		case ANIM.BOUNCE:
-		
-			obj_set_anim(spr_amy_bounce, 4, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_amy_bounce, 4, 0, self.set_move_anim);
 		break;
 		
 		case ANIM.BALANCE:
@@ -129,17 +104,7 @@ function scr_player_animate_amy()
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
 			
-			obj_set_anim(spr_amy_flip, 1, 0, function()
-			{
-				if (animation == ANIM.FLIP || anim_play_count == 2)
-				{
-					animation = ANIM.MOVE;
-				}
-				else
-				{
-					obj_restart_anim();
-				}
-			});
+			obj_set_anim(spr_amy_flip, 1, 0, self.end_flip_anim);
 			
 			// Override the displayed sprite
 			if (facing == DIRECTION.NEGATIVE)

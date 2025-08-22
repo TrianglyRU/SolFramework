@@ -29,21 +29,7 @@ switch (state)
 			state = SPECIALRESULTSSTATE.EXIT;
 			
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADEDIRECTION.OUT, 1,, function()
-			{
-				// Hide the object after the first fade and then start the second one
-				visible = false;
-				
-	            fade_perform_black(FADEDIRECTION.OUT, 1,, function()
-				{
-					while (audio_is_playing(snd_warp))
-					{
-						// Wait until snd_warp is no longer playing
-					}
-					
-					room_goto(global.previous_room_id);
-				});
-			});
+            fade_perform_white(FADEDIRECTION.OUT, 1,, self.start_black_fade_out);
         }
 		else
 		{

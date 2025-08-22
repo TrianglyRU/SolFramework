@@ -7,6 +7,21 @@ enum RESULTSSTATE
 	EXIT
 }
 
+/// @method next_room()
+next_room = function()
+{
+	game_clear_level_data();
+				
+	if (obj_rm_stage.next_stage == -1)
+	{
+		room_restart();
+	}
+	else
+	{
+		room_goto(obj_rm_stage.next_stage);
+	}
+}
+
 obj_game.allow_pause = false;
 
 temp_surface = array_create(CAMERA_COUNT, -1);

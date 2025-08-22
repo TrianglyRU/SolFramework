@@ -67,11 +67,7 @@ function scr_player_death()
 	        if (restart_timer > 0 && --restart_timer == 0)
 	        {
 			    audio_stop_bgm(1.0);	
-			    fade_perform_black(FADEDIRECTION.OUT, 1,, function()
-				{
-					game_clear_level_data(false);
-					room_restart();
-				}); 
+			    fade_perform_black(FADEDIRECTION.OUT, 1,, self.restart_after_death); 
 		    }
 			
 	    break;

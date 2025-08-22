@@ -40,12 +40,12 @@ switch (state)
 	        {
 	            instance_create(x - 28 + 7 * _i, y, obj_animal, { vd_release_timer: 154 - _i * 8, vd_random_direction: true });
 	        }
-        
-	        with (gate_obj)
-	        {
-				obj_set_anim(sprite_index, 4, 0, function(){ instance_destroy(); });
-	        }
-        
+			
+			with (gate_obj)
+			{
+				obj_set_anim(sprite_index, 4, 0, self.destroy());
+			}
+			
 	        state = CAPSULESTATE.SPAWN_ANIMALS;
 	        wait_timer = 180;
         }
@@ -80,10 +80,10 @@ switch (state)
 		
         if (_start_results)
         {
-            instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);
-            audio_play_bgm(snd_bgm_actclear);
+			state++;
 			
-            state++;
+            audio_play_bgm(snd_bgm_actclear);
+			instance_create(0, 0, obj_gui_results);
         }
         
 	break;

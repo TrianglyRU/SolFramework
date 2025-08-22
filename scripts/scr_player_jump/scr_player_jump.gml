@@ -91,10 +91,7 @@ function scr_player_jump()
 					{
 						if (vd_target_player == other.id)
 						{
-							obj_set_anim(spr_shield_bubble_drop, 6, 0, function()
-							{ 
-								obj_set_anim(spr_shield_bubble, 2, 0, 0); 
-							});
+							obj_set_anim(spr_shield_bubble_drop, 6, 0, self.set_bubble_shield_anim);
 						}
 					}
 					
@@ -118,10 +115,7 @@ function scr_player_jump()
 							
 							if (sprite_index != _dash_sprite)
 							{
-								obj_set_anim(_dash_sprite, 2, 0, function()
-								{ 
-									self.clear_fire_shield_dash();
-								});
+								obj_set_anim(_dash_sprite, 2, 0, self.clear_fire_shield_dash());
 							}
 							else
 							{

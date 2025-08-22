@@ -5,6 +5,28 @@ enum PAUSESTATE
 	EXIT
 }
 
+/// @method handle_option()
+handle_option = function()
+{
+	while (audio_is_playing(snd_starpost))
+	{
+		// Wait until snd_starpost is no longer playing
+	}
+	
+	if (state == PAUSESTATE.RESTART)
+	{
+		global.life_count--;
+				
+		game_clear_level_data(false);
+		room_restart();
+	}
+	else
+	{
+		game_clear_level_data();
+		room_goto(rm_level_select);
+	}	
+}
+
 obj_game.state = GAMESTATE.PAUSED;
 
 state = PAUSESTATE.NAVIGATION;

@@ -15,10 +15,7 @@ switch (state)
 		if (vd_type == NEWTRONTYPE.FIRE)
 		{
 			state = NEWTRONSTATE.FIRE;
- 			obj_set_anim(image_index == 0 ? spr_newtron_fire_blue : spr_newtron_fire_green, 20, 0, function()
-			{
-				instance_destroy();
-			});
+ 			obj_set_anim(image_index == 0 ? spr_newtron_fire_blue : spr_newtron_fire_green, 20, 0, self.destroy);
 		}
 		else
 		{

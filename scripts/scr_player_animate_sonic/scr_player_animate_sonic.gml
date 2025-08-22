@@ -14,10 +14,7 @@ function scr_player_animate_sonic()
 			}
 			else
 			{
-				obj_set_anim(spr_sonic_idle, 180, 0, function()
-				{ 
-					animation = ANIM.WAIT 
-				});
+				obj_set_anim(spr_sonic_idle, 180, 0, self.set_wait_anim);
 			}
 		
 		break;
@@ -29,6 +26,7 @@ function scr_player_animate_sonic()
 		case ANIM.MOVE:
 		
 			var _move_sprite = spr_sonic_walk;
+			
 			if (super_timer > 0)
 			{
 				_move_sprite = abs(spd_ground) < 8 ? spr_sonic_walk_super : spr_sonic_dash_super;
@@ -103,39 +101,19 @@ function scr_player_animate_sonic()
 		break;
 		
 		case ANIM.SKID:
-		
-			obj_set_anim(spr_sonic_skid, 6, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_sonic_skid, 6, 0, self.set_move_anim);	
 		break;
 		
 		case ANIM.TRANSFORM:
-		
-			obj_set_anim(spr_sonic_transform, 3, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_sonic_transform, 3, 0, self.set_move_anim);	
 		break;
 		
 		case ANIM.BREATHE:
-		
-			obj_set_anim(spr_sonic_breathe, 24, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_sonic_breathe, 24, 0, self.set_move_anim);	
 		break;
 		
 		case ANIM.BOUNCE:
-		
-			obj_set_anim(spr_sonic_bounce, 48, 0, function()
-			{ 
-				animation = ANIM.MOVE; 
-			});
-			
+			obj_set_anim(spr_sonic_bounce, 48, 0, self.set_move_anim);		
 		break;
 		
 		case ANIM.BALANCE:
@@ -157,13 +135,7 @@ function scr_player_animate_sonic()
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
 		
-			obj_set_anim(spr_sonic_flip, 1, 0, function()
-			{
-				if (animation == ANIM.FLIP || anim_play_count == 2)
-				{
-					animation = ANIM.MOVE;
-				}; 
-			});
+			obj_set_anim(spr_sonic_flip, 1, 0, self.end_flip_anim);
 			
 			// Override the displayed sprite
 			if (facing == DIRECTION.NEGATIVE)

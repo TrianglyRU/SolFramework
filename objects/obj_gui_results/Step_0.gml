@@ -46,19 +46,7 @@ switch (state)
                 game_save_data(global.current_save_slot);
             }
 			
-            fade_perform_black(FADEDIRECTION.OUT, 1,, function()
-			{
-				game_clear_level_data();
-				
-		        if (obj_rm_stage.next_stage == -1)
-		        {
-		            room_restart();
-		        }
-		        else
-		        {
-		            room_goto(obj_rm_stage.next_stage);
-		        }
-			});
+            fade_perform_black(FADEDIRECTION.OUT, 1,, self.next_room);
         }
 		else
 		{

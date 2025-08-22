@@ -67,7 +67,8 @@ switch (state)
 		
         audio_play_sfx(snd_break_ledge);
 
-    break; 
+    break;
+	
     case FALLINGFLOORSTATE.FALL:
 	
         for (var _p = 0; _p < PLAYER_COUNT; _p++)

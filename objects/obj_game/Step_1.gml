@@ -159,9 +159,9 @@ else if (fade_timer == FADE_TIMER_MAX)
 			state = GAMESTATE.NORMAL;
 		}
 		
-		if (fade_end_routine != -1)
+		if (is_method(fade_end_method))
 		{
-			fade_end_routine();
+			fade_end_method();
 		}	
 	}
 	
@@ -169,9 +169,9 @@ else if (fade_timer == FADE_TIMER_MAX)
 }
 else if (fade_timer == 0)
 {
-	if (fade_state != FADESTATE.PLAINCOLOUR && fade_end_routine != -1)
+	if (fade_state != FADESTATE.PLAINCOLOUR && is_method(fade_end_method))
 	{
-		fade_end_routine();	
+		fade_end_method();	
 	}
 	
 	fade_state = FADESTATE.PLAINCOLOUR;

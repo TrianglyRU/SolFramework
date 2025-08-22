@@ -1,3 +1,9 @@
+/// @method stop_anim()
+stop_anim = function()
+{
+	obj_stop_anim(0);
+}
+
 // Inherit the parent event
 event_inherited();
 
