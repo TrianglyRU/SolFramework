@@ -96,7 +96,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		
 		view_surface_id[_i] = surface_create(_w, _h);
 		view_surface_palette[_i] = surface_create(_w, _h);
-		view_surface_palette_faded[_i] = surface_create(_w, _h);
+		view_surface_final[_i] = surface_create(_w, _h);
 	}
 	
 	if (state != GAMESTATE.PAUSED && _camera_data.allow_movement)

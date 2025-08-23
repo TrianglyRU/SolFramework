@@ -24,5 +24,5 @@ function game_save_data(_slot)
 	file_bin_write_byte(_file, floor(global.score_count / 1000000) % 100);
 	file_bin_close(_file);
 	
-	instance_create_depth(0, 0, 0, obj_gui_save);
+	instance_create(0, 0, obj_gui_save);
 }

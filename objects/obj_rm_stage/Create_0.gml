@@ -96,7 +96,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 if (water_enabled)
 {
 	self.set_water_effects_bound();
-    instance_create_depth(0, 0, RENDERER_DEPTH_HIGHEST, obj_water_surface);
+    instance_create(0, 0, obj_water_surface);
 }
 
 instance_create(0, 0, obj_gui_titlecard);

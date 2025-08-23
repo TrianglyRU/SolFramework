@@ -38,6 +38,7 @@ state_timer = 40;
 total_bonus = 0;
 ring_bonus = global.player_rings * 100;
 player_object = player_get(0);
+depth = RENDERER_DEPTH_HUD;
 
 audio_play_bgm(snd_bgm_actclear);
 

@@ -12,5 +12,5 @@ function game_save_settings()
 	ini_write_real("VIDEO", "windowMode", window_get_fullscreen());
 	ini_close();
 	
-	instance_create_depth(0, 0, 0, obj_gui_save);
+	instance_create(0, 0, obj_gui_save);
 }

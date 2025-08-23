@@ -17,7 +17,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	// All surfaces exist by this point, see End Step -> CAMERA
 	var _surface = view_surface_id[_i];
 	var _palette_surface = view_surface_palette[_i];
-	var _fade_surface = view_surface_palette_faded[_i];
+	var _fade_surface = view_surface_final[_i];
 	
 	// Draw the view surface to the first temporary surface with the palette shader applied
 	surface_set_target(_palette_surface);

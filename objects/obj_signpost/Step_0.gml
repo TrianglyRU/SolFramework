@@ -131,7 +131,7 @@ switch (state)
 		
 		if (floor(player_object.x) >= obj_rm_stage.end_bound - 24)
 		{
-			instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_results);		
+			instance_create(0, 0, obj_gui_results);		
 			state++;
 		}
 		

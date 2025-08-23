@@ -22,3 +22,4 @@ switch (global.player_main)
 }
 
 timer = 0;
+depth = RENDERER_DEPTH_HUD;

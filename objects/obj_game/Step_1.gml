@@ -185,7 +185,7 @@ if (state != GAMESTATE.PAUSED)
 {
 	if (allow_pause && input_list_press[| 0].start)
 	{
-	    instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_pause);
+	    instance_create(0, 0, obj_gui_pause);
 	} 
 	else
 	{

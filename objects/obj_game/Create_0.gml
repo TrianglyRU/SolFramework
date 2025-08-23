@@ -88,7 +88,7 @@ var _h = global.init_resolution_h;
 
 camera_data = array_create(CAMERA_COUNT, undefined);
 view_surface_palette = array_create(CAMERA_COUNT, -1);
-view_surface_palette_faded = array_create(CAMERA_COUNT, -1);
+view_surface_final = array_create(CAMERA_COUNT, -1);
 
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {

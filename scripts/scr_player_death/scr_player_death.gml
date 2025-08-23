@@ -52,7 +52,7 @@ function scr_player_death()
 	            else
 	            {
 	                death_state--;
-	                instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_gameover);
+	                instance_create(0, 0, obj_gui_gameover);
 	            }
 	        }
 	        else
