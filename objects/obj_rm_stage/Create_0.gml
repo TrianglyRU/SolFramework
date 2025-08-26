@@ -14,6 +14,11 @@ setup_level = function(_stage_index, _name, _act_id, _bgm, _animals, _bottom_bou
     next_stage = _next_room;
     save_progress = _do_save;
     bottom_bound_init = _bottom_bound;
+	
+	if (_water_pos >= 0)
+	{
+		instance_create(0, 0, obj_water_surface);
+	}
 }
 
 /// @method set_water_effects_bound()
@@ -96,7 +101,6 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 if (water_enabled)
 {
 	self.set_water_effects_bound();
-    instance_create(0, 0, obj_water_surface);
 }
 
 instance_create(0, 0, obj_gui_titlecard);

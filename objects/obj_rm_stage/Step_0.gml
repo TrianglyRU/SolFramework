@@ -11,6 +11,11 @@ if (water_enabled)
 	
 	self.set_water_effects_bound();
 }
+else
+{
+	obj_game.distortion_bound = room_height;
+	obj_game.palette_bound = room_height;
+}
 
 // Palette rotation
 scr_stage_palette_rotation();

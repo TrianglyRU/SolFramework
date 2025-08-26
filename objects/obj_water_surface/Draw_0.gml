@@ -1,5 +1,5 @@
 // Override draw
-if (obj_game.frame_counter % 2 != 0)
+if (!obj_rm_stage.water_enabled || obj_game.frame_counter % 2 != 0)
 {
 	return;
 }

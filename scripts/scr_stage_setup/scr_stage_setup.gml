@@ -20,7 +20,7 @@ function scr_stage_setup()
 			bg_convert("Mountains_2", 0.5, -0.03125, 0, 0, 0);
 			bg_convert_deform("Lake", 0.5, -0.03125, 0, 0, 1.0, 1, -1, 0);
 			
-			pal_load(spr_palette_ghz_a, undefined);
+			pal_load(spr_palette_ghz, undefined);
 			
 			sprite_set_animation(spr_asset_ghz_00, 16);
 			sprite_set_animation(spr_asset_ghz_01, 8);
@@ -48,7 +48,7 @@ function scr_stage_setup()
 			
 			dist_set_layer(["Clouds"], dist_get_data(EFFECTDATA.EHZ), undefined, 0, 0.125, 80, 111);
 			
-			pal_load(spr_palette_ehz_a, undefined);
+			pal_load(spr_palette_ehz, undefined);
 			
 			sprite_set_animation(spr_asset_ehz_00, 4);
 			sprite_set_animation(spr_asset_ehz_01, 2);
