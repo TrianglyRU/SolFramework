@@ -1,28 +1,22 @@
 /// @description Initialisation
-if (room == rm_startup)
+if room == rm_startup
 {
 	return;
 }
 
 #region COMMON
 
-enum GAMESTATE
+enum GAME_STATE
 {
-	NORMAL, PAUSED, STOP_OBJECTS
-}
-
-enum DIRECTION
-{
-    NEGATIVE = -1, POSITIVE = 1
+	NORMAL, STOP_OBJECTS, PAUSED
 }
 
 #macro RINGS_THRESHOLD 100
 #macro SCORE_THRESHOLD 50000
-
 #macro ANGLE_RAW_MAX 256
 #macro ANGLE_INCREMENT (360 / ANGLE_RAW_MAX)
 
-state = GAMESTATE.NORMAL; 
+state = GAME_STATE.NORMAL; 
 frame_counter = 0;
 player_count = 0;
 allow_pause = false;
@@ -33,15 +27,15 @@ depth = 16000;
 
 #region AUDIO
 
-enum CHANNELSTATE
+enum CHANNEL_STATE
 {
-	DEFAULT, MUTE, TEMPMUTE, STOP
+	DEFAULT, MUTE, TEMP_MUTE, STOP
 }
 
 #macro AUDIO_CHANNEL_COUNT 4
 #macro AUDIO_CHANNEL_JINGLE (AUDIO_CHANNEL_COUNT - 1)
 
-audio_channel_states = array_create(AUDIO_CHANNEL_COUNT, CHANNELSTATE.DEFAULT);
+audio_channel_states = array_create(AUDIO_CHANNEL_COUNT, CHANNEL_STATE.DEFAULT);
 audio_channel_bgms = array_create(AUDIO_CHANNEL_COUNT, -1);
 audio_emitter_sfx = audio_emitter_create();
 audio_emitter_bgm = array_create(AUDIO_CHANNEL_COUNT, undefined);
@@ -73,12 +67,11 @@ bg_scroll_y = 0;
 
 #endregion
 
-#region CAMERA
+#region CAMERA & RENDERER
 
-#macro RENDERER_DEPTH_HIGHEST 0
-#macro RENDERER_DEPTH_HUD -100
-#macro RENDERER_DEPTH_OVERLAY -200
-
+#macro RENDER_DEPTH_PRIORITY 0
+#macro RENDER_DEPTH_HUD -100
+#macro RENDER_DEPTH_OVERLAY -200
 #macro CAMERA_COUNT 8
 #macro CAMERA_HORIZONTAL_BUFFER 8
 #macro CAMERA_VIEW_TIMER_DEFAULT 120
@@ -124,9 +117,9 @@ debug_get_game_state_name = function()
 {
 	switch (state)
 	{
-		case GAMESTATE.NORMAL: return "NORMAL";
-		case GAMESTATE.PAUSED: return "PAUSED";
-		case GAMESTATE.STOP_OBJECTS: return "STPOBJ";
+		case GAME_STATE.NORMAL: return "NORMAL";
+		case GAME_STATE.PAUSED: return "PAUSED";
+		case GAME_STATE.STOP_OBJECTS: return "STPOBJ";
 	}
 	
 	return "UNKNOWN";
@@ -136,8 +129,6 @@ debug_get_game_state_name = function()
 
 #region DISTORTION
 
-#macro DISTORTION_MAX_LAYERS 16
-
 distortion_data = ds_list_create();
 distortion_bound = room_height;
 
@@ -145,17 +136,25 @@ distortion_bound = room_height;
 
 #region FADE
 
-enum FADESTATE
+enum FADE_STATE
 {
-    ACTIVE, PLAINCOLOUR, NONE
+    ACTIVE, PLAIN_COLOUR, NONE
 }
 
-enum FADETYPE
+enum FADE_TYPE
 {
-    BLACKORDER = 0, BLACKSYNC = 1, DULLORDER = 2, DULLSYNC = 3, WHITEORDER = 4, WHITESYNC = 5, FLASHORDER = 6, FLASHSYNC = 7, NONE = -1
+    BLACK_ORDER = 0,
+	BLACK_SYNC = 1, 
+	DULL_ORDER = 2, 
+	DULL_SYNC = 3, 
+	WHITE_ORDER = 4,
+	WHITE_SYNC = 5, 
+	FLASH_ORDER = 6, 
+	FLASH_SYNC = 7,
+	NONE = -1
 }
 
-enum FADEDIRECTION
+enum FADE_DIRECTION
 {
     IN, OUT, NONE
 }
@@ -163,16 +162,14 @@ enum FADEDIRECTION
 #macro FADE_TIMER_MAX 765		// 255 * 3
 #macro FADE_STEP 36.4285714286	// 255 / 7
 
-fade_update = false;
-fade_direction = FADEDIRECTION.NONE;
-fade_type = FADETYPE.NONE;
-fade_state = FADESTATE.NONE;
-fade_game_control = false;
 fade_timer = FADE_TIMER_MAX;
+fade_direction = FADE_DIRECTION.NONE;
+fade_type = FADE_TYPE.NONE;
+fade_state = FADE_STATE.NONE;
+fade_game_control = false;
 fade_step = 0;
 fade_frequency_timer = 0;
 fade_frequency_target = 0;
-fade_end_method = function(){};
 
 #endregion
 
@@ -220,11 +217,11 @@ sprite_update_enabled = true;
 
 #region TILE COLLISION
 
-enum TILELAYER
+enum TILE_LAYER
 {
-    MAIN,			// ID 0
-	SECONDARY_A,	// ID 1
-	SECONDARY_B		// ID 2
+    MAIN = 0,
+	PATH_A = 1,
+	PATH_B = 2
 }
 
 #macro TILE_COUNT 256

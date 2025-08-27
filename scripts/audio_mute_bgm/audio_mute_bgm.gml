@@ -7,9 +7,9 @@ function audio_mute_bgm(_fade_multiplier, _index = 0)
 	var _bgm_index = obj_game.audio_channel_bgms[_index];
     if (_bgm_index != -1)
 	{
-		if (obj_game.audio_channel_states[_index] != CHANNELSTATE.TEMPMUTE)
+		if (obj_game.audio_channel_states[_index] != CHANNEL_STATE.TEMP_MUTE)
 	    {
-	        obj_game.audio_channel_states[_index] = CHANNELSTATE.MUTE;
+	        obj_game.audio_channel_states[_index] = CHANNEL_STATE.MUTE;
 	    }
         
 	    audio_sound_gain(_bgm_index, 0, _fade_multiplier * 0.25 * 1000);

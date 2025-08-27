@@ -11,10 +11,7 @@
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": {
-    "name": "obj_game_director",
-    "path": "objects/obj_game_director/obj_game_director.yy",
-  },
+  "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -35,7 +32,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Room Directors",
-    "path": "folders/> Game/Room Directors.yy",
+    "name": "> Game",
+    "path": "folders/> Game.yy",
   },
 }

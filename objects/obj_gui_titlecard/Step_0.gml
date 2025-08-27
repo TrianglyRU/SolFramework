@@ -5,7 +5,7 @@ if (timer < 128)
         speed_x *= 2;
         speed_y *= 2;
 		
-		fade_perform_black(FADEDIRECTION.IN, 1);
+		fade_perform_black(FADE_DIRECTION.IN, 1);
     }
     else if (timer >= 8)
     {

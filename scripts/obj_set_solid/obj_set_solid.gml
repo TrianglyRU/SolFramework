@@ -1,4 +1,4 @@
-/// @self obj_game_object
+/// @self g_object
 /// @description Configures the solid collision area.
 /// @param {Real} _radius_x The horizontal radius of the solid collision area.
 /// @param {Real} _radius_y The vertical radius of the solid collision area.

@@ -76,7 +76,7 @@ function scr_player_cpu()
 	            break;
 	        }
 
-	        switch (vd_player_type)
+	        switch (player_type)
 	        {
 	            case PLAYER.SONIC:
 	            case PLAYER.AMY:
@@ -143,7 +143,7 @@ function scr_player_cpu()
 	            y -= sign(_dist_y);
 	        }
 			  
-	        if (_cpu_behaviour == CPUBEHAVIOUR.S3 && (obj_game.state != GAMESTATE.NORMAL || cpu_target.state == PLAYERSTATE.DEATH))
+	        if (_cpu_behaviour == CPUBEHAVIOUR.S3 && (obj_game.state != GAME_STATE.NORMAL || cpu_target.state == PLAYERSTATE.DEATH))
 	        {
 	            break;
 	        }

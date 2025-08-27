@@ -44,7 +44,7 @@ if (global.player_rings >= 20)
 {
 	for (var _i = 0; _i < 4; _i++)
 	{
-		instance_create_child(x, y - 50, obj_starpost_star, { vd_star_id: _i });
+		instance_create_dependent(x, y - 50, obj_starpost_star, { vd_star_id: _i });
 	}
 }
 

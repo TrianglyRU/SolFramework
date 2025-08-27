@@ -1,4 +1,4 @@
-/// @self obj_game_object
+/// @self g_object
 /// @description Checks if the object is visible within any of the current view boundaries.
 /// @returns {Bool}
 function obj_is_visible()

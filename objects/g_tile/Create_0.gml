@@ -10,7 +10,7 @@ calculate_data = function(_sprite)
 	{	
 		for (var _j = 0; _j < TILE_SIZE; _j++)
 		{
-			if (collision_point(x + _i, y + _j, obj_game_tile, true, false))
+			if (collision_point(x + _i, y + _j, g_tile, true, false))
 			{
 				_height_array[_i]++;
 				_width_array[_j]++;

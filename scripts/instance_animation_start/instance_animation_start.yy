@@ -1,0 +1,11 @@
+{
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "instance_animation_start",
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "SolFramework",
+    "path": "SolFramework.yyp",
+  },
+}

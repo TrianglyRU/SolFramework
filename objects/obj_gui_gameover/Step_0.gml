@@ -17,7 +17,7 @@ switch (state)
 			state++;
 			
 			audio_stop_bgm(1.0);
-			fade_perform_black(FADEDIRECTION.OUT, 1,, self.handle_gameover_end);	
+			fade_perform_black(FADE_DIRECTION.OUT, 1,, self.handle_gameover_end);	
 		}
 		else
 		{

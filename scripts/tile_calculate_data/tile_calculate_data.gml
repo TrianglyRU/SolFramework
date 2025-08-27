@@ -21,7 +21,7 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 	draw_sprite(_sprite_id, 0, 0, 0);
 	surface_reset_target();
 	
-	var _obj = instance_create(0, 0, obj_game_tile);
+	var _obj = instance_create(0, 0, g_tile);
 	for (var _i = 0; _i < _tile_count; _i++)
 	{
 		_height_arr[_i] = array_create(TILE_SIZE, 0);
@@ -82,14 +82,14 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			var _y4 = _obj.y + _limit;
 			
 			// Move top-left
-			while (!collision_point(_x1, _y1, obj_game_tile, true, false) && _y1 < _limit)
+			while (!collision_point(_x1, _y1, g_tile, true, false) && _y1 < _limit)
 			{
 				_y1++;
 				_top_dist_y++;
 			}
 			
 			// Move top-right
-			while (!collision_point(_x2, _y2, obj_game_tile, true, false) && _y2 < _limit)
+			while (!collision_point(_x2, _y2, g_tile, true, false) && _y2 < _limit)
 			{
 				_y2++;
 				_top_dist_y++;
@@ -98,13 +98,13 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			// Align with the tile
 			if (_y1 < _y2)
 			{
-				while (collision_point(_x1 + 1, _y1, obj_game_tile, true, false) && _x1 < _limit)
+				while (collision_point(_x1 + 1, _y1, g_tile, true, false) && _x1 < _limit)
 				{
 					_x1++;
 					_top_dist_x++;
 				}
 			
-				while (!collision_point(_x2, _y2, obj_game_tile, true, false) && _x2 > 0)
+				while (!collision_point(_x2, _y2, g_tile, true, false) && _x2 > 0)
 				{
 					_x2--;
 					_top_dist_x++;
@@ -112,13 +112,13 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			}
 			else if (_y1 > _y2)
 			{
-				while (!collision_point(_x1, _y1, obj_game_tile, true, false) && _x1 < _limit)
+				while (!collision_point(_x1, _y1, g_tile, true, false) && _x1 < _limit)
 				{
 					_x1++;
 					_top_dist_x++;
 				}
 				
-				while (collision_point(_x2 - 1, _y2, obj_game_tile, true, false) && _x2 > 0)
+				while (collision_point(_x2 - 1, _y2, g_tile, true, false) && _x2 > 0)
 				{
 					_x2--;
 					_top_dist_x++;
@@ -126,14 +126,14 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			}
 				
 			// Move bottom-left
-			while (!collision_point(_x3, _y3, obj_game_tile, true, false) && _y3 > 0)
+			while (!collision_point(_x3, _y3, g_tile, true, false) && _y3 > 0)
 			{
 				_y3--;
 				_bottom_dist_y++;
 			}
 			
 			// Move bottom-right
-			while (!collision_point(_x4, _y4, obj_game_tile, true, false) && _y4 > 0)
+			while (!collision_point(_x4, _y4, g_tile, true, false) && _y4 > 0)
 			{
 				_y4--;
 				_bottom_dist_y++;
@@ -142,13 +142,13 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			// Align with the tile
 			if (_y3 < _y4)
 			{
-				while (!collision_point(_x3, _y3, obj_game_tile, true, false) && _x3 < _limit)
+				while (!collision_point(_x3, _y3, g_tile, true, false) && _x3 < _limit)
 				{
 					_x3++;
 					_bottom_dist_x++;
 				}
 			
-				while (collision_point(_x4 - 1, _y4, obj_game_tile, true, false) && _x4 > 0)
+				while (collision_point(_x4 - 1, _y4, g_tile, true, false) && _x4 > 0)
 				{
 					_x4--;
 					_bottom_dist_x++;
@@ -156,13 +156,13 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			}
 			else if (_y3 > _y4)
 			{
-				while (collision_point(_x3 + 1, _y3, obj_game_tile, true, false) && _x3 < _limit)
+				while (collision_point(_x3 + 1, _y3, g_tile, true, false) && _x3 < _limit)
 				{
 					_x3++;
 					_bottom_dist_x++;
 				}
 				
-				while (!collision_point(_x4, _y4, obj_game_tile, true, false) && _x4 > 0)
+				while (!collision_point(_x4, _y4, g_tile, true, false) && _x4 > 0)
 				{
 					_x4--;
 					_bottom_dist_x++;

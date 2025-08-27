@@ -27,12 +27,12 @@ handle_option = function()
 	}	
 }
 
-obj_game.state = GAMESTATE.PAUSED;
+obj_game.state = GAME_STATE.PAUSED;
 
 state = PAUSESTATE.NAVIGATION;
 highlight_timer = 0;
 option_id = 0;
-depth = RENDERER_DEPTH_HUD;
+depth = RENDER_DEPTH_HUD;
 
 audio_pause_all();
 audio_play_sfx(snd_bumper);

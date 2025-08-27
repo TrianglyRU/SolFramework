@@ -1,4 +1,4 @@
-/// @self obj_game_object
+/// @self g_object
 /// @description Checks for solid collision between the calling object and a player object.
 /// @param {Id.Instance} _player The player object instance.
 /// @param {Enum.SOLIDCOLLISION} _type The type of collision.

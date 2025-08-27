@@ -114,7 +114,7 @@ if (global.dev_mode)
 
 	if (global.debug_collision > 0)
 	{
-		with (obj_game_object)
+		with (g_object)
 		{
 			draw_point_floored(x, y, c_white);
 		}

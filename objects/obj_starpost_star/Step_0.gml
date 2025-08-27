@@ -16,7 +16,7 @@ else if (timer < 128)
 if (timer >= 128 && obj_check_hitbox(player_get(0)))
 {
 	audio_stop_bgm(1.0);
-	fade_perform_black(FADEDIRECTION.OUT, 1,, self.load_bonus_stage);
+	fade_perform_black(FADE_DIRECTION.OUT, 1,, self.load_bonus_stage);
 }
 
 timer++;

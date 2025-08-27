@@ -16,7 +16,7 @@ start_black_fade_out = function()
 {
 	visible = false;
 				
-	fade_perform_black(FADEDIRECTION.OUT, 1,, function()
+	fade_perform_black(FADE_DIRECTION.OUT, 1,, function()
 	{
 		while (audio_is_playing(snd_warp))
 		{

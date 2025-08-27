@@ -54,7 +54,7 @@ function scr_player_spindash()
 			var _sound = audio_play_sfx(snd_charge_spin);
 			
 			audio_sound_pitch(_sound, spindash_pitch);
-			obj_restart_anim();		
+			instance_animation_restart();
 		}
 		
 		return false;

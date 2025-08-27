@@ -19,7 +19,7 @@ function scr_player_death()
 				
 	            if (player_index == 0)
 	            {
-	                obj_game.state = GAMESTATE.STOP_OBJECTS;
+	                obj_game.state = GAME_STATE.STOP_OBJECTS;
 	            }
 	        }
         
@@ -67,7 +67,7 @@ function scr_player_death()
 	        if (restart_timer > 0 && --restart_timer == 0)
 	        {
 			    audio_stop_bgm(1.0);	
-			    fade_perform_black(FADEDIRECTION.OUT, 1,, self.restart_after_death); 
+			    fade_perform_black(FADE_DIRECTION.OUT, 1,, self.restart_after_death); 
 		    }
 			
 	    break;

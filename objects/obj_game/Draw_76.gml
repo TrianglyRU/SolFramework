@@ -1,5 +1,5 @@
 /// @description Draw Objects While Paused
-if (room == rm_startup || state == GAMESTATE.NORMAL)
+if (room == rm_startup || state == GAME_STATE.NORMAL)
 {
 	return;
 }

@@ -1,3 +1,31 @@
+ignore_object_stop = false;
+
+bbox_radius_x = bbox_right - x;
+bbox_radius_y = bbox_bottom - y;
+
+sprite_index_start = sprite_index;
+image_xscale_start = image_xscale;
+image_yscale_start = image_yscale;
+image_index_start = image_index;
+depth_start = depth;
+visible_start = visible;
+
+sprite_play_count = 0;
+image_duration = 0;
+image_timer = 0;
+image_loopback = 0;
+
+enum OUTSIDE_ACTION
+{
+	PAUSE,
+	RESPAWN,
+	DESTROY
+}
+
+outside_respawned = false; 
+outside_action = OUTSIDE_ACTION.PAUSE;
+
+
 // ANIMATOR
 
 anim_frame_changed = false;
@@ -13,8 +41,8 @@ image_speed = 0;
 enum ACTIVEIF
 {
     ALWAYS,					// Sol does not perform any culling on the object
-    ENGINE_RUNNING,			// Active while the framework is not paused (state != GAMESTATE.PAUSED); otherwise suspended
-    OBJECTS_RUNNING,		// Active while object processing is active (state == GAMESTATE.NORMAL); otherwise suspended
+    ENGINE_RUNNING,			// Active while the framework is not paused (state != GAME_STATE.PAUSED); otherwise suspended
+    OBJECTS_RUNNING,		// Active while object processing is active (state == GAME_STATE.NORMAL); otherwise suspended
 	INBOUNDS,				// Active while current x position or x initial position is within active area bounds; otherwise suspended
     INBOUNDS_RESET,			// Active while current x position or x initial position is within active area bounds; otherwise reset to initial state and position
 	INBOUNDS_XY,			// Active while current position or initial position is within active area bounds; otherwise suspended

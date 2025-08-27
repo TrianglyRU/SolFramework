@@ -29,7 +29,7 @@ switch (state)
 			state = SPECIALRESULTSSTATE.EXIT;
 			
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADEDIRECTION.OUT, 1,, self.start_black_fade_out);
+            fade_perform_white(FADE_DIRECTION.OUT, 1,, self.start_black_fade_out);
         }
 		else
 		{

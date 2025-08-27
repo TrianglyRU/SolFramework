@@ -13,7 +13,6 @@ function input_copy(_struct)
 		action1: _struct.action1,
 		action2: _struct.action2,
 		action3: _struct.action3,
-		action_any: _struct.action_any,
 		start: _struct.start
 	};
 }

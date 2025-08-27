@@ -1,11 +1,12 @@
+/// @feather ignore GM2017
 /// @description Late Update
-if (room == rm_startup)
+if room == rm_startup
 {
 	return;
 }
 
 // Run Path Step and pre-framework End Step for game objects
-with (obj_game_object)
+with g_object
 {
 	event_user(11);
 	event_user(12);
@@ -18,39 +19,41 @@ audio_emitter_gain(audio_emitter_sfx, global.sound_volume);
 for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 {
 	audio_emitter_gain(audio_emitter_bgm[_i], global.music_volume);
-	 
+	
 	var _state = audio_channel_states[_i];
     var _bgm = audio_channel_bgms[_i];
 	
-    if (_bgm == -1)
+    if _bgm == -1
     {
         continue;
     }
 	
 	// audio_sound_length == -1 checks if the audio playback has ended
-    if (audio_sound_length(_bgm) == -1 || _state == CHANNELSTATE.STOP && audio_sound_get_gain(_bgm) == 0)
+    if audio_sound_length(_bgm) == -1 || _state == CHANNEL_STATE.STOP && audio_sound_get_gain(_bgm) == 0
     {
-		audio_channel_states[_i] = CHANNELSTATE.DEFAULT;
+		audio_channel_states[_i] = CHANNEL_STATE.DEFAULT;
 		audio_channel_bgms[_i] = -1;
 		audio_stop_sound(_bgm);
 		
         continue;
     }
 	
-    if (_i == AUDIO_CHANNEL_JINGLE)
+    if _i == AUDIO_CHANNEL_JINGLE
     {
         continue;
     }
 	
-	// TODO: remove this and audio_current_loop_data in LTS'25
 	var _loop_data = audio_current_loop_data[_i];
-	if (_loop_data != undefined)
+	var _jingle_bgm = audio_channel_bgms[AUDIO_CHANNEL_JINGLE];
+	
+	// TODO: remove this and audio_current_loop_data in LTS'25
+	if _loop_data != undefined
 	{
 	    var _loop_start = _loop_data[0];
 	    var _loop_end = _loop_data[1];
 	    var _next_pos = audio_sound_get_track_position(_bgm) + (delta_time / 1000000);
 		
-	    if (_next_pos >= _loop_end)
+	    if _next_pos >= _loop_end
 		{
 	        var _overshoot = _next_pos - _loop_end;
 			var _loop_length = _loop_end - _loop_start;
@@ -60,19 +63,18 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 	    }
 	}
 	
-    var _jingle_bgm = audio_channel_bgms[AUDIO_CHANNEL_JINGLE];
-    if (_jingle_bgm != -1)
+    if _jingle_bgm != -1
     {
-        if (_state != CHANNELSTATE.MUTE)
+        if _state != CHANNEL_STATE.MUTE
         {
-            audio_channel_states[_i] = CHANNELSTATE.TEMPMUTE;
+            audio_channel_states[_i] = CHANNEL_STATE.TEMP_MUTE;
         }
 		
-        audio_mute_bgm(0.0, _i);
+        audio_mute_bgm(0, _i);
     }
-    else if (_state == CHANNELSTATE.TEMPMUTE)
+    else if _state == CHANNEL_STATE.TEMP_MUTE
     {
-        audio_unmute_bgm(1.0, _i);
+        audio_unmute_bgm(1, _i);
     }
 }
 
@@ -99,7 +101,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		view_surface_final[_i] = surface_create(_w, _h);
 	}
 	
-	if (state != GAMESTATE.PAUSED && _camera_data.allow_movement)
+	if (state != GAME_STATE.PAUSED && _camera_data.allow_movement)
 	{
 		var _target = _camera_data.target;
 	    if (_target != noone)
@@ -203,7 +205,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 #region BACKGROUND
 
-if (state != GAMESTATE.PAUSED)
+if (state != GAME_STATE.PAUSED)
 {
 	bg_scroll_x++;
 	bg_scroll_y++;
@@ -214,7 +216,7 @@ if (state != GAMESTATE.PAUSED)
 #region CULLING
 
 // Parent check
-with (obj_game_object)
+with (g_object)
 {
 	event_perform(ev_other, ev_user15);
 }
@@ -223,7 +225,7 @@ with (obj_game_object)
 
 #region DISTORTION
 
-if (state != GAMESTATE.PAUSED)
+if (state != GAME_STATE.PAUSED)
 {
 	for (var _i = ds_list_size(distortion_data) - 1; _i >= 0; _i--)
 	{
@@ -239,7 +241,7 @@ if (state != GAMESTATE.PAUSED)
 
 #region GAMEPLAY
 
-if (state != GAMESTATE.PAUSED)
+if (state != GAME_STATE.PAUSED)
 {
     if (global.ring_spill_counter > 0)
     {
@@ -270,7 +272,7 @@ if (state != GAMESTATE.PAUSED)
 
 #region SPRITE ANIMATOR
 
-var _is_enabled = state != GAMESTATE.PAUSED;
+var _is_enabled = state != GAME_STATE.PAUSED;
 if (_is_enabled != sprite_update_enabled)
 {
     for (var _i = array_length(sprite_array) - 2; _i >= 0; _i -= 2)

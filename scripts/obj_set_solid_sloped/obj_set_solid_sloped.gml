@@ -1,4 +1,4 @@
-/// @self obj_game_object
+/// @self g_object
 /// @description Configures the solid collision area using a height map.
 /// @param {Array<Real>} _height_map An array of numbers representing the height throughout the object.
 /// @param {Real} [_offset_x] The horizontal offset of the area from the object's centre (default is 0).

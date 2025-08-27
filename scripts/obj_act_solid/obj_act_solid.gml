@@ -27,7 +27,7 @@ function _attach_player(_player, _obj, _attach_type, _distance)
 	}
 }
 
-/// @self obj_game_object
+/// @self g_object
 /// @description Handles collision detection and response between the player and a solid object.
 /// @param {Id.Instance} _player The player object instance.
 /// @param {Enum.SOLIDOBJECT} _type The type of solid object.

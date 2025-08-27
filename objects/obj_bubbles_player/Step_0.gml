@@ -78,7 +78,7 @@ else if (bubbles_spawned_no_air < 12)
 		
 	    instance_create(_x, _y - 12, obj_bubble,
 	    {
-	        vd_bubble_type: _type, vd_wobble_direction: _spawn_direction, depth: RENDERER_DEPTH_HIGHEST - 1
+	        vd_bubble_type: _type, vd_wobble_direction: _spawn_direction, depth: RENDER_DEPTH_PRIORITY - 1
 	    });
 		
 	    bubbles_spawned_no_air++;

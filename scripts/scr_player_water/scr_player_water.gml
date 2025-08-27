@@ -148,7 +148,7 @@ function scr_player_water()
 				vel_x = 0;
 				vel_y = 0;
 				spd_ground = 0;
-				depth = RENDERER_DEPTH_HIGHEST + player_index;
+				depth = RENDER_DEPTH_PRIORITY + player_index;
 				
 				if (player_index == camera_data.index)
 				{

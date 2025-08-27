@@ -2,7 +2,7 @@
 /// @function scr_player_init()
 function scr_player_init()
 {
-	if (vd_player_type == PLAYER.NONE)
+	if (player_type == PLAYER.NONE)
 	{
 		instance_destroy();
 		return;
@@ -21,7 +21,7 @@ function scr_player_init()
 		global.player_shields[player_index] = SHIELD.NONE;
 	}
 	
-	switch (vd_player_type)
+	switch (player_type)
 	{
 		case PLAYER.TAILS:
 		
@@ -143,7 +143,7 @@ function scr_player_init()
 	replay_button_timer = array_create(9, -1);
 	replay_button_state = array_create(9, 0);
 	
-	secondary_layer = TILELAYER.SECONDARY_A;
+	secondary_layer = TILE_LAYER.PATH_A;
 	shield_state = SHIELDSTATE.NONE;
 	facing = DIRECTION.POSITIVE;
 	animation = ANIM.IDLE;
@@ -195,7 +195,7 @@ function scr_player_init()
 		instance_create(x, y, obj_shield, { vd_target_player: id });
 	}
 
-	if (vd_player_type == PLAYER.TAILS)
+	if (player_type == PLAYER.TAILS)
 	{
 		with (obj_tail)
 		{

@@ -12,7 +12,7 @@ var _factor_x = _w / 320;
 var _is_single_act = obj_rm_stage.act_id == ACT_SINGLE;
 var _player_text;
 
-switch (player_object.vd_player_type)
+switch (player_object.player_type)
 {
     case PLAYER.TAILS:
         _player_text = "TAILS";	
@@ -44,7 +44,7 @@ shader_palette_map(view_current);
 _x = _centre_x + offset_line1 * _factor_x;
 _y = _centre_y - 56;
 
-if (!_is_single_act && player_object.vd_player_type == PLAYER.KNUCKLES)
+if (!_is_single_act && player_object.player_type == PLAYER.KNUCKLES)
 {
     _x -= 28;
 }

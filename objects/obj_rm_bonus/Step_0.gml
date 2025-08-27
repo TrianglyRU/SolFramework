@@ -46,5 +46,5 @@ else if (_input_press.action2)
 else if (_input_press.start)
 {
     audio_stop_bgm(1.0);
-	fade_perform_black(FADEDIRECTION.OUT, 1,, self.return_to_prev_room);
+	fade_perform_black(FADE_DIRECTION.OUT, 1,, self.return_to_prev_room);
 }

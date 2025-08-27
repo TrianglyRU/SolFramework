@@ -37,7 +37,7 @@ if (!_input.action_any && !_input.start)
 
 if (option_id == 0)
 {
-	obj_game.state = GAMESTATE.NORMAL;
+	obj_game.state = GAME_STATE.NORMAL;
 	
 	audio_resume_all();
 	instance_destroy();
@@ -63,4 +63,4 @@ else
 }
 
 audio_play_sfx(snd_starpost);
-fade_perform_black(FADEDIRECTION.OUT, 1,, self.handle_option);
+fade_perform_black(FADE_DIRECTION.OUT, 1,, self.handle_option);

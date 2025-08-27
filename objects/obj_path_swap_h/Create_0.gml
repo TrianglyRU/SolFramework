@@ -2,24 +2,24 @@
 event_inherited();
 obj_set_culling(ACTIVEIF.INBOUNDS);
 
-depth = RENDERER_DEPTH_HIGHEST;
+depth = RENDER_DEPTH_PRIORITY;
 layer_data = [];
 
 switch (image_index)
 {
 	case 0:
-		layer_data = [TILELAYER.SECONDARY_A, TILELAYER.SECONDARY_B];
+		layer_data = [TILE_LAYER.PATH_A, TILE_LAYER.PATH_B];
 	break;
 	
 	case 1:
-		layer_data = [TILELAYER.SECONDARY_B, TILELAYER.SECONDARY_A];
+		layer_data = [TILE_LAYER.PATH_B, TILE_LAYER.PATH_A];
 	break;
 	
 	case 2:
-		layer_data = [TILELAYER.SECONDARY_A, TILELAYER.SECONDARY_A];
+		layer_data = [TILE_LAYER.PATH_A, TILE_LAYER.PATH_A];
 	break;
 	
 	case 3:
-		layer_data = [TILELAYER.SECONDARY_B, TILELAYER.SECONDARY_B];
+		layer_data = [TILE_LAYER.PATH_B, TILE_LAYER.PATH_B];
 	break;
 }

@@ -37,7 +37,7 @@ function scr_player_jump()
 		return true;
 	}
 
-	switch (vd_player_type)
+	switch (player_type)
 	{
 		case PLAYER.SONIC:
 			

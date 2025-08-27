@@ -5,7 +5,7 @@ function scr_player_draw()
 {
 	gml_pragma("forceinline");
 	
-	if (vd_player_type == PLAYER.TAILS)
+	if (player_type == PLAYER.TAILS)
 	{
 	    with (obj_tail) 
 	    {

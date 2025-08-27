@@ -1,4 +1,4 @@
-if (cull_behaviour == ACTIVEIF.ALWAYS && obj_game.state == GAMESTATE.NORMAL)
+if (cull_behaviour == ACTIVEIF.ALWAYS && obj_game.state == GAME_STATE.NORMAL)
 {
 	obj_set_culling(ACTIVEIF.INBOUNDS);
 }
@@ -21,7 +21,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	
 	if (_x >= bbox_left && _x < bbox_right && _y >= bbox_top && _y < bbox_bottom)
 	{
-		with (obj_game_layer)
+		with (g_background_layer)
 		{
 			if (layer_get_name(layer) != "Inside")
 			{

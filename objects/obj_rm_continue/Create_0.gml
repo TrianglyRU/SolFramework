@@ -68,4 +68,4 @@ if (continue_count > 1)
 }
 
 audio_play_bgm(snd_bgm_continue);
-fade_perform_black(FADEDIRECTION.IN, 1);
+fade_perform_black(FADE_DIRECTION.IN, 1);

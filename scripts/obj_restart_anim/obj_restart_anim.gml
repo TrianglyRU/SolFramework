@@ -1,4 +1,4 @@
-/// @self obj_game_object
+/// @self g_object
 /// @description Resets and restarts the animation playback from the first frame.
 /// @param {Bool} _reset_play_count Whether to reset the play counter (default is true).
 function obj_restart_anim(_reset_play_count = true)

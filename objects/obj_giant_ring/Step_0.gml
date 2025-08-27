@@ -49,7 +49,7 @@ switch (state)
 			
             audio_stop_bgm(1.0);
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADEDIRECTION.OUT, 1,, self.load_special_room);
+            fade_perform_white(FADE_DIRECTION.OUT, 1,, self.load_special_room);
         }
         
     break;  

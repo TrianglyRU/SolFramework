@@ -180,7 +180,7 @@ respawn = function()
 		x = 127;
 		y = 0;
 		visible = false;
-		depth = RENDERER_DEPTH_HIGHEST + player_index;	
+		depth = RENDER_DEPTH_PRIORITY + player_index;	
 		cpu_state = CPUSTATE.RESPAWN_INIT;
 		state = PLAYERSTATE.LOCKED;
 		is_grounded = false;
@@ -424,7 +424,7 @@ kill = function(_sound = snd_hurt)
 	
 	if (player_index == 0)
 	{
-		obj_game.state = GAMESTATE.STOP_OBJECTS;
+		obj_game.state = GAME_STATE.STOP_OBJECTS;
 	}
 	
 	self.reset_substate();
@@ -435,7 +435,7 @@ kill = function(_sound = snd_hurt)
 	vel_y = -7;
 	vel_x = 0;
 	spd_ground = 0;
-	depth = RENDERER_DEPTH_HIGHEST + player_index;
+	depth = RENDER_DEPTH_PRIORITY + player_index;
 	
 	if (camera_data.index == player_index)
 	{

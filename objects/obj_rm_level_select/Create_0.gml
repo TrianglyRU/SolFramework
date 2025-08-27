@@ -205,4 +205,4 @@ self.update_stage_selection();
 audio_play_bgm(snd_bgm_level_select);
 bg_convert("Background", 0, 0, 0, 0, 0);
 discord_set_data("LEVEL SELECT", "", "room_levels", "");
-fade_perform_black(FADEDIRECTION.IN, 1);
+fade_perform_black(FADE_DIRECTION.IN, 1);

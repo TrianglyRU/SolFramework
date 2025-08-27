@@ -1,13 +1,10 @@
 // Override draw
-if (vd_sprite >= 0)
+if (sprite_index >= 0)
 {
-	var _scale_x = vd_flip_x ? -1 : 1;
-	var _scale_y = vd_flip_y ? -1 : 1;
-	var _x = x - floor(vd_width * 0.5) * _scale_x;
-	var _y = y - floor(vd_height * 0.5) * _scale_y;
+	var _scale_x = flip_x ? -1 : 1;
+	var _scale_y = flip_y ? -1 : 1;
+	var _x = x - width * 0.5 * _scale_x;
+	var _y = y - height * 0.5 * _scale_y;
 	
-	draw_sprite_part_ext
-	(
-		vd_sprite, vd_frame_index, vd_x, vd_y, vd_width, vd_height, floor(_x), floor(_y), _scale_x, _scale_y, c_white, 1.0
-	);
+	draw_sprite_part_ext(sprite_index, image_index, draw_start_x, draw_start_y, draw_width, draw_height, floor(_x), floor(_y), _scale_x, _scale_y, c_white, 1);
 }

@@ -2,32 +2,35 @@
 /// @function scr_player_animate_sonic()
 function scr_player_animate_sonic()
 {
-	gml_pragma("forceinline");
-	
-	switch (animation)
+	switch animation
 	{
 		case ANIM.IDLE:
 			
-			if (super_timer > 0)
+			if super_timer > 0
 			{
-				obj_set_anim(spr_sonic_idle_super, 8, 0, 0);
+				if sprite_index != spr_sonic_idle_super
+				{
+					instance_animation_start(spr_sonic_idle_super, 0, 0, 8);
+				}
 			}
-			else
+			else if sprite_index != spr_sonic_idle
 			{
-				obj_set_anim(spr_sonic_idle, 180, 0, self.set_wait_anim);
+				instance_animation_start(spr_sonic_idle, 0, 0, 180);
 			}
-		
-		break;
-		
-		case ANIM.WAIT:
-			obj_set_anim(spr_sonic_wait, 6, 0, 6);
-		break;
+			else if image_timer == -1
+			{
+				animation = ANIM.WAIT;
+				instance_animation_start(spr_sonic_wait, 0, 6, 6);
+			}
+			
+			break;
 		
 		case ANIM.MOVE:
 		
-			var _move_sprite = spr_sonic_walk;
+			var _move_sprite;
+			var _move_timing = floor(max(1, 9 - abs(spd_ground)));
 			
-			if (super_timer > 0)
+			if super_timer > 0
 			{
 				_move_sprite = abs(spd_ground) < 8 ? spr_sonic_walk_super : spr_sonic_dash_super;
 			}
@@ -35,114 +38,225 @@ function scr_player_animate_sonic()
 			{
 				_move_sprite = abs(spd_ground) < 10 || !global.dash ? spr_sonic_run : spr_sonic_dash;
 			}
+			else
+			{
+				_move_sprite = spr_sonic_walk;
+			}
 			
-			obj_set_anim(_move_sprite, floor(max(1, 9 - abs(spd_ground))), 0, 0);
+			if sprite_index != _move_sprite
+			{
+				instance_animation_start(_move_sprite, 0, 0, _move_timing);
+			}
+			else
+			{
+				image_duration = _move_timing;
+			}
 			
-			// Override the displayed frame
-			if (_move_sprite == spr_sonic_walk_super && obj_game.frame_counter % 4 <= 1)
+			if sprite_index == spr_sonic_walk_super && obj_game.frame_counter % 4 <= 1
 			{
 				image_index = (image_index + floor(image_number * 0.5)) % image_number;
 			}
 			
-		break;
-		
+			break;
+			
 		case ANIM.SPIN:
 		
-			if (action == ACTION.DROPDASH && dropdash_charge >= PARAM_DROPDASH_CHARGE)
+			if action == ACTION.DROPDASH && dropdash_charge >= PARAM_DROPDASH_CHARGE
 			{
-				obj_set_anim(spr_sonic_dropdash, 1, 0, 0);
+				if sprite_index != spr_sonic_dropdash
+				{
+					instance_animation_start(spr_sonic_dropdash, 0, 0, 1);
+				}
 			}
-			else
+			else 
 			{
-				obj_set_anim(spr_sonic_spin, floor(max(1, 5 - abs(spd_ground))), 0, 0);
+				var _spin_timing = floor(max(1, 5 - abs(spd_ground)));
+				
+				if sprite_index != spr_sonic_spin
+				{
+					instance_animation_start(spr_sonic_spin, 0, 0, _spin_timing);
+				}
+				else
+				{
+					image_duration = _spin_timing;
+				}
 			}
 			
-		break;
+			break;
 		
 		case ANIM.SPINDASH:
-			obj_set_anim(spr_sonic_spindash, 1, 0, 0);
-		break;
+			
+			if sprite_index != spr_sonic_spindash
+			{
+				instance_animation_start(spr_sonic_spindash, 0, 0, 1);
+			}
+			
+			break;
 		
 		case ANIM.PUSH:
-			obj_set_anim(super_timer > 0 ? spr_sonic_push_super : spr_sonic_push, floor(max(1, 9 - abs(spd_ground)) * 4), 0, 0);
-		break;
-		
-		case ANIM.DUCK:
-		
-			if (super_timer > 0)
+			
+			var _push_sprite = super_timer > 0 ? spr_sonic_push_super : spr_sonic_push;
+			var _push_timing = floor(max(1, 9 - abs(spd_ground)) * 4);
+			
+			if sprite_index != _push_sprite
 			{
-				obj_set_anim(spr_sonic_duck_super, 0, 0, 0);
+				instance_animation_start(_push_sprite, 0, 0, _push_timing);
 			}
 			else
 			{
-				obj_set_anim(spr_sonic_duck, 4, 0, 1);
+				image_duration = _push_timing;
 			}
 			
-		break;
+			break;
+		
+		case ANIM.DUCK:
+			
+			if super_timer > 0
+			{
+				sprite_index = spr_sonic_duck_super;
+				image_index = 0;
+			}
+			else if sprite_index != spr_sonic_duck
+			{
+				instance_animation_start(spr_sonic_duck, 0, 1, 4);
+			}
+			
+			break;
 		
 		case ANIM.LOOKUP:
-			obj_set_anim(spr_sonic_lookup, 4, 0, 1);
-		break;
+		
+			if sprite_index != spr_sonic_lookup
+			{
+				instance_animation_start(spr_sonic_lookup, 0, 1, 4);
+			}
+			
+			break;
 		
 		case ANIM.GRAB:
-			obj_set_anim(spr_sonic_grab, 20, 0, 0);
-		break;
+			
+			if sprite_index != spr_sonic_grab
+			{
+				instance_animation_start(spr_sonic_grab, 0, 0, 20);
+			}
+			
+			break;
 		
 		case ANIM.HURT:
-			obj_set_anim(spr_sonic_hurt, 0, 0, 0);
-		break;
+			sprite_index = spr_sonic_hurt;
+			break;
 		
 		case ANIM.DEATH:
-			obj_set_anim(spr_sonic_death, 0, 0, 0);
-		break;
+			sprite_index = spr_sonic_death;
+			break;
 		
 		case ANIM.DROWN:
-			obj_set_anim(spr_sonic_drown, 0, 0, 0);
-		break;
+			sprite_index = spr_sonic_drown;	
+			break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_sonic_skid, 6, 0, self.set_move_anim);	
-		break;
+		
+			if sprite_index != spr_sonic_skid
+			{
+				instance_animation_start(spr_sonic_skid, 0, 3, 6);
+			}
+			else if image_timer == -1
+			{
+				animation = ANIM.MOVE;
+			}
+			
+			break;
 		
 		case ANIM.TRANSFORM:
-			obj_set_anim(spr_sonic_transform, 3, 0, self.set_move_anim);	
-		break;
+		
+			if sprite_index != spr_sonic_transform
+			{
+				instance_animation_start(spr_sonic_transform, 0, 12, 3);
+			}
+			else if image_timer == -1
+			{
+				animation = ANIM.MOVE;
+			}
+			
+			break;
 		
 		case ANIM.BREATHE:
-			obj_set_anim(spr_sonic_breathe, 24, 0, self.set_move_anim);	
-		break;
+		
+			if sprite_index != spr_sonic_breathe
+			{
+				instance_animation_start(spr_sonic_breathe, 0, 0, 24);
+			}
+			else if image_timer == -1
+			{
+				animation = ANIM.MOVE;
+			}
+			
+			break;
 		
 		case ANIM.BOUNCE:
-			obj_set_anim(spr_sonic_bounce, 48, 0, self.set_move_anim);		
-		break;
 		
+			if sprite_index != spr_sonic_bounce
+			{
+				instance_animation_start(spr_sonic_bounce, 0, 0, 48);
+			}
+			else if image_timer == -1
+			{
+				animation = ANIM.MOVE;
+			}
+			
+			break;
+			
 		case ANIM.BALANCE:
-			obj_set_anim(super_timer > 0 ? spr_sonic_balance_super : spr_sonic_balance, 10, 0, 0);
-		break;
+			
+			var _balance_sprite = super_timer > 0 ? spr_sonic_balance_super : spr_sonic_balance;
+			
+			if sprite_index != _balance_sprite
+			{
+				instance_animation_start(_balance_sprite, 0, 0, 10);
+			}
+			
+			break;
 		
 		case ANIM.BALANCE_FLIP:
-			obj_set_anim(spr_sonic_balance_flip, 20, 0, 0);
-		break;
+			
+			if sprite_index != spr_sonic_balance_flip
+			{
+				instance_animation_start(spr_sonic_balance_flip, 0, 0, 20);
+			}
+			
+			break;
 		
 		case ANIM.BALANCE_PANIC:
-			obj_set_anim(spr_sonic_balance_panic, 4, 0, 0);
-		break;
+		
+			if sprite_index != spr_sonic_balance_panic
+			{
+				instance_animation_start(spr_sonic_balance_panic, 0, 0, 4);
+			}
+			
+			break;
 		
 		case ANIM.BALANCE_TURN:
-			obj_set_anim(spr_sonic_balance_turn, 0, 0, 0);
-		break;
+			sprite_index = spr_sonic_balance_turn;
+			break;
 		
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
-		
-			obj_set_anim(spr_sonic_flip, 1, 0, self.end_flip_anim);
 			
-			// Override the displayed sprite
-			if (facing == DIRECTION.NEGATIVE)
+			var _flip_sprite = image_xscale >= 0 ? spr_sonic_flip : spr_sonic_flip_flipped;
+			
+			if sprite_index != spr_sonic_flip && sprite_index != spr_sonic_flip_flipped
 			{
-				sprite_index = spr_sonic_flip_flipped;
+				instance_animation_start(_flip_sprite, 0, 0, 1);
+			}
+			else
+			{
+				if anim_timer == -1
+				{
+					animation = ANIM.MOVE;
+				}
+				
+				sprite_index = _flip_sprite;
 			}
 			
-		break;
+			break;
 	}
 }

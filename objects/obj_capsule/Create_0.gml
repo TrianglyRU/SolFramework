@@ -17,6 +17,6 @@ obj_rm_stage.end_bound = x + camera_get_width(0) * 0.5;
 
 state = CAPSULESTATE.IDLE;
 wait_timer = 0;
-button_obj = instance_create_child(x, y - 39, obj_capsule_button);
-lock_obj = instance_create_child(x, y - 23, obj_capsule_lock);
-gate_obj = instance_create_child(x, y - 3, obj_capsule_gate);
+button_obj = instance_create_dependent(x, y - 39, obj_capsule_button);
+lock_obj = instance_create_dependent(x, y - 23, obj_capsule_lock);
+gate_obj = instance_create_dependent(x, y - 3, obj_capsule_gate);

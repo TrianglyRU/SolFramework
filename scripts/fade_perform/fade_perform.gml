@@ -1,7 +1,7 @@
 /// @self
 /// @description Configures and triggers a screen fade effect. If unsure, use pre-configured fade functions.
-/// @param {Enum.FADEDIRECTION} _direction The "direction" of the fade (e.g., fade-in or fade-out).
-/// @param {Enum.FADETYPE} _type The blending type of the fade effect.
+/// @param {Enum.FADE_DIRECTION} _direction The "direction" of the fade (e.g., fade-in or fade-out).
+/// @param {Enum.FADE_TYPE} _type The blending type of the fade effect.
 /// @param {Real} _speed The speed at which the fade occurs.
 /// @param {Real} [_frequency] The number of game steps between display updates (default is 1).
 /// @param {Bool} [_game_control] Whether to pause game updates during the fade (default is true).
@@ -13,7 +13,7 @@ function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control =
 		_speed = clamp(_speed * _frequency * FADE_STEP, 0, FADE_TIMER_MAX);
 	}
 	
-	if (_type == FADETYPE.DULLORDER || _type == FADETYPE.DULLSYNC || _type == FADETYPE.FLASHORDER || _type == FADETYPE.FLASHSYNC)
+	if (_type == FADE_TYPE.DULL_ORDER || _type == FADE_TYPE.DULL_SYNC || _type == FADE_TYPE.FLASH_ORDER || _type == FADE_TYPE.FLASH_SYNC)
 	{
 		_speed *= 3;
 	}
@@ -30,13 +30,13 @@ function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control =
 	{
 		if (_game_control)
 		{
-			obj_game.state = _direction == FADEDIRECTION.IN ? GAMESTATE.NORMAL : GAMESTATE.PAUSED;
+			obj_game.state = _direction == FADE_DIRECTION.IN ? GAME_STATE.NORMAL : GAME_STATE.PAUSED;
 		}
 			
-		obj_game.fade_timer = _direction == FADEDIRECTION.IN ? FADE_TIMER_MAX : 0;
+		obj_game.fade_timer = _direction == FADE_DIRECTION.IN ? FADE_TIMER_MAX : 0;
 	}
 	else
 	{
-		obj_game.fade_timer = _direction == FADEDIRECTION.IN ? 0 : FADE_TIMER_MAX;
+		obj_game.fade_timer = _direction == FADE_DIRECTION.IN ? 0 : FADE_TIMER_MAX;
 	}
 }

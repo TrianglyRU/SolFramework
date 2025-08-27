@@ -14,6 +14,6 @@ function player_spawn(_x, _y, _player_type, _depth)
 	
 	return instance_create(_x, _y, obj_player,
 	{
-		vd_player_type: _player_type, depth: _depth
+		player_type: _player_type, depth: _depth
 	});
 }

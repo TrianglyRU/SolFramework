@@ -10,7 +10,7 @@ function scr_player_update_collision()
 	{
 		obj_set_hitbox(8, radius_y - 3);
 	}
-	else if (vd_player_type != PLAYER.TAILS && vd_player_type != PLAYER.AMY)
+	else if (player_type != PLAYER.TAILS && player_type != PLAYER.AMY)
 	{
 		obj_set_hitbox(8, 10, 0, 6);
 	}

@@ -1,3 +1,14 @@
 // Inherit the parent event
 event_inherited();
-obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
+
+outside_action = OUTSIDE_ACTION.DESTROY;
+draw_start_x = 0;
+draw_start_y = 0;
+draw_width = 0;
+draw_height = 0;
+vel_x = 0;
+vel_y = 0;
+wait_time = 0;
+flip_x = false;
+flip_y = false;
+flicker = false;

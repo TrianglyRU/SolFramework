@@ -6,7 +6,7 @@ function scr_player_palette()
 
 	var _colours = [0, 1, 2, 3];
 	
-	switch (vd_player_type)
+	switch (player_type)
 	{
 	    case PLAYER.TAILS:
 	        _colours = [4, 5, 6];
@@ -26,7 +26,7 @@ function scr_player_palette()
 	var _colour_loop = 0;
 	var _duration = 0;
 	
-	switch (vd_player_type)
+	switch (player_type)
 	{
 	    case PLAYER.SONIC:
 		
@@ -89,7 +89,7 @@ function scr_player_palette()
 	{
 	    if (_colour > 1)
 	    {
-	        if (vd_player_type == PLAYER.SONIC)
+	        if (player_type == PLAYER.SONIC)
 	        {
 	            _colour_last = 21;
 	            _duration = 4;

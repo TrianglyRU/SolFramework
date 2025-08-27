@@ -7,7 +7,7 @@ function shader_rgb_fade()
 	var _timer = obj_game.fade_timer;
 	var _type = obj_game.fade_type;
 	
-	if (_type == FADETYPE.DULLORDER || _type == FADETYPE.DULLSYNC || _type == FADETYPE.FLASHORDER || _type == FADETYPE.FLASHSYNC)
+	if (_type == FADE_TYPE.DULL_ORDER || _type == FADE_TYPE.DULL_SYNC || _type == FADE_TYPE.FLASH_ORDER || _type == FADE_TYPE.FLASH_SYNC)
 	{
 		_timer = round(_timer / 3);
 	}	

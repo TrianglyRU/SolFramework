@@ -18,14 +18,14 @@ function scr_player_parameters()
 			frc_roll = 0.0234375;
 			acc_top = 6;	
 			jump_min_vel = -4;
-			jump_vel = vd_player_type == PLAYER.KNUCKLES ? -6 : -6.5;
+			jump_vel = player_type == PLAYER.KNUCKLES ? -6 : -6.5;
 		}
 		else
 		{
 			acc_glide = 0.046875;
 			acc_climb = 2;
 			
-			if (vd_player_type == PLAYER.SONIC)
+			if (player_type == PLAYER.SONIC)
 			{
 				acc = 0.1875;
 				acc_air = 0.375;
@@ -47,7 +47,7 @@ function scr_player_parameters()
 				frc_roll = 0.0234375;
 				acc_top = 8;
 				jump_min_vel = -4;
-				jump_vel = vd_player_type == PLAYER.KNUCKLES ? -6 : -6.5;
+				jump_vel = player_type == PLAYER.KNUCKLES ? -6 : -6.5;
 			}
 		}
 		
@@ -74,14 +74,14 @@ function scr_player_parameters()
 			frc_roll = 0.01171875;
 			acc_top = 3;
 			jump_min_vel = -2;
-			jump_vel = vd_player_type == PLAYER.KNUCKLES ? -3 : -3.5;
+			jump_vel = player_type == PLAYER.KNUCKLES ? -3 : -3.5;
 		}
 		else
 		{
 			acc_glide = 0.046875;
 			acc_climb = 2;
 			
-			if (vd_player_type == PLAYER.SONIC)
+			if (player_type == PLAYER.SONIC)
 			{
 			    acc = 0.09375;
 			    acc_air = 0.1875;
@@ -103,14 +103,14 @@ function scr_player_parameters()
 			    frc_roll = 0.0234375;
 			    acc_top = 4;
 			    jump_min_vel = -2;
-			    jump_vel = vd_player_type == PLAYER.KNUCKLES ? -3 : -3.5;
+			    jump_vel = player_type == PLAYER.KNUCKLES ? -3 : -3.5;
 			}
 		}
 	}
 	
 	if (global.player_physics < PHYSICS.SK)
 	{
-		if (vd_player_type == PLAYER.TAILS)
+		if (player_type == PLAYER.TAILS)
 		{
 			dec_roll = dec * 0.25;
 		}

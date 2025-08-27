@@ -1,4 +1,3 @@
-/// @self
 /// @description Creates a new instance of the specified object, with optional pre-Create Event variable initialisation.
 /// @param {Real} _x The x position for the instance.
 /// @param {Real} _y The y position for the instance.

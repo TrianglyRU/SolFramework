@@ -3,7 +3,7 @@ function _balance_left(_panic_cond)
 {
 	gml_pragma("forceinline");
 	
-	switch (vd_player_type)
+	switch (player_type)
 	{
 		case PLAYER.SONIC:
 			
@@ -57,7 +57,7 @@ function _balance_right(_panic_cond)
 {
 	gml_pragma("forceinline");
 		
-	switch (vd_player_type)
+	switch (player_type)
 	{
 		case PLAYER.SONIC:
 			

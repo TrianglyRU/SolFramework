@@ -7,4 +7,4 @@ rings_offset = 0;
 lives_offset = 0;
 local_timer = 0;
 update_timer = true;
-depth = RENDERER_DEPTH_HUD;
+depth = RENDER_DEPTH_HUD;

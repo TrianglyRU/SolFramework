@@ -1,4 +1,4 @@
-/// @self obj_game_object
+/// @self g_object
 /// @description Configures the hitbox.
 /// @param {Real} _radius_x The horizontal radius of the hitbox.
 /// @param {Real} _radius_y The vertical radius of the hitbox.

@@ -1,4 +1,4 @@
-if (!instance_exists(vd_target_player) || vd_target_player.vd_player_type != PLAYER.TAILS)
+if (!instance_exists(vd_target_player) || vd_target_player.player_type != PLAYER.TAILS)
 {
 	instance_destroy();
 	return;

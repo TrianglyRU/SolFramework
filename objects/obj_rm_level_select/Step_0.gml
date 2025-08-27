@@ -1,7 +1,7 @@
 var _frame = floor(obj_game.frame_counter * 0.5);
 var _last_frame = array_length(bg_playback_data);
 	
-with (obj_game_layer)
+with (g_background_layer)
 {
 	if (sprite_index == spr_level_select_bg)
 	{
@@ -41,7 +41,7 @@ if (level_entries[global.selected_level_entry] == "SOUND TEST")
     if (_input_press.start)
     {
         audio_stop_bgm(1.0);
-        fade_perform_black(FADEDIRECTION.OUT, 1,, self.load_selected_room);
+        fade_perform_black(FADE_DIRECTION.OUT, 1,, self.load_selected_room);
     }
     else if (_input_press.left)
     {
@@ -160,11 +160,11 @@ else if (_input_press.action1 || _input_press.start)
         if (room_to_load == rm_special)
         {
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADEDIRECTION.OUT, 1,, self.load_selected_room);
+            fade_perform_white(FADE_DIRECTION.OUT, 1,, self.load_selected_room);
         }
         else
         {
-            fade_perform_black(FADEDIRECTION.OUT, 1,, self.load_selected_room);
+            fade_perform_black(FADE_DIRECTION.OUT, 1,, self.load_selected_room);
         }
 		
 		audio_stop_bgm(1.0);

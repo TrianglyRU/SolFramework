@@ -47,7 +47,7 @@ switch (state)
 					}
 					
 					var _sign_sprite;
-					switch (player_object.vd_player_type)
+					switch (player_object.player_type)
 					{
 						case PLAYER.TAILS:
 							_sign_sprite = spr_signpost_tails;

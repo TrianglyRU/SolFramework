@@ -1,4 +1,4 @@
-/// @self obj_game_object
+/// @self g_object
 /// @description Initialises a new animation if the sprite doesn't match the current one, else updates its duration.
 /// @param {Asset.GMSprite} _sprite_id The sprite used for the animation.
 /// @param {Real} _duration Duration of a single frame in game steps.

@@ -5,7 +5,7 @@
 /// @param {Real} _x The x-coordinate of the position.
 /// @param {Real} _y The y-coordinate of the position.
 /// @param {Enum.DIRECTION} _dir The direction in which to perform the search.
-/// @param {Enum.TILELAYER|Undefined} [_secondary_layer] The index of the secondary tile layer to search within (default is undefined).
+/// @param {Enum.TILE_LAYER|Undefined} [_secondary_layer] The index of the secondary tile layer to search within (default is undefined).
 /// @param {Enum.QUADRANT} [_quadrant] The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
 /// @returns {Array<Real>}
 function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUADRANT.DOWN)
@@ -38,7 +38,7 @@ function tile_find_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 	
     for (var _j = array_length(_layers) - 1; _j >= 0; _j--)
 	{
-		if (_j != TILELAYER.MAIN && _j != _secondary_layer)
+		if (_j != TILE_LAYER.MAIN && _j != _secondary_layer)
 		{
 			continue;
 		}

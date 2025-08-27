@@ -61,7 +61,7 @@ function scr_player_animate()
 		visual_angle = _use_mania ? angle : _ceil_angle(angle);
 	}
 	
-	switch (vd_player_type)
+	switch (player_type)
 	{
 		case PLAYER.SONIC:
 			scr_player_animate_sonic();
