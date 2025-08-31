@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "SolFramework",
-    "path": "SolFramework.yyp",
+    "name": "Instance",
+    "path": "folders/Functions/Instance.yy",
   },
 }

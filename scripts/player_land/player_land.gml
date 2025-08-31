@@ -1,3 +1,4 @@
-function player_land(){
+function player_land(_player)
+{
 
 }

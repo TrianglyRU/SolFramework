@@ -551,8 +551,7 @@ restart_after_death = function()
 // Inherit the parent event
 event_inherited();
 
-obj_set_priority(2);
-obj_set_culling(ACTIVEIF.ENGINE_RUNNING);
+depth += 2;
 
 scr_player_init();
 scr_player_debug_mode_init();

@@ -1,10 +1,13 @@
-enum PLATFORMSTATE
+// Inherit the parent event
+event_inherited();
+
+enum PLATFORM_STATE
 {
 	MOVE,
 	FALL
 }
 
-enum PLATFORMTYPE
+enum PLATFORM_TYPE
 {
 	DEFAULT,
 	FALL,
@@ -13,18 +16,14 @@ enum PLATFORMTYPE
 	CIRCULAR
 }
 
-// Inherit the parent event
-event_inherited();
+outside_action = OUTSIDE_ACTION.RESPAWN;
 
-obj_set_priority(5);
-obj_set_solid(30, 8);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
-state = PLATFORMSTATE.MOVE;
+state = PLATFORM_STATE.MOVE;
 player_touch = false;
 wait_timer = 0;
 weight = 0;
 vel_y = 0;
+depth += 5;
 
 // Update position immediately
 xprevious = x;

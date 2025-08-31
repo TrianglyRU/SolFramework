@@ -1,7 +1,11 @@
-ignore_object_stop = false;
+enum OUTSIDE_ACTION
+{
+	PAUSE,
+	RESPAWN,
+	DESTROY
+}
 
-bbox_radius_x = bbox_right - x;
-bbox_radius_y = bbox_bottom - y;
+ignore_object_stop = false;
 
 sprite_index_start = sprite_index;
 image_xscale_start = image_xscale;
@@ -15,16 +19,10 @@ image_duration = 0;
 image_timer = 0;
 image_loopback = 0;
 
-enum OUTSIDE_ACTION
-{
-	PAUSE,
-	RESPAWN,
-	DESTROY
-}
-
 outside_respawned = false; 
 outside_action = OUTSIDE_ACTION.PAUSE;
 
+/// OLD
 
 // ANIMATOR
 

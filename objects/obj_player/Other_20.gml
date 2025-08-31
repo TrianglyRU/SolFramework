@@ -1,32 +1,32 @@
 /// @description Begin Step (Post-Framework)
 scr_player_input();
 
-switch (state)
+switch state
 {
 	case PLAYERSTATE.DEFAULT:
 	case PLAYERSTATE.LOCKED:
 		
-		if (scr_player_debug_mode_enter())
+		if scr_player_debug_mode_enter()
 		{
-			break;  
+			break;
 		}
 		
 		scr_player_parameters();
 		scr_player_cpu();
 		
-		if (state != PLAYERSTATE.LOCKED) then switch (is_grounded)
+		if state != PLAYERSTATE.LOCKED then switch is_grounded
 		{
 			// Grounded
 			case true:
 				
-				if (scr_player_spindash() || scr_player_dash() || scr_player_jump_start())
+				if scr_player_spindash() || scr_player_dash() || scr_player_jump_start()
 				{
 					break;
 				}
 				
 				scr_player_hammerdash();
 				
-				if (animation == ANIM.SPIN)
+				if animation == ANIM.SPIN
 				{
 					scr_player_slope_resist_roll();
 					scr_player_movement_roll();
@@ -40,7 +40,7 @@ switch (state)
 				
 				scr_player_collision_ground_walls();
 				
-				if (animation != ANIM.SPIN)
+				if animation != ANIM.SPIN
 				{
 					scr_player_roll_start();
 				}
@@ -55,7 +55,7 @@ switch (state)
 			// Airborne
 			case false:
 				
-				if (scr_player_jump())
+				if scr_player_jump()
 				{
 					break;
 				}
@@ -69,7 +69,7 @@ switch (state)
 				scr_player_movement_air();
 				scr_player_level_bound();
 				
-				if (action != ACTION.CARRIED)
+				if action != ACTION.CARRIED
 				{
 					scr_player_position();
 					scr_player_collision_air();
@@ -84,6 +84,8 @@ switch (state)
 		scr_player_water();
 		scr_player_update_status();
 		scr_player_animate();
+		scr_player_update_collision();
+		scr_player_check_objects();
 		
 		self.record_data(0);
 		
@@ -91,7 +93,7 @@ switch (state)
 
 	case PLAYERSTATE.HURT:
 		
-		if (scr_player_debug_mode_enter())
+		if scr_player_debug_mode_enter()
 		{
 			break;
 		}
@@ -100,6 +102,7 @@ switch (state)
 		scr_player_position();
 		scr_player_collision_air();
 		scr_player_animate();
+		scr_player_update_collision();
 		
 		self.record_data(0);
 		
@@ -107,7 +110,7 @@ switch (state)
 
 	case PLAYERSTATE.DEATH:
 		
-		if (scr_player_debug_mode_enter())
+		if scr_player_debug_mode_enter()
 		{
 			break;
 		}
@@ -115,6 +118,7 @@ switch (state)
 		scr_player_death();
 		scr_player_position();
 		scr_player_animate();
+		scr_player_update_collision();
 		
 		self.record_data(0);
 		
@@ -127,7 +131,7 @@ switch (state)
 	case PLAYERSTATE.RESPAWN:
 		
 		// Don't do anything until the camera finds us
-		if (camera_data.vel_x == 0 && camera_data.vel_y == 0)
+		if camera_data.vel_x == 0 && camera_data.vel_y == 0
 		{
 			state = PLAYERSTATE.DEFAULT;
 		}
@@ -135,5 +139,4 @@ switch (state)
 	break;
 }
 
-scr_player_update_collision();
 scr_player_palette();

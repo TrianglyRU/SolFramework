@@ -59,9 +59,13 @@ function scr_player_init()
 	stick_to_convex = false;
 	is_water_running = false;
 	on_object = noone;
+	touch_object = noone;
 	
-	radius_x = radius_x_normal;
-	radius_y = radius_y_normal;
+	solid_radius_x = radius_x_normal;
+	solid_radius_y = radius_y_normal;
+	react_radius_x = 0;
+	react_radius_y = 0;
+	
 	vel_x = 0;
 	vel_y = 0;
 	spd_ground = 0;

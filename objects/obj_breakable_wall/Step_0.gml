@@ -3,9 +3,9 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _player = player_get(_p);
 	var _vel_x = _player.vel_x;
 	
-	solid_object(_player, SOLID_TYPE.SIDES);
+	instance_solid(_player, SOLID_TYPE.SIDES);
 	
-	if (iv_knuckles_only && _player.player_type != PLAYER.KNUCKLES)
+	if iv_knuckles_only && _player.player_type != PLAYER.KNUCKLES
 	{
 		continue;
 	}
