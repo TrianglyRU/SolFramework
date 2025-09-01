@@ -2,12 +2,10 @@
 /// @description Applies an RGB fade to subsequent draw calls using the fade data defined in obj_game.
 function shader_rgb_fade()
 {
-	gml_pragma("forceinline");
-	
 	var _timer = obj_game.fade_timer;
 	var _type = obj_game.fade_type;
 	
-	if (_type == FADE_TYPE.DULL_ORDER || _type == FADE_TYPE.DULL_SYNC || _type == FADE_TYPE.FLASH_ORDER || _type == FADE_TYPE.FLASH_SYNC)
+	if _type == FADE_TYPE.DULL_ORDER || _type == FADE_TYPE.DULL_SYNC || _type == FADE_TYPE.FLASH_ORDER || _type == FADE_TYPE.FLASH_SYNC
 	{
 		_timer = round(_timer / 3);
 	}	

@@ -25,7 +25,7 @@ function scr_player_update_status()
 	{
 		if (--item_speed_timer == 0 && audio_is_playing(snd_bgm_highspeed))
 		{
-			audio_reset_bgm(obj_rm_stage.bgm_track, id);
+			player_restart_bgm(obj_rm_stage.bgm_track, id);
 		}
 	}
 
@@ -33,7 +33,7 @@ function scr_player_update_status()
 	{
 		if (--item_inv_timer == 0 && audio_is_playing(snd_bgm_invincibility))
 		{
-			audio_reset_bgm(obj_rm_stage.bgm_track, id);
+			player_restart_bgm(obj_rm_stage.bgm_track, id);
 		}
 	}
 	
@@ -43,7 +43,7 @@ function scr_player_update_status()
 		{
 			if (--transform_timer == 0)
 			{
-				state = PLAYERSTATE.DEFAULT;
+				state = PLAYER_STATE.DEFAULT;
 				self.reset_substate();
 				
 				instance_create(x, y, obj_star_super, { vd_target_player: id });
@@ -60,7 +60,7 @@ function scr_player_update_status()
 				
 				if (!audio_is_playing(snd_bgm_drowning))
 				{
-					audio_reset_bgm(obj_rm_stage.bgm_track, id);
+					player_restart_bgm(obj_rm_stage.bgm_track, id);
 				}
 			}
 			else

@@ -1,4 +1,5 @@
 /// @description Gamepad Detection
+
 var _event = async_load[? "event_type"];
 var _pad_index = async_load[? "pad_index"];
 
@@ -12,6 +13,7 @@ if _event == "gamepad discovered"
 else if _event == "gamepad lost"
 {
 	var _pos = ds_list_find_index(global.gamepad_list, _pad_index);
+	
 	if _pos != -1
 	{
 		ds_list_delete(global.gamepad_list, _pos);

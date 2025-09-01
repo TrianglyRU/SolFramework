@@ -107,7 +107,7 @@ function scr_player_animate_amy()
 			obj_set_anim(spr_amy_flip, 1, 0, self.end_flip_anim);
 			
 			// Override the displayed sprite
-			if (facing == DIRECTION.NEGATIVE)
+			if (facing == -1)
 			{
 				sprite_index = spr_amy_flip_flipped;
 			}

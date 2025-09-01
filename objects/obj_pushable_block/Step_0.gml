@@ -7,7 +7,7 @@ switch (state)
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			var _player = player_get(_p);
-			direction_x = floor(_player.x) < floor(x) ? DIRECTION.POSITIVE : DIRECTION.NEGATIVE;
+			direction_x = floor(_player.x) < floor(x) ? 1 : -1;
 			
 			obj_act_solid(_player, SOLIDOBJECT.FULL);
 			
@@ -17,7 +17,7 @@ switch (state)
 			}
 			
 			/// @feather ignore GM1041
-			var _wall_dist = tile_find_h(x + (direction_x == DIRECTION.POSITIVE ? 15 : -16), y, direction_x)[0];
+			var _wall_dist = tile_find_h(x + (direction_x == 1 ? 15 : -16), y, direction_x)[0];
 			if (_wall_dist <= 0)
 			{
 				continue;
@@ -37,7 +37,7 @@ switch (state)
 			
 			if (!vd_no_gravity)
 			{
-				_floor_dist = tile_find_v(x, y + 15, DIRECTION.POSITIVE)[0];
+				_floor_dist = tile_find_v(x, y + 15, 1)[0];
 				if (_floor_dist <= 4)
 				{
 					y += _floor_dist;
@@ -71,7 +71,7 @@ switch (state)
 		y += vel_y;
 		vel_y += 0.09375;
 		
-		_floor_dist = tile_find_v(x, y + 15, DIRECTION.POSITIVE)[0];
+		_floor_dist = tile_find_v(x, y + 15, 1)[0];
 		if (_floor_dist < 0)
 		{
 			state = PUSHABLEBLOCKSTATE.GROUND;

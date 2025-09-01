@@ -20,7 +20,7 @@ switch (state)
         else
 		{
 			_player.visible = false;
-			_player.state = PLAYERSTATE.LOCKED;
+			_player.state = PLAYER_STATE.DEFAULT_LOCKED;
 		
 	        obj_set_anim(spr_giant_ring_flash, 2, 0, 7);
         

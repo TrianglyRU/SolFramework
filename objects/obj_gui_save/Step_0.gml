@@ -4,7 +4,7 @@ if (timer == 60)
 }
 else
 {
-	sprite_animate(timer, 3);
+	instance_animate(timer, 3);
 }
 
 timer++;

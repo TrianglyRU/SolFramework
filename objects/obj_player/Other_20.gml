@@ -3,8 +3,8 @@ scr_player_input();
 
 switch state
 {
-	case PLAYERSTATE.DEFAULT:
-	case PLAYERSTATE.LOCKED:
+	case PLAYER_STATE.DEFAULT:
+	case PLAYER_STATE.DEFAULT_LOCKED:
 		
 		if scr_player_debug_mode_enter()
 		{
@@ -14,7 +14,7 @@ switch state
 		scr_player_parameters();
 		scr_player_cpu();
 		
-		if state != PLAYERSTATE.LOCKED then switch is_grounded
+		if state != PLAYER_STATE.DEFAULT_LOCKED then switch is_grounded
 		{
 			// Grounded
 			case true:
@@ -91,7 +91,7 @@ switch state
 		
 	break;
 
-	case PLAYERSTATE.HURT:
+	case PLAYER_STATE.HURT:
 		
 		if scr_player_debug_mode_enter()
 		{
@@ -108,7 +108,7 @@ switch state
 		
 	break;
 
-	case PLAYERSTATE.DEATH:
+	case PLAYER_STATE.DEATH:
 		
 		if scr_player_debug_mode_enter()
 		{
@@ -124,16 +124,16 @@ switch state
 		
 	break;
 
-	case PLAYERSTATE.DEBUG_MODE:
+	case PLAYER_STATE.DEBUG_MODE:
 		scr_player_debug_mode();
 	break;
 	
-	case PLAYERSTATE.RESPAWN:
+	case PLAYER_STATE.RESPAWN:
 		
 		// Don't do anything until the camera finds us
 		if camera_data.vel_x == 0 && camera_data.vel_y == 0
 		{
-			state = PLAYERSTATE.DEFAULT;
+			state = PLAYER_STATE.DEFAULT;
 		}
 		
 	break;

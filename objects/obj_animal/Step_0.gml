@@ -23,7 +23,7 @@ if (vel_y < 0)
     return;
 }
 
-var _floor_dist = tile_find_v(x, y + 12, DIRECTION.POSITIVE)[0];
+var _floor_dist = tile_find_v(x, y + 12, 1)[0];
 if (_floor_dist >= 0)
 {
     return;

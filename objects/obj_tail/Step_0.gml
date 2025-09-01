@@ -70,7 +70,7 @@ else
 	
 	image_angle = point_direction(_x, _y, _x + vd_target_player.vel_x, _y + vd_target_player.vel_y);
 	
-	if (vd_target_player.image_xscale == DIRECTION.NEGATIVE)
+	if (vd_target_player.image_xscale == -1)
 	{
 		image_angle += 180;
 	}

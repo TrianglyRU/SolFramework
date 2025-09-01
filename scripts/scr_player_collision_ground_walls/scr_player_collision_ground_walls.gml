@@ -40,19 +40,19 @@ function scr_player_collision_ground_walls()
 	    switch (_wall_quad)
 	    {
 	        case QUADRANT.DOWN:
-	            _wall_dist = tile_find_h(_x - _wall_radius, _y + _y_offset, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_h(_x - _wall_radius, _y + _y_offset, -1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.RIGHT:
-	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_v(_x, _y + _wall_radius, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = tile_find_h(_x + _wall_radius, _y, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_h(_x + _wall_radius, _y, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_v(_x, _y - _wall_radius, -1, secondary_layer, _wall_quad)[0];
 	        break;
 	    }
 
@@ -68,7 +68,7 @@ function scr_player_collision_ground_walls()
 	            vel_x -= _wall_dist;
 	            spd_ground = 0;
 				
-	            if (facing == DIRECTION.NEGATIVE && animation != ANIM.SPIN)
+	            if (facing == -1 && animation != ANIM.SPIN)
 	            {
 	                set_push_anim_by = id;
 	            }
@@ -84,7 +84,7 @@ function scr_player_collision_ground_walls()
 	            vel_x += _wall_dist;
 	            spd_ground = 0;
 				
-	            if (facing == DIRECTION.NEGATIVE && animation != ANIM.SPIN)
+	            if (facing == -1 && animation != ANIM.SPIN)
 	            {
 	                set_push_anim_by = id;
 	            }
@@ -105,19 +105,19 @@ function scr_player_collision_ground_walls()
 	    switch (_wall_quad)
 	    {
 	        case QUADRANT.DOWN:
-	            _wall_dist = tile_find_h(_x + _wall_radius, _y + _y_offset, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_h(_x + _wall_radius, _y + _y_offset, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.RIGHT:
-	            _wall_dist = tile_find_v(_x, _y - _wall_radius, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_v(_x, _y - _wall_radius, -1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = tile_find_h(_x - _wall_radius, _y, DIRECTION.NEGATIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_h(_x - _wall_radius, _y, -1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = tile_find_v(_x, _y + _wall_radius, DIRECTION.POSITIVE, secondary_layer, _wall_quad)[0];
+	            _wall_dist = tile_find_v(_x, _y + _wall_radius, 1, secondary_layer, _wall_quad)[0];
 	        break;
 	    }
 
@@ -133,7 +133,7 @@ function scr_player_collision_ground_walls()
 	            vel_x += _wall_dist;
 	            spd_ground = 0;
 				
-	            if (facing == DIRECTION.POSITIVE && animation != ANIM.SPIN)
+	            if (facing == 1 && animation != ANIM.SPIN)
 	            {
 	                set_push_anim_by = id;
 	            }
@@ -149,7 +149,7 @@ function scr_player_collision_ground_walls()
 	            vel_x -= _wall_dist;
 	            spd_ground = 0;
 				
-	            if (facing == DIRECTION.POSITIVE && animation != ANIM.SPIN)
+	            if (facing == 1 && animation != ANIM.SPIN)
 	            {
 	                set_push_anim_by = id;
 	            }

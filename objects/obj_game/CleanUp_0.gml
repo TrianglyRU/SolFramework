@@ -1,4 +1,5 @@
 /// @description Cleanup
+
 if room == rm_startup
 {
 	return;
@@ -28,7 +29,7 @@ ds_list_destroy(cull_game_paused_list);
 
 // DEBUG
 
-ds_list_destroy(debug_tile_sensors);
+ds_list_destroy(debuobj_game_tile_sensors);
 ds_list_destroy(debug_interact);
 ds_list_destroy(debug_solids);
 ds_list_destroy(debug_solids_push);

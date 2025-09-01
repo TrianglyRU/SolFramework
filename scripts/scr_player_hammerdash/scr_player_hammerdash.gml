@@ -15,7 +15,7 @@ function scr_player_hammerdash()
 		return;
 	}
 	
-	if (input_press.left && facing == DIRECTION.POSITIVE || input_press.right && facing == DIRECTION.NEGATIVE)
+	if (input_press.left && facing == 1 || input_press.right && facing == -1)
 	{
 		facing *= -1;
 	}

@@ -34,7 +34,7 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.DOWN:
 			
 			var _y = y + radius_y;
-			var _floor_data = tile_find_2v(x - radius_x, _y, x + radius_x, _y, DIRECTION.POSITIVE, secondary_layer, _angle_quad);
+			var _floor_data = tile_find_2v(x - radius_x, _y, x + radius_x, _y, 1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -78,7 +78,7 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.RIGHT:
 			
 			var _x = x + radius_y;
-			var _floor_data = tile_find_2h(_x, y + radius_x, _x, y - radius_x, DIRECTION.POSITIVE, secondary_layer, _angle_quad);
+			var _floor_data = tile_find_2h(_x, y + radius_x, _x, y - radius_x, 1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -122,7 +122,7 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.UP:
 			
 			var _y = y - radius_y;
-			var _floor_data = tile_find_2v(x + radius_x, _y, x - radius_x, _y, DIRECTION.NEGATIVE, secondary_layer, _angle_quad);
+			var _floor_data = tile_find_2v(x + radius_x, _y, x - radius_x, _y, -1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -166,7 +166,7 @@ function scr_player_collision_ground_floor()
 		case QUADRANT.LEFT:
 			
 			var _x = x - radius_y;
-			var _floor_data = tile_find_2h(_x, y - radius_x, _x, y + radius_x, DIRECTION.NEGATIVE, secondary_layer, _angle_quad);
+			var _floor_data = tile_find_2h(_x, y - radius_x, _x, y + radius_x, -1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 		

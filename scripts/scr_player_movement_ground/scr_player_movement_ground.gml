@@ -35,9 +35,9 @@ function scr_player_movement_ground()
 					spd_ground = max(spd_ground - acc, -acc_top);
 				}
 				
-				if (facing != DIRECTION.NEGATIVE)
+				if (facing != -1)
 				{
-					facing = DIRECTION.NEGATIVE;
+					facing = -1;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
 					
@@ -71,9 +71,9 @@ function scr_player_movement_ground()
 					spd_ground = min(spd_ground + acc, acc_top);
 				}
 				
-				if (facing != DIRECTION.POSITIVE)
+				if (facing != 1)
 				{
-					facing = DIRECTION.POSITIVE;
+					facing = 1;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
 					

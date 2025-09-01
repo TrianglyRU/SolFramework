@@ -15,9 +15,10 @@ function pal_run_rotation(_colour_indices, _duration, _loop_index, _end_index)
 	for (var _i = array_length(_colour_indices) - 1; _i >= 0; _i--)
 	{
 		var _index = _colour_indices[_i];
-		if (_index < PALETTE_TOTAL_SLOT_COUNT)
+		
+		if _index < PALETTE_TOTAL_SLOT_COUNT
 		{
-			if (_durations[_index] != _duration)
+			if _durations[_index] != _duration
 			{
 				_timers[_index] = _duration;
 			}

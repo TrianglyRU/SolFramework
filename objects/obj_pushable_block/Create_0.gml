@@ -13,6 +13,6 @@ obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
 obj_set_solid(16, 16);
 
 state = PUSHABLEBLOCKSTATE.GROUND;
-direction_x = DIRECTION.POSITIVE;
+direction_x = 1;
 vel_x = 0;
 vel_y = 0;

@@ -1,5 +1,6 @@
 /// @description Apply Distortion
-if (room == rm_startup)
+
+if room == rm_startup
 {
 	return;
 }
@@ -23,12 +24,12 @@ for (var _i = 0; _i < _list_size; _i++)
     var _u_bound = clamp(_data.range_start - _draw_y, 0, _camera_height);
     var _l_bound = clamp(_data.range_end - _draw_y, 0, _camera_height);
 	
-    if (_has_a && !_has_b)
+    if _has_a && !_has_b
 	{
         _u_bound = min(_u_bound, _screen_space_bound);
         _l_bound = min(_l_bound, _screen_space_bound);
     }
-    else if (!_has_a && _has_b)
+    else if !_has_a && _has_b
 	{
         _u_bound = max(_u_bound, _screen_space_bound);
         _l_bound = max(_l_bound, _screen_space_bound);
@@ -39,13 +40,13 @@ for (var _i = 0; _i < _list_size; _i++)
         _l_bound = max(_l_bound, _screen_space_bound);
     }
 	
-    if (_has_a)
+    if _has_a
 	{
         fx_set_parameter(_effect, "g_DataA", _data.values_a);
         fx_set_parameter(_effect, "g_DataSizeA", array_length(_data.values_a));
     }
 	
-    if (_has_b)
+    if _has_b
 	{
         fx_set_parameter(_effect, "g_DataB", _data.values_b);
         fx_set_parameter(_effect, "g_DataSizeB", array_length(_data.values_b));

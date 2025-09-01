@@ -9,14 +9,14 @@ if (global.player_shields[vd_target_player.player_index] == SHIELD.BUBBLE)
 	return;
 }
 
-if (vd_target_player.state == PLAYERSTATE.HURT || vd_target_player.state == PLAYERSTATE.DEBUG_MODE)
+if (vd_target_player.state == PLAYER_STATE.HURT || vd_target_player.state == PLAYER_STATE.DEBUG_MODE)
 {
 	return;
 }
 
 var _x = vd_target_player.x + 6 * vd_target_player.facing;
 var _y = vd_target_player.y;
-var _spawn_direction = vd_target_player.forced_roll ? DIRECTION.POSITIVE : vd_target_player.facing;
+var _spawn_direction = vd_target_player.forced_roll ? 1 : vd_target_player.facing;
 var _air_timer = vd_target_player.air_timer;
 
 if (_air_timer > 0)

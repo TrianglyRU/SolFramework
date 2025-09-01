@@ -1,5 +1,6 @@
 /// @description Draw Camera Views
-if (room == rm_startup)
+
+if room == rm_startup
 {
 	return;
 }
@@ -9,12 +10,13 @@ gpu_set_blendenable(false);
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
 	var _camera_data = camera_get_data(_i);
-	if (_camera_data == undefined)
+	
+	if _camera_data == undefined
 	{
 		continue;
 	}
 	
-	// All surfaces exist by this point, see End Step -> CAMERA
+	// All surfaces should exist by this point, see End Step -> CAMERA
 	var _surface = view_surface_id[_i];
 	var _palette_surface = view_surface_palette[_i];
 	var _fade_surface = view_surface_final[_i];

@@ -1,4 +1,5 @@
 /// @description Initialisation
+
 if room == rm_startup
 {
 	return;
@@ -106,24 +107,11 @@ cull_game_paused_list = ds_list_create();
 
 #region DEBUG
 
-debug_tile_sensors = ds_list_create();
+debuobj_game_tile_sensors = ds_list_create();
 debug_interact = ds_list_create();
 debug_solids = ds_list_create();
 debug_solids_sides = ds_list_create();
 debug_solids_push = ds_list_create();
-
-/// @method debug_get_game_state_name()
-debug_get_game_state_name = function()
-{
-	switch (state)
-	{
-		case GAME_STATE.NORMAL: return "NORMAL";
-		case GAME_STATE.PAUSED: return "PAUSED";
-		case GAME_STATE.STOP_OBJECTS: return "STPOBJ";
-	}
-	
-	return "UNKNOWN";
-}
 
 #endregion
 
@@ -233,30 +221,5 @@ tile_marker_layer = -1;
 tile_angles = array_create(TILE_COUNT);
 tile_widths = array_create(TILE_COUNT);
 tile_heights = array_create(TILE_COUNT);
-
-/// @method register_layers()
-register_layers = function()
-{
-	var _collision_layers = ["Collision_Main", "Collision_A", "Collision_B"];
-	var _marker_layers = ["Markers_Main", "Markers_A", "Markers_B"];
-	
-	for (var _i = 0; _i < array_length(_collision_layers); _i++)
-	{
-	    var _c_id = layer_tilemap_get_id(_collision_layers[_i]);
-	    if (_c_id == -1)
-		{
-	        show_debug_message("[WARN] Could not register collision layer " + _collision_layers[_i] + ". Skipping");
-	    }
-		
-	    var _m_id = layer_tilemap_get_id(_marker_layers[_i]);
-	    if (_m_id == -1)
-		{
-	        show_debug_message("[INFO] Could not register marker layer " + _marker_layers[_i] + ". Skipping");
-	    }
-		
-		tile_layers[_i] = _c_id;
-		tile_markers[_i] = _m_id;
-	}
-}
 
 #endregion

@@ -8,8 +8,6 @@
 /// @param {Real} _scroll_y The vertical scroll offset within the texture.
 function shader_mode7(_angle, _pitch, _fov_x, _fov_y, _scroll_x, _scroll_y)
 {
-	gml_pragma("forceinline");
-	
 	var _u_angle = shader_get_uniform(sh_mode7, "u_angle");
 	var _u_pitch = shader_get_uniform(sh_mode7, "u_pitch");
 	var _u_fov = shader_get_uniform(sh_mode7, "u_fov");

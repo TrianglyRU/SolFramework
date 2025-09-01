@@ -2,7 +2,7 @@ if (vd_move_spikes)
 {
     if (retract_timer > 0)
     {
-        if (--retract_timer == 0 && obj_is_visible())
+        if (--retract_timer == 0 && instance_is_drawn())
         {
             audio_play_sfx(snd_spikes_move);
         }

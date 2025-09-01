@@ -1,5 +1,7 @@
-/// @description Toggle Collision Overlay
-if (global.dev_mode)
+/// @description Toggle Console
+
+if global.dev_mode
 {
-	global.debug_collision = (global.debug_collision + 1) % 4;
+	// TODO: enable in LTS'25
+	// show_debug_log(!is_debug_overlay_open());
 }

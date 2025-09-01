@@ -86,7 +86,7 @@ function scr_player_animate_tails()
 			obj_set_anim(spr_tails_flip, 1, 0, self.end_flip_anim);
 			
 			// Override the displayed sprite
-			if (facing == DIRECTION.NEGATIVE)
+			if (facing == -1)
 			{
 				sprite_index = spr_tails_flip_flipped;
 			}

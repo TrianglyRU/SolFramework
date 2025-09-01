@@ -17,7 +17,7 @@ function _destroy_badnik(_player)
 	instance_destroy();
 }
 
-/// @self g_object
+/// @self obj_game_object
 /// @description Defines the behaviour and logic for an enemy object. Returns true if the enemy was not destroyed, false otherwise.
 /// @param {Enum.ENEMYTYPE} [_type] The type of enemy (default is ENEMYTYPE.BADNIK)
 /// @returns {Bool} 

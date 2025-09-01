@@ -40,7 +40,7 @@ function scr_player_update_collision()
 			break;
 		}
 	}
-	else if (shield_state == SHIELDSTATE.DOUBLESPIN)
+	else if (shield_state == SHIELD_STATE.DOUBLE_SPIN)
 	{
 		self.set_extra_hitbox(24, 24);
 	}

@@ -9,7 +9,7 @@ if (!is_reflected)
 			continue;
 		}
 		
-		if (global.player_shields[_p] > SHIELD.NORMAL || _player.shield_state == SHIELDSTATE.DOUBLESPIN)
+		if (global.player_shields[_p] > SHIELD.NORMAL || _player.shield_state == SHIELD_STATE.DOUBLE_SPIN)
 		{
 			var _arctan = darctan2(_player.y - y, _player.x - x);
 			var _angle = math_get_angle_rounded(_arctan);

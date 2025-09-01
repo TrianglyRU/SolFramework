@@ -8,12 +8,12 @@
 /// @param {Real|Function} [_end_method] An argumentless method to execute when the fade routine ends (default is -1).
 function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control = true, _end_method = -1)
 {
-	if (_speed != 0)
+	if _speed != 0
 	{
 		_speed = clamp(_speed * _frequency * FADE_STEP, 0, FADE_TIMER_MAX);
 	}
 	
-	if (_type == FADE_TYPE.DULL_ORDER || _type == FADE_TYPE.DULL_SYNC || _type == FADE_TYPE.FLASH_ORDER || _type == FADE_TYPE.FLASH_SYNC)
+	if _type == FADE_TYPE.DULL_ORDER || _type == FADE_TYPE.DULL_SYNC || _type == FADE_TYPE.FLASH_ORDER || _type == FADE_TYPE.FLASH_SYNC
 	{
 		_speed *= 3;
 	}
@@ -26,9 +26,9 @@ function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control =
 	obj_game.fade_game_control = _game_control;
 	obj_game.fade_end_method = _end_method;
 	
-	if (_speed = 0)
+	if _speed == 0
 	{
-		if (_game_control)
+		if _game_control
 		{
 			obj_game.state = _direction == FADE_DIRECTION.IN ? GAME_STATE.NORMAL : GAME_STATE.PAUSED;
 		}

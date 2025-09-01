@@ -48,7 +48,7 @@ function scr_player_carry()
 			}
 		
 			var _player = player_get(_p);	
-			if (_player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state != PLAYERSTATE.DEFAULT)
+			if (_player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state != PLAYER_STATE.DEFAULT)
 			{
 				continue;
 			}

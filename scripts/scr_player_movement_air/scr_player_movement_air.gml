@@ -44,7 +44,7 @@ function scr_player_movement_air()
 				vel_x = max(vel_x - acc_air, -acc_top);
 			}
 			
-			facing = DIRECTION.NEGATIVE;
+			facing = -1;
 		}
 		
 		if (input_down.right)
@@ -58,7 +58,7 @@ function scr_player_movement_air()
 				vel_x = min(vel_x + acc_air, acc_top);
 			}
 			
-			facing = DIRECTION.POSITIVE;
+			facing = 1;
 		}	
 	}
 	

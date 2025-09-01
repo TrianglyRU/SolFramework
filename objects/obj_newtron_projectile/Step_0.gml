@@ -1,4 +1,4 @@
-if (!obj_is_visible())
+if !instance_is_drawn()
 { 
 	instance_destroy();
 }

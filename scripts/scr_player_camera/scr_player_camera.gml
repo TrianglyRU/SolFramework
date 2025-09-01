@@ -76,7 +76,7 @@ function scr_player_camera()
 
 	if (_do_shift_down || _do_shift_up)
 	{
-		if (camera_view_timer > 0 && state == PLAYERSTATE.DEFAULT)
+		if (camera_view_timer > 0 && state == PLAYER_STATE.DEFAULT)
 		{
 			camera_view_timer--;
 		}

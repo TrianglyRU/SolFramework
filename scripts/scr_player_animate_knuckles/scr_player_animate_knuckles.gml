@@ -81,7 +81,7 @@ function scr_player_animate_knuckles()
 			obj_set_anim(spr_knuckles_flip, 1, 0, self.end_flip_anim);
 			
 			// Override the displayed sprite
-			if (facing == DIRECTION.NEGATIVE)
+			if (facing == -1)
 			{
 				sprite_index = spr_knuckles_flip_flipped;
 			}

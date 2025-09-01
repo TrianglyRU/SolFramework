@@ -1,4 +1,4 @@
-if (!obj_rm_stage.water_enabled || y < obj_rm_stage.water_level || !obj_is_visible())
+if (!obj_rm_stage.water_enabled || y < obj_rm_stage.water_level || !instance_is_drawn())
 {
 	return;
 }

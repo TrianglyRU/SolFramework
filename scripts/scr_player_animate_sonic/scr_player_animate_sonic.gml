@@ -23,7 +23,7 @@ function scr_player_animate_sonic()
 				instance_animation_start(spr_sonic_wait, 0, 6, 6);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.MOVE:
 		
@@ -57,7 +57,7 @@ function scr_player_animate_sonic()
 				image_index = (image_index + floor(image_number * 0.5)) % image_number;
 			}
 			
-			break;
+		break;
 			
 		case ANIM.SPIN:
 		
@@ -82,7 +82,7 @@ function scr_player_animate_sonic()
 				}
 			}
 			
-			break;
+		break;
 		
 		case ANIM.SPINDASH:
 			
@@ -91,7 +91,7 @@ function scr_player_animate_sonic()
 				instance_animation_start(spr_sonic_spindash, 0, 0, 1);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.PUSH:
 			
@@ -107,7 +107,7 @@ function scr_player_animate_sonic()
 				image_duration = _push_timing;
 			}
 			
-			break;
+		break;
 		
 		case ANIM.DUCK:
 			
@@ -121,7 +121,7 @@ function scr_player_animate_sonic()
 				instance_animation_start(spr_sonic_duck, 0, 1, 4);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.LOOKUP:
 		
@@ -130,7 +130,7 @@ function scr_player_animate_sonic()
 				instance_animation_start(spr_sonic_lookup, 0, 1, 4);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.GRAB:
 			
@@ -139,19 +139,19 @@ function scr_player_animate_sonic()
 				instance_animation_start(spr_sonic_grab, 0, 0, 20);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.HURT:
 			sprite_index = spr_sonic_hurt;
-			break;
+		break;
 		
 		case ANIM.DEATH:
 			sprite_index = spr_sonic_death;
-			break;
+		break;
 		
 		case ANIM.DROWN:
 			sprite_index = spr_sonic_drown;	
-			break;
+		break;
 		
 		case ANIM.SKID:
 		
@@ -164,7 +164,7 @@ function scr_player_animate_sonic()
 				animation = ANIM.MOVE;
 			}
 			
-			break;
+		break;
 		
 		case ANIM.TRANSFORM:
 		
@@ -177,7 +177,7 @@ function scr_player_animate_sonic()
 				animation = ANIM.MOVE;
 			}
 			
-			break;
+		break;
 		
 		case ANIM.BREATHE:
 		
@@ -190,7 +190,7 @@ function scr_player_animate_sonic()
 				animation = ANIM.MOVE;
 			}
 			
-			break;
+		break;
 		
 		case ANIM.BOUNCE:
 		
@@ -203,7 +203,7 @@ function scr_player_animate_sonic()
 				animation = ANIM.MOVE;
 			}
 			
-			break;
+		break;
 			
 		case ANIM.BALANCE:
 			
@@ -214,7 +214,7 @@ function scr_player_animate_sonic()
 				instance_animation_start(_balance_sprite, 0, 0, 10);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.BALANCE_FLIP:
 			
@@ -223,7 +223,7 @@ function scr_player_animate_sonic()
 				instance_animation_start(spr_sonic_balance_flip, 0, 0, 20);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.BALANCE_PANIC:
 		
@@ -232,11 +232,11 @@ function scr_player_animate_sonic()
 				instance_animation_start(spr_sonic_balance_panic, 0, 0, 4);
 			}
 			
-			break;
+		break;
 		
 		case ANIM.BALANCE_TURN:
 			sprite_index = spr_sonic_balance_turn;
-			break;
+		break;
 		
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
@@ -257,6 +257,6 @@ function scr_player_animate_sonic()
 				sprite_index = _flip_sprite;
 			}
 			
-			break;
+		break;
 	}
 }

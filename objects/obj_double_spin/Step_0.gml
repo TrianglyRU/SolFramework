@@ -4,9 +4,9 @@ if (!instance_exists(vd_target_player))
 }
 else if (--attack_timer <= 0)
 {
-	if (vd_target_player.shield_state == SHIELDSTATE.DOUBLESPIN)
+	if (vd_target_player.shield_state == SHIELD_STATE.DOUBLE_SPIN)
 	{
-		vd_target_player.shield_state = SHIELDSTATE.DISABLED;
+		vd_target_player.shield_state = SHIELD_STATE.DISABLED;
 	}
 	
 	instance_destroy();

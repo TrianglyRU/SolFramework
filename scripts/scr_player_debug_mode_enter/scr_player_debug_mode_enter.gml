@@ -7,7 +7,7 @@ function scr_player_debug_mode_enter()
 	    return false;
 	}
 	
-	if (state == PLAYERSTATE.DEATH && death_state != DEATHSTATE.WAIT)
+	if (state == PLAYER_STATE.DEATH && death_state != DEATH_STATE.WAIT)
 	{
 		return false;
 	}
@@ -18,7 +18,7 @@ function scr_player_debug_mode_enter()
 		
 		image_alpha = 1.0;
 		visible = true;
-	    state = PLAYERSTATE.DEBUG_MODE;
+	    state = PLAYER_STATE.DEBUG_MODE;
 		
 		if (camera_data.index == player_index)
 		{
@@ -32,7 +32,7 @@ function scr_player_debug_mode_enter()
 		
 		if (instance_exists(obj_rm_stage) && (audio_is_playing(snd_bgm_drowning) || !audio_is_bgm_playing()))
 		{
-			audio_reset_bgm(obj_rm_stage.bgm_track, id);
+			player_restart_bgm(obj_rm_stage.bgm_track, id);
 		}
 	    
 		// Exit the player control routine

@@ -49,13 +49,13 @@ function scr_player_init()
 			radius_y_spin = 14;
 	}
 	
-	state = PLAYERSTATE.DEFAULT;
+	state = PLAYER_STATE.DEFAULT;
 	is_grounded = true;
 	is_jumping = false;
 	is_underwater = false;
 	forced_roll = false;
 	air_lock_flag = false;
-	death_state = DEATHSTATE.WAIT;
+	death_state = DEATH_STATE.WAIT;
 	stick_to_convex = false;
 	is_water_running = false;
 	on_object = noone;
@@ -117,7 +117,7 @@ function scr_player_init()
 	carry_target_x = 0;
 	carry_target_y = 0;
 	cpu_target = noone;
-	cpu_state = CPUSTATE.MAIN;
+	cpu_state = CPU_STATE.MAIN;
 	cpu_timer_respawn = 0;
 	cpu_control_timer = 0;
 	cpu_jump_flag = false;
@@ -148,8 +148,8 @@ function scr_player_init()
 	replay_button_state = array_create(9, 0);
 	
 	secondary_layer = TILE_LAYER.PATH_A;
-	shield_state = SHIELDSTATE.NONE;
-	facing = DIRECTION.POSITIVE;
+	shield_state = SHIELD_STATE.NONE;
+	facing = 1;
 	animation = ANIM.IDLE;
 	visual_angle = 0;
 	set_push_anim_by = noone;
@@ -181,7 +181,7 @@ function scr_player_init()
 		}
 		
 		// Align with the floor
-		var _floor_dist = tile_find_2v(x - radius_x, y + radius_y, x + radius_x, y + radius_y, DIRECTION.POSITIVE, secondary_layer)[0];
+		var _floor_dist = tile_find_2v(x - radius_x, y + radius_y, x + radius_x, y + radius_y, 1, secondary_layer)[0];
 		if (_floor_dist < 14)
 		{
 			y += _floor_dist;

@@ -1,6 +1,6 @@
 if (vd_state != RINGSTATE.DROP)
 {
-	sprite_animate(obj_game.frame_counter, 6);
+	instance_animate(obj_game.frame_counter, 6);
 }
 
 // Inherit the parent event

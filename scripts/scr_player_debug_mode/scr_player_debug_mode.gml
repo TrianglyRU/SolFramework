@@ -66,7 +66,7 @@ function scr_player_debug_mode()
 	}
 	else if (_input_press.action2)
 	{
-	    state = PLAYERSTATE.DEFAULT;
+	    state = PLAYER_STATE.DEFAULT;
 	    animation = ANIM.MOVE;
 	    air_lock_flag = false;
 	    is_underwater = false;

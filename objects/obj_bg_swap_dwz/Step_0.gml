@@ -21,7 +21,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	
 	if (_x >= bbox_left && _x < bbox_right && _y >= bbox_top && _y < bbox_bottom)
 	{
-		with (g_background_layer)
+		with (obj_game_layer)
 		{
 			if (layer_get_name(layer) != "Inside")
 			{

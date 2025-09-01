@@ -1,5 +1,6 @@
 /// @description Draw Objects While Paused
-if (room == rm_startup || state == GAME_STATE.NORMAL)
+
+if room == rm_startup || state == GAME_STATE.NORMAL
 {
 	return;
 }
@@ -8,7 +9,8 @@ if (room == rm_startup || state == GAME_STATE.NORMAL)
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
 	var _camera = view_camera[_i];
-	if (_camera != -1)
+	
+	if _camera != -1
 	{
 		var _x = camera_get_view_x(_camera);
 		var _y = camera_get_view_y(_camera);

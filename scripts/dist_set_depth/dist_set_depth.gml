@@ -10,7 +10,8 @@
 function dist_set_depth(_layer, _data1, _data2, _factor, _speed, _range_start, _range_end)
 {
 	var _effect = fx_create("_filter_layer_distortion");
-	if (_effect == -1)
+	
+	if _effect == -1
 	{
 		return;
 	}

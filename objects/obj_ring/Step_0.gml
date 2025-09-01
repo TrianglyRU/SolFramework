@@ -8,7 +8,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	var _player = player_get(_p);
-	var _use_ext_hitbox = vd_state == RINGSTATE.DROP && (_player.shield_state == SHIELDSTATE.DOUBLESPIN || _player.action == ACTION.HAMMERSPIN);
+	var _use_ext_hitbox = vd_state == RINGSTATE.DROP && (_player.shield_state == SHIELD_STATE.DOUBLE_SPIN || _player.action == ACTION.HAMMERSPIN);
 	
 	if (!obj_check_hitbox(_player, _use_ext_hitbox))
 	{
@@ -99,7 +99,7 @@ switch (vd_state)
 		
 		if (vd_vel_y >= 0 && _spill_timer % 4 == 0)
 		{
-			var _floor_dist = tile_find_v(x, y + 8, DIRECTION.POSITIVE)[0];
+			var _floor_dist = tile_find_v(x, y + 8, 1)[0];
 			if (_floor_dist < 0)
 			{
 				vd_vel_y *= -0.75;

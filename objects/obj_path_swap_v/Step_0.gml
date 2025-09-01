@@ -3,10 +3,10 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _player = player_get(_p);
 	if (_p == 0)
 	{
-		visible = _player.state == PLAYERSTATE.DEBUG_MODE;
+		visible = _player.state == PLAYER_STATE.DEBUG_MODE;
 	}
 	
-	if (_player.state >= PLAYERSTATE.LOCKED || !_player.is_grounded && vd_ground_only) 
+	if (_player.state >= PLAYER_STATE.DEFAULT_LOCKED || !_player.is_grounded && vd_ground_only) 
 	{
 		continue;
 	}

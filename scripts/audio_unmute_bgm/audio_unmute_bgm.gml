@@ -5,9 +5,11 @@
 function audio_unmute_bgm(_fade_multiplier, _index = 0)
 {
 	var _bgm_index = obj_game.audio_channel_bgms[_index];
-    if (_bgm_index != -1)
+	
+    if _bgm_index != -1
     {
         obj_game.audio_channel_states[_index] = CHANNEL_STATE.DEFAULT;
+		
         audio_sound_gain(_bgm_index, 1, _fade_multiplier * 0.25 * 1000);
     }
 }

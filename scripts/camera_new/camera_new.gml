@@ -9,7 +9,7 @@
 /// @param {Real} [_canvas_y] The vertical offset of the surface on the screen (default is 0).
 function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _canvas_x = 0, _canvas_y = 0)
 {
-	if (view_camera[_index] != -1)
+	if view_camera[_index] != -1
 	{
 		camera_delete(_index);
 	}
@@ -19,6 +19,8 @@ function camera_new(_index, _width, _height, _canvas_width, _canvas_height, _can
         index: _index,	
         allow_movement: true,
         target: noone,
+		max_vel_x: 16,
+		max_vel_y: 16,
         vel_x: 0,
         vel_y: 0,
         pos_x: 0,

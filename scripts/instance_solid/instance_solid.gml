@@ -1,4 +1,4 @@
-/// @self g_object_solid
+/// @self obj_game_object_solid
 /// @description Handles collision detection and response between the player and a solid object.
 function instance_solid(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top, _bbright = bbox_right, _bbbottom = bbox_bottom)
 {
@@ -7,7 +7,7 @@ function instance_solid(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top, 
 	solid_touch[_p] = SOLID_TOUCH.NONE;
 	solid_push[_p] = false;
 	
-	if _player.state >= PLAYERSTATE.LOCKED
+	if _player.state >= PLAYER_STATE.DEFAULT_LOCKED
 	{
 		return;
 	}
@@ -86,14 +86,12 @@ function instance_solid(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top, 
 	}
 	else if _type < SOLID_TYPE.TOP
 	{
-		var _s3_method = global.player_physics >= PHYSICS.S3;
-		
 		var _ptop = _py - _pry;
 		var _pbottom = _py + _pry;
 		var _pleft = _px - _prx;
 		var _pright = _px + _prx;
 		
-		if (_pright < _bbleft || _pleft >= _bbright || _pbottom < _bbtop || _ptop >= _bbbottom)
+		if !rectangle_in_rectangle(_pleft, _ptop, _pright, _pbottom, _bbleft, _bbtop, _bbright, _bbbottom)
 		{
 			player_clear_push(_player, id);
 			return;
@@ -101,6 +99,7 @@ function instance_solid(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top, 
 		
 		var _x_clip = _px < _ox ? _pright - _bbleft : _pleft - _bbright;
 		var _y_clip = _py < _oy ? _pbottom - _bbtop : _ptop - _bbbottom + _slope_offset;
+		var _s3_method = global.player_physics >= PHYSICS.S3;
 		
 		// VERTICAL COLLISION
 		
@@ -108,7 +107,7 @@ function instance_solid(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top, 
 		{
 			if _y_clip < 0
 			{
-				if _type == SOLIDOBJECT.ITEMBOX || _type == SOLIDOBJECT.SIDES
+				if _type == SOLID_TYPE.ITEM_BOX || _type == SOLID_TYPE.SIDES
 				{
 					// Fallthrough to horizontal collision
 				}
@@ -143,7 +142,7 @@ function instance_solid(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top, 
 			}
 			else
 			{
-				if _y_clip < 16 && _type != SOLIDOBJECT.SIDES
+				if _y_clip < 16 && _type != SOLID_TYPE.SIDES
 				{
 					if _player.vel_y >= 0
 					{

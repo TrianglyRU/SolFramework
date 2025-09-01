@@ -17,7 +17,7 @@ function scr_game_setup()
 	global.discord_ready = np_initdiscord("1286956015241265174", true, 0);
 	
 	global.player_physics = PHYSICS.S2;
-	global.cpu_behaviour = CPUBEHAVIOUR.S3;
+	global.cpu_behaviour = CPU_BEHAVIOUR.S3;
 	global.rotation_mode = ROTATION.MANIA;
 	global.rotation_range = RANGE.DEFAULT;
 	global.spin_dash = true;

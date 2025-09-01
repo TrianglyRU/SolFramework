@@ -5,7 +5,7 @@ function _spawn_splash()
 	
 	if (vel_y != 0)
 	{
-		if (action != ACTION.CLIMB && cpu_state != CPUSTATE.RESPAWN && self.is_not_true_glide())
+		if (action != ACTION.CLIMB && cpu_state != CPU_STATE.RESPAWN && self.is_not_true_glide())
 		{
 			instance_create(x, obj_rm_stage.water_level, obj_water_splash);
 			audio_play_sfx(snd_splash);
@@ -30,7 +30,7 @@ function scr_player_water()
 {
 	gml_pragma("forceinline");
 	
-	if (!instance_exists(obj_rm_stage) || !obj_rm_stage.water_enabled || state == PLAYERSTATE.DEATH)
+	if (!instance_exists(obj_rm_stage) || !obj_rm_stage.water_enabled || state == PLAYER_STATE.DEATH)
 	{
 		return;
 	}
@@ -143,7 +143,7 @@ function scr_player_water()
 				
 				self.reset_substate();
 				grv = PARAM_GRV_UNDERWATER;
-				state = PLAYERSTATE.DEATH;
+				state = PLAYER_STATE.DEATH;
 				animation = ANIM.DROWN;
 				vel_x = 0;
 				vel_y = 0;
@@ -176,7 +176,7 @@ function scr_player_water()
 
 	if (player_index == 0 && audio_is_playing(snd_bgm_drowning))
 	{
-		audio_reset_bgm(obj_rm_stage.bgm_track, id);
+		player_restart_bgm(obj_rm_stage.bgm_track, id);
 	}
 
 	if (global.player_physics <= PHYSICS.S2 || vel_y >= -4)

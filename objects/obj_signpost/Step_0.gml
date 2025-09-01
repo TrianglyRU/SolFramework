@@ -101,7 +101,7 @@ switch (state)
 	
 	case SIGNPOSTSTATE.MOVE_PLAYER:
 		
-		if (player_object.state >= PLAYERSTATE.LOCKED)
+		if (player_object.state >= PLAYER_STATE.DEFAULT_LOCKED)
 		{
 			break;
 		}

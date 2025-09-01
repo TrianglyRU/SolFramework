@@ -3,16 +3,19 @@
 function dist_clear(_layer)
 {
 	var _effect = layer_get_fx(_layer);
-	if (_effect == -1)
+	
+	if _effect == -1
 	{
 		return;
 	}
 	
 	var _ds_list = obj_game.distortion_data;
+	
 	for (var _i = ds_list_size(_ds_list) - 1; _i >= 0; _i--)
 	{
 		var _data = _ds_list[| _i];
-		if (_data != undefined && _data.effect == _effect)
+		
+		if _data != undefined && _data.effect == _effect
 		{
 			for (var _j = array_length(_data.layers) - 1; _j >= 0; _j--)
 			{
@@ -20,6 +23,7 @@ function dist_clear(_layer)
 			}
 			
 			ds_list_delete(_ds_list, _i);
+			
 			break;
 		}
 	}

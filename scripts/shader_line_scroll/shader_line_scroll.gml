@@ -11,8 +11,6 @@
 /// @param {Real} _line_h The height of each scrolling line in pixels. Smaller values increase visual smoothness.
 function shader_line_scroll(_camera_x, _offset_x, _sprite_x, _sprite_y, _sprite_h, _yscale, _texture, _depth, _line_h)
 {
-	gml_pragma("forceinline");
-	
 	var _u_pos = shader_get_uniform(sh_line_scroll, "u_pos");
 	var _u_texel_size = shader_get_uniform(sh_line_scroll, "u_texel_size");
 	var _u_camera_x = shader_get_uniform(sh_line_scroll, "u_camera_x");
@@ -28,7 +26,7 @@ function shader_line_scroll(_camera_x, _offset_x, _sprite_x, _sprite_y, _sprite_
     var _texel_w = 1 / texture_get_texel_width(_texture);
     var _texel_h = 1 / texture_get_texel_height(_texture);
 	
-	if (_depth <= 0)
+	if _depth <= 0
 	{
 		_offset_x = 0;
 	}

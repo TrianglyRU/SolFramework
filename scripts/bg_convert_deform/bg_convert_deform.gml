@@ -12,7 +12,8 @@
 function bg_convert_deform(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _line_factor_x, _line_height, _scale_target_y, _anim_duration)
 {
 	var _object = bg_convert(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _anim_duration);
-	if (_object != noone)
+	
+	if _object != noone
 	{
 		_object.line_factor_x = _line_factor_x;
 	    _object.line_height = _line_height;

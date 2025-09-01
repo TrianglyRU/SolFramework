@@ -1,5 +1,6 @@
 /// @description Draw Debug Overlay
-if (room == rm_startup || !global.debug_framework)
+
+if room == rm_startup || !global.debug_framework
 {
 	return;
 }
@@ -15,6 +16,6 @@ draw_set_alpha(1.0);
 draw_set_font(global.font_data[? spr_font_system]);
 draw_set_halign(fa_left);
 
-draw_text(_x, 8, "STATE: " + self.debug_get_game_state_name());
-draw_text(_x, 16, "OBJ:   " + string(instance_number(g_object)) + " " + string(instance_count));
+draw_text(_x, 8,  "STATE: " + game_get_state_name());
+draw_text(_x, 16, "OBJ:   " + string(instance_number(obj_game_object)) + " " + string(instance_count));
 draw_text(_x, 24, "FPS:   " + string(fps) + " " + string(floor(fps_real)));

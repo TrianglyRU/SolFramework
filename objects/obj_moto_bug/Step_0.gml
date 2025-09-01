@@ -12,7 +12,7 @@ switch (state)
 		y += vel_y;
 		vel_y += 0.21875;
 		
-		_floor_dist = tile_find_v(x, y + 14, DIRECTION.POSITIVE)[0];
+		_floor_dist = tile_find_v(x, y + 14, 1)[0];
 		if (_floor_dist < 0)
 		{
 			y += _floor_dist;
@@ -41,7 +41,7 @@ switch (state)
 	
 		x += vel_x;
 		
-		_floor_dist = tile_find_v(x, y + 14, DIRECTION.POSITIVE)[0];
+		_floor_dist = tile_find_v(x, y + 14, 1)[0];
 		if (_floor_dist > 11 || _floor_dist < -8)
 		{
 			state = MOTOBUGSTATE.WAIT;

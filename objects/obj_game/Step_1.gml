@@ -1,5 +1,5 @@
-/// @feather ignore GM2017
 /// @description Early Update
+
 if room == rm_startup
 {
 	return;
@@ -170,7 +170,7 @@ if state != GAME_STATE.PAUSED
 } 
 else with obj_gui_pause
 {
-	event_perform(ev_other, ev_user0);
+	event_user(0);
 }
 
 #endregion
@@ -188,7 +188,7 @@ else
 	
 	if state == GAME_STATE.STOP_OBJECTS
 	{
-		with obj_gui_pause
+		with obj_game_object
 		{
 			if ignore_object_stop != false
 			{
@@ -203,7 +203,7 @@ else
 	}
 	else
 	{
-		with obj_gui_pause
+		with obj_game_object
 		{
 			if _is_empty_list
 			{
@@ -242,20 +242,20 @@ if state != GAME_STATE.PAUSED
 
 #endregion
 
-#region INSTANCE ANIMATOR
+#region ANIMATOR
 
 if state != GAME_STATE.PAUSED
 {
-	with g_object
+	with obj_game_object
 	{
-		event_perform(ev_other, ev_user13);
+		event_user(13);
 	}
 }
 
 #endregion
 
 // Run post-framework Begin Step for game objects
-with g_object
+with obj_game_object
 {
 	event_user(10);
 }

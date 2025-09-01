@@ -22,8 +22,8 @@ function scr_stage_setup()
 			
 			pal_load(spr_palette_ghz, undefined);
 			
-			sprite_set_animation(spr_asset_ghz_00, 16);
-			sprite_set_animation(spr_asset_ghz_01, 8);
+			asset_set_animation(spr_asset_ghz_00, 16);
+			asset_set_animation(spr_asset_ghz_01, 8);
 			
 			tile_load_data(spr_collision_s1);
 			
@@ -50,11 +50,11 @@ function scr_stage_setup()
 			
 			pal_load(spr_palette_ehz, undefined);
 			
-			sprite_set_animation(spr_asset_ehz_00, 4);
-			sprite_set_animation(spr_asset_ehz_01, 2);
-			sprite_set_animation(spr_asset_ehz_02, 4);
-			sprite_set_animation(spr_asset_ehz_03, 8);
-			sprite_set_animation(spr_asset_ehz_04, 2);
+			asset_set_animation(spr_asset_ehz_00, 4);
+			asset_set_animation(spr_asset_ehz_01, 2);
+			asset_set_animation(spr_asset_ehz_02, 4);
+			asset_set_animation(spr_asset_ehz_03, 8);
+			asset_set_animation(spr_asset_ehz_04, 2);
 			
 			tile_load_data(spr_collision_s2);
 			

@@ -9,5 +9,4 @@ function instance_animation_start(_spriteid, _start_frame, _loopback, _frame_dur
 	image_loopback = _loopback;
 	sprite_index_advanced = _spriteid;
 	sprite_play_count = 0;
-	
 }

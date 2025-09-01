@@ -6,7 +6,7 @@ function scr_player_death()
 	
 	switch (death_state)
 	{
-	    case DEATHSTATE.WAIT:
+	    case DEATH_STATE.WAIT:
 			
 			var _pos_y = floor(y);
 	        if (air_timer == 0)
@@ -46,7 +46,7 @@ function scr_player_death()
 				
 	            if (--global.life_count > 0 && obj_game.frame_counter < 36000)
 	            {
-	                death_state = DEATHSTATE.RESTART;
+	                death_state = DEATH_STATE.RESTART;
 	                restart_timer = 60;
 	            }
 	            else
@@ -62,7 +62,7 @@ function scr_player_death()
 			
 	    break;
 
-	    case DEATHSTATE.RESTART:
+	    case DEATH_STATE.RESTART:
 			
 	        if (restart_timer > 0 && --restart_timer == 0)
 	        {

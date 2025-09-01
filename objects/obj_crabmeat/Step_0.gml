@@ -35,7 +35,7 @@ switch (state)
 			break;
 		}
 		
-		if (obj_is_visible())
+		if (instance_is_drawn())
 		{
 			shot_flag = !shot_flag;
 			if (shot_flag)

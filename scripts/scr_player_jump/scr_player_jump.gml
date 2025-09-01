@@ -25,7 +25,7 @@ function scr_player_jump()
 		audio_play_bgm(snd_bgm_super);
 		
 		self.reset_substate();
-		state = PLAYERSTATE.LOCKED;
+		state = PLAYER_STATE.DEFAULT_LOCKED;
 		animation = ANIM.TRANSFORM;
 		action = ACTION.TRANSFORM;
 		inv_frames = 0;
@@ -42,7 +42,7 @@ function scr_player_jump()
 		case PLAYER.SONIC:
 			
 			var _shield = global.player_shields[player_index];
-			if (global.drop_dash && action == ACTION.NONE && shield_state == SHIELDSTATE.NONE && !input_down.action_any)
+			if (global.drop_dash && action == ACTION.NONE && shield_state == SHIELD_STATE.NONE && !input_down.action_any)
 			{
 				if (_shield <= SHIELD.NORMAL || super_timer > 0 || item_inv_timer > 0)
 				{
@@ -51,12 +51,12 @@ function scr_player_jump()
 				}
 			}
 			
-			if (!input_press.action_any || shield_state != SHIELDSTATE.NONE || super_timer > 0 || item_inv_timer > 0)
+			if (!input_press.action_any || shield_state != SHIELD_STATE.NONE || super_timer > 0 || item_inv_timer > 0)
 			{
 				break;
 			}
 
-			shield_state = SHIELDSTATE.ACTIVE;
+			shield_state = SHIELD_STATE.ACTIVE;
 			air_lock_flag = false;
 			
 			switch (_shield)
@@ -76,7 +76,7 @@ function scr_player_jump()
 						}
 					}
 					
-					shield_state = SHIELDSTATE.DOUBLESPIN;
+					shield_state = SHIELD_STATE.DOUBLE_SPIN;
 					instance_create(0, 0, obj_double_spin, { vd_target_player: id });
 					audio_play_sfx(snd_double_spin);
 					
@@ -132,7 +132,7 @@ function scr_player_jump()
 
 				case SHIELD.LIGHTNING:
 				
-					shield_state = SHIELDSTATE.DISABLED;
+					shield_state = SHIELD_STATE.DISABLED;
 					vel_y = -5.5;
 					
 					for (var _i = 0; _i < 4; _i++)
@@ -177,12 +177,12 @@ function scr_player_jump()
 			
 			animation = ANIM.GLIDE_AIR;	
 			action = ACTION.GLIDE;
-			action_state = GLIDESTATE.AIR;
+			action_state = GLIDE_STATE.AIR;
 			air_lock_flag = false;
 			is_jumping = false;
 			spd_ground = 4;
 			glide_value = 0;
-			glide_angle = facing == DIRECTION.NEGATIVE ? 0 : 180;
+			glide_angle = facing == -1 ? 0 : 180;
 			radius_x = 10;
 			radius_y = 10;
 			vel_x = 0;

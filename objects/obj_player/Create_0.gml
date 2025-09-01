@@ -22,17 +22,17 @@ enum PLAYER
 	NONE = 255
 }
 
-enum PLAYERSTATE
+enum PLAYER_STATE
 {
 	DEFAULT,
 	HURT,
-	LOCKED,
+	DEFAULT_LOCKED,
 	DEBUG_MODE,
 	DEATH,
 	RESPAWN
 }
 
-enum CPUSTATE
+enum CPU_STATE
 {
 	MAIN,
 	STUCK,
@@ -40,7 +40,7 @@ enum CPUSTATE
 	RESPAWN
 }
 
-enum CPUBEHAVIOUR
+enum CPU_BEHAVIOUR
 {
 	S2,
 	S3
@@ -70,20 +70,20 @@ enum ACTION
 	CARRIED
 }
 
-enum GLIDESTATE
+enum GLIDE_STATE
 {
 	AIR,
 	GROUND,
 	FALL
 }
 
-enum CLIMBSTATE
+enum CLIMB_STATE
 {
 	NORMAL,
 	LEDGE
 }
 
-enum DEATHSTATE
+enum DEATH_STATE
 {
 	WAIT,
 	RESTART
@@ -98,12 +98,12 @@ enum SHIELD
 	BUBBLE
 }
 
-enum SHIELDSTATE
+enum SHIELD_STATE
 {
 	NONE,
 	ACTIVE,
 	DISABLED,
-	DOUBLESPIN
+	DOUBLE_SPIN
 }
 
 enum ANIM
@@ -149,11 +149,6 @@ enum ROTATION
 	CLASSIC, MANIA
 }
 
-enum RANGE
-{
-	DEFAULT, SHALLOW
-}
-
 /// @method set_velocity()
 set_velocity = function()
 {
@@ -181,14 +176,14 @@ respawn = function()
 		y = 0;
 		visible = false;
 		depth = RENDER_DEPTH_PRIORITY + player_index;	
-		cpu_state = CPUSTATE.RESPAWN_INIT;
-		state = PLAYERSTATE.LOCKED;
+		cpu_state = CPU_STATE.RESPAWN_INIT;
+		state = PLAYER_STATE.DEFAULT_LOCKED;
 		is_grounded = false;
 	}
 	else
 	{
 		camera_data.allow_movement = true;
-		state = PLAYERSTATE.RESPAWN;
+		state = PLAYER_STATE.RESPAWN;
 	}
 }
 
@@ -208,7 +203,7 @@ reset_substate = function()
 	}
 	
 	action = ACTION.NONE;
-	shield_state = SHIELDSTATE.NONE;
+	shield_state = SHIELD_STATE.NONE;
 	is_jumping = false;
 	is_grounded = false;
 	forced_roll = false;
@@ -233,7 +228,7 @@ release_glide = function(_frame)
 	glide_value = _frame;			// glide_value is the start frame of ANIM.GLIDE_FALL
 	animation = ANIM.GLIDE_FALL;
 	action = ACTION.GLIDE;
-	action_state = GLIDESTATE.FALL;
+	action_state = GLIDE_STATE.FALL;
 	radius_x = radius_x_normal;
 	radius_y = radius_y_normal;
 	self.reset_gravity();
@@ -256,13 +251,13 @@ land = function()
 	}
 	
 	var _shield = global.player_shields[player_index];
-	if (_shield == SHIELD.BUBBLE && shield_state == SHIELDSTATE.ACTIVE)
+	if (_shield == SHIELD.BUBBLE && shield_state == SHIELD_STATE.ACTIVE)
 	{
 		var _force = is_underwater ? -4 : -7.5;
 		
 		vel_y = _force * dcos(angle);
 		vel_x = _force * dsin(angle);
-		shield_state = SHIELDSTATE.NONE;
+		shield_state = SHIELD_STATE.NONE;
 		on_object = noone;
 		is_grounded = false;
 		
@@ -279,14 +274,14 @@ land = function()
 		return;
 	}
 
-	if (state == PLAYERSTATE.HURT)
+	if (state == PLAYER_STATE.HURT)
 	{
 		spd_ground = 0;
 	}
 	
-	state = PLAYERSTATE.DEFAULT;
-	cpu_state = CPUSTATE.MAIN;
-	shield_state = SHIELDSTATE.NONE;
+	state = PLAYER_STATE.DEFAULT;
+	cpu_state = CPU_STATE.MAIN;
+	shield_state = SHIELD_STATE.NONE;
 	air_lock_flag = false;
 	is_jumping = false;
 	set_push_anim_by = noone;
@@ -333,13 +328,13 @@ add_score = function(_score_combo)
 /// @method is_invincible
 is_invincible = function()
 {
-	return inv_frames > 0 || item_inv_timer > 0 || super_timer > 0 || shield_state == SHIELDSTATE.DOUBLESPIN;
+	return inv_frames > 0 || item_inv_timer > 0 || super_timer > 0 || shield_state == SHIELD_STATE.DOUBLE_SPIN;
 }
 
 /// @method hurt()
 hurt = function(_sound = snd_hurt, _hazard = other)
 {
-	if (state != PLAYERSTATE.DEFAULT || self.is_invincible())
+	if (state != PLAYER_STATE.DEFAULT || self.is_invincible())
 	{
 		return;
 	}
@@ -356,7 +351,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 	vel_x = floor(x) < floor(_hazard.x) ? -2 : 2;
 	vel_y = -4;
 	animation = ANIM.HURT;
-	state = PLAYERSTATE.HURT;
+	state = PLAYER_STATE.HURT;
 	spd_ground = 0;
 	grv = 0.1875;
 	air_lock_flag = true;
@@ -415,7 +410,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 /// @method kill()
 kill = function(_sound = snd_hurt)
 {
-	if (state == PLAYERSTATE.DEATH)
+	if (state == PLAYER_STATE.DEATH)
 	{
 		return;
 	}
@@ -430,7 +425,7 @@ kill = function(_sound = snd_hurt)
 	self.reset_substate();
 	action = ACTION.NONE;
 	animation = ANIM.DEATH;
-	state = PLAYERSTATE.DEATH;
+	state = PLAYER_STATE.DEATH;
 	grv = 0.21875;
 	vel_y = -7;
 	vel_x = 0;
@@ -483,16 +478,16 @@ record_data = function(_insert_pos)
 /// @method play_tails_sound()
 play_tails_sound = function()
 {
-	if ((obj_game.frame_counter + 8) % 16 != 0 || is_underwater || !obj_is_visible())
+	if ((obj_game.frame_counter + 8) % 16 != 0 || is_underwater || !instance_is_drawn())
 	{
 		return;
 	}
 
-	if (cpu_state != CPUSTATE.RESPAWN)
+	if (cpu_state != CPU_STATE.RESPAWN)
 	{
 		audio_play_sfx(flight_timer > 0 ? snd_flight : snd_flight_2);
 	}
-	else if (global.cpu_behaviour == CPUBEHAVIOUR.S3)
+	else if (global.cpu_behaviour == CPU_BEHAVIOUR.S3)
 	{
 		audio_play_sfx(snd_flight);
 	}
@@ -501,13 +496,13 @@ play_tails_sound = function()
 /// @method is_not_true_glide()
 is_not_true_glide = function()
 {
-	return action != ACTION.GLIDE || action_state == GLIDESTATE.FALL;
+	return action != ACTION.GLIDE || action_state == GLIDE_STATE.FALL;
 }
 
 /// @method is_true_glide()
 is_true_glide = function()
 {
-	return action == ACTION.GLIDE && action_state != GLIDESTATE.FALL;
+	return action == ACTION.GLIDE && action_state != GLIDE_STATE.FALL;
 }
 
 /// @method set_idle_anim()

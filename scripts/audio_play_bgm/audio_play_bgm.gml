@@ -8,9 +8,9 @@ function audio_play_bgm(_sound_id, _index = 0)
 	// TODO: replace false with ds_list_find_index(global.looped_audio, _sound_id) != -1 in LTS'25
 	var _do_loop = false; 
 	
-    if (obj_game.audio_channel_states[_index] == CHANNEL_STATE.STOP)
+    if obj_game.audio_channel_states[_index] == CHANNEL_STATE.STOP
     {
-        if (obj_game.audio_channel_bgms[AUDIO_CHANNEL_JINGLE] == -1)
+        if obj_game.audio_channel_bgms[AUDIO_CHANNEL_JINGLE] == -1
         {
             obj_game.audio_channel_states[_index] = CHANNEL_STATE.DEFAULT;
         }

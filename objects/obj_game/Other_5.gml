@@ -1,5 +1,6 @@
 /// @description Room End Events
-if (room == rm_startup)
+
+if room == rm_startup
 {
 	return;
 }

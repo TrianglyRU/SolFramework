@@ -4,7 +4,7 @@
 /// @returns {Bool}
 function game_check_data(_slot)
 {
-	if (_slot == -1)
+	if _slot == -1
 	{
 		return false;
 	}

@@ -10,16 +10,16 @@ function _balance_left(_panic_cond)
 			if (super_timer > 0)
 			{
 				animation = ANIM.BALANCE;
-				facing = DIRECTION.NEGATIVE;
+				facing = -1;
 			}
 			else if (!_panic_cond)
 			{
-				animation = facing == DIRECTION.NEGATIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
+				animation = facing == -1 ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
 			}
-			else if (facing == DIRECTION.POSITIVE)
+			else if (facing == 1)
 			{
 				animation = ANIM.BALANCE_TURN;
-				facing = DIRECTION.NEGATIVE;
+				facing = -1;
 			}
 			else if (animation != ANIM.BALANCE_TURN)
 			{
@@ -32,20 +32,20 @@ function _balance_left(_panic_cond)
 		case PLAYER.AMY:
 				
 			animation = ANIM.BALANCE;
-			facing = DIRECTION.NEGATIVE;
+			facing = -1;
 			
 		break;
 			
 		case PLAYER.KNUCKLES:
 			
-			if (facing == DIRECTION.NEGATIVE)
+			if (facing == -1)
 			{
 				animation = ANIM.BALANCE;
 			}
 			else if (animation != ANIM.BALANCE_FLIP)
 			{
 				animation = ANIM.BALANCE_FLIP;
-				facing = DIRECTION.NEGATIVE;
+				facing = -1;
 			}
 			
 		break;
@@ -64,16 +64,16 @@ function _balance_right(_panic_cond)
 			if (super_timer > 0)
 			{
 				animation = ANIM.BALANCE;
-				facing = DIRECTION.POSITIVE;
+				facing = 1;
 			}
 			else if (!_panic_cond)
 			{
-				animation = facing == DIRECTION.POSITIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
+				animation = facing == 1 ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
 			}
-			else if (facing == DIRECTION.NEGATIVE)
+			else if (facing == -1)
 			{
 				animation = ANIM.BALANCE_TURN;
-				facing = DIRECTION.POSITIVE;
+				facing = 1;
 			}
 			else if animation != ANIM.BALANCE_TURN
 			{
@@ -86,20 +86,20 @@ function _balance_right(_panic_cond)
 		case PLAYER.AMY:
 				
 			animation = ANIM.BALANCE;
-			facing = DIRECTION.POSITIVE;
+			facing = 1;
 			
 		break;
 		
 		case PLAYER.KNUCKLES:
 			
-			if (facing == DIRECTION.POSITIVE)
+			if (facing == 1)
 			{
 				animation = ANIM.BALANCE;
 			}
 			else if (animation != ANIM.BALANCE_FLIP)
 			{
 				animation = ANIM.BALANCE_FLIP;
-				facing = DIRECTION.POSITIVE;
+				facing = 1;
 			}
 			
 		break;
@@ -133,15 +133,15 @@ function scr_player_balance()
 		}
 		
 		var _y = y + radius_y;
-		var _floor_dist = tile_find_v(x, _y, DIRECTION.POSITIVE, secondary_layer)[0];	
+		var _floor_dist = tile_find_v(x, _y, 1, secondary_layer)[0];	
 		
 		if (_floor_dist < 12)
 		{
 			return;
 		}
 		
-		var _angle_left = tile_find_v(x - radius_x, _y, DIRECTION.POSITIVE, secondary_layer)[1];
-		var _angle_right = tile_find_v(x + radius_x, _y, DIRECTION.POSITIVE, secondary_layer)[1];
+		var _angle_left = tile_find_v(x - radius_x, _y, 1, secondary_layer)[1];
+		var _angle_right = tile_find_v(x + radius_x, _y, 1, secondary_layer)[1];
 		
 		if (_angle_left == TILE_EMPTY_ANGLE && _angle_right == TILE_EMPTY_ANGLE
 		|| _angle_left != TILE_EMPTY_ANGLE && _angle_right != TILE_EMPTY_ANGLE)
@@ -151,11 +151,11 @@ function scr_player_balance()
 		
 		if (_angle_left == TILE_EMPTY_ANGLE)
 		{	
-			_balance_left(tile_find_v(x + 6, _y, DIRECTION.POSITIVE, secondary_layer)[0] >= 12);
+			_balance_left(tile_find_v(x + 6, _y, 1, secondary_layer)[0] >= 12);
 		}
 		else if (_angle_right == TILE_EMPTY_ANGLE)
 		{
-			_balance_right(tile_find_v(x - 6, _y, DIRECTION.POSITIVE, secondary_layer)[0] >= 12);
+			_balance_right(tile_find_v(x - 6, _y, 1, secondary_layer)[0] >= 12);
 		}
 		
 		return;

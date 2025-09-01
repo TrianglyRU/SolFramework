@@ -13,7 +13,7 @@ function scr_player_climb()
 	
 	switch (action_state)
 	{
-		case CLIMBSTATE.NORMAL:
+		case CLIMB_STATE.NORMAL:
 	
 			if (x != xprevious || vel_x != 0)
 			{
@@ -48,7 +48,7 @@ function scr_player_climb()
 			
 			var _radius_x = radius_x;
 			
-			if (facing == DIRECTION.NEGATIVE)
+			if (facing == -1)
 			{
 				_radius_x++;
 			}
@@ -58,7 +58,7 @@ function scr_player_climb()
 				var _wall_dist = tile_find_h(x + _radius_x * facing, y - radius_y - 1, facing, secondary_layer)[0];
 				if (_wall_dist >= 4)
 				{
-					action_state = CLIMBSTATE.LEDGE;
+					action_state = CLIMB_STATE.LEDGE;
 					vel_y = 0;
 					grv = 0;
 					
@@ -70,7 +70,7 @@ function scr_player_climb()
 					vel_y = 0;
 				}
 			
-				var _ceil_dist = tile_find_v(x + _radius_x * facing, y - radius_y_normal + 1, DIRECTION.NEGATIVE, secondary_layer)[0];
+				var _ceil_dist = tile_find_v(x + _radius_x * facing, y - radius_y_normal + 1, -1, secondary_layer)[0];
 				if (_ceil_dist < 0)
 				{
 					y -= _ceil_dist;
@@ -86,7 +86,7 @@ function scr_player_climb()
 					break;
 				}
 				
-				var _floor_data = tile_find_v(x + _radius_x * facing, y + radius_y_normal, DIRECTION.POSITIVE, secondary_layer);
+				var _floor_data = tile_find_v(x + _radius_x * facing, y + radius_y_normal, 1, secondary_layer);
 				var _floor_dist = _floor_data[0];
 				var _floor_angle = _floor_data[1];
 				
@@ -126,7 +126,7 @@ function scr_player_climb()
 	
 		break;
 	
-		case CLIMBSTATE.LEDGE:
+		case CLIMB_STATE.LEDGE:
 			
 			if (animation != ANIM.CLIMB_LEDGE)
 			{
@@ -161,7 +161,7 @@ function scr_player_climb()
 				x += 8 * facing;
 				y += 4;
 				
-				if (facing == DIRECTION.NEGATIVE)
+				if (facing == -1)
 				{
 					x--;
 				}

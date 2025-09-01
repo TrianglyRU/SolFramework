@@ -18,7 +18,7 @@ function scr_player_movement_roll()
 	        }
 	        else
 	        {
-	            facing = DIRECTION.NEGATIVE;
+	            facing = -1;
 	            set_push_anim_by = noone;
 	        }
 	    }
@@ -35,7 +35,7 @@ function scr_player_movement_roll()
 	        }
 	        else
 	        {
-	            facing = DIRECTION.POSITIVE;
+	            facing = 1;
 	            set_push_anim_by = noone;
 	        }
 	    }

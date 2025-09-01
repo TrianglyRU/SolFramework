@@ -55,7 +55,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
     if (_player.player_index == 0 && audio_is_playing(snd_bgm_drowning))
     {
-        audio_reset_bgm(obj_rm_stage.bgm_track, _player);
+        player_restart_bgm(obj_rm_stage.bgm_track, _player);
     }
 	
 	if (_player.action != ACTION.FLIGHT && _player.is_not_true_glide())

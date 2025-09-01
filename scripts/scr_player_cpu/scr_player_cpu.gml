@@ -3,7 +3,7 @@ function _start_respawn()
 {
 	gml_pragma("forceinline");
 	
-	if (obj_is_visible() || x >= camera_data.right_bound)
+	if (instance_is_drawn() || x >= camera_data.right_bound)
 	{
 	    cpu_timer_respawn = 0;
 	    return false;
@@ -120,7 +120,7 @@ function scr_player_cpu()
 	                    _dist_x = 0;
 	                }
 					
-	                facing = DIRECTION.NEGATIVE;
+	                facing = -1;
 	            }
 	            else
 	            {
@@ -131,7 +131,7 @@ function scr_player_cpu()
 	                    _dist_x = 0;
 	                }
 					
-	                facing = DIRECTION.POSITIVE;
+	                facing = 1;
 	            }
 				
 	            x += _vel_x;
@@ -297,11 +297,11 @@ function scr_player_cpu()
 	        {
 	            if floor(cpu_target.x) >= floor(x)
 	            {
-	                facing = DIRECTION.POSITIVE;
+	                facing = 1;
 	            }
 	            else
 	            {
-	                facing = DIRECTION.NEGATIVE;
+	                facing = -1;
 	            }
 	        }
 

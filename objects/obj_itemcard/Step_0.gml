@@ -63,7 +63,7 @@ switch (state)
 				audio_play_sfx(snd_shield_bubble);
 				if (audio_is_playing(snd_bgm_drowning))
                 {
-                    audio_reset_bgm(obj_rm_stage.bgm_track, _player);
+                    player_restart_bgm(obj_rm_stage.bgm_track, _player);
                 }
 				
             break; 

@@ -49,7 +49,7 @@ if (option_id == 0)
 
 if (option_id == 1)
 {
-	if (player_get(0).state == PLAYERSTATE.DEATH || global.life_count == 1)
+	if (player_get(0).state == PLAYER_STATE.DEATH || global.life_count == 1)
 	{
 		audio_play_sfx(snd_fail);
 		return;

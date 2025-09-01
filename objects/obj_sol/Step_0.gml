@@ -9,7 +9,7 @@ if (state == SOLSTATE.ROAM)
 	var _dist_x = floor(_player.x) - floor(x);
 	var _dist_y = floor(_player.y) - floor(y);
 	
-	if (abs(_dist_x) < 160 && abs(_dist_y) < 80 && _player.state < PLAYERSTATE.DEBUG_MODE)
+	if (abs(_dist_x) < 160 && abs(_dist_y) < 80 && _player.state < PLAYER_STATE.DEBUG_MODE)
 	{
 		state = SOLSTATE.SHOOT;
 	}

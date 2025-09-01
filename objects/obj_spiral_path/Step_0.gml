@@ -18,7 +18,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			_bound_inner = 176;
 			_bound_outer = 192;
 		}
-		else if (_player.state >= PLAYERSTATE.LOCKED)
+		else if (_player.state >= PLAYER_STATE.DEFAULT_LOCKED)
 		{
 			continue;
 		}
@@ -75,7 +75,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			{
 				var _frame_index = floor(_dist_x / 32);
 				
-				if (_player.facing == DIRECTION.NEGATIVE)
+				if (_player.facing == -1)
 				{
 					_frame_index = array_length(flip_frame_table) - _frame_index - 1;
 				}

@@ -30,7 +30,7 @@ function scr_player_dropdash()
 	        }
 	    }
 
-	    if (facing == DIRECTION.NEGATIVE)
+	    if (facing == -1)
 	    {
 	        if (vel_x <= 0)
 	        {

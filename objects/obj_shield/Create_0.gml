@@ -15,9 +15,9 @@ clear_fire_shield_dash = function()
 {
 	self.set_fire_shield_anim();
 	
-	if (vd_target_player.shield_state == SHIELDSTATE.ACTIVE)
+	if (vd_target_player.shield_state == SHIELD_STATE.ACTIVE)
 	{
-		vd_target_player.shield_state = SHIELDSTATE.DISABLED;
+		vd_target_player.shield_state = SHIELD_STATE.DISABLED;
 	}
 				
 	vd_target_player.air_lock_flag = false;

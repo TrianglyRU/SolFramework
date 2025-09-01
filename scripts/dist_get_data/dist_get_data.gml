@@ -9,7 +9,7 @@ function dist_get_data(_effect_data)
 	    LZFG, LZBG, EHZ, AIZFG_WATER, AIZBG_WATER, AIZFG_HEAT, AIZBG_HEAT, LBZ1, LBZ2
 	}
 
-	switch (_effect_data)
+	switch _effect_data
 	{
 		case EFFECTDATA.LZFG:
 		return 

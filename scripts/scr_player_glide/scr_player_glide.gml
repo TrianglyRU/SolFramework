@@ -16,7 +16,7 @@ function scr_player_glide()
 	// spd_ground is a gliding speed value
 	switch (action_state)
 	{
-	    case GLIDESTATE.AIR:
+	    case GLIDE_STATE.AIR:
 		
 	        if (spd_ground >= 4)
 	        {
@@ -53,7 +53,7 @@ function scr_player_glide()
 	            glide_angle += _angle_inc;
 	        }
 			
-			facing = abs(glide_angle) < 90 ? DIRECTION.NEGATIVE : DIRECTION.POSITIVE; 
+			facing = abs(glide_angle) < 90 ? -1 : 1; 
 	        vel_x = spd_ground * -dcos(glide_angle);
 			
 	        if (vel_y < 0.5)
@@ -73,7 +73,7 @@ function scr_player_glide()
 			
 	    break;
 
-	    case GLIDESTATE.GROUND:
+	    case GLIDE_STATE.GROUND:
 		
 	        if (!input_down.action_any)
 	        {

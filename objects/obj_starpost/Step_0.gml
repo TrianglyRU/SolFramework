@@ -12,7 +12,7 @@ if (array_length(_checkpoint_data) > 0 && _checkpoint_data[7] >= vd_id)
 }
 
 var _player = player_get(0);
-if (_player.state >= PLAYERSTATE.LOCKED)
+if (_player.state >= PLAYER_STATE.DEFAULT_LOCKED)
 {
 	return;
 }

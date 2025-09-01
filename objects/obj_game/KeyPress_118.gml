@@ -1,6 +1,11 @@
-/// @description Toggle Profiler
-if (global.dev_mode)
+/// @description Restart Room
+
+if global.dev_mode
 {
-	// TODO: enable in LTS'25
-	// show_debug_overlay(!is_debug_overlay_open());
+	if instance_exists(obj_rm_stage)
+	{
+		game_clear_level_data();
+	}
+	
+	room_restart();
 }

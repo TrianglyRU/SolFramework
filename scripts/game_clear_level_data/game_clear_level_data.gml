@@ -3,10 +3,11 @@
 /// @param {Bool} [_full_clear] If true, also clears all saved positions and collected giant rings (default is true).
 function game_clear_level_data(_full_clear = true)
 {
-	if (_full_clear)
+	if _full_clear
 	{
 		global.checkpoint_data = [];
 		global.giant_ring_data = [];
+		
 		ds_list_clear(global.ds_giant_rings);
 	}
 	

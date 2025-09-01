@@ -3,7 +3,7 @@ if (!visible)
 	for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	{
 		var _player = player_get(_p);
-		if (_player.state >= PLAYERSTATE.DEBUG_MODE)
+		if (_player.state >= PLAYER_STATE.DEBUG_MODE)
 		{
 			continue;
 		}

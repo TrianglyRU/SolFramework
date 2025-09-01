@@ -1,7 +1,7 @@
 var _frame = floor(obj_game.frame_counter * 0.5);
 var _last_frame = array_length(bg_playback_data);
 	
-with (g_background_layer)
+with (obj_game_layer)
 {
 	if (sprite_index == spr_level_select_bg)
 	{

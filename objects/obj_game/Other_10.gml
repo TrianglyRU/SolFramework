@@ -16,6 +16,7 @@ if _list_size > 0
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
 	var _camera_data = camera_get_data(_i);
+	
 	if _camera_data == undefined
 	{
 		continue;
@@ -38,9 +39,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	}
 }
 
-/// @feather ignore GM2017
-with (g_object)
+// Cull game objects by their *position* (this will also cancel "false" activations by instance_activate_region)
+with obj_game_object
 {
-	// Cull game objects by their *position* (this will also cancel "false" activations by instance_activate_region)
-	event_perform(ev_other, ev_user14);
+	event_user(14);
 }

@@ -2,7 +2,7 @@
 /// @description Removes all background objects and the temporary layers they occupy.
 function bg_clear_all()
 {
-	with (g_background_layer)
+	with obj_game_layer
 	{
 		instance_destroy();
 	}

@@ -1,12 +1,12 @@
-/// @feather ignore GM2017
 /// @description Late Update
+
 if room == rm_startup
 {
 	return;
 }
 
 // Run Path Step and pre-framework End Step for game objects
-with g_object
+with obj_game_object
 {
 	event_user(11);
 	event_user(12);
@@ -85,13 +85,13 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
     var _camera_data = camera_get_data(_i);
-    if (_camera_data == undefined)
+    if _camera_data == undefined
     {
         continue;
     }
 	
 	// Create all needed surfaces for the camera if they're non-existent. Doing so in a Draw event results in a blank frame
-	if (!surface_exists(view_surface_id[_i]))
+	if !surface_exists(view_surface_id[_i])
 	{
 		var _w = _camera_data.surface_w;
 		var _h = _camera_data.surface_h;
@@ -101,15 +101,16 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		view_surface_final[_i] = surface_create(_w, _h);
 	}
 	
-	if (state != GAME_STATE.PAUSED && _camera_data.allow_movement)
+	if state != GAME_STATE.PAUSED && _camera_data.allow_movement
 	{
 		var _target = _camera_data.target;
-	    if (_target != noone)
+		
+	    if _target != noone
 	    {
 			instance_activate_object(_target);
 			
 			// Object tracking system. The player object uses its own
-			if (instance_exists(_target))
+			if instance_exists(_target)
 			{
 		        var _width = camera_get_width(_i);
 		        var _height = camera_get_height(_i);
@@ -118,28 +119,29 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 				
 				var _freespace_x = 16;
 				var _freespace_y = 32;
-				var _max_vel = 32;
-			
-		        if (_target_x > 0)
+				var _max_vel_x = _camera_data.max_vel_x;
+				var _max_vel_y = _camera_data.max_vel_y;
+				
+		        if _target_x > 0
 		        {
-		            _camera_data.vel_x = min(_target_x, _max_vel);
+		            _camera_data.vel_x = min(_target_x, _max_vel_x);
 		        }
-		        else if (_target_x < -_freespace_x)
+		        else if _target_x < -_freespace_x
 		        {
-		            _camera_data.vel_x = max(_target_x + _freespace_x, -_max_vel);
+		            _camera_data.vel_x = max(_target_x + _freespace_x, -_max_vel_x);
 		        }
 		        else
 		        {
 		            _camera_data.vel_x = 0;
 		        }
-			 
-		        if (_target_y > _freespace_y)
+				
+		        if _target_y > _freespace_y
 		        {
-		            _camera_data.vel_y = min(_target_y - _freespace_y, _max_vel);
+		            _camera_data.vel_y = min(_target_y - _freespace_y, _max_vel_y);
 		        }
-		        else if (_target_y < -_freespace_y)
+		        else if _target_y < -_freespace_y
 		        {
-		            _camera_data.vel_y = max(_target_y + _freespace_y, -_max_vel);
+		            _camera_data.vel_y = max(_target_y + _freespace_y, -_max_vel_y);
 		        }
 		        else
 		        {
@@ -152,13 +154,13 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		    }
 		}
 		
-	    if (_camera_data.shake_timer > 0)
+	    if _camera_data.shake_timer > 0
 	    {
-	        if (_camera_data.shake_offset == 0)
+	        if _camera_data.shake_offset == 0
 	        {
 	            _camera_data.shake_offset = _camera_data.shake_timer;
 	        }
-	        else if (_camera_data.shake_offset < 0)
+	        else if _camera_data.shake_offset < 0
 	        {
 	            _camera_data.shake_offset = -1 - _camera_data.shake_offset;
 	        }
@@ -174,29 +176,32 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	        _camera_data.shake_offset = 0;
 	    }
 		
-	    if (_camera_data.delay_x == 0)
+	    if _camera_data.delay_x == 0
 	    {
 	        _camera_data.pos_x_prev = _camera_data.pos_x;
 	        _camera_data.pos_x += _camera_data.vel_x;
 	    }
-	    else if (_camera_data.delay_x > 0)
+	    else if _camera_data.delay_x > 0
 	    {
 	        _camera_data.delay_x--;
 	    }
-
-	    if (_camera_data.delay_y == 0)
+		
+	    if _camera_data.delay_y == 0
 	    {
 	        _camera_data.pos_y_prev = _camera_data.pos_y;
 	        _camera_data.pos_y += _camera_data.vel_y;
 	    }
-	    else if (_camera_data.delay_y > 0)
+	    else if _camera_data.delay_y > 0
 	    {
 	        _camera_data.delay_y--;
 	    }
 	}
 	
-	var _x = clamp(floor(_camera_data.pos_x + _camera_data.offset_x), _camera_data.left_bound, _camera_data.right_bound - camera_get_width(_i)) + _camera_data.shake_offset;
-    var _y = clamp(floor(_camera_data.pos_y + _camera_data.offset_y), _camera_data.top_bound, _camera_data.bottom_bound - camera_get_height(_i)) + _camera_data.shake_offset;
+	var _raw_pos_x = floor(_camera_data.pos_x + _camera_data.offset_x);
+	var _raw_pos_y = floor(_camera_data.pos_y + _camera_data.offset_y);
+	
+	var _x = clamp(_raw_pos_x, _camera_data.left_bound, _camera_data.right_bound - camera_get_width(_i)) + _camera_data.shake_offset;
+    var _y = clamp(_raw_pos_y, _camera_data.top_bound, _camera_data.bottom_bound - camera_get_height(_i)) + _camera_data.shake_offset;
 	
     camera_set_view_pos(view_camera[_i], _x - CAMERA_HORIZONTAL_BUFFER, _y);
 }
@@ -205,7 +210,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 #region BACKGROUND
 
-if (state != GAME_STATE.PAUSED)
+if state != GAME_STATE.PAUSED
 {
 	bg_scroll_x++;
 	bg_scroll_y++;
@@ -213,24 +218,15 @@ if (state != GAME_STATE.PAUSED)
 
 #endregion
 
-#region CULLING
-
-// Parent check
-with (g_object)
-{
-	event_perform(ev_other, ev_user15);
-}
-
-#endregion
-
 #region DISTORTION
 
-if (state != GAME_STATE.PAUSED)
+if state != GAME_STATE.PAUSED
 {
 	for (var _i = ds_list_size(distortion_data) - 1; _i >= 0; _i--)
 	{
 		var _data = distortion_data[| _i];
-		if (_data != undefined)
+		
+		if _data != undefined
 		{
 			_data.offset -= _data.spd;
 		}
@@ -243,26 +239,26 @@ if (state != GAME_STATE.PAUSED)
 
 if (state != GAME_STATE.PAUSED)
 {
-    if (global.ring_spill_counter > 0)
+    if global.ring_spill_counter > 0
     {
         global.ring_spill_counter--;
     }
 	
 	var _life_count_prev = global.life_count;
 	
-    if (global.player_rings >= global.life_rewards[0] && global.life_rewards[0] <= 200)
+    if global.player_rings >= global.life_rewards[0] && global.life_rewards[0] <= 200
     {
         global.life_rewards[0] += RINGS_THRESHOLD;
 		global.life_count++;
     }
 	
-    if (global.score_count >= global.life_rewards[1])
+    if global.score_count >= global.life_rewards[1]
     {
         global.life_rewards[1] += SCORE_THRESHOLD;
 		global.life_count++;
     }
 	
-	if (_life_count_prev != global.life_count)
+	if _life_count_prev != global.life_count
 	{
 		audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
 	}
@@ -273,14 +269,15 @@ if (state != GAME_STATE.PAUSED)
 #region SPRITE ANIMATOR
 
 var _is_enabled = state != GAME_STATE.PAUSED;
-if (_is_enabled != sprite_update_enabled)
+
+if _is_enabled != sprite_update_enabled
 {
     for (var _i = array_length(sprite_array) - 2; _i >= 0; _i -= 2)
     {
 		/// @feather ignore GM1044
         sprite_set_speed(sprite_array[_i], _is_enabled ? (1 / sprite_array[_i + 1]) : 0, spritespeed_framespergameframe);
     }
-
+	
     sprite_update_enabled = _is_enabled;
 }
 

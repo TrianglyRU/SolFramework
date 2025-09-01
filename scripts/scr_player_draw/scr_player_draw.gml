@@ -20,7 +20,7 @@ function scr_player_draw()
 	    }
 	}
 	
-	if (state == PLAYERSTATE.DEATH)
+	if (state == PLAYER_STATE.DEATH)
 	{
 		image_alpha = 1.0;
 	}

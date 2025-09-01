@@ -71,7 +71,7 @@ switch (state)
 		
 		with (obj_animal)
 		{
-			_start_results = !obj_is_visible();
+			_start_results = !instance_is_drawn();
 			if (!_start_results)
 			{
 				break;

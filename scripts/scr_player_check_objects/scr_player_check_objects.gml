@@ -1,5 +1,10 @@
 function scr_player_check_objects()
 {
+	if state != PLAYER_STATE.DEFAULT && state != PLAYER_STATE.DEFAULT_LOCKED || cpu_state == CPU_STATE.RESPAWN || cpu_state == CPU_STATE.RESPAWN_INIT
+	{
+		return;
+	}
+	
 	var _px = floor(x);
 	var _py = floor(y);
 	var _pleft = _px - react_radius_x;
@@ -7,7 +12,7 @@ function scr_player_check_objects()
 	var _ptop = _py - react_radius_y;
 	var _pbottom = _py + react_radius_y;
 	
-	with g_object
+	with obj_game_object
 	{
 		if mask_index != -1
 		{

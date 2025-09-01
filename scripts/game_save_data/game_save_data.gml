@@ -3,7 +3,7 @@
 /// @param {Real} _slot The slot index to save data to.
 function game_save_data(_slot)
 {
-	if (_slot == -1)
+	if _slot == -1
 	{
 		return;
 	}

@@ -69,7 +69,7 @@ if (state == ITEMBOXSTATE.FALL)
     y += vel_y;
     vel_y += 0.21875;
     
-    var _floor_dist = tile_find_v(x, y + 14, DIRECTION.POSITIVE)[0];
+    var _floor_dist = tile_find_v(x, y + 14, 1)[0];
     if (_floor_dist < 0)
     {
         y += _floor_dist;

@@ -5,10 +5,12 @@
 function pal_load(_primary, _secondary)
 {
 	var _sprites = [_primary, _secondary];
+	
 	for (var _i = 0; _i < 2; _i++)
 	{
 		var _sprite = _sprites[_i];
-		if (_sprites[_i] != undefined)
+		
+		if _sprites[_i] != undefined
 		{
 			var _texture = sprite_get_texture(_sprite, 0);
 			var _uvs = sprite_get_uvs(_sprite, 0);

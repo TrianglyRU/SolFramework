@@ -48,7 +48,7 @@ display_reset(0, global.use_vsync);
 window_set_caption(global.window_name);
 window_resize();
 
-if (global.start_fullscreen)
+if global.start_fullscreen
 {
 	window_set_fullscreen(true);
 	window_set_cursor(cr_none);

@@ -4,7 +4,7 @@
 /// @description Finds a tile along a vertical axis at the given position within a specified tile layer and returns an array containing two values: the distance to the tile's edge and its angle.
 /// @param {Real} _x The x-coordinate of the position.
 /// @param {Real} _y The y-coordinate of the position.
-/// @param {Enum.DIRECTION} _dir The direction in which to perform the search.
+/// @param {Real} _dir The direction in which to perform the search.
 /// @param {Enum.TILE_LAYER|Undefined} [_secondary_layer] The index of the secondary tile layer to search within (default is undefined).
 /// @param {Enum.QUADRANT} [_quadrant] The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
 /// @returns {Array<Real>}
@@ -16,14 +16,9 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
     var _best_distance = TILE_SIZE * 2;
     var _best_ang = TILE_EMPTY_ANGLE;
 	
-    if (_x < 0 || _x > room_width)
+    if _x < 0 || _x > room_width
     {
         return [_best_distance, _best_ang];
-    }
-    
-    if (global.debug_collision == 1)
-    {
-        ds_list_add(obj_game.debug_tile_sensors, _x, _y, _x, y, _dir == DIRECTION.POSITIVE ? $47EC6D : $E9AB4D);
     }
     
 	var _markers = obj_game.tile_markers;
@@ -37,13 +32,14 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 	
     for (var _j = array_length(_layers) - 1; _j >= 0; _j--)
 	{
-		if (_j != TILE_LAYER.MAIN && _j != _secondary_layer)
+		if _j != TILE_LAYER.MAIN && _j != _secondary_layer
 		{
 			continue;
 		}
 		
         var _tile_layer = _layers[_j];
-        if (_tile_layer == -1)
+		
+        if _tile_layer == -1
         {
             continue;
         }
@@ -64,7 +60,7 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 			_index = tile_get_index(_tile);
 			
 			// Get height
-			if (_tile == -1 || _index == 0)
+			if _tile == -1 || _index == 0
 			{
 				_height = 0;
 				_is_valid = false;
@@ -72,7 +68,8 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 			else
 			{
 				var _height_index;
-				if (_mirror)
+				
+				if _mirror
 				{
 					_height_index = TILE_SIZE - 1 - _mod_x;
 				}
@@ -87,10 +84,11 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 				var _marker_index = 0;
 				var _marker_layer = _markers[_j];
 				
-				if (_marker_layer != -1)
+				if _marker_layer != -1
 				{
 					var _marker_tile = tilemap_get(_markers[_j], _cell_id_x, _cell_id_y);
-					if (_marker_tile != -1)
+					
+					if _marker_tile != -1
 					{
 						_marker_index = tile_get_index(_marker_tile);
 					}
@@ -98,14 +96,14 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 				
 				var _is_down = _quadrant == QUADRANT.DOWN;
 				var _is_up = _quadrant == QUADRANT.UP;
-				var _is_positive = _dir == DIRECTION.POSITIVE;
+				var _is_positive = _dir == 1;
 				
-	            switch (_marker_index)
+	            switch _marker_index
 	            {
 	                // Top Solid
 	                case 1: 
 	                    _is_valid = _is_down && _is_positive ||  _is_up && !_is_positive;
-	                break;
+					break;
 					
 	                // LBR Solid
 	                case 2: 
@@ -119,13 +117,13 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
 			}
             
             // Initial tile check
-            if (_i == 0)
+            if _i == 0
             {
-                if (!_is_valid)
+                if !_is_valid
                 {
                     _cell_id_y += _dir;
                 }
-                else if (_height == TILE_SIZE)
+                else if _height == TILE_SIZE
                 {
                     _tile_buffer = _tile;
                     _index_buffer = _index;
@@ -143,9 +141,9 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
             }
             
             // Further tile check
-            else if (_i == 1)
+            else if _i == 1
             {
-                if (!_is_valid)
+                if !_is_valid
                 {
                     _found = false;
                 }
@@ -154,7 +152,7 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
             }
             
             // Closer tile check
-            else if (!_is_valid)
+            else if !_is_valid
             {
                 _tile = _tile_buffer;
                 _index = _index_buffer;
@@ -164,22 +162,22 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
             }
         }
         
-        if (_found)
+        if _found
         {
             var _flip = tile_get_flip(_tile);
-
-			// Get angle
 			var _ang = _index <= 0 ? TILE_EMPTY_ANGLE : _angles[_index];
-            if (_ang != TILE_EMPTY_ANGLE)
+			
+			// Get angle
+            if _ang != TILE_EMPTY_ANGLE
             {
-                if (_ang > 0)
+                if _ang > 0
                 {
-                    if (_flip)
+                    if _flip
                     {
                         _ang = (540 - _ang) % 360;
                     }
                     
-                    if (_mirror)
+                    if _mirror
                     {
                         _ang = 360 - _ang;
                     }
@@ -187,19 +185,19 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
                 else
                 {
                     // Force full height if found from the opposite side
-                    if (_height > 0)
+                    if _height > 0
                     {
-                        if (_dir == DIRECTION.POSITIVE && _flip || _dir == DIRECTION.NEGATIVE && !_flip)
+                        if _dir == 1 && _flip || _dir == -1 && !_flip
                         {
                             _height = TILE_SIZE;
                         }
                     }
                     
-                    _ang = _dir == DIRECTION.POSITIVE ? 0 : 180;
+                    _ang = _dir == 1 ? 0 : 180;
                 }
             }
-
-            if (_dir == DIRECTION.POSITIVE)
+			
+            if _dir == 1
             {
                 _result_distance = _cell_id_y * TILE_SIZE + TILE_SIZE - 1 - _height - _y;
             }
@@ -212,7 +210,7 @@ function tile_find_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUA
         }
         
 		// Get closest tile among the checked layers
-        if (_result_distance < _best_distance)
+        if _result_distance < _best_distance
         {
             _best_distance = _result_distance;
             _best_ang = _result_ang;

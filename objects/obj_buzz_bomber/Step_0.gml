@@ -59,7 +59,7 @@ switch (state)
 			_dist_x *= -1;
 		}
 		
-		if (_dist_x >= 0 && _dist_x < 96 && obj_is_visible())
+		if (_dist_x >= 0 && _dist_x < 96 && instance_is_drawn())
 		{
 			state = BUZZBOMBERSTATE.FIRE;
 			state_timer = 29;
