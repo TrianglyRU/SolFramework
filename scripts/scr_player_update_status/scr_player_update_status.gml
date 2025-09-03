@@ -1,66 +1,64 @@
 /// @self obj_player
-/// @function scr_player_update_status()
 function scr_player_update_status()
 {
-	gml_pragma("forceinline");
-	
-	if (animation == ANIM.SKID)
+	if animation == ANIM.SKID
 	{
-		if (skid_timer++ % 4 == 0)
+		if skid_timer++ % 4 == 0
 		{
-			instance_create(x, y + radius_y + 1, obj_dust_skid);
+			instance_create(x, y + solid_radius_y + 1, obj_dust_skid);
 		}
 	}
 
-	if (inv_frames > 0)
+	if inv_frames > 0
 	{
-		image_alpha = (inv_frames & 4 > 0) * 1.0;
-		if (--inv_frames == 0)
+		image_alpha = (inv_frames & 4 > 0) * 1;
+		
+		if --inv_frames == 0
 		{
-			image_alpha = 1.0;
+			image_alpha = 1;
 		}
 	}
 
-	if (item_speed_timer > 0)
+	if item_speed_timer > 0
 	{
-		if (--item_speed_timer == 0 && audio_is_playing(snd_bgm_highspeed))
+		if --item_speed_timer == 0 && audio_is_playing(snd_bgm_highspeed) && instance_exists(obj_rm_stage)
 		{
-			player_restart_bgm(obj_rm_stage.bgm_track, id);
-		}
-	}
-
-	if (item_inv_timer > 0)
-	{
-		if (--item_inv_timer == 0 && audio_is_playing(snd_bgm_invincibility))
-		{
-			player_restart_bgm(obj_rm_stage.bgm_track, id);
+			m_restart_bgm(obj_rm_stage.bgm_track);
 		}
 	}
 	
-	if (super_timer > 0)
+	if item_inv_timer > 0
 	{
-		if (action == ACTION.TRANSFORM)
+		if --item_inv_timer == 0 && audio_is_playing(snd_bgm_invincibility) && instance_exists(obj_rm_stage)
 		{
-			if (--transform_timer == 0)
+			m_restart_bgm(obj_rm_stage.bgm_track);
+		}
+	}
+	
+	if super_timer > 0
+	{
+		if action == ACTION.TRANSFORM
+		{
+			if --transform_timer == 0
 			{
 				state = PLAYER_STATE.DEFAULT;
-				self.reset_substate();
+				m_reset_substate();
 				
 				instance_create(x, y, obj_star_super, { vd_target_player: id });
 			}
 		}
 	
-		if (super_timer == 1)
+		if super_timer == 1
 		{
-			if (--global.player_rings <= 0)
+			if --global.player_rings <= 0
 			{
 				global.player_rings = 0;
 				inv_frames = 1;
 				super_timer = 0;
 				
-				if (!audio_is_playing(snd_bgm_drowning))
+				if !audio_is_playing(snd_bgm_drowning) && instance_exists(obj_rm_stage)
 				{
-					player_restart_bgm(obj_rm_stage.bgm_track, id);
+					m_restart_bgm(obj_rm_stage.bgm_track);
 				}
 			}
 			else
@@ -74,8 +72,8 @@ function scr_player_update_status()
 		}
 	}
 	
-	if (obj_game.frame_counter == 36000 && player_index == 0)
+	if obj_game.frame_counter == 36000 && player_index == 0
 	{
-		self.kill();
+		m_kill();
 	}
 }

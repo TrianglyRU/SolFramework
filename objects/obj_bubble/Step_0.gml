@@ -2,7 +2,7 @@ if (vd_bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_rm_stage.water_level)
 {
     if (image_index == 5)
     {
-        self.burst();
+        burst();
     }
     else
     {
@@ -58,10 +58,10 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
         player_restart_bgm(obj_rm_stage.bgm_track, _player);
     }
 	
-	if (_player.action != ACTION.FLIGHT && _player.is_not_true_glide())
+	if (_player.action != ACTION.FLIGHT && _player.m_is_not_true_glide())
 	{
 		_player.animation = ANIM.BREATHE;
-		_player.reset_substate();
+		_player.m_reset_substate();
 	}
 	
 	_player.air_timer = AIR_TIMER_DEFAULT;

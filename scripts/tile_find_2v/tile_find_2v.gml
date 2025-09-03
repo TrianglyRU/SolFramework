@@ -7,7 +7,7 @@
 /// @param {Real} _y2 The y-coordinate of the second point.
 /// @param {Real} _dir The direction in which to perform the search.
 /// @param {Enum.TILE_LAYER|Undefined} _secondary_layer The index of the secondary tile layer to search within.
-/// @param {Enum.QUADRANT} [_quadrant] The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
+/// @param {Enum.QUADRANT|Real} [_quadrant] The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
 /// @returns {Array<Real>}
 function tile_find_2v(_x1, _y1, _x2, _y2, _dir, _secondary_layer, _quadrant = QUADRANT.DOWN)
 {

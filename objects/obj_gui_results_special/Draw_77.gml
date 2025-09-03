@@ -79,7 +79,7 @@ draw_text(_x + 97, _y - 7, ring_bonus);
 _x = _draw_x;
 _y = _draw_y - 36;
 
-draw_set_alpha(obj_game.frame_counter % 2 == 0 ? 1.0 : 0);
+draw_set_alpha(obj_game.frame_counter % 2 == 0 ? 1 : 0);
 
 for (var _i = 0; _i < global.emerald_count; _i++)
 {
@@ -95,6 +95,6 @@ for (var _i = 0; _i < global.emerald_count; _i++)
     }
 }
 
-draw_set_alpha(1.0);
+draw_set_alpha(1);
 shader_reset();
 surface_reset_target();

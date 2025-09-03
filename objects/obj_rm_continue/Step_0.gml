@@ -2,8 +2,8 @@ if (character_main.vel_charge == 0)
 {
     if (--time_left == 0)
     {
-		audio_stop_bgm(1.0);
-        fade_perform_black(FADE_DIRECTION.OUT, 1,, self.leave_room);
+		audio_stop_bgm(1);
+        fade_perform_black(FADE_DIRECTION.OUT, 1,, leave_room);
     }
 	
 	return;
@@ -29,5 +29,5 @@ if (global.continue_count > 0)
     global.continue_count--;
 }
 
-audio_stop_bgm(1.0);
-fade_perform_black(FADE_DIRECTION.OUT, 1,, self.leave_room);
+audio_stop_bgm(1);
+fade_perform_black(FADE_DIRECTION.OUT, 1,, leave_room);

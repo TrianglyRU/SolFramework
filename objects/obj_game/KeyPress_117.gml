@@ -1,5 +1,4 @@
 /// @description Toggle Console
-
 if global.dev_mode
 {
 	// TODO: enable in LTS'25

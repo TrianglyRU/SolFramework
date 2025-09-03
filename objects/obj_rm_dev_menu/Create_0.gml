@@ -104,7 +104,7 @@ for (var _i = 1; _i <= room_last; _i++)
 	_room_list[_i - 1] = string_upper(room_get_name(_i));
 }
 
-self.add_category    // ID 0
+add_category    // ID 0
 (
     "ORBINAUT FRAMEWORK DEV MENU\n(Sol Version)",
     [
@@ -114,7 +114,7 @@ self.add_category    // ID 0
 		"CLOSE GAME"
 	]
 );
-self.add_category    // ID 1
+add_category    // ID 1
 (
     "START GAME\nPress action 3 to delete a save file",
 	[
@@ -125,11 +125,11 @@ self.add_category    // ID 1
 	    "SAVE 3"
 	]
 );
-self.add_category    // ID 2
+add_category    // ID 2
 (
     "ROOM SELECT", _room_list
 );
-self.add_category    // ID 3
+add_category    // ID 3
 (
     "SETTINGS",
 	[
@@ -141,7 +141,7 @@ self.add_category    // ID 3
 		"FULLSCREEN VSYNC"
 	]
 );
-self.add_category    // ID 4
+add_category    // ID 4
 (
     "PLAYER 1 SELECT",
 	[
@@ -151,7 +151,7 @@ self.add_category    // ID 4
 	    "AMY"
 	]
 );
-self.add_category    // ID 5
+add_category    // ID 5
 (
     "PLAYER 2 SELECT",
 	[
@@ -162,6 +162,6 @@ self.add_category    // ID 5
 	    "NO PLAYER 2"
 	]
 );
-self.load_category(0);
+load_category(0);
 
 discord_set_data("In Menus", "", "", "");

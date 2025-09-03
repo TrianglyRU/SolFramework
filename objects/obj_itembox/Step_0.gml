@@ -10,7 +10,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if (!obj_check_solid(_player, SOLIDCOLLISION.TOP))
     {
-	    if (_player.is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN)
+	    if (_player.m_is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN)
 	    {
 	        _can_destroy = (_p == 0);
 		}

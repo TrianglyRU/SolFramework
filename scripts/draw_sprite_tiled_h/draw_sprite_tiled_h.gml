@@ -8,5 +8,5 @@
 /// @param {Real} _limit_right The right limit of the area in which the sprite should be tiled.
 function draw_sprite_tiled_h(_sprite, _subimg, _x, _y, _limit_left, _limit_right)
 {
-	draw_sprite_tiled_h_ext(_sprite, _subimg, _x, _y, 1.0, 1.0, c_white, 1.0, _limit_left, _limit_right);
+	draw_sprite_tiled_h_ext(_sprite, _subimg, _x, _y, 1, 1, c_white, 1, _limit_left, _limit_right);
 }

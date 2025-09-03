@@ -1,5 +1,4 @@
 /// @self obj_player
-/// @function scr_player_debug_mode_init()
 function scr_player_debug_mode_init()
 {
 	debug_mode_ind = 0;
@@ -21,7 +20,7 @@ function scr_player_debug_mode_init()
 	];
 	
 	// array_push()
-	switch (room)
+	switch room
 	{
 		case rm_stage_ghz0:
 			array_push(debug_mode_array, obj_crabmeat);

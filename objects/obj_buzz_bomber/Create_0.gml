@@ -1,3 +1,6 @@
+// Inherit the parent event
+event_inherited();
+
 enum BUZZBOMBERSTATE
 {
 	ROAM,
@@ -5,13 +8,9 @@ enum BUZZBOMBERSTATE
 	FIRE
 }
 
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(4);
-obj_set_hitbox(24, 12);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
+depth = m_get_layer_depth(40);
+outside_action = OUTSIDE_ACTION.RESPAWN;
 state = BUZZBOMBERSTATE.HOVER;
 state_timer = 0;
 shot_flag = false;
+projectile = noone;

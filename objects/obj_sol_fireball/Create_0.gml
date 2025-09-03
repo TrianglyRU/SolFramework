@@ -6,7 +6,7 @@ hurt_players = function()
 		var _player = player_get(_p);
 		if (global.player_shields[_p] != SHIELD.FIRE && obj_check_hitbox(_player))
 		{
-			_player.hurt();
+			_player.m_hurt();
 		}
 	}
 }

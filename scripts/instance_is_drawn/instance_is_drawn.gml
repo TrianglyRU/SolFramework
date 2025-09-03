@@ -1,9 +1,9 @@
-/// @self obj_game_object
-/// @description Checks if the object is visible or drawn within any of the current view boundaries.
+/// @description Checks if the instance is visible or drawn within any of the current view boundaries.
+/// @param {ID.Instance} _inst_id The instance to check (optional, default is the calling instance)
 /// @returns {Bool}
-function instance_is_drawn()
+function instance_is_drawn(_inst_id = id)
 {
-	if sprite_index < 0 || !visible
+	if _inst_id.sprite_index < 0 || !_inst_id.visible
 	{
 		return false;
 	}
@@ -18,12 +18,17 @@ function instance_is_drawn()
 		var _cx = camera_get_x(_i);
 		var _cw = camera_get_width(_i);
 		
-		if floor(x) + sprite_width >= _cx && floor(x) - sprite_width < _cx + _cw
+		var _x = _inst_id.x;
+		var _y = _inst_id.y;
+		var _w = _inst_id.sprite_width;
+		var _h = _inst_id.sprite_height;
+		
+		if _x + _w >= _cx && _x - _w < _cx + _cw
 		{
 			var _cy = camera_get_y(_i);
 			var _ch = camera_get_height(_i);
 			
-			if floor(y) + sprite_height >= _cy && floor(y) - sprite_height < _cy + _ch
+			if _y + _h >= _cy && _y - _h < _cy + _ch
 			{
 				return true;
 			}

@@ -1,79 +1,84 @@
 /// @self obj_player
-/// @function scr_player_glide_collision()
 function scr_player_glide_collision()
 {
-	gml_pragma("forceinline");
-
-	if (action != ACTION.GLIDE)
+	if action != ACTION.GLIDE
 	{
 	    return;
 	}
 	
-	var _move_quad = math_get_quadrant(math_get_vector_rounded(vel_x, vel_y));
+	var _vector = math_get_vector_rounded(vel_x, vel_y);
+	var _move_quad = math_get_quadrant(_vector);
 	var _climb_y = y;
 	var _wall_radius = radius_x_normal + 1;
 	var _collision_flag_wall = false;
 	var _collision_flag_floor = false;
 	
-	if (_move_quad != QUADRANT.RIGHT)
+	if _move_quad != QUADRANT.RIGHT
 	{
 	    var _wall_dist = tile_find_h(x - _wall_radius, y, -1, secondary_layer)[0];
-	    if (_wall_dist < 0)
+		
+	    if _wall_dist < 0
 	    {
-	        _collision_flag_wall = true;
 	        x -= _wall_dist;
 	        vel_x = 0;
+			
+			_collision_flag_wall = true;
 	    }
 	}
 	
-	if (_move_quad != QUADRANT.LEFT)
+	if _move_quad != QUADRANT.LEFT
 	{
 	    var _wall_dist = tile_find_h(x + _wall_radius, y, 1, secondary_layer)[0];
-	    if (_wall_dist < 0)
+		
+	    if _wall_dist < 0
 	    {
-	        _collision_flag_wall = true;
 	        x += _wall_dist;
 	        vel_x = 0;
+			
+			_collision_flag_wall = true;
 	    }
 	}
 	
-	if (_move_quad != QUADRANT.DOWN)
+	if _move_quad != QUADRANT.DOWN
 	{
-	    var _y = y - radius_y;
-	    var _roof_dist = tile_find_2v(x - radius_x, _y, x + radius_x, _y, -1, secondary_layer)[0];
+	    var _y = y - solid_radius_y;
+	    var _roof_dist = tile_find_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, -1, secondary_layer)[0];
     
-	    if (_roof_dist <= -14 && _move_quad == QUADRANT.LEFT && global.player_physics >= PHYSICS.S3)
+	    if _roof_dist <= -14 && _move_quad == QUADRANT.LEFT && global.player_physics >= PHYSICS.S3
 	    {
-	        var _wall_dist = tile_find_h(x + _wall_radius, y, 1, secondary_layer)[0];		
-	        if (_wall_dist < 0)
+	        var _wall_dist = tile_find_h(x + _wall_radius, y, 1, secondary_layer)[0];
+			
+	        if _wall_dist < 0
 	        {
-	            _collision_flag_wall = true;
 	            x += _wall_dist;
 	            vel_x = 0;
+				
+				_collision_flag_wall = true;
 	        }
 	    }
-	    else if (_roof_dist < 0)
+	    else if _roof_dist < 0
 	    {
 	        y -= _roof_dist;
-	        if (vel_y < 0 || _move_quad == QUADRANT.UP)
+			
+	        if vel_y < 0 || _move_quad == QUADRANT.UP
 	        {
 	            vel_y = 0;
 	        }
 	    }
 	}
 
-	if (_move_quad != QUADRANT.UP)
+	if _move_quad != QUADRANT.UP
 	{
-	    var _y = y + radius_y;
-	    var _floor_data = tile_find_2v(x - radius_x, _y, x + radius_x, _y, 1, secondary_layer);
+	    var _y = y + solid_radius_y;
+	    var _floor_data = tile_find_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, 1, secondary_layer);
 	    var _floor_dist = _floor_data[0];
 	    var _floor_angle = _floor_data[1];
     
-	    if (action_state == GLIDE_STATE.GROUND)
+	    if action_state == GLIDE_STATE.GROUND
 	    {
-	        if (_floor_dist > 14)
+	        if _floor_dist > 14
 	        {
-	            self.release_glide(0);
+	            m_release_glide(0);
 	        }
 	        else
 	        {
@@ -84,22 +89,23 @@ function scr_player_glide_collision()
 	        return;
 	    }
 		
-	    if (_floor_dist < 0)
+	    if _floor_dist < 0
 	    {
-	        _collision_flag_floor = true;
 	        y += _floor_dist;
 	        angle = _floor_angle; 
 	        vel_y = 0;
+			
+			_collision_flag_floor = true;
 	    }
 	}
 
-	if (_collision_flag_floor)
+	if _collision_flag_floor
 	{
 		var _floor_quad = math_get_quadrant(angle);
 		
-		if (action_state == GLIDE_STATE.AIR)
+		if action_state == GLIDE_STATE.AIR
 		{
-			if (_floor_quad == QUADRANT.DOWN)
+			if _floor_quad == QUADRANT.DOWN
 			{
 			    animation = ANIM.GLIDE_GROUND;
 			    action_state = GLIDE_STATE.GROUND;
@@ -107,15 +113,15 @@ function scr_player_glide_collision()
 			}
 			else
 			{
-				self.land();
-			    spd_ground = angle < 180 ? vel_x : -vel_x; 
+				spd_ground = angle < 180 ? vel_x : -vel_x; 
+				m_land();
 			}
 		}
-		else if (action_state == GLIDE_STATE.FALL)
+		else if action_state == GLIDE_STATE.FALL
 		{
-		    self.land();
+		    m_land();
 			
-		    if (_floor_quad == QUADRANT.DOWN)
+		    if _floor_quad == QUADRANT.DOWN
 		    {
 		        animation = ANIM.GLIDE_LAND;
 		        ground_lock_timer = 16;
@@ -130,27 +136,24 @@ function scr_player_glide_collision()
 			audio_play_sfx(snd_land);
 		}
 	}
-	else if (_collision_flag_wall)
+	else if _collision_flag_wall && action_state == GLIDE_STATE.AIR
 	{
-	    if (action_state != GLIDE_STATE.AIR)
-	    {
-	        return;
-	    }
+	    var _wall_dist = tile_find_h(x + _wall_radius * facing, _climb_y - solid_radius_y, facing, secondary_layer)[0];	
 		
-	    var _wall_dist = tile_find_h(x + _wall_radius * facing, _climb_y - radius_y, facing, secondary_layer)[0];	
-	    if (_wall_dist != 0)
+	    if _wall_dist != 0
 	    {
-	        var _floor_dist = tile_find_v(x + (_wall_radius + 1) * facing, _climb_y - radius_y - 1, 1, secondary_layer, QUADRANT.UP)[0];
-	        if  (_floor_dist < 0 || _floor_dist >= 12)
+	        var _floor_dist = tile_find_v(x + (_wall_radius + 1) * facing, _climb_y - solid_radius_y - 1, 1, secondary_layer, QUADRANT.UP)[0];
+			
+	        if  _floor_dist < 0 || _floor_dist >= 12
 	        {
-	            self.release_glide(0);
+	            m_release_glide(0);
 	            return;
 	        }
 			
 	        y += _floor_dist;
 	    }
 		
-	    if (facing == -1)
+	    if facing == -1
 	    {
 	        x++;
 	    }

@@ -22,7 +22,7 @@ function bg_convert(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _anim_du
 	
 	var _depth = layer_get_depth(_layer);
 	var _new_layer = layer_create(_depth, _layer);
-	var _object = instance_create_layer(0, 0, _new_layer, obj_game_layer);
+	var _object = instance_create_layer(0, 0, _new_layer, obj_layer);
 	
 	_object.sprite_index = _sprite_id;
 	_object.visible = layer_get_visible(_layer);

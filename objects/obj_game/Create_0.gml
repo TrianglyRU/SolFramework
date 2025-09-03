@@ -1,5 +1,4 @@
 /// @description Initialisation
-
 if room == rm_startup
 {
 	return;
@@ -107,7 +106,18 @@ cull_game_paused_list = ds_list_create();
 
 #region DEBUG
 
-debuobj_game_tile_sensors = ds_list_create();
+m_debug_get_state_name = function()
+{
+	switch state
+	{
+		case GAME_STATE.NORMAL: return "NORMAL";
+		case GAME_STATE.PAUSED: return "PAUSED";
+		case GAME_STATE.STOP_OBJECTS: return "STPOBJ";
+		default: return "UNKNOWN";
+	}
+}
+
+debug_tile_sensors = ds_list_create();
 debug_interact = ds_list_create();
 debug_solids = ds_list_create();
 debug_solids_sides = ds_list_create();
@@ -158,6 +168,7 @@ fade_game_control = false;
 fade_step = 0;
 fade_frequency_timer = 0;
 fade_frequency_target = 0;
+fade_trigger_end_event = false;
 
 #endregion
 
@@ -167,7 +178,7 @@ fade_frequency_target = 0;
 #macro INPUT_GAMEPAD_DEADZONE 0.15
 #macro INPUT_RUMBLE_LIGHT 0.5
 #macro INPUT_RUMBLE_MEDIUM 0.75
-#macro INPUT_RUMBLE_STRONG 1.0
+#macro INPUT_RUMBLE_STRONG 1
 
 input_rumble_time_left = array_create(INPUT_SLOT_COUNT, 0);
 input_list_down = ds_list_create();

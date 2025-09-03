@@ -7,11 +7,11 @@ function scr_player_animate_knuckles()
 	switch (animation)
 	{
 		case ANIM.IDLE:
-			obj_set_anim(spr_knuckles_idle, 300, 0, self.set_wait_anim);
+			obj_set_anim(spr_knuckles_idle, 300, 0, set_wait_anim);
 		break;
 		
 		case ANIM.WAIT:	
-			obj_set_anim(spr_knuckles_wait, 6, 0, self.set_idle_anim);
+			obj_set_anim(spr_knuckles_wait, 6, 0, set_idle_anim);
 		break;
 		
 		case ANIM.MOVE:
@@ -55,19 +55,19 @@ function scr_player_animate_knuckles()
 		break;
 		
 		case ANIM.SKID:	
-			obj_set_anim(spr_knuckles_skid, 4, 0, self.set_move_anim);
+			obj_set_anim(spr_knuckles_skid, 4, 0, set_move_anim);
 		break;
 		
 		case ANIM.TRANSFORM:
-			obj_set_anim(spr_knuckles_transform, 3, 0, self.set_move_anim);	
+			obj_set_anim(spr_knuckles_transform, 3, 0, set_move_anim);	
 		break;
 		
 		case ANIM.BREATHE:
-			obj_set_anim(spr_knuckles_breathe, 24, 0, self.set_move_anim);
+			obj_set_anim(spr_knuckles_breathe, 24, 0, set_move_anim);
 		break;
 		
 		case ANIM.BOUNCE:
-			obj_set_anim(spr_knuckles_bounce, 48, 0, self.set_move_anim);
+			obj_set_anim(spr_knuckles_bounce, 48, 0, set_move_anim);
 		break;
 		
 		case ANIM.BALANCE:
@@ -78,7 +78,7 @@ function scr_player_animate_knuckles()
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
 			
-			obj_set_anim(spr_knuckles_flip, 1, 0, self.end_flip_anim);
+			obj_set_anim(spr_knuckles_flip, 1, 0, end_flip_anim);
 			
 			// Override the displayed sprite
 			if (facing == -1)

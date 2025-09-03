@@ -47,7 +47,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.ground_lock_timer = 16;
 	_player.action = ACTION.NONE;
 	
-	obj_set_anim(sprite_index, 1, 1, self.stop_anim);
+	obj_set_anim(sprite_index, 1, 1, stop_anim);
 	audio_play_sfx(snd_spring);
 	input_set_rumble(_p, 0.20, INPUT_RUMBLE_MEDIUM);
 }

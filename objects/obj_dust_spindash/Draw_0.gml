@@ -1,6 +1,6 @@
 // Override draw
 var _x = floor(vd_target_player.x);
-var _y = floor(vd_target_player.y) + vd_target_player.radius_y + 1;
+var _y = floor(vd_target_player.y) + vd_target_player.solid_radius_y + 1;
 
 draw_sprite_ext
 (

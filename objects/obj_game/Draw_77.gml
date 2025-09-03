@@ -1,5 +1,4 @@
 /// @description Draw Camera Views
-
 if room == rm_startup
 {
 	return;

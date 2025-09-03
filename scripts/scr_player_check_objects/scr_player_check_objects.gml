@@ -1,3 +1,4 @@
+/// @self obj_player
 function scr_player_check_objects()
 {
 	if state != PLAYER_STATE.DEFAULT && state != PLAYER_STATE.DEFAULT_LOCKED || cpu_state == CPU_STATE.RESPAWN || cpu_state == CPU_STATE.RESPAWN_INIT
@@ -7,12 +8,12 @@ function scr_player_check_objects()
 	
 	var _px = floor(x);
 	var _py = floor(y);
-	var _pleft = _px - react_radius_x;
-	var _pright = _px + react_radius_x;
-	var _ptop = _py - react_radius_y;
-	var _pbottom = _py + react_radius_y;
+	var _pleft = _px - react_radius_x + react_offset_x;
+	var _pright = _px + react_radius_x + react_offset_x;
+	var _ptop = _py - react_radius_y + react_offset_y;
+	var _pbottom = _py + react_radius_y + react_offset_y;
 	
-	with obj_game_object
+	with obj_object
 	{
 		if mask_index != -1
 		{
@@ -23,8 +24,7 @@ function scr_player_check_objects()
 			
 			if rectangle_in_rectangle(_pleft, _ptop, _pright, _pbottom, _left, _top, _right, _bottom)
 			{
-				other.touch_object = id;
-				break;
+				other.touch_object = id; break;
 			}
 		}
 	}

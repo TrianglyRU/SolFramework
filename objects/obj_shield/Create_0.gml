@@ -1,19 +1,19 @@
-/// @method set_bubble_shield_anim()
+// Inherit the parent event
+event_inherited();
+
 set_bubble_shield_anim = function()
 {
 	obj_set_anim(spr_shield_bubble, 2, 0, 0)
 }
 
-/// @method set_fire_shield_anim()
 set_fire_shield_anim = function()
 {
 	obj_set_anim(spr_shield_fire, 2, 0, 0);
 }
 
-/// @method clear_fire_shield_dash()
 clear_fire_shield_dash = function()
 {
-	self.set_fire_shield_anim();
+	set_fire_shield_anim();
 	
 	if (vd_target_player.shield_state == SHIELD_STATE.ACTIVE)
 	{
@@ -23,29 +23,25 @@ clear_fire_shield_dash = function()
 	vd_target_player.air_lock_flag = false;
 }
 
-// Inherit the parent event
-event_inherited();
+var _shield = global.player_shields[player.player_index];
 
-var _shield = global.player_shields[vd_target_player.player_index];
-
-obj_set_priority(_shield == SHIELD.FIRE ? 3 : 1);
-obj_set_culling(ACTIVEIF.ENGINE_RUNNING);
-
-switch (_shield)
+switch _shield
 {
 	case SHIELD.NORMAL:
 		obj_set_anim(spr_shield, 1, 0, 0);
 	break;
 	
 	case SHIELD.BUBBLE:
-		self.set_bubble_shield_anim();
+		set_bubble_shield_anim();
 	break;
 	
 	case SHIELD.FIRE:
-		self.set_fire_shield_anim();
+		set_fire_shield_anim();
 	break;
 	
 	case SHIELD.LIGHTNING:
 		obj_set_anim(spr_shield_lightning, 2, 0, 0);
 	break;
 }
+
+depth += _shield == SHIELD.FIRE ? 30 : 10;

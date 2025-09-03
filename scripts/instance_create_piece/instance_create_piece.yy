@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Objects",
-    "path": "folders/Functions/Objects.yy",
+    "name": "Instances",
+    "path": "folders/Functions/Instances.yy",
   },
 }

@@ -8,12 +8,12 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
     }
 	
 	audio_play_sfx(snd_bumper);
-	obj_set_anim(sprite_index, 4, 1, self.stop_anim);
+	obj_set_anim(sprite_index, 4, 1, stop_anim);
     
     if (hits_left != 0)
     {
 		hits_left--;
-		_player.add_score(0);
+		_player.m_add_score(0);
 		
         instance_create(x, y, obj_score);
     }

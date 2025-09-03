@@ -1,8 +1,7 @@
 /// @self obj_player
-/// @function scr_player_init()
 function scr_player_init()
 {
-	if (player_type == PLAYER.NONE)
+	if player_type == PLAYER.NONE
 	{
 		instance_destroy();
 		return;
@@ -11,17 +10,18 @@ function scr_player_init()
 	var _is_respawned = variable_instance_exists(id, "player_index");
 	var _start_y = y;
 	
-	if (!_is_respawned)
+	if !_is_respawned
 	{
 		player_index = PLAYER_COUNT - 1;
 	}
 	else
 	{
 		ds_list_destroy(ds_record_data);
+		
 		global.player_shields[player_index] = SHIELD.NONE;
 	}
 	
-	switch (player_type)
+	switch player_type
 	{
 		case PLAYER.TAILS:
 		
@@ -41,6 +41,7 @@ function scr_player_init()
 		
 		break;
 		
+		// PLAYER.SONIC, PLAYER.KNUCKLES
 		default:
 		
 			radius_x_normal = 9;
@@ -120,7 +121,7 @@ function scr_player_init()
 	cpu_state = CPU_STATE.MAIN;
 	cpu_timer_respawn = 0;
 	cpu_control_timer = 0;
-	cpu_jump_flag = false;
+	cpu_auto_jump = false;
 	
 	ext_hitbox_radius_x = 0;
 	ext_hitbox_radius_y = 0;
@@ -154,8 +155,9 @@ function scr_player_init()
 	visual_angle = 0;
 	set_push_anim_by = noone;
 	
+	depth = m_get_layer_depth(20);
 	image_angle = 0;
-	image_alpha = 1.0;
+	image_alpha = 1;
 	
 	ds_record_data = ds_list_create();
 	ds_record_length = player_index == 0 ? max(PARAM_RECORD_LENGTH, PLAYER_MAX_COUNT * PARAM_CPU_DELAY) : PARAM_RECORD_LENGTH;
@@ -163,26 +165,26 @@ function scr_player_init()
 	var _ring_data = global.giant_ring_data;
 	var _checkpoint_data = global.checkpoint_data;
 	
-	if (array_length(_ring_data) > 0)
+	if array_length(_ring_data) > 0
 	{
 		x = _ring_data[0];
 		y = _ring_data[1];
 	}
 	else
 	{
-		if (array_length(_checkpoint_data) > 0)
+		if array_length(_checkpoint_data) > 0
 		{
 			x = _checkpoint_data[0];
 			y = _checkpoint_data[1];
 		}
 		else
 		{
-			y -= radius_y + 1;
+			y -= solid_radius_y + 1;
 		}
 		
-		// Align with the floor
-		var _floor_dist = tile_find_2v(x - radius_x, y + radius_y, x + radius_x, y + radius_y, 1, secondary_layer)[0];
-		if (_floor_dist < 14)
+		var _floor_dist = tile_find_2v(x - solid_radius_x, y + solid_radius_y, x + solid_radius_x, y + solid_radius_y, 1, secondary_layer)[0];
+		
+		if _floor_dist < 14
 		{
 			y += _floor_dist;
 		}
@@ -190,18 +192,19 @@ function scr_player_init()
 	
 	for (var _i = 0; _i < ds_record_length; _i++)
 	{
-		self.record_data(_i);
+		m_record_data(_i);
 	}
 	
 	var _saved_shield = global.player_shields[player_index];
-	if (_saved_shield != SHIELD.NONE)
+	
+	if _saved_shield != SHIELD.NONE
 	{
 		instance_create(x, y, obj_shield, { vd_target_player: id });
 	}
-
-	if (player_type == PLAYER.TAILS)
+	
+	if player_type == PLAYER.TAILS
 	{
-		with (obj_tail)
+		with obj_tail
 		{
 			if (vd_target_player == other.id)
 			{
@@ -214,26 +217,26 @@ function scr_player_init()
 	
 	camera_data = camera_get_data(0);
 	
-	if (player_index > 0)
+	if player_index > 0
 	{
 		var _camera_data = camera_get_data(player_index);
-		if (_camera_data != undefined)
+		
+		if _camera_data != undefined
 		{
 			camera_data = _camera_data;
 		}
 	}
 	
-	if (!_is_respawned && camera_data.index == player_index)
+	if !_is_respawned && camera_data.index == player_index
 	{
 		camera_data.pos_x = x - camera_get_width(camera_data.index) * 0.5;
 		camera_data.pos_y = y - camera_get_height(camera_data.index) * 0.5 + 16;
 	}
 	
-	scr_player_animate();
-	
-	// Spawn a CPU
-	if (player_index == 0 && global.player_cpu != PLAYER.NONE)
+	if player_index == 0 && global.player_cpu != PLAYER.NONE
 	{
-		player_spawn(x - 16, _start_y, global.player_cpu, depth + player_index + 1);
+		player_spawn(x - 16, _start_y, global.player_cpu, depth + player_index);
 	}
+	
+	scr_player_animate();
 }

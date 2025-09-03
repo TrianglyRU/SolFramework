@@ -9,7 +9,7 @@ if (water_enabled)
 			water_level = math_oscillate_y(water_level_init, obj_game.frame_counter * ANGLE_INCREMENT, 10, 1, 90);
 	}
 	
-	self.set_water_effects_bound();
+	set_water_effects_bound();
 }
 else
 {

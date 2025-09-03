@@ -39,6 +39,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if (obj_check_solid(_player, _collision_side))
     {
-        _player.hurt(snd_spikes_hurt);
+        _player.m_hurt(snd_spikes_hurt);
     }
 }

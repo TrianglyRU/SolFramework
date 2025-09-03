@@ -23,7 +23,7 @@ switch (state)
 			
             // Eggman Mark
             case 1:
-               _player.hurt();
+               _player.m_hurt();
             break;
 			
             // Super Ring
@@ -52,6 +52,7 @@ switch (state)
             case 4:
 			
                 global.player_shields[0] = SHIELD.NORMAL;
+				
                 audio_play_sfx(snd_shield);
 				
             break;
@@ -61,9 +62,10 @@ switch (state)
 				global.player_shields[0] = SHIELD.BUBBLE;
 				
 				audio_play_sfx(snd_shield_bubble);
+				
 				if (audio_is_playing(snd_bgm_drowning))
                 {
-                    player_restart_bgm(obj_rm_stage.bgm_track, _player);
+					_player.m_restart_bgm();
                 }
 				
             break; 
@@ -71,6 +73,7 @@ switch (state)
             case 6:
 			
                 global.player_shields[0] = SHIELD.FIRE;
+				
                 audio_play_sfx(snd_shield_fire);
 				
             break;
@@ -78,6 +81,7 @@ switch (state)
             case 7:
 			
                 global.player_shields[0] = SHIELD.LIGHTNING;
+				
                 audio_play_sfx(snd_shield_lightning);
 				
             break;

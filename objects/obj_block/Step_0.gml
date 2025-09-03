@@ -20,7 +20,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	_player.vel_y = -3;
-	_player.add_score(++_player.score_combo);
+	_player.m_add_score(++_player.score_combo);
 	
 	instance_create(x, y, obj_score, { vd_score_combo: _player.score_combo });
 	

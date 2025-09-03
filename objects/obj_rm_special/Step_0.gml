@@ -17,13 +17,13 @@ if (state == SPECIALSTAGESTATE.IDLE)
     }    
     else if (_input_press.start)
     {
-		audio_stop_bgm(1.0);
+		audio_stop_bgm(1);
         audio_play_sfx(snd_warp_2);
-        fade_perform_white(FADE_DIRECTION.OUT, 3,, self.start_results);  
+        fade_perform_white(FADE_DIRECTION.OUT, 3,, start_results);  
     }
 }
 else if (!audio_is_playing(snd_bgm_emerald))
 {
 	audio_play_sfx(snd_warp_2);
-    fade_perform_white(FADE_DIRECTION.OUT, 3,, self.start_results);
+    fade_perform_white(FADE_DIRECTION.OUT, 3,, start_results);
 }

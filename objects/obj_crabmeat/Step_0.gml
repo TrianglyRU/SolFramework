@@ -56,7 +56,7 @@ switch (state)
 		state_timer = 127;
 		vel_x *= -1;
 		state = CRABMEATSTATE.MOVE;
-		self.update_move_sprite();
+		update_move_sprite();
 		
 		obj_set_anim(sprite_index, 16, 0, 0);
 		
@@ -85,7 +85,7 @@ switch (state)
 				y += _floor_dist;
 				angle = _floor_angle;
 				
-				self.update_move_sprite();
+				update_move_sprite();
 				break;
 			}
 			
@@ -98,7 +98,7 @@ switch (state)
 		state = CRABMEATSTATE.WAIT;
 		state_timer = 59;
 		
-		obj_set_anim(spr_crabmeat_idle, 0, self.is_on_slope() ? 1 : 0, 0);
+		obj_set_anim(spr_crabmeat_idle, 0, is_on_slope() ? 1 : 0, 0);
 		
 	break;
 }

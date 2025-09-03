@@ -1,5 +1,4 @@
 /// @self obj_game
-/// @function scr_game_setup()
 function scr_game_setup()
 {
 	// Change the rm_startup's size to set up the game's default
@@ -19,7 +18,6 @@ function scr_game_setup()
 	global.player_physics = PHYSICS.S2;
 	global.cpu_behaviour = CPU_BEHAVIOUR.S3;
 	global.rotation_mode = ROTATION.MANIA;
-	global.rotation_range = RANGE.DEFAULT;
 	global.spin_dash = true;
 	global.dash	= true;
 	global.drop_dash = false;

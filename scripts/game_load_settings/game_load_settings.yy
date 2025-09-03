@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Game",
-    "path": "folders/Functions/Game.yy",
+    "name": "Data",
+    "path": "folders/Functions/Data.yy",
   },
 }

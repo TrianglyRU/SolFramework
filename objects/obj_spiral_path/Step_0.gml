@@ -83,7 +83,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 				_player.image_index = flip_frame_table[_frame_index];
 			}
 			
-			_player.y = y + offset_table[_dist_x] + _player.radius_y_normal - _player.radius_y;
+			_player.y = y + offset_table[_dist_x] + _player.radius_y_normal - _player.solid_radius_y;
 		}
 	}
 }

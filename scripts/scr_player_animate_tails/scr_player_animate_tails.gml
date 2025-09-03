@@ -7,7 +7,7 @@ function scr_player_animate_tails()
 	switch (animation)
 	{
 		case ANIM.IDLE:
-			obj_set_anim(spr_tails_idle, 8, 0, self.set_wait_anim);	
+			obj_set_anim(spr_tails_idle, 8, 0, set_wait_anim);	
 		break;
 		
 		case ANIM.WAIT:
@@ -61,19 +61,19 @@ function scr_player_animate_tails()
 		break;
 		
 		case ANIM.SKID:
-			obj_set_anim(spr_tails_skid, 8, 0, self.set_move_anim);		
+			obj_set_anim(spr_tails_skid, 8, 0, set_move_anim);		
 		break;
 		
 		case ANIM.TRANSFORM:
-			obj_set_anim(spr_tails_transform, 3, 0, self.set_move_anim);
+			obj_set_anim(spr_tails_transform, 3, 0, set_move_anim);
 		break;
 		
 		case ANIM.BREATHE:
-			obj_set_anim(spr_tails_breathe, 24, 0, self.set_move_anim);
+			obj_set_anim(spr_tails_breathe, 24, 0, set_move_anim);
 		break;
 		
 		case ANIM.BOUNCE:
-			obj_set_anim(spr_tails_bounce, 4, 0, self.set_move_anim);
+			obj_set_anim(spr_tails_bounce, 4, 0, set_move_anim);
 		break;
 		
 		case ANIM.BALANCE:
@@ -83,7 +83,7 @@ function scr_player_animate_tails()
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
 			
-			obj_set_anim(spr_tails_flip, 1, 0, self.end_flip_anim);
+			obj_set_anim(spr_tails_flip, 1, 0, end_flip_anim);
 			
 			// Override the displayed sprite
 			if (facing == -1)

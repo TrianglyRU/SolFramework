@@ -1,12 +1,9 @@
 /// @self obj_player
-/// @function scr_player_parameters()
 function scr_player_parameters()
 {
-	gml_pragma("forceinline");
-	
-	if (!is_underwater)
+	if !is_underwater
 	{
-		if (super_timer <= 0)
+		if super_timer <= 0
 		{
 			acc_glide = 0.015625;
 			acc_climb = 1;
@@ -25,7 +22,7 @@ function scr_player_parameters()
 			acc_glide = 0.046875;
 			acc_climb = 2;
 			
-			if (player_type == PLAYER.SONIC)
+			if player_type == PLAYER.SONIC
 			{
 				acc = 0.1875;
 				acc_air = 0.375;
@@ -51,7 +48,7 @@ function scr_player_parameters()
 			}
 		}
 		
-		if (item_speed_timer > 0)
+		if item_speed_timer > 0
 		{
 			acc	= 0.09375;
 			acc_air = 0.1875;
@@ -62,7 +59,7 @@ function scr_player_parameters()
 	}
 	else
 	{
-		if (super_timer <= 0)
+		if super_timer <= 0
 		{
 			acc_glide = 0.015625;
 			acc_climb = 1;
@@ -81,7 +78,7 @@ function scr_player_parameters()
 			acc_glide = 0.046875;
 			acc_climb = 2;
 			
-			if (player_type == PLAYER.SONIC)
+			if player_type == PLAYER.SONIC
 			{
 			    acc = 0.09375;
 			    acc_air = 0.1875;
@@ -108,14 +105,14 @@ function scr_player_parameters()
 		}
 	}
 	
-	if (global.player_physics < PHYSICS.SK)
+	if global.player_physics < PHYSICS.SK
 	{
-		if (player_type == PLAYER.TAILS)
+		if player_type == PLAYER.TAILS
 		{
 			dec_roll = dec * 0.25;
 		}
 	}
-	else if (super_timer > 0)
+	else if super_timer > 0
 	{
 		frc_roll = 0.0234375;
 	}

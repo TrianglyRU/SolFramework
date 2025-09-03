@@ -63,4 +63,4 @@ else
 }
 
 audio_play_sfx(snd_starpost);
-fade_perform_black(FADE_DIRECTION.OUT, 1,, self.handle_option);
+fade_perform_black(FADE_DIRECTION.OUT, 1,, handle_option);

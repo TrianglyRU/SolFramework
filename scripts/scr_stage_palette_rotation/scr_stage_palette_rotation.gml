@@ -1,5 +1,4 @@
 /// @self obj_rm_stage
-/// @function scr_stage_palette_rotation()
 function scr_stage_palette_rotation()
 {
 	switch (room)

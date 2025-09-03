@@ -1,18 +1,18 @@
-var _shield = global.player_shields[vd_target_player.player_index];
+var _shield = global.player_shields[player.player_index];
 
-if (!instance_exists(vd_target_player) || _shield == SHIELD.NONE)
+if !instance_exists(player) || _shield == SHIELD.NONE
 {
     instance_destroy();	
     return;
 }
 
-switch (_shield)
+switch _shield
 {
     case SHIELD.FIRE:
 	
-        if (sprite_index != spr_shield_fire_dash)
+        if sprite_index != spr_shield_fire_dash
         {
-			obj_set_priority(image_index % 2 == 0 ? 3 : 1);
+			depth = image_index % 2 == 0 ? depth_start + 30 : depth_start + 10;
         }
 		
     break;

@@ -17,7 +17,7 @@ destroy = function()
 /// @method burst()
 burst = function()
 {
-	obj_set_anim(spr_bubble_burst, 6, 0, self.destroy);
+	obj_set_anim(spr_bubble_burst, 6, 0, destroy);
 }
 
 // Inherit the parent event

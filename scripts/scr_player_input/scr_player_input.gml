@@ -1,11 +1,8 @@
 /// @self obj_player
-/// @function scr_player_input()
 function scr_player_input()
 {
-	gml_pragma("forceinline");
-	
 	var _replay_data_buttons = array_length(replay_data);
-	if (_replay_data_buttons > 0)
+	if _replay_data_buttons > 0
 	{
 		var _inputs = array_create(_replay_data_buttons, false);	
 		var _keys = variable_struct_get_names(input_down);
@@ -16,18 +13,18 @@ function scr_player_input()
 			var _button_timers = replay_data[_i];
 			var _timers_total = array_length(_button_timers);
 			
-			if (replay_button_state[_i] < _timers_total)
+			if replay_button_state[_i] < _timers_total
 			{
-				if (replay_button_timer[_i] < 0)
+				if replay_button_timer[_i] < 0
 				{
 					replay_button_timer[_i] = _button_timers[0];
 				}
 			
-				if (replay_button_timer[_i] > 0)
+				if replay_button_timer[_i] > 0
 				{
 					replay_button_timer[_i]--;
 				}
-				else if (++replay_button_state[_i] < _timers_total)
+				else if ++replay_button_state[_i] < _timers_total
 				{
 					replay_button_timer[_i] = _button_timers[replay_button_state[_i]];
 				}
@@ -42,15 +39,18 @@ function scr_player_input()
 		return;
 	}
 	
-	if (input_no_control)
+	if input_no_control
 	{
 		return;
 	}
 	
-	if (player_index < INPUT_SLOT_COUNT)
+	if player_index < INPUT_SLOT_COUNT
 	{
-		input_press = input_copy(input_get_pressed(player_index));
-		input_down = input_copy(input_get(player_index));
+		var _global_pressed = input_get_pressed(player_index);
+		var _global_down = input_get(player_index);
+		
+		input_press = input_copy(_global_pressed);
+		input_down = input_copy(_global_down);
 	}
 	else
 	{

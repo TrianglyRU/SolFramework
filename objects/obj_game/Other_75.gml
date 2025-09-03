@@ -1,5 +1,4 @@
 /// @description Gamepad Detection
-
 var _event = async_load[? "event_type"];
 var _pad_index = async_load[? "pad_index"];
 

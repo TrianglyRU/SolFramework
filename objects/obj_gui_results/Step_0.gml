@@ -46,7 +46,7 @@ switch (state)
                 game_save_data(global.current_save_slot);
             }
 			
-            fade_perform_black(FADE_DIRECTION.OUT, 1,, self.next_room);
+            fade_perform_black(FADE_DIRECTION.OUT, 1,, next_room);
         }
 		else
 		{

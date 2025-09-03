@@ -1,17 +1,14 @@
 /// @self obj_player
-/// @function scr_player_dash
 function scr_player_dash()
 {
-	gml_pragma("forceinline");
-	
-	if (!global.dash || player_type != PLAYER.SONIC || player_index > 0 && cpu_control_timer == 0)
+	if !global.dash || player_type != PLAYER.SONIC || player_index > 0 && cpu_control_timer == 0
 	{
 	    return;
 	}
 	
-	if (action != ACTION.DASH)
+	if action != ACTION.DASH
 	{    
-	    if (action == ACTION.NONE && animation == ANIM.LOOKUP && input_down.up && input_press.action_any)
+	    if action == ACTION.NONE && animation == ANIM.LOOKUP && input_down.up && m_press_action_any()
 	    {
 	        animation = ANIM.MOVE;
 	        action = ACTION.DASH;
@@ -31,16 +28,17 @@ function scr_player_dash()
 	
 	var _increment_value = 0.390625;
 	var _min_speed = _increment_value * 30;
-	var _speed_cap = (item_speed_timer > 0 || super_timer > 0) ? acc_top * 1.5 : acc_top * 2;
+	var _speed_cap = item_speed_timer > 0 || super_timer > 0 ? acc_top * 1.5 : acc_top * 2;
 
-	if (input_down.up)
+	if input_down.up
 	{
 	    dash_vel = min(dash_vel + _increment_value, _speed_cap);
 	    spd_ground = dash_vel * facing;
+		
 	    return false;
 	}
 	
-	if (abs(spd_ground) >= min(_min_speed, _speed_cap))
+	if abs(spd_ground) >= min(_min_speed, _speed_cap)
 	{
 		action = ACTION.NONE;
 		
@@ -52,8 +50,8 @@ function scr_player_dash()
 		audio_stop_sound(snd_charge_dash_no_loop);
 		audio_play_sfx(snd_release_dash);
 		
-	    self.set_camera_delay(floor(_raw_camera_delay * 0.5));
-		self.set_velocity();
+	    m_set_camera_delay(floor(_raw_camera_delay * 0.5));
+		m_set_velocity();
 		
 		// Exit the player control routine
 	    return true;
@@ -64,5 +62,6 @@ function scr_player_dash()
 	
 	audio_stop_sound(snd_charge_dash);
 	audio_stop_sound(snd_charge_dash_no_loop);
+	
 	return false;
 }

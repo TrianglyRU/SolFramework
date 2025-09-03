@@ -26,7 +26,7 @@ for (var _i = 0; _i < SOL_FIREBALL_COUNT; _i++)
 		continue;
 	}
 	
-	// If the fireball is attached to Sol, run its hurt routine from here to make sure it
+	// If the fireball is attached to Sol, run its m_hurt routine from here to make sure it
 	// happens after Sol runs a collision with a player
 	_fireball.hurt_players();
 	

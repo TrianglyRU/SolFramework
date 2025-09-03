@@ -1,5 +1,4 @@
 /// @description Early Update
-
 if room == rm_startup
 {
 	return;
@@ -141,15 +140,25 @@ if fade_direction != FADE_DIRECTION.NONE
 }
 else if fade_timer == FADE_TIMER_MAX
 {
-	if fade_state != FADE_STATE.NONE && fade_game_control
+	if fade_state != FADE_STATE.NONE
 	{
-		state = GAME_STATE.NORMAL;
+		if fade_game_control
+		{
+			state = GAME_STATE.NORMAL;
+		}
+		
+		fade_trigger_end_event = true;
 	}
 	
 	fade_state = FADE_STATE.NONE;
 }
 else if fade_timer == 0
 {
+	if fade_state != FADE_STATE.PLAIN_COLOUR
+	{
+		fade_trigger_end_event = true;
+	}
+	
 	fade_state = FADE_STATE.PLAIN_COLOUR;
 }
 
@@ -188,22 +197,22 @@ else
 	
 	if state == GAME_STATE.STOP_OBJECTS
 	{
-		with obj_game_object
+		with obj_object
 		{
+			if _is_empty_list
+			{
+				ds_list_add(_list, id);
+			}
+			
 			if ignore_object_stop != false
 			{
-				if _is_empty_list
-				{
-					ds_list_add(_list, id);
-				}
-				
 				instance_deactivate_object(id);
 			}
 		}
 	}
 	else
 	{
-		with obj_game_object
+		with obj_object
 		{
 			if _is_empty_list
 			{
@@ -212,6 +221,9 @@ else
 				
 			instance_deactivate_object(id);
 		}
+		
+		// Stop room directors
+		instance_deactivate_object(obj_room);
 	}
 }
 
@@ -246,18 +258,18 @@ if state != GAME_STATE.PAUSED
 
 if state != GAME_STATE.PAUSED
 {
-	with obj_game_object
+	with obj_object
 	{
-		event_user(13);
+		event_user(14);
 	}
 }
 
 #endregion
 
 // Run post-framework Begin Step for game objects
-with obj_game_object
+with obj_object
 {
-	event_user(10);
+	event_user(11);
 }
 
 // Run active culling if previous was skipped due to game state just returning to normal

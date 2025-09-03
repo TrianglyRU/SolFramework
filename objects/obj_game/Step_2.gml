@@ -1,15 +1,14 @@
 /// @description Late Update
-
 if room == rm_startup
 {
 	return;
 }
 
 // Run Path Step and pre-framework End Step for game objects
-with obj_game_object
+with obj_object
 {
-	event_user(11);
 	event_user(12);
+	event_user(13);
 }
 
 #region AUDIO
@@ -76,6 +75,16 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
     {
         audio_unmute_bgm(1, _i);
     }
+}
+
+#endregion
+
+#region BACKGROUND
+
+if state != GAME_STATE.PAUSED
+{
+	bg_scroll_x++;
+	bg_scroll_y++;
 }
 
 #endregion
@@ -208,12 +217,28 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 #endregion
 
-#region BACKGROUND
+#region CULLING
 
-if state != GAME_STATE.PAUSED
+if state != GAME_STATE.NORMAL
 {
-	bg_scroll_x++;
-	bg_scroll_y++;
+	// Activate objects within existing views to let the engine draw them
+	for (var _i = 0; _i < CAMERA_COUNT; _i++)
+	{
+		var _camera = view_camera[_i];
+		
+		if _camera != -1
+		{
+			var _x = camera_get_view_x(_camera);
+			var _y = camera_get_view_y(_camera);
+			var _w = camera_get_view_width(_camera);
+			var _h = camera_get_view_height(_camera);
+		
+			instance_activate_region(_x, _y, _w, _h, true);
+		}
+	}
+	
+	// Activate objects near (0,0) that may appear in a view as well
+	instance_activate_region(-16, -16, 32, 32, true);
 }
 
 #endregion
@@ -235,9 +260,33 @@ if state != GAME_STATE.PAUSED
 
 #endregion
 
+#region FADE
+
+if fade_trigger_end_event
+{
+	if fade_state == FADE_STATE.NONE
+	{
+		with obj_room
+		{
+			event_user(14);
+		}
+	}
+	else if fade_state == FADE_STATE.PLAIN_COLOUR
+	{
+		with obj_room
+		{
+			event_user(15);
+		}
+	}
+	
+	fade_trigger_end_event = false;
+}
+
+#endregion
+
 #region GAMEPLAY
 
-if (state != GAME_STATE.PAUSED)
+if state != GAME_STATE.PAUSED
 {
     if global.ring_spill_counter > 0
     {

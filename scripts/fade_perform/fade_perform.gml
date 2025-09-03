@@ -5,8 +5,7 @@
 /// @param {Real} _speed The speed at which the fade occurs.
 /// @param {Real} [_frequency] The number of game steps between display updates (default is 1).
 /// @param {Bool} [_game_control] Whether to pause game updates during the fade (default is true).
-/// @param {Real|Function} [_end_method] An argumentless method to execute when the fade routine ends (default is -1).
-function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control = true, _end_method = -1)
+function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control = true)
 {
 	if _speed != 0
 	{
@@ -24,7 +23,7 @@ function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control =
 	obj_game.fade_step = _speed;
 	obj_game.fade_direction = _direction;
 	obj_game.fade_game_control = _game_control;
-	obj_game.fade_end_method = _end_method;
+	obj_game.fade_trigger_end_event = false;
 	
 	if _speed == 0
 	{

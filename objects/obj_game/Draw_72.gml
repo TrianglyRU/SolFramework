@@ -1,5 +1,4 @@
 /// @description Apply Distortion
-
 if room == rm_startup
 {
 	return;

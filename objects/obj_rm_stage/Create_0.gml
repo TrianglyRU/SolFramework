@@ -44,9 +44,9 @@ top_bound = array_create(CAMERA_COUNT, 0);
 left_bound = array_create(CAMERA_COUNT, 0);
 right_bound = array_create(CAMERA_COUNT, room_width);
 bound_speed = array_create(CAMERA_COUNT, 0);
+restart_flag = false;
 
 default_physics = global.player_physics;
-default_range = global.rotation_range;
 
 // Stage setup
 scr_stage_setup();
@@ -100,7 +100,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 if (water_enabled)
 {
-	self.set_water_effects_bound();
+	set_water_effects_bound();
 }
 
 instance_create(0, 0, obj_gui_titlecard);

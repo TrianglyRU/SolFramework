@@ -1,28 +1,14 @@
-/// @function _ceil_angle()
-function _ceil_angle(_angle)
-{
-	gml_pragma("forceinline");
-	return ceil((_angle - 22.5) / 45) * 45;
-}
-
 /// @self obj_player
-/// @function scr_player_animate()
 function scr_player_animate()
 {
-	gml_pragma("forceinline");
-	
 	var _use_mania = global.rotation_mode == ROTATION.MANIA;
-	var _range = global.rotation_range;
+	var _target_angle = angle > 22.5 && angle < 337.5 ? angle : 0;
 	
-	var _min_angle = 22.5 + (_range == RANGE.SHALLOW ? 4 * ANGLE_INCREMENT : 0);
-	var _max_angle = 337.5 - (_range == RANGE.SHALLOW ? 4 * ANGLE_INCREMENT : 0);
-	
-	if (is_grounded)
+	if is_grounded
 	{
-		var _target_angle = angle > _min_angle && angle < _max_angle ? angle : 0;
-		if (_use_mania)
+		if _use_mania
 		{
-			if (angle <= 5.625 || angle >= 354.375)
+			if angle <= 5.625 || angle >= 354.375
 			{
 				visual_angle = 0;
 			}
@@ -33,19 +19,19 @@ function scr_player_animate()
 				var _cw_delta = abs(_diff + 360);
 				var _ccw_delta = abs(_diff - 360);
 			
-				if (_delta > _ccw_delta)
+				if _delta > _ccw_delta
 				{
 				    _diff -= 360;
 				} 
-				else if (_delta > _cw_delta)
+				else if _delta > _cw_delta
 				{
 				    _diff += 360;
 				}
 			
 				visual_angle += _diff / ((abs(spd_ground) >= 6) ? 2 : 4);
 				visual_angle %= 360;
-			
-				if (visual_angle < 0)
+				
+				if visual_angle < 0
 				{
 				    visual_angle += 360;
 				}
@@ -61,7 +47,7 @@ function scr_player_animate()
 		visual_angle = _use_mania ? angle : _ceil_angle(angle);
 	}
 	
-	switch (player_type)
+	switch player_type
 	{
 		case PLAYER.SONIC:
 			scr_player_animate_sonic();
@@ -80,10 +66,17 @@ function scr_player_animate()
 		break;
 	}
 	
-	if (animation != ANIM.SPIN || anim_frame_changed)
+	if animation != ANIM.SPIN || image_timer == image_duration
 	{
 		image_xscale = facing;
 	}
 	
 	image_angle = animation == ANIM.MOVE || animation == ANIM.HAMMERDASH ? visual_angle : 0;
+}
+
+/// @self scr_player_animate
+function _ceil_angle(_angle)
+{
+	gml_pragma("forceinline");
+	return ceil((_angle - 22.5) / 45) * 45;
 }

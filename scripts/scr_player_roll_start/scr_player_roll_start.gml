@@ -1,25 +1,23 @@
 /// @self obj_player
-/// @function scr_player_roll_start()
 function scr_player_roll_start()
 {
-	gml_pragma("forceinline");
-	
-	if (action == ACTION.SPINDASH || action == ACTION.HAMMERDASH)
+	if action == ACTION.SPINDASH || action == ACTION.HAMMERDASH
 	{
 	    return;
 	}
 	
-	if (!forced_roll && (input_down.left || input_down.right))
+	if !forced_roll && (input_down.left || input_down.right)
 	{
 	    return;
 	}
 
 	var _allowed_to_roll = false;
-	if (input_down.down)
+	
+	if input_down.down
 	{
-	    if (global.player_physics == PHYSICS.SK)
+	    if global.player_physics == PHYSICS.SK
 	    {
-	        if (abs(spd_ground) >= 1)
+	        if abs(spd_ground) >= 1
 	        {
 	            _allowed_to_roll = true;
 	        }
@@ -28,18 +26,19 @@ function scr_player_roll_start()
 	            animation = ANIM.DUCK;
 	        }
 	    }
-	    else if (abs(spd_ground) >= 0.5)
+	    else if abs(spd_ground) >= 0.5
 	    {
 	        _allowed_to_roll = true;
 	    }
 	}
 	
-	if (_allowed_to_roll || forced_roll)
+	if _allowed_to_roll || forced_roll
 	{
-		y += radius_y - radius_y_spin;
-		radius_x = radius_x_spin;
-		radius_y = radius_y_spin;
+		y += solid_radius_y - radius_y_spin;
+		solid_radius_x = radius_x_spin;
+		solid_radius_y = radius_y_spin;
 		animation = ANIM.SPIN;
+		
 		audio_play_sfx(snd_roll);
 	}
 }

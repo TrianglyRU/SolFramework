@@ -1,54 +1,57 @@
 /// @self obj_player
-/// @function scr_player_jump_start()
 function scr_player_jump_start()
 {
-	gml_pragma("forceinline");
-	
-	if (forced_roll || action == ACTION.SPINDASH || action == ACTION.DASH)
+	if forced_roll || action == ACTION.SPINDASH || action == ACTION.DASH
 	{
 		return;
 	}
 
-	if (!input_press.action_any)
+	if !m_press_action_any()
 	{
 		return;
 	}
 	
-	var _angle_quad = QUADRANT.DOWN; _angle_quad = math_get_quadrant(angle);
+	var _angle_quad = math_get_quadrant(angle);
 	var _max_dist = 6;
 	var _ceil_dist = _max_dist;
 	var _x, _y;
-
-	switch (_angle_quad)
+	
+	switch _angle_quad
 	{
 		case QUADRANT.DOWN:	
-			_y = y - radius_y;
-			_ceil_dist = tile_find_2v(x - radius_x, _y, x + radius_x, _y, -1, secondary_layer, _angle_quad)[0];		
+		
+			_y = y - solid_radius_y;
+			_ceil_dist = tile_find_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, -1, secondary_layer, _angle_quad)[0];	
+			
 		break;
 
 		case QUADRANT.RIGHT:
-			_x = x - radius_y;
-			_ceil_dist = tile_find_2h(_x, y - radius_x, _x, y + radius_x, -1, secondary_layer, _angle_quad)[0];
+		
+			_x = x - solid_radius_y;
+			_ceil_dist = tile_find_2h(_x, y - solid_radius_x, _x, y + solid_radius_x, -1, secondary_layer, _angle_quad)[0];
+			
 		break;
 
 		case QUADRANT.LEFT:
-			_x = x + radius_y;
-			_ceil_dist = tile_find_2h(_x, y - radius_x, _x, y + radius_x, 1, secondary_layer, _angle_quad)[0];
+		
+			_x = x + solid_radius_y;
+			_ceil_dist = tile_find_2h(_x, y - solid_radius_x, _x, y + solid_radius_x, 1, secondary_layer, _angle_quad)[0];
+			
 		break;
 	}
 
-	if (_ceil_dist < _max_dist)
+	if _ceil_dist < _max_dist
 	{
 		return;
 	}
-
-	if (animation != ANIM.SPIN)
+	
+	if animation != ANIM.SPIN
 	{
-		y += radius_y - radius_y_spin;
-		radius_x = radius_x_spin;
-		radius_y = radius_y_spin;
+		y += solid_radius_y - radius_y_spin;
+		solid_radius_x = radius_x_spin;
+		solid_radius_y = radius_y_spin;
 	}
-	else if (global.roll_lock && global.player_physics != PHYSICS.CD)
+	else if global.roll_lock && global.player_physics != PHYSICS.CD
 	{
 		air_lock_flag = true;
 	}
@@ -63,5 +66,6 @@ function scr_player_jump_start()
 	animation = ANIM.SPIN;
 	
 	audio_play_sfx(snd_jump);
+	
 	return true;
 }

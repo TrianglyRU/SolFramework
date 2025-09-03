@@ -1,1 +1,0 @@
-// Culling is unused

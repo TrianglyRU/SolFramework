@@ -1,6 +1,7 @@
 /// @description Active Culling
 /// This is a user event because of a posibillity of it being called at various points of game loop
 
+// Restore every game object that was deactivated
 var _list_size = ds_list_size(cull_game_paused_list);
 
 if _list_size > 0
@@ -11,6 +12,8 @@ if _list_size > 0
 	}
 	
 	ds_list_clear(cull_game_paused_list);
+	
+	instance_activate_object(obj_room);
 }
 
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
@@ -40,7 +43,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 }
 
 // Cull game objects by their *position* (this will also cancel "false" activations by instance_activate_region)
-with obj_game_object
+with obj_object
 {
-	event_user(14);
+	event_user(15);
 }

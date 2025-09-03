@@ -16,7 +16,7 @@ else if (_input_press.up)
 
 if (_input_press.action3 && category_id == 1 && option_id > 0)
 {	
-	self.alter_option(option_id, "SAVE " + string(option_id - 1));
+	alter_option(option_id, "SAVE " + string(option_id - 1));
 	
 	game_delete_data(option_id - 1);
 	return;
@@ -29,7 +29,7 @@ if (_input_press.action2)
 		game_save_settings();
 	}
 	
-	self.load_category(all_categories_data[? category_id][0]);
+	load_category(all_categories_data[? category_id][0]);
 	return;
 }
 
@@ -65,13 +65,13 @@ switch (category_id)
 		{
 			case 0:
 			
-				self.load_category(1);	
+				load_category(1);	
 				
 				for (var _i = 0; _i < 4; _i++)
 				{
 					if (game_check_data(_i))
 					{
-						self.alter_option(_i + 1, "SAVED GAME " + string(_i));
+						alter_option(_i + 1, "SAVED GAME " + string(_i));
 					}
 				}
 				
@@ -81,7 +81,7 @@ switch (category_id)
 			
 				if (global.dev_mode)
 				{
-					self.load_category(2);
+					load_category(2);
 				}
 				else
 				{
@@ -91,7 +91,7 @@ switch (category_id)
 			break;
 			
 			case 2:
-				self.load_category(3);
+				load_category(3);
 			break;
 			
 			case 3:
@@ -109,7 +109,7 @@ switch (category_id)
 		if (!game_check_data(global.current_save_slot))
 		{
 			room_to_load = rm_stage_ghz0;
-			self.load_category(4);
+			load_category(4);
 			
 			break;
 		}
@@ -137,7 +137,7 @@ switch (category_id)
 		}
 		else
 		{
-			self.load_category(4);
+			load_category(4);
 			global.current_save_slot = -1;
 		}
 		
@@ -232,7 +232,7 @@ switch (category_id)
 			break;
 		}
 		
-		self.alter_setting(option_id);
+		alter_setting(option_id);
 		
 	break;
 	
@@ -240,7 +240,7 @@ switch (category_id)
 	case 4:	
 	
 		global.player_main = option_id;
-		self.load_category(5);
+		load_category(5);
 		
 	break;
 	

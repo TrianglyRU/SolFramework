@@ -43,7 +43,7 @@ switch (state)
 			
 			with (gate_obj)
 			{
-				obj_set_anim(sprite_index, 4, 0, self.destroy());
+				obj_set_anim(sprite_index, 4, 0, destroy());
 			}
 			
 	        state = CAPSULESTATE.SPAWN_ANIMALS;
