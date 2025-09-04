@@ -1,3 +1,7 @@
+instance_destroy();
+return;
+
+
 enum NEWTRONTYPE
 {
 	FALL,

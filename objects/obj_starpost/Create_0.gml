@@ -1,15 +1,14 @@
-enum STARPOSTSTATE
+// Inherit the parent event
+event_inherited();
+
+enum STARPOST_STATE
 {
 	IDLE,
 	ACTIVE
 }
 
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(6);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
 image_index = 1;
-state = STARPOSTSTATE.IDLE;
-lamp_obj = instance_create_dependent(x, y - 32, obj_starpost_lamp);
+depth = m_get_layer_depth(60);
+outside_action = OUTSIDE_ACTION.RESPAWN;
+state = STARPOST_STATE.IDLE;
+lamp_obj = instance_create(x, y - 32, obj_starpost_lamp);

@@ -1,4 +1,4 @@
-/// @description Active Culling
+/// @description Culling
 /// This is a user event because of a posibillity of it being called at various points of game loop
 
 // Restore every game object that was deactivated

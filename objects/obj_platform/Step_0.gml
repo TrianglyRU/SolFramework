@@ -2,19 +2,19 @@ switch state
 {
 	case PLATFORM_STATE.MOVE:
 	
-		var _player_touch = false;
+		var _found_player = false;
 		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			if solid_touch[_p] == SOLID_TOUCH.TOP
 			{
-				_player_touch = true;
+				_found_player = true;
 			}
 		}
 		
 		var _weight_inc = 5.625;
 		
-		if _player_touch
+		if _found_player
 		{
 			if weight < 90
 			{
@@ -59,7 +59,7 @@ switch state
 				
 				if wait_timer == 0
 				{
-					if _player_touch
+					if _found_player
 					{
 						wait_timer = 30;
 					}
@@ -77,7 +77,7 @@ switch state
 		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
-			instance_solid(player_get(_p), SOLID_TYPE.TOP);
+			m_solid_object(player_get(_p), SOLID_TYPE.TOP);
 		}
 
 	break;
@@ -104,12 +104,7 @@ switch state
 		{
 			for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			{
-				var _player = player_get(_p);
-				
-				if _player.on_object == id
-				{
-					instance_solid(_player, SOLID_TYPE.TOP);
-				}
+				m_solid_object(player_get(_p), SOLID_TYPE.TOP_NO_LAND);
 			}
 		}
 

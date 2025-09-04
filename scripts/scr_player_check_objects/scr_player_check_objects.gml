@@ -1,6 +1,8 @@
 /// @self obj_player
 function scr_player_check_objects()
 {
+	touch_object = noone;
+	
 	if state != PLAYER_STATE.DEFAULT && state != PLAYER_STATE.DEFAULT_LOCKED || cpu_state == CPU_STATE.RESPAWN || cpu_state == CPU_STATE.RESPAWN_INIT
 	{
 		return;
@@ -15,17 +17,19 @@ function scr_player_check_objects()
 	
 	with obj_object
 	{
-		if mask_index != -1
+		if object_index == obj_player
 		{
-			var _left = floor(bbox_left);
-			var _right = floor(bbox_right);
-			var _top = floor(bbox_top);
-			var _bottom = floor(bbox_bottom);
+			continue;
+		}
+		
+		var _left = floor(bbox_left);
+		var _top = floor(bbox_top);
+		var _right = floor(bbox_right);
+		var _bottom = floor(bbox_bottom);
 			
-			if rectangle_in_rectangle(_pleft, _ptop, _pright, _pbottom, _left, _top, _right, _bottom)
-			{
-				other.touch_object = id; break;
-			}
+		if rectangle_in_rectangle(_pleft, _ptop, _pright, _pbottom, _left, _top, _right, _bottom)
+		{
+			other.touch_object = id; break;
 		}
 	}
 }

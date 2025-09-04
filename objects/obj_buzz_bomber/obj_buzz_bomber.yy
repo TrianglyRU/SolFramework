@@ -9,7 +9,10 @@
   "solid": false,
   "visible": true,
   "managed": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_buzz_bomber_hover",
+    "path": "sprites/spr_buzz_bomber_hover/spr_buzz_bomber_hover.yy",
+  },
   "persistent": false,
   "parentObjectId": {
     "name": "obj_object_enemy",

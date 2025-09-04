@@ -1,5 +1,3 @@
-mask_index = spr_buzz_bomber_hover;
-
 // Inherit the parent event
 event_inherited();
 
@@ -11,6 +9,7 @@ switch state
 		{
 			state = BUZZBOMBERSTATE.ROAM;
 			state_timer = 127;
+			
 			m_animation_start(spr_buzz_bomber_roam, 0, 0, 2);
 		}
 		
@@ -24,6 +23,7 @@ switch state
 			state = BUZZBOMBERSTATE.HOVER;
 			state_timer = 59;
 			shot_flag = true;
+			
 			m_animation_start(spr_buzz_bomber_fire, 0, 0, 2);
 		}
 		
@@ -36,9 +36,9 @@ switch state
 			state = BUZZBOMBERSTATE.HOVER;
 			shot_flag = false;
 			state_timer = 59;
-			m_animation_start(spr_buzz_bomber_hover, 0, 0, 2);
 			image_xscale *= -1;
 			
+			m_animation_start(spr_buzz_bomber_hover, 0, 0, 2);
 			break;
 		}
 		
@@ -58,9 +58,15 @@ switch state
 			{
 				state = BUZZBOMBERSTATE.FIRE;
 				state_timer = 29;
+				
 				m_animation_start(spr_buzz_bomber_hover, 0, 0, 2);
 			}
 		}
 		
 	break;
+}
+
+if instance_exists(projectile) && projectile.sprite_index != spr_buzz_bomber_projectile_flare
+{
+	projectile = noone;
 }

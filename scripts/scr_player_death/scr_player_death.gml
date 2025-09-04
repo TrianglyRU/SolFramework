@@ -66,7 +66,7 @@ function scr_player_death()
 	        {
 				if instance_exists(obj_rm_stage)
 				{
-					obj_rm_stage.restart_flag = true;
+					obj_rm_stage.restart = true;
 				}
 				
 			    audio_stop_bgm(1);	

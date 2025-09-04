@@ -54,7 +54,7 @@ switch (state)
 		y += vel_y;
 		vel_y += 0.21875;
 		
-		_floor_dist = tile_find_v(x, y + 16, 1)[0];
+		_floor_dist = collision_tile_v(x, y + 16, 1)[0];
 		if (_floor_dist < 0)
 		{
 			y += _floor_dist;
@@ -78,7 +78,7 @@ switch (state)
 		
 		if (state == NEWTRONSTATE.FLOOR)
 		{
-			_floor_dist = tile_find_v(x, y + 16, 1)[0];
+			_floor_dist = collision_tile_v(x, y + 16, 1)[0];
 			if (_floor_dist < -8 || _floor_dist >= 12)
 			{
 				state = NEWTRONSTATE.FLY;

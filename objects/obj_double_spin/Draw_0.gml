@@ -1,5 +1,1 @@
-// Override draw
-draw_sprite_ext
-(
-	sprite_index, image_index, floor(vd_target_player.x), floor(vd_target_player.y), vd_target_player.facing, image_yscale, image_angle, c_white, image_alpha
-);
+draw_sprite_ext(sprite_index, image_index, floor(player.x), floor(player.y), player.facing, image_yscale, image_angle, draw_get_colour(), image_alpha);

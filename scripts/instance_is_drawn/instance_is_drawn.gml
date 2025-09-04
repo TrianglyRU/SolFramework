@@ -3,7 +3,7 @@
 /// @returns {Bool}
 function instance_is_drawn(_inst_id = id)
 {
-	if _inst_id.sprite_index < 0 || !_inst_id.visible
+	if !instance_exists(_inst_id) || _inst_id.sprite_index < 0 || !_inst_id.visible
 	{
 		return false;
 	}

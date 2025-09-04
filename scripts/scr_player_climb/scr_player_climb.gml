@@ -52,7 +52,7 @@ function scr_player_climb()
 			
 			if vel_y < 0
 			{
-				var _wall_dist = tile_find_h(x + _radius_x * facing, y - solid_radius_y - 1, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _radius_x * facing, y - solid_radius_y - 1, facing, secondary_layer)[0];
 				
 				if _wall_dist >= 4
 				{
@@ -68,7 +68,7 @@ function scr_player_climb()
 					vel_y = 0;
 				}
 				
-				var _ceil_dist = tile_find_v(x + _radius_x * facing, y - radius_y_normal + 1, -1, secondary_layer)[0];
+				var _ceil_dist = collision_tile_v(x + _radius_x * facing, y - radius_y_normal + 1, -1, secondary_layer)[0];
 				
 				if _ceil_dist < 0
 				{
@@ -78,7 +78,7 @@ function scr_player_climb()
 			}
 			else
 			{
-				var _wall_dist = tile_find_h(x + _radius_x * facing, y + solid_radius_y + 1, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _radius_x * facing, y + solid_radius_y + 1, facing, secondary_layer)[0];
 				
 				if _wall_dist != 0
 				{
@@ -86,7 +86,7 @@ function scr_player_climb()
 					break;
 				}
 				
-				var _floor_data = tile_find_v(x + _radius_x * facing, y + radius_y_normal, 1, secondary_layer);
+				var _floor_data = collision_tile_v(x + _radius_x * facing, y + radius_y_normal, 1, secondary_layer);
 				var _floor_dist = _floor_data[0];
 				var _floor_angle = _floor_data[1];
 				

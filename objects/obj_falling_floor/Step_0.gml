@@ -1,4 +1,4 @@
-switch (state)
+switch state
 {
     case FALLINGFLOORSTATE.IDLE:
         
@@ -6,17 +6,17 @@ switch (state)
         {
             var _player = player_get(_p);
 			
-            obj_act_solid(_player, SOLIDOBJECT.TOP);
-            
-            if (!fall_flag)
+			m_solid_object(_player, SOLID_TYPE.TOP);
+			
+            if !fall_flag
             {
-                fall_flag = obj_check_solid(_player, SOLIDCOLLISION.TOP);
+                fall_flag = solid_touch[_p] == SOLID_TOUCH.TOP;
             }
         }
         
-        if (!fall_flag || wait_timer > 0)
+        if !fall_flag || wait_timer > 0
         {
-            if (fall_flag)
+            if fall_flag
             {
                 wait_timer--;
             }
@@ -30,23 +30,14 @@ switch (state)
 		var _row = 0;
 		var _wait_timer = 0;
 		
-        while (true)
+        while true
         {
             for (var _j = height - 16; _j >= 0; _j -= 16)
             {
 				_wait_timer = _row * 2 + _column * 4;
 				_row++;
 				
-                instance_create(corner_x + _i + 8, corner_y + _j + 8, obj_piece,
-                {
-                    vd_wait_time: _wait_timer,
-                    vd_sprite: sprite_index,
-                    vd_x: _is_flipped ? width - _i - 16 : _i,
-                    vd_y: _j,
-                    vd_width: 16,
-                    vd_height: 16,
-                    vd_flip_x: _is_flipped
-                });
+				instance_create_piece(corner_x + _i + 8, corner_y + _j + 8, sprite_index, image_index, _is_flipped ? width - _i - 16 : _i, _j, 16, 16, 0, 0, _wait_timer, _is_flipped, false, false);
             }
             
             // Move to the next piece
@@ -54,8 +45,7 @@ switch (state)
 			_column++;
 			_row = 0;
             
-            // Exit if it's out of bounds
-            if (_i < 0 || _i >= width)
+            if _i < 0 || _i >= width
             {
                 break;
             }
@@ -73,18 +63,18 @@ switch (state)
 	
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
-	        obj_act_solid(player_get(_p), SOLIDOBJECT.TOP, SOLIDATTACH.NONE);
+			m_solid_object(player_get(_p), SOLID_TYPE.TOP_NO_LAND);
 		}
 		
-		if (wait_timer > 0)
+		if wait_timer > 0
 		{
 			wait_timer--;
 		}
 		else
 		{
-			with (obj_player)
+			with obj_player
 			{
-				if (on_object == other.id)
+				if on_object == other.id
 				{
 					on_object = noone;
 					is_grounded = false;

@@ -1,21 +1,19 @@
-/// @feather ignore GM2016
-
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
-	if (global.ring_spill_counter >= 226)
+	if global.ring_spill_counter >= 226
 	{
 		continue;
 	}
 	
 	var _player = player_get(_p);
-	var _use_ext_hitbox = vd_state == RINGSTATE.DROP && (_player.shield_state == SHIELD_STATE.DOUBLE_SPIN || _player.action == ACTION.HAMMERSPIN);
+	var _use_ext_hitbox = state == RING_STATE.DROPPED && (_player.shield_state == SHIELD_STATE.DOUBLE_SPIN || _player.action == ACTION.HAMMERSPIN);
 	
-	if (!obj_check_hitbox(_player, _use_ext_hitbox))
+	if !collision_player(_player)
 	{
 		continue;
 	}
 	
-	if (global.player_rings % 2 > 0)
+	if global.player_rings % 2 > 0
 	{
 		audio_play_sfx(snd_ring_right);
 	}
@@ -24,86 +22,103 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		audio_play_sfx(snd_ring_left);
 	}
 	
-	if (global.player_rings < 999)
+	if global.player_rings < 999
 	{
 		global.player_rings++;
 	}
 	
 	instance_create(x, y, obj_sparkle);
 	instance_destroy();
+	
 	return;
 }
 
-switch (vd_state)
+switch state
 {
-	case RINGSTATE.STATIC:
-	case RINGSTATE.ATTRACT:
-	
+	case RING_STATE.STATIC:
+	case RING_STATE.ATTRACTED:
+		
 		var _player = player_get(0);
+		var _x = floor(x);
+		var _y = floor(y);
+		var _px = floor(_player.x);
+		var _py = floor(_player.y);
+		
 		var _shield = global.player_shields[0];
 		
-		if (vd_state == RINGSTATE.STATIC)
+		if state == RING_STATE.STATIC
 		{
-			if (_shield != SHIELD.LIGHTNING || distance_to_object(_player) > 64)
+			if _shield != SHIELD.LIGHTNING || point_distance(_x, _y, _px, _py) >= 64
 			{
 				break;
 			}
 			
-			vd_state = RINGSTATE.ATTRACT;
-			obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
+			state = RING_STATE.ATTRACTED;
+			outside_action = OUTSIDE_ACTION.DESTROY;
 		}
 		
-		if (_shield == SHIELD.LIGHTNING)
+		if _shield == SHIELD.LIGHTNING
 		{
 			var _acc_fast = 0.75;
 			var _acc_slow = 0.1875;
 		
-			if (floor(x) >= floor(_player.x))
+			if _x >= _px
 			{
-				vd_vel_x = vd_vel_x >= 0 ? vd_vel_x - _acc_fast : vd_vel_x - _acc_slow;
+				vel_x = vel_x >= 0 ? vel_x - _acc_fast : vel_x - _acc_slow;
 			}
 			else
 			{
-				vd_vel_x = vd_vel_x < 0 ? vd_vel_x + _acc_fast : vd_vel_x + _acc_slow;
+				vel_x = vel_x < 0 ? vel_x + _acc_fast : vel_x + _acc_slow;
 			}
 			
-			if (floor(y) >= floor(_player.y))
+			if _y >= _py
 			{
-				vd_vel_y = vd_vel_y >= 0 ? vd_vel_y - _acc_fast : vd_vel_y - _acc_slow;
+				vel_y = vel_y >= 0 ? vel_y - _acc_fast : vel_y - _acc_slow;
 			}
 			else
 			{
-				vd_vel_y = vd_vel_y < 0 ? vd_vel_y + _acc_fast : vd_vel_y + _acc_slow;
+				vel_y = vel_y < 0 ? vel_y + _acc_fast : vel_y + _acc_slow;
 			}
 		}
 		
-		x += vd_vel_x;
-		y += vd_vel_y;
+		x += vel_x;
+		y += vel_y;
 		
 	break;
 	
-	case RINGSTATE.DROP:
+	case RING_STATE.DROPPED:
 		
 		var _spill_timer = global.ring_spill_counter;
-		if (_spill_timer == 0)
+		
+		if _spill_timer == 0
 		{
 			instance_destroy();
 			break;
 		}
 		
-		obj_set_anim(sprite_index, floor(512 / (_spill_timer)), 0, 0);
+		var _target_duration = floor(512 / (_spill_timer));
 		
-		x += vd_vel_x;
-		y += vd_vel_y;
-		vd_vel_y += 0.09375;
-		
-		if (vd_vel_y >= 0 && _spill_timer % 4 == 0)
+		if image_timer == 0
 		{
-			var _floor_dist = tile_find_v(x, y + 8, 1)[0];
-			if (_floor_dist < 0)
+			m_animation_start(sprite_index, 0, 0, _target_duration);
+		}
+		else
+		{
+			image_duration = _target_duration;
+		}
+		
+		x += vel_x;
+		y += vel_y;
+		vel_y += 0.09375;
+		
+		if vel_y >= 0 && _spill_timer % 4 == 0
+		{
+			var _floor_dist = collision_tile_v(x, y + 8, 1)[0];
+			
+			if _floor_dist < 0
 			{
-				vd_vel_y *= -0.75;
 				y += _floor_dist;
+				vel_y *= -0.75;
 			}
 		}
 		

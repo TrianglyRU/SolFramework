@@ -1,10 +1,5 @@
 // Override draw
-if (sprite_index < 0)
-{
-	return;
-}
-
-for (var _i = 0; _i < vd_chain_amount; _i++)
+for (var _i = 0; _i < iv_chains; _i++)
 {
 	var _x = math_oscillate_x(xstart, osc_angle, _i * SWING_CHAIN_SIZE);
 	var _y = math_oscillate_y(ystart, osc_angle, _i * SWING_CHAIN_SIZE);

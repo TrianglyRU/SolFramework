@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-obj_set_priority(0);
-obj_set_anim(sprite_index, 2, 0, 0);
+depth = m_get_layer_depth(0);
+ignore_game_state = true;
+player = noone;
+m_animation_start(sprite_index, 0, 0, 2);

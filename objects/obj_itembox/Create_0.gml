@@ -1,29 +1,27 @@
-enum ITEMBOXSTATE
-{
-	IDLE,
-	FALL,
-	DESTROYED
-}
-
 // Inherit the parent event
 event_inherited();
 
-obj_set_priority(4);
-obj_set_hitbox(16, 16);
-obj_set_solid(15, 15);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
+enum ITEMBOX_STATE
+{
+	IDLE,
+	FALLING,
+	DESTROYED
+}
 
-state = ITEMBOXSTATE.IDLE;
+depth = m_get_layer_depth(40);
+outside_action = OUTSIDE_ACTION.RESPAWN;
+state = ITEMBOX_STATE.IDLE;
 vel_y = 0;
 itembox_type = image_index;
 
-if (itembox_type >= 9)
+if itembox_type >= 9
 {
 	itembox_type = 9 + global.player_main;
 }
 
 var _sprite = spr_itembox_static;
-switch (itembox_type)
+
+switch itembox_type
 {
 	case 1: _sprite = spr_itembox_eggman; break;
 	case 2: _sprite = spr_itembox_ring; break;
@@ -39,4 +37,4 @@ switch (itembox_type)
 	case 12: _sprite = spr_itembox_amy; break;
 }
 
-obj_set_anim(_sprite, 2, itembox_type == 0 ? 0 : 1, 0);
+m_animation_start(_sprite, itembox_type == 0 ? 0 : 1, 0, 2);

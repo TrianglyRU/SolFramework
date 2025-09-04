@@ -6,7 +6,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
 	
-	if _player.touch_object == id
+	if collision_player(_player)
 	{
 		_player.m_hurt();
 	}

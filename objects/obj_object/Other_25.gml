@@ -1,4 +1,4 @@
-/// @description Active Culling
+/// @description Culling
 /// Called in obj_game -> Begin Step -> CULLING. Override if not required!
 
 if outside_respawned
@@ -19,6 +19,7 @@ var _y = floor(y);
 for (var _i = 0; _i < CAMERA_COUNT; _i++) 
 {
 	var _camera_data = camera_get_data(_i);
+	
 	if _camera_data == undefined
 	{
 		continue;
@@ -45,7 +46,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 				return;
 			}
 			
-			break;
+		break;
 			
 		case OUTSIDE_ACTION.PAUSE:
 			
@@ -55,7 +56,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 				return;
 			}
 			
-			break;
+		break;
 			
 		case OUTSIDE_ACTION.RESPAWN:
 		
@@ -65,7 +66,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 				return;
 			}
 			
-			break;
+		break;
 	}
 }
 
@@ -73,11 +74,11 @@ switch outside_action
 {
 	case OUTSIDE_ACTION.DESTROY:
 		instance_destroy();
-		break;
+	break;
 		
 	case OUTSIDE_ACTION.PAUSE:
 		instance_deactivate_object(id);
-		break;
+	break;
 	
 	case OUTSIDE_ACTION.RESPAWN:
 		
@@ -87,4 +88,6 @@ switch outside_action
 		
 		event_perform(ev_destroy, 0);
 		instance_deactivate_object(id);
+		
+	break;
 }

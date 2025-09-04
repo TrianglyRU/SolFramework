@@ -9,11 +9,14 @@
   "solid": false,
   "visible": false,
   "managed": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_crabmeat_idle",
+    "path": "sprites/spr_crabmeat_idle/spr_crabmeat_idle.yy",
+  },
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_object",
-    "path": "objects/obj_object/obj_object.yy",
+    "name": "obj_object_enemy",
+    "path": "objects/obj_object_enemy/obj_object_enemy.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

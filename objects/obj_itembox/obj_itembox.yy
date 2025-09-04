@@ -9,11 +9,14 @@
   "solid": false,
   "visible": true,
   "managed": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_itembox_editor",
+    "path": "sprites/spr_itembox_editor/spr_itembox_editor.yy",
+  },
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_object",
-    "path": "objects/obj_object/obj_object.yy",
+    "name": "obj_object_solid",
+    "path": "objects/obj_object_solid/obj_object_solid.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

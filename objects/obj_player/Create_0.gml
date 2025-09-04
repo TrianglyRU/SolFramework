@@ -166,7 +166,7 @@ m_set_hitbox = function(_radius_x, _radius_y, _offset_x, _offset_y)
 	react_radius_x = _radius_x;
 	react_radius_y = _radius_y;
 	react_offset_x = _offset_x;
-	react_offset_x = _offset_y;
+	react_offset_y = _offset_y;
 }
 
 m_set_extra_hitbox = function(_radius_x, _radius_y, _offset_x, _offset_y)
@@ -381,12 +381,14 @@ m_hurt = function(_sound = snd_hurt, _hazard = other)
 
 		for (var _i = 0; _i < _count; _i++) 
 		{
-			instance_create(x, y, obj_ring,
-			{
-				vd_state: RINGSTATE.DROP,			
-				vd_vel_x: _ring_speed * dcos(_ring_angle) * -_ring_direction,
-				vd_vel_y: _ring_speed * -dsin(_ring_angle)
-			});
+			var _ring = instance_create(x, y, obj_ring);
+			
+			// Override data
+			_ring.outside_action = OUTSIDE_ACTION.DESTROY;
+			_ring.state = RING_STATE.DROPPED;
+			_ring.vel_x = _ring_speed * dcos(_ring_angle) * -_ring_direction;
+			_ring.vel_y = _ring_speed * -dsin(_ring_angle);
+			_ring.depth = _ring.m_get_layer_depth(30);
 			
 			if _ring_direction == 1
 			{
@@ -544,16 +546,10 @@ m_down_action_any = function()
 	return input_down.action1 || input_down.action2 || input_down.action3;
 }
 
-restart_after_death = function()
-{
-	game_clear_level_data(false);
-	room_restart();
-}
-
 #endregion
 
 obj_game.player_count++;
-ignore_object_stop = true;
+ignore_game_state = true;
 
 scr_player_init();
 scr_player_debug_mode_init();

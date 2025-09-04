@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
-obj_set_anim(sprite_index, 2, 0, function(){ instance_destroy(); });
+outside_action = OUTSIDE_ACTION.DESTROY;
+m_animation_start(sprite_index, 0, 11, 2);
 
 depth += 1;

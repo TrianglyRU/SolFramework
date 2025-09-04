@@ -22,15 +22,15 @@ function scr_player_balance()
 		}
 		
 		var _y = y + solid_radius_y;
-		var _floor_dist = tile_find_v(x, _y, 1, secondary_layer)[0];	
+		var _floor_dist = collision_tile_v(x, _y, 1, secondary_layer)[0];	
 		
 		if _floor_dist < 12
 		{
 			return;
 		}
 		
-		var _angle_left = tile_find_v(x - solid_radius_x, _y, 1, secondary_layer)[1];
-		var _angle_right = tile_find_v(x + solid_radius_x, _y, 1, secondary_layer)[1];
+		var _angle_left = collision_tile_v(x - solid_radius_x, _y, 1, secondary_layer)[1];
+		var _angle_right = collision_tile_v(x + solid_radius_x, _y, 1, secondary_layer)[1];
 		
 		if _angle_left == TILE_EMPTY_ANGLE && _angle_right == TILE_EMPTY_ANGLE
 		|| _angle_left != TILE_EMPTY_ANGLE && _angle_right != TILE_EMPTY_ANGLE
@@ -40,18 +40,18 @@ function scr_player_balance()
 		
 		if _angle_left == TILE_EMPTY_ANGLE
 		{	
-			_balance_left(tile_find_v(x + 6, _y, 1, secondary_layer)[0] >= 12);
+			_balance_left(collision_tile_v(x + 6, _y, 1, secondary_layer)[0] >= 12);
 		}
 		else if _angle_right == TILE_EMPTY_ANGLE
 		{
-			_balance_right(tile_find_v(x - 6, _y, 1, secondary_layer)[0] >= 12);
+			_balance_right(collision_tile_v(x - 6, _y, 1, secondary_layer)[0] >= 12);
 		}
 	}
 	else if instance_exists(on_object)
 	{
 		var _obj = on_object;
 		
-		if _obj.solid_disable_balance
+		if !_obj.solid_balance
 		{
 			return;
 		}

@@ -1,8 +1,8 @@
-if (vd_move_spikes)
+if iv_retract
 {
-    if (retract_timer > 0)
+    if retract_timer > 0
     {
-        if (--retract_timer == 0 && instance_is_drawn())
+        if --retract_timer == 0 && instance_is_drawn()
         {
             audio_play_sfx(snd_spikes_move);
         }
@@ -11,17 +11,17 @@ if (vd_move_spikes)
     {
         retract_offset += 8 * retract_direction;
 		
-        if (abs(retract_offset) >= retract_distance || sign(image_yscale) != sign(retract_offset))
+        if abs(retract_offset) >= retract_distance || sign(image_yscale) != sign(retract_offset)
         {
-            if (image_yscale > 0)
+            if image_yscale > 0
             {
                 retract_offset = clamp(retract_offset, 0, retract_distance);
             }
-            else if (image_yscale < 0)
+            else if image_yscale < 0
             {
                 retract_offset = clamp(retract_offset, -retract_distance, 0);
             }
-
+			
             retract_timer = 60;
             retract_direction *= -1;
         }
@@ -33,13 +33,13 @@ if (vd_move_spikes)
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
-    var _attach_type = _player.m_is_invincible() ? SOLIDATTACH.DEFAULT : SOLIDATTACH.RESET_PLAYER;
-    var _collision_side = image_yscale >= 0 ? SOLIDCOLLISION.TOP : SOLIDCOLLISION.BOTTOM;
-
-    obj_act_solid(_player, SOLIDOBJECT.FULL, _attach_type);
-
-    if (obj_check_solid(_player, _collision_side))
-    {
-        _player.m_hurt(snd_spikes_hurt);
-    }
+    var _type = _player.m_is_invincible() ? SOLID_TYPE.FULL : SOLID_TYPE.FULL_RESET;
+    var _hurt_side = image_yscale >= 0 ? SOLID_TOUCH.TOP : SOLID_TOUCH.BOTTOM;
+	
+	m_solid_object(_player, _type);
+	
+	if solid_touch[_p] == _hurt_side
+	{
+		_player.m_hurt(snd_spikes_hurt);
+	}
 }

@@ -75,7 +75,7 @@ function scr_player_water()
 			}
 			else if _shield == SHIELD.FIRE
 			{
-				instance_create(x, obj_rm_stage.water_level, obj_explosion_dust, { vd_make_sound: false });
+				instance_create(x, obj_rm_stage.water_level, obj_explosion_dust);
 			}
 			
 			global.player_shields[player_index] = SHIELD.NONE;

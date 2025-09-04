@@ -5,11 +5,6 @@ enum OUTSIDE_ACTION
 	DESTROY
 }
 
-m_get_layer_depth = function(_priority)
-{
-	return floor(depth_start / 100) * 100 + _priority;
-}
-
 /// @param {Asset.GMSprite} _sprite_id	The sprite used for the animation
 /// @param {Real} _start_frame			Index of a starting frame
 /// @param {Real} _loopback				A frame index to loop back to
@@ -35,7 +30,19 @@ m_animation_restart = function()
 	image_index = 0;
 }
 
-ignore_object_stop = false;
+m_animation_clear = function(_image_index)
+{
+	image_duration = 0;
+	image_timer = 0;
+	sprite_play_count = 0;
+	image_speed = 0;
+	image_index = _image_index;
+}
+
+m_get_layer_depth = function(_priority)
+{
+	return floor(depth / 100) * 100 + _priority;
+}
 
 sprite_index_start = sprite_index;
 image_xscale_start = image_xscale;
@@ -49,5 +56,6 @@ image_duration = 0;
 image_timer = 0;
 image_loopback = 0;
 
+ignore_game_state = false;
 outside_respawned = false; 
 outside_action = OUTSIDE_ACTION.PAUSE;

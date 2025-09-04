@@ -15,7 +15,7 @@ function scr_player_glide_collision()
 	
 	if _move_quad != QUADRANT.RIGHT
 	{
-	    var _wall_dist = tile_find_h(x - _wall_radius, y, -1, secondary_layer)[0];
+	    var _wall_dist = collision_tile_h(x - _wall_radius, y, -1, secondary_layer)[0];
 		
 	    if _wall_dist < 0
 	    {
@@ -28,7 +28,7 @@ function scr_player_glide_collision()
 	
 	if _move_quad != QUADRANT.LEFT
 	{
-	    var _wall_dist = tile_find_h(x + _wall_radius, y, 1, secondary_layer)[0];
+	    var _wall_dist = collision_tile_h(x + _wall_radius, y, 1, secondary_layer)[0];
 		
 	    if _wall_dist < 0
 	    {
@@ -42,11 +42,11 @@ function scr_player_glide_collision()
 	if _move_quad != QUADRANT.DOWN
 	{
 	    var _y = y - solid_radius_y;
-	    var _roof_dist = tile_find_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, -1, secondary_layer)[0];
+	    var _roof_dist = collision_tile_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, -1, secondary_layer)[0];
     
 	    if _roof_dist <= -14 && _move_quad == QUADRANT.LEFT && global.player_physics >= PHYSICS.S3
 	    {
-	        var _wall_dist = tile_find_h(x + _wall_radius, y, 1, secondary_layer)[0];
+	        var _wall_dist = collision_tile_h(x + _wall_radius, y, 1, secondary_layer)[0];
 			
 	        if _wall_dist < 0
 	        {
@@ -70,7 +70,7 @@ function scr_player_glide_collision()
 	if _move_quad != QUADRANT.UP
 	{
 	    var _y = y + solid_radius_y;
-	    var _floor_data = tile_find_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, 1, secondary_layer);
+	    var _floor_data = collision_tile_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, 1, secondary_layer);
 	    var _floor_dist = _floor_data[0];
 	    var _floor_angle = _floor_data[1];
     
@@ -138,11 +138,11 @@ function scr_player_glide_collision()
 	}
 	else if _collision_flag_wall && action_state == GLIDE_STATE.AIR
 	{
-	    var _wall_dist = tile_find_h(x + _wall_radius * facing, _climb_y - solid_radius_y, facing, secondary_layer)[0];	
+	    var _wall_dist = collision_tile_h(x + _wall_radius * facing, _climb_y - solid_radius_y, facing, secondary_layer)[0];	
 		
 	    if _wall_dist != 0
 	    {
-	        var _floor_dist = tile_find_v(x + (_wall_radius + 1) * facing, _climb_y - solid_radius_y - 1, 1, secondary_layer, QUADRANT.UP)[0];
+	        var _floor_dist = collision_tile_v(x + (_wall_radius + 1) * facing, _climb_y - solid_radius_y - 1, 1, secondary_layer, QUADRANT.UP)[0];
 			
 	        if  _floor_dist < 0 || _floor_dist >= 12
 	        {

@@ -1,25 +1,31 @@
+if image_timer < 0
+{
+	m_animation_clear(0);
+}
+
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
+	var _touch_side = image_xscale >= 0 ? SOLID_TOUCH.RIGHT : SOLID_TOUCH.LEFT;
 	
-	obj_act_solid(_player, SOLIDOBJECT.FULL);
+	m_solid_object(_player, SOLID_TYPE.FULL);
 	
-	if (!obj_is_anim_stopped() || !_player.is_grounded)
+	if (image_index != 0 || !_player.is_grounded)
 	{
 		continue;
 	}
 		
-	var _collision_side = image_xscale >= 0 ? SOLIDCOLLISION.RIGHT : SOLIDCOLLISION.LEFT;
-	
-	if (!obj_check_solid(_player, _collision_side))
+	if solid_touch[_p] != _touch_side
 	{
-		if (sign(_player.vel_x) != sign(image_xscale) && _player.vel_x != 0)
+		if sign(_player.vel_x) != sign(image_xscale) && _player.vel_x != 0
 		{
 			continue;
 		}
 		
+		var _x = floor(_player.x);
 		var _y = floor(_player.y);
-		if (_y < y - 24 || _y >= y + 24)
+		
+		if _y < y - 24 || _y >= y + 24
 		{
 			continue;
 		}
@@ -27,14 +33,13 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		var _l_bound = x;
 		var _r_bound = x + 40;
 				
-		if (image_xscale < 0)
+		if image_xscale < 0
 		{
 			_l_bound = x - 40;
 			_r_bound = x;
 		}
 		
-		var _x = floor(_player.x);
-		if (_x < _l_bound || _x >= _r_bound)
+		if _x < _l_bound || _x >= _r_bound
 		{
 			continue;
 		}
@@ -47,7 +52,8 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.ground_lock_timer = 16;
 	_player.action = ACTION.NONE;
 	
-	obj_set_anim(sprite_index, 1, 1, stop_anim);
+	m_animation_start(sprite_index, 1, 9, 1);
+	
 	audio_play_sfx(snd_spring);
 	input_set_rumble(_p, 0.20, INPUT_RUMBLE_MEDIUM);
 }

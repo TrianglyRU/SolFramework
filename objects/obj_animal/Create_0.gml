@@ -1,28 +1,33 @@
-enum ANIMALSTATE
+// Inherit the parent event
+event_inherited();
+
+enum ANIMAL_STATE
 {
 	APPEAR,
 	MOVE,
 	CAPSULE
 }
 
-// Inherit the parent event
-event_inherited();
+outside_action = OUTSIDE_ACTION.DESTROY;
 
-obj_set_priority(7);
-obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
-
-state = vd_release_timer == 0 ? ANIMALSTATE.APPEAR : ANIMALSTATE.CAPSULE;
+state = ANIMAL_STATE.APPEAR;
+state_timer = 0;
 grv = 0.21875;
 vel_x = 0;
 vel_y = -4;
 vel_x_bounce = 0;
 vel_y_bounce = 0;
 
-/// @feather ignore GM1041
-var _animal_count = array_length(obj_rm_stage.animal_set);
-if (_animal_count > 0)
+depth = m_get_layer_depth(70);
+
+if instance_exists(obj_rm_stage)
 {
-    sprite_index = obj_rm_stage.animal_set[irandom(_animal_count - 1)];
+	var _animal_count = array_length(obj_rm_stage.animal_set);
+	
+	if _animal_count > 0
+	{
+	    sprite_index = obj_rm_stage.animal_set[irandom(_animal_count - 1)];
+	}
 }
 
 switch (sprite_index)

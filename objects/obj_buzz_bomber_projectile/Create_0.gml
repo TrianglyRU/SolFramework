@@ -1,8 +1,7 @@
 // Inherit the parent event
 event_inherited();
-obj_set_hitbox(6, 6);
 
-// Override data
+visible = false;
 vel_x = -2 * image_xscale;
 vel_y = 2;
-wait_timer = 12;
+wait_timer = 13;

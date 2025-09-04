@@ -23,7 +23,7 @@ player_touch = false;
 wait_timer = 0;
 weight = 0;
 vel_y = 0;
-depth += 5;
+depth = m_get_layer_depth(50);
 
 // Update position immediately
 xprevious = x;

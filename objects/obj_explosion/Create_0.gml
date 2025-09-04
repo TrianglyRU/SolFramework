@@ -1,6 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-obj_set_priority(0);
-obj_set_anim(sprite_index, 2, 0, function(){ instance_destroy(); });
-audio_play_sfx(snd_explosion);
+outside_action = OUTSIDE_ACTION.DESTROY;
+
+depth = m_get_layer_depth(0);
+m_animation_start(sprite_index, 0, 26, 2);

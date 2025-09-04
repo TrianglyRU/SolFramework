@@ -7,8 +7,10 @@ enum SOLID_TYPE
 	SIDES,
 	FULL,
 	FULL_RESET,
+	FULL_NO_LAND,
 	TOP,
-	TOP_RESET
+	TOP_RESET,
+	TOP_NO_LAND
 }
 
 enum SOLID_TOUCH
@@ -20,7 +22,6 @@ enum SOLID_TOUCH
 	RIGHT
 }
 
-/// @description						Handles collision detection and response between the player and a solid object.
 /// @param {Id.Instance} _player		The player object instance.
 /// @param {Enum.SOLID_TYPE|Real} _type	The type of solid object.
 /// @param {Real} [_bbleft]				The maximum left position of the bounding box (optional, default is bbox_left).
@@ -44,19 +45,17 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 	_bbright = floor(_bbright);
 	_bbbottom = floor(_bbbottom);
 	
+	var _slope_offset = 0;
+	var _grip_y = 4;
+	var _ext_x = 0;
+	
 	var _ox_prev = floor(xprevious);
 	var _ox = floor(x);
 	var _oy = floor(y);
-	var _orx = _ox - _bbleft;
-	var _ory = _oy - _bbtop;
 	var _px = floor(_player.x);
 	var _py = floor(_player.y);
 	var _prx = _player.radius_x_normal + 1;
 	var _pry = _player.solid_radius_y;
-	
-	var _slope_offset = 0;
-	var _grip_y = 4;
-	var _ext_x = 0;
 	
 	// Get slope offset
 	if array_length(solid_offsets) > 0
@@ -65,11 +64,11 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 		
 		if image_xscale >= 0
 		{
-			_index = _px - _ox + _orx;
+			_index = _px - _bbleft;
 		}
 		else
 		{
-			_index = _ox - _px + _orx;
+			_index = _bbright - _px - _bbleft;
 		}
 		
 		_slope_offset = solid_offsets[clamp(_index, 0, array_length(solid_offsets) - 1)];
@@ -78,7 +77,7 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 	// Ensures the consistency of horizontal radisues between different checks
 	if global.better_solid_collision
 	{
-		_ext_x = _prx;		
+		// _ext_x = _prx;		
 	}
 	
 	if _player.on_object == id
@@ -90,7 +89,7 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 		
 		if _type < SOLID_TYPE.TOP
 		{
-			if !_player.is_grounded || _new_px + _prx < _bbleft || _new_px - _prx >= _bbright
+			if !_player.is_grounded || _new_px + _prx <= _bbleft || _new_px - _prx >= _bbright
 			{
 				_player.on_object = noone;
 			}
@@ -101,7 +100,7 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 		}
 		else
 		{
-			if !_player.is_grounded || _new_px + _ext_x < _bbleft || _new_px - _ext_x >= _bbright
+			if !_player.is_grounded || _new_px + _ext_x <= _bbleft - 1 || _new_px - _ext_x >= _bbright
 			{
 				_player.on_object = noone;
 			}
@@ -110,22 +109,29 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 				solid_touch[_p] = SOLID_TOUCH.TOP;
 			}
 		}
-	}
-	else if _type < SOLID_TYPE.TOP
-	{
-		var _ptop = _py - _pry;
-		var _pbottom = _py + _pry;
-		var _pleft = _px - _prx;
-		var _pright = _px + _prx;
 		
-		if !rectangle_in_rectangle(_pleft, _ptop, _pright, _pbottom, _bbleft, _bbtop, _bbright, _bbbottom)
+		return;
+	}
+	
+	// Assume player is 4px lower than they actually are
+	var _py2 = _py + _grip_y - _slope_offset;
+	
+	if _type < SOLID_TYPE.TOP
+	{	
+		if !point_in_rectangle(_px, _py2, _bbleft - 1 - _prx, _bbtop + 1 - _pry, _bbright + _prx, _bbbottom - 1 + _pry)
 		{
 			_player.m_clear_solid_push(id);
 			return;
 		}
 		
-		var _x_clip = _px < _ox ? _pright - _bbleft : _pleft - _bbright;
-		var _y_clip = _py < _oy ? _pbottom - _bbtop : _ptop - _bbbottom + _slope_offset;
+		var _ptop = _py2 - _pry;
+		var _pbottom = _py2 + _pry;
+		var _pleft = _px - _prx;
+		var _pright = _px + _prx;
+		
+		var _x_clip = _px < _ox ? _pright - _bbleft + 1 : _pleft - _bbright;
+		var _y_clip = _py < _oy ? _pbottom - _bbtop + 1 : _ptop - _bbbottom - _grip_y;
+		
 		var _s3_method = global.player_physics >= PHYSICS.S3;
 		
 		// VERTICAL COLLISION
@@ -161,7 +167,7 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 						_player.vel_y = 0;
 					}
 					
-					solid_touch[_p] = SOLID_TOUCH.TOP;
+					solid_touch[_p] = SOLID_TOUCH.BOTTOM;
 					
 					// Do not run horizontal collision
 					return;							
@@ -173,10 +179,7 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 				{
 					if _player.vel_y >= 0
 					{
-						var _obj_left = _bbleft - _ext_x;
-						var _obj_right = _bbright + _ext_x;
-						
-						if _px >= _obj_left && _px < _obj_right
+						if _px >= _bbleft - _ext_x && _px <= _bbright + _ext_x - 1
 						{
 							m_attach_player(_type, _player, id, _bbtop);
 						}
@@ -223,12 +226,14 @@ m_solid_object = function(_player, _type, _bbleft = bbox_left, _bbtop = bbox_top
 	}
 	else if _player.vel_y >= 0
 	{
-		var _obj_left = _bbleft - _ext_x;
-		var _obj_right = _bbright + _ext_x;
-		
-		if _px >= _obj_left && _px < _obj_right
+		if _px >= _bbleft - _ext_x && _px <= _bbright + _ext_x - 1
 		{
-			m_attach_player(_type, _player, id, _bbtop);
+			var _y_clip = _bbtop - (_py2 + _pry);
+			
+			if _y_clip >= -16 && _y_clip < 0
+			{
+				m_attach_player(_type, _player, id, _bbtop);
+			}
 		}
 	}
 }
@@ -237,12 +242,17 @@ m_attach_player = function(_type, _player, _obj, _bbtop)
 {
 	solid_touch[_player.player_index] = SOLID_TOUCH.TOP;
 	
+	if _type == SOLID_TYPE.FULL_NO_LAND || _type == SOLID_TYPE.TOP_NO_LAND
+	{
+		return;
+	}
+	
 	if _type == SOLID_TYPE.FULL_RESET || _type == SOLID_TYPE.TOP_RESET
 	{
 		_player.m_reset_substate();
 	}
 	
-	_player.y = _bbtop - _player.solid_radius_y - 1;
+	_player.y = _bbtop - 1 - _player.solid_radius_y;
 	_player.spd_ground	= _player.vel_x;
 	_player.vel_y = 0;
 	_player.angle = 0;
@@ -250,7 +260,7 @@ m_attach_player = function(_type, _player, _obj, _bbtop)
 	
 	if !_player.is_grounded
 	{
-		player_land(_player);
+		_player.m_land();
 	}
 }
 

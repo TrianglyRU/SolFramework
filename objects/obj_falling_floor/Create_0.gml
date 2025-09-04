@@ -1,16 +1,15 @@
+// Inherit the parent event
+event_inherited();
+
 enum FALLINGFLOORSTATE
 {
 	IDLE,
 	FALL
 }
 
-// Inherit the parent event
-event_inherited();
+outside_action = OUTSIDE_ACTION.RESPAWN;
 
-obj_set_priority(5);
-obj_set_solid(32, 8);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
+depth = m_get_layer_depth(50);
 state = FALLINGFLOORSTATE.IDLE;
 wait_timer = 8;
 fall_flag = false;

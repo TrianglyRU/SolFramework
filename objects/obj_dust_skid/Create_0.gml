@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-obj_set_priority(0);
-obj_set_anim(sprite_index, 4, 0, function(){ instance_destroy(); });
+depth = m_get_layer_depth(0);
+outside_action = OUTSIDE_ACTION.DESTROY;
+
+m_animation_start(sprite_index, 0, 3, 4);

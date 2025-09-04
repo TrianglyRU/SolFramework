@@ -22,7 +22,11 @@ function scr_player_spindash()
 			vel_x = 0;
 			vel_y = 0;
 			
-			instance_create(0, 0, obj_dust_spindash, { vd_target_player: id });
+			with instance_create(x, y, obj_dust_spindash)
+			{
+				player = other.id;
+			}
+			
 			audio_play_sfx(snd_charge_spin);
 		}
 		

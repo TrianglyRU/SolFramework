@@ -9,10 +9,10 @@
 /// @param {Enum.TILE_LAYER|Undefined} _secondary_layer The index of the secondary tile layer to search within.
 /// @param {Enum.QUADRANT} [_quadrant] The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
 /// @returns {Array<Real>}
-function tile_find_2h(_x1, _y1, _x2, _y2, _dir, _secondary_layer, _quadrant = QUADRANT.DOWN)
+function collision_tile_2h(_x1, _y1, _x2, _y2, _dir, _secondary_layer, _quadrant = QUADRANT.DOWN)
 {
-    var _tile_data1 = tile_find_h(_x1, _y1, _dir, _secondary_layer, _quadrant);
-    var _tile_data2 = tile_find_h(_x2, _y2, _dir, _secondary_layer, _quadrant);
+    var _tile_data1 = collision_tile_h(_x1, _y1, _dir, _secondary_layer, _quadrant);
+    var _tile_data2 = collision_tile_h(_x2, _y2, _dir, _secondary_layer, _quadrant);
     var _floor_dist1 = _tile_data1[0];
     var _floor_dist2 = _tile_data2[0];
 	

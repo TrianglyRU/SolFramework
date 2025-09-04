@@ -1,82 +1,81 @@
-var _floor_dist;
-
-switch (state)
+switch state
 {
-	case PUSHABLEBLOCKSTATE.GROUND:
+	case PUSH_BLOCK_STATE.GROUNDED:
 	
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			var _player = player_get(_p);
-			direction_x = floor(_player.x) < floor(x) ? 1 : -1;
+			var _direction = sign(x - _player.x);
 			
-			obj_act_solid(_player, SOLIDOBJECT.FULL);
+			m_solid_object(_player, SOLID_TYPE.FULL);
 			
-			if (_player.facing != direction_x || !obj_check_solid(_player, SOLIDCOLLISION.PUSH))
+			if !solid_push[_p] || _player.facing != _direction
 			{
 				continue;
 			}
 			
-			/// @feather ignore GM1041
-			var _wall_dist = tile_find_h(x + (direction_x == 1 ? 15 : -16), y, direction_x)[0];
-			if (_wall_dist <= 0)
+			var _wall_dist = collision_tile_h(x + (_direction == 1 ? 15 : -16), y, _direction)[0];
+			
+			if _wall_dist <= 0
 			{
 				continue;
 			}
 			
-			var _push_force = 0.25;
-			
-			_player.spd_ground = _push_force * direction_x;
+			_player.spd_ground = 0.25 * _direction;
 			_player.vel_x = 0;
-			_player.x += direction_x;
-			x += direction_x;
+			_player.x += _direction;
 			
-			if (!audio_is_playing(snd_push))
+			x += _direction;
+			
+			if !audio_is_playing(snd_push)
 			{
 				audio_play_sfx(snd_push);
 			}
 			
-			if (!vd_no_gravity)
+			if !iv_no_gravity
 			{
-				_floor_dist = tile_find_v(x, y + 15, 1)[0];
-				if (_floor_dist <= 4)
+				var _floor_dist = collision_tile_v(x, y + 15, 1)[0];
+				
+				if _floor_dist <= 4
 				{
 					y += _floor_dist;
 				}
 				else
 				{
-					vel_x = 4 * direction_x;
-					state = PUSHABLEBLOCKSTATE.LEDGE;
+					_player.m_clear_solid_push();
 					
-					obj_clear_solid_push(_player);
+					vel_x = 4 * _direction;
+					state = PUSH_BLOCK_STATE.ON_LEDGE;
 				}
 			}
 		}
 		
 	break;
 	
-	case PUSHABLEBLOCKSTATE.LEDGE:
+	case PUSH_BLOCK_STATE.ON_LEDGE:
 	
 		x += vel_x;	
 		
 		if floor(x / vel_x) % vel_x == 0
 		{
-			x = round(x / solid_radius_x) * solid_radius_x; 
-			state = PUSHABLEBLOCKSTATE.FALL;
+			x = round(x / 16) * 16;
+			state = PUSH_BLOCK_STATE.FALLING;
 		}
 		
 	break;
 	
-	case PUSHABLEBLOCKSTATE.FALL:
+	case PUSH_BLOCK_STATE.FALLING:
 	
 		y += vel_y;
 		vel_y += 0.09375;
 		
-		_floor_dist = tile_find_v(x, y + 15, 1)[0];
-		if (_floor_dist < 0)
+		var _floor_dist = collision_tile_v(x, y + 15, 1)[0];
+		
+		if _floor_dist < 0
 		{
-			state = PUSHABLEBLOCKSTATE.GROUND;
-			vel_y = 0;
 			y += _floor_dist;
+			vel_y = 0;
+			state = PUSH_BLOCK_STATE.GROUNDED;
 		}
 		
 	break;

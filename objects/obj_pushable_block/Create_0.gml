@@ -1,18 +1,16 @@
-enum PUSHABLEBLOCKSTATE
-{
-	GROUND,
-	LEDGE,
-	FALL
-}
-	
 // Inherit the parent event
 event_inherited();
 
-obj_set_priority(4);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-obj_set_solid(16, 16);
+enum PUSH_BLOCK_STATE
+{
+	GROUNDED,
+	ON_LEDGE,
+	FALLING
+}
 
-state = PUSHABLEBLOCKSTATE.GROUND;
-direction_x = 1;
+outside_action = OUTSIDE_ACTION.RESPAWN;
+
+state = PUSH_BLOCK_STATE.GROUNDED;
 vel_x = 0;
 vel_y = 0;
+depth = m_get_layer_depth(40);

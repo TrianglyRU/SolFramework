@@ -1,22 +1,14 @@
-enum RINGSTATE
-{
-	STATIC,
-	DROP,
-	ATTRACT
-}
-
 // Inherit the parent event
 event_inherited();
 
-if (vd_state != RINGSTATE.DROP)
+enum RING_STATE
 {
-	obj_set_priority(1);
-	obj_set_culling(ACTIVEIF.INBOUNDS);
-}
-else
-{
-	obj_set_priority(3);
-	obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
+	STATIC,
+	DROPPED,
+	ATTRACTED
 }
 
-obj_set_hitbox(6, 6);
+depth = m_get_layer_depth(10);
+state = RING_STATE.STATIC;
+vel_x = 0;
+vel_y = 0;

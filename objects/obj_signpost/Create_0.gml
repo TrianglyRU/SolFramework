@@ -1,15 +1,12 @@
+// Inherit the parent event
+event_inherited();
+
 enum SIGNPOSTSTATE
 {
 	IDLE,
 	ROTATE,
 	MOVE_PLAYER
 }
-
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(5);
-obj_set_culling(ACTIVEIF.INBOUNDS);
 
 obj_rm_stage.end_bound = x + camera_get_width(0) * 0.5;
 
@@ -25,3 +22,5 @@ ring_sparkle_pos =
 	-24, 8, -16, 24, 0, 16, -24, 24,	// x
 	-16, 8,  0, -8, -8, 0,   8,  16		// y
 ];
+
+depth = m_get_layer_depth(50);

@@ -108,7 +108,7 @@ else if _input_press.left || _input_press.right
 			break;
 		}
 		
-		if (_i == 0)
+		if _i == 0
 		{
 			_this_page_current = _current_index - _i;
 			_prev_page_last = _total_entries - 1;

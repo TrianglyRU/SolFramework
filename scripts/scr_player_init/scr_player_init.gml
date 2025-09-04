@@ -66,6 +66,8 @@ function scr_player_init()
 	solid_radius_y = radius_y_normal;
 	react_radius_x = 0;
 	react_radius_y = 0;
+	react_offset_x = 0;
+	react_offset_y = 0;
 	
 	vel_x = 0;
 	vel_y = 0;
@@ -182,7 +184,7 @@ function scr_player_init()
 			y -= solid_radius_y + 1;
 		}
 		
-		var _floor_dist = tile_find_2v(x - solid_radius_x, y + solid_radius_y, x + solid_radius_x, y + solid_radius_y, 1, secondary_layer)[0];
+		var _floor_dist = collision_tile_2v(x - solid_radius_x, y + solid_radius_y, x + solid_radius_x, y + solid_radius_y, 1, secondary_layer)[0];
 		
 		if _floor_dist < 14
 		{

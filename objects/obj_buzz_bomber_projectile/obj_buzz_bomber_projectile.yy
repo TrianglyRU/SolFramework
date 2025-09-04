@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "obj_buzz_bomber_projectile",
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_buzz_bomber_projectile_flare",
+    "path": "sprites/spr_buzz_bomber_projectile_flare/spr_buzz_bomber_projectile_flare.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,

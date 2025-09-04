@@ -42,7 +42,7 @@ switch (state)
 		var _object = instance_create(x + irandom_range(-8, 7), y, obj_bubble, 
 		{
 			vd_bubble_type: _bubble_type,
-			vd_wobble_direction: choose(DIRECTION.NEGATIVE, DIRECTION.POSITIVE)
+			vd_wobble_direction: choose(-1, 1)
 		});
 		
 		_object.image_index = _bubble_type == BUBBLE.LARGE ? 1 : 0;

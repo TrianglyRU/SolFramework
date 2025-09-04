@@ -170,26 +170,29 @@ if state != GAME_STATE.PAUSED
 {
 	if allow_pause && input_list_press[| 0].start
 	{
-	    instance_create(0, 0, obj_gui_pause);
+	    instance_create(0, 0, obj_pause);
 	}
 	else
 	{
 	    frame_counter++;
 	}
 } 
-else with obj_gui_pause
+else with obj_pause
 {
 	event_user(0);
 }
 
 #endregion
 
-#region CULLING
+#region CULLING & GLOBAL DEACTIVATION
 
+// Culling
 if state == GAME_STATE.NORMAL
 {
 	event_user(0);
 }
+
+// Global Deactivation
 else
 {
 	var _list = cull_game_paused_list;
@@ -204,7 +207,7 @@ else
 				ds_list_add(_list, id);
 			}
 			
-			if ignore_object_stop != false
+			if !ignore_game_state
 			{
 				instance_deactivate_object(id);
 			}
@@ -272,7 +275,7 @@ with obj_object
 	event_user(11);
 }
 
-// Run active culling if previous was skipped due to game state just returning to normal
+// Run culling if previous was skipped due to game state just returning to normal
 if _game_state != GAME_STATE.NORMAL && state == GAME_STATE.NORMAL
 {
 	event_user(0);

@@ -1,5 +1,4 @@
 // Inherit the parent event
 event_inherited();
 
-// This object
-depth += 5;
+depth = m_get_layer_depth(50);

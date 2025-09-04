@@ -1,19 +1,19 @@
-/// @method stop_anim()
-stop_anim = function()
-{
-	obj_stop_anim(0);
-}
-
 // Inherit the parent event
 event_inherited();
-	
-var _height_map = 
-[
-	16,16,16,16,16,16,16,16,16,16,16,16,16,14,14,12,12,10,10,8,8,6,6,4,4,2,2,0,0,-2,-2,-4
-];
 
-obj_set_priority(5);
-obj_set_solid_sloped(_height_map);
-obj_set_culling(ACTIVEIF.INBOUNDS);	
+depth = m_get_layer_depth(50);
+solid_offsets =
+[
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+	2, 2, 
+	4, 4, 
+	6, 6, 
+	8, 8,
+	10, 10,
+	12, 12,
+	14, 14,
+	16, 16,
+	18, 18, 20
+];
 
 launch_force = 10;

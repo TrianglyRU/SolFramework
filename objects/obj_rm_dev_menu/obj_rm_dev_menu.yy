@@ -33,7 +33,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Room Directors",
-    "path": "folders/Room Directors.yy",
+    "name": "Directors",
+    "path": "folders/Directors.yy",
   },
 }

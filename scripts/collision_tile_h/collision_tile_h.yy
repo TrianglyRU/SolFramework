@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "tile_find_2v",
+  "name": "collision_tile_h",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Tile Collision",
-    "path": "folders/Functions/Tile Collision.yy",
+    "name": "Collision",
+    "path": "folders/Functions/Collision.yy",
   },
 }

@@ -1,15 +1,15 @@
-if (!is_reflected)
+if !is_reflected
 {
 	for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	{
 		var _player = player_get(_p);
 		
-		if (!obj_check_hitbox(_player))
+		if !collision_player(_player)
 		{
 			continue;
 		}
 		
-		if (global.player_shields[_p] > SHIELD.NORMAL || _player.shield_state == SHIELD_STATE.DOUBLE_SPIN)
+		if global.player_shields[_p] > SHIELD.NORMAL || _player.shield_state == SHIELD_STATE.DOUBLE_SPIN
 		{
 			var _arctan = darctan2(_player.y - y, _player.x - x);
 			var _angle = math_get_angle_rounded(_arctan);

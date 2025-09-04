@@ -1,21 +1,20 @@
-enum LAMPSTATE
+// Inherit the parent event
+event_inherited();
+
+enum LAMP_STATE
 {
 	IDLE,
 	ROTATE,
 	ACTIVE
 }
 
-/// @method activate()
-activate = function()
+m_activate = function()
 {
-	state = LAMPSTATE.ACTIVE;
-	obj_set_anim(sprite_index, 4, 0, 0);
+	state = LAMP_STATE.ACTIVE;
+	m_animation_start(sprite_index, 0, 0, 4);
 }
 
-// Inherit the parent event
-event_inherited();
-
-state = LAMPSTATE.IDLE;
-angle = 0;
-radius = floor(sprite_height * 0.5) + 3;
 depth -= 1;
+state = LAMP_STATE.IDLE;
+angle = 0;
+radius = sprite_height * 0.5 + 3;

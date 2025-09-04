@@ -5,6 +5,7 @@ switch (state)
         if (button_obj.offset_y != 0)
         {
             instance_create(x, lock_obj.y, obj_explosion_dust);
+			audio_play_sfx(snd_destroy);
 			
 	        with (obj_player)
 	        {

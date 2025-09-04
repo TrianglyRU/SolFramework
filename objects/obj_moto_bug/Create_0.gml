@@ -1,3 +1,6 @@
+// Inherit the parent event
+event_inherited();
+
 enum MOTOBUGSTATE
 {
 	INIT,
@@ -5,13 +8,9 @@ enum MOTOBUGSTATE
 	ROAM
 }
 
-// Inherit the parent event
-event_inherited();
+outside_action = OUTSIDE_ACTION.RESPAWN;
 
-obj_set_priority(5);
-obj_set_hitbox(20, 14);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
+depth = m_get_layer_depth(50);
 state = MOTOBUGSTATE.INIT;
 move_timer = 0;
 smoke_timer = 0;

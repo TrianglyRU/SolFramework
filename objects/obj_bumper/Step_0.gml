@@ -15,7 +15,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		hits_left--;
 		_player.m_add_score(0);
 		
-        instance_create(x, y, obj_score);
+		instance_create(x, y, obj_score);
     }
     
 	if (_player.action == ACTION.CARRIED)

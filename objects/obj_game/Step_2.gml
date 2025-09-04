@@ -217,32 +217,6 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 #endregion
 
-#region CULLING
-
-if state != GAME_STATE.NORMAL
-{
-	// Activate objects within existing views to let the engine draw them
-	for (var _i = 0; _i < CAMERA_COUNT; _i++)
-	{
-		var _camera = view_camera[_i];
-		
-		if _camera != -1
-		{
-			var _x = camera_get_view_x(_camera);
-			var _y = camera_get_view_y(_camera);
-			var _w = camera_get_view_width(_camera);
-			var _h = camera_get_view_height(_camera);
-		
-			instance_activate_region(_x, _y, _w, _h, true);
-		}
-	}
-	
-	// Activate objects near (0,0) that may appear in a view as well
-	instance_activate_region(-16, -16, 32, 32, true);
-}
-
-#endregion
-
 #region DISTORTION
 
 if state != GAME_STATE.PAUSED
@@ -256,30 +230,6 @@ if state != GAME_STATE.PAUSED
 			_data.offset -= _data.spd;
 		}
 	}
-}
-
-#endregion
-
-#region FADE
-
-if fade_trigger_end_event
-{
-	if fade_state == FADE_STATE.NONE
-	{
-		with obj_room
-		{
-			event_user(14);
-		}
-	}
-	else if fade_state == FADE_STATE.PLAIN_COLOUR
-	{
-		with obj_room
-		{
-			event_user(15);
-		}
-	}
-	
-	fade_trigger_end_event = false;
 }
 
 #endregion
@@ -311,6 +261,32 @@ if state != GAME_STATE.PAUSED
 	{
 		audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
 	}
+}
+
+#endregion
+
+#region GLOBAL ACTIVATION
+
+if state != GAME_STATE.NORMAL
+{
+	// Activate objects within existing views to let the engine draw them
+	for (var _i = 0; _i < CAMERA_COUNT; _i++)
+	{
+		var _camera = view_camera[_i];
+		
+		if _camera != -1
+		{
+			var _x = camera_get_view_x(_camera);
+			var _y = camera_get_view_y(_camera);
+			var _w = camera_get_view_width(_camera);
+			var _h = camera_get_view_height(_camera);
+		
+			instance_activate_region(_x, _y, _w, _h, true);
+		}
+	}
+	
+	// Activate objects near (0,0) that may appear in a view as well
+	instance_activate_region(-16, -16, 32, 32, true);
 }
 
 #endregion

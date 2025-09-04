@@ -44,8 +44,7 @@ top_bound = array_create(CAMERA_COUNT, 0);
 left_bound = array_create(CAMERA_COUNT, 0);
 right_bound = array_create(CAMERA_COUNT, room_width);
 bound_speed = array_create(CAMERA_COUNT, 0);
-restart_flag = false;
-
+restart = false;
 default_physics = global.player_physics;
 
 // Stage setup

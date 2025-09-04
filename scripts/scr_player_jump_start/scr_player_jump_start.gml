@@ -21,21 +21,21 @@ function scr_player_jump_start()
 		case QUADRANT.DOWN:	
 		
 			_y = y - solid_radius_y;
-			_ceil_dist = tile_find_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, -1, secondary_layer, _angle_quad)[0];	
+			_ceil_dist = collision_tile_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, -1, secondary_layer, _angle_quad)[0];	
 			
 		break;
 
 		case QUADRANT.RIGHT:
 		
 			_x = x - solid_radius_y;
-			_ceil_dist = tile_find_2h(_x, y - solid_radius_x, _x, y + solid_radius_x, -1, secondary_layer, _angle_quad)[0];
+			_ceil_dist = collision_tile_2h(_x, y - solid_radius_x, _x, y + solid_radius_x, -1, secondary_layer, _angle_quad)[0];
 			
 		break;
 
 		case QUADRANT.LEFT:
 		
 			_x = x + solid_radius_y;
-			_ceil_dist = tile_find_2h(_x, y - solid_radius_x, _x, y + solid_radius_x, 1, secondary_layer, _angle_quad)[0];
+			_ceil_dist = collision_tile_2h(_x, y - solid_radius_x, _x, y + solid_radius_x, 1, secondary_layer, _angle_quad)[0];
 			
 		break;
 	}

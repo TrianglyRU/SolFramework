@@ -1,8 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-// Override data
-solid_disable_balance = true;
+solid_balance = false;
 
 log_size = 16;
 log_size_half = floor(log_size * 0.5);
@@ -13,6 +12,7 @@ log_amount = floor(sprite_width / log_size);
 log_x = [];
 log_y = [];
 dip = [];
+depth = m_get_layer_depth(40);
 
 for (var _i = 0; _i < log_amount; _i++) 
 {
@@ -20,7 +20,3 @@ for (var _i = 0; _i < log_amount; _i++)
 	log_y[_i] = y;
 	dip[_i] = _i < floor(log_amount * 0.5) ? (_i + 1) * 2 : (log_amount - _i) * 2;
 }
-
-obj_set_priority(4);
-obj_set_solid(log_amount * log_size_half, log_size_half);
-obj_set_culling(ACTIVEIF.INBOUNDS);

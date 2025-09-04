@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Tile Collision",
-    "path": "folders/Functions/Tile Collision.yy",
+    "name": "Tile Data",
+    "path": "folders/Functions/Tile Data.yy",
   },
 }

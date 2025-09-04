@@ -9,7 +9,10 @@
   "solid": false,
   "visible": true,
   "managed": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_spring_v_yellow",
+    "path": "sprites/spr_spring_v_yellow/spr_spring_v_yellow.yy",
+  },
   "persistent": false,
   "parentObjectId": {
     "name": "obj_spring_v_yellow",

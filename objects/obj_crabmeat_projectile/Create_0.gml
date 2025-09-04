@@ -1,11 +1,8 @@
 // Inherit the parent event
 event_inherited();
 
-obj_set_hitbox(4, 4);
-obj_set_anim(sprite_index, 2, 0, 0);
-
-// Override data
+depth += 2;
 vel_x = 1 * image_xscale;
 vel_y = -4;
 grv = 0.21815;
-depth += 2;
+m_animation_start(sprite_index, 0, 0, 2);
