@@ -5,7 +5,7 @@ if room == rm_startup
 }
 
 // Remember current game state
-var _game_state = state;
+var _prev_state = state;
 
 #region INPUT
 
@@ -170,14 +170,14 @@ if state != GAME_STATE.PAUSED
 {
 	if allow_pause && input_list_press[| 0].start
 	{
-	    instance_create(0, 0, obj_pause);
+	    instance_create(0, 0, obj_gui_pause);
 	}
 	else
 	{
 	    frame_counter++;
 	}
 } 
-else with obj_pause
+else with obj_gui_pause
 {
 	event_user(0);
 }
@@ -189,45 +189,61 @@ else with obj_pause
 // Culling
 if state == GAME_STATE.NORMAL
 {
-	event_user(0);
+	for (var _i = 0; _i < CAMERA_COUNT; _i++)
+	{
+		var _camera_data = camera_get_data(_i);
+	
+		if _camera_data == undefined
+		{
+			continue;
+		}
+		
+		_camera_data.coarse_x = (camera_get_x(_i) - CULLING_ROUND_VALUE) & -CULLING_ROUND_VALUE;
+		_camera_data.coarse_y = (camera_get_y(_i) - CULLING_ROUND_VALUE) & -CULLING_ROUND_VALUE;
+		
+		if _camera_data.coarse_x_last != _camera_data.coarse_x || _camera_data.coarse_y_last != _camera_data.coarse_y
+		{
+			_camera_data.coarse_x_last = _camera_data.coarse_x;
+			_camera_data.coarse_y_last = _camera_data.coarse_y;
+			
+			// Should be the same in obj_object -> User Event 14
+			var _width = camera_get_width(_i) + CULLING_ROUND_VALUE + CULLING_ADD_WIDTH;
+			var _height = camera_get_height(_i) + CULLING_ROUND_VALUE + CULLING_ADD_HEIGHT;
+		
+			// Activate all instances whose *bounding boxes* overlap the area
+			instance_activate_region(_camera_data.coarse_x, _camera_data.coarse_y, _width - 1, _height - 1, true);
+		}
+	}
+	
+	// Cull game objects by their *position* (this will also cancel all "false" activations by instance_activate_region)
+	with obj_object
+	{
+		if culler != noone
+		{
+			culler.update();
+		}
+	}
 }
 
 // Global Deactivation
 else
 {
 	var _list = cull_game_paused_list;
-	var _is_empty_list = ds_list_size(_list) == 0;
+	var _state = state;
 	
-	if state == GAME_STATE.STOP_OBJECTS
+	ds_list_clear(_list);
+	
+	with obj_object
 	{
-		with obj_object
+		if ignored_game_state < _state
 		{
-			if _is_empty_list
-			{
-				ds_list_add(_list, id);
-			}
-			
-			if !ignore_game_state
-			{
-				instance_deactivate_object(id);
-			}
-		}
-	}
-	else
-	{
-		with obj_object
-		{
-			if _is_empty_list
-			{
-				ds_list_add(_list, id);
-			}
-				
+			ds_list_add(_list, id);
 			instance_deactivate_object(id);
 		}
-		
-		// Stop room directors
-		instance_deactivate_object(obj_room);
 	}
+		
+	// Stop room directors
+	instance_deactivate_object(obj_room);
 }
 
 #endregion
@@ -257,13 +273,16 @@ if state != GAME_STATE.PAUSED
 
 #endregion
 
-#region ANIMATOR
+#region INSTANCE ANIMATOR
 
 if state != GAME_STATE.PAUSED
 {
 	with obj_object
 	{
-		event_user(14);
+		if animator != noone
+		{
+			animator.update();
+		}
 	}
 }
 
@@ -275,8 +294,8 @@ with obj_object
 	event_user(11);
 }
 
-// Run culling if previous was skipped due to game state just returning to normal
-if _game_state != GAME_STATE.NORMAL && state == GAME_STATE.NORMAL
+// Activate paused objects if the game state has returned to normal
+if state == GAME_STATE.NORMAL && _prev_state != state
 {
-	event_user(0);
+	m_cull_activate_paused_objects();
 }

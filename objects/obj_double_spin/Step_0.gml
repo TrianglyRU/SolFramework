@@ -11,7 +11,7 @@ else if --attack_timer <= 0
 	
 	instance_destroy();
 }
-else if image_timer < 0
+else if timer < 0
 {
 	visible = false;
 }

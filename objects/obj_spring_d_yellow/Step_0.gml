@@ -1,6 +1,6 @@
-if image_timer < 0
+if animator.timer < 0
 {
-	m_animation_clear(0);
+	animator.clear(0);
 }
 
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
@@ -34,7 +34,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		
 		if _prev_anim == _player.animation
 		{
-			_player.m_animation_restart();
+			_player.animator.restart();
 		}
 	}
 	
@@ -46,7 +46,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.vel_y = -_result_force * image_yscale;
 	_player.m_reset_substate();
 	
-	m_animation_start(sprite_index, 1, 9, 1);
+	animator.start(sprite_index, 1, 9, 1);
 	
 	audio_play_sfx(snd_spring);
 	input_set_rumble(_p, 0.20, INPUT_RUMBLE_MEDIUM);

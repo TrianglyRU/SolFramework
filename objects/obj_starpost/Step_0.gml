@@ -1,5 +1,3 @@
-instance_activate_object(lamp_obj);
-
 if state != STARPOST_STATE.IDLE
 {
 	return;

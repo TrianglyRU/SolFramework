@@ -1,3 +1,6 @@
+instance_destroy();
+return;
+
 // Inherit the parent event
 event_inherited();
 

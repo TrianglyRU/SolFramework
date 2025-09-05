@@ -8,5 +8,5 @@
 /// @param {Constant.Color} [_col] The colour of the rectangle (default is c_white).
 function draw_rect_floored(_x1, _y1, _x2, _y2, _is_outlined, _col = c_white)
 {
-	draw_rectangle_colour(floor(_x1) + _is_outlined, floor(_y1) + _is_outlined,  floor(_x2) - 1 - _is_outlined, floor(_y2) - 1 - _is_outlined, _col, _col, _col, _col, _is_outlined);
+	draw_rectangle_colour(floor(_x1) + _is_outlined, floor(_y1) + _is_outlined,  floor(_x2) - _is_outlined, floor(_y2) - _is_outlined, _col, _col, _col, _col, _is_outlined);
 }

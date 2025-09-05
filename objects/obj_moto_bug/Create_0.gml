@@ -1,17 +1,17 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESPAWN);
 
-enum MOTOBUGSTATE
+enum MOTOBUG_STATE
 {
 	INIT,
 	WAIT,
 	ROAM
 }
 
-outside_action = OUTSIDE_ACTION.RESPAWN;
-
-depth = m_get_layer_depth(50);
-state = MOTOBUGSTATE.INIT;
+depth = draw_depth(50);
+state = MOTOBUG_STATE.INIT;
 move_timer = 0;
 smoke_timer = 0;
 vel_x = 0;

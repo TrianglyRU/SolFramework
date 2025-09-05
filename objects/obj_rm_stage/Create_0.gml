@@ -1,40 +1,29 @@
 #macro ACT_SINGLE 3
 
-/// @method setup_level()
-setup_level = function(_stage_index, _name, _act_id, _bgm, _animals, _bottom_bound, _water_pos, _next_room, _do_save)
+/// @param {Real} _stage_index
+/// @param {String} _name
+/// @param {Real} _act_index
+/// @param {Asset.GMSound} _bgm
+/// @param {Array<Asset.GMSprite>} _animals
+/// @param {Real} _bottom_bound
+/// @param {Asset.GMRoom} _next_room
+/// @param {Bool} _do_save
+m_setup_level = function(_stage_index, _name, _act_index, _bgm, _animals, _bottom_bound, _next_room, _do_save)
 {
     global.stage_index = _stage_index;
+	
     zone_name = _name;
-    act_id = _act_id;
+    act_index = _act_index;
     bgm_track = _bgm;
     animal_set = _animals;
-    water_enabled = _water_pos >= 0;
-    water_level_init = _water_pos;
-    water_level = _water_pos;
     next_stage = _next_room;
-    save_progress = _do_save;
     bottom_bound_init = _bottom_bound;
-	
-	if (_water_pos >= 0)
-	{
-		instance_create(0, 0, obj_water_surface);
-	}
-}
-
-/// @method set_water_effects_bound()
-set_water_effects_bound = function()
-{
-	obj_game.distortion_bound = water_level;
-	obj_game.palette_bound = water_level;
+	save_progress = _do_save;
 }
 
 zone_name = "TEMPLATE";
-act_id = 0;
+act_index = 0;
 bgm_track = -1;
-animal_set = [];
-water_enabled = -1;
-water_level_init = 0;
-water_level = 0;
 next_stage = -1;
 save_progress = false;
 end_bound = room_width;
@@ -44,11 +33,15 @@ top_bound = array_create(CAMERA_COUNT, 0);
 left_bound = array_create(CAMERA_COUNT, 0);
 right_bound = array_create(CAMERA_COUNT, room_width);
 bound_speed = array_create(CAMERA_COUNT, 0);
-restart = false;
+animal_set = [];
+
 default_physics = global.player_physics;
 
-// Stage setup
 scr_stage_setup();
+
+instance_create(0, 0, obj_gui_titlecard);
+instance_create(0, 0, obj_gui_hud);
+audio_play_bgm(bgm_track);
 
 var _ring_data = global.giant_ring_data;
 var _checkpoint_data = global.checkpoint_data;
@@ -97,16 +90,6 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
     }
 }
 
-if (water_enabled)
-{
-	set_water_effects_bound();
-}
-
-instance_create(0, 0, obj_gui_titlecard);
-instance_create(0, 0, obj_gui_hud);
-
-audio_play_bgm(bgm_track);
-
 // Discord
 var _player_icon, _stage_icon;
 
@@ -147,4 +130,4 @@ switch (room)
 		_stage_icon = "";
 }
 
-discord_set_data(zone_name, act_id == ACT_SINGLE ? "Single Act" : "Act " + string(act_id + 1), _stage_icon, _player_icon);
+discord_set_data(zone_name, act_index == ACT_SINGLE ? "Single Act" : "Act " + string(act_index + 1), _stage_icon, _player_icon);

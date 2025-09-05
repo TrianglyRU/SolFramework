@@ -2,8 +2,6 @@
 /// @function scr_player_animate_amy()
 function scr_player_animate_amy()
 {
-	gml_pragma("forceinline");
-	
 	switch (animation)
 	{
 		case ANIM.IDLE:

@@ -1,1 +1,1 @@
-draw_sprite_ext(sprite_index, image_index, floor(player.x), floor(player.y) + player.solid_radius_y + 1, player.facing, image_yscale, image_angle, c_white, image_alpha);
+draw_sprite_ext(sprite_index, image_index, floor(player.x), floor(player.y) + player.solid_radius_y, player.facing, image_yscale, image_angle, c_white, image_alpha);

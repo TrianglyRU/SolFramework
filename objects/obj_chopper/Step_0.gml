@@ -14,17 +14,17 @@ if y >= ystart - 192
 	
 	if vel_y >= 0
 	{
-		if image_timer > 0
+		if animator.timer > 0
 		{
-			m_animation_clear(0);
+			animator.clear(0);
 		}
 	}
-	else if image_timer == 0
+	else if animator.timer == 0
 	{
-		m_animation_start(sprite_index, 0, 0, 8);
+		animator.start(sprite_index, 0, 0, 8);
 	}
 }
 else
 {
-	image_duration = 4;
+	animator.duration = 4;
 }

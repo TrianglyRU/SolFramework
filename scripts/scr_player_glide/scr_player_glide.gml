@@ -99,7 +99,7 @@ function scr_player_glide()
 			
 	        if glide_value % 4 == 0
 	        {
-	            instance_create(x, y + solid_radius_y + 1, obj_dust_skid);
+	            instance_create(x, y + solid_radius_y, obj_dust_skid);
 	        }
 			
 	        if glide_value > 0 && glide_value % 8 == 0

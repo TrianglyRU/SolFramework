@@ -9,7 +9,6 @@ function scr_player_dropdash()
 	if is_grounded && dropdash_charge >= PARAM_DROPDASH_CHARGE
 	{
 	    y += solid_radius_y - radius_y_spin;
-		
 	    solid_radius_x = radius_x_spin;
 	    solid_radius_y = radius_y_spin;
 		
@@ -71,7 +70,7 @@ function scr_player_dropdash()
 	    animation = ANIM.SPIN;
 		m_set_camera_delay(8);
 		
-	    instance_create(x, y + solid_radius_y + 1, obj_dust_dropdash, { image_xscale: facing });
+	    instance_create(x, y + solid_radius_y, obj_dust_dropdash, { image_xscale: facing });
 	    audio_stop_sound(snd_charge_drop);
 	    audio_play_sfx(snd_release);
 		
@@ -82,7 +81,7 @@ function scr_player_dropdash()
 	{
 	    action = ACTION.NONE;
 	}
-	else if input_down.action_any
+	else if m_down_action_any()
 	{
 		if dropdash_charge >= 0 && ++dropdash_charge == PARAM_DROPDASH_CHARGE
 		{

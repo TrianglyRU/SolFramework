@@ -1,8 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-// Draw flame
-if (turn_timer <= 0)
+if turn_timer <= 0
 {
-	draw_sprite_ext(spr_buzzer_flame, flame_timer % 3, x, y, image_xscale, 1, 0.0, c_white, 1);
+	draw_sprite_ext(spr_buzzer_flame, flame_timer % 3, floor(x), floor(y), image_xscale, image_yscale, image_angle, draw_get_colour(), image_alpha);
 }

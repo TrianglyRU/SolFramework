@@ -77,9 +77,9 @@ function scr_player_cpu()
 	        var _target_x = _follow_data[2];
 	        var _target_y = _follow_data[3];
 			
-	        if _cpu_behaviour == CPU_BEHAVIOUR.S2 && instance_exists(obj_rm_stage) && obj_rm_stage.water_enabled
+	        if _cpu_behaviour == CPU_BEHAVIOUR.S2 && instance_exists(obj_water)
 	        {
-	            _target_y = min(obj_rm_stage.water_level - 16, _target_y);
+	            _target_y = min(obj_water.y - 16, _target_y);
 	        }
 			
 	        var _dist_x = floor(x) - _target_x;
@@ -304,12 +304,16 @@ function scr_player_cpu()
 			if obj_game.frame_counter % 128 == 0
 			{
 				input_down.down = false;
-				input_press.action_any = false;
+				input_press.action1 = false;
+				input_press.action2 = false;
+				input_press.action3 = false;
 				cpu_state = CPU_STATE.MAIN;
 			}
 			else if obj_game.frame_counter % 32 == 0
 			{
-				input_press.action_any = true;
+				input_press.action1 = true;
+				input_press.action2 = true;
+				input_press.action3 = true;
 			}
 			
 	    break;  

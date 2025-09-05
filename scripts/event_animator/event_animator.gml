@@ -1,0 +1,83 @@
+function event_animator(_inst_id = id)
+{
+	new const_animator(_inst_id);
+}
+
+function const_animator(_inst_id) constructor
+{
+	if _inst_id.animator != noone
+	{
+		return;
+	}
+	
+	inst_id = _inst_id;
+	inst_id.animator = self;
+	
+	play_count = 0;
+	duration = 0;
+	timer = 0;
+	loopback = 0;
+	
+	/// @function start(_sprite_id, _start_frame, _loopback, _frame_duration)
+	start = function(_sprite_id, _start_frame, _loopback, _frame_duration)
+	{
+		inst_id.image_speed = 0;
+		inst_id.image_index = _start_frame;
+		inst_id.sprite_index = _sprite_id;
+		duration = _frame_duration;
+		timer = _frame_duration;
+		loopback = _loopback;
+		play_count = 0;
+	}
+	
+	/// @function restart
+	restart = function()
+	{
+		inst_id.image_speed = 0;
+		inst_id.image_index = 0;
+		timer = duration;
+		play_count = 0;
+	}
+	
+	/// @function clear(_image_index)
+	clear = function(_image_index)
+	{
+		inst_id.image_speed = 0;
+		inst_id.image_index = _image_index;
+		duration = 0;
+		timer = 0;
+		play_count = 0;
+	}
+	
+	/// @function update()
+	update = function()
+	{
+		if inst_id.image_speed != 0 || duration <= 0 || timer <= 0
+		{
+			return;
+		}
+		
+		if --timer == 0
+		{
+			if inst_id.image_index == inst_id.image_number - 1
+			{
+				play_count++;
+			
+				if loopback == inst_id.image_index
+				{
+					timer = -1;
+				}
+				else
+				{
+					inst_id.image_index = loopback;
+					timer = duration;
+				}
+			}
+			else
+			{
+				inst_id.image_index++;
+				timer = duration;
+			}
+		}
+	}
+}

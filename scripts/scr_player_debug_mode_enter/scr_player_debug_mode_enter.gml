@@ -16,7 +16,7 @@ function scr_player_debug_mode_enter()
 		state = PLAYER_STATE.DEBUG_MODE;
 		image_alpha = 1;
 		visible = true;
-		depth = depth_start;
+		depth = draw_depth(20);
 	    
 		if camera_data.index == player_index
 		{

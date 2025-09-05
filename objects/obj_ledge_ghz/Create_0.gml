@@ -1,7 +1,6 @@
 // Inherit the parent event
 event_inherited();
 
-// Override data
 solid_offsets =
 [
 	16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,

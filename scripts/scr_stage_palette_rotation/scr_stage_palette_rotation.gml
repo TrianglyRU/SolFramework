@@ -1,7 +1,7 @@
 /// @self obj_rm_stage
 function scr_stage_palette_rotation()
 {
-	switch (room)
+	switch room
 	{
 		case rm_stage_ghz0:
 			pal_run_rotation([30, 31, 32, 33], 6, 1, 4);
@@ -17,7 +17,5 @@ function scr_stage_palette_rotation()
 			pal_run_rotation([34], 20, 1, 8);
 			
 		break;
-		
-		default:
 	}
 }

@@ -29,7 +29,7 @@ function scr_player_collision_air()
 	
 	if _move_quad != QUADRANT.LEFT
 	{
-		var _wall_dist = collision_tile_h(x + _wall_radius, y, 1, secondary_layer)[0];
+		var _wall_dist = collision_tile_h(x + _wall_radius - 1, y, 1, secondary_layer)[0];
 		
 		if _wall_dist < 0
 		{
@@ -46,14 +46,13 @@ function scr_player_collision_air()
 	
 	if _move_quad != QUADRANT.DOWN
 	{
-		var _y = y - solid_radius_y;
-		var _roof_data = collision_tile_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, -1, secondary_layer);
+		var _roof_data = collision_tile_2v(x - solid_radius_x, y - solid_radius_y, x + solid_radius_x - 1, y - solid_radius_y, -1, secondary_layer);
 		var _roof_dist = _roof_data[0];
 		var _roof_angle = _roof_data[1];
 	
 		if _roof_dist <= -14 && _move_quad == QUADRANT.LEFT && global.player_physics >= PHYSICS.S3
 		{	
-			var _wall_dist = collision_tile_h(x + _wall_radius, y, 1, secondary_layer)[0];
+			var _wall_dist = collision_tile_h(x + _wall_radius - 1, y, 1, secondary_layer)[0];
 			
 			if _wall_dist < 0
 			{
@@ -98,12 +97,11 @@ function scr_player_collision_air()
 	{
 		var _floor_dist;
 		var _floor_angle;
-		var _y = y + solid_radius_y;
-	
+		
 		if _move_quad == QUADRANT.DOWN
 		{
-			var _floor_data_l = collision_tile_v(x - solid_radius_x, _y, 1, secondary_layer);
-			var _floor_data_r = collision_tile_v(x + solid_radius_x, _y, 1, secondary_layer);
+			var _floor_data_l = collision_tile_v(x - solid_radius_x,     y + solid_radius_y - 1, 1, secondary_layer);
+			var _floor_data_r = collision_tile_v(x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer);
 		
 			if _floor_data_l[0] > _floor_data_r[0]
 			{
@@ -146,7 +144,7 @@ function scr_player_collision_air()
 		}
 		else if vel_y >= 0
 		{
-			var _floor_data = collision_tile_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, 1, secondary_layer);
+			var _floor_data = collision_tile_2v(x - solid_radius_x, y + solid_radius_y - 1, x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer);
 			
 			_floor_dist = _floor_data[0];
 			_floor_angle = _floor_data[1];

@@ -42,7 +42,7 @@ function scr_player_spindash()
 		
 		if m_press_action_any()
 		{
-			m_animation_restart();
+			animator.restart();
 			spindash_charge = min(spindash_charge + 2, 8);
 			
 			if spindash_charge > 0 && audio_is_playing(snd_charge_spin)

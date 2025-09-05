@@ -1,6 +1,6 @@
-if image_timer < 0
+if animator.timer < 0
 {
-	m_animation_clear(0);
+	animator.clear(0);
 }
 
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
@@ -52,7 +52,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.ground_lock_timer = 16;
 	_player.action = ACTION.NONE;
 	
-	m_animation_start(sprite_index, 1, 9, 1);
+	animator.start(sprite_index, 1, 9, 1);
 	
 	audio_play_sfx(snd_spring);
 	input_set_rumble(_p, 0.20, INPUT_RUMBLE_MEDIUM);

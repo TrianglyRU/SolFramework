@@ -1,23 +1,3 @@
-if water_enabled
-{
-	switch (room)
-	{
-		case rm_stage_dwz0:
-		break;
-		
-		default:
-			water_level = math_oscillate_y(water_level_init, obj_game.frame_counter * ANGLE_INCREMENT, 10, 1, 90);
-	}
-	
-	set_water_effects_bound();
-}
-else
-{
-	obj_game.distortion_bound = room_height;
-	obj_game.palette_bound = room_height;
-}
-
-// Palette rotation
 scr_stage_palette_rotation();
 
 for (var _i = 0; _i < CAMERA_COUNT; _i++)

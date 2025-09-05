@@ -63,10 +63,10 @@ function scr_player_jump()
 					{
 						break;
 					}
-
+					
 					with obj_double_spin
 					{
-						if vd_target_player == other.id
+						if player == other.id
 						{
 							instance_destroy();
 						}
@@ -75,7 +75,11 @@ function scr_player_jump()
 					shield_state = SHIELD_STATE.DOUBLE_SPIN;
 					air_lock_flag = false;
 					
-					instance_create(0, 0, obj_double_spin, { vd_target_player: id });
+					with instance_create(0, 0, obj_double_spin)
+					{
+						player = other.id;
+					}
+					
 					audio_play_sfx(snd_double_spin);
 					
 				break;
@@ -89,9 +93,9 @@ function scr_player_jump()
 					
 					with obj_shield
 					{
-						if vd_target_player == other.id
+						if player == other.id
 						{
-							m_animation_start(spr_shield_bubble_drop, 0, 4, 6);
+							m_bubble_shield_drop_animation();
 						}
 					}
 					
@@ -109,20 +113,20 @@ function scr_player_jump()
 					
 					with obj_shield
 					{
-						if vd_target_player == other.id
+						if player == other.id
 						{
 							var _dash_sprite = spr_shield_fire_dash;
 							
 							if sprite_index != _dash_sprite
 							{
-								obj_set_anim(_dash_sprite, 2, 0, clear_fire_shield_dash());
+								animator.start(_dash_sprite, 0, 11, 2);
 							}
 							else
 							{
-								m_animation_restart();
+								animator.restart();
 							}
 							
-							depth = m_get_layer_depth(10);
+							depth = draw_depth(10);
 						}
 					}
 					
@@ -138,7 +142,10 @@ function scr_player_jump()
 					
 					for (var _i = 0; _i < 4; _i++)
 					{
-						instance_create(x, y, obj_shield_sparkle, { vd_sparkle_id: _i });
+						with instance_create(x, y, obj_shield_sparkle)
+						{
+							sparkle_index = _i;
+						}
 					}
 					
 					audio_play_sfx(snd_shield_lightning_2);
@@ -188,9 +195,9 @@ function scr_player_jump()
 			is_jumping = false;
 			spd_ground = 4;
 			glide_value = 0;
-			glide_angle = facing == -1 ? 0 : 180;
+			glide_angle = facing < 0 ? 0 : 180;
 			solid_radius_x = 10;
-			solid_radius_y = 10;
+			solid_radius_y = 11;
 			vel_x = 0;
 			vel_y = max(0, vel_y + 2);
 			

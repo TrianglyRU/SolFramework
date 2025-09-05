@@ -6,7 +6,7 @@ function scr_player_hammerdash()
 		return;
 	}
 	
-	if spd_ground == 0 && hammerdash_timer > 0 || ++hammerdash_timer == 60 || !input_down.action_any || dcos(angle) <= 0 || set_push_anim_by != noone
+	if spd_ground == 0 && hammerdash_timer > 0 || ++hammerdash_timer == 60 || dcos(angle) <= 0 || set_push_anim_by != noone || !m_down_action_any()
 	{
 		action = ACTION.NONE;
 	}

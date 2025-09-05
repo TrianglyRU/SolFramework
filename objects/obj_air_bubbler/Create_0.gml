@@ -1,24 +1,22 @@
-enum AIRBUBBLERSTATE
+// Inherit the parent event
+event_inherited();
+
+enum AIR_BUBBLER_STATE
 {
 	IDLE,
 	PRODUCE
 }
 
-/// @method set_delay()
-set_delay = function()
+m_get_random_delay = function()
 {
 	return irandom_range(128, 255);
 }
 
-// Inherit the parent event
-event_inherited();
+depth = draw_depth(10);
 
-obj_set_priority(1);
-obj_set_culling(ACTIVEIF.INBOUNDS);
-obj_set_anim(sprite_index, 16, 0, 0);
-
-state = AIRBUBBLERSTATE.IDLE;
-wait_time = set_delay();
+culler.action = CULL_ACTION.RESPAWN;
+state = AIR_BUBBLER_STATE.IDLE;
+wait_time = m_get_random_delay();
 wait_cycle = 0;
 random_time = 0;
 bubbles_to_spawn = 0;
@@ -32,3 +30,5 @@ type_array =
 	[1, 0, 1, 0, 0, 0],
 	[0, 1, 0, 0, 1, 0]
 ];
+
+animator.start(sprite_index, 0, 0, 16);

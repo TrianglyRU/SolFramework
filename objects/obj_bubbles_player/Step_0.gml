@@ -52,10 +52,11 @@ if (_air_timer > 0)
             _type = BUBBLE.COUNTDOWN;
         }
 		
-        instance_create(_x, _y, obj_bubble, 
-        {
-            vd_bubble_type: _type, vd_wobble_direction: _spawn_direction, vd_countdown_frame: countdown_bubble_frame
-        });
+        with instance_create(_x, _y, obj_bubble, { bubble_type: _type })
+		{
+			wobble_direction = _spawn_direction;
+			countdown_frame = countdown_bubble_frame;
+		}
 		
         if (_type == BUBBLE.COUNTDOWN)
         {
@@ -76,10 +77,11 @@ else if (bubbles_spawned_no_air < 12)
 	{
 		var _type = irandom(3) > 0 ? BUBBLE.SMALL : BUBBLE.MEDIUM;
 		
-	    instance_create(_x, _y - 12, obj_bubble,
-	    {
-	        vd_bubble_type: _type, vd_wobble_direction: _spawn_direction, depth: RENDER_DEPTH_PRIORITY - 1
-	    });
+	    instance_create(_x, _y - 12, obj_bubble, { bubble_type: _type })
+		{
+			depth = RENDER_DEPTH_PRIORITY - 1;
+			wobble_direction = _spawn_direction;
+		}
 		
 	    bubbles_spawned_no_air++;
 	    next_bubble_timer_no_air = irandom_range(0, 7);

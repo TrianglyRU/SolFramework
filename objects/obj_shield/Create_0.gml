@@ -1,26 +1,37 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
 
-set_bubble_shield_anim = function()
+m_bubble_shield_animation = function()
 {
-	obj_set_anim(spr_shield_bubble, 2, 0, 0)
+	animator.start(spr_shield_bubble, 0, 0, 2);
 }
 
-set_fire_shield_anim = function()
+m_bubble_shield_drop_animation = function()
 {
-	obj_set_anim(spr_shield_fire, 2, 0, 0);
+	animator.start(spr_shield_bubble_drop, 0, 3, 6);
 }
 
-clear_fire_shield_dash = function()
+m_bubble_shield_bounce_animation = function()
 {
-	set_fire_shield_anim();
+	animator.start(spr_shield_bubble_bounce, 0, 2, 6);
+}
+
+m_fire_shield_animation = function()
+{
+	animator.start(spr_shield_fire, 0, 0, 2);
+}
+
+m_reset_fire_shield_dash = function()
+{
+	m_fire_shield_animation();
 	
-	if (vd_target_player.shield_state == SHIELD_STATE.ACTIVE)
+	if player.shield_state == SHIELD_STATE.ACTIVE
 	{
-		vd_target_player.shield_state = SHIELD_STATE.DISABLED;
+		player.shield_state = SHIELD_STATE.DISABLED;
 	}
-				
-	vd_target_player.air_lock_flag = false;
+	
+	player.air_lock_flag = false;
 }
 
 var _shield = global.player_shields[player.player_index];
@@ -28,20 +39,20 @@ var _shield = global.player_shields[player.player_index];
 switch _shield
 {
 	case SHIELD.NORMAL:
-		obj_set_anim(spr_shield, 1, 0, 0);
+		animator.start(spr_shield, 0, 0, 1);
 	break;
 	
 	case SHIELD.BUBBLE:
-		set_bubble_shield_anim();
+		m_bubble_shield_animation();
 	break;
 	
 	case SHIELD.FIRE:
-		set_fire_shield_anim();
+		m_fire_shield_animation();
 	break;
 	
 	case SHIELD.LIGHTNING:
-		obj_set_anim(spr_shield_lightning, 2, 0, 0);
+		animator.start(spr_shield_lightning, 0, 0, 2);
 	break;
 }
 
-depth += _shield == SHIELD.FIRE ? 30 : 10;
+depth = draw_depth(_shield == SHIELD.FIRE ? 30 : 10);

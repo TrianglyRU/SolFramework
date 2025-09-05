@@ -11,7 +11,7 @@ function scr_player_climb()
 	switch action_state
 	{
 		case CLIMB_STATE.NORMAL:
-	
+		
 			if x != xprevious || vel_x != 0
 			{
 				m_release_glide(1);
@@ -43,16 +43,13 @@ function scr_player_climb()
 				vel_y = 0;
 			}
 			
-			var _radius_x = solid_radius_x;
-			
-			if facing == -1
-			{
-				_radius_x++;
-			}
+			// radius_x_normal + 1 equals to solid_radius_x here, so we're using the latter
+			var _wall_radius = facing >= 0 ? radius_x_normal : radius_x_normal - 1;
+			var _solid_radius_x = facing >= 0 ? solid_radius_x - 1 : -solid_radius_x;		
 			
 			if vel_y < 0
 			{
-				var _wall_dist = collision_tile_h(x + _radius_x * facing, y - solid_radius_y - 1, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _wall_radius, y - solid_radius_y - 1, facing, secondary_layer)[0];
 				
 				if _wall_dist >= 4
 				{
@@ -68,7 +65,7 @@ function scr_player_climb()
 					vel_y = 0;
 				}
 				
-				var _ceil_dist = collision_tile_v(x + _radius_x * facing, y - radius_y_normal + 1, -1, secondary_layer)[0];
+				var _ceil_dist = collision_tile_v(x + _solid_radius_x, y - radius_y_normal + 1, -1, secondary_layer)[0];
 				
 				if _ceil_dist < 0
 				{
@@ -78,7 +75,7 @@ function scr_player_climb()
 			}
 			else
 			{
-				var _wall_dist = collision_tile_h(x + _radius_x * facing, y + solid_radius_y + 1, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _wall_radius, y + solid_radius_y, facing, secondary_layer)[0];
 				
 				if _wall_dist != 0
 				{
@@ -86,7 +83,7 @@ function scr_player_climb()
 					break;
 				}
 				
-				var _floor_data = collision_tile_v(x + _radius_x * facing, y + radius_y_normal, 1, secondary_layer);
+				var _floor_data = collision_tile_v(x + _solid_radius_x, y + radius_y_normal - 1, 1, secondary_layer);
 				var _floor_dist = _floor_data[0];
 				var _floor_angle = _floor_data[1];
 				
@@ -102,7 +99,7 @@ function scr_player_climb()
 				}
 			}
 			
-			if input_press.action_any
+			if m_press_action_any()
 			{
 				animation = ANIM.SPIN;
 				action = ACTION.NONE;
@@ -133,7 +130,7 @@ function scr_player_climb()
 				x += 3 * facing;
 				y -= 3;
 			}
-			else if image_timer == image_duration
+			else if timer == duration
 			{
 				switch image_index
 				{
@@ -152,17 +149,12 @@ function scr_player_climb()
 					break;
 				}
 			}
-			else if image_timer < 0
+			else if timer < 0
 			{
 				m_land();
 				animation = ANIM.IDLE;
 				x += 8 * facing;
 				y += 4;
-				
-				if facing == -1
-				{
-					x--;
-				}
 			}
 	
 		break;

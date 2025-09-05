@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
-	
-depth = m_get_layer_depth(50);
+event_animator();
+event_culler();
+
+depth = draw_depth(50);
 launch_force = 10;

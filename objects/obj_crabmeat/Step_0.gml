@@ -10,7 +10,7 @@ switch state
 		y += vel_y;
 		vel_y += 0.21875;
 		
-		var _floor_data = collision_tile_v(x, y + 16, 1);
+		var _floor_data = collision_tile_v(x, bbox_bottom - 1, 1);
 		var _floor_dist = _floor_data[0];
 		var _floor_angle = _floor_data[1];
 		
@@ -54,8 +54,8 @@ switch state
 		vel_x *= -1;
 		state = CRABMEAT_STATE.MOVE;
 		
-		m_update_move_sprite();
-		m_animation_start(sprite_index, 0, 0, 16);
+		m_update_sprite();
+		animator.start(sprite_index, 0, 0, 16);
 		
 	break;
 	
@@ -70,10 +70,10 @@ switch state
 			
 			if _check_side
 			{
-				_check_x = vel_x < 0 ? x - 16 : x + 16;
+				_check_x = vel_x < 0 ? x - 16 : x + 15;
 			}
 			
-			var _floor_data = collision_tile_v(_check_x, y + 16, 1);
+			var _floor_data = collision_tile_v(_check_x, bbox_bottom - 1, 1);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -81,7 +81,7 @@ switch state
 			{
 				y += _floor_dist;
 				angle = _floor_angle;
-				m_update_move_sprite();
+				m_update_sprite();
 				
 				break;
 			}

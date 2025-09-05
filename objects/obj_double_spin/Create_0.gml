@@ -1,8 +1,8 @@
 // Inherit the parent event
 event_inherited();
 
-depth = m_get_layer_depth(0);
-ignore_game_state = true;
+depth = draw_depth(0);
+ignored_game_state = GAME_STATE.STOP_OBJECTS;
 attack_timer = 14;
 player = noone;
-m_animation_start(sprite_index, 0, 5, 1);
+animator.start(sprite_index, 0, 5, 1);

@@ -63,7 +63,7 @@ if (continue_count > 1)
     var _shift = max(continue_count - 1, 0) * 10 + 2;
     for (var _i = 0; _i < continue_count; _i++)
     {
-        continue_icons[_i] = instance_create(half_width + 20 * _i - _shift, half_height - 20, obj_gui_continue);
+        continue_icons[_i] = instance_create(half_width + 20 * _i - _shift, half_height - 20, obj_continue_icon);
     }
 }
 

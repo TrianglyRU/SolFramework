@@ -1,4 +1,4 @@
-if image_timer < 0
+if animator.timer < 0
 {
 	instance_destroy();
 }

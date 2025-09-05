@@ -2,8 +2,6 @@
 /// @function scr_player_animate_tails()
 function scr_player_animate_tails()
 {
-	gml_pragma("forceinline");
-	
 	switch (animation)
 	{
 		case ANIM.IDLE:

@@ -26,11 +26,11 @@ function scr_player_hammerspin()
 		return;
 	}
 	
-	if (input_down.action_any)
+	if m_down_action_any()
 	{
-		if (dropdash_charge >= 0)
+		if dropdash_charge >= 0
 		{
-			if (++dropdash_charge == PARAM_DROPDASH_CHARGE)
+			if ++dropdash_charge == PARAM_DROPDASH_CHARGE
 			{
 				audio_play_sfx(snd_charge_drop);
 			}
@@ -38,7 +38,7 @@ function scr_player_hammerspin()
 	
 		air_lock_flag = false;
 	}
-	else if (dropdash_charge > 0)
+	else if dropdash_charge > 0
 	{
 		dropdash_charge = dropdash_charge >= PARAM_DROPDASH_CHARGE ? -1 : 0;
 	}

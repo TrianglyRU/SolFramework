@@ -1,5 +1,5 @@
-/// @description Window Scale 3x
-global.window_scale = 3;
+/// @description Window Scale 4x
+global.window_scale = 4;
 
 window_set_fullscreen(false);
 window_set_cursor(cr_default);

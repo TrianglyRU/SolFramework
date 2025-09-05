@@ -54,7 +54,7 @@ switch state
 			}
 			
 			state = RING_STATE.ATTRACTED;
-			outside_action = OUTSIDE_ACTION.DESTROY;
+			culler.action = CULL_ACTION.DESTROY;
 		}
 		
 		if _shield == SHIELD.LIGHTNING
@@ -98,13 +98,13 @@ switch state
 		
 		var _target_duration = floor(512 / (_spill_timer));
 		
-		if image_timer == 0
+		if animator.timer == 0
 		{
-			m_animation_start(sprite_index, 0, 0, _target_duration);
+			animator.start(sprite_index, 0, 0, _target_duration);
 		}
 		else
 		{
-			image_duration = _target_duration;
+			animator.duration = _target_duration;
 		}
 		
 		x += vel_x;
@@ -113,7 +113,7 @@ switch state
 		
 		if vel_y >= 0 && _spill_timer % 4 == 0
 		{
-			var _floor_dist = collision_tile_v(x, y + 8, 1)[0];
+			var _floor_dist = collision_tile_v(x, bbox_bottom + 1, 1)[0];
 			
 			if _floor_dist < 0
 			{

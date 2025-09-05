@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.RESPAWN);
 
 enum STARPOST_STATE
 {
@@ -8,7 +9,6 @@ enum STARPOST_STATE
 }
 
 image_index = 1;
-depth = m_get_layer_depth(60);
-outside_action = OUTSIDE_ACTION.RESPAWN;
-state = STARPOST_STATE.IDLE;
+depth = draw_depth(60);
 lamp_obj = instance_create(x, y - 32, obj_starpost_lamp);
+state = STARPOST_STATE.IDLE;

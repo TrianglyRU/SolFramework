@@ -21,16 +21,15 @@ function scr_player_balance()
 			return;
 		}
 		
-		var _y = y + solid_radius_y;
-		var _floor_dist = collision_tile_v(x, _y, 1, secondary_layer)[0];	
+		var _floor_dist = collision_tile_v(x, y + solid_radius_y - 1, 1, secondary_layer)[0];	
 		
 		if _floor_dist < 12
 		{
 			return;
 		}
 		
-		var _angle_left = collision_tile_v(x - solid_radius_x, _y, 1, secondary_layer)[1];
-		var _angle_right = collision_tile_v(x + solid_radius_x, _y, 1, secondary_layer)[1];
+		var _angle_left = collision_tile_v(x - solid_radius_x, y + solid_radius_y - 1, 1, secondary_layer)[1];
+		var _angle_right = collision_tile_v(x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer)[1];
 		
 		if _angle_left == TILE_EMPTY_ANGLE && _angle_right == TILE_EMPTY_ANGLE
 		|| _angle_left != TILE_EMPTY_ANGLE && _angle_right != TILE_EMPTY_ANGLE
@@ -40,34 +39,26 @@ function scr_player_balance()
 		
 		if _angle_left == TILE_EMPTY_ANGLE
 		{	
-			_balance_left(collision_tile_v(x + 6, _y, 1, secondary_layer)[0] >= 12);
+			_balance_left(collision_tile_v(x + 5, y + solid_radius_y - 1, 1, secondary_layer)[0] >= 12);
 		}
 		else if _angle_right == TILE_EMPTY_ANGLE
 		{
-			_balance_right(collision_tile_v(x - 6, _y, 1, secondary_layer)[0] >= 12);
+			_balance_right(collision_tile_v(x - 6, y + solid_radius_y - 1, 1, secondary_layer)[0] >= 12);
 		}
 	}
-	else if instance_exists(on_object)
+	else if instance_exists(on_object) && on_object.solid_balance
 	{
-		var _obj = on_object;
+		var _px = floor(x);
+		var _left_edge = floor(on_object.bbox_left) + 2;
+		var _right_edge = floor(on_object.bbox_right) - 3;
 		
-		if !_obj.solid_balance
+		if _px < _left_edge
 		{
-			return;
+			_balance_left(_px < _left_edge - 4);
 		}
-		
-		var _radius = _obj.solid_radius_x;
-		var _left_edge = 2;
-		var _right_edge = _radius * 2 - _left_edge;
-		var _relative_x = _radius - floor(_obj.x) + floor(x);
-		
-		if _relative_x < _left_edge
+		else if _px > _right_edge
 		{
-			_balance_left(_relative_x < _left_edge - 4);
-		}
-		else if _relative_x > _right_edge
-		{
-			_balance_right(_relative_x > _right_edge + 4);
+			_balance_right(_px > _right_edge + 4);
 		}
 	}
 }

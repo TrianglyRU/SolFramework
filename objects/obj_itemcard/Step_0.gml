@@ -1,140 +1,143 @@
-switch (state)
+switch state
 {
-    case ITEMCARDSTATE.MOVE:
+    case ITEM_CARD_STATE.MOVE:
     
-        if (vel_y < 0)
+        if vel_y >= 0
         {
-            y += vel_y;
-            vel_y += 0.09375;
+			state = ITEM_CARD_STATE.IDLE;
+	        wait_timer = 29;
 			
-            break;
-        }
-
-        state = ITEMCARDSTATE.IDLE;
-        wait_timer = 29;
-		
-        var _player = player_get(0);
-        var _player_shield = global.player_shields[0];
+	        var _player = player_get(0);
+	        var _player_shield = global.player_shields[0];
         
-        switch (image_index)
-        {
-            // Nothing
-            case 0: break;
+	        switch image_index
+	        {
+	            // Nothing
+	            case 0: break;
 			
-            // Eggman Mark
-            case 1:
-               _player.m_hurt();
-            break;
+	            // Eggman Mark
+	            case 1:
+	               _player.m_hurt();
+	            break;
 			
-            // Super Ring
-            case 2:
+	            // Super Ring
+	            case 2:
 			
-                global.player_rings = min(global.player_rings + 10, 999);
+	                global.player_rings = min(global.player_rings + 10, 999);
 				
-                audio_play_sfx(snd_ring_left);
-                audio_play_sfx(snd_ring_right);
+	                audio_play_sfx(snd_ring_left);
+	                audio_play_sfx(snd_ring_right);
 				
-            break; 
+	            break; 
 			
-            // Power Sneakers
-            case 3:
+	            // Power Sneakers
+	            case 3:
 			
-                if (_player.super_timer <= 0)
-                {
-                    audio_play_bgm(snd_bgm_highspeed);
-                }
+	                if _player.super_timer <= 0
+	                {
+	                    audio_play_bgm(snd_bgm_highspeed);
+	                }
 				
-                _player.item_speed_timer = 1200;
+	                _player.item_speed_timer = 1200;
 				
-            break; 
+	            break; 
 			
-            // Shields
-            case 4:
-			
-                global.player_shields[0] = SHIELD.NORMAL;
+	            // Normal Shield
+	            case 4:
 				
-                audio_play_sfx(snd_shield);
-				
-            break;
-			
-            case 5:
-				
-				global.player_shields[0] = SHIELD.BUBBLE;
-				
-				audio_play_sfx(snd_shield_bubble);
-				
-				if (audio_is_playing(snd_bgm_drowning))
-                {
-					_player.m_restart_bgm();
-                }
-				
-            break; 
-			
-            case 6:
-			
-                global.player_shields[0] = SHIELD.FIRE;
-				
-                audio_play_sfx(snd_shield_fire);
-				
-            break;
-			
-            case 7:
-			
-                global.player_shields[0] = SHIELD.LIGHTNING;
-				
-                audio_play_sfx(snd_shield_lightning);
-				
-            break;
-			
-            // Invincibility
-            case 8:
-			
-                if (_player.super_timer > 0)
-                {
-                    break;
-                }
-                
-                if (_player.item_inv_timer == 0)
-                {
-                    for (var _i = 0; _i < 8; _i++)
-                    {
-                        instance_create(x, y, obj_star_invincibility, { vd_star_id: _i,vd_target_player: _player.id });
-                    }
+					global.player_shields[0] = SHIELD.NORMAL;
+					audio_play_sfx(snd_shield);
 					
-                    audio_play_bgm(snd_bgm_invincibility);
-                }
+	            break;
 				
-                _player.item_inv_timer = 1200;
+				// Bubble Shield
+	            case 5:
 				
-            break;
+					if audio_is_playing(snd_bgm_drowning)
+	                {
+						_player.m_restart_bgm();
+	                }
+					
+					global.player_shields[0] = SHIELD.BUBBLE;
+					audio_play_sfx(snd_shield_bubble);
+				
+	            break; 
+				
+				// Fire Shield
+	            case 6:
+				
+					global.player_shields[0] = SHIELD.FIRE;
+					audio_play_sfx(snd_shield_fire);
+					
+	            break;
+				
+				// Lightning Shield
+	            case 7:
+				
+	                global.player_shields[0] = SHIELD.LIGHTNING;
+					audio_play_sfx(snd_shield_lightning); 
+					
+	            break;
 			
-            // 1-UP
-            default:
+	            // Invincibility
+	            case 8:
 			
-                global.life_count++;
-                audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
+	                if _player.super_timer > 0
+	                {
+	                    break;
+	                }
+                
+	                if _player.item_inv_timer == 0
+	                {
+	                    for (var _i = 0; _i < 8; _i++)
+	                    {
+	                        with instance_create(x, y, obj_star_invincibility)
+							{
+								player = _player.id;
+								star_index = _i;
+							}
+	                    }
+					
+	                    audio_play_bgm(snd_bgm_invincibility);
+	                }
 				
-            break;
-        }
+	                _player.item_inv_timer = 1200;
+				
+	            break;
+			
+	            // 1-UP
+	            default:
+					
+	                global.life_count++;
+	                audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
+				
+	            break;
+	        }
         
-        if (global.player_shields[0] != _player_shield)
-        {
-            with (obj_shield)
-            {
-				if (vd_target_player == _player)
-				{
-					instance_destroy();
-				}
-            }
-			
-            instance_create(0, 0, obj_shield, { vd_target_player: _player });
+	        if global.player_shields[0] != _player_shield
+	        {
+	            with obj_shield
+	            {
+					if player == _player
+					{
+						instance_destroy();
+					}
+	            }
+				
+	            instance_create(0, 0, obj_shield, { player: _player });
+	        }
         }
+		else
+		{
+			y += vel_y;
+			vel_y += 0.09375;
+		}
 		
     break;
     
-    case ITEMCARDSTATE.IDLE:
+    case ITEM_CARD_STATE.IDLE:
     
-        if (--wait_timer == 0)
+        if --wait_timer == 0
         {
             instance_destroy();
         }

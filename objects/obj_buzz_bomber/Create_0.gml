@@ -1,16 +1,17 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESPAWN);
 
-enum BUZZBOMBERSTATE
+enum BUZZ_BOMBER_STATE
 {
 	ROAM,
 	HOVER,
 	FIRE
 }
 
-depth = m_get_layer_depth(40);
-outside_action = OUTSIDE_ACTION.RESPAWN;
-state = BUZZBOMBERSTATE.HOVER;
+depth = draw_depth(40);
+state = BUZZ_BOMBER_STATE.HOVER;
 state_timer = 0;
 shot_flag = false;
 projectile = noone;

@@ -1,11 +1,9 @@
-#macro MASHER_VEL_Y_DEFAULT -5
-
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESPAWN);
 
-obj_set_priority(5);
-obj_set_hitbox(12, 16);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-obj_set_anim(sprite_index, 8, 0, 0);
+#macro MASHER_VEL_Y_DEFAULT -5
 
+depth = draw_depth(50);
 vel_y = MASHER_VEL_Y_DEFAULT;

@@ -23,4 +23,4 @@ ring_sparkle_pos =
 	-16, 8,  0, -8, -8, 0,   8,  16		// y
 ];
 
-depth = m_get_layer_depth(50);
+depth = draw_depth(50);

@@ -66,12 +66,15 @@ function scr_player_animate()
 		break;
 	}
 	
-	if animation != ANIM.SPIN || image_timer == image_duration
+	if animation != ANIM.SPIN || animator.timer == animator.duration
 	{
 		image_xscale = facing;
 	}
 	
-	image_angle = animation == ANIM.MOVE || animation == ANIM.HAMMERDASH ? visual_angle : 0;
+	if animation != ANIM.MOVE && animation != ANIM.HAMMERDASH
+	{
+		visual_angle = 0;
+	}
 }
 
 /// @self scr_player_animate

@@ -1,15 +1,14 @@
 /// @self obj_player
 function scr_player_water()
 {
-	gml_pragma("forceinline");
-	
-	if !instance_exists(obj_rm_stage) || !obj_rm_stage.water_enabled || state == PLAYER_STATE.DEATH
+	if state == PLAYER_STATE.DEATH || !instance_exists(obj_water) 
 	{
 		return;
 	}
 	
 	var _shield = global.player_shields[player_index];
-	var _water_run_level = obj_rm_stage.water_level - solid_radius_y - 1;
+	var _water_level = obj_water.y;
+	var _water_run_level = _water_level - solid_radius_y;
 	
 	// This code is run by the water trail object itself in S3K
 	if !is_water_running
@@ -19,7 +18,10 @@ function scr_player_water()
 			is_water_running = true;
 			facing = sign(vel_x);
 			
-			instance_create(0, 0, obj_water_trail, { vd_target_player: id });
+			with instance_create(0, 0, obj_water_trail)
+			{
+				player = other.id;
+			}
 		}
 	}	
 	else if m_press_action_any()
@@ -52,11 +54,11 @@ function scr_player_water()
 	
 	if !is_underwater
 	{
-		if floor(y) < obj_rm_stage.water_level
+		if floor(y) < _water_level
 		{
 			return;
 		}
-	
+		
 		is_underwater = true;
 		air_timer = AIR_TIMER_DEFAULT;
 		vel_x *= 0.5;
@@ -75,7 +77,7 @@ function scr_player_water()
 			}
 			else if _shield == SHIELD.FIRE
 			{
-				instance_create(x, obj_rm_stage.water_level, obj_explosion_dust);
+				instance_create(x, _water_level, obj_explosion_dust);
 			}
 			
 			global.player_shields[player_index] = SHIELD.NONE;
@@ -133,7 +135,7 @@ function scr_player_water()
 		}
 	}
 	
-	if floor(y) >= obj_rm_stage.water_level
+	if floor(y) >= _water_level
 	{
 		return;
 	}
@@ -170,7 +172,7 @@ function _spawn_splash()
 	{
 		if action != ACTION.CLIMB && cpu_state != CPU_STATE.RESPAWN && !m_is_true_glide()
 		{
-			instance_create(x, obj_rm_stage.water_level, obj_water_splash);
+			instance_create(x, obj_water.y, obj_water_splash);
 			audio_play_sfx(snd_splash);
 		}
 	}	

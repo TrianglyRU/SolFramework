@@ -3,42 +3,40 @@ event_inherited();
 
 switch state
 {
-	case BUZZBOMBERSTATE.HOVER:
+	case BUZZ_BOMBER_STATE.HOVER:
 	
 		if --state_timer < 0
 		{
-			state = BUZZBOMBERSTATE.ROAM;
+			state = BUZZ_BOMBER_STATE.ROAM;
 			state_timer = 127;
-			
-			m_animation_start(spr_buzz_bomber_roam, 0, 0, 2);
+			animator.start(spr_buzz_bomber_roam, 0, 0, 2);
 		}
 		
 	break;
 	
-	case BUZZBOMBERSTATE.FIRE:
+	case BUZZ_BOMBER_STATE.FIRE:
 	
 		if --state_timer < 0
 		{
-			projectile = instance_create(x - 29 * image_xscale_start, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale });
-			state = BUZZBOMBERSTATE.HOVER;
+			projectile = instance_create(x - 29 * image_xscale, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale });
+			state = BUZZ_BOMBER_STATE.HOVER;
 			state_timer = 59;
-			shot_flag = true;
-			
-			m_animation_start(spr_buzz_bomber_fire, 0, 0, 2);
+			shot_flag = true;	
+			animator.start(spr_buzz_bomber_fire, 0, 0, 2);
 		}
 		
 	break;
 	
-	case BUZZBOMBERSTATE.ROAM:
+	case BUZZ_BOMBER_STATE.ROAM:
 	
 		if --state_timer < 0
 		{
-			state = BUZZBOMBERSTATE.HOVER;
+			image_xscale *= -1;
+			state = BUZZ_BOMBER_STATE.HOVER;
 			shot_flag = false;
 			state_timer = 59;
-			image_xscale *= -1;
+			animator.start(spr_buzz_bomber_hover, 0, 0, 2);
 			
-			m_animation_start(spr_buzz_bomber_hover, 0, 0, 2);
 			break;
 		}
 		
@@ -56,10 +54,9 @@ switch state
 			
 			if _dist_x >= 0 && _dist_x < 96 && instance_is_drawn()
 			{
-				state = BUZZBOMBERSTATE.FIRE;
+				state = BUZZ_BOMBER_STATE.FIRE;
 				state_timer = 29;
-				
-				m_animation_start(spr_buzz_bomber_hover, 0, 0, 2);
+				animator.start(spr_buzz_bomber_hover, 0, 0, 2);
 			}
 		}
 		

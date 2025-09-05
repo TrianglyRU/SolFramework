@@ -1,4 +1,5 @@
 // Inherit the parent event
 event_inherited();
+event_culler();
 
-depth = m_get_layer_depth(60);
+depth = draw_depth(60);

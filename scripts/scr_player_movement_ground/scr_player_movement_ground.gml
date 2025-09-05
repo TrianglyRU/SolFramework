@@ -40,7 +40,7 @@ function scr_player_movement_ground()
 					facing = -1;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
-					m_animation_restart();
+					animator.restart();
 				}
 				
 				if animation == ANIM.SKID
@@ -75,7 +75,7 @@ function scr_player_movement_ground()
 					facing = 1;
 					animation = ANIM.MOVE;
 					set_push_anim_by = noone;
-					m_animation_restart();
+					animator.restart();
 				}
 				
 				if animation == ANIM.SKID
@@ -85,7 +85,7 @@ function scr_player_movement_ground()
 			}
 		}
 		
-		if set_push_anim_by != noone && image_timer == image_duration
+		if set_push_anim_by != noone && animator.timer == animator.duration
 		{
 			animation = ANIM.PUSH;
 		}	

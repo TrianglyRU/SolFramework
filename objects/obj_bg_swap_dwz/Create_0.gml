@@ -1,3 +1,4 @@
 // Inherit the parent event
 event_inherited();
-obj_set_culling(ACTIVEIF.ALWAYS);
+
+ignored_game_state = GAME_STATE.PAUSED;

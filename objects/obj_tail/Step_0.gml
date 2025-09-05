@@ -16,7 +16,7 @@ switch player.animation
 		
 		if sprite_index != spr_tails_tail_idle
 		{
-			m_animation_start(spr_tails_tail_idle, 0, 0, 8);
+			animator.start(spr_tails_tail_idle, 0, 0, 8);
 		}
 		
 	break;
@@ -28,11 +28,11 @@ switch player.animation
 		
 		if sprite_index != spr_tails_tail_fly
 		{
-			m_animation_start(spr_tails_tail_fly, 0, 0, _duration);
+			animator.start(spr_tails_tail_fly, 0, 0, _duration);
 		}
 		else
 		{
-			image_duration = _duration;
+			animator.duration = _duration;
 		}
 		
 	break;
@@ -56,7 +56,7 @@ switch player.animation
 				tail_offset_y = 5;
 			}
 			
-			m_animation_start(spr_tails_tail, 0, 0, 4);
+			animator.start(spr_tails_tail, 0, 0, 4);
 		}
 		
 	break;

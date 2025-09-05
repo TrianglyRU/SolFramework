@@ -1,8 +1,8 @@
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.RESPAWN);
 
-depth = m_get_layer_depth(50);
-outside_action = OUTSIDE_ACTION.RESPAWN;
+depth = draw_depth(50);
 retract_direction = sign(image_xscale);
 retract_distance = 32;
 retract_timer = 0;

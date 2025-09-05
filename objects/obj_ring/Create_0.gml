@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_culler();
 
 enum RING_STATE
 {
@@ -8,7 +9,7 @@ enum RING_STATE
 	ATTRACTED
 }
 
-depth = m_get_layer_depth(10);
+depth = draw_depth(10);
 state = RING_STATE.STATIC;
 vel_x = 0;
 vel_y = 0;

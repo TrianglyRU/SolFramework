@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESPAWN);
 
 enum CRABMEAT_STATE
 {
@@ -13,7 +15,7 @@ m_is_on_slope = function()
 	return angle >= 8.44 && angle <= 351.56;
 }
 
-m_update_move_sprite = function()
+m_update_sprite = function()
 {
 	if m_is_on_slope()
 	{
@@ -27,8 +29,7 @@ m_update_move_sprite = function()
 	}
 }
 
-depth += m_get_layer_depth(30);
-outside_action = OUTSIDE_ACTION.RESPAWN;
+depth = draw_depth(30);
 state = CRABMEAT_STATE.INIT;
 state_timer = 0;
 shot_flag = true;

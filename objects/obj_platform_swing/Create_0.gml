@@ -1,11 +1,12 @@
 // Inherit the parent event
 event_inherited();
+event_culler();
 
 #macro SWING_CHAIN_SIZE 16
 
-osc_angle = 0;
-distance = iv_chains * SWING_CHAIN_SIZE - SWING_CHAIN_SIZE * 0.5;
+depth = draw_depth(40);
+sprite_index = spr_platform_swing_base;
 sprite_chain = spr_platform_swing_chain;
 sprite_pendulum = spr_platform_swing_bob;
-sprite_index = spr_platform_swing_base;
-depth = m_get_layer_depth(40);
+distance = iv_chains * SWING_CHAIN_SIZE - SWING_CHAIN_SIZE * 0.5;
+osc_angle = 0;

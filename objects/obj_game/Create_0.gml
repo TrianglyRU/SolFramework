@@ -100,6 +100,23 @@ camera_new(0, _w, _h, _w, _h);
 #macro CULLING_ADD_WIDTH 320
 #macro CULLING_ADD_HEIGHT 288
 
+m_cull_activate_paused_objects = function()
+{
+	var _list_size = ds_list_size(cull_game_paused_list);
+	
+	if _list_size > 0
+	{
+		for (var _i = _list_size - 1; _i >= 0; _i--)
+		{
+			instance_activate_object(cull_game_paused_list[| _i]);
+		}
+	
+		ds_list_clear(cull_game_paused_list);
+	}
+	
+	instance_activate_object(obj_room);
+}
+
 cull_game_paused_list = ds_list_create();
 
 #endregion

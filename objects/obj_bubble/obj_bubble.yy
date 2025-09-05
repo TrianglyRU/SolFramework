@@ -31,16 +31,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
-  "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_bubble_type","varType":4,"value":"BUBBLE.SMALL","rangeEnabled":true,"rangeMin":0.0,"rangeMax":2.0,"listItems":[
-        "BUBBLE_TYPE_SMALL",
-        "BUBBLE_TYPE_MEDIUM",
-        "BUBBLE_TYPE_LARGE",
-        "BUBBLE_TYPE_COUNTDOWN",
-      ],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_countdown_frame","varType":0,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_wobble_direction","varType":1,"value":"0","rangeEnabled":true,"rangeMin":-1.0,"rangeMax":1.0,"listItems":[],"multiselect":false,"filters":[],},
-  ],
+  "properties": [],
   "overriddenProperties": [],
   "parent": {
     "name": "Stage",

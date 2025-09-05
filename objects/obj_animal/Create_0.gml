@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.DESTROY);
 
 enum ANIMAL_STATE
 {
@@ -7,8 +9,6 @@ enum ANIMAL_STATE
 	MOVE,
 	CAPSULE
 }
-
-outside_action = OUTSIDE_ACTION.DESTROY;
 
 state = ANIMAL_STATE.APPEAR;
 state_timer = 0;
@@ -18,7 +18,7 @@ vel_y = -4;
 vel_x_bounce = 0;
 vel_y_bounce = 0;
 
-depth = m_get_layer_depth(70);
+depth = draw_depth(70);
 
 if instance_exists(obj_rm_stage)
 {
@@ -30,7 +30,7 @@ if instance_exists(obj_rm_stage)
 	}
 }
 
-switch (sprite_index)
+switch sprite_index
 {
     case spr_animal_flicky:
 	

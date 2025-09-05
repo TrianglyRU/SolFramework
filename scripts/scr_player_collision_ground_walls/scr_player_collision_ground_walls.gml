@@ -41,11 +41,11 @@ function scr_player_collision_ground_walls()
 	    switch _wall_quad
 	    {
 	        case QUADRANT.RIGHT:
-	            _wall_dist = collision_tile_v(_x, _y + _wall_radius, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_v(_x, _y + _wall_radius - 1, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = collision_tile_h(_x + _wall_radius, _y, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_h(_x + _wall_radius - 1, _y, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
@@ -54,7 +54,7 @@ function scr_player_collision_ground_walls()
 			
 			// QUADRANT.DOWN
 			default:
-				_wall_dist = collision_tile_h(_x - _wall_radius, _y + _y_offset, -1, secondary_layer, _wall_quad)[0];
+				_wall_dist = collision_tile_h(_x - _wall_radius, _y + _y_offset - 1, -1, secondary_layer, _wall_quad)[0];
 	    }
 
 	    if _wall_dist >= 0
@@ -114,12 +114,12 @@ function scr_player_collision_ground_walls()
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = collision_tile_v(_x, _y + _wall_radius, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_v(_x, _y + _wall_radius - 1, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 			// QUADRANT.DOWN
 			default:
-	            _wall_dist = collision_tile_h(_x + _wall_radius, _y + _y_offset, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_h(_x + _wall_radius - 1, _y + _y_offset - 1, 1, secondary_layer, _wall_quad)[0];
 	    }
 		
 	    if _wall_dist >= 0

@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
 
 enum LAMP_STATE
 {
@@ -11,7 +12,7 @@ enum LAMP_STATE
 m_activate = function()
 {
 	state = LAMP_STATE.ACTIVE;
-	m_animation_start(sprite_index, 0, 0, 4);
+	animator.start(sprite_index, 0, 0, 4);
 }
 
 depth -= 1;

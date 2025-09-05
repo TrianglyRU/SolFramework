@@ -8,5 +8,5 @@
 /// @param {Constant.Color} [_col2] The colour of the line at the ending point (default is col1).
 function draw_line_floored(_x1, _y1, _x2, _y2, _col1 = c_white, _col2 = _col1)
 {
-	draw_line_colour(floor(_x1) - (_x1 < _x2), floor(_y1) - (_y1 < _y2), floor(_x2), floor(_y2), _col1, _col2);
+	draw_line_colour(floor(_x1), floor(_y1), floor(_x2), floor(_y2), _col1, _col2);
 }

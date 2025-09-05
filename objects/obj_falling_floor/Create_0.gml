@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_culler();
 
 enum FALLINGFLOORSTATE
 {
@@ -7,9 +8,8 @@ enum FALLINGFLOORSTATE
 	FALL
 }
 
-outside_action = OUTSIDE_ACTION.RESPAWN;
-
-depth = m_get_layer_depth(50);
+depth = draw_depth(50);
+culler.action = CULL_ACTION.RESPAWN;
 state = FALLINGFLOORSTATE.IDLE;
 wait_timer = 8;
 fall_flag = false;

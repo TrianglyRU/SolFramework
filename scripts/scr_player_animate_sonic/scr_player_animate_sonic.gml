@@ -9,17 +9,17 @@ function scr_player_animate_sonic()
 			{
 				if sprite_index != spr_sonic_idle_super
 				{
-					m_animation_start(spr_sonic_idle_super, 0, 0, 8);
+					animator.start(spr_sonic_idle_super, 0, 0, 8);
 				}
 			}
 			else if sprite_index != spr_sonic_idle
 			{
-				m_animation_start(spr_sonic_idle, 0, 0, 180);
+				animator.start(spr_sonic_idle, 0, 0, 180);
 			}
-			else if image_timer == -1
+			else if animator.timer == -1
 			{
 				animation = ANIM.WAIT;
-				m_animation_start(spr_sonic_wait, 0, 6, 6);
+				animator.start(spr_sonic_wait, 0, 6, 6);
 			}
 			
 		break;
@@ -44,11 +44,11 @@ function scr_player_animate_sonic()
 			
 			if sprite_index != _move_sprite
 			{
-				m_animation_start(_move_sprite, 0, 0, _move_timing);
+				animator.start(_move_sprite, 0, 0, _move_timing);
 			}
 			else
 			{
-				image_duration = _move_timing;
+				animator.duration = _move_timing;
 			}
 			
 			if sprite_index == spr_sonic_walk_super && obj_game.frame_counter % 4 <= 1
@@ -64,7 +64,7 @@ function scr_player_animate_sonic()
 			{
 				if sprite_index != spr_sonic_dropdash
 				{
-					m_animation_start(spr_sonic_dropdash, 0, 0, 1);
+					animator.start(spr_sonic_dropdash, 0, 0, 1);
 				}
 			}
 			else 
@@ -73,11 +73,11 @@ function scr_player_animate_sonic()
 				
 				if sprite_index != spr_sonic_spin
 				{
-					m_animation_start(spr_sonic_spin, 0, 0, _spin_timing);
+					animator.start(spr_sonic_spin, 0, 0, _spin_timing);
 				}
 				else
 				{
-					image_duration = _spin_timing;
+					animator.duration = _spin_timing;
 				}
 			}
 			
@@ -87,7 +87,7 @@ function scr_player_animate_sonic()
 			
 			if sprite_index != spr_sonic_spindash
 			{
-				m_animation_start(spr_sonic_spindash, 0, 0, 1);
+				animator.start(spr_sonic_spindash, 0, 0, 1);
 			}
 			
 		break;
@@ -99,11 +99,11 @@ function scr_player_animate_sonic()
 			
 			if sprite_index != _push_sprite
 			{
-				m_animation_start(_push_sprite, 0, 0, _push_timing);
+				animator.start(_push_sprite, 0, 0, _push_timing);
 			}
 			else
 			{
-				image_duration = _push_timing;
+				animator.duration = _push_timing;
 			}
 			
 		break;
@@ -117,7 +117,7 @@ function scr_player_animate_sonic()
 			}
 			else if sprite_index != spr_sonic_duck
 			{
-				m_animation_start(spr_sonic_duck, 0, 1, 4);
+				animator.start(spr_sonic_duck, 0, 1, 4);
 			}
 			
 		break;
@@ -126,7 +126,7 @@ function scr_player_animate_sonic()
 		
 			if sprite_index != spr_sonic_lookup
 			{
-				m_animation_start(spr_sonic_lookup, 0, 1, 4);
+				animator.start(spr_sonic_lookup, 0, 1, 4);
 			}
 			
 		break;
@@ -135,7 +135,7 @@ function scr_player_animate_sonic()
 			
 			if sprite_index != spr_sonic_grab
 			{
-				m_animation_start(spr_sonic_grab, 0, 0, 20);
+				animator.start(spr_sonic_grab, 0, 0, 20);
 			}
 			
 		break;
@@ -156,9 +156,9 @@ function scr_player_animate_sonic()
 		
 			if sprite_index != spr_sonic_skid
 			{
-				m_animation_start(spr_sonic_skid, 0, 3, 6);
+				animator.start(spr_sonic_skid, 0, 3, 6);
 			}
-			else if image_timer == -1
+			else if animator.timer == -1
 			{
 				animation = ANIM.MOVE;
 			}
@@ -169,9 +169,9 @@ function scr_player_animate_sonic()
 		
 			if sprite_index != spr_sonic_transform
 			{
-				m_animation_start(spr_sonic_transform, 0, 12, 3);
+				animator.start(spr_sonic_transform, 0, 12, 3);
 			}
-			else if image_timer == -1
+			else if animator.timer == -1
 			{
 				animation = ANIM.MOVE;
 			}
@@ -182,9 +182,9 @@ function scr_player_animate_sonic()
 		
 			if sprite_index != spr_sonic_breathe
 			{
-				m_animation_start(spr_sonic_breathe, 0, 0, 24);
+				animator.start(spr_sonic_breathe, 0, 0, 24);
 			}
-			else if image_timer == -1
+			else if animator.timer == -1
 			{
 				animation = ANIM.MOVE;
 			}
@@ -195,9 +195,9 @@ function scr_player_animate_sonic()
 		
 			if sprite_index != spr_sonic_bounce
 			{
-				m_animation_start(spr_sonic_bounce, 0, 0, 48);
+				animator.start(spr_sonic_bounce, 0, 0, 48);
 			}
-			else if image_timer == -1
+			else if animator.timer == -1
 			{
 				animation = ANIM.MOVE;
 			}
@@ -210,7 +210,7 @@ function scr_player_animate_sonic()
 			
 			if sprite_index != _balance_sprite
 			{
-				m_animation_start(_balance_sprite, 0, 0, 10);
+				animator.start(_balance_sprite, 0, 0, 10);
 			}
 			
 		break;
@@ -219,7 +219,7 @@ function scr_player_animate_sonic()
 			
 			if sprite_index != spr_sonic_balance_flip
 			{
-				m_animation_start(spr_sonic_balance_flip, 0, 0, 20);
+				animator.start(spr_sonic_balance_flip, 0, 0, 20);
 			}
 			
 		break;
@@ -228,7 +228,7 @@ function scr_player_animate_sonic()
 		
 			if sprite_index != spr_sonic_balance_panic
 			{
-				m_animation_start(spr_sonic_balance_panic, 0, 0, 4);
+				animator.start(spr_sonic_balance_panic, 0, 0, 4);
 			}
 			
 		break;
@@ -244,11 +244,11 @@ function scr_player_animate_sonic()
 			
 			if sprite_index != spr_sonic_flip && sprite_index != spr_sonic_flip_flipped
 			{
-				m_animation_start(_flip_sprite, 0, 0, 1);
+				animator.start(_flip_sprite, 0, 0, 1);
 			}
 			else
 			{
-				if anim_timer == -1
+				if animator.timer < 0
 				{
 					animation = ANIM.MOVE;
 				}

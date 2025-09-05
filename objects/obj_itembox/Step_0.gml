@@ -3,6 +3,11 @@ if state == ITEMBOX_STATE.DESTROYED
 	return;
 }
 
+if itembox_type >= 9
+{
+	itembox_type = 9 + global.player_main;
+}
+
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
@@ -16,7 +21,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		}
 	}
 	
-	if collision_player(_player)
+	if collision_player(_player, bbox_left + 1, bbox_top + 1, bbox_right - 1, bbox_bottom - 1)
 	{
 		// Bounce up
         if _player.vel_y < 0 && _player.ext_hitbox_radius_x == 0
@@ -48,10 +53,14 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 				}
             }
 			
-			outside_action = OUTSIDE_ACTION.PAUSE;
-			m_animation_start(spr_itembox_destroyed, 0, 2, 3);
+			culler.action = CULL_ACTION.PAUSE;
+			animator.start(spr_itembox_destroyed, 0, 2, 3);
 			
-            // instance_create(x, y - 3, obj_itemcard, { image_index: itembox_type });
+            with instance_create(x, y - 3, obj_itemcard)
+			{
+				image_index = other.itembox_type;
+			}
+			
             instance_create(x, y, obj_explosion_dust);
 			audio_play_sfx(snd_destroy);
 			input_set_rumble(_p, 0.05, INPUT_RUMBLE_LIGHT);	
@@ -62,7 +71,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
     if state == ITEMBOX_STATE.IDLE && !_can_destroy
     {
-		m_solid_object(_player, SOLID_TYPE.ITEM_BOX, bbox_left + 1, bbox_top + 1, bbox_right - 1, bbox_bottom - 1);
+		m_solid_object(_player, SOLID_TYPE.ITEM_BOX);
     }
 }
 
@@ -71,7 +80,7 @@ if state == ITEMBOX_STATE.FALLING
     y += vel_y;
     vel_y += 0.21875;
     
-    var _floor_dist = collision_tile_v(x, y + 14, 1)[0];
+    var _floor_dist = collision_tile_v(x, bbox_bottom - 1, 1)[0];
 	
     if _floor_dist < 0
     {

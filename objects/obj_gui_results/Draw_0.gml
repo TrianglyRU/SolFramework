@@ -9,7 +9,7 @@ var _h = camera_get_height(view_current);
 var _centre_x = _w * 0.5;
 var _centre_y = _h * 0.5;
 var _factor_x = _w / 320;
-var _is_single_act = obj_rm_stage.act_id == ACT_SINGLE;
+var _is_single_act = obj_rm_stage.act_index == ACT_SINGLE;
 var _player_text;
 
 switch (player_object.player_type)
@@ -57,7 +57,7 @@ _x = _centre_x + offset_line2 * _factor_x;
 _y = _centre_y - 38;
 
 draw_text(_x - 13 * !_is_single_act, _y, _is_single_act ? "THROUGH ZONE" : "THROUGH ACT");
-draw_sprite(spr_gui_act, obj_rm_stage.act_id, _x + 98, _y + 4);
+draw_sprite(spr_gui_act, obj_rm_stage.act_index, _x + 98, _y + 4);
 
 _x = _centre_x + offset_time * _factor_x;
 _y = _centre_y + 8;

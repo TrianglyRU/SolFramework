@@ -1,5 +1,5 @@
 /// @description Base Enemy Code
-if instance_exists(obj_water_flash) && y >= obj_rm_stage.water_level
+if instance_exists(obj_water_flash) && floor(y) >= obj_water.y
 {
 	m_destroy(player_get(0));
 }

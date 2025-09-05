@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_culler();
 
-wait_timer = 119;
 depth = RENDER_DEPTH_PRIORITY;
+wait_timer = 119;

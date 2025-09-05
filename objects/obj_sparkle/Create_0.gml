@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.DESTROY);
 
-outside_action = OUTSIDE_ACTION.DESTROY;
-
-depth = m_get_layer_depth(10);
-m_animation_start(sprite_index, 0, 3, 8);
+depth = draw_depth(10);
+animator.start(sprite_index, 0, 3, 8);

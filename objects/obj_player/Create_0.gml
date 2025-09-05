@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
 
 #region MACRO & ENUM
 
@@ -161,20 +162,20 @@ m_set_velocity = function()
 	vel_y = spd_ground * -dsin(angle);
 }
 
-m_set_hitbox = function(_radius_x, _radius_y, _offset_x, _offset_y)
+m_set_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
 {
-	react_radius_x = _radius_x;
-	react_radius_y = _radius_y;
-	react_offset_x = _offset_x;
-	react_offset_y = _offset_y;
+	hbox_left = _hbleft;
+	hbox_top = _hbtop;
+	hbox_right = _hbright;
+	hbox_bottom = _hbbottom;
 }
 
-m_set_extra_hitbox = function(_radius_x, _radius_y, _offset_x, _offset_y)
+m_set_extra_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
 {
-	ext_hitbox_radius_x = _radius_x;
-	ext_hitbox_radius_y = _radius_y;
-	ext_hitbox_offset_x = _offset_x;
-	ext_hitbox_offset_y = _offset_y;
+	hbox_ext_left = _hbleft;
+	hbox_ext_top = _hbtop;
+	hbox_ext_right = _hbright;
+	hbox_ext_bottom = _hbbottom;
 }
 
 m_respawn = function()
@@ -214,18 +215,20 @@ m_reset_substate = function()
 		break;
 	}
 	
+	// Clear actions
 	action = ACTION.NONE;
 	shield_state = SHIELD_STATE.NONE;
 	is_jumping = false;
-	is_grounded = false;
-	forced_roll = false;
-	on_object = noone;
 	set_push_anim_by = noone;
+	m_clear_carry();
+	
+	// Clear collision
+	is_grounded = false;
+	on_object = noone;
 	solid_radius_x = radius_x_normal;
 	solid_radius_y = radius_y_normal;
-	visual_angle = 0;
 	
-	m_clear_carry();
+	visual_angle = 0;
 }
 
 m_reset_gravity = function()
@@ -275,9 +278,9 @@ m_land = function()
 		
 		with obj_shield
 		{
-			if vd_target_player == other.id
+			if player == other.id
 			{
-				obj_set_anim(spr_shield_bubble_bounce, 6, 0, set_bubble_shield_anim);
+				m_bubble_shield_bounce_animation();
 			}
 		}
 		
@@ -384,11 +387,11 @@ m_hurt = function(_sound = snd_hurt, _hazard = other)
 			var _ring = instance_create(x, y, obj_ring);
 			
 			// Override data
-			_ring.outside_action = OUTSIDE_ACTION.DESTROY;
+			_ring.culler.action = CULL_ACTION.DESTROY;
 			_ring.state = RING_STATE.DROPPED;
 			_ring.vel_x = _ring_speed * dcos(_ring_angle) * -_ring_direction;
 			_ring.vel_y = _ring_speed * -dsin(_ring_angle);
-			_ring.depth = _ring.m_get_layer_depth(30);
+			_ring.depth = _ring.draw_depth(30);
 			
 			if _ring_direction == 1
 			{
@@ -549,7 +552,7 @@ m_down_action_any = function()
 #endregion
 
 obj_game.player_count++;
-ignore_game_state = true;
+ignored_game_state = GAME_STATE.STOP_OBJECTS;
 
 scr_player_init();
 scr_player_debug_mode_init();

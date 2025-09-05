@@ -1,3 +1,6 @@
+instance_destroy();
+return;
+
 enum CAPSULESTATE
 {
 	IDLE,

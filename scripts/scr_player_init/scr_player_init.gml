@@ -26,18 +26,18 @@ function scr_player_init()
 		case PLAYER.TAILS:
 		
 			radius_x_normal = 9;
-			radius_y_normal = 15;
+			radius_y_normal = 16;
 			radius_x_spin = 7;
-			radius_y_spin = 14;
+			radius_y_spin = 15;
 			
 		break;
 		
 		case PLAYER.AMY:
-
+		
 			radius_x_normal = 9;
-			radius_y_normal = 16;
+			radius_y_normal = 17;
 			radius_x_spin = 7;
-			radius_y_spin = 12;
+			radius_y_spin = 13;
 		
 		break;
 		
@@ -45,9 +45,9 @@ function scr_player_init()
 		default:
 		
 			radius_x_normal = 9;
-			radius_y_normal = 19;
+			radius_y_normal = 20;
 			radius_x_spin = 7;
-			radius_y_spin = 14;
+			radius_y_spin = 15;
 	}
 	
 	state = PLAYER_STATE.DEFAULT;
@@ -64,10 +64,10 @@ function scr_player_init()
 	
 	solid_radius_x = radius_x_normal;
 	solid_radius_y = radius_y_normal;
-	react_radius_x = 0;
-	react_radius_y = 0;
-	react_offset_x = 0;
-	react_offset_y = 0;
+	hbox_left = 0;
+	hbox_top = 0;
+	hbox_right = 0;
+	hbox_bottom = 0;
 	
 	vel_x = 0;
 	vel_y = 0;
@@ -157,7 +157,7 @@ function scr_player_init()
 	visual_angle = 0;
 	set_push_anim_by = noone;
 	
-	depth = m_get_layer_depth(20);
+	depth = draw_depth(20);
 	image_angle = 0;
 	image_alpha = 1;
 	
@@ -181,10 +181,10 @@ function scr_player_init()
 		}
 		else
 		{
-			y -= solid_radius_y + 1;
+			y -= solid_radius_y;
 		}
 		
-		var _floor_dist = collision_tile_2v(x - solid_radius_x, y + solid_radius_y, x + solid_radius_x, y + solid_radius_y, 1, secondary_layer)[0];
+		var _floor_dist = collision_tile_2v(x - solid_radius_x, y + solid_radius_y - 1, x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer)[0];
 		
 		if _floor_dist < 14
 		{

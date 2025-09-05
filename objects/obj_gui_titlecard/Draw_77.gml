@@ -1,10 +1,11 @@
-// DRAW TO THE APPLICATION SURFACE
+/// @description Draw On Application
 var _x, _y;
 
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
 	var _camera_data = camera_get_data(_i);
-	if (_camera_data == undefined)
+	
+	if _camera_data == undefined
 	{
 		continue;
 	}
@@ -17,7 +18,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	var _factor_y = _h / 224;
 	
 	// Create a surface
-	if (!surface_exists(temp_surface[_i]))
+	if !surface_exists(temp_surface[_i])
 	{
 		temp_surface[_i] = surface_create(_w, _h);
 	}
@@ -48,7 +49,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	_x = _centre_x + 117 + offset_act * _factor_x;
 	_y = _centre_y + 12;
 	
-	draw_sprite(spr_gui_act, obj_rm_stage.act_id, _x, _y);
+	draw_sprite(spr_gui_act, obj_rm_stage.act_index, _x, _y);
 	
 	shader_reset();
 	surface_reset_target();

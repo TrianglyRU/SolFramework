@@ -53,15 +53,15 @@ function scr_player_debug_mode()
 	    }
 	    else
 	    {
-			instance_create(x, y, debug_mode_array[debug_mode_ind], { image_xscale: facing }).outside_action = OUTSIDE_ACTION.DESTROY;
+			instance_create(x, y, debug_mode_array[debug_mode_ind], { image_xscale: facing }).culler.action = CULL_ACTION.DESTROY;
 	    }
 	}
 	else if input_press.action2
 	{
 	    state = PLAYER_STATE.DEFAULT;
 	    animation = ANIM.MOVE;
-	    air_lock_flag = false;
 	    is_underwater = false;
+		air_lock_flag = false;
 	    debug_mode_spd = 0;
 	    spd_ground = 0;
 	    vel_x = 0;

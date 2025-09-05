@@ -7,7 +7,7 @@
     "path": "sprites/spr_buzz_bomber_projectile_flare/spr_buzz_bomber_projectile_flare.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,

@@ -17,8 +17,7 @@ function scr_player_collision_ground_floor()
 	{
 		case QUADRANT.DOWN:
 			
-			var _y = y + solid_radius_y;
-			var _floor_data = collision_tile_2v(x - solid_radius_x, _y, x + solid_radius_x, _y, 1, secondary_layer, _angle_quad);
+			var _floor_data = collision_tile_2v(x - solid_radius_x, y + solid_radius_y - 1, x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -43,7 +42,7 @@ function scr_player_collision_ground_floor()
 					
 					if animation != ANIM.FLIP
 					{
-						m_animation_restart();
+						animator.restart();
 					}
 					
 					break;
@@ -60,8 +59,7 @@ function scr_player_collision_ground_floor()
 		
 		case QUADRANT.RIGHT:
 			
-			var _x = x + solid_radius_y;
-			var _floor_data = collision_tile_2h(_x, y + solid_radius_x, _x, y - solid_radius_x, 1, secondary_layer, _angle_quad);
+			var _floor_data = collision_tile_2h(x + solid_radius_y - 1, y + solid_radius_x - 1, x + solid_radius_y - 1, y - solid_radius_x, 1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -86,7 +84,7 @@ function scr_player_collision_ground_floor()
 					
 					if animation != ANIM.FLIP
 					{
-						m_animation_restart();
+						animator.restart();
 					}
 					
 					break;
@@ -103,8 +101,7 @@ function scr_player_collision_ground_floor()
 		
 		case QUADRANT.UP:
 			
-			var _y = y - solid_radius_y;
-			var _floor_data = collision_tile_2v(x + solid_radius_x, _y, x - solid_radius_x, _y, -1, secondary_layer, _angle_quad);
+			var _floor_data = collision_tile_2v(x + solid_radius_x - 1, y - solid_radius_y, x - solid_radius_x, y - solid_radius_y, -1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 			
@@ -129,7 +126,7 @@ function scr_player_collision_ground_floor()
 					
 					if animation != ANIM.FLIP
 					{
-						m_animation_restart();
+						animator.restart();
 					}
 					
 					break;
@@ -146,8 +143,7 @@ function scr_player_collision_ground_floor()
 		
 		case QUADRANT.LEFT:
 			
-			var _x = x - solid_radius_y;
-			var _floor_data = collision_tile_2h(_x, y - solid_radius_x, _x, y + solid_radius_x, -1, secondary_layer, _angle_quad);
+			var _floor_data = collision_tile_2h(x - solid_radius_y, y - solid_radius_x, x - solid_radius_y, y + solid_radius_x - 1, -1, secondary_layer, _angle_quad);
 			var _floor_dist = _floor_data[0];
 			var _floor_angle = _floor_data[1];
 		
@@ -172,7 +168,7 @@ function scr_player_collision_ground_floor()
 					
 					if animation != ANIM.FLIP
 					{
-						m_animation_restart();
+						animator.restart();
 					}
 					
 					break;

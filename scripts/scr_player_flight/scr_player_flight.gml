@@ -29,7 +29,7 @@ function scr_player_flight()
 	}
 	else
 	{
-	    if input_press.action_any && flight_timer > 0 && (!is_underwater || carry_target == noone)
+	    if flight_timer > 0 && (!is_underwater || carry_target == noone) && m_press_action_any()
 	    {
 	        ascend_timer = 1;
 	    }

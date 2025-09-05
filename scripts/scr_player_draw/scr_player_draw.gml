@@ -24,6 +24,6 @@ function scr_player_draw()
 		image_alpha = 1;
 	}
 	
-	// Inherit the parent event
-	event_inherited();
+	// Do not inherit the parent event
+	draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), image_xscale, image_yscale, visual_angle, draw_get_colour(), image_alpha);
 }

@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.DESTROY);
 
-outside_action = OUTSIDE_ACTION.DESTROY;
 draw_start_x = 0;
 draw_start_y = 0;
 draw_width = 0;

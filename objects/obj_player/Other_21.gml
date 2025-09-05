@@ -84,8 +84,8 @@ switch state
 		scr_player_water();
 		scr_player_update_status();
 		scr_player_animate();
-		scr_player_update_collision();
-		scr_player_check_objects();
+		scr_player_update_hitbox();
+
 		
 		m_record_data(0);
 		
@@ -102,7 +102,7 @@ switch state
 		scr_player_position();
 		scr_player_collision_air();
 		scr_player_animate();
-		scr_player_update_collision();
+		scr_player_update_hitbox();
 		
 		m_record_data(0);
 		
@@ -118,7 +118,7 @@ switch state
 		scr_player_death();
 		scr_player_position();
 		scr_player_animate();
-		scr_player_update_collision();
+		scr_player_update_hitbox();
 		
 		m_record_data(0);
 		
