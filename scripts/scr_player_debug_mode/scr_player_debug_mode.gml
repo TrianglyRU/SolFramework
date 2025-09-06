@@ -68,7 +68,6 @@ function scr_player_debug_mode()
 	    vel_y = 0;
 	    reset_substate();
 		
-		depth = draw_depth(20);
 		x = floor(x);
 		y = floor(y);
 	}

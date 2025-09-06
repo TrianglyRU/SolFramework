@@ -551,8 +551,8 @@ down_action_any = function()
 
 #endregion
 
+allowed_game_state = GAME_STATE.STOP_OBJECTS;
 obj_game.player_count++;
-ignored_game_state = GAME_STATE.STOP_OBJECTS;
 
 scr_player_init();
 scr_player_debug_mode_init();

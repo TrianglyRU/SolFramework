@@ -1,3 +1,3 @@
-ignored_game_state = -1;
+allowed_game_state = GAME_STATE.NORMAL;
 animator = noone;
 culler = noone;

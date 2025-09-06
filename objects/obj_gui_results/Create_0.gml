@@ -24,6 +24,7 @@ next_room = function()
 
 obj_game.allow_pause = false;
 
+depth = RENDER_DEPTH_HUD;
 temp_surface = array_create(CAMERA_COUNT, -1);
 continue_timer = -1;
 offset_line1 = -256;
@@ -38,7 +39,7 @@ state_timer = 40;
 total_bonus = 0;
 ring_bonus = global.player_rings * 100;
 player_object = player_get(0);
-depth = RENDER_DEPTH_HUD;
+
 
 audio_play_bgm(snd_bgm_actclear);
 

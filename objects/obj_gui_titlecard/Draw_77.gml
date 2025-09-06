@@ -50,6 +50,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	_y = _centre_y + 12;
 	
 	draw_sprite(spr_gui_act, obj_rm_stage.act_index, _x, _y);
+	draw_set_halign(fa_left);
 	
 	shader_reset();
 	surface_reset_target();

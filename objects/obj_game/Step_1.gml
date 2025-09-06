@@ -225,7 +225,7 @@ else
 	
 	with obj_object
 	{
-		if ignored_game_state < _state
+		if allowed_game_state < _state
 		{
 			ds_list_add(_list, id);
 			instance_deactivate_object(id);

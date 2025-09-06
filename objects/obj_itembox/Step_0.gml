@@ -21,7 +21,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		}
 	}
 	
-	if collision_player(_player, bbox_left + 1, bbox_top + 1, bbox_right - 1, bbox_bottom - 1)
+	if collision_player(_player, bbox_left - 1, bbox_top - 1, bbox_right + 1, bbox_bottom + 1)
 	{
 		// Bounce up
         if _player.vel_y < 0 && _player.ext_hitbox_radius_x == 0

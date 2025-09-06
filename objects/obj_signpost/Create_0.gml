@@ -1,7 +1,9 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler();
 
-enum SIGNPOSTSTATE
+enum SIGNPOST_STATE
 {
 	IDLE,
 	ROTATE,
@@ -10,7 +12,8 @@ enum SIGNPOSTSTATE
 
 obj_rm_stage.end_bound = x + camera_get_width(0) * 0.5;
 
-state = SIGNPOSTSTATE.IDLE;
+depth = draw_depth(50);
+state = SIGNPOST_STATE.IDLE;
 sign_spin_timer = 0;
 sign_spin_cycle = 0;
 player_object = noone;
@@ -22,5 +25,3 @@ ring_sparkle_pos =
 	-24, 8, -16, 24, 0, 16, -24, 24,	// x
 	-16, 8,  0, -8, -8, 0,   8,  16		// y
 ];
-
-depth = draw_depth(50);

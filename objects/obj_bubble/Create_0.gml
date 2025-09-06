@@ -15,7 +15,7 @@ enum BUBBLE
 
 burst = function()
 {
-	animator.start(spr_bubble_burst, 0, 5, 6);
+	animator.start(spr_bubble_burst, 0, 1, 6);
 }
 
 if bubble_type == BUBBLE.COUNTDOWN

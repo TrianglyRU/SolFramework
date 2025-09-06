@@ -2,7 +2,7 @@
 event_inherited();
 
 depth = RENDER_DEPTH_HUD;
-ignored_game_state = GAME_STATE.PAUSED;
+allowed_game_state = GAME_STATE.PAUSED;
 temp_surface = array_create(CAMERA_COUNT, -1);
 timer = 0;
 offset_zone = 288;

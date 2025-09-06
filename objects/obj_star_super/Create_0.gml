@@ -6,5 +6,5 @@ event_animator();
 
 depth = draw_depth(10);
 image_index = SUPER_STAR_LAST_FRAME;
-ignored_game_state = GAME_STATE.STOP_OBJECTS;
+allowed_game_state = GAME_STATE.STOP_OBJECTS;
 player = noone;
