@@ -1,7 +1,8 @@
 /// @description Base Enemy Code
 if instance_exists(obj_water_flash) && floor(y) >= obj_water.y
 {
-	m_destroy(player_get(0));
+	destroy(player_get(0));
+	return;
 }
 else for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
@@ -16,7 +17,7 @@ else for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _tails_check = false;
 	var _inv_check = false;
 	
-	if _player.m_is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN || _player.action == ACTION.SPINDASH
+	if _player.is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN || _player.action == ACTION.SPINDASH
 	{
 		_action_check = true;
 	}
@@ -50,11 +51,11 @@ else for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			}
 		}
 		
-		m_destroy(_player);
+		destroy(_player);
 		input_set_rumble(_p, 0.05, INPUT_RUMBLE_LIGHT);
 	}
 	else
 	{
-		_player.m_hurt();
+		_player.hurt();
 	}
 }

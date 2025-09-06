@@ -5,7 +5,7 @@ event_culler();
 depth = RENDER_DEPTH_PRIORITY;
 layer_data = [];
 
-switch (image_index)
+switch image_index
 {
 	case 0:
 		layer_data = [TILE_LAYER.PATH_A, TILE_LAYER.PATH_B];

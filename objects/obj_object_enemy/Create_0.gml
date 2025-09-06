@@ -1,9 +1,9 @@
 // Inherit the parent event
 event_inherited();
 
-m_destroy = function(_player)
+destroy = function(_player)
 {
-	_player.m_add_score(++_player.score_combo);
+	_player.add_score(++_player.score_combo);
 	
 	with instance_create(x, y, obj_score)
 	{

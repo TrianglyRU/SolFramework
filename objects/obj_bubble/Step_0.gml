@@ -1,6 +1,6 @@
 if sprite_index == spr_bubble_burst
 {
-	if timer < 0
+	if animator.timer < 0
 	{
 		instance_destroy();
 	}
@@ -12,7 +12,7 @@ if bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_water.y
 {
     if image_index == 5
     {
-        m_burst();
+        burst();
     }
     else
     {
@@ -30,12 +30,12 @@ y += vel_y;
 
 if bubble_type != BUBBLE.COUNTDOWN
 {
-    if timer > 0 && image_index == 1 + bubble_type * 2
+    if animator.timer > 0 && image_index == 1 + bubble_type * 2
     {
 		animator.clear(image_index);
     }
 }
-else if timer < 0
+else if animator.timer < 0
 {
 	instance_destroy();
 	
@@ -47,7 +47,7 @@ else if timer < 0
     return;
 }
 
-if bubble_type != BUBBLE.LARGE || timer != 0
+if bubble_type != BUBBLE.LARGE || animator.timer != 0
 {
     return;
 }
@@ -63,17 +63,17 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 
 	if point_in_rectangle(floor(_player.x), floor(_player.y), bbox_left, bbox_top, bbox_right, bbox_bottom)
 	{
-		m_burst();
+		burst();
 		
 	    if _player.player_index == 0 && audio_is_playing(snd_bgm_drowning)
 	    {
-	        _player.m_restart_bgm(obj_rm_stage.bgm_track);
+	        _player.restart_bgm(obj_rm_stage.bgm_track);
 	    }
 		
-		if _player.action != ACTION.FLIGHT && !_player.m_is_true_glide()
+		if _player.action != ACTION.FLIGHT && !_player.is_true_glide()
 		{
 			_player.animation = ANIM.BREATHE;
-			_player.m_reset_substate();
+			_player.reset_substate();
 		}
 		
 		_player.air_timer = AIR_TIMER_DEFAULT;

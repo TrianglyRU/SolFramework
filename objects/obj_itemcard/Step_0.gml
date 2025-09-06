@@ -1,10 +1,10 @@
 switch state
 {
-    case ITEM_CARD_STATE.MOVE:
+    case ITECARD_STATE.MOVE:
     
         if vel_y >= 0
         {
-			state = ITEM_CARD_STATE.IDLE;
+			state = ITECARD_STATE.IDLE;
 	        wait_timer = 29;
 			
 	        var _player = player_get(0);
@@ -17,7 +17,7 @@ switch state
 			
 	            // Eggman Mark
 	            case 1:
-	               _player.m_hurt();
+	               _player.hurt();
 	            break;
 			
 	            // Super Ring
@@ -55,7 +55,7 @@ switch state
 				
 					if audio_is_playing(snd_bgm_drowning)
 	                {
-						_player.m_restart_bgm();
+						_player.restart_bgm();
 	                }
 					
 					global.player_shields[0] = SHIELD.BUBBLE;
@@ -135,7 +135,7 @@ switch state
 		
     break;
     
-    case ITEM_CARD_STATE.IDLE:
+    case ITECARD_STATE.IDLE:
     
         if --wait_timer == 0
         {

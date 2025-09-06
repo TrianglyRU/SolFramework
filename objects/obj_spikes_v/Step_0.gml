@@ -33,13 +33,13 @@ if iv_retract
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
-    var _type = _player.m_is_invincible() ? SOLID_TYPE.FULL : SOLID_TYPE.FULL_RESET;
+    var _type = _player.is_invincible() ? SOLID_TYPE.FULL : SOLID_TYPE.FULL_RESET;
     var _hurt_side = image_yscale >= 0 ? SOLID_TOUCH.TOP : SOLID_TOUCH.BOTTOM;
 	
-	m_solid_object(_player, _type);
+	solid_object(_player, _type);
 	
 	if solid_touch[_p] == _hurt_side
 	{
-		_player.m_hurt(snd_spikes_hurt);
+		_player.hurt(snd_spikes_hurt);
 	}
 }

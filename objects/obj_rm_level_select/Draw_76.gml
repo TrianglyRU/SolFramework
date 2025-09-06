@@ -3,7 +3,7 @@ if obj_game.fade_state == FADE_STATE.PLAIN_COLOUR && !audio_is_bgm_playing() && 
 {
 	var _player_index = global.selected_player_index;
 	
-	if room_to_load != -1
+	if rooto_load != -1
 	{
 		global.player_main = _player_index < 2 ? PLAYER.SONIC : _player_index - 1;
 		global.player_cpu = _player_index == 0 ? PLAYER.TAILS : PLAYER.NONE;
@@ -12,7 +12,7 @@ if obj_game.fade_state == FADE_STATE.PLAIN_COLOUR && !audio_is_bgm_playing() && 
 		global.life_count = 3;
 		
 		game_clear_level_data();
-		room_goto(room_to_load);
+		room_goto(rooto_load);
 	}
 	else
 	{

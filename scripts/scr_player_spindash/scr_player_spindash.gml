@@ -10,7 +10,7 @@ function scr_player_spindash()
 	{
 		if action == ACTION.NONE && (animation == ANIM.DUCK || animation == ANIM.GLIDE_LAND)
 		{
-			if !input_down.down || !m_press_action_any()
+			if !input_down.down || !press_action_any()
 			{
 				return false;
 			}
@@ -40,7 +40,7 @@ function scr_player_spindash()
 			spindash_charge -= floor(spindash_charge / 0.125) / 256;
 		}
 		
-		if m_press_action_any()
+		if press_action_any()
 		{
 			animator.restart();
 			spindash_charge = min(spindash_charge + 2, 8);
@@ -73,8 +73,8 @@ function scr_player_spindash()
 	action = ACTION.NONE;
 	spd_ground = _speed * facing;
 	
-	m_set_camera_delay(floor(_raw_camera_delay * 0.5));
-	m_set_velocity();
+	set_camera_delay(floor(_raw_camera_delay * 0.5));
+	set_velocity();
 	
 	audio_stop_sound(snd_charge_spin);
 	audio_play_sfx(snd_release);

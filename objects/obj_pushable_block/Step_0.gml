@@ -7,7 +7,7 @@ switch state
 			var _player = player_get(_p);
 			var _direction = sign(x - _player.x);
 			
-			m_solid_object(_player, SOLID_TYPE.FULL);
+			solid_object(_player, SOLID_TYPE.FULL);
 			
 			if !solid_push[_p] || _player.facing != _direction
 			{
@@ -42,7 +42,7 @@ switch state
 				}
 				else
 				{
-					_player.m_clear_solid_push();
+					_player.clear_solid_push();
 					
 					vel_x = 4 * _direction;
 					state = PUSH_BLOCK_STATE.ON_LEDGE;

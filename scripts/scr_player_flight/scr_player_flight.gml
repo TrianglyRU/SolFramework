@@ -29,7 +29,7 @@ function scr_player_flight()
 	}
 	else
 	{
-	    if flight_timer > 0 && (!is_underwater || carry_target == noone) && m_press_action_any()
+	    if flight_timer > 0 && (!is_underwater || carry_target == noone) && press_action_any()
 	    {
 	        ascend_timer = 1;
 	    }
@@ -37,11 +37,11 @@ function scr_player_flight()
 	    grv = PARAM_GRV_TAILS_DOWN;
 	}
 	
-	m_play_tails_sound();
+	play_tails_sound();
 	
 	if is_underwater
 	{
-	    animation = flight_timer > 0 ? ANIM.SWIM : ANIM.SWIM_TIRED;
+	    animation = flight_timer > 0 ? ANIM.SWIM : ANIM.SWITIRED;
 	}
 	else
 	{

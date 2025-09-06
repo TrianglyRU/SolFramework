@@ -49,5 +49,5 @@ else
 	}
 }
 
-player_spawn(x, y, _target_player, depth);
+player_spawn(x, y, _target_player);
 instance_destroy();

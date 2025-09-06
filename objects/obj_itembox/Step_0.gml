@@ -15,7 +15,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if solid_touch[_p] != SOLID_TYPE.TOP
 	{
-		if _player.m_is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN
+		if _player.is_true_glide() || _player.animation == ANIM.HAMMERDASH || _player.animation == ANIM.SPIN
 		{
 			_can_destroy = _p == 0;
 		}
@@ -71,7 +71,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
     if state == ITEMBOX_STATE.IDLE && !_can_destroy
     {
-		m_solid_object(_player, SOLID_TYPE.ITEM_BOX);
+		solid_object(_player, SOLID_TYPE.ITEBOX);
     }
 }
 

@@ -100,7 +100,7 @@ camera_new(0, _w, _h, _w, _h);
 #macro CULLING_ADD_WIDTH 320
 #macro CULLING_ADD_HEIGHT 288
 
-m_cull_activate_paused_objects = function()
+cull_activate_paused_objects = function()
 {
 	var _list_size = ds_list_size(cull_game_paused_list);
 	
@@ -123,7 +123,7 @@ cull_game_paused_list = ds_list_create();
 
 #region DEBUG
 
-m_debug_get_state_name = function()
+debug_get_state_name = function()
 {
 	switch state
 	{

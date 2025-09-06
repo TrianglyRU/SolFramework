@@ -1,12 +1,6 @@
 /// @self obj_player
 function scr_player_init()
 {
-	if player_type == PLAYER.NONE
-	{
-		instance_destroy();
-		return;
-	}
-	
 	var _is_respawned = variable_instance_exists(id, "player_index");
 	var _start_y = y;
 	
@@ -17,7 +11,6 @@ function scr_player_init()
 	else
 	{
 		ds_list_destroy(ds_record_data);
-		
 		global.player_shields[player_index] = SHIELD.NONE;
 	}
 	
@@ -194,27 +187,30 @@ function scr_player_init()
 	
 	for (var _i = 0; _i < ds_record_length; _i++)
 	{
-		m_record_data(_i);
+		record_data(_i);
 	}
 	
 	var _saved_shield = global.player_shields[player_index];
 	
 	if _saved_shield != SHIELD.NONE
 	{
-		instance_create(x, y, obj_shield, { vd_target_player: id });
+		instance_create(x, y, obj_shield, { player: id });
 	}
 	
 	if player_type == PLAYER.TAILS
 	{
 		with obj_tail
 		{
-			if (vd_target_player == other.id)
+			if player == other.id
 			{
 				instance_destroy();
 			}
 		}
 		
-		instance_create(0, 0, obj_tail, { vd_target_player: id });
+		with instance_create(0, 0, obj_tail)
+		{
+			player = other.id;
+		}
 	}
 	
 	camera_data = camera_get_data(0);
@@ -231,8 +227,8 @@ function scr_player_init()
 	
 	if !_is_respawned && camera_data.index == player_index
 	{
-		camera_data.pos_x = x - camera_get_width(camera_data.index) * 0.5;
-		camera_data.pos_y = y - camera_get_height(camera_data.index) * 0.5 + 16;
+		camera_data.raw_x = x - camera_get_width(camera_data.index) * 0.5;
+		camera_data.raw_y = y - camera_get_height(camera_data.index) * 0.5 + 16;
 	}
 	
 	if player_index == 0 && global.player_cpu != PLAYER.NONE

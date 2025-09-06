@@ -32,7 +32,7 @@ function scr_player_debug_mode_enter()
 		{
 			if instance_exists(obj_rm_stage)
 			{
-				m_restart_bgm(obj_rm_stage.bgm_track);
+				restart_bgm(obj_rm_stage.bgm_track);
 			}
 		}
 	    

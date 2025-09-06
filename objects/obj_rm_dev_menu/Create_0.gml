@@ -95,10 +95,11 @@ categories_count = 0;
 category_id = 0;
 category_options_count = 0;
 option_id = 0;
-room_to_load = -1;
+rooto_load = -1;
 
 // Automatically generate room list
 var _room_list = [];
+
 for (var _i = 1; _i <= room_last; _i++)
 {
 	_room_list[_i - 1] = string_upper(room_get_name(_i));

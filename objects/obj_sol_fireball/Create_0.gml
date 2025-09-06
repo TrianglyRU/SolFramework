@@ -1,7 +1,8 @@
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.NONE);
 
-m_hurt_players = function()
+hurt_players = function()
 {
 	for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	{
@@ -9,12 +10,11 @@ m_hurt_players = function()
 		
 		if global.player_shields[_p] != SHIELD.FIRE && collision_player(_player)
 		{
-			_player.m_hurt();
+			_player.hurt();
 		}
 	}
 }
 
 depth = draw_depth(40);
-culler.action = CULL_ACTION.DESTROY;
 vel_x = 0;
 flip_timer = 0;

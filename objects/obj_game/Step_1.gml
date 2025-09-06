@@ -140,25 +140,15 @@ if fade_direction != FADE_DIRECTION.NONE
 }
 else if fade_timer == FADE_TIMER_MAX
 {
-	if fade_state != FADE_STATE.NONE
+	if fade_state != FADE_STATE.NONE && fade_game_control
 	{
-		if fade_game_control
-		{
-			state = GAME_STATE.NORMAL;
-		}
-		
-		fade_trigger_end_event = true;
+		state = GAME_STATE.NORMAL;
 	}
 	
 	fade_state = FADE_STATE.NONE;
 }
 else if fade_timer == 0
 {
-	if fade_state != FADE_STATE.PLAIN_COLOUR
-	{
-		fade_trigger_end_event = true;
-	}
-	
 	fade_state = FADE_STATE.PLAIN_COLOUR;
 }
 
@@ -297,5 +287,5 @@ with obj_object
 // Activate paused objects if the game state has returned to normal
 if state == GAME_STATE.NORMAL && _prev_state != state
 {
-	m_cull_activate_paused_objects();
+	cull_activate_paused_objects();
 }

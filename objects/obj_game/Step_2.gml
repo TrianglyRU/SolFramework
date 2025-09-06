@@ -56,7 +56,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 		{
 	        var _overshoot = _next_pos - _loop_end;
 			var _loop_length = _loop_end - _loop_start;
-	        var _new_pos = _loop_start + (_overshoot mod _loop_length);
+	        var _new_pos = _loop_start + (_overshoot % _loop_length);
 			
 	        audio_sound_set_track_position(_bgm, _new_pos);
 	    }
@@ -123,8 +123,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 			{
 		        var _width = camera_get_width(_i);
 		        var _height = camera_get_height(_i);
-		        var _target_x = _target.x - _camera_data.pos_x - _width * 0.5;
-		        var _target_y = _target.y - _camera_data.pos_y - _height * 0.5 + 16;
+		        var _target_x = _target.x - _camera_data.raw_x - _width * 0.5;
+		        var _target_y = _target.y - _camera_data.raw_y - _height * 0.5 + 16;
 				
 				var _freespace_x = 16;
 				var _freespace_y = 32;
@@ -187,8 +187,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		
 	    if _camera_data.delay_x == 0
 	    {
-	        _camera_data.pos_x_prev = _camera_data.pos_x;
-	        _camera_data.pos_x += _camera_data.vel_x;
+	        _camera_data.pos_x_prev = _camera_data.raw_x;
+	        _camera_data.raw_x += _camera_data.vel_x;
 	    }
 	    else if _camera_data.delay_x > 0
 	    {
@@ -197,8 +197,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		
 	    if _camera_data.delay_y == 0
 	    {
-	        _camera_data.pos_y_prev = _camera_data.pos_y;
-	        _camera_data.pos_y += _camera_data.vel_y;
+	        _camera_data.pos_y_prev = _camera_data.raw_y;
+	        _camera_data.raw_y += _camera_data.vel_y;
 	    }
 	    else if _camera_data.delay_y > 0
 	    {
@@ -206,8 +206,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	    }
 	}
 	
-	var _raw_pos_x = floor(_camera_data.pos_x + _camera_data.offset_x);
-	var _raw_pos_y = floor(_camera_data.pos_y + _camera_data.offset_y);
+	var _raw_pos_x = floor(_camera_data.raw_x + _camera_data.offset_x);
+	var _raw_pos_y = floor(_camera_data.raw_y + _camera_data.offset_y);
 	
 	var _x = clamp(_raw_pos_x, _camera_data.left_bound, _camera_data.right_bound - camera_get_width(_i)) + _camera_data.shake_offset;
     var _y = clamp(_raw_pos_y, _camera_data.top_bound, _camera_data.bottom_bound - camera_get_height(_i)) + _camera_data.shake_offset;
@@ -269,7 +269,7 @@ if state != GAME_STATE.PAUSED
 
 if state != GAME_STATE.NORMAL
 {
-	m_cull_activate_paused_objects();
+	cull_activate_paused_objects();
 }
 
 #endregion

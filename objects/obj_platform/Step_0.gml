@@ -77,7 +77,7 @@ switch state
 		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
-			m_solid_object(player_get(_p), SOLID_TYPE.TOP);
+			solid_object(player_get(_p), SOLID_TYPE.TOP);
 		}
 
 	break;
@@ -104,7 +104,7 @@ switch state
 		{
 			for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			{
-				m_solid_object(player_get(_p), SOLID_TYPE.TOP_NO_LAND);
+				solid_object(player_get(_p), SOLID_TYPE.TOP_NO_LAND);
 			}
 		}
 

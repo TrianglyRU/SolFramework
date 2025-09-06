@@ -35,10 +35,10 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
     var _player = player_get(_p);
     var _hurt_side = image_xscale >= 0 ? SOLID_TOUCH.LEFT : SOLID_TOUCH.RIGHT;
 	
-	m_solid_object(_player, SOLID_TYPE.FULL);
+	solid_object(_player, SOLID_TYPE.FULL);
 	
 	if solid_touch[_p] == _hurt_side
 	{
-		_player.m_hurt(snd_spikes_hurt);
+		_player.hurt(snd_spikes_hurt);
 	}
 }

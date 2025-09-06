@@ -23,7 +23,7 @@ function scr_player_update_status()
 	{
 		if --item_speed_timer == 0 && audio_is_playing(snd_bgm_highspeed) && instance_exists(obj_rm_stage)
 		{
-			m_restart_bgm(obj_rm_stage.bgm_track);
+			restart_bgm(obj_rm_stage.bgm_track);
 		}
 	}
 	
@@ -31,7 +31,7 @@ function scr_player_update_status()
 	{
 		if --item_inv_timer == 0 && audio_is_playing(snd_bgm_invincibility) && instance_exists(obj_rm_stage)
 		{
-			m_restart_bgm(obj_rm_stage.bgm_track);
+			restart_bgm(obj_rm_stage.bgm_track);
 		}
 	}
 	
@@ -42,9 +42,12 @@ function scr_player_update_status()
 			if --transform_timer == 0
 			{
 				state = PLAYER_STATE.DEFAULT;
-				m_reset_substate();
+				reset_substate();
 				
-				instance_create(x, y, obj_star_super, { vd_target_player: id });
+				with instance_create(x, y, obj_star_super)
+				{
+					player = other.id;
+				}
 			}
 		}
 	
@@ -58,7 +61,7 @@ function scr_player_update_status()
 				
 				if !audio_is_playing(snd_bgm_drowning) && instance_exists(obj_rm_stage)
 				{
-					m_restart_bgm(obj_rm_stage.bgm_track);
+					restart_bgm(obj_rm_stage.bgm_track);
 				}
 			}
 			else
@@ -74,6 +77,6 @@ function scr_player_update_status()
 	
 	if obj_game.frame_counter == 36000 && player_index == 0
 	{
-		m_kill();
+		kill();
 	}
 }

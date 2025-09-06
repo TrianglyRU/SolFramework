@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESPAWN);
 
 enum AIR_BUBBLER_STATE
 {
@@ -7,16 +9,14 @@ enum AIR_BUBBLER_STATE
 	PRODUCE
 }
 
-m_get_random_delay = function()
+get_random_delay = function()
 {
 	return irandom_range(128, 255);
 }
 
 depth = draw_depth(10);
-
-culler.action = CULL_ACTION.RESPAWN;
 state = AIR_BUBBLER_STATE.IDLE;
-wait_time = m_get_random_delay();
+wait_time = get_random_delay();
 wait_cycle = 0;
 random_time = 0;
 bubbles_to_spawn = 0;

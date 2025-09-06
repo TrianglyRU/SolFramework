@@ -15,7 +15,7 @@ function scr_player_cpu()
 	
 	if _can_receive_input
 	{
-	    if m_press_action_any() || input_press.up || input_press.down || input_press.left || input_press.right
+	    if press_action_any() || input_press.up || input_press.down || input_press.left || input_press.right
 	    {
 	        cpu_control_timer = 600;
 	    }
@@ -27,7 +27,7 @@ function scr_player_cpu()
 	{
 	    case CPU_STATE.RESPAWN_INIT:
 			
-	        if _can_receive_input && !m_down_action_any() && !input_down.start
+	        if _can_receive_input && !down_action_any() && !input_down.start
 	        {
 				if obj_game.frame_counter % 64 != 0 || cpu_target.state >= PLAYER_STATE.DEFAULT_LOCKED
 				{
@@ -64,7 +64,7 @@ function scr_player_cpu()
 	            case PLAYER.TAILS:
 					
 	                animation = is_underwater ? ANIM.SWIM : ANIM.FLY;
-	                m_play_tails_sound();
+	                play_tails_sound();
 					
 	            break;
 
@@ -147,7 +147,7 @@ function scr_player_cpu()
 	        {
 	            state = PLAYER_STATE.DEFAULT_LOCKED;
 	            cpu_state = CPU_STATE.RESPAWN;
-	            m_reset_substate();
+	            reset_substate();
 				
 	            break;
 	        }
@@ -332,7 +332,7 @@ function _start_respawn()
 	
 	if ++cpu_timer_respawn >= 300 || on_object != noone && !instance_exists(on_object)
 	{
-	    m_respawn(); return true;
+	    respawn(); return true;
 	}
 
 	return false;

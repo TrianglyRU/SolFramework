@@ -1,9 +1,9 @@
 function event_culler(_action = CULL_ACTION.PAUSE, _inst_id = id)
 {
-	new const_culler(_action, _inst_id);
+	new ConstCuller(_action, _inst_id);
 }
 
-function const_culler(_action, _inst_id) constructor
+function ConstCuller(_action, _inst_id) constructor
 {
 	if _inst_id.culler != noone
 	{
@@ -12,6 +12,7 @@ function const_culler(_action, _inst_id) constructor
 	
 	enum CULL_ACTION
 	{
+		NONE,
 		PAUSE,
 		RESPAWN,
 		DESTROY
@@ -33,8 +34,14 @@ function const_culler(_action, _inst_id) constructor
 	/// @function update()
 	update = function()
 	{
+		if action == CULL_ACTION.NONE
+		{
+			return;
+		}
+		
 		if respawned
 		{
+			respawned = false;
 			inst_id.image_xscale = image_xscale_start;
 			inst_id.image_yscale = image_yscale_start;
 			inst_id.image_index = image_index_start;
@@ -47,12 +54,9 @@ function const_culler(_action, _inst_id) constructor
 				event_perform(ev_create, 0);
 			}
 			
-			respawned = false;
+			return;
 		}
 		
-		var _x = floor(inst_id.x);
-		var _y = floor(inst_id.y);
-
 		for (var _i = 0; _i < CAMERA_COUNT; _i++) 
 		{
 			var _camera_data = camera_get_data(_i);
@@ -70,12 +74,15 @@ function const_culler(_action, _inst_id) constructor
 			var _right = _camera_data.coarse_x + _width;
 			var _top = _camera_data.coarse_y;
 			var _bottom = _camera_data.coarse_y + _height;
-	
+			
+			var _x = floor(inst_id.x);
+			var _y = floor(inst_id.y);
+					
 			switch action
 			{
 				case CULL_ACTION.DESTROY:
-			
-					var _dist_y = (_y - camera_get_y(_i)) + CULLING_ROUND_VALUE;
+					
+					var _dist_y = _y - camera_get_y(_i) + CULLING_ROUND_VALUE;
 			
 					if _x >= _left && _x < _right && _dist_y >= 0 && _dist_y < _height && _y < _camera_data.bottom_bound
 					{
@@ -84,19 +91,10 @@ function const_culler(_action, _inst_id) constructor
 					}
 			
 				break;
-			
+				
 				case CULL_ACTION.PAUSE:
-			
-					if _x >= _left && _x < _right
-					{
-						// No action
-						return;
-					}
-			
-				break;
-			
 				case CULL_ACTION.RESPAWN:
-		
+					
 					if _x >= _left && _x < _right || inst_id.xstart >= _left && inst_id.xstart < _right
 					{
 						// No action

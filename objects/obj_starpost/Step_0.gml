@@ -5,19 +5,17 @@ if state != STARPOST_STATE.IDLE
 
 var _checkpoint_data = global.checkpoint_data;
 
-if array_length(_checkpoint_data) > 0 && _checkpoint_data[7] >= vi_index
+if array_length(_checkpoint_data) > 0 && _checkpoint_data[7] >= iv_index
 {
 	state = STARPOST_STATE.ACTIVE;
-	lamp_obj.m_activate();
+	lamp_obj.activate();
 	
 	return;
 }
 
 var _player = player_get(0);
-var _px = floor(_player.x);
-var _py = floor(_player.y);
 
-if _player.state < PLAYER_STATE.DEFAULT_LOCKED && point_in_rectangle(_px, _py, bbox_left, bbox_top, bbox_right, bbox_bottom)
+if _player.state < PLAYER_STATE.DEFAULT_LOCKED && point_in_rectangle(_player.x, _player.y, bbox_left, bbox_top, bbox_right, bbox_bottom)
 {
 	global.checkpoint_data =
 	[
@@ -28,7 +26,7 @@ if _player.state < PLAYER_STATE.DEFAULT_LOCKED && point_in_rectangle(_px, _py, b
 		obj_rm_stage.bottom_bound[0], 
 		obj_rm_stage.left_bound[0], 
 		obj_rm_stage.right_bound[0],
-		vi_index
+		iv_index
 	];
 	
 	state = STARPOST_STATE.ACTIVE;

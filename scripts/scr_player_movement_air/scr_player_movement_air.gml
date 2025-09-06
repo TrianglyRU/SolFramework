@@ -1,7 +1,7 @@
 /// @self obj_player
 function scr_player_movement_air()
 {
-	if action == ACTION.CARRIED || action == ACTION.CLIMB || action == ACTION.SPINDASH || m_is_true_glide()
+	if action == ACTION.CARRIED || action == ACTION.CLIMB || action == ACTION.SPINDASH || is_true_glide()
 	{
 		return;
 	}

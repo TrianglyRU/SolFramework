@@ -8,6 +8,6 @@ if state == LAMP_STATE.ROTATE
 	}
 	else
 	{
-		m_activate();
+		activate();
 	}
 }

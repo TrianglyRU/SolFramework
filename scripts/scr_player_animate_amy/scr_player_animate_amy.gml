@@ -14,7 +14,7 @@ function scr_player_animate_amy()
 			{
 				obj_set_anim(spr_amy_wait, 2, 0, 0);
 				
-				if (anim_play_count == 16)
+				if (aniplay_count == 16)
 				{
 					obj_set_anim(spr_amy_wait_2, 2, 0, 18);
 				}

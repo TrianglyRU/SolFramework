@@ -1,12 +1,12 @@
-var _x = camera_get_width(0) * 0.5 + 72;
-var _y = camera_get_height(0) * 0.5 + 77;
+var _x = camera_get_width(view_current) * 0.5 + 72;
+var _y = camera_get_height(view_current) * 0.5 + 77;
 var _icon_index = 0;
 
-if (obj_rm_level_select.level_entries[global.selected_level_entry] == "SOUND TEST")
+if obj_rm_level_select.level_entries[global.selected_level_entry] == "SOUND TEST"
 {
 	_icon_index = 1;
 }
-else switch (obj_rm_level_select.room_to_load)
+else switch obj_rm_level_select.rooto_load
 {
 	case rm_special:
 		_icon_index = 2;

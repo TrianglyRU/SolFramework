@@ -24,7 +24,7 @@ function scr_player_water()
 			}
 		}
 	}	
-	else if m_press_action_any()
+	else if press_action_any()
 	{
 		// S3K's chopped-off version of the jump routine to make a player jump if they weren't grounded
 		is_water_running = false;
@@ -117,7 +117,7 @@ function scr_player_water()
 			
 				audio_play_sfx(snd_drown);
 				
-				m_reset_substate();
+				reset_substate();
 				grv = PARAM_GRV_UNDERWATER;
 				state = PLAYER_STATE.DEATH;
 				animation = ANIM.DROWN;
@@ -152,7 +152,7 @@ function scr_player_water()
 
 	if player_index == 0 && audio_is_playing(snd_bgm_drowning) && instance_exists(obj_rm_stage)
 	{
-		m_restart_bgm(obj_rm_stage.bgm_track);
+		restart_bgm(obj_rm_stage.bgm_track);
 	}
 	
 	if global.player_physics <= PHYSICS.S2 || vel_y >= -4
@@ -170,7 +170,7 @@ function _spawn_splash()
 	
 	if vel_y != 0
 	{
-		if action != ACTION.CLIMB && cpu_state != CPU_STATE.RESPAWN && !m_is_true_glide()
+		if action != ACTION.CLIMB && cpu_state != CPU_STATE.RESPAWN && !is_true_glide()
 		{
 			instance_create(x, obj_water.y, obj_water_splash);
 			audio_play_sfx(snd_splash);
@@ -183,8 +183,8 @@ function _set_gravity()
 {
 	gml_pragma("forceinline");
 	
-	if action != ACTION.FLIGHT && !m_is_true_glide()
+	if action != ACTION.FLIGHT && !is_true_glide()
 	{
-		m_reset_gravity();
+		reset_gravity();
 	}
 }

@@ -66,9 +66,9 @@ function scr_player_debug_mode()
 	    spd_ground = 0;
 	    vel_x = 0;
 	    vel_y = 0;
-		m_reset_gravity();
-	    m_reset_substate();
+	    reset_substate();
 		
+		depth = draw_depth(20);
 		x = floor(x);
 		y = floor(y);
 	}

@@ -9,7 +9,7 @@ enum LAMP_STATE
 	ACTIVE
 }
 
-m_activate = function()
+activate = function()
 {
 	state = LAMP_STATE.ACTIVE;
 	animator.start(sprite_index, 0, 0, 4);

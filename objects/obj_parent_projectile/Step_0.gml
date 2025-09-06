@@ -23,7 +23,7 @@ if !is_reflected
 		}
 		else
 		{
-			_player.m_hurt();
+			_player.hurt();
 		}
 	}
 }

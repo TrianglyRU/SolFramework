@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESPAWN);
 
 enum SOL_STATE
 {
@@ -10,7 +12,6 @@ enum SOL_STATE
 #macro SOL_FIREBALL_COUNT 4
 
 depth = draw_depth(40);
-culler.action = CULL_ACTION.RESPAWN;
 state = SOL_STATE.ROAM;
 angle = 0;
 angle_step = 360 / SOL_FIREBALL_COUNT;

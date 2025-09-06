@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_trigger_stage_bound",
+  "name": "obj_stage_v_bound",
   "spriteId": {
-    "name": "spr_trigger",
-    "path": "sprites/spr_trigger/spr_trigger.yy",
+    "name": "spr_stage_v_bound",
+    "path": "sprites/spr_stage_v_bound/spr_stage_v_bound.yy",
   },
   "solid": false,
   "visible": false,
@@ -26,20 +26,15 @@
   "physicsFriction": 0.2,
   "physicsStartAwake": true,
   "physicsKinematic": false,
-  "physicsShapePoints": [
-    {"x":0.0,"y":0.0,},
-    {"x":16.0,"y":0.0,},
-    {"x":16.0,"y":64.0,},
-    {"x":0.0,"y":64.0,},
-  ],
+  "physicsShapePoints": [],
   "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":4,"eventType":7,"collisionObjectId":null,},
   ],
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_top_bound","varType":1,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_bottom_bound","varType":1,"value":"room_height","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_scroll_speed","varType":1,"value":"2","rangeEnabled":true,"rangeMin":2.0,"rangeMax":32.0,"listItems":[
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_speed","varType":6,"value":"2","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
+        "0",
         "2",
         "4",
         "6",

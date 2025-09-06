@@ -39,7 +39,7 @@ switch (state)
         {
             for (var _i = 0; _i < 8; _i++)
 	        {
-	            instance_create(x - 28 + 7 * _i, y, obj_animal, { vd_release_timer: 154 - _i * 8, vd_random_direction: true });
+	            instance_create(x - 28 + 7 * _i, y, obj_animal, { vd_release_timer: 154 - _i * 8, vd_randodirection: true });
 	        }
 			
 			with (gate_obj)
@@ -57,7 +57,7 @@ switch (state)
         
         if (obj_game.frame_counter % 8 == 0)
         {
-			instance_create(x + irandom_range(-25, 25), y, obj_animal, { vd_release_timer: 12, vd_random_direction: true });
+			instance_create(x + irandom_range(-25, 25), y, obj_animal, { vd_release_timer: 12, vd_randodirection: true });
         }
         else if (--wait_timer == 0)
         {

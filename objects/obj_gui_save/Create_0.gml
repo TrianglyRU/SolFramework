@@ -1,3 +1,6 @@
+// Inherit the parent event
+event_inherited();
+
 depth = RENDER_DEPTH_HUD;
 ignored_game_state = GAME_STATE.PAUSED;
 timer = 0;

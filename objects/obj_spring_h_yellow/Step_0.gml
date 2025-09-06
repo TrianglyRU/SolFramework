@@ -8,7 +8,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _player = player_get(_p);
 	var _touch_side = image_xscale >= 0 ? SOLID_TOUCH.RIGHT : SOLID_TOUCH.LEFT;
 	
-	m_solid_object(_player, SOLID_TYPE.FULL);
+	solid_object(_player, SOLID_TYPE.FULL);
 	
 	if (image_index != 0 || !_player.is_grounded)
 	{

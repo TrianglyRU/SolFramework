@@ -12,9 +12,9 @@ var _scroll_y = floor(obj_game.bg_scroll_y * scroll_mult_y);
 var _x = floor((_camera_x - obj_game.bg_distance_x) * (1 - factor_x)) + offset_x;
 var _y = floor((_camera_y - obj_game.bg_distance_y) * (1 - factor_y)) + offset_y + _scroll_y;
 
-if anim_duration > 0
+if frame_duration > 0
 {
-    image_index = floor(obj_game.frame_counter / anim_duration) % image_number;
+    image_index = floor(obj_game.frame_counter / frame_duration) % image_number;
 }
 
 if scale_target_y != -1

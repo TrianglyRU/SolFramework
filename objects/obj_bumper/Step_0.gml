@@ -1,4 +1,4 @@
-if timer < 0
+if animator.timer < 0
 {
 	animator.clear(0);
 }
@@ -14,11 +14,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	audio_play_sfx(snd_bumper);
     
-    if hits_left-- > 0
-    {
-		_player.m_add_score(0); instance_create(x, y, obj_score);
-    }
-    
 	if _player.action == ACTION.CARRIED
 	{
 	    _player.action = ACTION.NONE;
@@ -33,7 +28,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.vel_x = BUMPER_FORCE * dsin(_angle);
 	_player.vel_y = BUMPER_FORCE * dcos(_angle);
 	
-	if timer == 0
+	if animator.timer == 0
 	{
 		animator.start(sprite_index, 1, 3, 4);
 	}

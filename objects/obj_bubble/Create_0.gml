@@ -1,5 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.DESTROY);
 
 #macro BUBBLE_FINAL_FRAME 5
 
@@ -11,7 +13,7 @@ enum BUBBLE
 	COUNTDOWN
 }
 
-m_burst = function()
+burst = function()
 {
 	animator.start(spr_bubble_burst, 0, 5, 6);
 }
@@ -26,7 +28,6 @@ else
 }
 
 depth = draw_depth(10);
-culler.action = CULL_ACTION.DESTROY;
 vel_y = -0.53125;
 countdown_frame = 0;
 wobble_offset = 0;

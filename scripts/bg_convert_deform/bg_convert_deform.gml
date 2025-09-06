@@ -8,10 +8,10 @@
 /// @param {Real} _line_factor_x Target horizontal parallax factor at the bottom of the layer. Used to create a pseudo-3D effect by progressively changing the scroll factor per line.
 /// @param {Real} _line_height Height of each scrolling line in pixels. Set to a negative value to disable the line scroll effect.
 /// @param {Real} _scale_target_y Y position to scale the layer's bottom to. Set to a negative value to disable. If _factor_y is 0, the console will suggest a value for _factor_y. 
-/// @param {Real} _anim_duration Duration of each animation frame in game steps.
-function bg_convert_deform(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _line_factor_x, _line_height, _scale_target_y, _anim_duration)
+/// @param {Real} _frame_duration Duration of each animation frame in game steps.
+function bg_convert_deform(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _line_factor_x, _line_height, _scale_target_y, _frame_duration)
 {
-	var _object = bg_convert(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _anim_duration);
+	var _object = bg_convert(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _frame_duration);
 	
 	if _object != noone
 	{

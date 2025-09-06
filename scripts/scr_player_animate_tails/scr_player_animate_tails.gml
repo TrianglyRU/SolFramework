@@ -116,17 +116,17 @@ function scr_player_animate_tails()
 			}
 			else
 			{
-				obj_set_anim(spr_tails_swim_carry, 8, 0, 0);
+				obj_set_anim(spr_tails_swicarry, 8, 0, 0);
 			}
 		
 		break;
 		
-		case ANIM.SWIM_TIRED:
-			obj_set_anim(spr_tails_swim_tired, 8, 0, 0);
+		case ANIM.SWITIRED:
+			obj_set_anim(spr_tails_switired, 8, 0, 0);
 		break;
 		
-		case ANIM.SWIM_CARRY:
-			obj_set_anim(spr_tails_swim_carry, 8, 0, 0);
+		case ANIM.SWICARRY:
+			obj_set_anim(spr_tails_swicarry, 8, 0, 0);
 		break;
 	}
 }

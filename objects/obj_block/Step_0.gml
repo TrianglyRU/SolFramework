@@ -3,7 +3,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _player = player_get(_p);
 	var _is_spinning = _player.animation == ANIM.SPIN;
 	
-	m_solid_object(_player, _is_spinning ? SOLID_TYPE.FULL_NO_LAND : SOLID_TYPE.FULL);
+	solid_object(_player, _is_spinning ? SOLID_TYPE.FULL_NO_LAND : SOLID_TYPE.FULL);
 	
 	if !_is_spinning || solid_touch[_p] != SOLID_TOUCH.TOP
 	{
@@ -20,7 +20,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	_player.vel_y = -3;
-	_player.m_add_score(++_player.score_combo);
+	_player.add_score(++_player.score_combo);
 	
 	with instance_create(x, y, obj_score)
 	{

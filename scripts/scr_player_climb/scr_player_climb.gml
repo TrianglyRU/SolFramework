@@ -14,7 +14,7 @@ function scr_player_climb()
 		
 			if x != xprevious || vel_x != 0
 			{
-				m_release_glide(1);
+				release_glide(1);
 				break;
 			}
 			
@@ -79,7 +79,7 @@ function scr_player_climb()
 				
 				if _wall_dist != 0
 				{
-					m_release_glide(1);
+					release_glide(1);
 					break;
 				}
 				
@@ -89,7 +89,7 @@ function scr_player_climb()
 				
 				if _floor_dist < 0
 				{
-					m_land();
+					land();
 					vel_y = 0;
 					animation = ANIM.IDLE;
 					angle = _floor_angle;
@@ -99,7 +99,7 @@ function scr_player_climb()
 				}
 			}
 			
-			if m_press_action_any()
+			if press_action_any()
 			{
 				animation = ANIM.SPIN;
 				action = ACTION.NONE;
@@ -109,7 +109,7 @@ function scr_player_climb()
 				vel_y = jump_min_vel;
 				solid_radius_x = radius_x_spin;
 				solid_radius_y = radius_y_spin;
-				m_reset_gravity();
+				reset_gravity();
 				
 				audio_play_sfx(snd_jump);
 				break;
@@ -151,7 +151,7 @@ function scr_player_climb()
 			}
 			else if timer < 0
 			{
-				m_land();
+				land();
 				animation = ANIM.IDLE;
 				x += 8 * facing;
 				y += 4;

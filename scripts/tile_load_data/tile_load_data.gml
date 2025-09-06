@@ -15,15 +15,15 @@ function tile_load_data(_sprite_id)
 	        show_debug_message("[WARN] Could not register collision layer " + _collision_layers[_i] + ". Skipping");
 	    }
 		
-		var _m_id = layer_tilemap_get_id(_marker_layers[_i]);
+		var _id = layer_tilemap_get_id(_marker_layers[_i]);
 		
-	    if _m_id == -1
+	    if _id == -1
 		{
 	        show_debug_message("[INFO] Could not register marker layer " + _marker_layers[_i] + ". Skipping");
 	    }
 		
 		obj_game.tile_layers[_i] = _c_id;
-		obj_game.tile_markers[_i] = _m_id;
+		obj_game.tile_markers[_i] = _id;
 	}
 	
 	obj_game.tile_heights = global.tile_stored_height_data[? _sprite_id];

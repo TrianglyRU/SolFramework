@@ -6,7 +6,7 @@ function scr_player_jump()
 		return false;
 	}
 	
-	if !m_down_action_any()
+	if !down_action_any()
 	{
 		vel_y = max(vel_y, jump_min_vel);
 	}
@@ -21,7 +21,7 @@ function scr_player_jump()
 		audio_play_sfx(snd_transform);
 		audio_play_bgm(snd_bgm_super);
 		
-		m_reset_substate();
+		reset_substate();
 		state = PLAYER_STATE.DEFAULT_LOCKED;
 		animation = ANIM.TRANSFORM;
 		action = ACTION.TRANSFORM;
@@ -41,7 +41,7 @@ function scr_player_jump()
 			
 			var _shield = global.player_shields[player_index];
 			
-			if global.drop_dash && action == ACTION.NONE && shield_state == SHIELD_STATE.NONE && !m_down_action_any()
+			if global.drop_dash && action == ACTION.NONE && shield_state == SHIELD_STATE.NONE && !down_action_any()
 			{
 				if super_timer > 0 || item_inv_timer > 0 || _shield <= SHIELD.NORMAL
 				{
@@ -50,7 +50,7 @@ function scr_player_jump()
 				}
 			}
 			
-			if !m_press_action_any() || shield_state != SHIELD_STATE.NONE || super_timer > 0 || item_inv_timer > 0
+			if !press_action_any() || shield_state != SHIELD_STATE.NONE || super_timer > 0 || item_inv_timer > 0
 			{
 				break;
 			}
@@ -95,7 +95,7 @@ function scr_player_jump()
 					{
 						if player == other.id
 						{
-							m_bubble_shield_drop_animation();
+							bubble_shield_drop_animation();
 						}
 					}
 					
@@ -105,7 +105,7 @@ function scr_player_jump()
 
 				case SHIELD.FIRE:
 					
-					m_set_camera_delay(16);
+					set_camera_delay(16);
 					shield_state = SHIELD_STATE.ACTIVE;
 					air_lock_flag = true;
 					vel_x = 8 * facing;
@@ -157,7 +157,7 @@ function scr_player_jump()
 		
 		case PLAYER.TAILS:
 		
-			if action != ACTION.NONE || !m_press_action_any()
+			if action != ACTION.NONE || !press_action_any()
 			{
 				break;
 			}
@@ -183,7 +183,7 @@ function scr_player_jump()
 		
 		case PLAYER.KNUCKLES:
 		
-			if action != ACTION.NONE || !m_press_action_any()
+			if action != ACTION.NONE || !press_action_any()
 			{
 				break;
 			}
@@ -205,7 +205,7 @@ function scr_player_jump()
 		
 		case PLAYER.AMY:
 		
-			if action != ACTION.NONE || !m_press_action_any()
+			if action != ACTION.NONE || !press_action_any()
 			{
 				break;
 			}

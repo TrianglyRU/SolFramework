@@ -8,7 +8,7 @@ function scr_player_dash()
 	
 	if action != ACTION.DASH
 	{    
-	    if action == ACTION.NONE && animation == ANIM.LOOKUP && input_down.up && m_press_action_any()
+	    if action == ACTION.NONE && animation == ANIM.LOOKUP && input_down.up && press_action_any()
 	    {
 	        animation = ANIM.MOVE;
 	        action = ACTION.DASH;
@@ -50,8 +50,8 @@ function scr_player_dash()
 		audio_stop_sound(snd_charge_dash_no_loop);
 		audio_play_sfx(snd_release_dash);
 		
-	    m_set_camera_delay(floor(_raw_camera_delay * 0.5));
-		m_set_velocity();
+	    set_camera_delay(floor(_raw_camera_delay * 0.5));
+		set_velocity();
 		
 		// Exit the player control routine
 	    return true;

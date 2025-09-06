@@ -40,7 +40,7 @@ function scr_player_carry()
 			{
 				carry_target = _player;
 				
-				_player.m_reset_substate();		
+				_player.reset_substate();		
 				_player.animation = ANIM.GRAB;
 				_player.action = ACTION.CARRIED;
 				
@@ -58,9 +58,9 @@ function scr_player_carry()
 	}
 	else if carry_target.action != ACTION.CARRIED
 	{
-		m_clear_carry();
+		clear_carry();
 	}
-	else if carry_target.m_press_action_any()
+	else if carry_target.press_action_any()
 	{
 		carry_target.is_jumping = true;
 		carry_target.action = ACTION.NONE;
@@ -87,7 +87,7 @@ function scr_player_carry()
 	}
 	else if floor(carry_target.x) != floor(carry_target_x) || floor(carry_target.y) != floor(carry_target_y)
 	{
-		m_clear_carry();
+		clear_carry();
 	}
 	else
 	{

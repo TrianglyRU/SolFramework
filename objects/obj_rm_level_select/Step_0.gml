@@ -30,9 +30,9 @@ if _direction != 0
     {
         global.selected_level_entry = (global.selected_level_entry + _direction + _total_entries) % _total_entries;
     }
-    until m_is_string_entry(global.selected_level_entry);
+    until is_string_entry(global.selected_level_entry);
     
-    m_set_room_to_load();
+    set_rooto_load();
 }
 
 if level_entries[global.selected_level_entry] == "SOUND TEST"
@@ -57,7 +57,7 @@ if level_entries[global.selected_level_entry] == "SOUND TEST"
     else if _input_press.action3
     {
 		// Register the input
-        cheat_code_string = string_concat(cheat_code_string, m_dec_to_hex(global.selected_sound_index));
+        cheat_code_string = string_concat(cheat_code_string, dec_to_hex(global.selected_sound_index));
 		
         for (var _i = 0; _i < array_length(cheat_codes); _i++)
         {
@@ -79,7 +79,7 @@ if level_entries[global.selected_level_entry] == "SOUND TEST"
 		{
 			var _sound_name = audio_get_name(_sound_id);
 			
-			if string_starts_with(_sound_name, "snd_bgm")
+			if string_starts_with(_sound_name, "snd_bgm_m")
 	        {
 	            audio_play_bgm(_sound_id, string_ends_with(_sound_name, "extralife") ? AUDIO_CHANNEL_JINGLE : 0);
 	        }
@@ -126,7 +126,7 @@ else if _input_press.left || _input_press.right
 		
 		var _new_index = min(_prev_page_last, _prev_page_first + _this_page_current);
 		
-		while _new_index > 0 && !m_is_string_entry(_new_index)
+		while _new_index > 0 && !is_string_entry(_new_index)
 		{
 			_new_index--;
 		}
@@ -151,7 +151,7 @@ else if _input_press.left || _input_press.right
 		
 		var _new_index = min(_next_page_first + _this_page_current, _next_page_last);
 		
-		while !m_is_string_entry(_new_index)
+		while !is_string_entry(_new_index)
 		{
 			_new_index--;
 		}
@@ -159,13 +159,13 @@ else if _input_press.left || _input_press.right
 		global.selected_level_entry = _new_index;
 	}
 	
-	m_set_room_to_load();
+	set_rooto_load();
 }
 else if _input_press.action1 || _input_press.start
 {
-    if room_to_load != -1
+    if rooto_load != -1
     {
-        if room_to_load == rm_special
+        if rooto_load == rm_special
         {
             audio_play_sfx(snd_warp);
             fade_perform_white(FADE_DIRECTION.OUT, 1);

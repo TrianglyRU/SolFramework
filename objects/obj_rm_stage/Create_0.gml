@@ -5,19 +5,16 @@
 /// @param {Real} _act_index
 /// @param {Asset.GMSound} _bgm
 /// @param {Array<Asset.GMSprite>} _animals
-/// @param {Real} _bottom_bound
 /// @param {Asset.GMRoom} _next_room
 /// @param {Bool} _do_save
-m_setup_level = function(_stage_index, _name, _act_index, _bgm, _animals, _bottom_bound, _next_room, _do_save)
+setup_level = function(_stage_index, _name, _act_index, _bgm, _animals, _next_room, _do_save)
 {
     global.stage_index = _stage_index;
-	
     zone_name = _name;
     act_index = _act_index;
     bgm_track = _bgm;
     animal_set = _animals;
     next_stage = _next_room;
-    bottom_bound_init = _bottom_bound;
 	save_progress = _do_save;
 }
 
@@ -27,7 +24,6 @@ bgm_track = -1;
 next_stage = -1;
 save_progress = false;
 end_bound = room_width;
-bottom_bound_init = room_height;
 bottom_bound = array_create(CAMERA_COUNT, room_height);
 top_bound = array_create(CAMERA_COUNT, 0);
 left_bound = array_create(CAMERA_COUNT, 0);
@@ -46,7 +42,7 @@ audio_play_bgm(bgm_track);
 var _ring_data = global.giant_ring_data;
 var _checkpoint_data = global.checkpoint_data;
 
-if (array_length(_ring_data) > 0)
+if array_length(_ring_data) > 0
 {
 	obj_game.frame_counter = _ring_data[2];
 	
@@ -58,7 +54,7 @@ if (array_length(_ring_data) > 0)
         right_bound[_i] = _ring_data[6];
     }
 }
-else if (array_length(_checkpoint_data) > 0)
+else if array_length(_checkpoint_data) > 0
 {
 	obj_game.frame_counter = _checkpoint_data[2];
 	
@@ -70,18 +66,12 @@ else if (array_length(_checkpoint_data) > 0)
         right_bound[_i] = _checkpoint_data[6];
     }
 }
-else if (bottom_bound_init > 0)
-{
-    for (var _i = 0; _i < CAMERA_COUNT; _i++)
-    {
-        bottom_bound[_i] = bottom_bound_init;
-    }
-}
 
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
     var _camera_data = camera_get_data(_i);
-    if (_camera_data != undefined)
+	
+    if _camera_data != undefined
     {
         _camera_data.top_bound = top_bound[_i];
         _camera_data.bottom_bound = bottom_bound[_i];
@@ -93,7 +83,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 // Discord
 var _player_icon, _stage_icon;
 
-switch (global.player_main)
+switch global.player_main
 {
     case PLAYER.SONIC:
         _player_icon = "player_sonic"; 
@@ -115,7 +105,7 @@ switch (global.player_main)
 		_player_icon = "";
 }
 
-switch (room)
+switch room
 {
 	case rm_stage_ghz0:
 		_stage_icon = "stage_ghz";

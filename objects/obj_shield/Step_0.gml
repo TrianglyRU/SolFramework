@@ -12,7 +12,7 @@ switch _shield
 	
 		if sprite_index != spr_shield_bubble && animator.timer < 0
 		{
-			m_bubble_shield_animation();
+			bubble_shield_animation();
 		}
 	
 	break;
@@ -28,7 +28,7 @@ switch _shield
 		}
         else if animator.timer < 0
 		{
-			m_fire_shield_animation();
+			fire_shield_animation();
 		}
 		
     break;

@@ -1,6 +1,6 @@
 #region METHODS
 
-m_dec_to_hex = function(_number)
+dec_to_hex = function(_number)
 {
     var _hex = "";
     var _digits = "0123456789ABCDEF";
@@ -24,27 +24,27 @@ m_dec_to_hex = function(_number)
     return _hex;
 }
 
-m_get_entry_text_array = function(_entry_index)
+get_entry_text_array = function(_entry_index)
 {
 	return string_split(level_entries[_entry_index], "|", false);
 }
 
-m_is_string_entry = function(_entry_index)
+is_string_entry = function(_entry_index)
 {
 	var _char = string_char_at(string_trim(level_entries[_entry_index]), 1);
 	return _char != "/" && _char != "";
 }
 
-m_set_room_to_load = function()
+set_rooto_load = function()
 {
-	room_to_load = -1;
+	rooto_load = -1;
 	down_cooldown = 0;
 	
 	for (var _i = 0; _i < array_length(level_rediretions); _i += 2)
 	{
 		if level_rediretions[_i] == global.selected_level_entry
 		{
-			room_to_load = level_rediretions[_i + 1];
+			rooto_load = level_rediretions[_i + 1];
 			break;
 		}
 	}
@@ -54,7 +54,7 @@ m_set_room_to_load = function()
 
 cheat_code_string = "";
 down_cooldown = 0;
-room_to_load = -1;
+rooto_load = -1;
 level_entries =
 [
 	"GREEN HILL|1",
@@ -163,7 +163,7 @@ for (var _i = 0; _i < 256; _i++)
     {
         array_push(sound_ids, -1);
     }
-	else if string_starts_with(_sound_name, "snd_bgm")
+	else if string_starts_with(_sound_name, "snd_bgm_m")
 	{
 		array_insert(sound_ids, 0, _i);
 	}
@@ -173,9 +173,9 @@ for (var _i = 0; _i < 256; _i++)
 	}
 }
 
-m_set_room_to_load();
+set_rooto_load();
 
 audio_play_bgm(snd_bgm_level_select);
 bg_convert("Background", 0, 0, 0, 0, 0);
-discord_set_data("LEVEL SELECT", "", "room_levels", "");
+discord_set_data("LEVEL SELECT", "", "roolevels", "");
 fade_perform_black(FADE_DIRECTION.IN, 1);

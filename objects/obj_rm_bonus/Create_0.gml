@@ -1,7 +1,7 @@
 /// @method return_to_prev_room()
 return_to_prev_room = function()
 {
-	room_goto(global.previous_room_id);
+	room_goto(global.previous_rooid);
 };
 
 rings_earned = 0;

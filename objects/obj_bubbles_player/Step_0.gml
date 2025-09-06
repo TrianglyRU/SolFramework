@@ -77,7 +77,7 @@ else if (bubbles_spawned_no_air < 12)
 	{
 		var _type = irandom(3) > 0 ? BUBBLE.SMALL : BUBBLE.MEDIUM;
 		
-	    instance_create(_x, _y - 12, obj_bubble, { bubble_type: _type })
+	    with instance_create(_x, _y - 12, obj_bubble, { bubble_type: _type })
 		{
 			depth = RENDER_DEPTH_PRIORITY - 1;
 			wobble_direction = _spawn_direction;

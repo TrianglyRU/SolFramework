@@ -52,7 +52,7 @@ switch state
 		}
 		else
 		{
-			wait_time = m_get_random_delay();
+			wait_time = get_random_delay();
 			wait_cycle++;
 			state = AIR_BUBBLER_STATE.IDLE;
 		}

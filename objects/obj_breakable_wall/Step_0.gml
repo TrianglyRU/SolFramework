@@ -3,7 +3,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _player = player_get(_p);
 	var _vel_x = _player.vel_x;
 	
-	m_solid_object(_player, SOLID_TYPE.SIDES);
+	solid_object(_player, SOLID_TYPE.SIDES);
 	
 	if iv_knuckles_only && _player.player_type != PLAYER.KNUCKLES
 	{
@@ -19,19 +19,19 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	// Conditions upon which players can destroy the wall
-	if not _player.animation == ANIM.SPIN && _player.is_grounded && abs(_vel_x) >= 4 || 
+	if not (_player.animation == ANIM.SPIN && _player.is_grounded && abs(_vel_x) >= 4 || 
 		   _player.player_type == PLAYER.KNUCKLES || 
 		   _player.action == ACTION.HAMMERSPIN || 
 		   _player.animation == ANIM.HAMMERDASH || 
 		   _player.super_timer > 0 || 
-		   _player.shield_state == SHIELD_STATE.ACTIVE && _shield == SHIELD.FIRE
+		   _player.shield_state == SHIELD_STATE.ACTIVE && _shield == SHIELD.FIRE)
 	{
 		continue;
 	}
 	
 	if _player.action == ACTION.GLIDE && _player.action_state == GLIDE_STATE.AIR
 	{
-		_player.m_release_glide(0);
+		_player.release_glide(0);
 	}
 	
 	_player.x -= 4 * sign(_vel_x);

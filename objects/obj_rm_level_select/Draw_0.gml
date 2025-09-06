@@ -14,14 +14,14 @@ do
 {
 	_prev_empty_index--
 }
-until _prev_empty_index == -1 || !m_is_string_entry(_prev_empty_index)
+until _prev_empty_index == -1 || !is_string_entry(_prev_empty_index)
 
 draw_set_halign(fa_left);
 draw_set_font(global.font_data[? spr_font_small]);
 
 for (var _i = 0; _i < _total_entries; _i++)
 {
-	var _entry_text = m_get_entry_text_array(_i);
+	var _entry_text = get_entry_text_array(_i);
 	var _main = _entry_text[0];
 	
 	if _main == "/n"
@@ -35,7 +35,7 @@ for (var _i = 0; _i < _total_entries; _i++)
 	else if _main == "/p"
 	{
 	    draw_set_colour(level_entries[_selected_entry_index] != "SOUND TEST" ? c_yellow : c_white);
-	    draw_text(_x + 88, _y, m_dec_to_hex(global.selected_player_index));
+	    draw_text(_x + 88, _y, dec_to_hex(global.selected_player_index));
 		draw_set_colour(c_white);
 	}
 	else if _main != ""
@@ -45,7 +45,7 @@ for (var _i = 0; _i < _total_entries; _i++)
 		
 		if _main == "SOUND TEST"
 		{
-		    draw_text(_x, _y, _main + "  *" + m_dec_to_hex(_sound_index) + "*");
+		    draw_text(_x, _y, _main + "  *" + dec_to_hex(_sound_index) + "*");
 		}
 		else
 		{

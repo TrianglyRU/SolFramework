@@ -25,9 +25,9 @@ for (var _i = 0; _i < SOL_FIREBALL_COUNT; _i++)
 		continue;
 	}
 	
-	// If the fireball is attached to Sol, run its m_hurt routine from here to make sure it
+	// If the fireball is attached to Sol, run its hurt routine from here to make sure it
 	// happens after Sol runs a collision with a player
-	_fireball.m_hurt_players();
+	_fireball.hurt_players();
 	
 	var _new_angle = angle + angle_step * _i;
 	var _new_x = math_oscillate_x(x, _new_angle, 16);
@@ -39,12 +39,9 @@ for (var _i = 0; _i < SOL_FIREBALL_COUNT; _i++)
 	// Throw the fireball
 	if state == SOL_STATE.SHOOT && _new_angle == 0
 	{
-		_fireball.vel_x = -2 * image_xscale; 
+		_fireball.culler.action = CULL_ACTION.DESTROY;
+		_fireball.vel_x = -2 * image_xscale;
+		
+		fireballs[_i] = noone;
 	}
-	else
-	{
-		continue;
-	}
-	
-	fireballs[_i] = noone;
 }

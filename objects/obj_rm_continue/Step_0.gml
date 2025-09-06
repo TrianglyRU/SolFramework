@@ -13,7 +13,7 @@ if (continue_count > 1)
 {
 	var _last_icon = continue_icons[continue_count - 1];
 	
-    _last_icon.anim_timer = -1;
+    _last_icon.anitimer = -1;
     _last_icon.visible = obj_game.frame_counter % 2 == 0;
 }
 

@@ -52,7 +52,7 @@ switch state
 				
 			break;
 			
-			// Airborne
+			// Airm_borne
 			case false:
 				
 				if scr_player_jump()
@@ -87,7 +87,7 @@ switch state
 		scr_player_update_hitbox();
 
 		
-		m_record_data(0);
+		record_data(0);
 		
 	break;
 
@@ -104,7 +104,7 @@ switch state
 		scr_player_animate();
 		scr_player_update_hitbox();
 		
-		m_record_data(0);
+		record_data(0);
 		
 	break;
 
@@ -120,7 +120,7 @@ switch state
 		scr_player_animate();
 		scr_player_update_hitbox();
 		
-		m_record_data(0);
+		record_data(0);
 		
 	break;
 

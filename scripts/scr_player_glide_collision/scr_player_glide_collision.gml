@@ -77,7 +77,7 @@ function scr_player_glide_collision()
 	    {
 	        if _floor_dist > 14
 	        {
-	            m_release_glide(0);
+	            release_glide(0);
 	        }
 	        else
 	        {
@@ -113,12 +113,12 @@ function scr_player_glide_collision()
 			else
 			{
 				spd_ground = angle < 180 ? vel_x : -vel_x; 
-				m_land();
+				land();
 			}
 		}
 		else if action_state == GLIDE_STATE.FALL
 		{
-		    m_land();
+		    land();
 			
 		    if _floor_quad == QUADRANT.DOWN
 		    {
@@ -154,7 +154,7 @@ function scr_player_glide_collision()
 			
 	        if  _floor_dist < 0 || _floor_dist >= 12
 	        {
-	            m_release_glide(0);
+	            release_glide(0);
 	            return;
 	        }
 			

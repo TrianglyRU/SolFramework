@@ -1,7 +1,6 @@
 // Inherit the parent event
 event_inherited();
-obj_set_culling(ACTIVEIF.INBOUNDS);
+event_culler();
 
 depth = RENDER_DEPTH_PRIORITY;
-image_index = vd_is_long_waterfall ? 1 : 0;
-timer = 0;
+image_index = iv_is_long_waterfall;

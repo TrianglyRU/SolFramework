@@ -33,7 +33,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":1,"collisionObjectId":null,},
   ],
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vi_index","varType":1,"value":"0","rangeEnabled":true,"rangeMin":0.0,"rangeMax":31.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_index","varType":1,"value":"0","rangeEnabled":true,"rangeMin":0.0,"rangeMax":31.0,"listItems":[],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],
   "parent": {

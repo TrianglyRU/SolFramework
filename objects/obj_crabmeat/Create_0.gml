@@ -10,14 +10,14 @@ enum CRABMEAT_STATE
 	WAIT_OR_FIRE
 }
 
-m_is_on_slope = function()
+is_on_slope = function()
 {
 	return angle >= 8.44 && angle <= 351.56;
 }
 
-m_update_sprite = function()
+update_sprite = function()
 {
-	if m_is_on_slope()
+	if is_on_slope()
 	{
 		image_xscale = angle >= 180 ? -1 : 1;
 		sprite_index = spr_crabmeat_move_angled;

@@ -10,7 +10,7 @@ function scr_stage_setup()
 			// Use S1 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S1;
 			
-			m_setup_level(96, "GREEN HILL", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], 992, rm_stage_ehz0, false);
+			setup_level(96, "GREEN HILL", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], 992, rm_stage_ehz0, false);
 			
 			bg_convert("Clouds_1", 0.375, -0.03125, -1, 0, 0);
 			bg_convert("Clouds_2", 0.375, -0.03125, -0.5, 0, 0);
@@ -37,7 +37,7 @@ function scr_stage_setup()
 			// Use S2 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S2;
 			
-			m_setup_level(97, "EMERALD HILL", 0, snd_bgm_ehz, [spr_animal_flicky, spr_animal_ricky], room_height, rm_level_select, true);
+			setup_level(97, "EMERALD HILL", 0, snd_bgm_ehz, [spr_animal_flicky, spr_animal_ricky], room_height, rm_level_select, true);
 			
 			bg_convert("Clouds", 0.015625, 0, 0, 0, 0);
 			bg_convert("Hills_1", 0.0625, 0, 0, 0, 0);
@@ -65,7 +65,7 @@ function scr_stage_setup()
 		
 		case rm_stage_dwz0:
 			
-			m_setup_level(98, "DELTA WORLD", ACT_SINGLE, snd_bgm_dwz, [spr_animal_flicky, spr_animal_ricky], 1040, rm_level_select, true);
+			setup_level(98, "DELTA WORLD", ACT_SINGLE, snd_bgm_dwz, [spr_animal_flicky, spr_animal_ricky], 1040, rm_level_select, true);
 			
 			bg_convert("Stars_1", 0.3275, 0.0725, -0.525, 0, 0);
 			bg_convert("Stars_2", 0.2435, 0.0725, -0.325, 0, 0);

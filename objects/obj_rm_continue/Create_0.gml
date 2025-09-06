@@ -12,7 +12,7 @@ leave_room = function()
 	}
 	else
 	{
-	    room_goto(global.previous_room_id);
+	    room_goto(global.previous_rooid);
 	}
 }
 

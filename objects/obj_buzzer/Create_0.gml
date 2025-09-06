@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.RESPAWN);
 
 #macro BUZZER_DEFAULT_MOVE_TIMER 256
 
@@ -10,7 +11,6 @@ enum BUZZER_STATE
 }
 
 depth = draw_depth(40);
-culler.action = CULL_ACTION.RESPAWN;
 state = BUZZER_STATE.ROAM;
 move_timer = BUZZER_DEFAULT_MOVE_TIMER;
 turn_timer = 0;

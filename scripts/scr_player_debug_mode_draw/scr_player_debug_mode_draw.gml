@@ -1,5 +1,3 @@
-// Feather ignore GM2040
-
 /// @self obj_player
 function scr_player_draw_debug_mode()
 {

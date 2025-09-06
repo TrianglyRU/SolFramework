@@ -137,8 +137,8 @@ enum ANIM
 	FLY,
 	FLY_TIRED,
 	SWIM,
-	SWIM_TIRED,
-	SWIM_CARRY,
+	SWITIRED,
+	SWICARRY,
 	GLIDE_AIR,
 	GLIDE_GROUND,
 	GLIDE_FALL,
@@ -156,13 +156,13 @@ enum ROTATION
 
 #region METHODS
 
-m_set_velocity = function()
+set_velocity = function()
 {
 	vel_x = spd_ground * dcos(angle);
 	vel_y = spd_ground * -dsin(angle);
 }
 
-m_set_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
+set_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
 {
 	hbox_left = _hbleft;
 	hbox_top = _hbtop;
@@ -170,7 +170,7 @@ m_set_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
 	hbox_bottom = _hbbottom;
 }
 
-m_set_extra_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
+set_extra_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
 {
 	hbox_ext_left = _hbleft;
 	hbox_ext_top = _hbtop;
@@ -178,7 +178,7 @@ m_set_extra_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
 	hbox_ext_bottom = _hbbottom;
 }
 
-m_respawn = function()
+respawn = function()
 {
 	scr_player_init();
 	
@@ -199,7 +199,7 @@ m_respawn = function()
 	}
 }
 
-m_reset_substate = function()
+reset_substate = function()
 {
 	switch action
 	{
@@ -220,7 +220,7 @@ m_reset_substate = function()
 	shield_state = SHIELD_STATE.NONE;
 	is_jumping = false;
 	set_push_anim_by = noone;
-	m_clear_carry();
+	clear_carry();
 	
 	// Clear collision
 	is_grounded = false;
@@ -228,15 +228,16 @@ m_reset_substate = function()
 	solid_radius_x = radius_x_normal;
 	solid_radius_y = radius_y_normal;
 	
+	reset_gravity();
 	visual_angle = 0;
 }
 
-m_reset_gravity = function()
+reset_gravity = function()
 {
 	grv = is_underwater ? PARAM_GRV_UNDERWATER : PARAM_GRV_DEFAULT;
 }
 
-m_release_glide = function(_frame)
+release_glide = function(_frame)
 {
 	glide_value = _frame;			// glide_value is the start frame of ANIM.GLIDE_FALL
 	animation = ANIM.GLIDE_FALL;
@@ -244,13 +245,13 @@ m_release_glide = function(_frame)
 	action_state = GLIDE_STATE.FALL;
 	solid_radius_x = radius_x_normal;
 	solid_radius_y = radius_y_normal;
-	m_reset_gravity();
+	reset_gravity();
 }
 
-m_land = function()
+land = function()
 {
 	is_grounded = true;
-	m_reset_gravity();
+	reset_gravity();
 	
 	if action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH
 	{
@@ -280,7 +281,7 @@ m_land = function()
 		{
 			if player == other.id
 			{
-				m_bubble_shield_bounce_animation();
+				bubble_shield_bounce_animation();
 			}
 		}
 		
@@ -306,7 +307,7 @@ m_land = function()
 		animation = ANIM.MOVE;
 	}
 	
-	m_clear_carry();
+	clear_carry();
 	
 	// Handle is_grounded routines of some actions
 	scr_player_dropdash();
@@ -325,7 +326,7 @@ m_land = function()
 	}
 }
 
-m_add_score = function(_score_combo)
+add_score = function(_score_combo)
 {
 	if _score_combo < 4
 	{
@@ -337,14 +338,14 @@ m_add_score = function(_score_combo)
 	}
 }
 
-m_is_invincible = function()
+is_invincible = function()
 {
 	return inv_frames > 0 || item_inv_timer > 0 || super_timer > 0 || shield_state == SHIELD_STATE.DOUBLE_SPIN;
 }
 
-m_hurt = function(_sound = snd_hurt, _hazard = other)
+hurt = function(_sound = snd_hurt, _hazard = other)
 {
-	if state != PLAYER_STATE.DEFAULT || m_is_invincible()
+	if state != PLAYER_STATE.DEFAULT || is_invincible()
 	{
 		return;
 	}
@@ -353,12 +354,11 @@ m_hurt = function(_sound = snd_hurt, _hazard = other)
 	
 	if _is_not_shielded_player1 && global.player_rings == 0
 	{
-		m_kill(_sound);
+		kill(_sound);
 		return;
 	}
 	
-	m_reset_substate();
-	
+	reset_substate();
 	vel_x = floor(x) < floor(_hazard.x) ? -2 : 2;
 	vel_y = -4;
 	animation = ANIM.HURT;
@@ -384,14 +384,14 @@ m_hurt = function(_sound = snd_hurt, _hazard = other)
 
 		for (var _i = 0; _i < _count; _i++) 
 		{
-			var _ring = instance_create(x, y, obj_ring);
-			
-			// Override data
-			_ring.culler.action = CULL_ACTION.DESTROY;
-			_ring.state = RING_STATE.DROPPED;
-			_ring.vel_x = _ring_speed * dcos(_ring_angle) * -_ring_direction;
-			_ring.vel_y = _ring_speed * -dsin(_ring_angle);
-			_ring.depth = _ring.draw_depth(30);
+			with instance_create(x, y, obj_ring)
+			{
+				depth = draw_depth(30);
+				culler.action = CULL_ACTION.DESTROY;
+				state = RING_STATE.DROPPED;
+				vel_x = _ring_speed * dcos(_ring_angle) * -_ring_direction;
+				vel_y = _ring_speed * -dsin(_ring_angle);
+			}
 			
 			if _ring_direction == 1
 			{
@@ -420,7 +420,7 @@ m_hurt = function(_sound = snd_hurt, _hazard = other)
 	}
 }
 
-m_kill = function(_sound = snd_hurt)
+kill = function(_sound = snd_hurt)
 {
 	if state == PLAYER_STATE.DEATH
 	{
@@ -434,7 +434,7 @@ m_kill = function(_sound = snd_hurt)
 	
 	audio_play_sfx(_sound);
 	
-	m_reset_substate();
+	reset_substate();
 	animation = ANIM.DEATH;
 	state = PLAYER_STATE.DEATH;
 	grv = 0.21875;
@@ -449,7 +449,7 @@ m_kill = function(_sound = snd_hurt)
 	}
 }
 
-m_set_camera_delay = function(_delay)
+set_camera_delay = function(_delay)
 {
 	if !global.cd_camera && camera_data.target == noone && camera_data.index == player_index
 	{
@@ -457,7 +457,7 @@ m_set_camera_delay = function(_delay)
 	}
 }
 
-m_clear_carry = function()
+clear_carry = function()
 {
 	if carry_target != noone
 	{
@@ -467,7 +467,7 @@ m_clear_carry = function()
 	}
 }
 
-m_record_data = function(_insert_pos)
+record_data = function(_insert_pos)
 {
 	if _insert_pos >= ds_record_length
 	{
@@ -483,7 +483,7 @@ m_record_data = function(_insert_pos)
 	ds_list_delete(ds_record_data, ds_record_length);
 }
 
-m_play_tails_sound = function()
+play_tails_sound = function()
 {
 	if (obj_game.frame_counter + 8) % 16 != 0 || is_underwater || !instance_is_drawn()
 	{
@@ -500,12 +500,12 @@ m_play_tails_sound = function()
 	}
 }
 
-m_is_true_glide = function()
+is_true_glide = function()
 {
 	return action == ACTION.GLIDE && action_state != GLIDE_STATE.FALL;
 }
 
-m_clear_solid_push = function(_inst_id)
+clear_solid_push = function(_inst_id)
 {
 	if set_push_anim_by == _inst_id
 	{
@@ -518,7 +518,7 @@ m_clear_solid_push = function(_inst_id)
 	}
 }
 
-m_restart_bgm = function(_default_bgm)
+restart_bgm = function(_default_bgm)
 {
 	if super_timer > 0
     {
@@ -539,12 +539,12 @@ m_restart_bgm = function(_default_bgm)
     }
 }
 
-m_press_action_any = function()
+press_action_any = function()
 {
 	return input_press.action1 || input_press.action2 || input_press.action3;
 }
 
-m_down_action_any = function()
+down_action_any = function()
 {
 	return input_down.action1 || input_down.action2 || input_down.action3;
 }

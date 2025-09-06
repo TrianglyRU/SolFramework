@@ -54,7 +54,7 @@ switch state
 		vel_x *= -1;
 		state = CRABMEAT_STATE.MOVE;
 		
-		m_update_sprite();
+		update_sprite();
 		animator.start(sprite_index, 0, 0, 16);
 		
 	break;
@@ -81,7 +81,7 @@ switch state
 			{
 				y += _floor_dist;
 				angle = _floor_angle;
-				m_update_sprite();
+				update_sprite();
 				
 				break;
 			}
@@ -94,8 +94,9 @@ switch state
 		
 		state = CRABMEAT_STATE.WAIT_OR_FIRE;
 		state_timer = 59;
+		animator.clear(0);
 		sprite_index = spr_crabmeat_idle;
-		image_index = m_is_on_slope() ? 1 : 0;
+		image_index = is_on_slope() ? 1 : 0;
 		
 	break;
 }

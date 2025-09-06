@@ -1,7 +1,7 @@
 /// @self obj_player
 function scr_player_glide()
 {
-	if !m_is_true_glide()
+	if !is_true_glide()
 	{
 	    return;
 	}
@@ -66,7 +66,7 @@ function scr_player_glide()
 	        if !_input_down_any
 	        {
 				vel_x *= 0.25;
-				m_release_glide(0);
+				release_glide(0);
 	        }
 			
 	    break;
@@ -88,7 +88,7 @@ function scr_player_glide()
 			
 	        if vel_x == 0
 	        {
-	            m_land();
+	            land();
 	            animation = ANIM.GLIDE_GROUND;	// Keep the animation
 	            ground_lock_timer = 16;
 	            spd_ground = 0;

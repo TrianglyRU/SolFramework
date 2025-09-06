@@ -6,7 +6,7 @@ switch state
         {
             var _player = player_get(_p);
 			
-			m_solid_object(_player, SOLID_TYPE.TOP);
+			solid_object(_player, SOLID_TYPE.TOP);
 			
             if !fall_flag
             {
@@ -63,7 +63,7 @@ switch state
 	
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
-			m_solid_object(player_get(_p), SOLID_TYPE.TOP_NO_LAND);
+			solid_object(player_get(_p), SOLID_TYPE.TOP_NO_LAND);
 		}
 		
 		if wait_timer > 0

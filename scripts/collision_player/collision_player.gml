@@ -1,7 +1,9 @@
-/// @param {Real} [_bbleft]		The maximum left position of the bounding box (optional, default is bbox_left).
-/// @param {Real} [_bbtop]		The maximum top position of the bounding box (optional, default is bbox_top).
-/// @param {Real} [_bbright]	The maximum right position of the bounding box (optional, default is bbox_right).
-/// @param {Real} [_bbbottom]	The maximum bottom position of the bounding box (optional, default is bbox_bottom).
+/// @param {Id.Instance} _player	
+/// @param {Real} [_bbleft]			The maximum left position of the bounding box (optional, default is bbox_left).
+/// @param {Real} [_bbtop]			The maximum top position of the bounding box (optional, default is bbox_top).
+/// @param {Real} [_bbright]		The maximum right position of the bounding box (optional, default is bbox_right).
+/// @param {Real} [_bbbottom]		The maximum bottom position of the bounding box (optional, default is bbox_bottom).
+/// @param {Id.Instance} [_inst_id]
 function collision_player(_player, _bbleft = bbox_left, _bbtop = bbox_top, _bbright = bbox_right, _bbbottom = bbox_bottom, _inst_id = id)
 {
 	if _player.state != PLAYER_STATE.DEFAULT && _player.state != PLAYER_STATE.DEFAULT_LOCKED

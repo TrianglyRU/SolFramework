@@ -6,7 +6,7 @@ function scr_player_jump_start()
 		return;
 	}
 
-	if !m_press_action_any()
+	if !press_action_any()
 	{
 		return;
 	}

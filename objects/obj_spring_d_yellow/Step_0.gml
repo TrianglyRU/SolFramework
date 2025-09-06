@@ -9,7 +9,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _prev_anim = _player.animation;
 	var _touch_side = image_yscale >= 0 ? SOLID_TOUCH.TOP : SOLID_TOUCH.BOTTOM;
 	
-	m_solid_object(_player, SOLID_TYPE.FULL_RESET);
+	solid_object(_player, SOLID_TYPE.FULL_RESET);
 	
 	if image_index != 0 || solid_touch[_p] != _touch_side
     {
@@ -44,7 +44,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.facing = image_xscale;
 	_player.vel_x = _result_force * image_xscale;
 	_player.vel_y = -_result_force * image_yscale;
-	_player.m_reset_substate();
+	_player.reset_substate();
 	
 	animator.start(sprite_index, 1, 9, 1);
 	

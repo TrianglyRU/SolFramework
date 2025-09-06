@@ -1,9 +1,9 @@
-function event_animator(_inst_id = id)
+function event_animator()
 {
-	new const_animator(_inst_id);
+	new ConstAnimator(id);
 }
 
-function const_animator(_inst_id) constructor
+function ConstAnimator(_inst_id) constructor
 {
 	if _inst_id.animator != noone
 	{

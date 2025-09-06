@@ -8,6 +8,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if collision_player(_player)
 	{
-		_player.m_hurt();
+		_player.hurt();
 	}
 }
