@@ -12,7 +12,7 @@ function scr_game_setup()
 	global.gamepad_rumble = false;
 	global.music_volume = 0.5;
 	global.sound_volume = 0.5;
-	global.start_room = rm_branding;
+	global.start_room = rm_level_select;
 	global.discord_ready = np_initdiscord("1286956015241265174", true, 0);
 	
 	global.player_physics = PHYSICS.S2;

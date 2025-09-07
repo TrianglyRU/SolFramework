@@ -1,3 +1,4 @@
+rendered = array_create(CAMERA_COUNT, true);
 htiled = false;
 vtiled = false;
 offset_x = 0;

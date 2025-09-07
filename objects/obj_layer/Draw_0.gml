@@ -1,3 +1,8 @@
+if !rendered[view_current]
+{
+	return;
+}
+
 var _camera_x = camera_get_x(view_current);
 var _camera_y = camera_get_y(view_current);
 var _camera_w = camera_get_width(view_current);

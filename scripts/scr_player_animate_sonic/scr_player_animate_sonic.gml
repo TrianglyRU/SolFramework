@@ -16,7 +16,7 @@ function scr_player_animate_sonic()
 			{
 				animator.start(spr_sonic_idle, 0, 0, 180);
 			}
-			else if animator.timer == -1
+			else if animator.timer < 0
 			{
 				animation = ANIM.WAIT;
 				animator.start(spr_sonic_wait, 0, 6, 6);
@@ -33,7 +33,7 @@ function scr_player_animate_sonic()
 			{
 				_move_sprite = abs(spd_ground) < 8 ? spr_sonic_walk_super : spr_sonic_dash_super;
 			}
-			else if (abs(spd_ground) >= 6)
+			else if abs(spd_ground) >= 6
 			{
 				_move_sprite = abs(spd_ground) < 10 || !global.dash ? spr_sonic_run : spr_sonic_dash;
 			}
@@ -42,7 +42,7 @@ function scr_player_animate_sonic()
 				_move_sprite = spr_sonic_walk;
 			}
 			
-			if sprite_index != _move_sprite
+			if sprite_index != _move_sprite && sprite_index != spr_sonic_walk_super_alt
 			{
 				animator.start(_move_sprite, 0, 0, _move_timing);
 			}
@@ -51,9 +51,16 @@ function scr_player_animate_sonic()
 				animator.duration = _move_timing;
 			}
 			
-			if sprite_index == spr_sonic_walk_super && obj_game.frame_counter % 4 <= 1
+			if obj_game.frame_counter % 4 <= 1
 			{
-				image_index = (image_index + floor(image_number * 0.5)) % image_number;
+				if sprite_index == spr_sonic_walk_super
+				{
+					sprite_index = spr_sonic_walk_super_alt;
+				}
+			}
+			else if sprite_index == spr_sonic_walk_super_alt
+			{
+				sprite_index = spr_sonic_walk_super;
 			}
 			
 		break;
@@ -158,7 +165,7 @@ function scr_player_animate_sonic()
 			{
 				animator.start(spr_sonic_skid, 0, 3, 6);
 			}
-			else if animator.timer == -1
+			else if animator.timer < 0
 			{
 				animation = ANIM.MOVE;
 			}
@@ -171,7 +178,7 @@ function scr_player_animate_sonic()
 			{
 				animator.start(spr_sonic_transform, 0, 12, 3);
 			}
-			else if animator.timer == -1
+			else if animator.timer < 0
 			{
 				animation = ANIM.MOVE;
 			}
@@ -184,7 +191,7 @@ function scr_player_animate_sonic()
 			{
 				animator.start(spr_sonic_breathe, 0, 0, 24);
 			}
-			else if animator.timer == -1
+			else if animator.timer < 0
 			{
 				animation = ANIM.MOVE;
 			}
@@ -197,7 +204,7 @@ function scr_player_animate_sonic()
 			{
 				animator.start(spr_sonic_bounce, 0, 0, 48);
 			}
-			else if animator.timer == -1
+			else if animator.timer < 0
 			{
 				animation = ANIM.MOVE;
 			}
