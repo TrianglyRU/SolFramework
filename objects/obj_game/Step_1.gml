@@ -154,17 +154,12 @@ else if fade_timer == 0
 
 #endregion
 
-#region PAUSE & FRAME COUNTER
-
+// Handle the manual pause
 if state != GAME_STATE.PAUSED
 {
 	if allow_pause && input_list_press[| 0].start
 	{
 	    instance_create(0, 0, obj_gui_pause);
-	}
-	else
-	{
-	    frame_counter++;
 	}
 } 
 else with obj_gui_pause
@@ -172,11 +167,7 @@ else with obj_gui_pause
 	event_user(0);
 }
 
-#endregion
-
-#region CULLING & GLOBAL DEACTIVATION
-
-// Culling
+// Cull objects while the framework is active
 if state == GAME_STATE.NORMAL
 {
 	for (var _i = 0; _i < CAMERA_COUNT; _i++)
@@ -196,26 +187,24 @@ if state == GAME_STATE.NORMAL
 			_camera_data.coarse_x_last = _camera_data.coarse_x;
 			_camera_data.coarse_y_last = _camera_data.coarse_y;
 			
-			// Should be the same in obj_object -> User Event 14
+			// Should be the same in ConstCuller.run()
 			var _width = camera_get_width(_i) + CULLING_ROUND_VALUE + CULLING_ADD_WIDTH;
 			var _height = camera_get_height(_i) + CULLING_ROUND_VALUE + CULLING_ADD_HEIGHT;
-		
-			// Activate all instances whose *bounding boxes* overlap the area
+			
 			instance_activate_region(_camera_data.coarse_x, _camera_data.coarse_y, _width - 1, _height - 1, true);
 		}
 	}
 	
-	// Cull game objects by their *position* (this will also cancel all "false" activations by instance_activate_region)
 	with obj_object
 	{
 		if culler != noone
 		{
-			culler.update();
+			culler.run();
 		}
 	}
 }
 
-// Global Deactivation
+// Stop objects while the framework is paused
 else
 {
 	var _list = cull_game_paused_list;
@@ -231,17 +220,28 @@ else
 			instance_deactivate_object(id);
 		}
 	}
-		
-	// Stop room directors
-	instance_deactivate_object(obj_room);
+	
+	if state == GAME_STATE.PAUSED
+	{
+		instance_deactivate_object(obj_room);
+	}
 }
-
-#endregion
-
-#region PALETTE
 
 if state != GAME_STATE.PAUSED
 {
+	// Frame counter
+	frame_counter++;
+	
+	// Instance animator
+	with obj_object
+	{
+		if animator != noone
+		{
+			animator.update();
+		}
+	}
+	
+	// Palette rotation
 	for (var _i = ds_list_size(palette_rotations) - 1; _i >= 0; _i--)
 	{
 	    var _col_index = palette_rotations[| _i];
@@ -261,31 +261,14 @@ if state != GAME_STATE.PAUSED
 	ds_list_clear(palette_rotations);
 }
 
-#endregion
-
-#region INSTANCE ANIMATOR
-
-if state != GAME_STATE.PAUSED
-{
-	with obj_object
-	{
-		if animator != noone
-		{
-			animator.update();
-		}
-	}
-}
-
-#endregion
-
 // Run post-framework Begin Step for game objects
 with obj_object
 {
 	event_user(11);
 }
 
-// Activate paused objects if the game state has returned to normal
+// Activate stopped objects to process them if the game state has returned to normal
 if state == GAME_STATE.NORMAL && _prev_state != state
 {
-	cull_activate_paused_objects();
+	restore_stopped_objects();
 }

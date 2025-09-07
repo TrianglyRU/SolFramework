@@ -1,4 +1,4 @@
-if (state == SPECIALRESULTSSTATE.LOAD)
+if (state == SPECIALRESULTS_STATE.LOAD)
 {
     return;
 }

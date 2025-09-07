@@ -1,18 +1,18 @@
 switch (state)
 {	
-    case SPECIALRESULTSSTATE.LOAD:
+    case SPECIALRESULTS_STATE.LOAD:
 	
         if (--state_timer > 0)
         {
             break;
         }
 		
-		// Fallthrough to SPECIALRESULTSSTATE.MOVE
+		// Fallthrough to SPECIALRESULTS_STATE.MOVE
         state_timer = 180;
-        state = SPECIALRESULTSSTATE.MOVE;
+        state = SPECIALRESULTS_STATE.MOVE;
 
-    case SPECIALRESULTSSTATE.MOVE:
-    case SPECIALRESULTSSTATE.WAIT_EXIT:
+    case SPECIALRESULTS_STATE.MOVE:
+    case SPECIALRESULTS_STATE.WAIT_EXIT:
 	
         offset_line1 = min(offset_line1 + speed_x, 0);
         offset_line2 = max(offset_line2 - speed_x, 0);
@@ -24,21 +24,21 @@ switch (state)
 			break;
 		}
 		
-        if (state == SPECIALRESULTSSTATE.WAIT_EXIT)
+        if (state == SPECIALRESULTS_STATE.WAIT_EXIT)
         {
-			state = SPECIALRESULTSSTATE.EXIT;
+			state = SPECIALRESULTS_STATE.EXIT;
 			
             audio_play_sfx(snd_warp);
             fade_perform_white(FADE_DIRECTION.OUT, 1,, start_black_fade_out);
         }
 		else
 		{
-			state = SPECIALRESULTSSTATE.TALLY;
+			state = SPECIALRESULTS_STATE.TALLY;
 		}
         		
     break;
 	
-    case SPECIALRESULTSSTATE.TALLY:
+    case SPECIALRESULTS_STATE.TALLY:
 	
         if (ring_bonus > 0)
         {
@@ -56,19 +56,19 @@ switch (state)
         
         if (global.emerald_count == 7)
         {
-            state = SPECIALRESULTSSTATE.SUPER_MSG;
+            state = SPECIALRESULTS_STATE.SUPER_MSG;
         }
         else
         {
             state_timer = 120;
-            state = SPECIALRESULTSSTATE.WAIT_EXIT;
+            state = SPECIALRESULTS_STATE.WAIT_EXIT;
         }
 		
         audio_play_sfx(snd_tally);
 		
     break;
 	
-    case SPECIALRESULTSSTATE.SUPER_MSG:
+    case SPECIALRESULTS_STATE.SUPER_MSG:
 	
         offset_line1 = max(offset_line1 - speed_x * 2, SPECIALRESULTS_OFFSET_LINE_1);
         offset_line2 = min(offset_line2 + speed_x * 2, SPECIALRESULTS_OFFSET_LINE_2);
@@ -77,7 +77,7 @@ switch (state)
         {
             message_super = true;
             state_timer = 180;
-            state = SPECIALRESULTSSTATE.WAIT_EXIT;
+            state = SPECIALRESULTS_STATE.WAIT_EXIT;
         }
 		
     break;

@@ -1,7 +1,7 @@
 if state == ANIMAL_STATE.CAPSULE
 {
     if --state_timer == 0
-    {	
+    {
 		state = ANIMAL_STATE.APPEAR;
 		state_timer = -1;
 		depth = draw_depth(10);

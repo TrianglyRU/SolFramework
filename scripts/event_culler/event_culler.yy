@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Constructors",
-    "path": "folders/Functions/Constructors.yy",
+    "name": "- Framework -",
+    "path": "folders/- Framework -.yy",
   },
 }

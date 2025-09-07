@@ -79,16 +79,6 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 
 #endregion
 
-#region BACKGROUND
-
-if state != GAME_STATE.PAUSED
-{
-	bg_scroll_x++;
-	bg_scroll_y++;
-}
-
-#endregion
-
 #region CAMERA
 
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
@@ -217,28 +207,10 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 
 #endregion
 
-#region DISTORTION
-
 if state != GAME_STATE.PAUSED
 {
-	for (var _i = ds_list_size(distortion_data) - 1; _i >= 0; _i--)
-	{
-		var _data = distortion_data[| _i];
-		
-		if _data != undefined
-		{
-			_data.offset -= _data.spd;
-		}
-	}
-}
-
-#endregion
-
-#region GAMEPLAY
-
-if state != GAME_STATE.PAUSED
-{
-    if global.ring_spill_counter > 0
+	// Gameplay
+	if global.ring_spill_counter > 0
     {
         global.ring_spill_counter--;
     }
@@ -261,32 +233,49 @@ if state != GAME_STATE.PAUSED
 	{
 		audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
 	}
+	
+	// Scroll the background
+	bg_scroll_x++;
+	bg_scroll_y++;
+	
+	// Update the distortion effects
+	for (var _i = ds_list_size(distortion_data) - 1; _i >= 0; _i--)
+	{
+		var _data = distortion_data[| _i];
+		
+		if _data != undefined
+		{
+			_data.offset -= _data.spd;
+		}
+	}
+	
+	// Resume animation playback of the registered sprite assets
+	if !sprite_update_enabled
+	{
+	    for (var _i = array_length(sprite_array) - 2; _i >= 0; _i -= 2)
+	    {
+			// Feather ignore GM1044
+	        sprite_set_speed(sprite_array[_i], 1 / sprite_array[_i + 1], spritespeed_framespergameframe);
+	    }
+	
+	    sprite_update_enabled = true;
+	}
 }
 
-#endregion
+// Stop animation playback of the registered sprite assets
+else if sprite_update_enabled
+{
+	for (var _i = array_length(sprite_array) - 2; _i >= 0; _i -= 2)
+	{
+		// Feather ignore GM1044
+	    sprite_set_speed(sprite_array[_i], 0, spritespeed_framespergameframe);
+	}
+	
+	sprite_update_enabled = true;
+}
 
-#region GLOBAL ACTIVATION
-
+// Activate stopped objects to let the engine draw them
 if state != GAME_STATE.NORMAL
 {
-	cull_activate_paused_objects();
+	restore_stopped_objects();
 }
-
-#endregion
-
-#region SPRITE ANIMATOR
-
-var _is_enabled = state != GAME_STATE.PAUSED;
-
-if _is_enabled != sprite_update_enabled
-{
-    for (var _i = array_length(sprite_array) - 2; _i >= 0; _i -= 2)
-    {
-		/// @feather ignore GM1044
-        sprite_set_speed(sprite_array[_i], _is_enabled ? (1 / sprite_array[_i + 1]) : 0, spritespeed_framespergameframe);
-    }
-	
-    sprite_update_enabled = _is_enabled;
-}
-
-#endregion

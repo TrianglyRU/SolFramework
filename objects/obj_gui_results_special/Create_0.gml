@@ -1,4 +1,4 @@
-enum SPECIALRESULTSSTATE
+enum SPECIALRESULTS_STATE
 {
 	LOAD,
 	MOVE,
@@ -32,7 +32,7 @@ offset_line2 = SPECIALRESULTS_OFFSET_LINE_2;
 offset_score = 528;	
 offset_rings = 544;
 speed_x = 16;
-state = SPECIALRESULTSSTATE.LOAD;
+state = SPECIALRESULTS_STATE.LOAD;
 state_timer = 20;
 message_super = false;
 ring_bonus = 50;

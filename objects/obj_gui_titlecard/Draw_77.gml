@@ -18,13 +18,13 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	var _factor_y = _h / 224;
 	
 	// Create a surface
-	if !surface_exists(temp_surface[_i])
+	if !surface_exists(shader_surface[_i])
 	{
-		temp_surface[_i] = surface_create(_w, _h);
+		shader_surface[_i] = surface_create(_w, _h);
 	}
 	
-	// Draw the title card to that surface with the palette shader applied
-	surface_set_target(temp_surface[_i]);
+	// Draw the title card onto that surface with the palette shader applied
+	surface_set_target(shader_surface[_i]);
 	draw_clear_alpha(c_black, 0);
 	shader_palette_map(_i);
 	
@@ -55,8 +55,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	shader_reset();
 	surface_reset_target();
 	
-	// Now draw the surface to the application surface
+	// Now draw the surface onto the application surface
 	surface_set_target(application_surface);
-	draw_surface(temp_surface[_i], _camera_data.surface_x, _camera_data.surface_y);
+	draw_surface(shader_surface[_i], _camera_data.surface_x, _camera_data.surface_y);
 	surface_reset_target();
 }

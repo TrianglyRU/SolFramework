@@ -135,7 +135,7 @@ switch state
 		
 		if player_object.x >= obj_rm_stage.end_bound - 24
 		{
-			// instance_create(0, 0, obj_gui_results);		
+			instance_create(0, 0, obj_gui_results);		
 			state++;
 		}
 		

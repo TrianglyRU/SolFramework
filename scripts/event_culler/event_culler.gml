@@ -31,8 +31,8 @@ function ConstCuller(_action, _inst_id) constructor
 	respawned = false; 
 	action = _action;
 	
-	/// @function update()
-	update = function()
+	/// @function run()
+	run = function()
 	{
 		if action == CULL_ACTION.NONE
 		{
@@ -66,7 +66,7 @@ function ConstCuller(_action, _inst_id) constructor
 				continue;
 			}
 	
-			// Should be the same in obj_game -> Begin Step -> CULLING
+			// Should be the same in obj_game -> Begin Step -> Culling
 			var _width = camera_get_width(_i) + CULLING_ADD_WIDTH + CULLING_ROUND_VALUE;
 			var _height = camera_get_height(_i) + CULLING_ADD_HEIGHT + CULLING_ROUND_VALUE;
 	
