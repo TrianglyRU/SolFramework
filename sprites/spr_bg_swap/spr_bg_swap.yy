@@ -21,8 +21,8 @@
   "width": 24,
   "height": 24,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "texgroup_stage",
+    "path": "texturegroups/texgroup_stage",
   },
   "swatchColours": null,
   "gridX": 0,

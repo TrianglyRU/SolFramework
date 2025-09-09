@@ -13,11 +13,14 @@ with obj_object
 
 #region AUDIO
 
-audio_emitter_gain(audio_emitter_sfx, global.sound_volume);
+var _sfx_volume = global.sound_volume;
+var _bgm_volume = global.music_volume;
+
+audio_emitter_gain(audio_emitter_sfx, _sfx_volume);
 
 for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 {
-	audio_emitter_gain(audio_emitter_bgm[_i], global.music_volume);
+	audio_emitter_gain(audio_emitter_bgm[_i], _bgm_volume);
 	
 	var _state = audio_channel_states[_i];
     var _bgm = audio_channel_bgms[_i];
@@ -111,10 +114,10 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 			// Object tracking system. The player object uses its own
 			if instance_exists(_target)
 			{
-		        var _width = camera_get_width(_i);
-		        var _height = camera_get_height(_i);
-		        var _target_x = _target.x - _camera_data.raw_x - _width * 0.5;
-		        var _target_y = _target.y - _camera_data.raw_y - _height * 0.5 + 16;
+		        var _w = camera_get_width(_i);
+		        var _h = camera_get_height(_i);
+		        var _target_x = _target.x - _camera_data.raw_x - _w * 0.5;
+		        var _target_y = _target.y - _camera_data.raw_y - _h * 0.5 + 16;
 				
 				var _freespace_x = 16;
 				var _freespace_y = 32;

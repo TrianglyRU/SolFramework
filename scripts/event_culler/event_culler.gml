@@ -67,13 +67,13 @@ function ConstCuller(_action, _inst_id) constructor
 			}
 	
 			// Should be the same in obj_game -> Begin Step -> Culling
-			var _width = camera_get_width(_i) + CULLING_ADD_WIDTH + CULLING_ROUND_VALUE;
-			var _height = camera_get_height(_i) + CULLING_ADD_HEIGHT + CULLING_ROUND_VALUE;
+			var _w = camera_get_width(_i) + CULLING_ADD_WIDTH + CULLING_ROUND_VALUE;
+			var _h = camera_get_height(_i) + CULLING_ADD_HEIGHT + CULLING_ROUND_VALUE;
 	
 			var _left = _camera_data.coarse_x;
-			var _right = _camera_data.coarse_x + _width;
+			var _right = _camera_data.coarse_x + _w;
 			var _top = _camera_data.coarse_y;
-			var _bottom = _camera_data.coarse_y + _height;
+			var _bottom = _camera_data.coarse_y + _h;
 			
 			var _x = floor(inst_id.x);
 			var _y = floor(inst_id.y);
@@ -84,7 +84,7 @@ function ConstCuller(_action, _inst_id) constructor
 					
 					var _dist_y = _y - camera_get_y(_i) + CULLING_ROUND_VALUE;
 			
-					if _x >= _left && _x < _right && _dist_y >= 0 && _dist_y < _height && _y < _camera_data.bottom_bound
+					if _x >= _left && _x < _right && _dist_y >= 0 && _dist_y < _h && _y < _camera_data.bottom_bound
 					{
 						// No action
 						return;

@@ -46,7 +46,7 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 		var _result_distance = _best_distance;
         var _cell_id_x = _start_cell_id_x;
         var _cell_id_y = _start_cell_id_y;
-        var _tile, _index, _height, _mirror;
+        var _tile, _index, _h, _mirror;
 		
         for (var _i = 0; _i <= 2; _i++)
         {
@@ -59,7 +59,7 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			// Get height
 			if _tile == -1 || _index == 0
 			{
-				_height = 0;
+				_h = 0;
 				_is_valid = false;
 			}
 			else
@@ -75,7 +75,7 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 					_height_index = _mod_x;
 				}
 				
-				_height = _heights[_index][_height_index];
+				_h = _heights[_index][_height_index];
 				
 				// Check validity
 				var _marker_index = 0;
@@ -120,11 +120,11 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
                 {
                     _cell_id_y += _dir;
                 }
-                else if _height == TILE_SIZE
+                else if _h == TILE_SIZE
                 {
                     _tile_buffer = _tile;
                     _index_buffer = _index;
-                    _height_buffer = _height;
+                    _height_buffer = _h;
 					_mirror_buffer = _mirror;
                     _cell_id_y -= _dir;
 					
@@ -153,7 +153,7 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
             {
                 _tile = _tile_buffer;
                 _index = _index_buffer;
-                _height = _height_buffer;
+                _h = _height_buffer;
 				_mirror = _mirror_buffer;
                 _cell_id_y += _dir;
             }
@@ -182,11 +182,11 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
                 else
                 {
                     // Force full height if found from the opposite side
-                    if _height > 0
+                    if _h > 0
                     {
                         if _dir == 1 && _flip || _dir == -1 && !_flip
                         {
-                            _height = TILE_SIZE;
+                            _h = TILE_SIZE;
                         }
                     }
                     
@@ -196,11 +196,11 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			
             if _dir == 1
             {
-                _result_distance = _cell_id_y * TILE_SIZE + TILE_SIZE - 1 - _height - _y;
+                _result_distance = _cell_id_y * TILE_SIZE + TILE_SIZE - 1 - _h - _y;
             }
             else
             {
-                _result_distance = _y - _cell_id_y * TILE_SIZE - _height;
+                _result_distance = _y - _cell_id_y * TILE_SIZE - _h;
             }
 			
             _result_ang = _ang;

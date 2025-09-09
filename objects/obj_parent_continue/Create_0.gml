@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
 
 start_pressed = false;
 vel_charge_target = 0;

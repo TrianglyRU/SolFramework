@@ -5,11 +5,11 @@
 /// @param {Real} _row_length The amount of tiles in each row.
 function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 {
-	var _width = sprite_get_width(_sprite_id);
-	var _height = sprite_get_height(_sprite_id);
-	var _surface = surface_create(_width, _height);
+	var _w = sprite_get_width(_sprite_id);
+	var _h = sprite_get_height(_sprite_id);
+	var _surface = surface_create(_w, _h);
 	
-	var _tile_count = (_width / TILE_SIZE) * (_height / TILE_SIZE);
+	var _tile_count = (_w / TILE_SIZE) * (_h / TILE_SIZE);
 	var _height_data = array_create(_tile_count, 0);
 	var _width_data = array_create(_tile_count, 0);
 	var _angle_data = array_create(_tile_count, 0);

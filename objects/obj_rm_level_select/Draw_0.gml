@@ -1,7 +1,7 @@
-var _width = camera_get_width(view_current);
-var _height = camera_get_height(view_current);
-var _x = _width * 0.5 - 136;
-var _start_y = _height * 0.5 - 103 + 16;
+var _w = camera_get_width(view_current);
+var _h = camera_get_height(view_current);
+var _x = _w * 0.5 - 136;
+var _start_y = _h * 0.5 - 103 + 16;
 var _y = _start_y;
 
 var _sound_index = global.selected_sound_index;

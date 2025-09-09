@@ -1,6 +1,11 @@
 // Inherit the parent event
 event_inherited();
 
+if !is_valid
+{
+	return;
+}
+
 y += vel_y;
 vel_y += 0.09375;
 

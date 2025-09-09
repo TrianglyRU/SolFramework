@@ -82,7 +82,7 @@ switch state
 		
 		// Inherit the parent event
 		event_inherited();
-		
+
 		x -= 2 * sign(image_xscale);
 		
 		if state == NEWTRON_STATE.FLOOR

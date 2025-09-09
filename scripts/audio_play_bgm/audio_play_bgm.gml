@@ -19,9 +19,9 @@ function audio_play_bgm(_sound_id, _index = 0)
             obj_game.audio_channel_states[_index] = CHANNEL_STATE.TEMP_MUTE;
         }
     }
-		
+	
     audio_stop_sound(obj_game.audio_channel_bgms[_index]);
-		
+	
 	var _emitter = obj_game.audio_emitter_bgm[_index];
 	var _gain = obj_game.audio_channel_states[_index] == CHANNEL_STATE.TEMP_MUTE ? 0 : 1;
 	

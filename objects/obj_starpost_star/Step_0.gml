@@ -1,28 +1,30 @@
-if (timer >= 512)
+if timer >= 512
 {
 	instance_destroy();
 	return;
 }
 
-if (timer >= 384)
+if timer >= 384
 {
 	radius -= 0.25;
 }
-else if (timer < 128)
+else if timer < 128
 {
 	radius += 0.25;
 }
 
-if (timer >= 128 && obj_check_hitbox(player_get(0)))
+if timer >= 128 && !transition_flag && collision_player(player_get(0))
 {
+	transition_flag = true;
+	
 	audio_stop_bgm(1);
-	fade_perform_black(FADE_DIRECTION.OUT, 1,, load_bonus_stage);
+	fade_perform_black(FADE_DIRECTION.OUT, 1);
 }
 
 timer++;
 
 var _radius = floor(radius);
-var _angle = 90 * vd_star_id + timer * 12.65625;
+var _angle = 90 * star_index + timer * 12.65625;
 var _x = dsin(_angle) * 512;
 var _y = ((dcos(_angle) * 512) << 10) + _x * dsin(timer * 2.8125) * 1536;
 var _dist_x = (_x << 12) * _radius;

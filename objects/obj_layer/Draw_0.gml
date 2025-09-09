@@ -8,7 +8,7 @@ var _camera_y = camera_get_y(view_current);
 var _camera_w = camera_get_width(view_current);
 var _camera_h = camera_get_height(view_current);
 
-var _height = sprite_get_height(sprite_index);
+var _h = sprite_get_height(sprite_index);
 var _texture = sprite_get_texture(sprite_index, image_index);
 var _scale = 1;
 
@@ -30,14 +30,14 @@ if scale_target_y != -1
 		show_debug_message(sprite_get_name(sprite_index) + string_format((offset_y - _camera_h * 0.5) / (scale_target_y_init - _camera_h * 0.5), 10, 9));
 	}
 	
-	_scale = clamp((scale_target_y - _y) / _height, -1, 1);
+	_scale = clamp((scale_target_y - _y) / _h, -1, 1);
 }
 
 var _do_line_scroll = line_height >= 0;
 
 if _do_line_scroll
 {
-	shader_line_scroll(_camera_x, _scroll_x, _x, _y, _height, _scale, _texture, line_factor_x - factor_x, line_height);
+	shader_line_scroll(_camera_x, _scroll_x, _x, _y, _h, _scale, _texture, line_factor_x - factor_x, line_height);
 }
 else
 {

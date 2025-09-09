@@ -6,7 +6,7 @@ swap_background = -1;
 
 switch room
 {
-	case rm_stage_dwz0:
+	case rm_stage_dwz:
 		
 		swap_background = function(_camera_index)
 		{

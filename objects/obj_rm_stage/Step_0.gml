@@ -11,8 +11,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	
 	var _view_x = camera_get_x(_i);
 	var _view_y = camera_get_y(_i);
-	var _width = camera_get_width(_i);
-	var _height = camera_get_height(_i);
+	var _w = camera_get_width(_i);
+	var _h = camera_get_height(_i);
 	
 	// Level end bounds
 	if end_bound != undefined
@@ -77,13 +77,13 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	}
 	else if _camera_data.right_bound > _right_bound
 	{
-		if _view_x + _width <= _right_bound
+		if _view_x + _w <= _right_bound
 		{
 			_camera_data.right_bound = _right_bound;
 		}
 		else
 		{
-			_camera_data.right_bound = min(_camera_data.right_bound, _view_x + _width);
+			_camera_data.right_bound = min(_camera_data.right_bound, _view_x + _w);
 			_camera_data.right_bound = max(_right_bound, _camera_data.right_bound - _bound_speed);
 		}
 	}
@@ -113,13 +113,13 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	}
 	else if _camera_data.bottom_bound > _bottom_bound
 	{
-		if _view_y + _height <= _bottom_bound
+		if _view_y + _h <= _bottom_bound
 		{
 			_camera_data.bottom_bound = _bottom_bound;
 		}
 		else
 		{
-			_camera_data.bottom_bound = min(_view_y + _height, _camera_data.bottom_bound);
+			_camera_data.bottom_bound = min(_view_y + _h, _camera_data.bottom_bound);
 			_camera_data.bottom_bound = max(_bottom_bound, _camera_data.bottom_bound - _bound_speed);
 		}
 	}

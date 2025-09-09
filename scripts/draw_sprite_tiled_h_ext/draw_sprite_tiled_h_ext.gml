@@ -12,24 +12,24 @@
 /// @param {Real} _limit_right The right limit of the area in which the sprite should be tiled.
 function draw_sprite_tiled_h_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, _colour, _alpha, _limit_left, _limit_right)
 {
-    var _width = sprite_get_width(_sprite) * _xscale;
+    var _w = sprite_get_width(_sprite) * _xscale;
 	var _offset = sprite_get_xoffset(_sprite) * _xscale;
-	var _left_x = _x - _width;
-	var _right_x = _x + _width;
+	var _left_x = _x - _w;
+	var _right_x = _x + _w;
 	
 	draw_sprite_ext(_sprite, _subimg, _x, _y, _xscale, _yscale, 0.0, _colour, _alpha);
 	
-	while _left_x + _width - _offset > _limit_left
+	while _left_x + _w - _offset > _limit_left
 	{
 		draw_sprite_ext(_sprite, _subimg, _left_x, _y, _xscale, _yscale, 0.0, _colour, _alpha);
 		
-		_left_x -= _width;
+		_left_x -= _w;
 	}
 	
 	while _right_x - _offset < _limit_right
 	{
 		draw_sprite_ext(_sprite, _subimg, _right_x, _y, _xscale, _yscale, 0.0, _colour, _alpha);
 		
-		_right_x += _width;
+		_right_x += _w;
 	}
 }

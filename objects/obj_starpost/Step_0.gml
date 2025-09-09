@@ -36,7 +36,11 @@ if _player.state < PLAYER_STATE.DEFAULT_LOCKED && point_in_rectangle(_player.x, 
 	{
 		for (var _i = 0; _i < 4; _i++)
 		{
-			// instance_create(x, y - 50, obj_starpost_star, { vd_star_id: _i });
+			with instance_create(x, y - 50, obj_starpost_star)
+			{
+				star_index = _i;
+				array_push(other.star_objs, id);
+			}
 		}
 	}
 

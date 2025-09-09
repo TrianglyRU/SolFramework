@@ -30,13 +30,13 @@ function scr_game_setup()
 	global.better_solid_collision = true;
 	global.better_angle_snap = true;
 	
-	game_font_register(spr_font_large, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
-	game_font_register(spr_font_large_alt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
-	game_font_register(spr_font_small, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*.:!-+_", false, 0);
-	game_font_register(spr_font_digits, "0123456789:';", false, 1);
-	game_font_register(spr_font_digits_alt, "0123456789:';", false, 1);
-	game_font_register(spr_font_digits_small, "0123456789", false, 1);
-	game_font_register(spr_font_system, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'(!?)+-*=_[]{}<>|#$%&^@~/", false, 0);
+	font_register(spr_font_large, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
+	font_register(spr_font_large_alt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
+	font_register(spr_font_small, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*.:!-+_", false, 0);
+	font_register(spr_font_digits, "0123456789:';", false, 1);
+	font_register(spr_font_digits_alt, "0123456789:';", false, 1);
+	font_register(spr_font_digits_small, "0123456789", false, 1);
+	font_register(spr_font_system, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'(!?)+-*=_[]{}<>|#$%&^@~/", false, 0);
 	
 	#region AUDIO LOOPS
 	

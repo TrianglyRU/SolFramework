@@ -14,4 +14,8 @@ destroy = function(_player)
 	instance_create(x, y, obj_explosion_dust);
 	audio_play_sfx(snd_destroy);
 	instance_destroy();
+	
+	is_valid = false;
 }
+
+is_valid = true;

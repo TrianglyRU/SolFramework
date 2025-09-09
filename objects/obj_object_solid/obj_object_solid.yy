@@ -30,7 +30,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "- Framework -",
-    "path": "folders/- Framework -.yy",
+    "name": "- Framework Objects -",
+    "path": "folders/- Framework Objects -.yy",
   },
 }

@@ -56,7 +56,9 @@ function scr_player_jump_start()
 	stick_to_convex = false;
 	animation = ANIM.SPIN;
 	
-	audio_play_sfx(snd_jump);
+	// Fix one-frame lag
+	y -= vel_y; scr_player_position();
 	
+	audio_play_sfx(snd_jump);
 	return true;
 }

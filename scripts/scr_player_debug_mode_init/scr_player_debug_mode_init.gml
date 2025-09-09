@@ -22,7 +22,7 @@ function scr_player_debug_mode_init()
 	// array_push()
 	switch room
 	{
-		case rm_stage_ghz0:
+		case rm_stage_ghz1:
 			array_push(debug_mode_array, obj_crabmeat);
 		break;
 		

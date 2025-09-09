@@ -188,10 +188,10 @@ if state == GAME_STATE.NORMAL
 			_camera_data.coarse_y_last = _camera_data.coarse_y;
 			
 			// Should be the same in ConstCuller.run()
-			var _width = camera_get_width(_i) + CULLING_ROUND_VALUE + CULLING_ADD_WIDTH;
-			var _height = camera_get_height(_i) + CULLING_ROUND_VALUE + CULLING_ADD_HEIGHT;
+			var _w = camera_get_width(_i) + CULLING_ROUND_VALUE + CULLING_ADD_WIDTH;
+			var _h = camera_get_height(_i) + CULLING_ROUND_VALUE + CULLING_ADD_HEIGHT;
 			
-			instance_activate_region(_camera_data.coarse_x, _camera_data.coarse_y, _width - 1, _height - 1, true);
+			instance_activate_region(_camera_data.coarse_x, _camera_data.coarse_y, _w - 1, _h - 1, true);
 		}
 	}
 	

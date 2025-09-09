@@ -107,13 +107,13 @@ switch global.player_main
 
 switch room
 {
-	case rm_stage_ghz0:
+	case rm_stage_ghz1:
 		_stage_icon = "stage_ghz";
 	break;
-	case rm_stage_ehz0:
+	case rm_stage_ehz1:
 		_stage_icon = "stage_ehz";
 	break;
-	case rm_stage_dwz0:
+	case rm_stage_dwz:
 		_stage_icon = "stage_dwz";
 	break;
 	default:

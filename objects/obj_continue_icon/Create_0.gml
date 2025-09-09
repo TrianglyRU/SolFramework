@@ -1,7 +1,8 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
 
-switch (global.player_main)
+switch global.player_main
 {
 	case PLAYER.TAILS:
 		sprite_index = spr_gui_continue_tails;
@@ -16,4 +17,4 @@ switch (global.player_main)
 	break;
 }
 
-obj_set_anim(sprite_index, 20, 0, 0);
+animator.start(sprite_index, 0, 0, 20);

@@ -14,14 +14,14 @@ var _screen_space_bound = distortion_bound - _camera_y;
 for (var _i = 0; _i < _list_size; _i++)
 {
     var _data = distortion_data[| _i];
-	var _draw_y = floor(_camera_y * _data.factor);
+	var _dy = floor(_camera_y * _data.factor);
 	var _offset = floor(_data.offset);
     var _has_a = _data.values_a != undefined;
     var _has_b = _data.values_b != undefined;
 	var _effect = _data.effect;
 	
-    var _u_bound = clamp(_data.range_start - _draw_y, 0, _camera_height);
-    var _l_bound = clamp(_data.range_end - _draw_y, 0, _camera_height);
+    var _u_bound = clamp(_data.range_start - _dy, 0, _camera_height);
+    var _l_bound = clamp(_data.range_end - _dy, 0, _camera_height);
 	
     if _has_a && !_has_b
 	{
@@ -52,7 +52,7 @@ for (var _i = 0; _i < _list_size; _i++)
     }
 	
     fx_set_parameter(_effect, "g_Width", _camera_width);
-    fx_set_parameter(_effect, "g_Offset", _draw_y + _offset);
+    fx_set_parameter(_effect, "g_Offset", _dy + _offset);
     fx_set_parameter(_effect, "g_BoundUpper", _u_bound * _scale_y);
     fx_set_parameter(_effect, "g_BoundMiddle", _screen_space_bound * _scale_y);
     fx_set_parameter(_effect, "g_BoundLower", _l_bound * _scale_y);

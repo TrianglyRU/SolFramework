@@ -5,12 +5,12 @@ function scr_stage_setup()
 	{
 		#region GREEN HILL
 		
-		case rm_stage_ghz0:
+		case rm_stage_ghz1:
 		
 			// Use S1 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S1;
 			
-			setup_level(96, "GREEN HILL", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], rm_stage_ehz0, false);
+			setup_level(96, "GREEN HILL", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], rm_stage_ehz1, false);
 			
 			bg_convert("Clouds_1", 0.375, -0.03125, -1, 0, 0);
 			bg_convert("Clouds_2", 0.375, -0.03125, -0.5, 0, 0);
@@ -21,8 +21,8 @@ function scr_stage_setup()
 			
 			pal_load(spr_palette_ghz, undefined);
 			
-			asset_set_animation(spr_asset_ghz_00, 16);
-			asset_set_animation(spr_asset_ghz_01, 8);
+			asset_set_animation(spr_asset_ghz_1, 16);
+			asset_set_animation(spr_asset_ghz_2, 8);
 			
 			tile_load_data(spr_collision_s1);
 			
@@ -32,7 +32,7 @@ function scr_stage_setup()
 		
 		#region EMERALD HILL
 		
-		case rm_stage_ehz0:
+		case rm_stage_ehz1:
 			
 			// Use S2 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S2;
@@ -49,11 +49,11 @@ function scr_stage_setup()
 			
 			pal_load(spr_palette_ehz, undefined);
 			
-			asset_set_animation(spr_asset_ehz_00, 4);
-			asset_set_animation(spr_asset_ehz_01, 2);
-			asset_set_animation(spr_asset_ehz_02, 4);
-			asset_set_animation(spr_asset_ehz_03, 8);
-			asset_set_animation(spr_asset_ehz_04, 2);
+			asset_set_animation(spr_asset_ehz_1, 4);
+			asset_set_animation(spr_asset_ehz_2, 2);
+			asset_set_animation(spr_asset_ehz_3, 4);
+			asset_set_animation(spr_asset_ehz_4, 8);
+			asset_set_animation(spr_asset_ehz_5, 2);
 			
 			tile_load_data(spr_collision_s2);
 			
@@ -63,7 +63,7 @@ function scr_stage_setup()
 		
 		#region DELTA WORLD
 		
-		case rm_stage_dwz0:
+		case rm_stage_dwz:
 			
 			setup_level(98, "DELTA WORLD", ACT_SINGLE, snd_bgm_dwz, [spr_animal_flicky, spr_animal_ricky], rm_level_select, true);
 			

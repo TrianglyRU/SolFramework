@@ -8,10 +8,10 @@ function scr_player_camera()
 	
 	var _border_x = !global.cd_camera * 16;
 	var _border_y = 32;
-	var _width = camera_get_width(camera_data.index);
-	var _height = camera_get_height(camera_data.index);
-	var _target_x = floor(x) - camera_data.raw_x - _width * 0.5;
-	var _target_y = floor(y) - camera_data.raw_y - _height * 0.5 + 16;
+	var _w = camera_get_width(camera_data.index);
+	var _h = camera_get_height(camera_data.index);
+	var _target_x = floor(x) - camera_data.raw_x - _w * 0.5;
+	var _target_y = floor(y) - camera_data.raw_y - _h * 0.5 + 16;
 	var _max_vel_x = camera_data.max_vel_x;
 	var _max_vel_y = camera_data.max_vel_y;
 	

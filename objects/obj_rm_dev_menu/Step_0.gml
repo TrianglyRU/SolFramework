@@ -108,7 +108,7 @@ switch (category_id)
 
 		if (!game_check_data(global.current_save_slot))
 		{
-			rooto_load = rm_stage_ghz0;
+			rooto_load = rm_stage_ghz1;
 			load_category(4);
 			
 			break;
@@ -120,7 +120,7 @@ switch (category_id)
 		switch (global.stage_index)
 		{
 			default:
-				room_goto(rm_stage_ghz0);
+				room_goto(rm_stage_ghz1);
 		}
 		
 	break;

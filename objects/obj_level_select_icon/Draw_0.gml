@@ -16,11 +16,11 @@ else switch obj_rm_level_select.rooto_load
 		_icon_index = 3;
 	break;
 	
-	case rm_stage_ghz0:
+	case rm_stage_ghz1:
 		_icon_index = 4;
 	break;
 	
-	case rm_stage_ehz0:
+	case rm_stage_ehz1:
 		_icon_index = 5;
 	break;
 }

@@ -5,7 +5,7 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "- Framework -",
-    "path": "folders/- Framework -.yy",
+    "name": "Events",
+    "path": "folders/Functions/Events.yy",
   },
 }

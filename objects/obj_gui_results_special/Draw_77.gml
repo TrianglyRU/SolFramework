@@ -3,17 +3,17 @@ if (state == SPECIALRESULTS_STATE.LOAD)
     return;
 }
 
-var _width = surface_get_width(application_surface);
-var _height = surface_get_height(application_surface);
-var _draw_x = _width * 0.5;
-var _draw_y = _height * 0.5;
-var _factor_x = _width / 320;
+var _w = surface_get_width(application_surface);
+var _h = surface_get_height(application_surface);
+var _dx = _w * 0.5;
+var _dy = _h * 0.5;
+var _factor_x = _w / 320;
 var _x = 0;
 var _y = 0;
 var _player_text;
 
-_x = _draw_x + offset_line1 * _factor_x;
-_y = _draw_y - 88;
+_x = _dx + offset_line1 * _factor_x;
+_y = _dy - 88;
 
 switch (global.player_main)
 {
@@ -49,8 +49,8 @@ else if (vd_emerald_earned)
     draw_text(_x, _y, string(_player_text) + (global.emerald_count == 7 ? " HAS ALL THE" : " GOT A"));
 }
 
-_x = _draw_x + offset_line2 * _factor_x;
-_y = _draw_y - 70;
+_x = _dx + offset_line2 * _factor_x;
+_y = _dy - 70;
 
 // Lower text
 if (global.emerald_count >= 7)
@@ -62,22 +62,22 @@ else
     draw_text(_x, _y, vd_emerald_earned ? "CHAOS EMERALD" : "SPECIAL STAGE");
 }
 
-_x = _draw_x + offset_score * _factor_x;
-_y = _draw_y + 32;
+_x = _dx + offset_score * _factor_x;
+_y = _dy + 32;
 
 draw_set_font(global.font_data[? spr_font_digits_alt]);
 draw_set_halign(fa_right);
 draw_sprite(spr_gui_results_score_special, 0, _x - 75, _y);
 draw_text(_x + 97, _y - 7, total_score);
 
-_x = _draw_x + offset_rings * _factor_x;
-_y = _draw_y + 56;
+_x = _dx + offset_rings * _factor_x;
+_y = _dy + 56;
 
 draw_sprite(spr_gui_results_rings_special, 0, _x - 75, _y);
 draw_text(_x + 97, _y - 7, ring_bonus);
 
-_x = _draw_x;
-_y = _draw_y - 36;
+_x = _dx;
+_y = _dy - 36;
 
 draw_set_alpha(obj_game.frame_counter % 2 == 0 ? 1 : 0);
 

@@ -10,6 +10,6 @@ function audio_stop_bgm(_fade_multiplier, _index = 0)
     {
 		obj_game.audio_channel_states[_index] = CHANNEL_STATE.STOP;
 		
-        audio_sound_gain(_bgm_index, 0, _fade_multiplier * 0.25 * 1000);	
+        audio_sound_gain(_bgm_index, 0, _fade_multiplier * 0.5 * 1000);	
     }
 }

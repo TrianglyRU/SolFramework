@@ -50,7 +50,7 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 		var _result_distance = _best_distance;
         var _cell_id_x = _start_cell_id_x;
         var _cell_id_y = _start_cell_id_y;
-        var _tile, _index, _width, _flip;
+        var _tile, _index, _w, _flip;
 		
         for (var _i = 0; _i <= 2; _i++)
         {
@@ -63,7 +63,7 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			// Get width
 			if _tile == -1 || _index == 0
 			{
-				_width = 0;
+				_w = 0;
 				_is_valid = false;
 			}
 			else
@@ -79,7 +79,7 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 					_width_index = _mod_y;
 				}
 				
-				_width = _widths[_index][_width_index];
+				_w = _widths[_index][_width_index];
 			
 				// Check validity
 				var _marker_index = 0;
@@ -120,15 +120,15 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			// Initial tile check
 			if _i == 0
 			{
-				if _width == 0 || !_is_valid
+				if _w == 0 || !_is_valid
 				{
 					_cell_id_x += _dir;
 				}
-				else if _width == TILE_SIZE
+				else if _w == TILE_SIZE
 				{
 					_tile_buffer = _tile;
 					_index_buffer = _index;
-					_width_buffer = _width;
+					_width_buffer = _w;
 					_flip_buffer = _flip;
 					_cell_id_x -= _dir;
 					
@@ -157,7 +157,7 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			{
 				_tile = _tile_buffer;
 				_index = _index_buffer;
-				_width = _width_buffer;
+				_w = _width_buffer;
 				_flip = _flip_buffer;
 				_cell_id_x += _dir;
 			
@@ -193,11 +193,11 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			
 			if _dir == 1
 			{
-				_result_distance = _cell_id_x * TILE_SIZE + TILE_SIZE - 1 - _width - _x;
+				_result_distance = _cell_id_x * TILE_SIZE + TILE_SIZE - 1 - _w - _x;
 			}
 			else
 			{
-				_result_distance = _x - _cell_id_x * TILE_SIZE - _width;
+				_result_distance = _x - _cell_id_x * TILE_SIZE - _w;
 			}
 			
             _result_ang = _ang;

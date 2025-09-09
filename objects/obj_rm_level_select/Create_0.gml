@@ -35,7 +35,7 @@ is_string_entry = function(_entry_index)
 	return _char != "/" && _char != "";
 }
 
-set_rooto_load = function()
+set_room_to_load = function()
 {
 	rooto_load = -1;
 	down_cooldown = 0;
@@ -96,8 +96,8 @@ level_entries =
 ];
 level_rediretions =
 [
-	0,  rm_stage_ghz0,
-	4,  rm_stage_ehz0,
+	0,  rm_stage_ghz1,
+	4,  rm_stage_ehz1,
 	29, rm_special,
 	32, rm_bonus
 ];
@@ -125,6 +125,9 @@ cheat_codes =
 			if global.emerald_count < 7
 			{
 			    global.emerald_count = 7;
+				
+				audio_stop_bgm(0, AUDIO_CHANNEL_JINGLE);
+				audio_stop_bgm(0);
 				audio_play_bgm(snd_bgm_emerald);
 			}
 		}
@@ -163,7 +166,7 @@ for (var _i = 0; _i < 256; _i++)
     {
         array_push(sound_ids, -1);
     }
-	else if string_starts_with(_sound_name, "snd_bgm_m")
+	else if string_starts_with(_sound_name, "snd_bgm")
 	{
 		array_insert(sound_ids, 0, _i);
 	}
@@ -173,7 +176,7 @@ for (var _i = 0; _i < 256; _i++)
 	}
 }
 
-set_rooto_load();
+set_room_to_load();
 
 audio_play_bgm(snd_bgm_level_select);
 bg_convert("Background", 0, 0, 0, 0, 0);

@@ -72,7 +72,7 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Framework",
-    "path": "folders/Sprites/Framework.yy",
+    "name": "GUI",
+    "path": "folders/Sprites/GUI.yy",
   },
 }
