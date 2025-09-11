@@ -241,10 +241,10 @@ if state != GAME_STATE.PAUSED
 	bg_scroll_x++;
 	bg_scroll_y++;
 	
-	// Update the distortion effects
-	for (var _i = ds_list_size(distortion_data) - 1; _i >= 0; _i--)
+	// Update the deformation effects
+	for (var _i = ds_list_size(deformation_data) - 1; _i >= 0; _i--)
 	{
-		var _data = distortion_data[| _i];
+		var _data = deformation_data[| _i];
 		
 		if _data != undefined
 		{

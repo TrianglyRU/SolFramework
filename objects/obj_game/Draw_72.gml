@@ -1,4 +1,4 @@
-/// @description Apply Distortion
+/// @description Apply Deformation
 if room == rm_startup
 {
 	return;
@@ -8,12 +8,12 @@ var _camera_y = camera_get_y(view_current);
 var _camera_width = camera_get_width(view_current);
 var _camera_height = camera_get_height(view_current);
 var _scale_y = surface_get_height(view_surface_id[view_current]) / _camera_height;
-var _list_size = ds_list_size(distortion_data);
-var _screen_space_bound = distortion_bound - _camera_y;
+var _list_size = ds_list_size(deformation_data);
+var _screen_space_bound = deformation_bound - _camera_y;
 
 for (var _i = 0; _i < _list_size; _i++)
 {
-    var _data = distortion_data[| _i];
+    var _data = deformation_data[| _i];
 	var _dy = floor(_camera_y * _data.factor);
 	var _offset = floor(_data.offset);
     var _has_a = _data.values_a != undefined;

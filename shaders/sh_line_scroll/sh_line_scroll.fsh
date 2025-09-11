@@ -25,12 +25,13 @@ void main() {
 	float distanceFactor = line * u_increment;
 	float offsetFactor = line / u_lines_total;
 	
-	if (u_increment < 0.0){
+	if (u_increment < 0.0) {
 		offsetFactor = 1.0 - offsetFactor;
 	}
 	
-	float scroll = u_camera_x * distanceFactor + u_offset_x * offsetFactor * -sign(u_increment);
-	scroll *= sign(u_yscale);
+	float scroll = u_camera_x * distanceFactor;					// base
+	scroll += u_offset_x * offsetFactor * -sign(u_increment);	// offset
+	scroll *= sign(u_yscale);									// yscale
 	
 	// This requires the texture to be the only one on its page!
     uv.x = fract(uv.x + scroll / u_texel_size.x);

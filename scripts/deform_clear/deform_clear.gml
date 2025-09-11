@@ -1,6 +1,6 @@
 /// @self
-/// @description Removes the distortion effect from the specified layer, as well as from all other layers that share the same effect instance.
-function dist_clear(_layer)
+/// @description Removes the deformation effect from the specified layer, as well as from all other layers that share the same effect instance.
+function deform_clear(_layer)
 {
 	var _effect = layer_get_fx(_layer);
 	
@@ -9,7 +9,7 @@ function dist_clear(_layer)
 		return;
 	}
 	
-	var _ds_list = obj_game.distortion_data;
+	var _ds_list = obj_game.deformation_data;
 	
 	for (var _i = ds_list_size(_ds_list) - 1; _i >= 0; _i--)
 	{

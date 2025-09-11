@@ -11,6 +11,7 @@ function shader_palette_map(_camera_index)
 	var _u_bound = shader_get_uniform(sh_palette_map, "u_bound");
 	var _u_indicies = shader_get_uniform(sh_palette_map, "u_indices");
 	
+	// Feather ignore GM2003
 	shader_set(sh_palette_map);
 	shader_set_uniform_f(_u_bound, _screen_space_bound * _scale_y);
 	shader_set_uniform_f_array(_u_indicies, obj_game.palette_indices);

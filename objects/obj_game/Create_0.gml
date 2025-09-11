@@ -160,10 +160,10 @@ debug_solids_push = ds_list_create();
 
 #endregion
 
-#region DISTORTION
+#region deformation
 
-distortion_data = ds_list_create();
-distortion_bound = room_height;
+deformation_data = ds_list_create();
+deformation_bound = room_height;
 
 #endregion
 

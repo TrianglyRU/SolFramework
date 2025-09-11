@@ -21,6 +21,11 @@ function ConstAnimator(_inst_id) constructor
 	/// @function start(_sprite_id, _start_frame, _loopback, _frame_duration)
 	start = function(_sprite_id, _start_frame, _loopback, _frame_duration)
 	{
+		if !instance_exists(inst_id)
+		{
+			return;
+		}
+		
 		inst_id.image_speed = 0;
 		inst_id.image_index = _start_frame;
 		inst_id.sprite_index = _sprite_id;
@@ -33,6 +38,11 @@ function ConstAnimator(_inst_id) constructor
 	/// @function restart
 	restart = function()
 	{
+		if !instance_exists(inst_id)
+		{
+			return;
+		}
+		
 		inst_id.image_speed = 0;
 		inst_id.image_index = 0;
 		timer = duration;
@@ -42,6 +52,11 @@ function ConstAnimator(_inst_id) constructor
 	/// @function clear(_image_index)
 	clear = function(_image_index)
 	{
+		if !instance_exists(inst_id)
+		{
+			return;
+		}
+		
 		inst_id.image_speed = 0;
 		inst_id.image_index = _image_index;
 		duration = 0;

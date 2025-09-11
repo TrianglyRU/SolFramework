@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "dist_set_layer",
+  "name": "deform_get_data",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Distortion",
-    "path": "folders/Functions/Distortion.yy",
+    "name": "Deformation",
+    "path": "folders/Functions/Deformation.yy",
   },
 }

@@ -1,17 +1,17 @@
 /// @self
-/// @description Returns data representing the distortion pattern.
-/// @param {Enum.EFFECTDATA} _effect_data An enum representing the type of distortion data.
+/// @description Returns data representing the deformation pattern.
+/// @param {Enum.DEFORM_DATA} _data_enum An enum representing the type of deformation data.
 /// @returns {Array<Real>}
-function dist_get_data(_effect_data)
+function deform_get_data(_data_enum)
 {
-	enum EFFECTDATA
+	enum DEFORM_DATA
 	{
 	    LZFG, LZBG, EHZ, AIZFG_WATER, AIZBG_WATER, AIZFG_HEAT, AIZBG_HEAT, LBZ1, LBZ2
 	}
-
-	switch _effect_data
+	
+	switch _data_enum
 	{
-		case EFFECTDATA.LZFG:
+		case DEFORM_DATA.LZFG:
 		return 
 		[
 			1,  1,  2,  2,  3,  3,  3,  3,  2,  2,  1,  1,
@@ -37,7 +37,7 @@ function dist_get_data(_effect_data)
 			0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 		];
 		
-		case EFFECTDATA.LZBG:
+		case DEFORM_DATA.LZBG:
 		return 
 		[
 			0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,
@@ -50,14 +50,14 @@ function dist_get_data(_effect_data)
 		   -3, -3, -3, -3, -3, -3, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1,
 		];
 		
-		case EFFECTDATA.EHZ:
+		case DEFORM_DATA.EHZ:
 		return 
 		[
 			3, 2, 2, 3, 2, 2, 1, 3, 0, 0, 1, 0, 1, 3, 1, 2,
 			1, 3, 1, 2, 2, 1, 2, 3, 1, 2, 1, 2, 0, 0, 2, 0
 		];
 		
-		case EFFECTDATA.AIZFG_WATER:
+		case DEFORM_DATA.AIZFG_WATER:
 		return
 		[
 			1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0,  0,  0,
@@ -66,7 +66,7 @@ function dist_get_data(_effect_data)
 			0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
 		];
 		
-		case EFFECTDATA.AIZBG_WATER:
+		case DEFORM_DATA.AIZBG_WATER:
 		return
 		[
 			0,  0, -1, -1, -1, -1, -1, -1,  0,  0,  0,  1,  1,  1,  1,  1,
@@ -77,21 +77,21 @@ function dist_get_data(_effect_data)
 			1,  0,  0,  0, -1, -1, -1, -1, -1, -1,  0,  0,  0,  1,  1,  1,
 		];
 		
-		case EFFECTDATA.AIZFG_HEAT:
+		case DEFORM_DATA.AIZFG_HEAT:
 		return
 		[
 			0,  0,  1,  1,  0,  0,  0,  0,  1,  0,  0,  0,  0,  1,  0,  0,
 			0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  1,  1,  0,  0,
 		];
 		
-		case EFFECTDATA.AIZBG_HEAT:
+		case DEFORM_DATA.AIZBG_HEAT:
 		return
 		[
 			-2,  1,  2,  2, -1,  2,  2,  1,  2, -1, -2, -2, -2,  1, -1, -1,
 			-1,  0, -2,  0,  0,  0, -2,  0, -2,  2,  0, -2,  2,  2, -1, -2,
 		];
 		
-		case EFFECTDATA.LBZ1:
+		case DEFORM_DATA.LBZ1:
 		return
 		[
 			1,  1,  1,  0,  0,  0, -1, -1, -1, -1, -1, -1,  0,  0,  0,  1,
@@ -100,7 +100,7 @@ function dist_get_data(_effect_data)
 			1,  0,  0,  0, -1, -1, -1, -1, -1, -1,  0,  0,  0,  1,  1,  1,
 		];
 		
-		case EFFECTDATA.LBZ2:
+		case DEFORM_DATA.LBZ2:
 		return
 		[
 			1,  1,  1,  0,  0,  0, -1, -1, -1, -1, -1, -1,  0,  0,  0,  1,

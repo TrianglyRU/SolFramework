@@ -13,6 +13,7 @@ function shader_rgb_fade()
 	var _u_timer = shader_get_uniform(sh_rgb_fade, "u_timer");
 	var _u_type = shader_get_uniform(sh_rgb_fade, "u_type");
 	
+	// Feather ignore GM2003
 	shader_set(sh_rgb_fade);
 	shader_set_uniform_f(_u_timer, _timer);
 	shader_set_uniform_i(_u_type, _type);

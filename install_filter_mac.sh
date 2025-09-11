@@ -4,7 +4,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Source directory
-SOURCE_DIR="${SCRIPT_DIR}/_filter_layer_distortion"
+SOURCE_DIR="${SCRIPT_DIR}/_filter_layer_deformation"
 
 # Check if source directory exists
 if [ ! -d "$SOURCE_DIR" ]; then

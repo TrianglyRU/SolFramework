@@ -1,6 +1,6 @@
 {
-    "name": "_filter_layer_distortion",
-    "displayname": "Layer Distortion (Sol Framework)",
+    "name": "_filter_layer_deformation",
+    "displayname": "Layer Deformation (Sol Framework)",
     "type": "filter",
     "parameters": [
         {

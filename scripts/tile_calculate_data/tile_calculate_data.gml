@@ -88,9 +88,9 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			var _limit = TILE_SIZE - 1;
 			
 			var _top_dist_y = 0;
-			var _bottodist_y = 0;
+			var _bottom_dist_y = 0;
 			var _top_dist_x = 0;
-			var _bottodist_x = 0;
+			var _bottom_dist_x = 0;
 			
 			var _x1 = _tile.x;
 			var _y1 = _tile.y;
@@ -149,14 +149,14 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 			while !collision_point(_x3, _y3, obj_tile, true, false) && _y3 > 0
 			{
 				_y3--;
-				_bottodist_y++;
+				_bottom_dist_y++;
 			}
 			
 			// Move bottom-right
 			while !collision_point(_x4, _y4, obj_tile, true, false) && _y4 > 0
 			{
 				_y4--;
-				_bottodist_y++;
+				_bottom_dist_y++;
 			}
 			
 			// Align with the tile
@@ -165,13 +165,13 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 				while !collision_point(_x3, _y3, obj_tile, true, false) && _x3 < _limit
 				{
 					_x3++;
-					_bottodist_x++;
+					_bottom_dist_x++;
 				}
 			
 				while collision_point(_x4 - 1, _y4, obj_tile, true, false) && _x4 > 0
 				{
 					_x4--;
-					_bottodist_x++;
+					_bottom_dist_x++;
 				}
 			}
 			else if _y3 > _y4
@@ -179,26 +179,26 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 				while collision_point(_x3 + 1, _y3, obj_tile, true, false) && _x3 < _limit
 				{
 					_x3++;
-					_bottodist_x++;
+					_bottom_dist_x++;
 				}
 				
 				while !collision_point(_x4, _y4, obj_tile, true, false) && _x4 > 0
 				{
 					_x4--;
-					_bottodist_x++;
+					_bottom_dist_x++;
 				}
 			}
 			
 			/// @feather ignore GM2018
 			var _is_upside_down;
 			
-			if _top_dist_y == _bottodist_y
+			if _top_dist_y == _bottom_dist_y
 			{
-				_is_upside_down = _top_dist_x > _bottodist_x;
+				_is_upside_down = _top_dist_x > _bottom_dist_x;
 			}
 			else
 			{
-				_is_upside_down = _bottodist_y > _top_dist_y;
+				_is_upside_down = _bottom_dist_y > _top_dist_y;
 			}
 			
 			var _angle;

@@ -31,6 +31,7 @@ function shader_line_scroll(_camera_x, _offset_x, _sprite_x, _sprite_y, _sprite_
 		_offset_x = 0;
 	}
 	
+	// Feather ignore GM2003
 	shader_set(sh_line_scroll);
 	shader_set_uniform_f(_u_pos, _sprite_x, _sprite_y);
 	shader_set_uniform_f(_u_texel_size, _texel_w, _texel_h);

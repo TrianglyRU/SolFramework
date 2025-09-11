@@ -1,8 +1,8 @@
 /// @self
-/// @description Removes all distortion effects.
-function dist_clear_all()
+/// @description Removes all deformation effects.
+function deform_clear_all()
 {
-	var _ds_list = obj_game.distortion_data;
+	var _ds_list = obj_game.deformation_data;
 	
 	for (var _i = ds_list_size(_ds_list) - 1; _i >= 0; _i--)
 	{

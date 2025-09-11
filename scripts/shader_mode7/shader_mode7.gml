@@ -13,6 +13,7 @@ function shader_mode7(_angle, _pitch, _fov_x, _fov_y, _scroll_x, _scroll_y)
 	var _u_fov = shader_get_uniform(sh_mode7, "u_fov");
 	var _u_scroll = shader_get_uniform(sh_mode7, "u_scroll");
 
+	// Feather ignore GM2003
 	shader_set(sh_mode7);
 	shader_set_uniform_f(_u_angle, _angle);
 	shader_set_uniform_f(_u_pitch, _pitch);

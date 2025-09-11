@@ -3,7 +3,7 @@
   "resourceVersion": "1.6",
   "name": "_filter_layer_distortion",
   "resources": [
-    {"id":{"name":"_filter_layer_distortion_shader","path":"shaders/_filter_layer_distortion_shader/_filter_layer_distortion_shader.yy",},"order":0,},
+    {"id":{"name":"_filter_layer_deformation_shader","path":"shaders/_filter_layer_deformation_shader/_filter_layer_deformation_shader.yy",},"order":0,},
   ],
   "defaultScriptType": 1,
   "isEcma": false,

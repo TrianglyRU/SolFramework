@@ -3,11 +3,6 @@
 // Inherit the parent event
 event_inherited();
 
-if !is_valid
-{
-	return;
-}
-
 switch state
 {
 	case CRABMEAT_STATE.INIT:

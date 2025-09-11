@@ -70,11 +70,6 @@ function scr_player_animate()
 	{
 		image_xscale = facing;
 	}
-	
-	if animation != ANIM.MOVE && animation != ANIM.HAMMERDASH
-	{
-		visual_angle = 0;
-	}
 }
 
 /// @self scr_player_animate

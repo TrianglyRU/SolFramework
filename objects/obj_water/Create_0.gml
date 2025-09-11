@@ -8,5 +8,5 @@ current_level = ystart;
 target_level = ystart;
 animator.start(sprite_index, 0, 0, 16);
 
-obj_game.distortion_bound = ystart;
+obj_game.deformation_bound = ystart;
 obj_game.palette_bound = ystart;

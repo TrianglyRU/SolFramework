@@ -247,17 +247,25 @@ function scr_player_animate_sonic()
 		case ANIM.FLIP:
 		case ANIM.FLIP_EXTENDED:
 			
-			var _flip_sprite = image_xscale >= 0 ? spr_sonic_flip : spr_sonic_flip_flipped;
+			var _flip_sprite = facing >= 0 ? spr_sonic_flip : spr_sonic_flip_flipped;
 			
 			if sprite_index != spr_sonic_flip && sprite_index != spr_sonic_flip_flipped
 			{
-				animator.start(_flip_sprite, 0, 0, 1);
+				animator.start(_flip_sprite, 0, 61, 1);
 			}
 			else
 			{
 				if animator.timer < 0
 				{
-					animation = ANIM.MOVE;
+					if animation == ANIM.FLIP_EXTENDED && animator.play_count < 2
+					{
+						animator.timer = animator.duration;
+						image_index = 0;
+					}
+					else
+					{
+						animation = ANIM.MOVE;
+					}
 				}
 				
 				sprite_index = _flip_sprite;

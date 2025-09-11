@@ -14,7 +14,7 @@ switch player.animation
 	case ANIM.DUCK:
 	case ANIM.LOOKUP:
 		
-		if sprite_index != spr_tails_tail_idle
+		if sprite_index != spr_tails_tail_idle || animator.duration == 0
 		{
 			animator.start(spr_tails_tail_idle, 0, 0, 8);
 		}
@@ -46,17 +46,17 @@ switch player.animation
 	
 		if sprite_index != spr_tails_tail
 		{
-			if player.animation == ANIM.SPINDASH || player.animation == ANIM.GRAB
-			{
-				tail_offset_x = 5;
-			}
-			else if player.animation != ANIM.SPIN
-			{
-				tail_offset_x = 7;
-				tail_offset_y = 5;
-			}
-			
 			animator.start(spr_tails_tail, 0, 0, 4);
+		}
+		
+		if player.animation == ANIM.SPINDASH || player.animation == ANIM.GRAB
+		{
+			tail_offset_x = 5;
+		}
+		else if player.animation != ANIM.SPIN
+		{
+			tail_offset_x = 7;
+			tail_offset_y = 5;
 		}
 		
 	break;

@@ -45,7 +45,7 @@ function scr_stage_setup()
 			bg_convert_deform("Field_1", 0.09375, 0, 0, 0, 0.3515625, 1, -1, 0);
 			bg_convert_deform("Field_2", 0.3515625, 0, 0, 0, 1, 3, -1, 0);
 			
-			dist_set_layer(["Clouds"], dist_get_data(EFFECTDATA.EHZ), undefined, 0, 0.125, 80, 111);
+			deform_layers(["Clouds"], deform_get_data(DEFORM_DATA.EHZ), undefined, 0, 0.125, 80, 111);
 			
 			pal_load(spr_palette_ehz, undefined);
 			
@@ -88,9 +88,9 @@ function scr_stage_setup()
 				"Lake"
 			];
 			
-			dist_set_layer(_bg_layers, dist_get_data(EFFECTDATA.LBZ1), undefined, 0.0725, 0.25, 180, 221);
-			dist_set_layer(_fg_layers, undefined, dist_get_data(EFFECTDATA.LZFG), 1, 0.5, 0, room_height);
-			dist_set_depth("Inside", undefined, dist_get_data(EFFECTDATA.LZBG), 0.25, 0.5, 0, room_height);
+			deform_layers(_bg_layers, deform_get_data(DEFORM_DATA.LBZ1), undefined, 0.0725, 0.25, 180, 221);
+			deform_layers(_fg_layers, undefined, deform_get_data(DEFORM_DATA.LZFG), 1, 0.5, 0, room_height);
+			deform_depth("Inside", undefined, deform_get_data(DEFORM_DATA.LZBG), 0.25, 0.5, 0, room_height);
 			
 			pal_load(spr_palette_dwz_a, spr_palette_dwz_b);
 			tile_load_data(spr_collision_dwz);

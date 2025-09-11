@@ -34,9 +34,9 @@ ds_list_destroy(debug_solids);
 ds_list_destroy(debug_solids_push);
 ds_list_destroy(debug_solids_sides);
 
-// DISTORTION
+// deformation
 
-ds_list_destroy(distortion_data);
+ds_list_destroy(deformation_data);
 
 // INPUT
 

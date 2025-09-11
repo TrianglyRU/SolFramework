@@ -41,7 +41,7 @@ function scr_player_flight()
 	
 	if is_underwater
 	{
-	    animation = flight_timer > 0 ? ANIM.SWIM : ANIM.SWITIRED;
+	    animation = flight_timer > 0 ? ANIM.SWIM : ANIM.SWIM_TIRED;
 	}
 	else
 	{

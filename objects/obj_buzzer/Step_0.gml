@@ -1,11 +1,6 @@
 // Inherit the parent event
 event_inherited();
 
-if !is_valid
-{
-	return;
-}
-
 if turn_timer <= 0
 {
 	flame_timer++;
