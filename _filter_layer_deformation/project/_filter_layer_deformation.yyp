@@ -1,7 +1,7 @@
 {
   "resourceType": "GMProject",
   "resourceVersion": "1.6",
-  "name": "_filter_layer_distortion",
+  "name": "_filter_layer_deformation",
   "resources": [
     {"id":{"name":"_filter_layer_deformation_shader","path":"shaders/_filter_layer_deformation_shader/_filter_layer_deformation_shader.yy",},"order":0,},
   ],
