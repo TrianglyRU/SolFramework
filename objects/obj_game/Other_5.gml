@@ -4,7 +4,7 @@ if room == rm_startup
 	return;
 }
 
-global.previous_rooid = room;
+global.previous_room_id = room;
 
 // Clear VRAM
 draw_texture_flush();

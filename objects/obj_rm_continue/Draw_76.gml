@@ -12,6 +12,6 @@ if obj_game.fade_state == FADE_STATE.PLAIN_COLOUR && !audio_is_bgm_playing()
 	}
 	else
 	{
-	    room_goto(global.previous_rooid);
+	    room_goto(global.previous_room_id);
 	}
 }

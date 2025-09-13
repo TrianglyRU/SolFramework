@@ -23,7 +23,7 @@ start_black_fade_out = function()
 			// Wait until snd_warp is no longer playing
 		}
 					
-		room_goto(global.previous_rooid);
+		room_goto(global.previous_room_id);
 	});
 }
 
