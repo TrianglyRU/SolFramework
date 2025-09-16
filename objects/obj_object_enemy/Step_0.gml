@@ -2,8 +2,6 @@
 if instance_exists(obj_water_flash) && floor(y) >= obj_water.y
 {
 	destroy(player_get(0));
-	
-	return;
 }
 else for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
@@ -54,8 +52,6 @@ else for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		
 		destroy(_player);
 		input_set_rumble(_p, 0.05, INPUT_RUMBLE_LIGHT);
-		
-		return;
 	}
 	else
 	{

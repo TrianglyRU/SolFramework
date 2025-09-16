@@ -46,6 +46,7 @@ display_reset(0, global.use_vsync);
 window_enable_borderless_fullscreen(false);
 window_set_caption(global.window_name);
 window_resize();
+randomise();
 
 if global.start_fullscreen
 {
@@ -53,5 +54,4 @@ if global.start_fullscreen
 	window_set_cursor(cr_none);
 }
 
-randomise();
-room_goto(global.start_room);
+alarm[0] = 20;

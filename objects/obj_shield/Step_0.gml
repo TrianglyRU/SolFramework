@@ -8,12 +8,18 @@ if !instance_exists(player) || _shield == SHIELD.NONE
 
 switch _shield
 {
+	case SHIELD.NORMAL:
+		depth = draw_depth(10);
+	break;
+	
 	case SHIELD.BUBBLE:
 	
 		if sprite_index != spr_shield_bubble && animator.timer < 0
 		{
 			bubble_shield_animation();
 		}
+		
+		depth = draw_depth(10);
 	
 	break;
 	
@@ -47,5 +53,5 @@ switch _shield
 			}
 		}
 		
-    break;
+    break;		
 }

@@ -17,7 +17,7 @@ function scr_game_setup()
 	
 	global.player_physics = PHYSICS.S2;
 	global.cpu_behaviour = CPU_BEHAVIOUR.S3;
-	global.rotation_mode = ROTATION.MANIA;
+	global.rotation_mode = ROTATION.CLASSIC;
 	global.spin_dash = true;
 	global.dash	= true;
 	global.drop_dash = false;
