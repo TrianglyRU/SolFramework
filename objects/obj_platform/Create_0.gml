@@ -1,6 +1,6 @@
 // Inherit the parent event
 event_inherited();
-event_culler();
+event_culler(CULL_ACTION.RESPAWN);
 
 enum PLATFORM_STATE
 {
@@ -18,12 +18,16 @@ enum PLATFORM_TYPE
 }
 
 depth = draw_depth(50);
-culler.action = CULL_ACTION.RESPAWN;
 state = PLATFORM_STATE.MOVE;
 player_touch = false;
 wait_timer = 0;
 weight = 0;
 vel_y = 0;
+
+if !variable_instance_exists(id, "synced_objects")
+{
+	synced_objects = ds_list_create();
+}
 
 // Update position immediately
 xprevious = x;

@@ -38,15 +38,19 @@ global.ds_giant_rings = ds_list_create();
 // Game setup
 scr_game_setup();
 game_load_settings();
+randomise();
 audio_group_load(audiogroup_global);
 
+if os_type == os_windows
+{
+	display_set_timing_method(tm_sleep);
+}
+
 surface_depth_disable(true);
-display_set_timing_method(tm_sleep);
 display_reset(0, global.use_vsync);
 window_enable_borderless_fullscreen(false);
 window_set_caption(global.window_name);
 window_resize();
-randomise();
 
 if global.start_fullscreen
 {

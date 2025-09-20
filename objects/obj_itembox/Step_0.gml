@@ -26,12 +26,16 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		// Bounce up
         if _player.vel_y < 0 && _player.ext_hitbox_radius_x == 0
         {
-            if floor(_player.y) >= floor(y) + 16
-            {
-                _player.vel_y *= -1;
-                vel_y = -1.5;
-                state = ITEMBOX_STATE.FALLING;
-            }
+			// Account for moving platforms
+			if state == ITEMBOX_STATE.FALLING || xprevious == x && yprevious == y
+			{
+				if floor(_player.y) >= floor(y) + 16
+	            {
+	                _player.vel_y *= -1;
+	                vel_y = -1.5;
+	                state = ITEMBOX_STATE.FALLING;
+	            }
+			}
         }
 		
 		// Destroy

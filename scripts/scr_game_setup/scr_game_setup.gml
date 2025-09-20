@@ -50,6 +50,7 @@ function scr_game_setup()
 	audio_set_bgm_loop(snd_bgm_ghz, 14.80, 53.20);
 	audio_set_bgm_loop(snd_bgm_ehz, 3.47, 44.94);
 	audio_set_bgm_loop(snd_bgm_dwz, 12.88, 123.15);
+	audio_set_bgm_loop(snd_bgm_dwz_alt, 6.38, 79.45);
 	audio_set_bgm_loop(snd_bgm_level_select, 0.92, 60.65);
 	
 	#endregion

@@ -600,6 +600,7 @@
     {"id":{"name":"spr_platform_swing_bob_ghz","path":"sprites/spr_platform_swing_bob_ghz/spr_platform_swing_bob_ghz.yy",},"order":30,},
     {"id":{"name":"spr_bg_swap","path":"sprites/spr_bg_swap/spr_bg_swap.yy",},"order":46,},
     {"id":{"name":"spr_platform_swing_chain","path":"sprites/spr_platform_swing_chain/spr_platform_swing_chain.yy",},"order":8,},
+    {"id":{"name":"snd_bgm_dwz_alt","path":"sounds/snd_bgm_dwz_alt/snd_bgm_dwz_alt.yy",},"order":17,},
     {"id":{"name":"spr_platform_swing_chain_ghz","path":"sprites/spr_platform_swing_chain_ghz/spr_platform_swing_chain_ghz.yy",},"order":31,},
     {"id":{"name":"spr_platform_swing_ghz","path":"sprites/spr_platform_swing_ghz/spr_platform_swing_ghz.yy",},"order":32,},
     {"id":{"name":"spr_player_spawn","path":"sprites/spr_player_spawn/spr_player_spawn.yy",},"order":4,},

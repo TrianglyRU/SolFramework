@@ -43,13 +43,13 @@ switch state
 			break;
 			
 			case PLATFORM_TYPE.VERTICAL:
-				y = math_oscillate_y(ystart, _osc_angle, iv_radius, _spd, iv_angle_offset + 270);
+				y = math_oscillate_y(ystart, _osc_angle - 90, iv_radius, _spd, iv_angle_offset);
 			break;
 			
 			case PLATFORM_TYPE.CIRCULAR:
 			
 				x = math_oscillate_x(xstart, _osc_angle, iv_radius, _spd, iv_angle_offset);
-				y = math_oscillate_y(ystart, _osc_angle, iv_radius, _spd, iv_angle_offset + 270);
+				y = math_oscillate_y(ystart, _osc_angle - 180, iv_radius, _spd, iv_angle_offset);
 				
 			break;
 			
@@ -109,4 +109,17 @@ switch state
 		}
 
 	break;
+}
+
+var _list_size = ds_list_size(synced_objects);
+
+if _list_size > 0
+{
+	for (var _i = 0; _i < _list_size; _i++)
+	{
+		var _obj = synced_objects[| _i];
+		
+		_obj.x = _obj.xstart + x - xstart;
+		_obj.y = _obj.ystart + y - ystart;
+	}
 }

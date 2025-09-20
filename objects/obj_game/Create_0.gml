@@ -160,7 +160,7 @@ debug_solids_push = ds_list_create();
 
 #endregion
 
-#region deformation
+#region DEFORMATION
 
 deformation_data = ds_list_create();
 deformation_bound = room_height;
