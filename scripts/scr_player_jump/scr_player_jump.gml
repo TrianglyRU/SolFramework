@@ -196,8 +196,8 @@ function scr_player_jump()
 			spd_ground = 4;
 			glide_value = 0;
 			glide_angle = facing < 0 ? 0 : 180;
-			solid_radius_x = 10;
-			solid_radius_y = 11;
+			solid_radius_x = radius_x_normal + 1;
+			solid_radius_y = solid_radius_x;
 			vel_x = 0;
 			vel_y = max(0, vel_y + 2);
 			

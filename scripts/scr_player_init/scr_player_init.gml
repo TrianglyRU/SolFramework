@@ -19,18 +19,18 @@ function scr_player_init()
 	{
 		case PLAYER.TAILS:
 		
-			radius_x_normal = 9;
+			radius_x_normal = 10;
 			radius_y_normal = 16;
-			radius_x_spin = 7;
+			radius_x_spin = 8;
 			radius_y_spin = 15;
 			
 		break;
 		
 		case PLAYER.AMY:
 		
-			radius_x_normal = 9;
+			radius_x_normal = 10;
 			radius_y_normal = 17;
-			radius_x_spin = 7;
+			radius_x_spin = 8;
 			radius_y_spin = 13;
 		
 		break;
@@ -38,9 +38,9 @@ function scr_player_init()
 		// PLAYER.SONIC, PLAYER.KNUCKLES
 		default:
 		
-			radius_x_normal = 9;
+			radius_x_normal = 10;
 			radius_y_normal = 20;
-			radius_x_spin = 7;
+			radius_x_spin = 8;
 			radius_y_spin = 15;
 	}
 	

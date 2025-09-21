@@ -43,13 +43,11 @@ function scr_player_climb()
 				vel_y = 0;
 			}
 			
-			// radius_x_normal + 1 equals to solid_radius_x here, so we're using the latter
-			var _wall_radius = facing >= 0 ? radius_x_normal : radius_x_normal - 1;
 			var _solid_radius_x = facing >= 0 ? solid_radius_x - 1 : -solid_radius_x;		
 			
 			if vel_y < 0
 			{
-				var _wall_dist = collision_tile_h(x + _wall_radius, y - solid_radius_y - 1, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _solid_radius_x, y - solid_radius_y - 1, facing, secondary_layer)[0];
 				
 				if _wall_dist >= 4
 				{
@@ -65,6 +63,7 @@ function scr_player_climb()
 					vel_y = 0;
 				}
 				
+				// Original engine adds 1 to y coordinate for some reason...
 				var _ceil_dist = collision_tile_v(x + _solid_radius_x, y - radius_y_normal + 1, -1, secondary_layer)[0];
 				
 				if _ceil_dist < 0
@@ -75,7 +74,7 @@ function scr_player_climb()
 			}
 			else
 			{
-				var _wall_dist = collision_tile_h(x + _wall_radius, y + solid_radius_y, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _solid_radius_x, y + solid_radius_y - 1, facing, secondary_layer)[0];
 				
 				if _wall_dist != 0
 				{
@@ -130,7 +129,7 @@ function scr_player_climb()
 				x += 3 * facing;
 				y -= 3;
 			}
-			else if timer == duration
+			else if animator.timer == animator.duration
 			{
 				switch image_index
 				{
@@ -149,7 +148,7 @@ function scr_player_climb()
 					break;
 				}
 			}
-			else if timer < 0
+			else if animator.timer < 0
 			{
 				land();
 				animation = ANIM.IDLE;

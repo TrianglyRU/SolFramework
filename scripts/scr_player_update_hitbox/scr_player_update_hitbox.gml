@@ -12,7 +12,20 @@ function scr_player_update_hitbox()
 		break;
 		
 		case PLAYER.KNUCKLES:
-			mask_index = animation != ANIM.SPIN ? spr_knuckles_idle : spr_knuckles_spin;
+		
+			if animation == ANIM.GLIDE_AIR || animation == ANIM.CLIMB_LEDGE || animation == ANIM.CLIMB_WALL
+			{
+				mask_index = spr_knuckles_glide;
+			}
+			else if animation == ANIM.SPIN
+			{
+				mask_index = spr_knuckles_spin;
+			}
+			else
+			{
+				mask_index = spr_knuckles_idle;	
+			}
+			
 		break;
 		
 		case PLAYER.AMY:

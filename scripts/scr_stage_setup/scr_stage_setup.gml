@@ -65,7 +65,7 @@ function scr_stage_setup()
 		
 		case rm_stage_dwz:
 			
-			setup_level(98, "DELTA WORLD", ACT_SINGLE, snd_bgm_dwz_alt, [spr_animal_flicky, spr_animal_ricky], rm_level_select, true);
+			setup_level(98, "DELTA", ACT_SINGLE, snd_bgm_dwz_alt, [spr_animal_flicky, spr_animal_ricky], rm_level_select, true);
 			
 			bg_convert("Stars_1", 0.3275, 0.0725, -0.525, 0, 0);
 			bg_convert("Stars_2", 0.2435, 0.0725, -0.325, 0, 0);

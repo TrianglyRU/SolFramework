@@ -8,7 +8,6 @@ function scr_player_glide_collision()
 	
 	var _vector = math_get_vector_rounded(vel_x, vel_y);
 	var _move_quad = math_get_quadrant(_vector);
-	var _wall_radius = radius_x_normal + 1;
 	var _climb_y = y;
 	
 	var _collision_flag_wall = false;
@@ -16,7 +15,7 @@ function scr_player_glide_collision()
 	
 	if _move_quad != QUADRANT.RIGHT
 	{
-	    var _wall_dist = collision_tile_h(x - _wall_radius, y, -1, secondary_layer)[0];
+	    var _wall_dist = collision_tile_h(x - solid_radius_x, y, -1, secondary_layer)[0];
 		
 	    if _wall_dist < 0
 	    {
@@ -29,7 +28,7 @@ function scr_player_glide_collision()
 	
 	if _move_quad != QUADRANT.LEFT
 	{
-	    var _wall_dist = collision_tile_h(x + _wall_radius - 1, y, 1, secondary_layer)[0];
+	    var _wall_dist = collision_tile_h(x + solid_radius_x - 1, y, 1, secondary_layer)[0];
 		
 	    if _wall_dist < 0
 	    {
@@ -140,15 +139,14 @@ function scr_player_glide_collision()
 		// First, the game casts a horizontal sensor just above Knuckles. If the returned distance is not 0, he is either 
 		// inside the ceiling or above the floor edge
 		
-		var _new_wall_radius = facing >= 0 ? _wall_radius - 1 : -_wall_radius;
-	    var _wall_dist = collision_tile_h(x + _new_wall_radius, _climb_y - solid_radius_y, facing, secondary_layer)[0];	
+		var _solid_radius_x = facing >= 0 ? solid_radius_x - 1 : -solid_radius_x;
+	    var _wall_dist = collision_tile_h(x + _solid_radius_x, _climb_y - solid_radius_y, facing, secondary_layer)[0];	
 		
 	    if _wall_dist != 0
 	    {
 			// Now the game casts a vertical sensor in front and above of Knuckles, facing downwards. If the distance returned is negative, he's inside
 			// the ceiling, else he is above the floor edge. Note that we use QUADRANT.UP because we should NOT ignore LBR tiles
 			
-			var _solid_radius_x = facing >= 0 ? solid_radius_x - 1 : -solid_radius_x;
 			var _front_offset = sign(_solid_radius_x);
 	        var _floor_dist = collision_tile_v(x + _solid_radius_x + _front_offset, _climb_y - solid_radius_y - 1, 1, secondary_layer, QUADRANT.UP)[0];
 			

@@ -1,136 +1,269 @@
 /// @self obj_player
-/// @function scr_player_animate_knuckles()
 function scr_player_animate_knuckles()
 {
-	try
+	switch animation
 	{
-		switch (animation)
-		{
-			case ANIM.IDLE:
-				obj_set_anim(spr_knuckles_idle, 300, 0, set_wait_anim);
-			break;
+		case ANIM.IDLE:
+		case ANIM.WAIT:
+				
+			if sprite_index != spr_knuckles_idle || sprite_index == spr_knuckles_wait && animator.timer < 0
+			{
+				animator.start(spr_knuckles_idle, 0, 0, 300);
+			}
+			else if animator.timer < 0
+			{
+				animation = ANIM.WAIT;
+				animator.start(spr_knuckles_wait, 0, 99, 6);
+			}
+				
+		break;
 		
-			case ANIM.WAIT:	
-				obj_set_anim(spr_knuckles_wait, 6, 0, set_idle_anim);
-			break;
-		
-			case ANIM.MOVE:
-				obj_set_anim(abs(spd_ground) < 6 ? spr_knuckles_walk : spr_knuckles_run, floor(max(1, 9 - abs(spd_ground))), 0, 0);
-			break;
-		
-			case ANIM.SPIN:
-				obj_set_anim(spr_knuckles_spin, floor(max(1, 5 - abs(spd_ground))), 0, 0);	
-			break;
-		
-			case ANIM.SPINDASH:
-				obj_set_anim(spr_knuckles_spindash, 1, 0, 0);
-			break;
-		
-			case ANIM.PUSH:
-				obj_set_anim(spr_knuckles_push, floor(max(1, 9 - abs(spd_ground))), 0, 0); 
-			break;
-		
-			case ANIM.DUCK:
-				obj_set_anim(spr_knuckles_duck, 6, 0, 1);
-			break;
-		
-			case ANIM.LOOKUP:
-				obj_set_anim(spr_knuckles_lookup, 6, 0, 1);
-			break;
-		
-			case ANIM.GRAB:
-				obj_set_anim(spr_knuckles_grab, 0, 0, 0);
-			break;
-		
-			case ANIM.HURT:
-				obj_set_anim(spr_knuckles_hurt, 0, 0, 0);
-			break;
-		
-			case ANIM.DEATH:
-				obj_set_anim(spr_knuckles_death, 0, 0, 0);
-			break;
-		
-			case ANIM.DROWN:
-				obj_set_anim(spr_knuckles_drown, 0, 0, 0);
-			break;
-		
-			case ANIM.SKID:	
-				obj_set_anim(spr_knuckles_skid, 4, 0, set_move_anim);
-			break;
-		
-			case ANIM.TRANSFORM:
-				obj_set_anim(spr_knuckles_transform, 3, 0, set_move_anim);	
-			break;
-		
-			case ANIM.BREATHE:
-				obj_set_anim(spr_knuckles_breathe, 24, 0, set_move_anim);
-			break;
-		
-			case ANIM.BOUNCE:
-				obj_set_anim(spr_knuckles_bounce, 48, 0, set_move_anim);
-			break;
-		
-			case ANIM.BALANCE:
-			case ANIM.BALANCE_FLIP:
-				obj_set_anim(spr_knuckles_balance, 4, animation == ANIM.BALANCE_FLIP ? 4 : 0, 33);	
-			break;
-		
-			case ANIM.FLIP:
-			case ANIM.FLIP_EXTENDED:
+		case ANIM.MOVE:
 			
-				obj_set_anim(spr_knuckles_flip, 1, 0, end_flip_anim);
+			var _move_sprite = abs(spd_ground) < 6 ? spr_knuckles_walk : spr_knuckles_run;
+			var _move_timing = floor(max(1, 9 - abs(spd_ground)));
+				
+			if sprite_index != _move_sprite
+			{
+				animator.start(_move_sprite, 0, 0, _move_timing);
+			}
+			else
+			{
+				animator.duration = _move_timing;
+			}
+				
+		break;
+		
+		case ANIM.SPIN:
 			
-				// Override the displayed sprite
-				if (facing == -1)
+			var _spin_timing = floor(max(1, 5 - abs(spd_ground)));
+				
+			if sprite_index != spr_knuckles_spin
+			{
+				animator.start(spr_knuckles_spin, 0, 0, _spin_timing);
+			}
+			else
+			{
+				animator.duration = _spin_timing;
+			}
+				
+		break;
+		
+		case ANIM.SPINDASH:
+		
+			if sprite_index != spr_knuckles_spindash
+			{
+				animator.start(spr_knuckles_spindash, 0, 0, 1);
+			}
+			
+		break;
+		
+		case ANIM.PUSH:
+		
+			var _push_timing = floor(max(1, 9 - abs(spd_ground)));
+		
+			if sprite_index != spr_tails_push
+			{
+				animator.start(spr_tails_push, 0, 0, _push_timing);
+			}
+			else
+			{
+				animator.duration = _push_timing;
+			}
+			
+		break;
+		
+		case ANIM.DUCK:
+			
+			if sprite_index != spr_knuckles_duck
+			{
+				animator.start(spr_knuckles_duck, 0, 1, 6);
+			}
+			
+		break;
+		
+		case ANIM.LOOKUP:
+			
+			if sprite_index != spr_knuckles_lookup
+			{
+				animator.start(spr_knuckles_lookup, 0, 1, 6);
+			}
+			
+		break;
+		
+		case ANIM.GRAB:
+			sprite_index = spr_knuckles_grab;
+		break;
+		
+		case ANIM.HURT:
+			sprite_index = spr_knuckles_hurt;
+		break;
+		
+		case ANIM.DEATH:
+			sprite_index = spr_knuckles_death;
+		break;
+		
+		case ANIM.DROWN:
+			sprite_index = spr_knuckles_drown;
+		break;
+		
+		case ANIM.SKID:	
+			
+			if sprite_index != spr_knuckles_skid
+			{
+				animator.start(spr_knuckles_skid, 0, 3, 4);
+			}
+			else if animator.timer < 0
+			{
+				animation = ANIM.MOVE;
+			}
+			
+		break;
+		
+		case ANIM.TRANSFORM:
+		
+			if sprite_index != spr_knuckles_transform
+			{
+				animator.start(spr_knuckles_transform, 0, 11, 3);
+			}
+			else if animator.timer < 0
+			{
+				animation = ANIM.MOVE;
+			}
+			
+		break;
+		
+		case ANIM.BREATHE:
+		
+			if sprite_index != spr_knuckles_breathe
+			{
+				animator.start(spr_knuckles_breathe, 0, 0, 24);
+			}
+			else if animator.timer < 0
+			{
+				animation = ANIM.MOVE;
+			}
+			
+		break;
+		
+		case ANIM.BOUNCE:
+			
+			if sprite_index != spr_knuckles_bounce
+			{
+				animator.start(spr_knuckles_bounce, 0, 0, 48);
+			}
+			else if animator.timer < 0
+			{
+				animation = ANIM.MOVE;
+			}
+			
+		break;
+		
+		case ANIM.BALANCE:
+		case ANIM.BALANCE_FLIP:
+		
+			if sprite_index != spr_knuckles_balance
+			{
+				animator.start(spr_knuckles_balance, animation == ANIM.BALANCE_FLIP ? 4 : 0, 33, 4);
+			}
+			
+		break;
+		
+		case ANIM.FLIP:
+		case ANIM.FLIP_EXTENDED:
+			
+			var _flip_sprite = facing >= 0 ? spr_knuckles_flip : spr_knuckles_flip_flipped;
+			
+			if sprite_index != spr_knuckles_flip && sprite_index != spr_knuckles_flip_flipped
+			{
+				animator.start(_flip_sprite, 0, 61, 1);
+			}
+			else
+			{
+				if animator.timer < 0
 				{
-					sprite_index = spr_knuckles_flip_flipped;
+					if animation == ANIM.FLIP_EXTENDED && animator.play_count < 2
+					{
+						animator.timer = animator.duration;
+						image_index = 0;
+					}
+					else
+					{
+						animation = ANIM.MOVE;
+					}
 				}
+				
+				sprite_index = _flip_sprite;
+			}
 			
-			break;
+		break;
 		
-			case ANIM.GLIDE_AIR:
-		
-				obj_set_anim(spr_knuckles_glide, 0, 0, 0);
+		case ANIM.GLIDE_AIR:
 			
-				// Override the displayed frame
-				var _angle = abs(glide_angle) % 180;
-		        if (_angle < 30 || _angle > 150)
-		        {
-		            image_index = 0;
-		        }
-		        else if (_angle < 60 || _angle > 120)
-		        {
-		            image_index = 1;
-		        }
-		        else
-		        {
-					image_index = 2;
-				}
+			var _angle = abs(glide_angle) % 180;
 			
-			break;
+		    if _angle < 30 || _angle > 150
+		    {
+		        image_index = 0;
+		    }
+		    else if _angle < 60 || _angle > 120
+		    {
+		        image_index = 1;
+		    }
+		    else
+		    {
+				image_index = 2;
+			}
+			
+			sprite_index = spr_knuckles_glide;
+			
+		break;
 		
-			case ANIM.GLIDE_FALL:
-				obj_set_anim(spr_knuckles_glide_fall, 6, glide_value, 1);
-			break;
+		case ANIM.GLIDE_FALL:
 		
-			case ANIM.GLIDE_GROUND:
-				obj_set_anim(spr_knuckles_slide, 0, 0, 0);
-			break;
+			if sprite_index != spr_knuckles_glide_fall
+			{
+				animator.start(spr_knuckles_glide_fall, glide_value, 1, 6);
+			}
+			
+		break;
 		
-			case ANIM.GLIDE_LAND:
-				obj_set_anim(spr_knuckles_duck, 6, 1, 1);
-			break;
+		case ANIM.GLIDE_GROUND:
 		
-			case ANIM.CLIMB_WALL:
-				obj_set_anim(spr_knuckles_climb, 0, 0, 0);
-			break;
+			if sprite_index != spr_knuckles_slide
+			{
+				sprite_index = spr_knuckles_slide;
+				image_index = 0;
+				animator.timer = 0;
+			}
+			
+		break;
 		
-			case ANIM.CLIMB_LEDGE:
-				obj_set_anim(spr_knuckles_climb_ledge, 6, 0, 2);
-			break;
-		}
-	}
-	catch(error)
-	{
+		case ANIM.GLIDE_LAND:
+		
+			sprite_index = spr_knuckles_duck;
+			image_index = 1;
+			
+		break;
+		
+		case ANIM.CLIMB_WALL:
+		
+			if sprite_index != spr_knuckles_climb
+			{
+				sprite_index = spr_knuckles_climb;
+				image_index = 0;
+				animator.timer = 0;
+			}
+			
+		break;
+		
+		case ANIM.CLIMB_LEDGE:
+		
+			if sprite_index != spr_knuckles_climb_ledge
+			{
+				animator.start(spr_knuckles_climb_ledge, 0, 2, 6);
+			}
+			
+		break;
 	}
 }
