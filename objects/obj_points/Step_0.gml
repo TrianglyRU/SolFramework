@@ -4,7 +4,7 @@ if !visible
 	{
 		var _player = player_get(_p);
 		
-		if _player.state < PLAYER_STATE.DEBUG_MODE && point_in_rectangle(floor(_player.x), floor(_player.y), x - 16, y - 16, x + 15, y + 15)
+		if _player.state < PLAYER_STATE.DEBUG_MODE && point_in_rectangle(floor(_player.x), floor(_player.y), bbox_left, bbox_top, bbox_right, bbox_bottom)
 		{
 			global.score_count += power(10, image_index + 2);
 			visible = true;

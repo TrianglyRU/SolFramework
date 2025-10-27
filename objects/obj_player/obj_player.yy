@@ -35,7 +35,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "- Framework Objects -",
-    "path": "folders/- Framework Objects -.yy",
+    "name": "Player",
+    "path": "folders/Objects/Player.yy",
   },
 }

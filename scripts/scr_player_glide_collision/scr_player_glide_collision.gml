@@ -159,8 +159,8 @@ function scr_player_glide_collision()
 	        y += _floor_dist;
 	    }
 		
-	    action_state = CLIMB_STATE.NORMAL;
 	    action = ACTION.CLIMB;
+		action_state = CLIMB_STATE.NORMAL;
 	    animation = ANIM.CLIMB_WALL;
 	    climb_value = 0;
 		spd_ground = 0;

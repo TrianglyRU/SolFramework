@@ -126,7 +126,7 @@ function scr_player_init()
 	
 	// replay_data is a 2D array for input playback. Each sub-array matches the key order
 	// defined in the input_down struct and holds frame counts between input state changes:
-	// even indices = released, odd indices = pressed.
+	// even indices = released, odd indices = pressed
 	//
 	// Example: 
 	// [ 

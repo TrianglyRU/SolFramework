@@ -63,7 +63,7 @@ function scr_player_climb()
 					vel_y = 0;
 				}
 				
-				// Original engine adds 1 to y coordinate for some reason...
+				// Original game adds 1 to y coordinate for some reason...
 				var _ceil_dist = collision_tile_v(x + _solid_radius_x, y - radius_y_normal + 1, -1, secondary_layer)[0];
 				
 				if _ceil_dist < 0

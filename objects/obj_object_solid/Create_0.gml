@@ -3,7 +3,7 @@ event_inherited();
 
 enum SOLID_TYPE
 {
-	ITEBOX,
+	ITEMBOX,
 	SIDES,
 	FULL,
 	FULL_RESET,
@@ -114,15 +114,15 @@ solid_object = function(_player, _type)
 	if _type < SOLID_TYPE.TOP
 	{
 		var _ptop_off = _ptop + _y_offset;
-		var _pbottooff = _pbottom + _y_offset;
+		var _pbottom_off = _pbottom + _y_offset;
 		
-		if !rectangle_in_rectangle(_pleft, _ptop_off, _pright, _pbottooff, _oleft - 1, _otop, _oright + 1, _obottom)
+		if !rectangle_in_rectangle(_pleft, _ptop_off, _pright, _pbottom_off, _oleft - 1, _otop, _oright + 1, _obottom)
 		{
-			_player.clear_solid_push(id); return;
+			_player.clear_solid_push(); return;
 		}
 		
 		var _x_clip = _px < _ox ? _pright - _oleft + 1 : _pleft - _oright - 1;
-		var _y_clip = _py < _oy ? _pbottooff - _otop + 1 : _ptop_off - _obottom - 1 - _grip_y;
+		var _y_clip = _py < _oy ? _pbottom_off - _otop + 1 : _ptop_off - _obottom - 1 - _grip_y;
 		
 		// VERTICAL COLLISION
 		
@@ -140,7 +140,7 @@ solid_object = function(_player, _type)
 		{
 			if _y_clip < 0
 			{
-				if _type == SOLID_TYPE.ITEBOX || _type == SOLID_TYPE.SIDES
+				if _type == SOLID_TYPE.ITEMBOX || _type == SOLID_TYPE.SIDES
 				{
 					// Fallthrough to horizontal collision
 				}
@@ -148,8 +148,7 @@ solid_object = function(_player, _type)
 				{
 					if abs(_x_clip) >= 16
 					{
-						_player.kill();
-						return;
+						_player.kill(); return;
 					}
 					
 					// If not crushed, fallthrough to horizontal collision
@@ -187,7 +186,7 @@ solid_object = function(_player, _type)
 				}
 				else
 				{
-					_player.clear_solid_push(id);
+					_player.clear_solid_push();
 				}
 				
 				// Do not run horizontal collision
@@ -205,7 +204,7 @@ solid_object = function(_player, _type)
 		
 		if _cant_collide_h
 		{
-			_player.clear_solid_push(id); return;
+			_player.clear_solid_push(); return;
 		}
 		
 		solid_touch[_p] = _px < _ox ? SOLID_TOUCH.LEFT : SOLID_TOUCH.RIGHT;

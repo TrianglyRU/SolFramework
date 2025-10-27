@@ -259,8 +259,7 @@ function scr_player_animate_sonic()
 				{
 					if animation == ANIM.FLIP_EXTENDED && animator.play_count < 2
 					{
-						animator.timer = animator.duration;
-						image_index = 0;
+						animator.restart(false);
 					}
 					else
 					{

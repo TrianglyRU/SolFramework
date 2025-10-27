@@ -505,7 +505,7 @@ is_true_glide = function()
 	return action == ACTION.GLIDE && action_state != GLIDE_STATE.FALL;
 }
 
-clear_solid_push = function(_inst_id)
+clear_solid_push = function(_inst_id = other.id)
 {
 	if set_push_anim_by == _inst_id
 	{

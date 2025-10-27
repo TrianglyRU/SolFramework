@@ -75,7 +75,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
     if state == ITEMBOX_STATE.IDLE && !_can_destroy
     {
-		solid_object(_player, SOLID_TYPE.ITEBOX);
+		solid_object(_player, SOLID_TYPE.ITEMBOX);
     }
 }
 

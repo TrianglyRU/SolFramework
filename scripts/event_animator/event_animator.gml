@@ -36,7 +36,7 @@ function ConstAnimator(_inst_id) constructor
 	}
 	
 	/// @function restart
-	restart = function()
+	restart = function(_clear_play_count = true)
 	{
 		if !instance_exists(inst_id)
 		{
@@ -46,7 +46,11 @@ function ConstAnimator(_inst_id) constructor
 		inst_id.image_speed = 0;
 		inst_id.image_index = 0;
 		timer = duration;
-		play_count = 0;
+		
+		if _clear_play_count
+		{
+			play_count = 0;
+		}	
 	}
 	
 	/// @function clear(_image_index)
