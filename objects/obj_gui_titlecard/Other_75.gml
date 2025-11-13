@@ -1,6 +1,6 @@
-var _event = async_load[? "event_type"];
+var _camera_index = async_get("camera deleted", "camera_index");
 
-if _event == "camera deleted"
+if _camera_index != undefined
 {
-	surface_free(shader_surface[async_load[? "camera_index"]]);
+	surface_free(shader_surface[_camera_index]);
 }

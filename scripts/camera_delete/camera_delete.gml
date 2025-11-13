@@ -13,10 +13,5 @@ function camera_delete(_index)
 	obj_game.camera_data[_index] = undefined;
 	
 	// Trigger custom Async Event
-	var _map = ds_map_create();
-	
-	_map[? "event_type"] = "camera deleted";
-	_map[? "camera_index"] = _index;
-	
-	event_perform_async(ev_async_system_event, _map); 
+	async_trigger("camera deleted", "camera_index", _index);
 }

@@ -23,7 +23,6 @@ function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control =
 	obj_game.fade_step = _speed;
 	obj_game.fade_direction = _direction;
 	obj_game.fade_game_control = _game_control;
-	obj_game.fade_trigger_end_event = false;
 	
 	if _speed == 0
 	{

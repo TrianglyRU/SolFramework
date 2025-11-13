@@ -54,10 +54,5 @@ function camera_new(_index, _w, _h, _canvas_width, _canvas_height, _canvas_x = 0
     obj_game.camera_data[_index] = _camera_data;
 	
 	// Trigger custom Async Event
-	var _map = ds_map_create();
-	
-	_map[? "event_type"] = "camera created";
-	_map[? "camera_index"] = _index;
-	
-	event_perform_async(ev_async_system_event, _map);
+	async_trigger("camera created", "camera_index", _index);
 }

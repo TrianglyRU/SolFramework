@@ -50,7 +50,7 @@ function scr_player_balance()
 	{
 		var _px = floor(x);
 		var _left_edge = floor(on_object.bbox_left) + 2;
-		var _right_edge = floor(on_object.bbox_right) - 3;
+		var _right_edge = floor(on_object.bbox_right) - 2;
 		
 		if _px < _left_edge
 		{
@@ -58,7 +58,7 @@ function scr_player_balance()
 		}
 		else if _px > _right_edge
 		{
-			_balance_right(_px > _right_edge + 4);
+			_balance_right(_px > _right_edge + 3);
 		}
 	}
 }

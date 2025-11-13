@@ -15,7 +15,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "snd_bgm_ehz.ogg",
-  "duration": 45.097256,
+  "duration": 46.29449,
   "parent": {
     "name": "BGM",
     "path": "folders/Sounds/BGM.yy",

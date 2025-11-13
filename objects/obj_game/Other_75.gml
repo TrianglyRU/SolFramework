@@ -1,21 +1,28 @@
-/// @description Gamepad Detection
-var _event = async_load[? "event_type"];
-var _pad_index = async_load[? "pad_index"];
+// Feather ignore GM1041
 
-if _event == "gamepad discovered"
+/// @description Gamepad Detection
+var _connected_index = async_get("gamepad discovered", "pad_index");
+
+if _connected_index != undefined
 {
-	ds_list_add(global.gamepad_list, _pad_index);
-	gamepad_set_axis_deadzone(_pad_index, INPUT_GAMEPAD_DEADZONE);
+	ds_list_add(global.gamepad_list, _connected_index);
+	gamepad_set_axis_deadzone(_connected_index, INPUT_GAMEPAD_DEADZONE);
 	
-	show_debug_message("[INFO] " + gamepad_get_description(_pad_index) + " (" + string(_pad_index) + ")" + " has been registered into slot " + string(ds_list_size(global.gamepad_list)));
+	show_debug_message("[INFO] " + gamepad_get_description(_connected_index) + " (" + string(_connected_index) + ")" + " has been registered into slot " + string(ds_list_size(global.gamepad_list)));
 }
-else if _event == "gamepad lost"
+else 
 {
-	var _pos = ds_list_find_index(global.gamepad_list, _pad_index);
+	var _lost_index = async_get("gamepad lost", "pad_index");
 	
-	if _pos != -1
+	if _lost_index != undefined
 	{
-		ds_list_delete(global.gamepad_list, _pos);
-		show_debug_message("[INFO] Gamepad " + string(_pad_index) + " has been removed");
+		var _pos = ds_list_find_index(global.gamepad_list, _lost_index);
+	
+		if _pos != -1
+		{
+			ds_list_delete(global.gamepad_list, _pos);
+		
+			show_debug_message("[INFO] Gamepad " + string(_lost_index) + " has been removed from slot " + string(_pos));
+		}
 	}
 }

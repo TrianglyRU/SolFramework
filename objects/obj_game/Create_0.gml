@@ -203,7 +203,6 @@ fade_game_control = false;
 fade_step = 0;
 fade_frequency_timer = 0;
 fade_frequency_target = 0;
-fade_trigger_end_event = false;
 
 #endregion
 
@@ -245,7 +244,7 @@ palette_data = array_create(2, undefined);
 #region SPRITE ANIMATOR
 
 sprite_array = [];
-sprite_update_enabled = true;
+sprite_update_enabled = false;
 
 #endregion
 

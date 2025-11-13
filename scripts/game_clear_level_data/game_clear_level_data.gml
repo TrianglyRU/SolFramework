@@ -17,5 +17,9 @@ function game_clear_level_data(_full_clear = true)
 	}
 	
 	global.player_rings = 0;
-	global.life_rewards = [RINGS_THRESHOLD, floor(global.score_count / SCORE_THRESHOLD) * SCORE_THRESHOLD + SCORE_THRESHOLD];
+	global.life_rewards =
+	[
+		RINGS_THRESHOLD, 
+		floor(global.score_count / SCORE_THRESHOLD) * SCORE_THRESHOLD + SCORE_THRESHOLD
+	];
 }
