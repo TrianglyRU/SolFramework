@@ -161,9 +161,9 @@ else if _input_press.left || _input_press.right
 }
 else if _input_press.action1 || _input_press.start
 {
-    if rooto_load != -1
+    if room_to_load != -1
     {
-        if rooto_load == rm_special
+        if room_to_load == rm_special
         {
             audio_play_sfx(snd_warp);
             fade_perform_white(FADE_DIRECTION.OUT, 1);

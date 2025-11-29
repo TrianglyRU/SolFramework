@@ -6,7 +6,7 @@ if obj_rm_level_select.level_entries[global.selected_level_entry] == "SOUND TEST
 {
 	_icon_index = 1;
 }
-else switch obj_rm_level_select.rooto_load
+else switch obj_rm_level_select.room_to_load
 {
 	case rm_special:
 		_icon_index = 2;

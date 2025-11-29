@@ -37,14 +37,14 @@ is_string_entry = function(_entry_index)
 
 set_room_to_load = function()
 {
-	rooto_load = -1;
+	room_to_load = -1;
 	down_cooldown = 0;
 	
 	for (var _i = 0; _i < array_length(level_rediretions); _i += 2)
 	{
 		if level_rediretions[_i] == global.selected_level_entry
 		{
-			rooto_load = level_rediretions[_i + 1];
+			room_to_load = level_rediretions[_i + 1];
 			break;
 		}
 	}
@@ -54,7 +54,7 @@ set_room_to_load = function()
 
 cheat_code_string = "";
 down_cooldown = 0;
-rooto_load = -1;
+room_to_load = -1;
 level_entries =
 [
 	"GREEN HILL|1",

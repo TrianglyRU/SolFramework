@@ -220,6 +220,7 @@ reset_substate = function()
 	shield_state = SHIELD_STATE.NONE;
 	is_jumping = false;
 	set_push_anim_by = noone;
+	is_water_running = false;
 	clear_carry();
 	
 	// Clear collision

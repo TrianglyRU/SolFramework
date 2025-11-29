@@ -95,7 +95,7 @@ categories_count = 0;
 category_id = 0;
 category_options_count = 0;
 option_id = 0;
-rooto_load = -1;
+room_to_load = -1;
 
 // Automatically generate room list
 var _room_list = [];

@@ -108,7 +108,7 @@ switch (category_id)
 
 		if (!game_check_data(global.current_save_slot))
 		{
-			rooto_load = rm_stage_ghz1;
+			room_to_load = rm_stage_ghz1;
 			load_category(4);
 			
 			break;
@@ -129,9 +129,9 @@ switch (category_id)
 	case 2:	
 	
 		// Add 1 because we're skipping the rm_startup entry
-		rooto_load = option_id + 1;
+		room_to_load = option_id + 1;
 		
-		if (rooto_load < 0)
+		if (room_to_load < 0)
 		{
 			audio_play_sfx(snd_fail);
 		}
@@ -255,7 +255,7 @@ switch (category_id)
 		
 		game_clear_level_data();
 		game_save_data(global.current_save_slot);
-		room_goto(rooto_load);
+		room_goto(room_to_load);
 		
 	break;
 }
