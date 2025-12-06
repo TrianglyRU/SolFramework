@@ -27,7 +27,6 @@ switch state
 		}
 		
 		var _osc_angle = obj_game.frame_counter * ANGLE_INCREMENT;
-		var _spd = 256 / iv_speed_multiplier;
 	
 		switch iv_type
 		{
@@ -37,19 +36,19 @@ switch state
 			
 			case PLATFORM_TYPE.HORIZONTAL:
 			
-				x = math_oscillate_x(xstart, _osc_angle, iv_radius, _spd, iv_angle_offset);
+				x = math_oscillate_x(xstart, _osc_angle, iv_radius, iv_speed_multiplier, iv_angle_offset);
 				y = ystart;
 				
 			break;
 			
 			case PLATFORM_TYPE.VERTICAL:
-				y = math_oscillate_y(ystart, _osc_angle - 90, iv_radius, _spd, iv_angle_offset);
+				y = math_oscillate_y(ystart, _osc_angle - 90, iv_radius, iv_speed_multiplier, iv_angle_offset);
 			break;
 			
 			case PLATFORM_TYPE.CIRCULAR:
 			
-				x = math_oscillate_x(xstart, _osc_angle, iv_radius, _spd, iv_angle_offset);
-				y = math_oscillate_y(ystart, _osc_angle - 180, iv_radius, _spd, iv_angle_offset);
+				x = math_oscillate_x(xstart, _osc_angle, iv_radius, iv_speed_multiplier, iv_angle_offset);
+				y = math_oscillate_y(ystart, _osc_angle - 180, iv_radius, iv_speed_multiplier, iv_angle_offset);
 				
 			break;
 			

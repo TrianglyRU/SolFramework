@@ -28,7 +28,7 @@ function ConstCuller(_action, _inst_id) constructor
 	depth_start = inst_id.depth;
 	visible_start = inst_id.visible;
 	
-	respawned = false; 
+	marked_to_respawn = false; 
 	action = _action;
 	
 	/// @function run()
@@ -39,9 +39,9 @@ function ConstCuller(_action, _inst_id) constructor
 			return;
 		}
 		
-		if respawned
+		if marked_to_respawn
 		{
-			respawned = false;
+			marked_to_respawn = false;
 			inst_id.image_xscale = image_xscale_start;
 			inst_id.image_yscale = image_yscale_start;
 			inst_id.image_index = image_index_start;
@@ -117,7 +117,7 @@ function ConstCuller(_action, _inst_id) constructor
 	
 			case CULL_ACTION.RESPAWN:
 		
-				respawned = true;
+				marked_to_respawn = true;
 				inst_id.x = inst_id.xstart;
 				inst_id.y = inst_id.ystart;
 				
