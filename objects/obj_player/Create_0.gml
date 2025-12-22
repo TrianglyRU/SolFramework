@@ -222,6 +222,7 @@ reset_substate = function()
 	set_push_anim_by = noone;
 	is_water_running = false;
 	clear_carry();
+	reset_gravity();
 	
 	// Clear collision
 	is_grounded = false;
@@ -229,7 +230,6 @@ reset_substate = function()
 	solid_radius_x = radius_x_normal;
 	solid_radius_y = radius_y_normal;
 	
-	reset_gravity();
 	visual_angle = 0;
 }
 
@@ -540,12 +540,12 @@ restart_bgm = function(_default_bgm)
     }
 }
 
-press_action_any = function()
+input_press_action_any = function()
 {
 	return input_press.action1 || input_press.action2 || input_press.action3;
 }
 
-down_action_any = function()
+input_down_action_any = function()
 {
 	return input_down.action1 || input_down.action2 || input_down.action3;
 }

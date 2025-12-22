@@ -10,7 +10,7 @@ function scr_player_spindash()
 	{
 		if action == ACTION.NONE && (animation == ANIM.DUCK || animation == ANIM.GLIDE_LAND)
 		{
-			if !input_down.down || !press_action_any()
+			if !input_down.down || !input_press_action_any()
 			{
 				return false;
 			}
@@ -40,7 +40,7 @@ function scr_player_spindash()
 			spindash_charge -= floor(spindash_charge / 0.125) / 256;
 		}
 		
-		if press_action_any()
+		if input_press_action_any()
 		{
 			animator.restart();
 			spindash_charge = min(spindash_charge + 2, 8);

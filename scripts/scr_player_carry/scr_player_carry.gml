@@ -60,7 +60,7 @@ function scr_player_carry()
 	{
 		clear_carry();
 	}
-	else if carry_target.press_action_any()
+	else if carry_target.input_press_action_any()
 	{
 		carry_target.is_jumping = true;
 		carry_target.action = ACTION.NONE;

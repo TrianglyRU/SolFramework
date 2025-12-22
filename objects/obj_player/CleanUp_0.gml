@@ -6,7 +6,7 @@ if variable_instance_exists(id, "player_index")
 	
 	with obj_player
 	{
-		if (player_index > other.player_index)
+		if player_index > other.player_index
 		{
 			player_index--;
 		}

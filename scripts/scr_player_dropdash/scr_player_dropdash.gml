@@ -81,7 +81,7 @@ function scr_player_dropdash()
 	{
 	    action = ACTION.NONE;
 	}
-	else if down_action_any()
+	else if input_down_action_any()
 	{
 		if dropdash_charge >= 0 && ++dropdash_charge == PARAM_DROPDASH_CHARGE
 		{

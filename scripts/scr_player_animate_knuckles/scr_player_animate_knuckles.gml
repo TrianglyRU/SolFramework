@@ -62,9 +62,9 @@ function scr_player_animate_knuckles()
 		
 			var _push_timing = floor(max(1, 9 - abs(spd_ground)));
 		
-			if sprite_index != spr_tails_push
+			if sprite_index != spr_knuckles_push
 			{
-				animator.start(spr_tails_push, 0, 0, _push_timing);
+				animator.start(spr_knuckles_push, 0, 0, _push_timing);
 			}
 			else
 			{

@@ -15,7 +15,7 @@ function scr_player_cpu()
 	
 	if _can_receive_input
 	{
-	    if press_action_any() || input_press.up || input_press.down || input_press.left || input_press.right
+	    if input_press_action_any() || input_press.up || input_press.down || input_press.left || input_press.right
 	    {
 	        cpu_control_timer = 600;
 	    }
@@ -27,7 +27,7 @@ function scr_player_cpu()
 	{
 	    case CPU_STATE.RESPAWN_INIT:
 			
-	        if _can_receive_input && !down_action_any() && !input_down.start
+	        if _can_receive_input && !input_down_action_any() && !input_down.start
 	        {
 				if obj_game.frame_counter % 64 != 0 || cpu_target.state >= PLAYER_STATE.DEFAULT_LOCKED
 				{

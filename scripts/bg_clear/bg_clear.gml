@@ -1,5 +1,5 @@
 /// @self
-/// @description Destroys a background object located on the specified layer, and removes that layer as well.
+/// @description Destroys a background object located on the specified layer, and removes that temporary layer as well.
 function bg_clear(_layer)
 {
 	with obj_layer

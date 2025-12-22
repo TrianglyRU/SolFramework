@@ -26,7 +26,7 @@ function scr_player_hammerspin()
 		return;
 	}
 	
-	if down_action_any()
+	if input_down_action_any()
 	{
 		if dropdash_charge >= 0
 		{

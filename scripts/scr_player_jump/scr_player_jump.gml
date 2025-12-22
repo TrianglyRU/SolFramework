@@ -6,7 +6,7 @@ function scr_player_jump()
 		return false;
 	}
 	
-	if !down_action_any()
+	if !input_down_action_any()
 	{
 		vel_y = max(vel_y, jump_min_vel);
 	}
@@ -41,7 +41,7 @@ function scr_player_jump()
 			
 			var _shield = global.player_shields[player_index];
 			
-			if global.drop_dash && action == ACTION.NONE && shield_state == SHIELD_STATE.NONE && !down_action_any()
+			if global.drop_dash && action == ACTION.NONE && shield_state == SHIELD_STATE.NONE && !input_down_action_any()
 			{
 				if super_timer > 0 || item_inv_timer > 0 || _shield <= SHIELD.NORMAL
 				{
@@ -50,7 +50,7 @@ function scr_player_jump()
 				}
 			}
 			
-			if !press_action_any() || shield_state != SHIELD_STATE.NONE || super_timer > 0 || item_inv_timer > 0
+			if !input_press_action_any() || shield_state != SHIELD_STATE.NONE || super_timer > 0 || item_inv_timer > 0
 			{
 				break;
 			}
@@ -157,7 +157,7 @@ function scr_player_jump()
 		
 		case PLAYER.TAILS:
 		
-			if action != ACTION.NONE || !press_action_any()
+			if action != ACTION.NONE || !input_press_action_any()
 			{
 				break;
 			}
@@ -183,7 +183,7 @@ function scr_player_jump()
 		
 		case PLAYER.KNUCKLES:
 		
-			if action != ACTION.NONE || !press_action_any()
+			if action != ACTION.NONE || !input_press_action_any()
 			{
 				break;
 			}
@@ -205,7 +205,7 @@ function scr_player_jump()
 		
 		case PLAYER.AMY:
 		
-			if action != ACTION.NONE || !press_action_any()
+			if action != ACTION.NONE || !input_press_action_any()
 			{
 				break;
 			}

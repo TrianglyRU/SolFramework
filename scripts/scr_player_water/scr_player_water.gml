@@ -24,7 +24,7 @@ function scr_player_water()
 			}
 		}
 	}	
-	else if press_action_any()
+	else if input_press_action_any()
 	{
 		// S3K's chopped-off version of the jump routine to make a player jump if they weren't grounded
 		is_water_running = false;

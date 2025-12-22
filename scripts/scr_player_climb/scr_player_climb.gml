@@ -98,7 +98,7 @@ function scr_player_climb()
 				}
 			}
 			
-			if press_action_any()
+			if input_press_action_any()
 			{
 				animation = ANIM.SPIN;
 				action = ACTION.NONE;
