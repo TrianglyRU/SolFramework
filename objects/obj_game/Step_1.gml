@@ -7,8 +7,7 @@ if room == rm_startup
 // Remember current game state
 var _prev_state = state;
 
-#region INPUT
-
+// Read input
 var _act_1a = ord("A"), _act_1b = ord("Z");
 var _act_2a = ord("S"), _act_2b = ord("X");
 var _act_3a = ord("D"), _act_3b = ord("C");
@@ -112,10 +111,7 @@ for (var _i = 0; _i < INPUT_SLOT_COUNT; _i++)
 	}
 }
 
-#endregion
-
-#region FADE
-
+// Handle fade system
 if fade_direction != FADE_DIRECTION.NONE
 {
 	if ++fade_frequency_timer >= fade_frequency_target
@@ -151,8 +147,6 @@ else if fade_timer == 0
 {
 	fade_state = FADE_STATE.PLAIN_COLOUR;
 }
-
-#endregion
 
 // Handle the manual pause
 if state != GAME_STATE.PAUSED
@@ -220,11 +214,6 @@ else
 			instance_deactivate_object(id);
 		}
 	}
-	
-	if state == GAME_STATE.PAUSED
-	{
-		instance_deactivate_object(obj_room);
-	}
 }
 
 if state != GAME_STATE.PAUSED
@@ -242,23 +231,20 @@ if state != GAME_STATE.PAUSED
 	}
 	
 	// Palette rotation
-	for (var _i = ds_list_size(palette_rotations) - 1; _i >= 0; _i--)
+	for (var _i = 0; _i < PALETTE_TOTAL_SLOT_COUNT; _i++)
 	{
-	    var _col_index = palette_rotations[| _i];
-	    var _duration = palette_durations[_col_index];
+		var _duration = palette_durations[_i];
 		
-	    if _duration > 0 && --palette_timers[_col_index] <= 0
-	    {
-	        if ++palette_indices[_col_index] > palette_end_indices[_col_index]
-	        {
-	            palette_indices[_col_index] = palette_loop_indices[_col_index];
-	        }
-			
-			palette_timers[_col_index] = _duration;
-	    }
+		if _duration > 0 && --palette_timers[_i] <= 0
+		{
+		    if ++palette_indices[_i] > palette_end_indices[_i]
+		    {
+		        palette_indices[_i] = palette_loop_indices[_i];	
+		    }
+				
+			palette_timers[_i] = _duration;
+		}
 	}
-	
-	ds_list_clear(palette_rotations);
 }
 
 // Run post-framework Begin Step for game objects

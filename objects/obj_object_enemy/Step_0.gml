@@ -7,7 +7,7 @@ else for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
 
-	if !collision_player(_player)
+	if !collision_player(_player, true)
 	{
 		continue;
 	}

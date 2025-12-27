@@ -1,5 +1,3 @@
-scr_stage_palette_rotation();
-
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
 	var _camera_data = camera_get_data(_i);

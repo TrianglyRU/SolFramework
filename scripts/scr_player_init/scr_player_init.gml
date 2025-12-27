@@ -23,6 +23,17 @@ function scr_player_init()
 			radius_y_normal = 16;
 			radius_x_spin = 8;
 			radius_y_spin = 15;
+			palette_colours = [4, 5, 6];
+			
+		break;
+		
+		case PLAYER.KNUCKLES:
+		
+			radius_x_normal = 10;
+			radius_y_normal = 20;
+			radius_x_spin = 8;
+			radius_y_spin = 15;
+			palette_colours = [7, 8, 9];
 			
 		break;
 		
@@ -32,16 +43,18 @@ function scr_player_init()
 			radius_y_normal = 17;
 			radius_x_spin = 8;
 			radius_y_spin = 13;
+			palette_colours = [10, 11, 12];
 		
 		break;
 		
-		// PLAYER.SONIC, PLAYER.KNUCKLES
+		// PLAYER.SONIC
 		default:
 		
 			radius_x_normal = 10;
 			radius_y_normal = 20;
 			radius_x_spin = 8;
 			radius_y_spin = 15;
+			palette_colours = [0, 1, 2, 3];
 	}
 	
 	state = PLAYER_STATE.DEFAULT;
@@ -54,15 +67,13 @@ function scr_player_init()
 	stick_to_convex = false;
 	is_water_running = false;
 	on_object = noone;
-	touch_object = noone;
-	
 	solid_radius_x = radius_x_normal;
 	solid_radius_y = radius_y_normal;
+	extra_mask = noone;
 	
 	vel_x = 0;
 	vel_y = 0;
 	spd_ground = 0;
-	water_vel = -1;
 	angle = 0;
 	grv = PARAM_GRV_DEFAULT;
 	
@@ -114,11 +125,6 @@ function scr_player_init()
 	cpu_timer_respawn = 0;
 	cpu_control_timer = 0;
 	cpu_auto_jump = false;
-	
-	ext_hitbox_radius_x = 0;
-	ext_hitbox_radius_y = 0;
-	ext_hitbox_offset_x = 0;
-	ext_hitbox_offset_y = 0;
 	
 	input_no_control = false;
 	input_press = input_create();

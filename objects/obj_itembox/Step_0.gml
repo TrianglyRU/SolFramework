@@ -21,10 +21,10 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		}
 	}
 	
-	if collision_player(_player, bbox_left - 1, bbox_top - 1, bbox_right + 1, bbox_bottom + 1)
+	if collision_player(_player, true, bbox_left - 1, bbox_top - 1, bbox_right + 1, bbox_bottom + 1)
 	{
 		// Bounce up
-        if _player.vel_y < 0 && _player.ext_hitbox_radius_x == 0
+        if _player.vel_y < 0 && _player.extra_mask == _player.mask_index
         {
 			// Account for moving platforms
 			if state == ITEMBOX_STATE.FALLING || xprevious == x && yprevious == y

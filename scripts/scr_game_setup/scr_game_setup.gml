@@ -21,14 +21,14 @@ function scr_game_setup()
 	global.spin_dash = true;
 	global.dash	= true;
 	global.drop_dash = false;
-	global.double_spin = false;
+	global.double_spin = true;
 	global.cd_timer = false;
 	global.cd_camera = false;
 	global.roll_lock = true;
 	global.speed_cap = false;
 	global.roll_speed_cap = true;
 	global.better_solid_collision = true;
-	global.better_angle_snap = true;
+	global.better_angle_snap = false;
 	
 	font_register(spr_font_large, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
 	font_register(spr_font_large_alt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
@@ -120,7 +120,6 @@ function scr_game_setup()
 	tile_calculate_data(spr_collision_s2, _s2_angle_data, 16);
 	
 	// Sonic 3K collision
-	/*
 	var _s3_angle_data =
 	[
 			 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 
@@ -142,7 +141,6 @@ function scr_game_setup()
 	]
 	
 	tile_calculate_data(spr_collision_s3, _s3_angle_data, 16);
-	*/
 	
 	#endregion
 }

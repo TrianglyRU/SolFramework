@@ -162,22 +162,6 @@ set_velocity = function()
 	vel_y = spd_ground * -dsin(angle);
 }
 
-set_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
-{
-	hbox_left = _hbleft;
-	hbox_top = _hbtop;
-	hbox_right = _hbright;
-	hbox_bottom = _hbbottom;
-}
-
-set_extra_hitbox = function(_hbleft, _hbtop, _hbright, _hbbottom)
-{
-	hbox_ext_left = _hbleft;
-	hbox_ext_top = _hbtop;
-	hbox_ext_right = _hbright;
-	hbox_ext_bottom = _hbbottom;
-}
-
 respawn = function()
 {
 	scr_player_init();

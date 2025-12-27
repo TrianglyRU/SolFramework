@@ -4,7 +4,20 @@ function scr_player_update_hitbox()
 	switch player_type
 	{
 		case PLAYER.SONIC:
-			mask_index = animation != ANIM.SPIN ? spr_sonic_idle : spr_sonic_spin;
+		
+			if animation == ANIM.DUCK && global.player_physics < PHYSICS.S3
+			{
+				mask_index = spr_sonic_duck;
+			}
+			else if animation == ANIM.SPIN
+			{
+				mask_index = spr_sonic_spin;
+			}
+			else
+			{
+				mask_index = spr_sonic_idle;
+			}
+			
 		break;
 		
 		case PLAYER.TAILS:
@@ -13,13 +26,17 @@ function scr_player_update_hitbox()
 		
 		case PLAYER.KNUCKLES:
 		
-			if animation == ANIM.GLIDE_AIR || animation == ANIM.CLIMB_LEDGE || animation == ANIM.CLIMB_WALL
+			if animation == ANIM.DUCK && global.player_physics < PHYSICS.S3
 			{
-				mask_index = spr_knuckles_glide;
+				mask_index = spr_knuckles_duck;
 			}
 			else if animation == ANIM.SPIN
 			{
 				mask_index = spr_knuckles_spin;
+			}
+			else if animation == ANIM.GLIDE_AIR || animation == ANIM.CLIMB_LEDGE || animation == ANIM.CLIMB_WALL
+			{
+				mask_index = spr_knuckles_glide;
 			}
 			else
 			{
@@ -35,35 +52,24 @@ function scr_player_update_hitbox()
 	
 	if action == ACTION.HAMMERSPIN
 	{
-		set_extra_hitbox(25, 25, 0, 0);
+		extra_mask = spr_amy_spin_hammer;
 	}
 	else if animation == ANIM.HAMMERDASH
 	{
 		switch image_index % 4
 		{
-			case 0:
-				set_extra_hitbox(16, 16, 6 * facing, 0);
-			break;
-			
-			case 1:
-				set_extra_hitbox(16, 16, -7 * facing, 0);
-			break;
-			
-			case 2:
-				set_extra_hitbox(14, 20, -4 * facing, -4);
-			break;
-			
-			case 3:
-				set_extra_hitbox(17, 21, 7 * facing, -5);
-			break;
+			case 0: extra_mask = spr_mask_amy_attack_1; break;
+			case 1: extra_mask = spr_mask_amy_attack_2; break;
+			case 2: extra_mask = spr_mask_amy_attack_3; break;
+			case 3: extra_mask = spr_mask_amy_attack_4; break;
 		}
 	}
 	else if shield_state == SHIELD_STATE.DOUBLE_SPIN
 	{
-		set_extra_hitbox(24, 24, 0, 0);
+		extra_mask = spr_mask_sonic_attack;
 	}
 	else
 	{
-		set_extra_hitbox(0, 0, 0, 0);
+		extra_mask = mask_index;
 	}
 }

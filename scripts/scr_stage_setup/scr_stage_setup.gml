@@ -20,6 +20,7 @@ function scr_stage_setup()
 			bg_convert_scaled("Lake", 0.5, -0.03125, 0, 0, 1, 1, -1, 0);
 			
 			pal_load(spr_palette_ghz, undefined);
+			pal_set_rotation([30, 31, 32, 33], 6, 1, 4);
 			
 			asset_set_animation(spr_asset_ghz_1, 16);
 			asset_set_animation(spr_asset_ghz_2, 8);
@@ -53,6 +54,7 @@ function scr_stage_setup()
 			deform_layers(_bg_layers, deform_get_data(DEFORM_DATA.EHZ), undefined, 0, 0.125, 80, 111);
 			
 			pal_load(spr_palette_ehz, undefined);
+			pal_set_rotation([30, 31, 32, 33], 8, 1, 4);
 			
 			asset_set_animation(spr_asset_ehz_1, 4);
 			asset_set_animation(spr_asset_ehz_2, 2);
@@ -89,6 +91,9 @@ function scr_stage_setup()
 			deform_layers(_bg_layers, undefined, deform_get_data(DEFORM_DATA.LZBG), 0.25, 0.5, 0, room_height);
 			
 			pal_load(spr_palette_dwz_a, spr_palette_dwz_b);
+			pal_set_rotation([30, 31, 32, 33], 6, 1, 4);
+			pal_set_rotation([34], 20, 1, 8);
+			
 			tile_load_data(spr_collision_dwz);
 		
 		break;

@@ -42,7 +42,3 @@ ds_list_destroy(deformation_data);
 
 ds_list_destroy(input_list_down);
 ds_list_destroy(input_list_press);
-
-// PALETTE
-
-ds_list_destroy(palette_rotations);

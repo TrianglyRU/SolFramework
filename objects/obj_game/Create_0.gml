@@ -130,11 +130,9 @@ restore_stopped_objects = function()
 		
 		ds_list_clear(cull_game_paused_list);
 	}
-	
-	instance_activate_object(obj_room);
 }
 
-cull_is_initial_restore = true;
+// cull_is_initial_restore = true;
 cull_game_paused_list = ds_list_create();
 
 #endregion
@@ -231,7 +229,6 @@ for (var _i = 0; _i < INPUT_SLOT_COUNT; _i++)
 #macro PALETTE_TOTAL_SLOT_COUNT 256
 
 palette_bound = room_height;
-palette_rotations = ds_list_create();
 palette_durations = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
 palette_timers = array_create(PALETTE_TOTAL_SLOT_COUNT, 0);
 palette_indices = array_create(PALETTE_TOTAL_SLOT_COUNT, 1);
@@ -262,7 +259,6 @@ enum TILE_LAYER
 #macro TILE_EMPTY_ANGLE -4
 
 tile_layers = [];
-tile_marker_layer = -1;
 tile_angles = array_create(TILE_COUNT);
 tile_widths = array_create(TILE_COUNT);
 tile_heights = array_create(TILE_COUNT);

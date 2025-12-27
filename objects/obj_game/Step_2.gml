@@ -11,8 +11,7 @@ with obj_object
 	event_user(13);
 }
 
-#region AUDIO
-
+// Update audio
 var _sfx_volume = global.sound_volume;
 var _bgm_volume = global.music_volume;
 
@@ -80,10 +79,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
     }
 }
 
-#endregion
-
-#region CAMERA
-
+// Handle the camera
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
     var _camera_data = camera_get_data(_i);
@@ -207,8 +203,6 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	
     camera_set_view_pos(view_camera[_i], _x - CAMERA_HORIZONTAL_BUFFER, _y);
 }
-
-#endregion
 
 if state != GAME_STATE.PAUSED
 {

@@ -1,27 +1,7 @@
 /// @self obj_player
 function scr_player_palette()
 {
-	var _colours;
-	
-	switch player_type
-	{
-	    case PLAYER.TAILS:
-	        _colours = [4, 5, 6];
-	    break;
-		
-	    case PLAYER.KNUCKLES:
-	        _colours = [7, 8, 9];
-	    break;
-		
-	    case PLAYER.AMY:
-	        _colours = [10, 11, 12];
-	    break;
-		
-		default:
-			_colours = [0, 1, 2, 3];
-	}
-	
-	var _colour = pal_get_index(_colours[0]);
+	var _colour = pal_get_index(palette_colours[0]);
 	var _colour_last = 0;
 	var _colour_loop = 0;
 	var _duration = 0;
@@ -116,5 +96,6 @@ function scr_player_palette()
 	    _colour_loop = 1;
 	}
 	
-	pal_run_rotation(_colours, _duration, _colour_loop, _colour_last);
+	// Update rotation properties each frame
+	pal_set_rotation(palette_colours, _duration, _colour_loop, _colour_last);
 }
