@@ -204,8 +204,6 @@ else
 	var _list = cull_game_paused_list;
 	var _state = state;
 	
-	ds_list_clear(_list);
-	
 	with obj_object
 	{
 		if allowed_game_state < _state

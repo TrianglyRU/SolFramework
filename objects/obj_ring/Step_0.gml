@@ -6,9 +6,9 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	var _player = player_get(_p);
-	var _use_ext_hitbox = state == RING_STATE.DROPPED && (_player.shield_state == SHIELD_STATE.DOUBLE_SPIN || _player.action == ACTION.HAMMERSPIN);
+	var _use_extra_mask = state == RING_STATE.DROPPED && (_player.shield_state == SHIELD_STATE.DOUBLE_SPIN || _player.action == ACTION.HAMMERSPIN);
 	
-	if !collision_player(_player)
+	if !collision_player(_player, _use_extra_mask)
 	{
 		continue;
 	}

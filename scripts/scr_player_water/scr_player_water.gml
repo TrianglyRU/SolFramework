@@ -67,7 +67,10 @@ function scr_player_water()
 		_set_gravity();
 		_spawn_splash();
 		
-		instance_create(0, 0, obj_bubbles_player, { vd_target_player: id });
+		with instance_create(0, 0, obj_bubbles_player)
+		{
+			player = other;
+		}
 		
 		if _shield == SHIELD.FIRE || _shield == SHIELD.LIGHTNING
 		{

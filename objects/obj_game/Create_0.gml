@@ -111,23 +111,6 @@ restore_stopped_objects = function()
 			instance_activate_object(cull_game_paused_list[| _i]);
 		}
 		
-		/*
-		if cull_is_initial_restore
-		{
-			for (var _i = _list_size - 1; _i >= 0; _i--)
-			{
-				var _inst = cull_game_paused_list[| _i];
-				
-				if _inst.allowed_game_state == GAME_STATE.NORMAL && !instance_is_drawn(_inst)
-				{
-					instance_deactivate_object(_inst);
-				}
-			}
-			
-			cull_is_initial_restore = false;
-		}
-		*/
-		
 		ds_list_clear(cull_game_paused_list);
 	}
 }

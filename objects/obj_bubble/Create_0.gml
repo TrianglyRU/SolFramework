@@ -20,7 +20,7 @@ burst = function()
 
 if bubble_type == BUBBLE.COUNTDOWN
 {
-	animator.start(0, 4, 6);
+	animator.start(spr_countdown_bubble, 0, 4, 6);
 }
 else
 {
