@@ -1,6 +1,6 @@
 /// @self
-/// @description Loads calculated collision data associated with the specified tilemap sprite.
-/// @param {Asset.GMSprite} _sprite_id The sprite used in the tilemap for which the collision data was calculated.
+/// @description						Loads calculated collision data associated with the specified tilemap sprite.
+/// @param {Asset.GMSprite} _sprite_id	The sprite used in the tilemap for which the collision data was calculated.
 function tile_load_data(_sprite_id)
 {
 	var _collision_layers = ["Collision_Main", "Collision_A", "Collision_B"];

@@ -1,12 +1,12 @@
 /// @self
 /// @feather ignore GM1041
 /// @feather ignore GM2018
-/// @description Finds a tile along a horizontal axis at the given position within a specified tile layer and returns an array containing two values: the distance to the tile's edge and its angle.
-/// @param {Real} _x The x-coordinate of the position.
-/// @param {Real} _y The y-coordinate of the position.
-/// @param {Real} _dir The direction in which to perform the search.
-/// @param {Enum.TILE_LAYER|Undefined} [_secondary_layer] The index of the secondary tile layer to search within (default is undefined).
-/// @param {Enum.QUADRANT} [_quadrant] The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
+/// @description											Finds a tile along a horizontal axis at the given position within a specified tile layer and returns an array containing two values: the distance to the tile's edge and its angle.
+/// @param {Real} _x										The x-coordinate of the position.
+/// @param {Real} _y										The y-coordinate of the position.
+/// @param {Real} _dir										The direction in which to perform the search.
+/// @param {Enum.TILE_LAYER|Undefined} [_secondary_layer]	The index of the secondary tile layer to search within (default is undefined).
+/// @param {Enum.QUADRANT} [_quadrant]						The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
 /// @returns {Array<Real>}
 function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUADRANT.DOWN)
 {
@@ -54,34 +54,15 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 		
         for (var _i = 0; _i <= 2; _i++)
         {
-			var _is_valid, _tile_buffer, _index_buffer, _width_buffer, _flip_buffer;
+			var _tile_buffer, _index_buffer, _width_buffer, _flip_buffer;
 			
 			_tile = tilemap_get(_tile_layer, _cell_id_x, _cell_id_y);
 			_flip = tile_get_flip(_tile);
 			_index = tile_get_index(_tile);	
 			
-			// Get width
-			if _tile == -1 || _index == 0
+			// Check validity and get width
+			if _tile != -1 && _index > 0
 			{
-				_w = 0;
-				_is_valid = false;
-			}
-			else
-			{
-				var _width_index;
-				
-				if _flip
-				{
-					_width_index = TILE_SIZE - 1 - _mod_y;
-				}
-				else
-				{
-					_width_index = _mod_y;
-				}
-				
-				_w = _widths[_index][_width_index];
-			
-				// Check validity
 				var _marker_index = 0;
 				var _marker_layer = _markers[_j];
 				
@@ -98,7 +79,8 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 				var _is_right = _quadrant == QUADRANT.RIGHT;
 				var _is_left = _quadrant == QUADRANT.LEFT;
 				var _is_positive = _dir == 1;
-			
+				var _is_valid;
+				
 				switch _marker_index
 				{	
 					// Top Solid
@@ -115,24 +97,50 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 					default:
 						_is_valid = true;
 				}
+				
+				if _is_valid
+				{
+					var _width_index;
+				
+					if _flip
+					{
+						_width_index = TILE_SIZE - 1 - _mod_y;
+					}
+					else
+					{
+						_width_index = _mod_y;
+					}
+				
+					_w = _widths[_index][_width_index];
+				}
+				else
+				{
+					_w = 0;
+				}
+			}
+			else
+			{
+				_w = 0;
 			}
 			
 			// Initial tile check
 			if _i == 0
 			{
-				if _w == 0 || !_is_valid
+				if _w == 0
 				{
+					// Check further tile next
 					_cell_id_x += _dir;
 				}
 				else if _w == TILE_SIZE
 				{
+					// Check closer tile next
 					_tile_buffer = _tile;
 					_index_buffer = _index;
 					_width_buffer = _w;
 					_flip_buffer = _flip;
 					_cell_id_x -= _dir;
 					
-					// Check closer tile (i = 2)
+					// this sets i to 2
                     _i++;
 				}
 				else
@@ -144,7 +152,7 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			// Further tile check
 			else if _i == 1
 			{
-				if !_is_valid
+				if _w == 0
 				{
 					_found = false;
 				}
@@ -153,7 +161,7 @@ function collision_tile_h(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 			}
 			
 			// Closer tile check
-			else if !_is_valid
+			else if _w == 0
 			{
 				_tile = _tile_buffer;
 				_index = _index_buffer;

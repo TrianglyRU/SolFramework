@@ -1,6 +1,6 @@
 /// @self
-/// @description Rounds an angle in degrees to the nearest raw angle value.
-/// @param {Real} _angle The angle in degrees to round.
+/// @description			Rounds an angle in degrees to the nearest raw angle value.
+/// @param {Real} _angle	The angle in degrees to round.
 /// @returns {Real}
 function math_get_angle_rounded(_angle)
 {

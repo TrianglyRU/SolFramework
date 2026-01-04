@@ -1,6 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
+/// @self obj_object_enemy
 destroy = function(_player)
 {
 	_player.add_score(++_player.score_combo);

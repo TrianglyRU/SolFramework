@@ -1,7 +1,7 @@
 /// @self
-/// @description Plays a sound effect, stopping any current instance of the same sound asset.
-/// @param {Asset.GMSound} _sound_id The sound asset to play.
-/// @param {Array<Real>|Undefined} [_loop] The loop points for the sound (default is undefined).
+/// @description							Plays a sound effect, stopping any current instance of the same sound asset.
+/// @param {Asset.GMSound} _sound_id		The sound asset to play.
+/// @param {Array<Real>|Undefined} [_loop]	The loop points for the sound (default is undefined).
 /// @returns {Id.Sound}
 function audio_play_sfx(_sound_id, _loop = undefined)
 {   

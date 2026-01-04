@@ -32,7 +32,7 @@ function scr_player_camera()
 	{
 		if animation == ANIM.SPIN
 		{
-			_target_y -= radius_y_normal - solid_radius_y;
+			_target_y -= radius_y_normal - radius_y;
 		}
 		
 		var _limit = abs(spd_ground) < 8 ? 6 : 16;

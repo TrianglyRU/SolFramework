@@ -1,6 +1,6 @@
 /// @self
-/// @description Loads the saved data for the specified slot.
-/// @param {Real} _slot The slot index of the saved data to load.
+/// @description		Loads the saved data for the specified slot.
+/// @param {Real} _slot	The slot index of the saved data to load.
 function game_load_data(_slot)
 {
 	var _filename = "save" + string(_slot) + ".bin";

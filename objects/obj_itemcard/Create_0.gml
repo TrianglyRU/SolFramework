@@ -1,13 +1,13 @@
 // Inherit the parent event
 event_inherited();
 
-enum ITECARD_STATE
+enum ITEMCARD_STATE
 {
 	MOVE,
 	IDLE
 }
 
-state = ITECARD_STATE.MOVE;
+state = ITEMCARD_STATE.MOVE;
 wait_timer = 0;
 vel_y = -3;
 depth -= 1;

@@ -106,7 +106,7 @@ switch (category_id)
 	
 		global.current_save_slot = option_id - 1;
 
-		if (!game_check_data(global.current_save_slot))
+		if !game_check_data(global.current_save_slot)
 		{
 			room_to_load = rm_stage_ghz1;
 			load_category(4);
@@ -114,7 +114,7 @@ switch (category_id)
 			break;
 		}
 		
-		game_clear_level_data();
+		game_clear_level_data_all();
 		game_load_data(global.current_save_slot);
 		
 		switch (global.stage_index)
@@ -194,8 +194,7 @@ switch (category_id)
 				}
 
 				global.sound_volume = clamp(global.sound_volume, 0, 1);
-				audio_play_sfx(snd_ring_left);
-				audio_play_sfx(snd_ring_right);
+				audio_play_ring_sfx();
 				
 			break;
 			
@@ -253,7 +252,7 @@ switch (category_id)
 		global.score_count = 0;
 		global.life_count = 3;
 		
-		game_clear_level_data();
+		game_clear_level_data_all();
 		game_save_data(global.current_save_slot);
 		room_goto(room_to_load);
 		

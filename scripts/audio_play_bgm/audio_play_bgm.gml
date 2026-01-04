@@ -1,7 +1,7 @@
 /// @self
-/// @description Plays BGM on the specified channel if not already playing.
-/// @param {Asset.GMSound} _sound_id The sound asset to play.
-/// @param {Real} [_index] The channel index (default is 0).
+/// @description						Plays BGM on the specified channel if not already playing.
+/// @param {Asset.GMSound} _sound_id	The sound asset to play.
+/// @param {Real} [_index]				The channel index (default is 0).
 /// @returns {Id.Sound}
 function audio_play_bgm(_sound_id, _index = 0)
 {

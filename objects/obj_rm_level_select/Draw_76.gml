@@ -11,7 +11,7 @@ if obj_game.fade_state == FADE_STATE.PLAIN_COLOUR && !audio_is_bgm_playing() && 
 		global.score_count = 0;
 		global.life_count = 3;
 		
-		game_clear_level_data();
+		game_clear_level_data_all();
 		room_goto(room_to_load);
 	}
 	else

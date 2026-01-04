@@ -1,10 +1,10 @@
 /// @self
-/// @description Configures and triggers a screen fade effect. If unsure, use pre-configured fade functions.
-/// @param {Enum.FADE_DIRECTION} _direction The "direction" of the fade (e.g., fade-in or fade-out).
-/// @param {Enum.FADE_TYPE} _type The blending type of the fade effect.
-/// @param {Real} _speed The speed at which the fade occurs.
-/// @param {Real} [_frequency] The number of game steps between display updates (default is 1).
-/// @param {Bool} [_game_control] Whether to pause game updates during the fade (default is true).
+/// @description							Configures and triggers a screen fade effect. If unsure, use pre-configured fade functions.
+/// @param {Enum.FADE_DIRECTION} _direction	The "direction" of the fade (e.g., fade-in or fade-out).
+/// @param {Enum.FADE_TYPE} _type			The blending type of the fade effect.
+/// @param {Real} _speed					The speed at which the fade occurs.
+/// @param {Real} [_frequency]				The number of game steps between display updates (default is 1).
+/// @param {Bool} [_game_control]			Whether to pause game updates during the fade (default is true).
 function fade_perform(_direction, _type, _speed, _frequency = 1, _game_control = true)
 {
 	if _speed != 0

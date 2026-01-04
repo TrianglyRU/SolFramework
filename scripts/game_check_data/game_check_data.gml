@@ -1,6 +1,6 @@
 /// @self
-/// @description Checks if saved data exists for the specified slot.
-/// @param {Real} _slot The slot index to check for saved data.
+/// @description		Checks if saved data exists for the specified slot.
+/// @param {Real} _slot	The slot index to check for saved data.
 /// @returns {Bool}
 function game_check_data(_slot)
 {

@@ -1,8 +1,8 @@
 /// @self
 /// @description							Applies a deformation effect to the specified layer and all layers behind it (by depth).
 /// @param {String} _layer					The name of the layer at which depth the deformation will be applied.
-/// @param {Array<Real>|undefined} _data1	The first set of deformation data values.
-/// @param {Array<Real>|undefined} _data2	The second set of deformation data values.
+/// @param {Array<Real>|Undefined} _data1	The first set of deformation data values.
+/// @param {Array<Real>|Undefined} _data2	The second set of deformation data values.
 /// @param {Real} _factor					The vertical parallax factor of the deformation effect.
 /// @param {Real} _speed					The speed at which the deformation moves or animates vertically, in pixels per step.
 /// @param {Real} _range_start				The top boundary of the deformation area, in room-space.

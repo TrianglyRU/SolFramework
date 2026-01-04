@@ -2,25 +2,31 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
 	var _speed = abs(_player.spd_ground);
+	var _on_object = _player.on_object;
 	
-	if _player.on_object != id
+	if _on_object != id
 	{
 		if !_player.is_grounded || _player.action == ACTION.DASH || _speed < 6
 		{
 			continue;
 		}
 		
-		var _bound_inner = 192;
-		var	_bound_outer = 208;
-		
-		if _player.on_object != noone
-		{
-			_bound_inner = 176;
-			_bound_outer = 192;
-		}
-		else if _player.state >= PLAYER_STATE.DEFAULT_LOCKED
+		if _player.state >= PLAYER_STATE.DEFAULT_LOCKED
 		{
 			continue;
+		}
+		
+		var _bound_outer, _bound_inner;
+		
+		if _on_object != noone && _on_object.object_index == obj_spiral_path
+		{
+			_bound_outer = 192;
+			_bound_inner = 176;
+		}
+		else
+		{
+			_bound_outer = 208;
+			_bound_inner = 192;	
 		}
 		
 		var _dist_x = floor(_player.x) - x;
@@ -59,9 +65,10 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	else
 	{
-		var _dist_x = floor(_player.x) - x + 208;
+		var _total_width = 416;
+		var _dist_x = floor(_player.x) - x + _total_width * 0.5;
 		
-		if _dist_x < 0 || abs(_dist_x) >= 416 || !_player.is_grounded || _speed < 6
+		if _dist_x < 0 || abs(_dist_x) >= _total_width || !_player.is_grounded || _speed < 6
 		{
 			if _speed >= 6 && _player.animation == ANIM.FLIP
 			{
@@ -78,13 +85,13 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 				
 				if _player.facing == -1
 				{
-					_frame_index = array_length(flip_frame_table) - _frame_index - 1;
+					_frame_index = array_length(flip_frame_table) - 1 - _frame_index;
 				}
 				
 				_player.image_index = flip_frame_table[_frame_index];
 			}
 			
-			_player.y = y + offset_table[_dist_x] + _player.radius_y_normal - _player.solid_radius_y;
+			_player.y = y + offset_table[_dist_x] + _player.radius_y_normal - _player.radius_y;
 		}
 	}
 }

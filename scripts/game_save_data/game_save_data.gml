@@ -1,6 +1,6 @@
 /// @self
-/// @description Saves game data to the specified save slot.
-/// @param {Real} _slot The slot index to save data to.
+/// @description		Saves game data to the specified save slot.
+/// @param {Real} _slot	The slot index to save data to.
 function game_save_data(_slot)
 {
 	if _slot == -1

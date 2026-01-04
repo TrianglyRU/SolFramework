@@ -1,6 +1,6 @@
 /// @self
-/// @description Returns the height of the camera created by camera_new() function.
-/// @param {Real} _index The camera index.
+/// @description			Returns the height of the camera created by camera_new() function.
+/// @param {Real} _index	The camera index.
 /// @returns {Real}
 function camera_get_height(_index)
 {

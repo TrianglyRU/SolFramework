@@ -1,3 +1,5 @@
+/// @self
+/// @description Creates a culler instance for this object.
 function event_culler(_action = CULL_ACTION.PAUSE, _inst_id = id)
 {
 	new ConstCuller(_action, _inst_id);

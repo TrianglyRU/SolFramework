@@ -6,14 +6,20 @@ function scr_player_animate_knuckles()
 		case ANIM.IDLE:
 		case ANIM.WAIT:
 				
-			if sprite_index != spr_knuckles_idle || sprite_index == spr_knuckles_wait && animator.timer < 0
+			if sprite_index != spr_knuckles_idle && sprite_index != spr_knuckles_wait 
+			|| sprite_index == spr_knuckles_wait && animator.timer < 0
 			{
-				animator.start(spr_knuckles_idle, 0, 0, 300);
+				if animation == ANIM.WAIT
+				{
+					animation = ANIM.IDLE;
+				}
+				
+			    animator.start(spr_knuckles_idle, 0, 0, 300);
 			}
-			else if animator.timer < 0
+			else if sprite_index == spr_knuckles_idle && animator.timer < 0
 			{
-				animation = ANIM.WAIT;
-				animator.start(spr_knuckles_wait, 0, 99, 6);
+			    animation = ANIM.WAIT;
+			    animator.start(spr_knuckles_wait, 0, 99, 6);
 			}
 				
 		break;

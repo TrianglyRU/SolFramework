@@ -114,7 +114,7 @@ switch state
 		
 		if obj_game.fade_state == FADE_STATE.PLAIN_COLOUR && !audio_is_bgm_playing()
 		{
-			game_clear_level_data();
+			game_clear_level_data_all();
 			
 			if next_room == -1
 			{

@@ -1,6 +1,6 @@
 /// @self
-/// @description A wrapper around camera_get_view_x().
-/// @param {Real} _index The viewport index.
+/// @description			A wrapper around camera_get_view_x().
+/// @param {Real} _index	The viewport index.
 /// @returns {Real}
 function camera_get_x(_index)
 {

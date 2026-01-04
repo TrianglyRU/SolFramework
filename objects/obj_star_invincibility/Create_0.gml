@@ -2,6 +2,8 @@
 event_inherited();
 
 depth = draw_depth(10);
+player = noone;
+star_index = 0;
 angle = 0;
 angle_offset = 0;
 frame_index = [0, 0];

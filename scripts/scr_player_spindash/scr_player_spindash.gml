@@ -66,9 +66,9 @@ function scr_player_spindash()
 	var _speed = (super_timer > 0 ? 11 : _min_speed) + round(spindash_charge) * 0.5;
 	var _raw_camera_delay = -((_speed - _min_speed) * 2) + 32;
 	
-	y += solid_radius_y - radius_y_spin;	
-	solid_radius_x = radius_x_spin;
-	solid_radius_y = radius_y_spin;
+	y += radius_y - radius_y_spin;	
+	radius_x = radius_x_spin;
+	radius_y = radius_y_spin;
 	animation = ANIM.SPIN;
 	action = ACTION.NONE;
 	spd_ground = _speed * facing;

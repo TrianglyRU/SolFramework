@@ -1,7 +1,7 @@
 /// @self
-/// @description Sets the palette index for the given colour indices.
-/// @param {Array<Real>} _colour_indices An array of colour indices to modify.
-/// @param {Real} _replacement_index The new palette index.
+/// @description							Sets the palette index for the given colour indices.
+/// @param {Array<Real>} _colour_indices	An array of colour indices to modify.
+/// @param {Real} _replacement_index		The new palette index.
 function pal_set_index(_colour_indices, _replacement_index)
 {
 	var _timers = obj_game.palette_timers;

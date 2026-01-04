@@ -22,8 +22,7 @@ enum SOLID_TOUCH
 	RIGHT
 }
 
-/// @param {Id.Instance} _player		The player object instance.
-/// @param {Enum.SOLID_TYPE|Real} _type	The type of solid object.
+/// @self obj_object_solid
 solid_object = function(_player, _type)
 {
 	var _p = _player.player_index;
@@ -46,7 +45,7 @@ solid_object = function(_player, _type)
 	var _px = floor(_player.x);
 	var _py = floor(_player.y);
 	var _prx = _player.radius_x_normal + 1;
-	var _pry = _player.solid_radius_y;
+	var _pry = _player.radius_y;
 	var _pleft = _px - _prx;
 	var _pright = _px + _prx - 1;
 	var _ptop = _py - _pry;
@@ -109,7 +108,7 @@ solid_object = function(_player, _type)
 	}
 	
 	// Assume the player is grip_y pixels lower than they actually are	
-	var _y_offset = _grip_y - _slope_offset;
+	var _y_offset = -_slope_offset + _grip_y;
 	
 	if _type < SOLID_TYPE.TOP
 	{
@@ -242,6 +241,7 @@ solid_object = function(_player, _type)
 	}
 }
 
+/// @self obj_object_solid
 attach_player = function(_type, _player, _obj, _bbtop)
 {
 	solid_touch[_player.player_index] = SOLID_TOUCH.TOP;
@@ -256,7 +256,7 @@ attach_player = function(_type, _player, _obj, _bbtop)
 		_player.reset_substate();
 	}
 	
-	_player.y = _bbtop - _player.solid_radius_y;
+	_player.y = _bbtop - _player.radius_y;
 	_player.spd_ground	= _player.vel_x;
 	_player.vel_y = 0;
 	_player.angle = 0;

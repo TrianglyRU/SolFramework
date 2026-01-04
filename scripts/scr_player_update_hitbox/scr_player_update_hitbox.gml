@@ -5,7 +5,7 @@ function scr_player_update_hitbox()
 	{
 		case PLAYER.SONIC:
 		
-			if animation == ANIM.DUCK && global.player_physics < PHYSICS.S3
+			if animation == ANIM.DUCK && image_index == image_number - 1 && global.player_physics < PHYSICS.S3
 			{
 				mask_index = spr_sonic_duck;
 			}
@@ -26,7 +26,7 @@ function scr_player_update_hitbox()
 		
 		case PLAYER.KNUCKLES:
 		
-			if animation == ANIM.DUCK && global.player_physics < PHYSICS.S3
+			if animation == ANIM.DUCK && image_index == image_number - 1 && global.player_physics < PHYSICS.S3
 			{
 				mask_index = spr_knuckles_duck;
 			}

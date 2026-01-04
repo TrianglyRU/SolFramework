@@ -1,8 +1,8 @@
 /// @self
-/// @description Pre-calculates collision data for the tilemap associated with the specified sprite.
-/// @param {Asset.GMSprite} _sprite_id The sprite used in the tilemap.
-/// @param {Array<Real>|Undefined} _raw_angle_data An array of values representing a raw angle for each tile. Leave undefined to let the framework calculate it automatically.
-/// @param {Real} _row_length The amount of tiles in each row.
+/// @description									Pre-calculates collision data for the tilemap associated with the specified sprite.
+/// @param {Asset.GMSprite} _sprite_id				The sprite used in the tilemap.
+/// @param {Array<Real>|Undefined} _raw_angle_data	An array of values representing a raw angle for each tile. Leave undefined to let the framework calculate it automatically.
+/// @param {Real} _row_length						The amount of tiles in each row.
 function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 {
 	var _w = sprite_get_width(_sprite_id);

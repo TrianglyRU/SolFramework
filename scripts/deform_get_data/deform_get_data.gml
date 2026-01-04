@@ -1,6 +1,6 @@
 /// @self
-/// @description Returns data representing the deformation pattern.
-/// @param {Enum.DEFORM_DATA} _data_enum An enum representing the type of deformation data.
+/// @description							Returns data representing the deformation pattern.
+/// @param {Enum.DEFORM_DATA} _data_enum	An enum representing the type of deformation data.
 /// @returns {Array<Real>}
 function deform_get_data(_data_enum)
 {

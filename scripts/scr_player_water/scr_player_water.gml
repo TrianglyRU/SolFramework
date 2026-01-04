@@ -8,7 +8,7 @@ function scr_player_water()
 	
 	var _shield = global.player_shields[player_index];
 	var _water_level = obj_water.y;
-	var _water_run_level = _water_level - solid_radius_y;
+	var _water_run_level = _water_level - radius_y;
 	
 	// This code is run by the water trail object itself in S3K
 	if !is_water_running
@@ -28,8 +28,8 @@ function scr_player_water()
 	{
 		// S3K's chopped-off version of the jump routine to make a player jump if they weren't grounded
 		is_water_running = false;
-		solid_radius_x = radius_x_spin;
-		solid_radius_y = radius_y_spin;
+		radius_x = radius_x_spin;
+		radius_y = radius_y_spin;
 		is_jumping = true;
 		is_grounded = false;
 		animation = ANIM.SPIN;

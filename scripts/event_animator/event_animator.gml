@@ -1,3 +1,5 @@
+/// @self
+/// @description Creates an animator instance for this object.
 function event_animator()
 {
 	new ConstAnimator(id);

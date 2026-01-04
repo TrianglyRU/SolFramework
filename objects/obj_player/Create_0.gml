@@ -211,8 +211,8 @@ reset_substate = function()
 	// Clear collision
 	is_grounded = false;
 	on_object = noone;
-	solid_radius_x = radius_x_normal;
-	solid_radius_y = radius_y_normal;
+	radius_x = radius_x_normal;
+	radius_y = radius_y_normal;
 	
 	visual_angle = 0;
 }
@@ -228,8 +228,8 @@ release_glide = function(_frame)
 	animation = ANIM.GLIDE_FALL;
 	action = ACTION.GLIDE;
 	action_state = GLIDE_STATE.FALL;
-	solid_radius_x = radius_x_normal;
-	solid_radius_y = radius_y_normal;
+	radius_x = radius_x_normal;
+	radius_y = radius_y_normal;
 	reset_gravity();
 }
 
@@ -305,9 +305,9 @@ land = function()
 	
 	if animation != ANIM.SPIN
 	{
-		y += (radius_y_normal - solid_radius_y) * (angle > 90 && angle <= 270 ? 1 : -1);
-		solid_radius_x = radius_x_normal;
-		solid_radius_y = radius_y_normal;
+		y += (radius_y_normal - radius_y) * (angle > 90 && angle <= 270 ? 1 : -1);
+		radius_x = radius_x_normal;
+		radius_y = radius_y_normal;
 	}
 }
 

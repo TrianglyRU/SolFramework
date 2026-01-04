@@ -38,9 +38,9 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	
 	// Draw the final result to the application surface
 	surface_set_target(application_surface);
-//	shader_set(sh_analogue_colour);
+	// shader_set(sh_analogue_colour);
 	draw_surface_part(_fade_surface, CAMERA_HORIZONTAL_BUFFER, 0, surface_get_width(_surface) - CAMERA_HORIZONTAL_BUFFER * 2, surface_get_height(_surface), _camera_data.surface_x, _camera_data.surface_y);
-//	shader_reset();
+	// shader_reset();
 	surface_reset_target();
 }
 

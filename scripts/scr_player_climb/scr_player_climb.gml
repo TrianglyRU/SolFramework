@@ -43,11 +43,11 @@ function scr_player_climb()
 				vel_y = 0;
 			}
 			
-			var _solid_radius_x = facing >= 0 ? solid_radius_x - 1 : -solid_radius_x;		
+			var _radius_x = facing >= 0 ? radius_x - 1 : -radius_x;		
 			
 			if vel_y < 0
 			{
-				var _wall_dist = collision_tile_h(x + _solid_radius_x, y - solid_radius_y - 1, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _radius_x, y - radius_y - 1, facing, secondary_layer)[0];
 				
 				if _wall_dist >= 4
 				{
@@ -64,7 +64,7 @@ function scr_player_climb()
 				}
 				
 				// Original game adds 1 to y coordinate for some reason...
-				var _ceil_dist = collision_tile_v(x + _solid_radius_x, y - radius_y_normal + 1, -1, secondary_layer)[0];
+				var _ceil_dist = collision_tile_v(x + _radius_x, y - radius_y_normal + 1, -1, secondary_layer)[0];
 				
 				if _ceil_dist < 0
 				{
@@ -74,7 +74,7 @@ function scr_player_climb()
 			}
 			else
 			{
-				var _wall_dist = collision_tile_h(x + _solid_radius_x, y + solid_radius_y - 1, facing, secondary_layer)[0];
+				var _wall_dist = collision_tile_h(x + _radius_x, y + radius_y - 1, facing, secondary_layer)[0];
 				
 				if _wall_dist != 0
 				{
@@ -82,7 +82,7 @@ function scr_player_climb()
 					break;
 				}
 				
-				var _floor_data = collision_tile_v(x + _solid_radius_x, y + radius_y_normal - 1, 1, secondary_layer);
+				var _floor_data = collision_tile_v(x + _radius_x, y + radius_y_normal - 1, 1, secondary_layer);
 				var _floor_dist = _floor_data[0];
 				var _floor_angle = _floor_data[1];
 				
@@ -92,7 +92,7 @@ function scr_player_climb()
 					vel_y = 0;
 					animation = ANIM.IDLE;
 					angle = _floor_angle;
-					y += _floor_dist + solid_radius_y;
+					y += _floor_dist + radius_y;
 					
 					break;
 				}
@@ -106,8 +106,8 @@ function scr_player_climb()
 				facing *= -1;
 				vel_x = 3.5 * facing;
 				vel_y = jump_min_vel;
-				solid_radius_x = radius_x_spin;
-				solid_radius_y = radius_y_spin;
+				radius_x = radius_x_spin;
+				radius_y = radius_y_spin;
 				reset_gravity();
 				
 				audio_play_sfx(snd_jump);

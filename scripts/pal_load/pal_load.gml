@@ -1,7 +1,7 @@
 /// @self
-/// @description Loads the primary (A) and the secondary (B) palette data from two sprite textures.
-/// @param {Asset.GMSprite|Undefined} _primary The primary palette sprite.
-/// @param {Asset.GMSprite|Undefined} _secondary The secondary palette sprite.
+/// @description									Loads the primary (A) and the secondary (B) palette data from two sprite textures.
+/// @param {Asset.GMSprite|Undefined} _primary		The primary palette sprite.
+/// @param {Asset.GMSprite|Undefined} _secondary	The secondary palette sprite.
 function pal_load(_primary, _secondary)
 {
 	var _sprites = [_primary, _secondary];

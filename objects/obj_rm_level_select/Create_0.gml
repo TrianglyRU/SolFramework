@@ -150,8 +150,7 @@ cheat_codes =
 			if !global.enable_debug_mode
 			{
 			    global.enable_debug_mode = true;
-				audio_play_sfx(snd_ring_left);
-			    audio_play_sfx(snd_ring_right);
+				audio_play_ring_sfx();
 			}
 		}
 	},
@@ -180,5 +179,5 @@ set_room_to_load();
 
 audio_play_bgm(snd_bgm_level_select);
 bg_convert("Background", 0, 0, 0, 0, 0);
-discord_set_data("LEVEL SELECT", "", "roolevels", "");
+discord_set_data("LEVEL SELECT", "", "room_levels", "");
 fade_perform_black(FADE_DIRECTION.IN, 1);

@@ -57,6 +57,9 @@ function scr_player_init()
 			palette_colours = [0, 1, 2, 3];
 	}
 	
+	radius_x = radius_x_normal;
+	radius_y = radius_y_normal;
+	
 	state = PLAYER_STATE.DEFAULT;
 	is_grounded = true;
 	is_jumping = false;
@@ -67,8 +70,6 @@ function scr_player_init()
 	stick_to_convex = false;
 	is_water_running = false;
 	on_object = noone;
-	solid_radius_x = radius_x_normal;
-	solid_radius_y = radius_y_normal;
 	extra_mask = noone;
 	
 	vel_x = 0;
@@ -177,10 +178,10 @@ function scr_player_init()
 		}
 		else
 		{
-			y -= solid_radius_y;
+			y -= radius_y;
 		}
 		
-		var _floor_dist = collision_tile_2v(x - solid_radius_x, y + solid_radius_y - 1, x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer)[0];
+		var _floor_dist = collision_tile_2v(x - radius_x, y + radius_y - 1, x + radius_x - 1, y + radius_y - 1, 1, secondary_layer)[0];
 		
 		if _floor_dist < 14
 		{

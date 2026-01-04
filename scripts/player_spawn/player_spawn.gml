@@ -1,9 +1,9 @@
 /// @self
-/// @description Spawns a player object of the given type at the specified location. Returns the instance ID of the created player, or noone if the maximum player count is exceeded.
-/// @param {Real} _x The x-coordinate of the spawn location.
-/// @param {Real} _y The y-coordinate of the spawn location.
-/// @param {Enum.PLAYER} _player_type The character to spawn.
-/// @param {Real} [_depth] The depth the player object will be drawn with (optional, defaults to the depth of the calling instance).
+/// @description						Spawns a player object of the given type at the specified location. Returns the instance ID of the created player, or noone if the maximum player count is exceeded.
+/// @param {Real} _x					The x-coordinate of the spawn location.
+/// @param {Real} _y					The y-coordinate of the spawn location.
+/// @param {Enum.PLAYER} _player_type	The character to spawn.
+/// @param {Real} [_depth]				The depth the player object will be drawn with (optional, defaults to the depth of the calling instance).
 /// @returns {Id.Instance}
 function player_spawn(_x, _y, _player_type, _depth = depth)
 {

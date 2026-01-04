@@ -53,9 +53,9 @@ function scr_player_movement_roll()
 	{
 	    if spd_ground == 0 || global.player_physics == PHYSICS.SK && abs(spd_ground) < 0.5
 	    {
-	        y += solid_radius_y - radius_y_normal;
-	        solid_radius_x = radius_x_normal;
-	        solid_radius_y = radius_y_normal;
+	        y += radius_y - radius_y_normal;
+	        radius_x = radius_x_normal;
+	        radius_y = radius_y_normal;
 	        animation = ANIM.IDLE;
 	    }
 	}

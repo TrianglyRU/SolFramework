@@ -34,9 +34,9 @@ function scr_player_roll_start()
 	
 	if _allowed_to_roll || forced_roll
 	{
-		y += solid_radius_y - radius_y_spin;
-		solid_radius_x = radius_x_spin;
-		solid_radius_y = radius_y_spin;
+		y += radius_y - radius_y_spin;
+		radius_x = radius_x_spin;
+		radius_y = radius_y_spin;
 		animation = ANIM.SPIN;
 		
 		audio_play_sfx(snd_roll);

@@ -1,6 +1,6 @@
 /// @self
-/// @description Deletes the camera and surface for the given viewport index.
-/// @param {Real} _index The viewport index.
+/// @description			Deletes the camera and surface for the given viewport index.
+/// @param {Real} _index	The viewport index.
 function camera_delete(_index)
 {
 	view_visible[_index] = false;

@@ -65,8 +65,8 @@ function scr_player_carry()
 		carry_target.is_jumping = true;
 		carry_target.action = ACTION.NONE;
 		carry_target.animation = ANIM.SPIN;
-		carry_target.solid_radius_x = carry_target.radius_x_spin;
-		carry_target.solid_radius_y = carry_target.radius_y_spin;
+		carry_target.radius_x = carry_target.radius_x_spin;
+		carry_target.radius_y = carry_target.radius_y_spin;
 		carry_target.vel_y = carry_target.jump_min_vel;
 		
 		var _input_down = carry_target.input_down;

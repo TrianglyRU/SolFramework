@@ -43,7 +43,7 @@ switch state
 				_checkpoint_data[2] = 0;
 			}
 		
-			game_clear_level_data(false);
+			game_clear_level_data();
 			room_restart();
 		}
 		else
@@ -51,7 +51,7 @@ switch state
 			global.life_count = 3;
 			global.score_count = 0;
 			
-			game_clear_level_data();
+			game_clear_level_data_all();
 			game_save_data(global.current_save_slot);
 		
 			if global.continue_count > 0

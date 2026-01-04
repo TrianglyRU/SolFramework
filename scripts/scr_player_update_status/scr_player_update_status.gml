@@ -5,7 +5,7 @@ function scr_player_update_status()
 	{
 		if skid_timer++ % 4 == 0
 		{
-			instance_create(x, y + solid_radius_y, obj_dust_skid);
+			instance_create(x, y + radius_y, obj_dust_skid);
 		}
 	}
 

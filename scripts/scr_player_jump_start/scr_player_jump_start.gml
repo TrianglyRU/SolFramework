@@ -19,15 +19,15 @@ function scr_player_jump_start()
 	switch _angle_quad
 	{
 		case QUADRANT.DOWN:	
-			_ceil_dist = collision_tile_2v(x - solid_radius_x, y - solid_radius_y, x + solid_radius_x - 1, y - solid_radius_y, -1, secondary_layer, _angle_quad)[0];	
+			_ceil_dist = collision_tile_2v(x - radius_x, y - radius_y, x + radius_x - 1, y - radius_y, -1, secondary_layer, _angle_quad)[0];	
 		break;
 
 		case QUADRANT.RIGHT:
-			_ceil_dist = collision_tile_2h(x - solid_radius_y, y - solid_radius_x, x - solid_radius_y, y + solid_radius_x - 1, -1, secondary_layer, _angle_quad)[0];
+			_ceil_dist = collision_tile_2h(x - radius_y, y - radius_x, x - radius_y, y + radius_x - 1, -1, secondary_layer, _angle_quad)[0];
 		break;
 
 		case QUADRANT.LEFT:
-			_ceil_dist = collision_tile_2h(x + solid_radius_y - 1, y - solid_radius_x, x + solid_radius_y - 1, y + solid_radius_x - 1, 1, secondary_layer, _angle_quad)[0];
+			_ceil_dist = collision_tile_2h(x + radius_y - 1, y - radius_x, x + radius_y - 1, y + radius_x - 1, 1, secondary_layer, _angle_quad)[0];
 		break;
 	}
 
@@ -38,9 +38,9 @@ function scr_player_jump_start()
 	
 	if animation != ANIM.SPIN
 	{
-		y += solid_radius_y - radius_y_spin;
-		solid_radius_x = radius_x_spin;
-		solid_radius_y = radius_y_spin;
+		y += radius_y - radius_y_spin;
+		radius_x = radius_x_spin;
+		radius_y = radius_y_spin;
 	}
 	else if global.roll_lock && global.player_physics != PHYSICS.CD
 	{
@@ -49,6 +49,7 @@ function scr_player_jump_start()
 	
 	vel_x += jump_vel * dsin(angle);
 	vel_y += jump_vel * dcos(angle);
+	
 	is_jumping = true;
 	is_grounded = false;
 	on_object = noone;

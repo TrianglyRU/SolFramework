@@ -21,8 +21,8 @@
   "width": 30,
   "height": 40,
   "textureGroupId": {
-    "name": "texgroup_amy",
-    "path": "texturegroups/texgroup_amy",
+    "name": "texgroup_no_export",
+    "path": "texturegroups/texgroup_no_export",
   },
   "swatchColours": null,
   "gridX": 0,

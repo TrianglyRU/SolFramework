@@ -15,7 +15,7 @@ function scr_player_glide_collision()
 	
 	if _move_quad != QUADRANT.RIGHT
 	{
-	    var _wall_dist = collision_tile_h(x - solid_radius_x, y, -1, secondary_layer)[0];
+	    var _wall_dist = collision_tile_h(x - radius_x, y, -1, secondary_layer)[0];
 		
 	    if _wall_dist < 0
 	    {
@@ -28,7 +28,7 @@ function scr_player_glide_collision()
 	
 	if _move_quad != QUADRANT.LEFT
 	{
-	    var _wall_dist = collision_tile_h(x + solid_radius_x - 1, y, 1, secondary_layer)[0];
+	    var _wall_dist = collision_tile_h(x + radius_x - 1, y, 1, secondary_layer)[0];
 		
 	    if _wall_dist < 0
 	    {
@@ -41,7 +41,7 @@ function scr_player_glide_collision()
 	
 	if _move_quad != QUADRANT.DOWN
 	{
-	    var _roof_dist = collision_tile_2v(x - solid_radius_x,  y - solid_radius_y, x + solid_radius_x - 1,  y - solid_radius_y, -1, secondary_layer)[0];
+	    var _roof_dist = collision_tile_2v(x - radius_x,  y - radius_y, x + radius_x - 1,  y - radius_y, -1, secondary_layer)[0];
     
 	    if _roof_dist <= -14 && _move_quad == QUADRANT.LEFT && global.player_physics >= PHYSICS.S3
 	    {
@@ -68,7 +68,7 @@ function scr_player_glide_collision()
 
 	if _move_quad != QUADRANT.UP
 	{
-	    var _floor_data = collision_tile_2v(x - solid_radius_x, y + solid_radius_y - 1, x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer);
+	    var _floor_data = collision_tile_2v(x - radius_x, y + radius_y - 1, x + radius_x - 1, y + radius_y - 1, 1, secondary_layer);
 	    var _floor_dist = _floor_data[0];
 	    var _floor_angle = _floor_data[1];
     
@@ -139,16 +139,16 @@ function scr_player_glide_collision()
 		// First, the game casts a horizontal sensor just above Knuckles. If the returned distance is not 0, he is either 
 		// inside the ceiling or above the floor edge
 		
-		var _solid_radius_x = facing >= 0 ? solid_radius_x - 1 : -solid_radius_x;
-	    var _wall_dist = collision_tile_h(x + _solid_radius_x, _climb_y - solid_radius_y, facing, secondary_layer)[0];	
+		var _radius_x = facing >= 0 ? radius_x - 1 : -radius_x;
+	    var _wall_dist = collision_tile_h(x + _radius_x, _climb_y - radius_y, facing, secondary_layer)[0];	
 		
 	    if _wall_dist != 0
 	    {
 			// Now the game casts a vertical sensor in front and above of Knuckles, facing downwards. If the distance returned is negative, he's inside
 			// the ceiling, else he is above the floor edge. Note that we use QUADRANT.UP because we should NOT ignore LBR tiles
 			
-			var _front_offset = sign(_solid_radius_x);
-	        var _floor_dist = collision_tile_v(x + _solid_radius_x + _front_offset, _climb_y - solid_radius_y - 1, 1, secondary_layer, QUADRANT.UP)[0];
+			var _front_offset = sign(_radius_x);
+	        var _floor_dist = collision_tile_v(x + _radius_x + _front_offset, _climb_y - radius_y - 1, 1, secondary_layer, QUADRANT.UP)[0];
 			
 	        if  _floor_dist < 0 || _floor_dist >= 12
 	        {

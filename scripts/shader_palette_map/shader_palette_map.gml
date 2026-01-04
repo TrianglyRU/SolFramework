@@ -1,6 +1,6 @@
 /// @self
-/// @description Applies a colour swap to subsequent draw calls using the properties of the given camera and the palette map data defined in obj_game.
-/// @param {Real} _camera_index The index of the camera whose parameters to use.
+/// @description				Applies a colour swap to subsequent draw calls using the properties of the given camera and the palette map data defined in obj_game.
+/// @param {Real} _camera_index	The index of the camera whose parameters to use.
 function shader_palette_map(_camera_index)
 {
 	var _data = obj_game.palette_data;

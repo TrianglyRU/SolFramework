@@ -1,9 +1,12 @@
-/// @description Finds a tile along a vertical axis at the given position within a specified tile layer and returns an array containing two values: the distance to the tile's edge and its angle.
-/// @param {Real} _x The x-coordinate of the position.
-/// @param {Real} _y The y-coordinate of the position.
-/// @param {Real} _dir The direction in which to perform the search.
-/// @param {Enum.TILE_LAYER|Undefined} [_secondary_layer] The index of the secondary tile layer to search within (default is undefined).
-/// @param {Enum.QUADRANT} [_quadrant] The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
+/// @self
+/// @feather ignore GM1041
+/// @feather ignore GM2018
+/// @description											Finds a tile along a vertical axis at the given position within a specified tile layer and returns an array containing two values: the distance to the tile's edge and its angle.
+/// @param {Real} _x										The x-coordinate of the position.
+/// @param {Real} _y										The y-coordinate of the position.
+/// @param {Real} _dir										The direction in which to perform the search.
+/// @param {Enum.TILE_LAYER|Undefined} [_secondary_layer]	The index of the secondary tile layer to search within (default is undefined).
+/// @param {Enum.QUADRANT} [_quadrant]						The angle range the check is happening within. This will affect if tile properties are gonna be rotated (default is QUADRANT.DOWN).
 /// @returns {Array<Real>}
 function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant = QUADRANT.DOWN)
 {
@@ -47,37 +50,18 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
         var _cell_id_x = _start_cell_id_x;
         var _cell_id_y = _start_cell_id_y;
         var _tile, _index, _h, _mirror;
-		
+				
         for (var _i = 0; _i <= 2; _i++)
         {
-			var _is_valid, _tile_buffer, _index_buffer, _height_buffer, _mirror_buffer;
+			var _tile_buffer, _index_buffer, _height_buffer, _mirror_buffer;
 			
 			_tile = tilemap_get(_tile_layer, _cell_id_x, _cell_id_y);
 			_mirror = tile_get_mirror(_tile);
 			_index = tile_get_index(_tile);
 			
-			// Get height
-			if _tile == -1 || _index == 0
+			// Check validity and read height
+			if _tile != -1 && _index > 0
 			{
-				_h = 0;
-				_is_valid = false;
-			}
-			else
-			{
-				var _height_index;
-				
-				if _mirror
-				{
-					_height_index = TILE_SIZE - 1 - _mod_x;
-				}
-				else
-				{
-					_height_index = _mod_x;
-				}
-				
-				_h = _heights[_index][_height_index];
-				
-				// Check validity
 				var _marker_index = 0;
 				var _marker_layer = _markers[_j];
 				
@@ -94,12 +78,13 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 				var _is_down = _quadrant == QUADRANT.DOWN;
 				var _is_up = _quadrant == QUADRANT.UP;
 				var _is_positive = _dir == 1;
+				var _is_valid;
 				
 	            switch _marker_index
 	            {
 	                // Top Solid
 	                case 1: 
-	                    _is_valid = _is_down && _is_positive ||  _is_up && !_is_positive;
+	                    _is_valid = _is_down && _is_positive || _is_up && !_is_positive;
 					break;
 					
 	                // LBR Solid
@@ -111,24 +96,50 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
 					default:
 						_is_valid = true;
 	            }
+				
+				if _is_valid
+				{
+					var _height_index;
+				
+					if _mirror
+					{
+						_height_index = TILE_SIZE - 1 - _mod_x;
+					}
+					else
+					{
+						_height_index = _mod_x;
+					}
+				
+					_h = _heights[_index][_height_index];
+				}
+				else
+				{
+					_h = 0;
+				}
 			}
-            
+			else
+			{
+				_h = 0;
+			}
+			
             // Initial tile check
             if _i == 0
             {
-                if !_is_valid
+                if _h == 0
                 {
+					// Check further tile next
                     _cell_id_y += _dir;
                 }
                 else if _h == TILE_SIZE
                 {
+					// Check closer tile next
                     _tile_buffer = _tile;
                     _index_buffer = _index;
                     _height_buffer = _h;
 					_mirror_buffer = _mirror;
                     _cell_id_y -= _dir;
 					
-					// Check closer tile (i = 2)
+					// this sets i to 2
                     _i++;
                 }
                 else
@@ -140,7 +151,7 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
             // Further tile check
             else if _i == 1
             {
-                if !_is_valid
+                if _h == 0
                 {
                     _found = false;
                 }
@@ -149,7 +160,7 @@ function collision_tile_v(_x, _y, _dir, _secondary_layer = undefined, _quadrant 
             }
             
             // Closer tile check
-            else if !_is_valid
+            else if _h == 0
             {
                 _tile = _tile_buffer;
                 _index = _index_buffer;

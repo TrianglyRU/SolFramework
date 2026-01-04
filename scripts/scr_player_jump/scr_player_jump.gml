@@ -169,8 +169,8 @@ function scr_player_jump()
 			action = ACTION.FLIGHT;
 			flight_timer = 480;
 			ascend_timer = 0;
-			solid_radius_x = radius_x_normal;
-			solid_radius_y = radius_y_normal;
+			radius_x = radius_x_normal;
+			radius_y = radius_y_normal;
 			
 			input_down.action1 = false;
 			input_down.action2 = false;
@@ -196,8 +196,8 @@ function scr_player_jump()
 			spd_ground = 4;
 			glide_value = 0;
 			glide_angle = facing < 0 ? 0 : 180;
-			solid_radius_x = radius_x_normal + 1;
-			solid_radius_y = solid_radius_x;
+			radius_x = radius_x_normal + 1;
+			radius_y = radius_x;
 			vel_x = 0;
 			vel_y = max(0, vel_y + 2);
 			

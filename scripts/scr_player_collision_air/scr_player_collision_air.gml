@@ -46,7 +46,7 @@ function scr_player_collision_air()
 	
 	if _move_quad != QUADRANT.DOWN
 	{
-		var _roof_data = collision_tile_2v(x - solid_radius_x, y - solid_radius_y, x + solid_radius_x - 1, y - solid_radius_y, -1, secondary_layer);
+		var _roof_data = collision_tile_2v(x - radius_x, y - radius_y, x + radius_x - 1, y - radius_y, -1, secondary_layer);
 		var _roof_dist = _roof_data[0];
 		var _roof_angle = _roof_data[1];
 	
@@ -100,8 +100,8 @@ function scr_player_collision_air()
 		
 		if _move_quad == QUADRANT.DOWN
 		{
-			var _floor_data_l = collision_tile_v(x - solid_radius_x,     y + solid_radius_y - 1, 1, secondary_layer);
-			var _floor_data_r = collision_tile_v(x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer);
+			var _floor_data_l = collision_tile_v(x - radius_x,     y + radius_y - 1, 1, secondary_layer);
+			var _floor_data_r = collision_tile_v(x + radius_x - 1, y + radius_y - 1, 1, secondary_layer);
 		
 			if _floor_data_l[0] > _floor_data_r[0]
 			{
@@ -144,7 +144,7 @@ function scr_player_collision_air()
 		}
 		else if vel_y >= 0
 		{
-			var _floor_data = collision_tile_2v(x - solid_radius_x, y + solid_radius_y - 1, x + solid_radius_x - 1, y + solid_radius_y - 1, 1, secondary_layer);
+			var _floor_data = collision_tile_2v(x - radius_x, y + radius_y - 1, x + radius_x - 1, y + radius_y - 1, 1, secondary_layer);
 			
 			_floor_dist = _floor_data[0];
 			_floor_angle = _floor_data[1];

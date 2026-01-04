@@ -2,8 +2,7 @@ var _input_press = input_get_pressed(0);
 
 if _input_press.action1
 {
-    audio_play_sfx(snd_ring_left);
-    audio_play_sfx(snd_ring_right);
+    audio_play_ring_sfx();
 	
 	rings_earned += 10;
     global.player_rings = min(global.player_rings + 10, 999);

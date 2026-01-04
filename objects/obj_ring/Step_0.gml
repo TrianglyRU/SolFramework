@@ -13,20 +13,12 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		continue;
 	}
 	
-	if global.player_rings % 2 > 0
-	{
-		audio_play_sfx(snd_ring_right);
-	}
-	else
-	{
-		audio_play_sfx(snd_ring_left);
-	}
-	
 	if global.player_rings < 999
 	{
 		global.player_rings++;
 	}
 	
+	audio_play_ring_sfx();
 	instance_create(x, y, obj_sparkle);
 	instance_destroy();
 	

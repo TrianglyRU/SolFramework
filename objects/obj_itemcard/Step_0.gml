@@ -1,10 +1,10 @@
 switch state
 {
-    case ITECARD_STATE.MOVE:
+    case ITEMCARD_STATE.MOVE:
     
         if vel_y >= 0
         {
-			state = ITECARD_STATE.IDLE;
+			state = ITEMCARD_STATE.IDLE;
 	        wait_timer = 29;
 			
 	        var _player = player_get(0);
@@ -24,9 +24,7 @@ switch state
 	            case 2:
 			
 	                global.player_rings = min(global.player_rings + 10, 999);
-				
-	                audio_play_sfx(snd_ring_left);
-	                audio_play_sfx(snd_ring_right);
+					audio_play_ring_sfx();
 				
 	            break; 
 			
@@ -135,7 +133,7 @@ switch state
 		
     break;
     
-    case ITECARD_STATE.IDLE:
+    case ITEMCARD_STATE.IDLE:
     
         if --wait_timer == 0
         {

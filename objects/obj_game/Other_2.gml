@@ -26,6 +26,7 @@ global.life_count = 3;
 global.ring_spill_counter = 0;
 global.enable_debug_mode = false;
 global.player_rings = 0;
+global.ring_sound_counter = 0;
 global.selected_level_entry = 0;
 global.selected_sound_index = 0;
 global.selected_player_index = 0;
