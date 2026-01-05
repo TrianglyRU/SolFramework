@@ -59,6 +59,7 @@ function scr_player_init()
 	
 	radius_x = radius_x_normal;
 	radius_y = radius_y_normal;
+	radius_wall = radius_x_normal + 1;
 	
 	state = PLAYER_STATE.DEFAULT;
 	is_grounded = true;

@@ -1,6 +1,7 @@
+// Feather ignore GM1041
+// Feather ignore GM2018
+
 /// @self
-/// @feather ignore GM1041
-/// @feather ignore GM2018
 /// @description											Finds a tile along a horizontal axis at the given position within a specified tile layer and returns an array containing two values: the distance to the tile's edge and its angle.
 /// @param {Real} _x										The x-coordinate of the position.
 /// @param {Real} _y										The y-coordinate of the position.

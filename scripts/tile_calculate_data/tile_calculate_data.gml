@@ -189,7 +189,7 @@ function tile_calculate_data(_sprite_id, _raw_angle_data, _row_length)
 				}
 			}
 			
-			/// @feather ignore GM2018
+			// Feather ignore GM2018
 			var _is_upside_down;
 			
 			if _top_dist_y == _bottom_dist_y

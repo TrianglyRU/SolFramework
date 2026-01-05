@@ -490,6 +490,11 @@ is_true_glide = function()
 	return action == ACTION.GLIDE && action_state != GLIDE_STATE.FALL;
 }
 
+is_extra_hitbox_active = function()
+{
+	return mask_index != extra_mask;
+}
+
 clear_solid_push = function(_inst_id = other.id)
 {
 	if set_push_anim_by == _inst_id

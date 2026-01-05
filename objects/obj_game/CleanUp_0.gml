@@ -34,7 +34,7 @@ ds_list_destroy(debug_solids);
 ds_list_destroy(debug_solids_push);
 ds_list_destroy(debug_solids_sides);
 
-// deformation
+// DEFORMATION
 
 ds_list_destroy(deformation_data);
 

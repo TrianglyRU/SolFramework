@@ -35,6 +35,8 @@ solid_object = function(_player, _type)
 		return;
 	}
 	
+	var _vanilla_collision = !global.better_solid_collision;
+	
 	var _ox = floor(x);
 	var _oy = floor(y);
 	var _oleft = floor(bbox_left);
@@ -44,15 +46,15 @@ solid_object = function(_player, _type)
 	
 	var _px = floor(_player.x);
 	var _py = floor(_player.y);
-	var _prx = _player.radius_x_normal + 1;
+	var _prx = _player.radius_wall;
 	var _pry = _player.radius_y;
 	var _pleft = _px - _prx;
 	var _pright = _px + _prx - 1;
 	var _ptop = _py - _pry;
 	var _pbottom = _py + _pry - 1;
 	
+	var _grip_y = _type == SOLID_TYPE.ITEMBOX ? 0 : 4;
 	var _slope_offset = 0;
-	var _grip_y = 4;
 	
 	// Get slope offset
 	if array_length(solid_offsets) > 0
@@ -107,14 +109,14 @@ solid_object = function(_player, _type)
 		return;
 	}
 	
-	// Assume the player is grip_y pixels lower than they actually are	
+	// Besides slope offset, assume the player is grip_y pixels lower than they actually are	
 	var _y_offset = -_slope_offset + _grip_y;
+	
+	var _ptop_off = _ptop + _y_offset;
+	var _pbottom_off = _pbottom + _y_offset;
 	
 	if _type < SOLID_TYPE.TOP
 	{
-		var _ptop_off = _ptop + _y_offset;
-		var _pbottom_off = _pbottom + _y_offset;
-		
 		if !rectangle_in_rectangle(_pleft, _ptop_off, _pright, _pbottom_off, _oleft - 1, _otop, _oright + 1, _obottom)
 		{
 			_player.clear_solid_push(); return;
@@ -123,85 +125,103 @@ solid_object = function(_player, _type)
 		var _x_clip = _px < _ox ? _pright - _oleft + 1 : _pleft - _oright - 1;
 		var _y_clip = _py < _oy ? _pbottom_off - _otop + 1 : _ptop_off - _obottom - 1 - _grip_y;
 		
+		var _can_collide_v = abs(_x_clip) >= abs(_y_clip);
+		var _can_collide_h = abs(_y_clip) > _grip_y;
+		
 		// VERTICAL COLLISION
 		
-		var _s3_method = global.player_physics >= PHYSICS.S3;
-		
-		var _can_collide_v = abs(_x_clip) >= abs(_y_clip);
-		var _cant_collide_h = abs(_y_clip) <= _grip_y;
-		
-		if _s3_method
+		// Regular
+		if _type != SOLID_TYPE.ITEMBOX
 		{
-			_can_collide_v |= _cant_collide_h;
-		}
-		
-		if _can_collide_v
-		{
-			if _y_clip < 0
-			{
-				if _type == SOLID_TYPE.ITEMBOX || _type == SOLID_TYPE.SIDES
-				{
-					// Fallthrough to horizontal collision
-				}
-				else if _player.vel_y == 0 && _player.is_grounded
-				{
-					if abs(_x_clip) >= 16
-					{
-						_player.kill(); return;
-					}
-					
-					// If not crushed, fallthrough to horizontal collision
-				}
-				else
-				{
-					if _player.vel_y < 0
-					{
-						if _s3_method && !_player.is_grounded
-						{
-							_player.spd_ground = 0;
-						}
-						
-						_player.y -= _y_clip;
-						_player.vel_y = 0;
-					}
-					
-					solid_touch[_p] = SOLID_TOUCH.BOTTOM;
-					
-					// Do not run horizontal collision
-					return;							
-				}
-			}
-			else
-			{
-				if _y_clip < 16 && _type != SOLID_TYPE.SIDES
-				{
-					if _player.vel_y >= 0
-					{
-						if _px >= _oleft && _px <= _oright
-						{
-							attach_player(_type, _player, id, _otop + _slope_offset);
-						}
-					}
-				}
-				else
-				{
-					_player.clear_solid_push();
-				}
-				
-				// Do not run horizontal collision
-				return;	
-			}
+			var _s3_method = global.player_physics >= PHYSICS.S3;
 			
-			// If fallingthrough via S3 collision method, ignore that specific horizontal collision check
 			if _s3_method
 			{
-				_cant_collide_h = false;
+				_can_collide_v |= !_can_collide_h;
+				_can_collide_h = true;
 			}
+			
+			if _can_collide_v
+			{
+				// From below
+				if _y_clip < 0
+				{
+					if _type == SOLID_TYPE.SIDES
+					{
+						// Try horizontal collision
+					}
+					else if _player.vel_y == 0 && _player.is_grounded
+					{
+						if abs(_x_clip) >= 16
+						{
+							_player.kill(); return;
+						}
+					
+						// If not crushed, try horizontal collision
+					}
+					else
+					{
+						if _player.vel_y < 0
+						{
+							if _s3_method && !_player.is_grounded
+							{
+								_player.spd_ground = 0;
+							}
+						
+							_player.y -= _y_clip;
+							_player.vel_y = 0;
+						}
+					
+						solid_touch[_p] = SOLID_TOUCH.BOTTOM;
+						
+						// Do not run horizontal collision
+						return;							
+					}
+				}
+				
+				// From above
+				else
+				{
+					if _y_clip < 16 && _type != SOLID_TYPE.SIDES
+					{
+						if _player.vel_y >= 0
+						{
+							if  _vanilla_collision && _px >= _oleft && _px <= _oright
+							|| !_vanilla_collision && _pright >= _oleft && _pleft <= _oright
+							{
+								attach_player(_type, _player, _otop + _slope_offset);
+							}
+						}
+					}
+					else
+					{
+						_player.clear_solid_push();
+					}
+					
+					// Do not run horizontal collision
+					return;	
+				}
+			}
+		}
+		
+		// Item Box
+		else
+		{
+			if _y_clip < 16 && _px >= _oleft - 4 && _px <= _oright + 4
+			{
+				attach_player(_type, _player, _otop + _slope_offset);
+				
+				// Do not run horizontal collision
+				return;
+			}
+			
+			// Collide horizontally
+			_can_collide_h = true;
 		}
 		
 		// HORIZONTAL COLLISION
 		
-		if _cant_collide_h
+		if !_can_collide_h
 		{
 			_player.clear_solid_push(); return;
 		}
@@ -229,20 +249,21 @@ solid_object = function(_player, _type)
 	}
 	else if _player.vel_y >= 0
 	{
-		if _px >= _oleft && _px <= _oright
+		if  _vanilla_collision && _px >= _oleft && _px <= _oright
+		|| !_vanilla_collision && _pright >= _oleft && _pleft <= _oright
 		{
-			var _y_clip = _otop - _pbottom - 1 - _y_offset;
+			var _y_clip = _otop - 1 - _pbottom_off;
 			
-			if _y_clip >= -16 && _y_clip < 0
+			if _y_clip >= -16 && _y_clip <= 0
 			{
-				attach_player(_type, _player, id, _otop + _slope_offset);
+				attach_player(_type, _player, _otop + _slope_offset);
 			}
 		}
 	}
 }
 
 /// @self obj_object_solid
-attach_player = function(_type, _player, _obj, _bbtop)
+attach_player = function(_type, _player, _bbtop)
 {
 	solid_touch[_player.player_index] = SOLID_TOUCH.TOP;
 	
@@ -260,7 +281,7 @@ attach_player = function(_type, _player, _obj, _bbtop)
 	_player.spd_ground	= _player.vel_x;
 	_player.vel_y = 0;
 	_player.angle = 0;
-	_player.on_object = _obj;
+	_player.on_object = id;
 	
 	if !_player.is_grounded
 	{

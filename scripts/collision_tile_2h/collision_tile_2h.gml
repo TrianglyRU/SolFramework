@@ -1,5 +1,6 @@
+// Feather ignore GM1041
+
 /// @self
-/// @feather ignore GM1041
 /// @description											Identifies the nearest tile along a horizontal axis between two given points and returns an array containing two values: the distance to the found tile's edge and its angle.
 /// @param {Real} _x1										The x-coordinate of the first point.
 /// @param {Real} _y1										The y-coordinate of the first point.

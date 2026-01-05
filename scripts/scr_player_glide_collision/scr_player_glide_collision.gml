@@ -45,7 +45,7 @@ function scr_player_glide_collision()
     
 	    if _roof_dist <= -14 && _move_quad == QUADRANT.LEFT && global.player_physics >= PHYSICS.S3
 	    {
-	        var _wall_dist = collision_tile_h(x + _wall_radius - 1, y, 1, secondary_layer)[0];
+	        var _wall_dist = collision_tile_h(x + radius_wall - 1, y, 1, secondary_layer)[0];
 			
 	        if _wall_dist < 0
 	        {

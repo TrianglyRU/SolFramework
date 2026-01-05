@@ -6,13 +6,12 @@ function scr_player_collision_air()
 		return;
 	}
 	
-	var _wall_radius = radius_x_normal + 1;
 	var _vector = math_get_vector_rounded(vel_x, vel_y);
 	var _move_quad = math_get_quadrant(_vector);
 	
 	if _move_quad != QUADRANT.RIGHT
 	{
-		var _wall_dist = collision_tile_h(x - _wall_radius, y, -1, secondary_layer)[0];
+		var _wall_dist = collision_tile_h(x - radius_wall, y, -1, secondary_layer)[0];
 		
 		if _wall_dist < 0
 		{
@@ -29,7 +28,7 @@ function scr_player_collision_air()
 	
 	if _move_quad != QUADRANT.LEFT
 	{
-		var _wall_dist = collision_tile_h(x + _wall_radius - 1, y, 1, secondary_layer)[0];
+		var _wall_dist = collision_tile_h(x + radius_wall - 1, y, 1, secondary_layer)[0];
 		
 		if _wall_dist < 0
 		{
@@ -52,7 +51,7 @@ function scr_player_collision_air()
 	
 		if _roof_dist <= -14 && _move_quad == QUADRANT.LEFT && global.player_physics >= PHYSICS.S3
 		{	
-			var _wall_dist = collision_tile_h(x + _wall_radius - 1, y, 1, secondary_layer)[0];
+			var _wall_dist = collision_tile_h(x + radius_wall - 1, y, 1, secondary_layer)[0];
 			
 			if _wall_dist < 0
 			{

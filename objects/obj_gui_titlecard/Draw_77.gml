@@ -7,6 +7,8 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	
 	if _camera_data == undefined
 	{
+		// Clear the surface in case its camera has been destroyed mid-sequence
+		surface_free(shader_surface[_i]);
 		continue;
 	}
 	

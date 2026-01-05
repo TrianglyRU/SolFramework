@@ -46,8 +46,7 @@ switch state
 			state = MOTOBUG_STATE.WAIT;
 			move_timer = 59;
 			vel_x *= -1;
-			timer = 0;
-			image_index = 0;
+			animator.clear(0);
 			
 			break;
 		}

@@ -9,7 +9,6 @@ function scr_player_collision_ground_walls()
 	    }
 	}
 	
-	var _wall_radius = radius_x_normal + 1;
 	var _y_offset = angle == 0 ? 8 : 0;
 	var _angle_quad = math_get_quadrant(angle);
 	var _wall_quad;
@@ -41,20 +40,20 @@ function scr_player_collision_ground_walls()
 	    switch _wall_quad
 	    {
 	        case QUADRANT.RIGHT:
-	            _wall_dist = collision_tile_v(_x, _y + _wall_radius - 1, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_v(_x, _y + radius_wall - 1, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = collision_tile_h(_x + _wall_radius - 1, _y, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_h(_x + radius_wall - 1, _y, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = collision_tile_v(_x, _y - _wall_radius, -1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_v(_x, _y - radius_wall, -1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 			// QUADRANT.DOWN
 			default:
-				_wall_dist = collision_tile_h(_x - _wall_radius, _y + _y_offset - 1, -1, secondary_layer, _wall_quad)[0];
+				_wall_dist = collision_tile_h(_x - radius_wall, _y + _y_offset - 1, -1, secondary_layer, _wall_quad)[0];
 	    }
 
 	    if _wall_dist >= 0
@@ -106,20 +105,20 @@ function scr_player_collision_ground_walls()
 	    switch _wall_quad
 	    {
 	        case QUADRANT.RIGHT:
-	            _wall_dist = collision_tile_v(_x, _y - _wall_radius, -1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_v(_x, _y - radius_wall, -1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.UP:
-	            _wall_dist = collision_tile_h(_x - _wall_radius, _y, -1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_h(_x - radius_wall, _y, -1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 	        case QUADRANT.LEFT:
-	            _wall_dist = collision_tile_v(_x, _y + _wall_radius - 1, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_v(_x, _y + radius_wall - 1, 1, secondary_layer, _wall_quad)[0];
 	        break;
 			
 			// QUADRANT.DOWN
 			default:
-	            _wall_dist = collision_tile_h(_x + _wall_radius - 1, _y + _y_offset - 1, 1, secondary_layer, _wall_quad)[0];
+	            _wall_dist = collision_tile_h(_x + radius_wall - 1, _y + _y_offset - 1, 1, secondary_layer, _wall_quad)[0];
 	    }
 		
 	    if _wall_dist >= 0

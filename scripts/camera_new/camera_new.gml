@@ -52,7 +52,4 @@ function camera_new(_index, _w, _h, _canvas_width, _canvas_height, _canvas_x = 0
 	view_enabled = true;
 	
     obj_game.camera_data[_index] = _camera_data;
-	
-	// Trigger custom Async Event
-	async_trigger("camera created", "camera_index", _index);
 }

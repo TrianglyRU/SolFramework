@@ -6,7 +6,7 @@ function scr_game_setup()
 	
 	global.dev_mode = true;
 	global.window_name = "GameMaker - Orbinaut Framework"
-	global.start_fullscreen = true;
+	global.start_fullscreen = false;
 	global.window_scale = 2;
 	global.use_vsync = true;
 	global.gamepad_rumble = false;
@@ -18,6 +18,8 @@ function scr_game_setup()
 	global.player_physics = PHYSICS.S2;
 	global.cpu_behaviour = CPU_BEHAVIOUR.S3;
 	global.rotation_mode = ROTATION.CLASSIC;
+	global.better_solid_collision = false;
+	global.better_angle_snap = false;
 	global.spin_dash = true;
 	global.dash	= true;
 	global.drop_dash = false;
@@ -27,8 +29,6 @@ function scr_game_setup()
 	global.roll_lock = true;
 	global.speed_cap = false;
 	global.roll_speed_cap = true;
-	global.better_solid_collision = true;
-	global.better_angle_snap = false;
 	
 	font_register(spr_font_large, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
 	font_register(spr_font_large_alt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);

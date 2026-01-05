@@ -11,7 +11,4 @@ function camera_delete(_index)
 	surface_free(obj_game.view_surface_final[_index]);
 	
 	obj_game.camera_data[_index] = undefined;
-	
-	// Trigger custom Async Event
-	async_trigger("camera deleted", "camera_index", _index);
 }

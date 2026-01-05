@@ -1,4 +1,5 @@
 // Feather ignore GM2022
+
 var _w = x - bbox_left;
 var _h = y - bbox_top;
 

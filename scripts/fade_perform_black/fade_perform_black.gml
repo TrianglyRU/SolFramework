@@ -1,5 +1,6 @@
+// Feather ignore GM1041
+
 /// @self
-/// @feather ignore GM1041
 /// @description							Triggers a black fade effect.
 /// @param {Enum.FADE_DIRECTION} _direction	The "direction" of the fade (e.g., fade-in or fade-out).
 /// @param {Real} _step_duration			The time in game steps between updates of the fade effect, affecting both speed and smoothness.

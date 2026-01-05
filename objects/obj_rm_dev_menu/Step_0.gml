@@ -213,7 +213,7 @@ switch (category_id)
 					break;
 				}
 				
-				/// @feather ignore GM1041
+				// Feather ignore GM1041
 				global.window_scale = clamp(global.window_scale, 1, 4);	
 				window_resize();
 				
