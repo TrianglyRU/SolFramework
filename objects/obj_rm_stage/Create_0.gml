@@ -1,12 +1,5 @@
 #macro ACT_SINGLE 3
 
-/// @param {Real} _stage_index
-/// @param {String} _name
-/// @param {Real} _act_index
-/// @param {Asset.GMSound} _bgm
-/// @param {Array<Asset.GMSprite>} _animals
-/// @param {Asset.GMRoom} _next_room
-/// @param {Bool} _do_save
 setup_level = function(_stage_index, _name, _act_index, _bgm, _animals, _next_room, _do_save)
 {
     global.stage_index = _stage_index;

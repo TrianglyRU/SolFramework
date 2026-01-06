@@ -1,4 +1,4 @@
-if (state == SPECIALSTAGESTATE.RESULTS)
+if state == SPECIAL_STAGE_STATE.RESULTS
 {
     return;
 }
@@ -19,12 +19,12 @@ for (var _i = 0; _i < _length; _i++)
     draw_text(_half_width + _offset_x, 48 + _offset_y, string_char_at(_title_string, _i + 1));
 }
 
-if (state >= SPECIALSTAGESTATE.EMERALD)
+if state >= SPECIAL_STAGE_STATE.EMERALD
 {
-    if (obj_game.frame_counter % 20 < 10)
+    if obj_game.frame_counter % 20 < 10
     {
-		var _text = state == SPECIALSTAGESTATE.EMERALD ? "YOU GOT A CHAOS EMERALD!"
-													   : "YOU GOT ALL CHAOS EMERALDS!";												   
+		var _text = state == SPECIAL_STAGE_STATE.EMERALD ? "YOU GOT A CHAOS EMERALD!"
+													     : "YOU GOT ALL CHAOS EMERALDS!";												   
         draw_text(_half_width, _half_height + 84, _text);
     }  
 }

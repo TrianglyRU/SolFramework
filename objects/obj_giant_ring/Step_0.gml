@@ -45,12 +45,18 @@ switch state
 		
         if --wait_timer == 0
         {
-            state++;
-			
             audio_stop_bgm(1);
             audio_play_sfx(snd_warp);
-            fade_perform_white(FADE_DIRECTION.OUT, 1);
+			
+            fade_perform_white(FADE_DIRECTION.OUT, 1, function()
+			{
+				if !audio_is_playing(snd_warp)
+				{
+					room_goto(rm_special);
+					return true;
+				}
+			});
         }
         
-    break;  
+    break;
 }

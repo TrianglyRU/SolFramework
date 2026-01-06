@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 event_animator();
-event_culler(CULL_ACTION.RESPAWN);
+event_culler(CULL_ACTION.RESET);
 
 enum SOL_STATE
 {

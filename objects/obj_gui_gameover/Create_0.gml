@@ -10,7 +10,7 @@ enum GAMEOVER_STATE
 
 obj_game.allow_pause = false;
 
-allowed_game_state = GAME_STATE.PAUSED;
+allowed_game_state = GAME_STATE.STOP_OBJECTS;
 state = GAMEOVER_STATE.SLIDE_IN;
 wait_timer = 720;
 offset_x = 208;

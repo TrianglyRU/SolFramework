@@ -1,6 +1,6 @@
 // Inherit the parent event
 event_inherited();
-event_culler(CULL_ACTION.RESPAWN);
+event_culler(CULL_ACTION.RESET);
 
 #macro BUZZER_DEFAULT_MOVE_TIMER 256
 

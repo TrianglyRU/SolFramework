@@ -22,7 +22,8 @@ enum SOLID_TOUCH
 	RIGHT
 }
 
-/// @self obj_object_solid
+#region METHODS
+
 solid_object = function(_player, _type)
 {
 	var _p = _player.player_index;
@@ -262,7 +263,6 @@ solid_object = function(_player, _type)
 	}
 }
 
-/// @self obj_object_solid
 attach_player = function(_type, _player, _bbtop)
 {
 	solid_touch[_player.player_index] = SOLID_TOUCH.TOP;
@@ -288,6 +288,8 @@ attach_player = function(_type, _player, _bbtop)
 		_player.land();
 	}
 }
+
+#endregion
 
 solid_offsets = [];
 solid_balance = true;

@@ -13,7 +13,6 @@ enum RESULTS_STATE
 obj_game.allow_pause = false;
 
 depth = RENDER_DEPTH_HUD;
-allowed_game_state = GAME_STATE.PAUSED;
 continue_timer = -1;
 offset_line1 = -256;
 offset_line2 = 256;

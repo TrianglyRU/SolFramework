@@ -1,3 +1,8 @@
+if obj_game.fade_state != FADE_STATE.NONE
+{
+	return;
+}
+
 var _input_press = input_get_pressed(0);
 
 if _input_press.action1
@@ -46,5 +51,12 @@ else if _input_press.action2
 else if _input_press.start
 {
     audio_stop_bgm(1);
-	fade_perform_black(FADE_DIRECTION.OUT, 1);
+	fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+	{
+		if !audio_is_bgm_playing()
+		{
+			room_goto(global.previous_room_id);
+			return true;
+		}
+	});
 }

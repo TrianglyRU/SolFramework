@@ -64,13 +64,17 @@ function scr_player_death()
 			
 	        if restart_timer > 0 && --restart_timer == 0
 	        {
-				if instance_exists(obj_rm_stage)
-				{
-					obj_rm_stage.restart = true;
-				}
-				
 			    audio_stop_bgm(1);	
-			    fade_perform_black(FADE_DIRECTION.OUT, 1); 
+			    fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+				{
+					if !audio_is_bgm_playing()
+					{
+						game_clear_level_data();
+						room_restart();
+						
+						return true;
+					}
+				}); 
 		    }
 			
 	    break;

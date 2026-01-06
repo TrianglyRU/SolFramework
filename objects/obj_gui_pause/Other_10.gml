@@ -64,4 +64,23 @@ else
 }
 
 audio_play_sfx(snd_starpost);
-fade_perform_black(FADE_DIRECTION.OUT, 1);
+fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+{
+	if !audio_is_playing(snd_starpost)
+	{
+		if state == PAUSE_STATE.RESTART
+		{
+			global.life_count--;
+		
+			game_clear_level_data();
+			room_restart();
+		}
+		else
+		{
+			game_clear_level_data_all();
+			room_goto(rm_level_select);
+		}
+		
+		return true;
+	}
+});

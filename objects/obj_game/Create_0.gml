@@ -184,6 +184,8 @@ fade_game_control = false;
 fade_step = 0;
 fade_frequency_timer = 0;
 fade_frequency_target = 0;
+fade_in_action = -1;
+fade_out_action = -1;
 
 #endregion
 

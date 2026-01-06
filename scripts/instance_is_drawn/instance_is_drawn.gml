@@ -1,5 +1,5 @@
 /// @description					Checks if the instance is visible or drawn within any of the current view boundaries.
-/// @param {ID.Instance} _inst_id	The instance to check (optional, default is the calling instance)
+/// @param {ID.Instance} _inst_id	The instance to check (default is the calling instance)
 /// @returns {Bool}
 function instance_is_drawn(_inst_id = id)
 {

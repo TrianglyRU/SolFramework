@@ -2,6 +2,8 @@
 event_inherited();
 event_animator();
 
+#region METHODS
+
 bubble_shield_animation = function()
 {
 	animator.start(spr_shield_bubble, 0, 0, 2);
@@ -33,6 +35,8 @@ reset_fire_shield_dash = function()
 	
 	player.air_lock_flag = false;
 }
+
+#endregion
 
 var _shield = global.player_shields[player.player_index];
 

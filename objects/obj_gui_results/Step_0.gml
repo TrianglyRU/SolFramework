@@ -46,7 +46,24 @@ switch state
                 game_save_data(global.current_save_slot);
             }
 			
-            fade_perform_black(FADE_DIRECTION.OUT, 1);
+            fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+			{
+				if !audio_is_bgm_playing()
+				{
+					game_clear_level_data_all();
+			
+					if next_room == -1
+					{
+						room_restart();
+					}
+					else
+					{
+						room_goto(next_room);
+					}
+					
+					return true;
+				}
+			});
         }
 		else
 		{
@@ -109,22 +126,4 @@ switch state
         audio_play_sfx(snd_tally);
 		
     break;
-	
-	case RESULTS_STATE.EXIT:
-		
-		if obj_game.fade_state == FADE_STATE.PLAIN_COLOUR && !audio_is_bgm_playing()
-		{
-			game_clear_level_data_all();
-			
-			if next_room == -1
-			{
-				room_restart();
-			}
-			else
-			{
-				room_goto(next_room);
-			}
-		}
-	
-	break;
 }

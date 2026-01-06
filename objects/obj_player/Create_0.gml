@@ -415,6 +415,7 @@ kill = function(_sound = snd_hurt)
 	if player_index == 0
 	{
 		obj_game.state = GAME_STATE.STOP_OBJECTS;
+		obj_game.allow_pause = false;
 	}
 	
 	audio_play_sfx(_sound);

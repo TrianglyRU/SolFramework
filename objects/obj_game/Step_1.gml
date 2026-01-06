@@ -142,10 +142,26 @@ else if fade_timer == FADE_TIMER_MAX
 	}
 	
 	fade_state = FADE_STATE.NONE;
+	
+	if is_method(fade_in_action)
+	{
+		if fade_in_action()
+		{
+			fade_in_action = -1;
+		}
+	}
 }
 else if fade_timer == 0
 {
 	fade_state = FADE_STATE.PLAIN_COLOUR;
+	
+	if is_method(fade_out_action)
+	{
+		if fade_out_action()
+		{
+			fade_out_action = -1;
+		}
+	}
 }
 
 // Handle the manual pause

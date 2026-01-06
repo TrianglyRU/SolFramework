@@ -18,7 +18,14 @@ if timer >= 128 && !transition_flag && collision_player(player_get(0))
 	transition_flag = true;
 	
 	audio_stop_bgm(1);
-	fade_perform_black(FADE_DIRECTION.OUT, 1);
+	fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+	{
+		if !audio_is_bgm_playing()
+		{
+			room_goto(rm_bonus);
+			return true;
+		}
+	});
 }
 
 timer++;

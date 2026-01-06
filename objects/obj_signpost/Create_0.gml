@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 event_animator();
-event_culler();
+event_culler(CULL_ACTION.PAUSE);
 
 enum SIGNPOST_STATE
 {

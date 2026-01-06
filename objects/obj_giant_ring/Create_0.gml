@@ -7,7 +7,7 @@ if ds_list_find_index(global.ds_giant_rings, id) != -1
 // Inherit the parent event
 event_inherited();
 event_animator();
-event_culler();
+event_culler(CULL_ACTION.PAUSE);
 
 enum GIANT_RING_STATE
 {

@@ -1,6 +1,8 @@
 /// @self
-/// @description Creates a culler instance for this object.
-function event_culler(_action = CULL_ACTION.PAUSE, _inst_id = id)
+/// @description						Creates a culler instance for this object.
+/// @param {Enum.CULL_ACTION} _action	The culling action to be applied to the instance.
+/// @param {Id.Instance} [_inst_id]		The instance the culler operates on (default is the calling instance).
+function event_culler(_action, _inst_id = id)
 {
 	new ConstCuller(_action, _inst_id);
 }
@@ -16,7 +18,7 @@ function ConstCuller(_action, _inst_id) constructor
 	{
 		NONE,
 		PAUSE,
-		RESPAWN,
+		RESET,
 		DESTROY
 	}
 	
@@ -95,7 +97,7 @@ function ConstCuller(_action, _inst_id) constructor
 				break;
 				
 				case CULL_ACTION.PAUSE:
-				case CULL_ACTION.RESPAWN:
+				case CULL_ACTION.RESET:
 					
 					if _x >= _left && _x < _right || inst_id.xstart >= _left && inst_id.xstart < _right
 					{
@@ -117,7 +119,7 @@ function ConstCuller(_action, _inst_id) constructor
 				instance_deactivate_object(inst_id);
 			break;
 	
-			case CULL_ACTION.RESPAWN:
+			case CULL_ACTION.RESET:
 			
 				reset_on_load = true;
 				inst_id.x = inst_id.xstart;

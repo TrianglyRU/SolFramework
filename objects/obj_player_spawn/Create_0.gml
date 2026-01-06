@@ -13,7 +13,7 @@ else
 	{
 		case PLAYER.SONIC:
 	
-			if vd_global_start_sonic
+			if iv_global_start_sonic
 			{
 				break;
 			}
@@ -22,7 +22,7 @@ else
 	
 		case PLAYER.TAILS:
 	
-			if vd_global_start_tails
+			if iv_global_start_tails
 			{
 				break;
 			}
@@ -31,7 +31,7 @@ else
 		
 		case PLAYER.KNUCKLES:
 		
-			if vd_global_start_knuckles
+			if iv_global_start_knuckles
 			{
 				break;
 			}
@@ -40,7 +40,7 @@ else
 		
 		case PLAYER.AMY:
 	
-			if vd_global_start_amy
+			if iv_global_start_amy
 			{
 				break;
 			}

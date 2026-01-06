@@ -18,7 +18,7 @@ if vel_charge >= vel_charge_target
 
 vel_charge += vel_charge_acc;
 
-if sprite_index == animation_data[1] && animator.timer != animator.duration && animator.timer >= 0
+if sprite_index == animation_data[1] && !(animator.timer < 0 || image_index > 0)
 {
 	return;
 }
@@ -30,7 +30,7 @@ if vel_charge >= 7 && array_length(animation_data) > 4
 {
 	_sprite = animation_data[4];
 }
-else if (vel_charge >= 6)
+else if vel_charge >= 6
 {
 	_sprite = animation_data[3];
 }
