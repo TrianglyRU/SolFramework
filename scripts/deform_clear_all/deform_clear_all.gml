@@ -16,8 +16,6 @@ function deform_clear_all()
 			}
 			
 			ds_list_delete(_ds_list, _i);
-			
-			break;
 		}
 	}
 }

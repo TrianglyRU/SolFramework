@@ -34,7 +34,7 @@ switch _shield
 		}
         else if animator.timer < 0
 		{
-			fire_shield_animation();
+			reset_fire_shield_dash();
 		}
 		
     break;

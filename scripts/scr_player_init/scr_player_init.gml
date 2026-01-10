@@ -142,7 +142,7 @@ function scr_player_init()
 	//    [2, 6]
 	// ]
 	// - up: 5 frames released, 3 held, 10 released
-	// - down 1: 2 released, 6 held
+	// - down: 2 released, 6 held
 	
 	replay_data = [];
 	replay_button_timer = array_create(9, -1);

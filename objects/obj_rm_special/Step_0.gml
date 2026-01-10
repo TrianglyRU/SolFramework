@@ -1,4 +1,4 @@
-if obj_game.state != FADE_STATE.NONE || state = SPECIAL_STAGE_STATE.RESULTS
+if obj_game.fade_state != FADE_STATE.NONE || state = SPECIAL_STAGE_STATE.RESULTS
 {
 	return;
 }

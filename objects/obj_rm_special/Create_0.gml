@@ -6,34 +6,6 @@ enum SPECIAL_STAGE_STATE
 	ALL_EMERALDS
 }
 
-#region METHODS
-
-start_results = function()
-{
-	while (audio_is_playing(snd_warp_2))
-	{
-		// Wait until snd_warp_2 is no longer playing
-	}
-	
-	var _previous_state = state;
-		
-	if (state == SPECIAL_STAGE_STATE.EMERALD)
-	{
-		global.emerald_count = min(global.emerald_count + 1, 7);
-	}
-	else if (state == SPECIAL_STAGE_STATE.ALL_EMERALDS)
-	{
-		global.emerald_count = 7;
-	}
-			
-	state = SPECIAL_STAGE_STATE.RESULTS;
-			
-	bg_clear_all();
-	deform_clear_all();
-	fade_perform_white(FADE_DIRECTION.IN, 0);
-	instance_create(0, 0, obj_gui_results_special, { vd_emerald_earned: _previous_state >= SPECIAL_STAGE_STATE.EMERALD });
-}
-
 fade_out_function = function()
 {
 	if !audio_is_playing(snd_warp_2)
@@ -64,13 +36,11 @@ fade_out_function = function()
 	}
 }
 
-#endregion
-
 state = SPECIAL_STAGE_STATE.IDLE;
 
 audio_play_bgm(snd_bgm_special);
 bg_convert("Far_Clouds", 0, 0, 0, 0, 0);
 bg_convert("Close_Clouds", 0, 0, -0.05, 0, 0);
-discord_set_data("SPECIAL STAGE", "", "");
+discord_set_data("SPECIAL STAGE", "", "", "");
 deform_layers(["Close_Clouds"], deform_get_data(DEFORM_DATA.LBZ1), undefined, 1, 0.25, 144, 239);
 fade_perform_white(FADE_DIRECTION.IN, 1);
