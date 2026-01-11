@@ -90,8 +90,8 @@ level_entries =
 	"EMERALD HILL|1",
 	"		     |2",
 	"",
-	"ZONEENTRY|1",
-	"		  |2",
+	"SUNSET SHORE|1",
+	"		     |2",
 	"",
 	"ZONEENTRY|1",
 	"		  |2",
@@ -124,6 +124,7 @@ level_rediretions =
 [
 	0,  rm_stage_ghz1,
 	4,  rm_stage_ehz1,
+	7,  rm_stage_ssz1,
 	29, rm_special,
 	32, rm_bonus
 ];

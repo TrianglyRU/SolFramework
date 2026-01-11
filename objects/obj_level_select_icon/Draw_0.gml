@@ -21,6 +21,7 @@ else switch obj_rm_level_select.room_to_load
 	break;
 	
 	case rm_stage_ehz1:
+	case rm_stage_ssz1:
 		_icon_index = 5;
 	break;
 }

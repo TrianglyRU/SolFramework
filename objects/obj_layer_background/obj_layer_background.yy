@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_layer",
+  "name": "obj_layer_background",
   "spriteId": null,
   "solid": false,
   "visible": true,

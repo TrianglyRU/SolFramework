@@ -23,7 +23,7 @@ function scr_game_setup()
 	global.spin_dash = true;
 	global.dash	= true;
 	global.drop_dash = false;
-	global.double_spin = true;
+	global.double_spin = false;
 	global.cd_timer = false;
 	global.cd_camera = false;
 	global.roll_lock = true;
@@ -68,12 +68,32 @@ function scr_game_setup()
 	
 	tile_calculate_data(spr_collision_default, _default_angle_data, 16);
 	
+	// Sunset Shore collision
+	tile_calculate_data(spr_collision_ssz, undefined, 20);
+	
+	tile_alter_angle(spr_collision_ssz, [
+		[2, 11.25],
+		[3, 11.25],
+		[4, 43.59375],
+		[25, 22.5],
+		[26, 22.5],
+		[27, 22.5],
+		[29, 22.5],
+		[30, 22.5],
+		[156, 18.28],
+		[157, 18.28],
+		[158, 18.28]
+	]);
+	
 	// Delta World collision
 	tile_calculate_data(spr_collision_dwz, undefined, 16);
-	tile_alter_angle(spr_collision_dwz, 2, 11.25);
-	tile_alter_angle(spr_collision_dwz, 3, 11.25);
-	tile_alter_angle(spr_collision_dwz, 104, 18.28);
-	tile_alter_angle(spr_collision_dwz, 105, 35.15625);
+	
+	tile_alter_angle(spr_collision_dwz, [
+		[2, 11.25],
+		[3, 11.25],
+		[104, 18.28],
+		[105, 35.15625]
+	]);
 	
 	// Sonic 1 collision
 	var _s1_angle_data =
@@ -120,6 +140,7 @@ function scr_game_setup()
 	tile_calculate_data(spr_collision_s2, _s2_angle_data, 16);
 	
 	// Sonic 3K collision
+	/*
 	var _s3_angle_data =
 	[
 			 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 
@@ -141,6 +162,7 @@ function scr_game_setup()
 	]
 	
 	tile_calculate_data(spr_collision_s3, _s3_angle_data, 16);
+	*/
 	
 	#endregion
 }

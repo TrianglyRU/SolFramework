@@ -22,7 +22,7 @@ function bg_convert(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _frame_d
 	
 	var _depth = layer_get_depth(_layer);
 	var _new_layer = layer_create(_depth, _layer);
-	var _object = instance_create_layer(0, 0, _new_layer, obj_layer);
+	var _object = instance_create_layer(0, 0, _new_layer, obj_layer_background);
 	var _is_visible = layer_get_visible(_layer);
 	
 	for (var _i = 0; _i < CAMERA_COUNT; _i++)

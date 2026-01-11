@@ -26,7 +26,21 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		continue;
 	}
 	
+	switch iv_mode
+	{
+		case FORCE_SPIN.UNIVERSAL:
+			_player.forced_roll = !_player.forced_roll;	
+		break;
+		
+		case FORCE_SPIN.START_ONLY:
+			_player.forced_roll = true;
+		break;
+		
+		case FORCE_SPIN.END_ONLY:
+			_player.forced_roll = false;
+		break;
+	}
+	
 	_player.action = ACTION.NONE;
-	_player.forced_roll = !_player.forced_roll;	
 	_player.reset_gravity();
 }

@@ -38,7 +38,7 @@ function scr_stage_setup()
 			// Use S2 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S2;
 			
-			setup_level(97, "EMERALD HILL", 0, snd_bgm_ehz, [spr_animal_flicky, spr_animal_ricky], rm_level_select, true);
+			setup_level(97, "EMERALD HILL", 0, snd_bgm_ehz, [spr_animal_flicky, spr_animal_ricky], rm_stage_ssz1, true);
 			
 			bg_convert("Clouds", 0.015625, 0, 0, 0, 0);
 			bg_convert("Hills_1", 0.0625, 0, 0, 0, 0);
@@ -68,11 +68,35 @@ function scr_stage_setup()
 		
 		#endregion
 		
+		#region SUNSET SHORE
+		
+		case rm_stage_ssz1:
+			
+			texture_prefetch("texgroup_ssz_graphics");
+			
+			setup_level(98, "SUNSET SHORE", 0, noone, [spr_animal_flicky, spr_animal_pocky], rm_level_select, true);
+			
+			var _factor_y = (448 - global.init_resolution_h) / (2048 - global.init_resolution_h);
+			
+			bg_convert("Sky", 0, _factor_y * 0.75, -0.25, 0, 0);
+			bg_convert("Mountains", 0.09375, _factor_y, 0, 0, 0);
+			bg_convert("Waterfalls", 0.1875, _factor_y, 0, 0, 0);
+			bg_convert_scaled("Lake", 0.1875, _factor_y, 0, 0, 0.921875, 1, -1, 0);
+			
+			pal_load(spr_palette_ssz, undefined);
+			pal_set_rotation([30, 31, 32, 33], 6, 1, 4);
+			
+			tile_load_data(spr_collision_ssz);
+		
+		break;
+		
+		#endregion
+		
 		#region DELTA WORLD
 		
 		case rm_stage_dwz:
 			
-			setup_level(98, "DELTAWORLD", ACT_SINGLE, snd_bgm_dwz, [spr_animal_flicky, spr_animal_ricky], rm_level_select, true);
+			setup_level(99, "DELTAWORLD", ACT_SINGLE, snd_bgm_dwz, [spr_animal_flicky, spr_animal_ricky], rm_level_select, false);
 			
 			bg_convert("Background", 0.25, 0.25, 0, 0, 0);
 			

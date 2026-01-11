@@ -26,6 +26,7 @@ function scr_player_debug_mode_enter()
 		if obj_game.state == GAME_STATE.STOP_OBJECTS
 	    {
 	        obj_game.state = GAME_STATE.NORMAL;
+			obj_game.allow_pause = true;
 	    }
 		
 		if !audio_is_bgm_playing() || audio_is_playing(snd_bgm_drowning)
