@@ -37,6 +37,7 @@
     {"id":{"name":"obj_continue_tails","path":"objects/obj_continue_tails/obj_continue_tails.yy",},"order":3,},
     {"id":{"name":"obj_continue_tails_buddy","path":"objects/obj_continue_tails_buddy/obj_continue_tails_buddy.yy",},"order":4,},
     {"id":{"name":"obj_countdown","path":"objects/obj_countdown/obj_countdown.yy",},"order":9,},
+    {"id":{"name":"rm_stage_template","path":"rooms/rm_stage_template/rm_stage_template.yy",},"order":10,},
     {"id":{"name":"obj_crabmeat","path":"objects/obj_crabmeat/obj_crabmeat.yy",},"order":10,},
     {"id":{"name":"obj_crabmeat_projectile","path":"objects/obj_crabmeat_projectile/obj_crabmeat_projectile.yy",},"order":11,},
     {"id":{"name":"spr_water_trail","path":"sprites/spr_water_trail/spr_water_trail.yy",},"order":7,},
@@ -742,6 +743,7 @@
     {"roomId":{"name":"rm_special","path":"rooms/rm_special/rm_special.yy",},},
     {"roomId":{"name":"rm_continue","path":"rooms/rm_continue/rm_continue.yy",},},
     {"roomId":{"name":"rm_dev_menu","path":"rooms/rm_dev_menu/rm_dev_menu.yy",},},
+    {"roomId":{"name":"rm_stage_template","path":"rooms/rm_stage_template/rm_stage_template.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"- Framework Objects -","folderPath":"folders/- Framework Objects -.yy","order":3,},
