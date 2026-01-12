@@ -49,6 +49,7 @@ function scr_game_setup()
 	audio_set_bgm_loop(snd_bgm_boss, 19.40, 83.20);
 	audio_set_bgm_loop(snd_bgm_ghz, 14.80, 53.20);
 	audio_set_bgm_loop(snd_bgm_ehz, 3.53 , 44.67);
+	audio_set_bgm_loop(snd_bgm_ssz, 0.37 , 64.37);
 	audio_set_bgm_loop(snd_bgm_dwz, 6.38, 79.45);
 	audio_set_bgm_loop(snd_bgm_level_select, 0.92, 60.65);
 	
@@ -80,6 +81,7 @@ function scr_game_setup()
 		[27, 22.5],
 		[29, 22.5],
 		[30, 22.5],
+		[49, 63.28],
 		[156, 18.28],
 		[157, 18.28],
 		[158, 18.28]

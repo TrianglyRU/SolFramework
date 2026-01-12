@@ -8,7 +8,7 @@ enum FALLINGFLOORSTATE
 	FALL
 }
 
-depth = draw_depth(50);
+depth = draw_depth(40); // 50 by default
 culler.action = CULL_ACTION.RESET;
 state = FALLINGFLOORSTATE.IDLE;
 wait_timer = 8;

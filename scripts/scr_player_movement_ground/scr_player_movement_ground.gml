@@ -16,7 +16,7 @@ function scr_player_movement_ground()
 		var _is_braking = false;
 		
 		if input_down.left
-		{	
+		{
 			if spd_ground > 0
 			{
 				spd_ground -= dec;

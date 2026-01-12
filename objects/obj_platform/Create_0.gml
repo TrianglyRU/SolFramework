@@ -17,7 +17,7 @@ enum PLATFORM_TYPE
 	CIRCULAR
 }
 
-depth = draw_depth(50);
+depth = draw_depth(40); // 50 by default
 state = PLATFORM_STATE.MOVE;
 wait_timer = 0;
 weight = 0;

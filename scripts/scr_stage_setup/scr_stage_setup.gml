@@ -74,11 +74,11 @@ function scr_stage_setup()
 			
 			texture_prefetch("texgroup_ssz_graphics");
 			
-			setup_level(98, "SUNSET SHORE", 0, noone, [spr_animal_flicky, spr_animal_pocky], rm_level_select, true);
+			setup_level(98, "SUNSET SHORE", 0, snd_bgm_ssz, [spr_animal_flicky, spr_animal_pocky], rm_level_select, true);
 			
 			var _factor_y = (448 - global.init_resolution_h) / (2048 - global.init_resolution_h);
 			
-			bg_convert("Sky", 0, _factor_y * 0.75, -0.25, 0, 0);
+			bg_convert("Sky", 0.09375, _factor_y * 0.75, -0.25, 0, 0);
 			bg_convert("Mountains", 0.09375, _factor_y, 0, 0, 0);
 			bg_convert("Waterfalls", 0.1875, _factor_y, 0, 0, 0);
 			bg_convert_scaled("Lake", 0.1875, _factor_y, 0, 0, 0.921875, 1, -1, 0);
