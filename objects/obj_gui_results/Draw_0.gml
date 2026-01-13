@@ -13,7 +13,7 @@ var _factor_x = _w / 320;
 var _is_single_act = obj_rm_stage.act_index == ACT_SINGLE;
 var _player_text, _dx, _dy;
 
-switch player_object.player_type
+switch player.player_type
 {
     case PLAYER.TAILS:
         _player_text = "TAILS";	
@@ -34,7 +34,7 @@ switch player_object.player_type
 _dx = _centre_x + offset_line1 * _factor_x;
 _dy = _centre_y - 56;
 
-if !_is_single_act && player_object.player_type == PLAYER.KNUCKLES
+if !_is_single_act && player.player_type == PLAYER.KNUCKLES
 {
     _x -= 28;
 }

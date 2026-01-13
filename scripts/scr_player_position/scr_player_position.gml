@@ -1,11 +1,6 @@
 /// @self obj_player
 function scr_player_position()
 {
-	if action == ACTION.CARRIED || action == ACTION.USE_OBJECT
-	{
-		return;
-	}
-	
 	if stick_to_convex
 	{
 		vel_x = clamp(vel_x, -16, 16);

@@ -2,7 +2,7 @@
 
 /// @self obj_player
 function scr_player_collision_ground_floor()
-{	
+{
 	if on_object != noone && instance_exists(on_object)
 	{
 		return;

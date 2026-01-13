@@ -1,11 +1,6 @@
 /// @self obj_player
 function scr_player_movement_roll()
 {
-	if action = ACTION.USE_OBJECT
-	{
-		return;
-	}
-	
 	if ground_lock_timer == 0
 	{
 	    if input_down.left

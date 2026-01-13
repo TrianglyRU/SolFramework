@@ -25,7 +25,7 @@ state = RESULTS_STATE.LOAD;
 state_timer = 40;
 total_bonus = 0;
 ring_bonus = global.player_rings * 100;
-player_object = player_get(0);
+player = player_get(0);
 next_room = obj_rm_stage.next_stage;
 
 audio_play_bgm(snd_bgm_actclear);

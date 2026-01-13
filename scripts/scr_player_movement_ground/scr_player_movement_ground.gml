@@ -1,11 +1,6 @@
 /// @self obj_player
 function scr_player_movement_ground()
-{	
-	if action = ACTION.USE_OBJECT
-	{
-		return;
-	}
-	
+{
 	if action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH
 	{
 		return;

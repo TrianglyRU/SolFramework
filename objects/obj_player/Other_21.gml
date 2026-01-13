@@ -14,67 +14,72 @@ switch state
 		scr_player_parameters();
 		scr_player_cpu();
 		
-		if state != PLAYER_STATE.DEFAULT_LOCKED then switch is_grounded
+		if state == PLAYER_STATE.DEFAULT
 		{
-			// Grounded
-			case true:
-				
-				if scr_player_spindash() || scr_player_dash() || scr_player_jump_start()
+			if action == ACTION.CARRIED
+			{
+				scr_player_carry();
+			}
+			else if action != ACTION.USE_OBJECT
+			{
+				switch is_grounded
 				{
+					// Grounded
+					case true:
+				
+						if scr_player_spindash() || scr_player_dash() || scr_player_jump_start()
+						{
+							break;
+						}
+					
+						scr_player_hammerdash();
+					
+						if animation == ANIM.SPIN
+						{
+							scr_player_slope_resist_roll();
+							scr_player_movement_roll();
+						}
+						else
+						{
+							scr_player_slope_resist();
+							scr_player_movement_ground();
+							scr_player_balance();
+						}
+					
+						scr_player_collision_ground_walls();
+						scr_player_roll_start();
+						scr_player_level_bound();
+						scr_player_position();
+						scr_player_collision_ground_floor();
+						scr_player_slope_repel();
+				
 					break;
-				}
-				
-				scr_player_hammerdash();
-				
-				if animation == ANIM.SPIN
-				{
-					scr_player_slope_resist_roll();
-					scr_player_movement_roll();
-				}
-				else
-				{
-					scr_player_slope_resist();
-					scr_player_movement_ground();
-					scr_player_balance();
-				}
-				
-				scr_player_collision_ground_walls();
-				scr_player_roll_start();
-				scr_player_level_bound();
-				scr_player_position();
-				scr_player_collision_ground_floor();
-				scr_player_slope_repel();
-				
-			break;
 			
-			// Airborne
-			case false:
+					// Airborne
+					case false:
 				
-				if scr_player_jump()
-				{
+						if scr_player_jump()
+						{
+							break;
+						}
+						
+						scr_player_dropdash();
+						scr_player_flight();
+						scr_player_climb();
+						scr_player_glide();
+						scr_player_hammerspin();
+						scr_player_hammerdash();
+						scr_player_movement_air();
+						scr_player_level_bound();
+						scr_player_position();
+						scr_player_collision_air_regular();
+						scr_player_collision_air_glide();
+				
 					break;
 				}
-				
-				scr_player_dropdash();
-				scr_player_flight();
-				scr_player_climb();
-				scr_player_glide();
-				scr_player_hammerspin();
-				scr_player_hammerdash();
-				scr_player_movement_air();
-				scr_player_level_bound();
-				scr_player_position();
-				scr_player_collision_air_glide();
-				
-				if action != ACTION.CARRIED
-				{
-					scr_player_collision_air_regular();
-				}
-				
-			break;
+			}
 		}
 		
-		scr_player_carry();
 		scr_player_water();
 		scr_player_update_status();
 		scr_player_animate();

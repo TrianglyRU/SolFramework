@@ -23,7 +23,7 @@ switch state
 		obj_gui_hud.update_timer = false;
 		
 		state = SIGNPOST_STATE.ROTATE;
-		player_object = _player;
+		player = _player;
 		
 		audio_play_sfx(snd_signpost);
 		
@@ -55,7 +55,7 @@ switch state
 					
 					var _sign_sprite;
 					
-					switch player_object.player_type
+					switch player.player_type
 					{
 						case PLAYER.TAILS:
 							_sign_sprite = spr_signpost_tails;
@@ -105,15 +105,15 @@ switch state
 	
 	case SIGNPOST_STATE.MOVE_PLAYER:
 		
-		if player_object.state >= PLAYER_STATE.DEFAULT_LOCKED
+		if player.state >= PLAYER_STATE.DEFAULT_LOCKED
 		{
 			break;
 		}
 		
 		with obj_player
 		{
-			// This check causes a player to keep their control during the act results screen
-			/*if (!is_grounded)
+			// This check causes the player to keep their control during the act results screen
+			/*if !is_grounded
 			{
 				break;
 			}*/
@@ -133,7 +133,7 @@ switch state
 			cpu_control_timer = 0;
 		}
 		
-		if player_object.x >= obj_rm_stage.end_bound - 24
+		if player.x >= obj_rm_stage.end_bound - 24
 		{
 			instance_create(0, 0, obj_gui_results);		
 			state++;

@@ -1,3 +1,5 @@
+// Feather ignore GM2016
+
 switch state
 {
 	case PARACHUTE_STATE.IDLE:
@@ -13,18 +15,22 @@ switch state
 			
 			player = _player;
 			player.reset_substate();
-			player.spd = player.vel_x;
-			player.vel_y = 0;
-			player.grv = 0;
-			player.facing = player.vel_x >= 0 ? 1 : -1;
 			player.action = ACTION.USE_OBJECT;
 			player.animation = ANIM.GRAB;
+			player.vel_y = 0;
 			
-			x = player.x;
-			y = player.y - player.radius_y - 20;
+			if player.vel_x = 0
+			{
+				player.facing = sign(image_xscale);
+			}
+			else
+			{
+				player.facing = player.vel_x >= 0 ? 1 : -1;
+			}
 			
 			state = PARACHUTE_STATE.CARRY_PLAYER;
 			animator.start(sprite_index, 0, 0, 8);
+			sync_with_player();
 			
 			audio_play_sfx(snd_grab);
 			break;
@@ -52,49 +58,49 @@ switch state
 		
 			if facing == 1
 			{
-				if spd < -3
+				if vel_x < -3
 				{
-					spd *= 0.8125;
+					vel_x *= 0.8125;
 				}
 				
-				if spd > 3
+				if vel_x > 3
 				{
-					spd *= 0.8125;
-					if spd < 3
+					vel_x *= 0.8125;
+					if vel_x < 3
 					{
-						spd = 3;
+						vel_x = 3;
 					}
 				}
 				else
 				{
-					spd += 0.0625;
-					if spd > 3
+					vel_x += 0.0625;
+					if vel_x > 3
 					{
-						spd = 3;
+						vel_x = 3;
 					}
 				}
 			}
 			else
 			{
-				if spd > 3
+				if vel_x > 3
 				{
-					spd *= 0.8125;
+					vel_x *= 0.8125;
 				}
 				
-				if spd < -3
+				if vel_x < -3
 				{
-					spd *= 0.8125;
-					if spd > -3
+					vel_x *= 0.8125;
+					if vel_x > -3
 					{
-						spd = -3;
+						vel_x = -3;
 					}
 				}
 				else
 				{
-					spd -= 0.0625;
-					if spd < -3
+					vel_x -= 0.0625;
+					if vel_x < -3
 					{
-						spd = -3;
+						vel_x = -3;
 					}
 				}
 			}
@@ -104,18 +110,17 @@ switch state
 				vel_y += 0.125;
 			}
 			
-			vel_x = spd;
-			
 			x += vel_x;
 			y += vel_y;
 			
-			other.x = x;
-			other.y = y - radius_y - 20;
-			other.vel_x = vel_x;
-			other.vel_y = vel_y;
+			// Collide with the level
+			scr_player_collision_air_regular();
+			
+			other.sync_with_player();
 			
 			if input_press_action_any()
 			{
+				other.state = PARACHUTE_STATE.LEFTOVER;
 				action = ACTION.NONE;
 				animation = ANIM.SPIN;
 				vel_y = -4;
@@ -123,6 +128,8 @@ switch state
 				radius_x = radius_x_spin;
 				radius_y = radius_y_spin;
 				reset_gravity();
+				
+				audio_play_sfx(snd_jump);
 			}
 		}
 		
