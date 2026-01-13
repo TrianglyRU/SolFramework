@@ -35,7 +35,7 @@ function scr_player_camera()
 			_target_y -= radius_y_normal - radius_y;
 		}
 		
-		var _limit = abs(spd_ground) < 8 ? 6 : 16;
+		var _limit = abs(spd) < 8 ? 6 : 16;
 		
 		camera_data.vel_y = clamp(_target_y, -_limit, _limit);
 	}
@@ -56,9 +56,9 @@ function scr_player_camera()
 	{
 		var _x_shift_dist = 64;
 		var _x_shift_spd = 2;
-		var _x_shift_dir = spd_ground != 0 ? sign(spd_ground) : facing;
+		var _x_shift_dir = spd != 0 ? sign(spd) : facing;
 		
-		if abs(spd_ground) >= 6 || action == ACTION.SPINDASH
+		if abs(spd) >= 6 || action == ACTION.SPINDASH
 		{
 			if camera_data.delay_x == 0 && camera_data.offset_x != _x_shift_dist * _x_shift_dir
 			{

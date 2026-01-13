@@ -39,12 +39,7 @@ switch state
 				}
 				
 				scr_player_collision_ground_walls();
-				
-				if animation != ANIM.SPIN
-				{
-					scr_player_roll_start();
-				}
-				
+				scr_player_roll_start();
 				scr_player_level_bound();
 				scr_player_position();
 				scr_player_collision_ground_floor();
@@ -52,7 +47,7 @@ switch state
 				
 			break;
 			
-			// Airm_borne
+			// Airborne
 			case false:
 				
 				if scr_player_jump()
@@ -68,14 +63,13 @@ switch state
 				scr_player_hammerdash();
 				scr_player_movement_air();
 				scr_player_level_bound();
+				scr_player_position();
+				scr_player_collision_air_glide();
 				
 				if action != ACTION.CARRIED
 				{
-					scr_player_position();
-					scr_player_collision_air();
+					scr_player_collision_air_regular();
 				}
-				
-				scr_player_glide_collision();
 				
 			break;
 		}
@@ -86,7 +80,6 @@ switch state
 		scr_player_animate();
 		scr_player_update_hitbox();
 
-		
 		record_data(0);
 		
 	break;
@@ -100,7 +93,7 @@ switch state
 		
 		scr_player_level_bound();
 		scr_player_position();
-		scr_player_collision_air();
+		scr_player_collision_air_regular();
 		scr_player_animate();
 		scr_player_update_hitbox();
 		

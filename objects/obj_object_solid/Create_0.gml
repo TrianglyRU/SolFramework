@@ -166,7 +166,7 @@ solid_object = function(_player, _type)
 						{
 							if _s3_method && !_player.is_grounded
 							{
-								_player.spd_ground = 0;
+								_player.spd = 0;
 							}
 						
 							_player.y -= _y_clip;
@@ -240,7 +240,7 @@ solid_object = function(_player, _type)
 		
 		if _x_clip != 0 && sign(_x_clip) == sign(_player.vel_x)
 		{
-			_player.spd_ground = 0;
+			_player.spd = 0;
 			_player.vel_x = 0;
 			
 			solid_push[_p] = _player.is_grounded;
@@ -278,7 +278,7 @@ attach_player = function(_type, _player, _bbtop)
 	}
 	
 	_player.y = _bbtop - _player.radius_y;
-	_player.spd_ground	= _player.vel_x;
+	_player.spd	= _player.vel_x;
 	_player.vel_y = 0;
 	_player.angle = 0;
 	_player.on_object = id;

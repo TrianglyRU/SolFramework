@@ -20,11 +20,11 @@ function scr_player_animate_tails()
 		case ANIM.MOVE:
 		
 			var _move_sprite = spr_tails_walk;	
-			var _move_timing = floor(max(1, 9 - abs(spd_ground)));
+			var _move_timing = floor(max(1, 9 - abs(spd)));
 			
-			if abs(spd_ground) >= 6
+			if abs(spd) >= 6
 			{
-				_move_sprite = abs(spd_ground) < 10 ? spr_tails_run : spr_tails_dash;
+				_move_sprite = abs(spd) < 10 ? spr_tails_run : spr_tails_dash;
 			}
 			
 			if sprite_index != _move_sprite
@@ -58,7 +58,7 @@ function scr_player_animate_tails()
 		
 		case ANIM.PUSH:
 		
-			var _push_timing = floor(max(1, 9 - abs(spd_ground)) * 4);
+			var _push_timing = floor(max(1, 9 - abs(spd)) * 4);
 		
 			if sprite_index != spr_tails_push
 			{

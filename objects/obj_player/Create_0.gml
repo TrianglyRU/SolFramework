@@ -70,7 +70,8 @@ enum ACTION
 	TRANSFORM,
 	HAMMERDASH,
 	HAMMERSPIN,
-	CARRIED
+	CARRIED,
+	USE_OBJECT
 }
 
 enum GLIDE_STATE
@@ -158,8 +159,8 @@ enum ROTATION
 
 set_velocity = function()
 {
-	vel_x = spd_ground * dcos(angle);
-	vel_y = spd_ground * -dsin(angle);
+	vel_x = spd * dcos(angle);
+	vel_y = spd * -dsin(angle);
 }
 
 respawn = function()
@@ -242,7 +243,7 @@ land = function()
 	{
 		if action == ACTION.DASH
 		{
-			spd_ground = dash_vel;
+			spd = dash_vel;
 		}
 		
 		return;
@@ -275,7 +276,7 @@ land = function()
 
 	if state == PLAYER_STATE.HURT
 	{
-		spd_ground = 0;
+		spd = 0;
 	}
 	
 	state = PLAYER_STATE.DEFAULT;
@@ -348,7 +349,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 	vel_y = -4;
 	animation = ANIM.HURT;
 	state = PLAYER_STATE.HURT;
-	spd_ground = 0;
+	spd = 0;
 	grv = 0.1875;
 	air_lock_flag = true;
 	inv_frames = 120;
@@ -426,7 +427,7 @@ kill = function(_sound = snd_hurt)
 	grv = 0.21875;
 	vel_y = -7;
 	vel_x = 0;
-	spd_ground = 0;
+	spd = 0;
 	depth = RENDER_DEPTH_PRIORITY + player_index;
 	
 	if camera_data.index == player_index

@@ -26,8 +26,8 @@ function scr_player_animate_knuckles()
 		
 		case ANIM.MOVE:
 			
-			var _move_sprite = abs(spd_ground) < 6 ? spr_knuckles_walk : spr_knuckles_run;
-			var _move_timing = floor(max(1, 9 - abs(spd_ground)));
+			var _move_sprite = abs(spd) < 6 ? spr_knuckles_walk : spr_knuckles_run;
+			var _move_timing = floor(max(1, 9 - abs(spd)));
 				
 			if sprite_index != _move_sprite
 			{
@@ -42,7 +42,7 @@ function scr_player_animate_knuckles()
 		
 		case ANIM.SPIN:
 			
-			var _spin_timing = floor(max(1, 5 - abs(spd_ground)));
+			var _spin_timing = floor(max(1, 5 - abs(spd)));
 				
 			if sprite_index != spr_knuckles_spin
 			{
@@ -66,7 +66,7 @@ function scr_player_animate_knuckles()
 		
 		case ANIM.PUSH:
 		
-			var _push_timing = floor(max(1, 9 - abs(spd_ground)));
+			var _push_timing = floor(max(1, 9 - abs(spd)));
 		
 			if sprite_index != spr_knuckles_push
 			{

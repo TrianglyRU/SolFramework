@@ -30,40 +30,40 @@ function scr_player_dropdash()
 	    {
 	        if vel_x <= 0
 	        {
-	            spd_ground = (spd_ground >> 2) - _force;  // is floor(spd_ground / 4)
+	            spd = (spd >> 2) - _force;  // is floor(spd / 4)
 				
-	            if spd_ground < -_max_speed
+	            if spd < -_max_speed
 	            {
-	                spd_ground = -_max_speed;
+	                spd = -_max_speed;
 	            }
 	        }
 	        else if angle != 0
 	        {
-	            spd_ground = (spd_ground >> 1) - _force;  // is floor(spd_ground / 2)
+	            spd = (spd >> 1) - _force;  // is floor(spd / 2)
 	        }
 	        else
 	        {
-	            spd_ground = -_force;
+	            spd = -_force;
 	        }
 	    }
 	    else
 	    {
 	        if vel_x >= 0
 	        {
-	            spd_ground = (spd_ground >> 2) + _force;
+	            spd = (spd >> 2) + _force;
 				
-	            if (spd_ground > _max_speed)
+	            if (spd > _max_speed)
 	            {
-	                spd_ground = _max_speed;
+	                spd = _max_speed;
 	            }
 	        }
 	        else if angle != 0
 	        {
-	            spd_ground = (spd_ground >> 1) + _force;
+	            spd = (spd >> 1) + _force;
 	        }
 	        else 
 	        {
-	            spd_ground = _force;
+	            spd = _force;
 	        }
 	    }
 		

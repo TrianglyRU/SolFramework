@@ -48,7 +48,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.x -= image_xscale * 8;
 	_player.facing = image_xscale;
 	_player.vel_x = image_xscale * launch_force;
-	_player.spd_ground = _player.vel_x;
+	_player.spd = _player.vel_x;
 	_player.ground_lock_timer = 16;
 	_player.action = ACTION.NONE;
 	

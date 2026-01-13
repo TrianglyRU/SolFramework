@@ -11,7 +11,7 @@ function scr_player_level_bound()
 	
 	if x + vel_x < _left_bound
 	{
-		spd_ground = 0;
+		spd = 0;
 		vel_x = 0;
 		x = _left_bound;
 	}
@@ -23,7 +23,7 @@ function scr_player_level_bound()
 	
 	if x + vel_x > _right_bound
 	{
-		spd_ground = 0;
+		spd = 0;
 		vel_x = 0;
 		x = _right_bound;
 	}
@@ -44,7 +44,7 @@ function scr_player_level_bound()
 	else if action == ACTION.GLIDE && y < _top_bound - 6
 	{
 		// Reset glide speed
-		spd_ground = 0;
+		spd = 0;
 	}
 	
 	if instance_exists(obj_rm_stage)

@@ -6,7 +6,7 @@ function scr_player_hammerdash()
 		return;
 	}
 	
-	if spd_ground == 0 && hammerdash_timer > 0 || ++hammerdash_timer == 60 || dcos(angle) <= 0 || set_push_anim_by != noone || !input_down_action_any()
+	if spd == 0 && hammerdash_timer > 0 || ++hammerdash_timer == 60 || dcos(angle) <= 0 || set_push_anim_by != noone || !input_down_action_any()
 	{
 		action = ACTION.NONE;
 	}
@@ -19,7 +19,7 @@ function scr_player_hammerdash()
 		
 		if is_grounded
 		{
-			spd_ground = acc_top * facing;
+			spd = acc_top * facing;
 			set_velocity();
 		}
 	}

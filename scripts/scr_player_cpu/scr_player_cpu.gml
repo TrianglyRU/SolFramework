@@ -180,12 +180,12 @@ function scr_player_cpu()
 	        var _target_push_flag = _follow_data[4];
 	        var _target_facing = _follow_data[5];
 			
-	        if ground_lock_timer != 0 && spd_ground == 0
+	        if ground_lock_timer != 0 && spd == 0
 	        {
 	            cpu_state = CPU_STATE.STUCK;
 	        }
 			
-	        if _cpu_behaviour == CPU_BEHAVIOUR.S3 && abs(cpu_target.spd_ground) < 4 && cpu_target.on_object == noone
+	        if _cpu_behaviour == CPU_BEHAVIOUR.S3 && abs(cpu_target.spd) < 4 && cpu_target.on_object == noone
 	        {
 	            _target_x -= 32;
 	        }
@@ -220,7 +220,7 @@ function scr_player_cpu()
 					
 	                var _dist_sign = sign(_dist_x);
 					
-	                if spd_ground != 0 && sign(facing) == _dist_sign
+	                if spd != 0 && sign(facing) == _dist_sign
 	                {
 	                    x += _dist_sign;
 	                }
@@ -282,7 +282,7 @@ function scr_player_cpu()
 	            break;
 	        }
 
-	        if ground_lock_timer != 0 || cpu_control_timer != 0 || spd_ground != 0
+	        if ground_lock_timer != 0 || cpu_control_timer != 0 || spd != 0
 	        {
 	            break;
 	        }

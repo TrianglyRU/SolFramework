@@ -11,21 +11,21 @@ function scr_player_glide()
 	var _slide_frc = 0.09375;
 	var _input_down_any = input_down.action1 || input_down.action2 || input_down.action3;
 
-	// spd_ground is used as a glide speed
+	// spd is used as a glide speed
 	switch action_state
 	{
 	    case GLIDE_STATE.AIR:
 		
-	        if spd_ground >= 4
+	        if spd >= 4
 	        {
 	            if glide_angle % 180 == 0
 	            {
-	                spd_ground = min(spd_ground + acc_glide, 24);
+	                spd = min(spd + acc_glide, 24);
 	            }
 	        }
 	        else
 	        {
-	            spd_ground += 0.03125;
+	            spd += 0.03125;
 	        }
 			
 	        if glide_angle != 0 && input_down.left
@@ -52,7 +52,7 @@ function scr_player_glide()
 	        }
 			
 			facing = abs(glide_angle) < 90 ? -1 : 1; 
-	        vel_x = spd_ground * -dcos(glide_angle);
+	        vel_x = spd * -dcos(glide_angle);
 			
 	        if vel_y < 0.5
 	        {
@@ -91,7 +91,7 @@ function scr_player_glide()
 	            land();
 	            animation = ANIM.GLIDE_GROUND;	// Keep the animation
 	            ground_lock_timer = 16;
-	            spd_ground = 0;
+	            spd = 0;
 				image_index = 1;
 				
 	            break;

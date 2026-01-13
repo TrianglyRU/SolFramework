@@ -1,5 +1,5 @@
 /// @self obj_player
-function scr_player_glide_collision()
+function scr_player_collision_air_glide()
 {
 	if action != ACTION.GLIDE
 	{
@@ -111,7 +111,7 @@ function scr_player_glide_collision()
 			}
 			else
 			{
-				spd_ground = angle < 180 ? vel_x : -vel_x; 
+				spd = angle < 180 ? vel_x : -vel_x; 
 				land();
 			}
 		}
@@ -123,12 +123,12 @@ function scr_player_glide_collision()
 		    {
 		        animation = ANIM.GLIDE_LAND;
 		        ground_lock_timer = 16;
-				spd_ground = 0;
+				spd = 0;
 		        vel_x = 0;
 		    }
 		    else
 		    {
-		        spd_ground = vel_x;
+		        spd = vel_x;
 		    }
 			
 			audio_play_sfx(snd_land);
@@ -163,7 +163,7 @@ function scr_player_glide_collision()
 		action_state = CLIMB_STATE.NORMAL;
 	    animation = ANIM.CLIMB_WALL;
 	    climb_value = 0;
-		spd_ground = 0;
+		spd = 0;
 	    vel_y = 0;
 	    grv = 0;
 		

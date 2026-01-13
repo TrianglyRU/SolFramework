@@ -27,15 +27,15 @@ function scr_player_animate_sonic()
 		case ANIM.MOVE:
 		
 			var _move_sprite;
-			var _move_timing = floor(max(1, 9 - abs(spd_ground)));
+			var _move_timing = floor(max(1, 9 - abs(spd)));
 			
 			if super_timer > 0
 			{
-				_move_sprite = abs(spd_ground) < 8 ? spr_sonic_walk_super : spr_sonic_dash_super;
+				_move_sprite = abs(spd) < 8 ? spr_sonic_walk_super : spr_sonic_dash_super;
 			}
-			else if abs(spd_ground) >= 6
+			else if abs(spd) >= 6
 			{
-				_move_sprite = abs(spd_ground) < 10 || !global.dash ? spr_sonic_run : spr_sonic_dash;
+				_move_sprite = abs(spd) < 10 || !global.dash ? spr_sonic_run : spr_sonic_dash;
 			}
 			else
 			{
@@ -76,7 +76,7 @@ function scr_player_animate_sonic()
 			}
 			else 
 			{
-				var _spin_timing = floor(max(1, 5 - abs(spd_ground)));
+				var _spin_timing = floor(max(1, 5 - abs(spd)));
 				
 				if sprite_index != spr_sonic_spin
 				{
@@ -102,7 +102,7 @@ function scr_player_animate_sonic()
 		case ANIM.PUSH:
 			
 			var _push_sprite = super_timer > 0 ? spr_sonic_push_super : spr_sonic_push;
-			var _push_timing = floor(max(1, 9 - abs(spd_ground)) * 4);
+			var _push_timing = floor(max(1, 9 - abs(spd)) * 4);
 			
 			if sprite_index != _push_sprite
 			{

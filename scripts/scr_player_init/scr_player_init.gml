@@ -75,7 +75,7 @@ function scr_player_init()
 	
 	vel_x = 0;
 	vel_y = 0;
-	spd_ground = 0;
+	spd = 0;
 	angle = 0;
 	grv = PARAM_GRV_DEFAULT;
 	

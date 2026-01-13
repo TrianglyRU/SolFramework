@@ -28,7 +28,7 @@ function scr_player_animate()
 				    _diff += 360;
 				}
 			
-				visual_angle += _diff / ((abs(spd_ground) >= 6) ? 2 : 4);
+				visual_angle += _diff / ((abs(spd) >= 6) ? 2 : 4);
 				visual_angle %= 360;
 				
 				if visual_angle < 0

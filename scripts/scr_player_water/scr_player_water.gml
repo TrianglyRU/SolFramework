@@ -126,7 +126,7 @@ function scr_player_water()
 				animation = ANIM.DROWN;
 				vel_x = 0;
 				vel_y = 0;
-				spd_ground = 0;
+				spd = 0;
 				depth = RENDER_DEPTH_PRIORITY + player_index;
 				
 				if player_index == camera_data.index

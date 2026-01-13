@@ -36,7 +36,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	_player.x -= 4 * sign(_vel_x);
 	_player.vel_x = _vel_x;
-	_player.spd_ground = _vel_x;
+	_player.spd = _vel_x;
 	_player.set_push_anim_by = noone;
 	
 	var _smash_dir = floor(_player.x) >= floor(x) ? 1 : -1;

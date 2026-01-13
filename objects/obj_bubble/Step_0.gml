@@ -80,7 +80,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		_player.ground_lock_timer = 35;
 		_player.vel_x = 0;
 		_player.vel_y = 0;
-		_player.spd_ground = 0;
+		_player.spd = 0;
 		
 	    audio_play_sfx(snd_breathe);
 		

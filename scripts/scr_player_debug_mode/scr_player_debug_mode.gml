@@ -63,7 +63,7 @@ function scr_player_debug_mode()
 	    is_underwater = false;
 		air_lock_flag = false;
 	    debug_mode_spd = 0;
-	    spd_ground = 0;
+	    spd = 0;
 	    vel_x = 0;
 	    vel_y = 0;
 	    reset_substate();

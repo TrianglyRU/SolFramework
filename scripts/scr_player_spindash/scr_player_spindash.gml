@@ -71,7 +71,7 @@ function scr_player_spindash()
 	radius_y = radius_y_spin;
 	animation = ANIM.SPIN;
 	action = ACTION.NONE;
-	spd_ground = _speed * facing;
+	spd = _speed * facing;
 	
 	set_camera_delay(floor(_raw_camera_delay * 0.5));
 	set_velocity();

@@ -46,7 +46,7 @@ function scr_player_carry()
 				
 				with _player
 				{
-					scr_player_collision_air();
+					scr_player_collision_air_regular();
 				}
 				
 				_attach_to_tails(_player);
@@ -95,7 +95,7 @@ function scr_player_carry()
 		
 		with carry_target
 		{
-			scr_player_collision_air();
+			scr_player_collision_air_regular();
 		}
 	}
 }

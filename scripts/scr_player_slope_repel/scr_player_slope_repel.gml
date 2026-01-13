@@ -12,7 +12,7 @@ function scr_player_slope_repel()
 		return;
 	}
 
-	if abs(spd_ground) >= 2.5
+	if abs(spd) >= 2.5
 	{
 		return;
 	}
@@ -21,7 +21,7 @@ function scr_player_slope_repel()
 	{
 		if math_get_quadrant(angle) != QUADRANT.DOWN
 		{	
-			spd_ground = 0;	
+			spd = 0;	
 			ground_lock_timer = 30;
 			is_grounded = false;
 		} 
@@ -34,7 +34,7 @@ function scr_player_slope_repel()
 		}
 		else
 		{
-			spd_ground += angle < 180 ? -0.5 : 0.5;
+			spd += angle < 180 ? -0.5 : 0.5;
 		}
 		
 		ground_lock_timer = 30;

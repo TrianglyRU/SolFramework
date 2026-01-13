@@ -1,12 +1,17 @@
 /// @self obj_player
 function scr_player_movement_ground()
 {	
+	if action = ACTION.USE_OBJECT
+	{
+		return;
+	}
+	
 	if action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH
 	{
 		return;
 	}
 	
-	if (animation == ANIM.GLIDE_GROUND || animation == ANIM.GLIDE_LAND) && (input_down.down || spd_ground != 0)
+	if (animation == ANIM.GLIDE_GROUND || animation == ANIM.GLIDE_LAND) && (input_down.down || spd != 0)
 	{
 		ground_lock_timer = 0;
 	}
@@ -17,22 +22,22 @@ function scr_player_movement_ground()
 		
 		if input_down.left
 		{
-			if spd_ground > 0
+			if spd > 0
 			{
-				spd_ground -= dec;
+				spd -= dec;
 				
-				if spd_ground < 0
+				if spd < 0
 				{
-					spd_ground = -0.5;
+					spd = -0.5;
 				}
 				
 				_is_braking = true;
 			}
 			else
 			{
-				if global.speed_cap || spd_ground > -acc_top
+				if global.speed_cap || spd > -acc_top
 				{
-					spd_ground = max(spd_ground - acc, -acc_top);
+					spd = max(spd - acc, -acc_top);
 				}
 				
 				if facing != -1
@@ -52,22 +57,22 @@ function scr_player_movement_ground()
 		
 		if input_down.right
 		{
-			if spd_ground < 0
+			if spd < 0
 			{
-				spd_ground += dec;
+				spd += dec;
 				
-				if spd_ground >= 0
+				if spd >= 0
 				{
-					spd_ground = 0.5;
+					spd = 0.5;
 				}
 				
 				_is_braking = true;
 			} 
 			else
 			{
-				if global.speed_cap || spd_ground < acc_top
+				if global.speed_cap || spd < acc_top
 				{
-					spd_ground = min(spd_ground + acc, acc_top);
+					spd = min(spd + acc, acc_top);
 				}
 				
 				if facing != 1
@@ -91,9 +96,9 @@ function scr_player_movement_ground()
 		}	
 		
 		var _angle_quad = math_get_quadrant(angle);
-		var _is_fast = abs(spd_ground) >= PARAM_SKID_SPEED_THRESHOLD;
+		var _is_fast = abs(spd) >= PARAM_SKID_SPEED_THRESHOLD;
 		
-		if _angle_quad == QUADRANT.DOWN && spd_ground == 0
+		if _angle_quad == QUADRANT.DOWN && spd == 0
 		{
 			if input_down.up
 			{
@@ -128,13 +133,13 @@ function scr_player_movement_ground()
 	
 	if !input_down.left && !input_down.right
 	{
-		if spd_ground > 0
+		if spd > 0
 		{
-			spd_ground = max(spd_ground - frc, 0);
+			spd = max(spd - frc, 0);
 		}
-		else if spd_ground < 0
+		else if spd < 0
 		{
-			spd_ground = min(spd_ground + frc, 0);
+			spd = min(spd + frc, 0);
 		}
 	}
 	

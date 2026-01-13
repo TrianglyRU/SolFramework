@@ -5,7 +5,7 @@ if !instance_exists(player) || player.super_timer <= 0
 		instance_destroy();
 	}
 }
-else if player.action != ACTION.DASH && abs(player.spd_ground) >= player.acc_top
+else if player.action != ACTION.DASH && abs(player.spd) >= player.acc_top
 {
 	if animator.timer <= 0
 	{

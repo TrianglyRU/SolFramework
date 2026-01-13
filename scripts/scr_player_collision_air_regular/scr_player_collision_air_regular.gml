@@ -1,5 +1,5 @@
 /// @self obj_player
-function scr_player_collision_air()
+function scr_player_collision_air_regular()
 {
 	if action == ACTION.GLIDE || action == ACTION.CLIMB
 	{
@@ -20,7 +20,7 @@ function scr_player_collision_air()
 			
 			if _move_quad == QUADRANT.LEFT
 			{
-				spd_ground = vel_y;
+				spd = vel_y;
 				return;
 			}
 		}
@@ -37,7 +37,7 @@ function scr_player_collision_air()
 		
 			if _move_quad == QUADRANT.RIGHT
 			{
-				spd_ground = vel_y;
+				spd = vel_y;
 				return;
 			}
 		}
@@ -72,7 +72,7 @@ function scr_player_collision_air()
 				angle = _roof_angle;
 				
 				land();
-				spd_ground = _roof_angle < 180 ? -vel_y : vel_y;
+				spd = _roof_angle < 180 ? -vel_y : vel_y;
 				vel_y = 0;	
 				
 				return;
@@ -127,17 +127,17 @@ function scr_player_collision_air()
 					vel_y = 15.75;
 				}
 				
-				spd_ground = _floor_angle < 180 ? -vel_y : vel_y;
+				spd = _floor_angle < 180 ? -vel_y : vel_y;
 				vel_x = 0;
 			}
 			else if _floor_angle > 22.5 && _floor_angle <= 337.5
 			{
-				spd_ground = _floor_angle < 180 ? -vel_y : vel_y;
-				spd_ground *= 0.5;
+				spd = _floor_angle < 180 ? -vel_y : vel_y;
+				spd *= 0.5;
 			}
 			else 
 			{
-				spd_ground = vel_x;
+				spd = vel_x;
 				vel_y = 0;
 			}
 		}
@@ -153,7 +153,7 @@ function scr_player_collision_air()
 				return;
 			}
 			
-			spd_ground = vel_x;
+			spd = vel_x;
 			vel_y = 0;
 		}
 		else

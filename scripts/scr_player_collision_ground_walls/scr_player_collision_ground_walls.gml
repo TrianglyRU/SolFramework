@@ -31,7 +31,7 @@ function scr_player_collision_ground_walls()
 		_wall_quad = QUADRANT.DOWN;
 	}
 
-	if spd_ground < 0
+	if spd < 0
 	{
 	    var _wall_dist;
 	    var _x = x + vel_x;
@@ -66,7 +66,7 @@ function scr_player_collision_ground_walls()
 	        case QUADRANT.DOWN:
 			
 	            vel_x -= _wall_dist;
-	            spd_ground = 0;
+	            spd = 0;
 				
 	            if facing == -1 && animation != ANIM.SPIN
 	            {
@@ -82,7 +82,7 @@ function scr_player_collision_ground_walls()
 	        case QUADRANT.UP:
 			
 	            vel_x += _wall_dist;
-	            spd_ground = 0;
+	            spd = 0;
 				
 	            if facing == -1 && animation != ANIM.SPIN
 	            {
@@ -96,7 +96,7 @@ function scr_player_collision_ground_walls()
 	        break;
 	    }
 	}
-	else if spd_ground > 0
+	else if spd > 0
 	{
 	    var _wall_dist;
 	    var _x = x + vel_x;
@@ -131,7 +131,7 @@ function scr_player_collision_ground_walls()
 	        case QUADRANT.DOWN:
 			
 	            vel_x += _wall_dist;
-	            spd_ground = 0;
+	            spd = 0;
 				
 	            if facing == 1 && animation != ANIM.SPIN
 	            {
@@ -147,7 +147,7 @@ function scr_player_collision_ground_walls()
 	        case QUADRANT.UP:
 			
 	            vel_x -= _wall_dist;
-	            spd_ground = 0;
+	            spd = 0;
 				
 	            if facing == 1 && animation != ANIM.SPIN
 	            {

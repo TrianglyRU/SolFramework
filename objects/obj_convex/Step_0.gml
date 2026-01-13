@@ -16,7 +16,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		}
 		else
 		{
-			_player.spd_ground = clamp(_player.spd_ground, -15, 15);
+			_player.spd = clamp(_player.spd, -15, 15);
 		}
 	}
 	else if _list_pos != -1

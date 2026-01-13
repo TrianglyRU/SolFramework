@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scr_player_glide_collision",
+  "name": "scr_player_collision_air_regular",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

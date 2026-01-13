@@ -1,7 +1,7 @@
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
-	var _speed = abs(_player.spd_ground);
+	var _speed = abs(_player.spd);
 	var _on_object = _player.on_object;
 	
 	if _on_object != id
@@ -52,7 +52,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		// Not in the original Sonic 2, but is required in some scenarios
 		_player.facing = sign(_player.vel_x);
 		
-		_player.spd_ground = _player.vel_x;
+		_player.spd = _player.vel_x;
 		_player.vel_y = 0;
 		_player.angle = 0;
 		_player.on_object = id;

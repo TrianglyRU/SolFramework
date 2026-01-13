@@ -1,7 +1,7 @@
 /// @self obj_player
 function scr_player_balance()
 {
-	if action == ACTION.SPINDASH || action == ACTION.DASH || spd_ground != 0
+	if action == ACTION.SPINDASH || action == ACTION.DASH || spd != 0
 	{
 		return;
 	}

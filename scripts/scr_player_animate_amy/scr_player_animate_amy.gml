@@ -29,11 +29,11 @@ function scr_player_animate_amy()
 		case ANIM.MOVE:
 		
 			var _move_sprite = spr_amy_walk;
-			var _move_timing = floor(max(1, 9 - abs(spd_ground)));
+			var _move_timing = floor(max(1, 9 - abs(spd)));
 			
-			if abs(spd_ground) >= 6
+			if abs(spd) >= 6
 			{
-				_move_sprite = abs(spd_ground) < 10 ? spr_amy_run : spr_amy_dash;
+				_move_sprite = abs(spd) < 10 ? spr_amy_run : spr_amy_dash;
 			}
 			else
 			{
@@ -53,7 +53,7 @@ function scr_player_animate_amy()
 		
 		case ANIM.SPIN:
 		
-			var _spin_timing = floor(max(1, 5 - abs(spd_ground)));
+			var _spin_timing = floor(max(1, 5 - abs(spd)));
 			
 			if sprite_index != spr_amy_spin && sprite_index != spr_amy_spin_hammer
 			{
@@ -83,7 +83,7 @@ function scr_player_animate_amy()
 		
 		case ANIM.PUSH:
 			
-			var _push_timing = floor(max(1, 9 - abs(spd_ground)) * 4);
+			var _push_timing = floor(max(1, 9 - abs(spd)) * 4);
 			
 			if sprite_index != spr_amy_push
 			{

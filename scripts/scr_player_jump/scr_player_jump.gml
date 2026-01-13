@@ -193,7 +193,7 @@ function scr_player_jump()
 			action_state = GLIDE_STATE.AIR;
 			air_lock_flag = false;
 			is_jumping = false;
-			spd_ground = 4;
+			spd = 4;
 			glide_value = 0;
 			glide_angle = facing < 0 ? 0 : 180;
 			radius_x = radius_x_normal + 1;

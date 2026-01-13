@@ -21,7 +21,7 @@ switch state
 				continue;
 			}
 			
-			_player.spd_ground = 0.25 * _direction;
+			_player.spd = 0.25 * _direction;
 			_player.vel_x = 0;
 			_player.x += _direction;
 			

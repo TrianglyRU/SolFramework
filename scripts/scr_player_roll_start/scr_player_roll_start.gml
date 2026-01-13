@@ -1,6 +1,11 @@
 /// @self obj_player
 function scr_player_roll_start()
 {
+	if animation == ANIM.SPIN
+	{
+		return;
+	}
+	
 	if action == ACTION.SPINDASH || action == ACTION.HAMMERDASH
 	{
 	    return;
@@ -17,7 +22,7 @@ function scr_player_roll_start()
 	{
 	    if global.player_physics == PHYSICS.SK
 	    {
-	        if abs(spd_ground) >= 1
+	        if abs(spd) >= 1
 	        {
 	            _allowed_to_roll = true;
 	        }
@@ -26,7 +31,7 @@ function scr_player_roll_start()
 	            animation = ANIM.DUCK;
 	        }
 	    }
-	    else if abs(spd_ground) >= 0.5
+	    else if abs(spd) >= 0.5
 	    {
 	        _allowed_to_roll = true;
 	    }

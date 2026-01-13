@@ -93,7 +93,7 @@ else
 
 if player.animation == ANIM.SPIN && player.is_grounded
 {
-	image_xscale = sign(player.spd_ground);
+	image_xscale = sign(player.spd);
 }
 else
 {
