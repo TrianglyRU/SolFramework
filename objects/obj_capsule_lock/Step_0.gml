@@ -3,5 +3,12 @@ y += vel_y;
 
 if vel_x != 0
 {
-	vel_y += 0.21875;
+	if !instance_is_drawn()
+	{
+		instance_destroy();
+	}
+	else
+	{
+		vel_y += 0.21875;
+	}
 }

@@ -19,7 +19,6 @@ switch state
 			
 			lock_obj.vel_x = 8;
 			lock_obj.vel_y = -4;
-			lock_obj.culler.action = CULL_ACTION.DESTROY;
 	        state = CAPSULE_STATE.BREAK;
 	        wait_timer = 29;
 		
