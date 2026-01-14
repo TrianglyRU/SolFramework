@@ -1,4 +1,3 @@
-// Override draw
 for (var _i = 0; _i < iv_chains; _i++)
 {
 	var _x = math_oscillate_x(xstart, osc_angle, _i * SWING_CHAIN_SIZE);
@@ -8,4 +7,6 @@ for (var _i = 0; _i < iv_chains; _i++)
 }
 
 draw_sprite(sprite_pendulum, 0, xstart, ystart);
-draw_self();
+
+// Draw self
+event_inherited();

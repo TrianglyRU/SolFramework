@@ -1,16 +1,19 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_parent_projectile",
-  "spriteId": null,
+  "name": "obj_moto_rally",
+  "spriteId": {
+    "name": "spr_obj_moto_rally",
+    "path": "sprites/spr_obj_moto_rally/spr_obj_moto_rally.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_object",
-    "path": "objects/obj_object/obj_object.yy",
+    "name": "obj_object_enemy",
+    "path": "objects/obj_object_enemy/obj_object_enemy.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -31,7 +34,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Stage",
-    "path": "folders/Objects/Stage.yy",
+    "name": "Badniks",
+    "path": "folders/Objects/Badniks.yy",
   },
 }

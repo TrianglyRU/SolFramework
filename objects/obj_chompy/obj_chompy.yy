@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_buzzer_projectile",
+  "name": "obj_chompy",
   "spriteId": {
-    "name": "spr_buzzer_projectile",
-    "path": "sprites/spr_buzzer_projectile/spr_buzzer_projectile.yy",
+    "name": "spr_chompy",
+    "path": "sprites/spr_chompy/spr_chompy.yy",
   },
   "solid": false,
   "visible": true,
@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_parent_enemy_projectile",
-    "path": "objects/obj_parent_enemy_projectile/obj_parent_enemy_projectile.yy",
+    "name": "obj_object_enemy",
+    "path": "objects/obj_object_enemy/obj_object_enemy.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -29,6 +29,8 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],

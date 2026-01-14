@@ -10,7 +10,7 @@ switch state
 		y += vel_y;
 		vel_y += 0.21875;
 		
-		var _floor_dist = collision_tile_v(x, bbox_bottom, 1)[0];
+		var _floor_dist = collision_tile_v(x, bbox_bottom - 1, 1)[0];
 		
 		if _floor_dist < 0
 		{
@@ -39,7 +39,7 @@ switch state
 	
 		x += vel_x;
 		
-		var _floor_dist = collision_tile_v(x, bbox_bottom, 1)[0];
+		var _floor_dist = collision_tile_v(x, bbox_bottom - 1, 1)[0];
 		
 		if _floor_dist >= 12 || _floor_dist < -8
 		{

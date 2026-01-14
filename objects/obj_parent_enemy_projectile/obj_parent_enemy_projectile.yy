@@ -1,19 +1,16 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_buzzer_projectile",
-  "spriteId": {
-    "name": "spr_buzzer_projectile",
-    "path": "sprites/spr_buzzer_projectile/spr_buzzer_projectile.yy",
-  },
+  "name": "obj_parent_enemy_projectile",
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_parent_enemy_projectile",
-    "path": "objects/obj_parent_enemy_projectile/obj_parent_enemy_projectile.yy",
+    "name": "obj_object",
+    "path": "objects/obj_object/obj_object.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -29,6 +26,7 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
