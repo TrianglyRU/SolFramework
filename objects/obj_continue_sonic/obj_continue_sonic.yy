@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_parent_continue",
-    "path": "objects/obj_parent_continue/obj_parent_continue.yy",
+    "name": "par_obj_continue",
+    "path": "objects/par_obj_continue/par_obj_continue.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_moto_rally",
   "spriteId": {
-    "name": "spr_obj_moto_rally",
-    "path": "sprites/spr_obj_moto_rally/spr_obj_moto_rally.yy",
+    "name": "spr_moto_rally",
+    "path": "sprites/spr_moto_rally/spr_moto_rally.yy",
   },
   "solid": false,
   "visible": true,

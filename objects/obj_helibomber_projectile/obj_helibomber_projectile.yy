@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_continue_amy",
+  "name": "obj_helibomber_projectile",
   "spriteId": {
-    "name": "spr_amy_continue",
-    "path": "sprites/spr_amy_continue/spr_amy_continue.yy",
+    "name": "spr_helibomber_projectile",
+    "path": "sprites/spr_helibomber_projectile/spr_helibomber_projectile.yy",
   },
   "solid": false,
   "visible": true,
@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "par_obj_continue",
-    "path": "objects/par_obj_continue/par_obj_continue.yy",
+    "name": "par_obj_badnik_projectile",
+    "path": "objects/par_obj_badnik_projectile/par_obj_badnik_projectile.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -33,7 +33,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Continue",
-    "path": "folders/Objects/Continue.yy",
+    "name": "Badniks",
+    "path": "folders/Objects/Badniks.yy",
   },
 }

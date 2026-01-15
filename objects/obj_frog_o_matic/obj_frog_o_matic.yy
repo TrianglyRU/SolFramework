@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_continue_amy",
+  "name": "obj_frog_o_matic",
   "spriteId": {
-    "name": "spr_amy_continue",
-    "path": "sprites/spr_amy_continue/spr_amy_continue.yy",
+    "name": "spr_frog_o_matic",
+    "path": "sprites/spr_frog_o_matic/spr_frog_o_matic.yy",
   },
   "solid": false,
   "visible": true,
@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "par_obj_continue",
-    "path": "objects/par_obj_continue/par_obj_continue.yy",
+    "name": "obj_object_enemy",
+    "path": "objects/obj_object_enemy/obj_object_enemy.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -29,11 +29,12 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Continue",
-    "path": "folders/Objects/Continue.yy",
+    "name": "Badniks",
+    "path": "folders/Objects/Badniks.yy",
   },
 }

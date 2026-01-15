@@ -1,19 +1,16 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_continue_amy",
-  "spriteId": {
-    "name": "spr_amy_continue",
-    "path": "sprites/spr_amy_continue/spr_amy_continue.yy",
-  },
+  "name": "par_obj_badnik_projectile",
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "par_obj_continue",
-    "path": "objects/par_obj_continue/par_obj_continue.yy",
+    "name": "obj_object",
+    "path": "objects/obj_object/obj_object.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -29,11 +26,12 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Continue",
-    "path": "folders/Objects/Continue.yy",
+    "name": "Badniks",
+    "path": "folders/Objects/Badniks.yy",
   },
 }

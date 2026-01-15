@@ -21,7 +21,7 @@ switch state
 			projectile = instance_create(x - 29 * image_xscale, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale });
 			state = BUZZ_BOMBER_STATE.HOVER;
 			state_timer = 59;
-			shot_flag = true;	
+			shot_flag = true;
 			animator.start(spr_buzz_bomber_fire, 0, 0, 2);
 		}
 		

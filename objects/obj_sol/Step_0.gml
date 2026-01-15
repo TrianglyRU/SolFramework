@@ -26,7 +26,7 @@ for (var _i = 0; _i < SOL_FIREBALL_COUNT; _i++)
 	}
 	
 	// If the fireball is attached to Sol, run its hurt routine from here to make sure it
-	// happens after Sol runs a collision with a player
+	// happens after Sol runs its collision check with a player
 	_fireball.hurt_players();
 	
 	var _new_angle = angle + angle_step * _i;
