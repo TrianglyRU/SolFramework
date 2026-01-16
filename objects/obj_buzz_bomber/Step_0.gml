@@ -45,7 +45,7 @@ switch state
 		if !shot_flag
 		{
 			var _player = player_get(obj_game.frame_counter % PLAYER_COUNT);
-			var _dist_x = floor(x) - floor(_player.x);
+			var _dist_x = x - floor(_player.x);
 			
 			if _dist_x < 0
 			{

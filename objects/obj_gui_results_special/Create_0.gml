@@ -1,3 +1,6 @@
+// Inherit the parent event
+event_inherited();
+
 enum SPECIAL_RESULTS_STATE
 {
 	LOAD,

@@ -11,7 +11,7 @@ function scr_player_carry()
 		carry_cooldown--;
 		return;
 	}
-
+	
 	if carry_target == noone
 	{
 		if action != ACTION.FLIGHT
@@ -44,13 +44,13 @@ function scr_player_carry()
 				_player.animation = ANIM.GRAB;
 				_player.action = ACTION.CARRIED;
 				
+				audio_play_sfx(snd_grab);
+				_attach_to_tails(_player);		
+				
 				with _player
 				{
 					scr_player_collision_air_regular();
 				}
-				
-				_attach_to_tails(_player);
-				audio_play_sfx(snd_grab);
 				
 				break;
 			}	

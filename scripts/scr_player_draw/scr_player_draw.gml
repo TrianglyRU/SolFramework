@@ -19,11 +19,9 @@ function scr_player_draw()
 	    }
 	}
 	
-	if state == PLAYER_STATE.DEATH
-	{
-		image_alpha = 1;
-	}
-	
 	// Draw using visual_angle instead instead of image_angle to keep the hitbox static
-	draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), image_xscale, image_yscale, animation == ANIM.MOVE || animation == ANIM.HAMMERDASH ? visual_angle : 0, draw_get_colour(), image_alpha);
+	var _angle = animation == ANIM.MOVE || animation == ANIM.HAMMERDASH ? visual_angle : 0;
+	var _alpha = state == PLAYER_STATE.DEATH ? 1 : image_alpha;
+	
+	draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), image_xscale, image_yscale, _angle, draw_get_colour(), _alpha);
 }

@@ -18,13 +18,13 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if image_yscale >= 0
 	{
-		if iv_flip_player
+		if iv_bounce_animation == ANIM.FLIP
 		{
 			_player.animation = launch_force > 10 ? ANIM.FLIP_EXTENDED : ANIM.FLIP;
 		}
 		else
 		{
-			_player.animation = ANIM.BOUNCE;
+			_player.animation = iv_bounce_animation;
 		}
 		
 		if _prev_anim == _player.animation

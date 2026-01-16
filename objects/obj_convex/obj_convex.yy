@@ -7,7 +7,7 @@
     "path": "sprites/spr_convex/spr_convex.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,

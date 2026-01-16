@@ -128,6 +128,7 @@ enum ANIM
 	TRANSFORM,
 	BREATHE,
 	BOUNCE,
+	TWIRL,
 	FLIP,
 	FLIP_EXTENDED,
 	HAMMERDASH,
@@ -448,10 +449,15 @@ clear_carry = function()
 {
 	if carry_target != noone
 	{
-		carry_target.action = ACTION.NONE;
+		if carry_target.action = ACTION.CARRIED
+		{
+			carry_target.action = ACTION.NONE;
+		}
+		
 		carry_target = noone;
-		carry_cooldown = 60;
 	}
+	
+	carry_cooldown = 60;
 }
 
 record_data = function(_insert_pos)

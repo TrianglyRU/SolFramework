@@ -210,6 +210,19 @@ function scr_player_animate_sonic()
 			}
 			
 		break;
+		
+		case ANIM.TWIRL:
+			
+			if sprite_index != spr_sonic_twirl
+			{
+				animator.start(spr_sonic_twirl, 0, 0, 4);
+			}
+			else if vel_y >= 0
+			{
+				animation = ANIM.MOVE;
+			}
+			
+		break;
 			
 		case ANIM.BALANCE:
 			

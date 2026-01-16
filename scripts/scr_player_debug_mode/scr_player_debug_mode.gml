@@ -53,7 +53,13 @@ function scr_player_debug_mode()
 	    }
 	    else
 	    {
-			instance_create(x, y, debug_mode_array[debug_mode_ind], { image_xscale: facing }).culler.action = CULL_ACTION.DESTROY;
+			with instance_create(x, y, debug_mode_array[debug_mode_ind], { image_xscale: facing })
+			{
+				if culler != noone
+				{
+					culler.action = CULL_ACTION.DESTROY;
+				}
+			}
 	    }
 	}
 	else if input_press.action2

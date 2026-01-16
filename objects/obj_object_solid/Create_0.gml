@@ -72,13 +72,19 @@ solid_object = function(_player, _type)
 			_index = _oright - _oleft - _relative_x;
 		}
 		
-		_slope_offset = solid_offsets[clamp(_index, 0, array_length(solid_offsets) - 1)];
+		_slope_offset = solid_offsets[clamp(_index, 0, array_length(solid_offsets) - 1)] * sign(image_yscale);
 	}
 	
 	if _player.on_object == id
 	{
 		_player.x += _ox - floor(xprevious);
-		_player.y = _otop - _pry + _slope_offset;
+		_player.y = _otop - _pry;
+		
+		// Apply slope_offset in vanilla collision or when object is not flipped
+		if _vanilla_collision || image_yscale >= 0
+		{
+			_player.y += _slope_offset;
+		}
 		
 		var _new_px = floor(_player.x);
 		var _new_pleft = _new_px - _prx;
@@ -110,12 +116,37 @@ solid_object = function(_player, _type)
 		return;
 	}
 	
-	// Besides slope offset, assume the player is grip_y pixels lower than they actually are	
-	var _y_offset = -_slope_offset + _grip_y;
+	var _ptop_off;
+	var _pbottom_off;
 	
-	var _ptop_off = _ptop + _y_offset;
-	var _pbottom_off = _pbottom + _y_offset;
+	// Assume player is slope_offset px higher and grip_y px lower
+	if _vanilla_collision
+	{
+		_ptop_off = _ptop - _slope_offset + _grip_y;
+		_pbottom_off = _pbottom - _slope_offset + _grip_y;
+	}
 	
+	// Assume their bottom is slope_offset px higher and grip_y px lower
+	else if image_yscale >= 0
+	{
+		_ptop_off = _ptop;
+		_pbottom_off = _pbottom - _slope_offset + _grip_y;
+	}
+	
+	// Flipped: assume their top is slope_offset px lower, bottom is grip_y px lower
+	else
+	{
+		_ptop_off = _ptop - _slope_offset;
+		_pbottom_off = _pbottom + _grip_y;
+	}
+	
+	// Skip slope_offset when landing on flipped object with improved collision
+	if !_vanilla_collision && image_yscale < 0
+	{
+		_slope_offset = 0;
+	}
+	
+	// Non-platform objects
 	if _type < SOLID_TYPE.TOP
 	{
 		if !rectangle_in_rectangle(_pleft, _ptop_off, _pright, _pbottom_off, _oleft - 1, _otop, _oright + 1, _obottom)
@@ -124,7 +155,22 @@ solid_object = function(_player, _type)
 		}
 		
 		var _x_clip = _px < _ox ? _pright - _oleft + 1 : _pleft - _oright - 1;
-		var _y_clip = _py < _oy ? _pbottom_off - _otop + 1 : _ptop_off - _obottom - 1 - _grip_y;
+		var _y_clip;
+		
+		if _py < _oy
+		{
+			_y_clip = _pbottom_off - _otop + 1;
+		}
+		else
+		{
+			_y_clip = _ptop_off - _obottom - 1;
+			
+			// Subtract grip_y offset
+			if _vanilla_collision
+			{
+				_y_clip -= _grip_y;
+			}
+		}
 		
 		var _can_collide_v = abs(_x_clip) >= abs(_y_clip);
 		var _can_collide_h = abs(_y_clip) > _grip_y;
@@ -248,6 +294,8 @@ solid_object = function(_player, _type)
 		
 		_player.x -= _x_clip;
 	}
+	
+	// Platform objects
 	else if _player.vel_y >= 0
 	{
 		if  _vanilla_collision && _px >= _oleft && _px <= _oright

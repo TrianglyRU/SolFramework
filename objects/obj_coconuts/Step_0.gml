@@ -6,7 +6,7 @@ switch state
 	case COCONUTS_STATE.IDLE:
 		
 		var _player = instance_nearest(x, y, obj_player);
-		var _dist_x = floor(x) - floor(_player.x);
+		var _dist_x = x - floor(_player.x);
 		var _total_dist_x = _dist_x + 96;
 		
 		image_xscale = sign(_dist_x);

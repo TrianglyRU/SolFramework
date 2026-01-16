@@ -12,7 +12,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		var _x = _camera.raw_x + _w * 0.5;
 		var _y = _camera.raw_y + _h * 0.5;
 	
-		if point_in_rectangle(_x, _y, bbox_left, bbox_top, bbox_right, bbox_bottom)
+		if point_in_rectangle(_x, _y, bbox_left, bbox_top, bbox_right - 1, bbox_bottom - 1)
 		{
 			swap_background(_i);
 		}

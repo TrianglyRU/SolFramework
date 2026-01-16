@@ -18,6 +18,7 @@ switch state
 			player.action = ACTION.USE_OBJECT;
 			player.animation = ANIM.GRAB;
 			player.vel_y = 0;
+			player.spd = 0;
 			
 			if player.vel_x = 0
 			{

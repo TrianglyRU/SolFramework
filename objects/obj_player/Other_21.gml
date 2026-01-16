@@ -16,11 +16,7 @@ switch state
 		
 		if state == PLAYER_STATE.DEFAULT
 		{
-			if action == ACTION.CARRIED
-			{
-				scr_player_carry();
-			}
-			else if action != ACTION.USE_OBJECT
+			if action != ACTION.USE_OBJECT && action != ACTION.CARRIED
 			{
 				switch is_grounded
 				{
@@ -78,6 +74,8 @@ switch state
 					break;
 				}
 			}
+			
+			scr_player_carry();
 		}
 		
 		scr_player_water();

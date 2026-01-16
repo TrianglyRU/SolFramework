@@ -187,6 +187,19 @@ function scr_player_animate_amy()
 			
 		break;
 		
+		case ANIM.TWIRL:
+			
+			if sprite_index != spr_amy_twirl
+			{
+				animator.start(spr_amy_twirl, 0, 0, 4);
+			}
+			else if vel_y >= 0
+			{
+				animation = ANIM.MOVE;
+			}
+			
+		break;
+		
 		case ANIM.BALANCE:
 		
 			if sprite_index != spr_amy_balance

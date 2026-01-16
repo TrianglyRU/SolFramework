@@ -165,6 +165,19 @@ function scr_player_animate_knuckles()
 			
 		break;
 		
+		case ANIM.TWIRL:
+			
+			if sprite_index != spr_knuckles_twirl
+			{
+				animator.start(spr_knuckles_twirl, 0, 0, 4);
+			}
+			else if vel_y >= 0
+			{
+				animation = ANIM.MOVE;
+			}
+			
+		break;
+		
 		case ANIM.BALANCE:
 		case ANIM.BALANCE_FLIP:
 		

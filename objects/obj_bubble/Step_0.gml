@@ -61,7 +61,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
         continue;
     }
 
-	if point_in_rectangle(floor(_player.x), floor(_player.y), bbox_left, bbox_top, bbox_right, bbox_bottom)
+	if point_in_rectangle(floor(_player.x), floor(_player.y), floor(bbox_left), floor(bbox_top), floor(bbox_right) - 1, floor(bbox_bottom) - 1)
 	{
 		burst();
 		

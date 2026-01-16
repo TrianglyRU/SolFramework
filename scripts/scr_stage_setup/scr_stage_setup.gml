@@ -3,14 +3,12 @@ function scr_stage_setup()
 {
 	switch room
 	{
-		#region GREEN HILL
-		
 		case rm_stage_ghz1:
 		
 			// Use S1 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S1;
 			
-			setup_level(96, "GREEN HILL", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], rm_stage_ehz1, false);
+			setup_level(96, "RETRO LEVELS", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], rm_stage_ehz1, false);
 			
 			bg_convert("Clouds_1", 0.375, -0.03125, -1, 0, 0);
 			bg_convert("Clouds_2", 0.375, -0.03125, -0.5, 0, 0);
@@ -29,16 +27,12 @@ function scr_stage_setup()
 			
 		break;
 		
-		#endregion
-		
-		#region EMERALD HILL
-		
 		case rm_stage_ehz1:
 			
 			// Use S2 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S2;
 			
-			setup_level(97, "EMERALD HILL", 0, snd_bgm_ehz, [spr_animal_flicky, spr_animal_ricky], rm_stage_ssz1, true);
+			setup_level(97, "RETRO LEVELS", 1, snd_bgm_ehz, [spr_animal_flicky, spr_animal_ricky], rm_stage_ssz1, false);
 			
 			bg_convert("Clouds", 0.015625, 0, 0, 0, 0);
 			bg_convert("Hills_1", 0.0625, 0, 0, 0, 0);
@@ -66,15 +60,11 @@ function scr_stage_setup()
 			
 		break;
 		
-		#endregion
-		
-		#region SUNSET SHORE
-		
 		case rm_stage_ssz1:
 			
 			texture_prefetch("texgroup_ssz_graphics");
 			
-			setup_level(98, "SUNSET SHORE", 0, snd_bgm_ssz, [spr_animal_flicky, spr_animal_pocky], rm_level_select, true);
+			setup_level(98, "RETRO LEVELS", 2, snd_bgm_ssz, [spr_animal_cucky, spr_animal_picky], rm_level_select, true);
 			
 			var _factor_y = (448 - global.init_resolution_h) / (2048 - global.init_resolution_h);
 			
@@ -90,13 +80,9 @@ function scr_stage_setup()
 		
 		break;
 		
-		#endregion
-		
-		#region DELTA WORLD
-		
 		case rm_stage_dwz:
 			
-			setup_level(99, "DELTAWORLD", ACT_SINGLE, snd_bgm_dwz, [spr_animal_flicky, spr_animal_ricky], rm_level_select, false);
+			setup_level(99, "DELTAWORLD", ACT_SINGLE, snd_bgm_dwz, [spr_animal_rocky, spr_animal_pecky], rm_level_select, false);
 			
 			bg_convert("Background", 0.25, 0.25, 0, 0, 0);
 			
@@ -121,7 +107,5 @@ function scr_stage_setup()
 			tile_load_data(spr_collision_dwz);
 		
 		break;
-		
-		#endregion
 	}
 }
