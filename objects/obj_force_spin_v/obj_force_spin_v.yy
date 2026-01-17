@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_object",
-    "path": "objects/obj_object/obj_object.yy",
+    "name": "obj_gameobject",
+    "path": "objects/obj_gameobject/obj_gameobject.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -31,13 +31,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
   ],
-  "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_mode","varType":6,"value":"FORCE_SPIN.UNIVERSAL","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
-        "FORCE_SPIN.UNIVERSAL",
-        "FORCE_SPIN.START_ONLY",
-        "FORCE_SPIN.END_ONLY",
-      ],"multiselect":false,"filters":[],},
-  ],
+  "properties": [],
   "overriddenProperties": [],
   "parent": {
     "name": "Stage",

@@ -6,7 +6,7 @@ if obj_game.fade_state != FADE_STATE.NONE
 var _frame = floor(obj_game.frame_counter * 0.5);
 var _last_frame = array_length(bg_playback_data);
 
-with obj_layer_background
+with obj_layer
 {
 	image_index = other.bg_playback_data[_frame % _last_frame];
 }

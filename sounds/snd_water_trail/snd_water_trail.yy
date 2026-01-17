@@ -11,8 +11,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "audiogroup_global",
+    "path": "audiogroups/audiogroup_global",
   },
   "soundFile": "snd_water_trail.wav",
   "duration": 2.067778,

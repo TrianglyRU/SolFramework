@@ -21,8 +21,8 @@
   "width": 29,
   "height": 39,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "texgroup_amy",
+    "path": "texturegroups/texgroup_amy",
   },
   "swatchColours": null,
   "gridX": 0,

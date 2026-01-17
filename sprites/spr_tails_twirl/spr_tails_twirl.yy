@@ -21,8 +21,8 @@
   "width": 30,
   "height": 47,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "texgroup_tails",
+    "path": "texturegroups/texgroup_tails",
   },
   "swatchColours": null,
   "gridX": 0,

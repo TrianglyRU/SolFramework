@@ -33,12 +33,12 @@ switch state
 						if animation == ANIM.SPIN
 						{
 							scr_player_slope_resist_roll();
-							scr_player_movement_roll();
+							scr_player_movement_ground_roll();
 						}
 						else
 						{
 							scr_player_slope_resist();
-							scr_player_movement_ground();
+							scr_player_movement_ground_regular();
 							scr_player_balance();
 						}
 					

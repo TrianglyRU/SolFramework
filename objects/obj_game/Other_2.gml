@@ -40,6 +40,7 @@ global.ds_giant_rings = ds_list_create();
 scr_game_setup();
 game_load_settings();
 randomise();
+
 audio_group_load(audiogroup_global);
 
 if os_type == os_windows
@@ -49,6 +50,7 @@ if os_type == os_windows
 
 surface_depth_disable(true);
 display_reset(0, global.use_vsync);
+
 window_enable_borderless_fullscreen(false);
 window_set_caption(global.window_name);
 window_resize();

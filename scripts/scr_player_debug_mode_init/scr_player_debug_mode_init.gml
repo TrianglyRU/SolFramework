@@ -6,7 +6,7 @@ function scr_player_debug_mode_init()
 	debug_mode_array =
 	[
 		obj_ring,
-		obj_itembox,
+		obj_item_box,
 		obj_starpost,
 		obj_spring_v_yellow,
 		obj_spring_v_red,

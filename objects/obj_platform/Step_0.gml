@@ -26,7 +26,7 @@ switch state
 			weight -= _weight_inc;
 		}
 		
-		var _osc_angle = obj_game.frame_counter * ANGLE_INCREMENT;
+		var _osc_angle = obj_game.oscillation_angle;
 	
 		switch iv_type
 		{
@@ -110,13 +110,32 @@ switch state
 	break;
 }
 
+// Sync objects
 var _list_size = ds_list_size(synced_objects);
+var _x = floor(x);
+var _y = floor(y) - SYNC_SEARCH_TOLERANCE;
 
 if _list_size > 0
 {
 	for (var _i = 0; _i < _list_size; _i++)
 	{
 		var _obj = synced_objects[| _i];
+		
+		if !instance_exists(_obj)
+		{
+			continue;
+		}
+		
+		// Do not sync falling Item Box
+		if _obj.object_index == obj_itembox && _obj.state == ITEM_BOX_STATE.FALLING
+		{
+			continue;
+		}
+		
+		if !place_meeting(_x, _y, _obj)
+		{
+			continue;
+		}
 		
 		_obj.x = _obj.xstart + x - xstart;
 		_obj.y = _obj.ystart + y - ystart;

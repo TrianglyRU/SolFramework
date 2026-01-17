@@ -1,3 +1,5 @@
+// Feather ignore GM2018
+
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
@@ -65,6 +67,9 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	else
 	{
+		// Note: player's is_grounded flag IS set while running on the path due to on_object flag
+		// preventing the collision script to check if there's ground below the player or not
+	
 		var _total_width = 416;
 		var _dist_x = floor(_player.x) - x + _total_width * 0.5;
 		
@@ -79,6 +84,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		}
 		else
 		{
+			// Override player's animation frame
 			if _player.animation == ANIM.FLIP
 			{
 				var _frame_index = floor(_dist_x / 32);
@@ -88,6 +94,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 					_frame_index = array_length(flip_frame_table) - 1 - _frame_index;
 				}
 				
+				_player.animator.timer = _player.animator.duration;
 				_player.image_index = flip_frame_table[_frame_index];
 			}
 			

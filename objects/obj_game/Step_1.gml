@@ -205,7 +205,7 @@ if state == GAME_STATE.NORMAL
 		}
 	}
 	
-	with obj_object
+	with obj_gameobject
 	{
 		if culler != noone
 		{
@@ -220,7 +220,7 @@ else
 	var _list = cull_game_paused_list;
 	var _state = state;
 	
-	with obj_object
+	with obj_gameobject
 	{
 		if allowed_game_state < _state
 		{
@@ -234,9 +234,10 @@ if state != GAME_STATE.PAUSED
 {
 	// Frame counter
 	frame_counter++;
+	oscillation_angle = frame_counter * ANGLE_INCREMENT;
 	
 	// Instance animator
-	with obj_object
+	with obj_gameobject
 	{
 		if animator != noone
 		{
@@ -262,7 +263,7 @@ if state != GAME_STATE.PAUSED
 }
 
 // Run post-framework Begin Step for game objects
-with obj_object
+with obj_gameobject
 {
 	event_user(11);
 }

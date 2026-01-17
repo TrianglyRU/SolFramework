@@ -21,8 +21,8 @@
   "width": 29,
   "height": 44,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "texgroup_sonic",
+    "path": "texturegroups/texgroup_sonic",
   },
   "swatchColours": null,
   "gridX": 0,

@@ -5,7 +5,7 @@ if room == rm_startup
 }
 
 // Run Path Step and pre-framework End Step for game objects
-with obj_object
+with obj_gameobject
 {
 	event_user(12);
 	event_user(13);

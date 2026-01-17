@@ -1,7 +1,7 @@
 /// @self obj_player
 function scr_player_jump_start()
 {
-	if forced_roll || action == ACTION.SPINDASH || action == ACTION.DASH
+	if action == ACTION.SPINDASH || action == ACTION.DASH
 	{
 		return;
 	}

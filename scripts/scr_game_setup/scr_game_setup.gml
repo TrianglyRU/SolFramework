@@ -24,7 +24,7 @@ function scr_game_setup()
 	global.dash	= true;
 	global.drop_dash = false;
 	global.double_spin = false;
-	global.cd_timer = true;
+	global.cd_timer = false;
 	global.cd_camera = false;
 	global.roll_lock = true;
 	global.speed_cap = false;

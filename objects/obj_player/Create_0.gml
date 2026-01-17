@@ -201,22 +201,19 @@ reset_substate = function()
 		break;
 	}
 	
-	// Clear actions
+	// Clear stuff (do not clear is_water_running)
 	action = ACTION.NONE;
 	shield_state = SHIELD_STATE.NONE;
 	is_jumping = false;
-	set_push_anim_by = noone;
-	is_water_running = false;
-	clear_carry();
-	reset_gravity();
-	
-	// Clear collision
 	is_grounded = false;
+	forced_roll = false;
+	set_push_anim_by = noone;
 	on_object = noone;
+	visual_angle = 0;
 	radius_x = radius_x_normal;
 	radius_y = radius_y_normal;
-	
-	visual_angle = 0;
+	clear_carry();
+	reset_gravity();
 }
 
 reset_gravity = function()
@@ -449,15 +446,14 @@ clear_carry = function()
 {
 	if carry_target != noone
 	{
-		if carry_target.action = ACTION.CARRIED
+		if carry_target.action == ACTION.CARRIED
 		{
 			carry_target.action = ACTION.NONE;
 		}
 		
+		carry_cooldown = 60;
 		carry_target = noone;
 	}
-	
-	carry_cooldown = 60;
 }
 
 record_data = function(_insert_pos)

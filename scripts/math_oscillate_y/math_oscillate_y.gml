@@ -2,7 +2,7 @@
 /// @description				Oscillates a value using the cosine function.
 /// @param {Real} _start_val	The base value to oscillate from.
 /// @param {Real} _angle		The current angle or time value.
-/// @param {Real} _dist			The amplitude of the oscillation.
+/// @param {Real} _dist			The amplitude (radius) of the oscillation.
 /// @param {Real} [_spd]		The oscillation speed (default is 1).
 /// @param {Real} [_offset]		An additional angle offset (default is 0).
 /// @returns {Real}

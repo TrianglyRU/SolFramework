@@ -18,6 +18,7 @@ enum GAME_STATE
 
 state = GAME_STATE.NORMAL; 
 frame_counter = 0;
+oscillation_angle = 0;
 player_count = 0;
 allow_pause = false;
 
