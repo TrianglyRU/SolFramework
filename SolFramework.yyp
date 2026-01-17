@@ -836,6 +836,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Window","folderPath":"folders/Functions/Window.yy","order":14,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Notes","folderPath":"folders/Notes.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Objects","folderPath":"folders/Objects.yy","order":2,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_GameObject","folderPath":"folders/Objects/_GameObject.yy","order":11,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Badniks","folderPath":"folders/Objects/Badniks.yy","order":9,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Basic","folderPath":"folders/Objects/Basic.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Continue","folderPath":"folders/Objects/Continue.yy","order":5,},
@@ -890,7 +891,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Delta World","folderPath":"folders/Tile Sets/Delta World.yy","order":3,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Emerald Hill","folderPath":"folders/Tile Sets/Emerald Hill.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Green Hill","folderPath":"folders/Tile Sets/Green Hill.yy","order":1,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"_GameObject","folderPath":"folders/Objects/_GameObject.yy","order":11,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sunset Shore","folderPath":"folders/Tile Sets/Sunset Shore.yy","order":4,},
   ],
   "AudioGroups": [

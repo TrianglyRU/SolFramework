@@ -3,7 +3,7 @@ if !visible
 	if --wait_timer < 0
 	{
 		visible = true;
-		animator.start(spr_buzz_bomber_projectile_flare, 0, 1, 8);
+		animator.start(sprite_index, 0, 1, 8);
 	}
 }
 else if sprite_index != spr_badnik_projectile

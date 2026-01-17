@@ -103,7 +103,7 @@ function scr_player_animate_tails()
 			{
 				animator.start(spr_tails_skid, 0, 2, 8);
 			}
-			else if animator.timer < 0
+			else if animator.timer < 0 && (!is_grounded || animator.timer == -2)
 			{
 				animation = ANIM.MOVE;
 			}

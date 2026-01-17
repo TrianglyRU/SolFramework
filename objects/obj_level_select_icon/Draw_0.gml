@@ -10,7 +10,7 @@ else switch obj_rm_level_select.room_to_load
 {
 	case rm_special:
 		_icon_index = 2;
-	break;	
+	break;
 	
 	case rm_bonus:
 		_icon_index = 3;
@@ -21,8 +21,11 @@ else switch obj_rm_level_select.room_to_load
 	break;
 	
 	case rm_stage_ehz1:
-	case rm_stage_ssz1:
 		_icon_index = 5;
+	break;
+	
+	case rm_stage_ssz1:
+		_icon_index = 6;
 	break;
 }
 

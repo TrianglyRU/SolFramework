@@ -127,7 +127,7 @@ if _list_size > 0
 		}
 		
 		// Do not sync falling Item Box
-		if _obj.object_index == obj_itembox && _obj.state == ITEM_BOX_STATE.FALLING
+		if _obj.object_index == obj_item_box && _obj.state == ITEM_BOX_STATE.FALLING
 		{
 			continue;
 		}

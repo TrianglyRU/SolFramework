@@ -18,8 +18,8 @@ function scr_game_setup()
 	global.player_physics = PHYSICS.S2;
 	global.cpu_behaviour = CPU_BEHAVIOUR.S3;
 	global.rotation_mode = ROTATION.CLASSIC;
-	global.better_solid_collision = true;
-	global.better_angle_snap = true;
+	global.better_solid_collision = false;
+	global.better_angle_snap = false;
 	global.spin_dash = true;
 	global.dash	= true;
 	global.drop_dash = false;

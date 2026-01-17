@@ -141,7 +141,7 @@ function scr_player_animate_amy()
 			{
 				animator.start(spr_amy_skid, 0, 3, 6);
 			}
-			else if animator.timer < 0
+			else if animator.timer < 0 && (!is_grounded || animator.timer == -2)
 			{
 				animation = ANIM.MOVE;
 			}

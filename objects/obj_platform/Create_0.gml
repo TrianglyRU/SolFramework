@@ -17,7 +17,7 @@ enum PLATFORM_TYPE
 	CIRCULAR
 }
 
-#macro SYNC_SEARCH_TOLERANCE 16
+#macro SYNC_SEARCH_TOLERANCE 8
 
 depth = draw_depth(50);
 state = PLATFORM_STATE.MOVE;

@@ -13,7 +13,7 @@ global.discord_data = ["", "", "", ""];
 global.previous_room_id = room;
 global.current_save_slot = -1;
 global.stage_index = -1;
-global.debug_collision = 0;
+global.debug_collision = false;
 global.debug_framework = false;
 
 // Sonic-related

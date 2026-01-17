@@ -91,7 +91,7 @@ function scr_player_movement_ground_regular()
 		}	
 		
 		var _angle_quad = math_get_quadrant(angle);
-		var _is_fast = abs(spd) >= PARAM_SKID_SPEED_THRESHOLD;
+		var _running_fast = abs(spd) >= PARAM_SKID_SPEED_THRESHOLD;
 		
 		if _angle_quad == QUADRANT.DOWN && spd == 0
 		{
@@ -112,10 +112,10 @@ function scr_player_movement_ground_regular()
 		}
 		else if animation != ANIM.SKID
 		{
-			if _is_braking && _is_fast && _angle_quad == QUADRANT.DOWN
+			if _is_braking && _running_fast && _angle_quad == QUADRANT.DOWN
 			{
-				skid_timer = 0;
 				animation = ANIM.SKID;
+				skid_timer = 0;
 				
 				audio_play_sfx(snd_skid);
 			}
@@ -123,6 +123,12 @@ function scr_player_movement_ground_regular()
 			{
 				animation = ANIM.MOVE;
 			}
+		}
+		
+		// While grounded and animation is done, force skid to continue if braking at high speed (see animation scripts)
+		else if animator.timer < 0 && !(_is_braking && _running_fast)
+		{
+			animator.timer = -2;
 		}
 	}
 	

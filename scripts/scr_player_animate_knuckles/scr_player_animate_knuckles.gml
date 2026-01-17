@@ -119,7 +119,7 @@ function scr_player_animate_knuckles()
 			{
 				animator.start(spr_knuckles_skid, 0, 3, 4);
 			}
-			else if animator.timer < 0
+			else if animator.timer < 0 && (!is_grounded || animator.timer == -2)
 			{
 				animation = ANIM.MOVE;
 			}
