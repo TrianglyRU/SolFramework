@@ -10,6 +10,25 @@ enum RESULTS_STATE
 	EXIT
 }
 
+load_next_room = function()
+{
+	if !audio_is_bgm_playing()
+	{
+		game_clear_level_data_all();
+					
+		if next_room == -1
+		{
+			room_restart();
+		}
+		else
+		{
+			room_goto(next_room);
+		}
+		
+		return true;
+	}
+}
+
 obj_game.allow_pause = false;
 
 depth = RENDER_DEPTH_HUD;
@@ -34,7 +53,7 @@ var _stage_time = obj_gui_hud.local_timer;
 
 if _stage_time < 1800			// < 0:30
 {
-	time_bonus = 50000;
+	time_bonus = 5000;
 }
 else if _stage_time < 2700		// < 0:45
 {

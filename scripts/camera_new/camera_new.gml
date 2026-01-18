@@ -19,8 +19,8 @@ function camera_new(_index, _w, _h, _canvas_width, _canvas_height, _canvas_x = 0
         index: _index,	
         allow_movement: true,
         target: noone,
-		max_vel_x: 16,
-		max_vel_y: 16,
+		max_vel_x: CAMERA_MAX_VEL_X,
+		max_vel_y: CAMERA_MAX_VEL_Y,
         vel_x: 0,
         vel_y: 0,
         raw_x: 0,
@@ -47,7 +47,7 @@ function camera_new(_index, _w, _h, _canvas_width, _canvas_height, _canvas_x = 0
         surface_h: _canvas_height
     };
 	
-    view_camera[_index] = camera_create_view(0, 0, _w + CAMERA_HORIZONTAL_BUFFER * 2, _h);
+    view_camera[_index] = camera_create_view(_camera_data.raw_x - CAMERA_HORIZONTAL_BUFFER, _camera_data.raw_y, _w + CAMERA_HORIZONTAL_BUFFER * 2, _h);
 	view_visible[_index] = true;
 	view_enabled = true;
 	

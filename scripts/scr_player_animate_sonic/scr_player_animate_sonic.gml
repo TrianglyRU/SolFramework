@@ -284,5 +284,14 @@ function scr_player_animate_sonic()
 			}
 			
 		break;
+		
+		case ANIM.ACT_END:
+		
+			if sprite_index != spr_sonic_act_clear
+			{
+				animator.start(spr_sonic_act_clear, 0, 0, 12);
+			}
+		
+		break;
 	}
 }

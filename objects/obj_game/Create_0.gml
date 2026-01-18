@@ -76,6 +76,10 @@ bg_scroll_y = 0;
 #macro CAMERA_COUNT 8
 #macro CAMERA_HORIZONTAL_BUFFER 8
 #macro CAMERA_VIEW_TIMER_DEFAULT 120
+#macro CAMERA_MAX_VEL_X 16
+#macro CAMERA_MAX_VEL_Y 16
+#macro CAMERA_FREESPACE_X 16
+#macro CAMERA_FREESPACE_Y 32
 
 var _w = global.init_resolution_w;
 var _h = global.init_resolution_h;

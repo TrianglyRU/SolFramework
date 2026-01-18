@@ -7,8 +7,11 @@ function bg_clear_all()
 		instance_destroy();
 	}
 	
-	obj_game.bg_distance_x = 0;
-	obj_game.bg_distance_y = 0;
-	obj_game.bg_scroll_x = 0;
-	obj_game.bg_scroll_y = 0;
+	with obj_game
+	{
+		bg_distance_x = 0;
+		bg_distance_y = 0;
+		bg_scroll_x = 0;
+		bg_scroll_y = 0;
+	}
 }

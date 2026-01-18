@@ -83,6 +83,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 for (var _i = 0; _i < CAMERA_COUNT; _i++)
 {
     var _camera_data = camera_get_data(_i);
+	
     if _camera_data == undefined
     {
         continue;
@@ -114,9 +115,6 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		        var _h = camera_get_height(_i);
 		        var _target_x = _target.x - _camera_data.raw_x - _w * 0.5;
 		        var _target_y = _target.y - _camera_data.raw_y - _h * 0.5 + 16;
-				
-				var _freespace_x = 16;
-				var _freespace_y = 32;
 				var _max_vel_x = _camera_data.max_vel_x;
 				var _max_vel_y = _camera_data.max_vel_y;
 				
@@ -124,22 +122,22 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		        {
 		            _camera_data.vel_x = min(_target_x, _max_vel_x);
 		        }
-		        else if _target_x < -_freespace_x
+		        else if _target_x < -CAMERA_FREESPACE_X
 		        {
-		            _camera_data.vel_x = max(_target_x + _freespace_x, -_max_vel_x);
+		            _camera_data.vel_x = max(_target_x + CAMERA_FREESPACE_X, -_max_vel_x);
 		        }
 		        else
 		        {
 		            _camera_data.vel_x = 0;
 		        }
 				
-		        if _target_y > _freespace_y
+		        if _target_y > CAMERA_FREESPACE_Y
 		        {
-		            _camera_data.vel_y = min(_target_y - _freespace_y, _max_vel_y);
+		            _camera_data.vel_y = min(_target_y - CAMERA_FREESPACE_Y, _max_vel_y);
 		        }
-		        else if _target_y < -_freespace_y
+		        else if _target_y < -CAMERA_FREESPACE_Y
 		        {
-		            _camera_data.vel_y = max(_target_y + _freespace_y, -_max_vel_y);
+		            _camera_data.vel_y = max(_target_y + CAMERA_FREESPACE_Y, -_max_vel_y);
 		        }
 		        else
 		        {
@@ -150,6 +148,11 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		    {
 		        _camera_data.target = noone;
 		    }
+		}
+		
+		if _camera_data.max_vel_x < CAMERA_MAX_VEL_X
+		{
+			_camera_data.max_vel_x++;
 		}
 		
 	    if _camera_data.shake_timer > 0

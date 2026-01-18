@@ -271,5 +271,14 @@ function scr_player_animate_tails()
 			}
 			
 		break;
+		
+		case ANIM.ACT_CLEAR:
+		
+			if sprite_index != spr_tails_act_clear
+			{
+				animator.start(spr_tails_act_clear, 0, 1, 16);
+			}
+		
+		break;
 	}
 }

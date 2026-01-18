@@ -190,11 +190,6 @@ function scr_player_init()
 		}
 	}
 	
-	for (var _i = 0; _i < ds_record_length; _i++)
-	{
-		record_data(_i);
-	}
-	
 	var _saved_shield = global.player_shields[player_index];
 	
 	if _saved_shield != SHIELD.NONE

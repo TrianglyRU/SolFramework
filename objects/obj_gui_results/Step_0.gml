@@ -46,24 +46,18 @@ switch state
                 game_save_data(global.current_save_slot);
             }
 			
-            fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+			if instance_exists(obj_transition_save)
 			{
-				if !audio_is_bgm_playing()
+				obj_transition_save.save_data();
+				load_next_room();
+			}
+			else
+			{
+				fade_perform_black(FADE_DIRECTION.OUT, 1, function()
 				{
-					game_clear_level_data_all();
-			
-					if next_room == -1
-					{
-						room_restart();
-					}
-					else
-					{
-						room_goto(next_room);
-					}
-					
-					return true;
-				}
-			});
+					return load_next_room();
+				});
+			}
         }
 		else
 		{

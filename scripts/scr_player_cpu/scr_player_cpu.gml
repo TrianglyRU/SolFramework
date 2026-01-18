@@ -20,7 +20,7 @@ function scr_player_cpu()
 	        cpu_control_timer = 600;
 	    }
 	}
-
+	
 	cpu_target = player_get(0);
 
 	switch cpu_state
@@ -74,6 +74,12 @@ function scr_player_cpu()
 	        }
 			
 	        var _follow_data = cpu_target.ds_record_data[| _delay];
+			
+			if _follow_data == undefined
+			{
+				break;
+			}
+			
 	        var _target_x = _follow_data[2];
 	        var _target_y = _follow_data[3];
 			
@@ -173,6 +179,12 @@ function scr_player_cpu()
 	        }
 			
 	        var _follow_data = cpu_target.ds_record_data[| _delay];
+			
+			if _follow_data == undefined
+			{
+				break;
+			}
+			
 	        var _target_input_press = input_copy(_follow_data[0]);
 	        var _target_input_down = input_copy(_follow_data[1]);
 	        var _target_x = _follow_data[2];

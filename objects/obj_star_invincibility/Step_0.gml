@@ -48,8 +48,19 @@ angle = 45 * star_index - angle_offset;
 angle_offset += 11.25 * player.facing;
 
 var _position_data = player.ds_record_data[| _delay];
-var _player_x = _position_data[2];
-var _player_y = _position_data[3];
+var _player_x;
+var _player_y;
+
+if _position_data != undefined
+{
+	_player_x = _position_data[2];
+	_player_y = _position_data[3];
+}
+else
+{
+	_player_x = floor(player.x);
+	_player_y = floor(player.y);
+}
 
 x = math_oscillate_x(_player_x, angle, 16);
 y = math_oscillate_y(_player_y, angle, 16);

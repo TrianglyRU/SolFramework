@@ -35,6 +35,7 @@ global.giant_ring_data = [];
 global.life_rewards = [RINGS_THRESHOLD, SCORE_THRESHOLD];
 global.player_shields = array_create(PLAYER_MAX_COUNT, SHIELD.NONE);
 global.ds_giant_rings = ds_list_create();
+global.stage_transition_data = undefined;
 
 // Game setup
 scr_game_setup();

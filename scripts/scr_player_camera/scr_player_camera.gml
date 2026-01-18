@@ -6,8 +6,9 @@ function scr_player_camera()
 		return;
 	}
 	
-	var _border_x = !global.cd_camera * 16;
-	var _border_y = 32;
+	var _border_x = !global.cd_camera * CAMERA_FREESPACE_X;
+	var _border_y = CAMERA_FREESPACE_Y;
+	
 	var _w = camera_get_width(camera_data.index);
 	var _h = camera_get_height(camera_data.index);
 	var _target_x = floor(x) - camera_data.raw_x - _w * 0.5;
