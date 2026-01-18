@@ -47,7 +47,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 	var _loop_data = audio_current_loop_data[_i];
 	var _jingle_bgm = audio_channel_bgms[AUDIO_CHANNEL_JINGLE];
 	
-	// TODO: remove this and audio_current_loop_data in LTS'25
+	// TODO: remove this and audio_current_loop_data in LTS'26
 	if _loop_data != undefined
 	{
 	    var _loop_start = _loop_data[0];

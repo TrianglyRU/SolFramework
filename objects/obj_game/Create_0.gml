@@ -42,7 +42,7 @@ audio_emitter_sfx = audio_emitter_create();
 audio_emitter_bgm = array_create(AUDIO_CHANNEL_COUNT, undefined);
 audio_current_loop_data = array_create(AUDIO_CHANNEL_COUNT, undefined);
 
-// TODO: enable in LTS'25
+// TODO: enable in LTS'26
 // audio_bus_sfx = audio_bus_create();
 // audio_bus_bgm = audio_bus_create();
 // audio_emitter_bus(audio_emitter_sfx, audio_bus_sfx);
@@ -52,7 +52,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 {
 	audio_emitter_bgm[_i] = audio_emitter_create();
 	
-	// TODO: enable in LTS'25
+	// TODO: enable in LTS'26
 	// audio_emitter_bus(audio_emitter_bgm[_i], audio_bus_bgm);
 	audio_emitter_gain(audio_emitter_bgm[_i], global.music_volume);
 }

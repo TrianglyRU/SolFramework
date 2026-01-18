@@ -239,6 +239,7 @@ land = function()
 	
 	if action == ACTION.SPINDASH || action == ACTION.DASH || action == ACTION.HAMMERDASH
 	{
+		// Retain the charge
 		if action == ACTION.DASH
 		{
 			spd = dash_vel;
@@ -285,13 +286,12 @@ land = function()
 	set_push_anim_by = noone;
 	score_combo = 0;
 	visual_angle = angle > 22.5 && angle < 337.5 ? angle : 0;
+	clear_carry();
 	
 	if !is_water_running
 	{
 		animation = ANIM.MOVE;
 	}
-	
-	clear_carry();
 	
 	// Handle is_grounded routines of some actions
 	scr_player_dropdash();
@@ -304,7 +304,6 @@ land = function()
 	
 	if animation != ANIM.SPIN
 	{
-		y += (radius_y_normal - radius_y) * (angle > 90 && angle <= 270 ? 1 : -1);
 		radius_x = radius_x_normal;
 		radius_y = radius_y_normal;
 	}
@@ -528,7 +527,6 @@ restart_bgm = function(_default_bgm)
     }
     else
     {
-		
         audio_play_bgm(_default_bgm);
     }
 }

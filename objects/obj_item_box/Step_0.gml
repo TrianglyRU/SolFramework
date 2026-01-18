@@ -54,7 +54,11 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 				}
 	        }
 			
-			culler.action = CULL_ACTION.PAUSE;
+			if culler.action != CULL_ACTION.DESTROY
+			{
+				culler.action = CULL_ACTION.PAUSE;
+			}
+			
 			animator.start(spr_item_box_destroyed, 0, 2, 3);
 			
 	        with instance_create(x, y - 3, obj_item_card)

@@ -4,7 +4,7 @@
 /// @returns {Id.Instance}
 function player_get(_player_index)
 {
-	// TODO: replace with simple `return instance_find(obj_player, _player_index)` in LTS'25
+	// TODO: replace with simple `return instance_find(obj_player, _player_index)` in LTS'26
 	
 	with obj_player
 	{

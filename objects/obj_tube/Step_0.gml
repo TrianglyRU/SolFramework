@@ -37,7 +37,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			{
 				if iv_type == TUBE_TYPE.START_X
 				{
-					_player.spd = 12;
+					_player.spd = _player.super_timer > 0 ? 16 : 12;
 				}
 				
 				_player.action = ACTION.NONE;

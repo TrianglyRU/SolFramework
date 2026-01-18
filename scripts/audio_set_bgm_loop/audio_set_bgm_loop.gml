@@ -5,10 +5,10 @@
 /// @param {Real} _loop_end				The end point of the loop in seconds.
 function audio_set_bgm_loop(_sound_id, _loop_start, _loop_end)
 {
-	// TODO: make it a ds_list in LTS'25
+	// TODO: make it a ds_list in LTS'26
 	ds_map_add(global.looped_audio_data, _sound_id, [_loop_start, _loop_end]);
 	
-	// TODO: enable in LTS'25
+	// TODO: enable in LTS'26
     // audio_sound_loop_start(_sound_id, _loop_start);
     // audio_sound_loop_end(_sound_id, _loop_end);
 }
