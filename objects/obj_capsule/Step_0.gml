@@ -2,7 +2,7 @@ switch state
 {
     case CAPSULE_STATE.IDLE:
         
-        if button_obj.offset_y != 0
+        if button_obj.y > button_obj.ystart
         {
             instance_create(x, lock_obj.y, obj_explosion_dust);
 			audio_play_sfx(snd_destroy);
@@ -78,10 +78,8 @@ switch state
 		
 	    if _start_results
 	    {
+			state = CAPSULE_STATE.RESULTS;
 			instance_create(0, 0, obj_gui_results);
-			
-			// Do not run this check anymore
-	        state = CAPSULE_STATE.RESULTS;
 	    }
 			
 	break;
@@ -95,7 +93,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if _player != noone
 	{
-		if _is_results_state && _player.is_grounded && _player.animation != ANIM.ACT_CLEAR
+		if _is_results_state && _player.is_grounded
 		{
 			_player.set_victory_pose();
 		}

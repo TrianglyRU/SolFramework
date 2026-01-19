@@ -14,7 +14,7 @@ switch state
 		scr_player_parameters();
 		scr_player_cpu();
 		
-		if state == PLAYER_STATE.DEFAULT && action != ACTION.USE_OBJECT
+		if state != PLAYER_STATE.DEFAULT_LOCKED && action != ACTION.LOCKED
 		{
 			if action != ACTION.CARRIED
 			{

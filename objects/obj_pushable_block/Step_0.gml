@@ -42,7 +42,7 @@ switch state
 				}
 				else
 				{
-					_player.clear_solid_push();
+					_player.clear_solid_push_by(id);
 					
 					vel_x = 4 * _direction;
 					state = PUSH_BLOCK_STATE.ON_LEDGE;

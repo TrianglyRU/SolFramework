@@ -119,7 +119,7 @@ switch state
 			
 			if _is_transition
 			{
-				if is_grounded && animation != ANIM.ACT_CLEAR 
+				if is_grounded
 				{
 					set_victory_pose();
 				}

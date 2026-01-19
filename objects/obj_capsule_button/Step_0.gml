@@ -1,15 +1,13 @@
-offset_y = 0;
+y = ystart;
 
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
 	
-	solid_object(_player, SOLID_TYPE.FULL);
-	
-	if offset_y == 0 && _player.on_object == id
+	if _player != noone && _player.on_object == id
 	{
-		offset_y = 8;
+		y = ystart + 8;
 	}
+	
+	solid_object(_player, SOLID_TYPE.FULL);
 }
-
-y = ystart + offset_y;

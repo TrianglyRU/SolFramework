@@ -71,7 +71,7 @@ enum ACTION
 	HAMMERDASH,
 	HAMMERSPIN,
 	CARRIED,
-	USE_OBJECT
+	LOCKED
 }
 
 enum GLIDE_STATE
@@ -494,9 +494,16 @@ play_tails_sound = function()
 
 set_victory_pose = function()
 {
+	if animation == ANIM.ACT_CLEAR
+	{
+		return;
+	}
+
 	y -= radius_y_normal - radius_y;
-	action = ACTION.NONE;
-	state = PLAYER_STATE.DEFAULT_LOCKED;
+	radius_y = radius_y_normal;
+	vel_x = 0;
+	vel_y = 0;
+	action = ACTION.LOCKED;
 	animation = ANIM.ACT_CLEAR;
 }
 
@@ -510,7 +517,7 @@ is_extra_hitbox_active = function()
 	return mask_index != extra_mask;
 }
 
-clear_solid_push = function(_inst_id = other.id)
+clear_solid_push_by = function(_inst_id)
 {
 	if set_push_anim_by == _inst_id
 	{

@@ -25,10 +25,10 @@ function scr_player_carry()
 			{
 				continue;
 			}
-		
+			
 			var _player = player_get(_p);	
 			
-			if _player.action == ACTION.SPINDASH || _player.action == ACTION.CARRIED || _player.state != PLAYER_STATE.DEFAULT
+			if _player.action != ACTION.NONE || _player.state != PLAYER_STATE.DEFAULT
 			{
 				continue;
 			}

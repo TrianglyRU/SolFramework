@@ -153,7 +153,7 @@ solid_object = function(_player, _type)
 	{
 		if !rectangle_in_rectangle(_pleft, _ptop_off, _pright, _pbottom_off, _oleft - 1, _otop, _oright + 1, _obottom)
 		{
-			_player.clear_solid_push(); return;
+			_player.clear_solid_push_by(id); return;
 		}
 		
 		var _x_clip = _px < _ox ? _pright - _oleft + 1 : _pleft - _oright - 1;
@@ -244,7 +244,7 @@ solid_object = function(_player, _type)
 					}
 					else
 					{
-						_player.clear_solid_push();
+						_player.clear_solid_push_by(id);
 					}
 					
 					// Do not run horizontal collision
@@ -272,7 +272,7 @@ solid_object = function(_player, _type)
 		
 		if !_can_collide_h
 		{
-			_player.clear_solid_push(); return;
+			_player.clear_solid_push_by(id); return;
 		}
 		
 		solid_touch[_p] = _px < _ox ? SOLID_TOUCH.LEFT : SOLID_TOUCH.RIGHT;
