@@ -16,7 +16,7 @@ function scr_player_level_bound()
 		x = _left_bound;
 	}
 	
-	if instance_exists(obj_signpost)
+	if instance_exists(obj_signpost) && !instance_exists(obj_transition_save)
 	{
 		_right_bound += 64;
 	}

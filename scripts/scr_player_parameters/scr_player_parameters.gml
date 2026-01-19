@@ -1,7 +1,7 @@
 /// @self obj_player
 function scr_player_parameters()
 {
-	if !is_underwater
+	if !underwater
 	{
 		if super_timer <= 0
 		{

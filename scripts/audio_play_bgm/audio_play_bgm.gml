@@ -10,7 +10,7 @@ function audio_play_bgm(_sound_id, _index = 0)
 	
     if obj_game.audio_channel_states[_index] == CHANNEL_STATE.STOP
     {
-        if obj_game.audio_channel_bgms[AUDIO_CHANNEL_JINGLE] == -1
+        if obj_game.audio_channel_bgms[AUDIO_CHANNEL_JINGLE] == undefined
         {
             obj_game.audio_channel_states[_index] = CHANNEL_STATE.DEFAULT;
         }
@@ -20,15 +20,22 @@ function audio_play_bgm(_sound_id, _index = 0)
         }
     }
 	
-    audio_stop_sound(obj_game.audio_channel_bgms[_index]);
+	var _current_bgm = obj_game.audio_channel_bgms[_index];
 	
+	if _current_bgm != undefined
+	{
+		audio_stop_sound(obj_game.audio_channel_bgms[_index]);
+	}
+   
 	var _emitter = obj_game.audio_emitter_bgm[_index];
 	var _gain = obj_game.audio_channel_states[_index] == CHANNEL_STATE.TEMP_MUTE ? 0 : 1;
 	
-    obj_game.audio_channel_bgms[_index] = audio_play_sound_on(_emitter, _sound_id, _do_loop, 0, _gain);
-	
-	// TODO: remove in LTS'26
-	obj_game.audio_current_loop_data[_index] = ds_map_find_value(global.looped_audio_data, _sound_id);
-    
+	if _sound_id != undefined
+	{
+		obj_game.audio_channel_bgms[_index] = audio_play_sound_on(_emitter, _sound_id, _do_loop, 0, _gain);
+		// TODO: remove in LTS'26
+		obj_game.audio_current_loop_data[_index] = ds_map_find_value(global.looped_audio_data, _sound_id);
+	}
+   
     return obj_game.audio_channel_bgms[_index];
 }

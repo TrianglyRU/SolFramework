@@ -7,7 +7,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	solid_object(_player, SOLID_TYPE.TOP);
 	
-	if solid_touch[_p] != SOLID_TOUCH.TOP
+	if _player.on_object != id
 	{
 		continue;
 	}

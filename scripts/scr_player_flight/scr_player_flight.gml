@@ -29,7 +29,7 @@ function scr_player_flight()
 	}
 	else
 	{
-	    if flight_timer > 0 && (!is_underwater || carry_target == noone) && input_press_action_any()
+	    if flight_timer > 0 && (!underwater || carry_target == noone) && input_press_action_any()
 	    {
 	        ascend_timer = 1;
 	    }
@@ -39,7 +39,7 @@ function scr_player_flight()
 	
 	play_tails_sound();
 	
-	if is_underwater
+	if underwater
 	{
 	    animation = flight_timer > 0 ? ANIM.SWIM : ANIM.SWIM_TIRED;
 	}

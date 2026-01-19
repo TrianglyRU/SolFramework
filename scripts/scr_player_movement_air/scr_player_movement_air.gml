@@ -16,7 +16,7 @@ function scr_player_movement_air()
 		}
 	}
 
-	if !is_jumping && !forced_roll && action != ACTION.SPINDASH
+	if !is_jumping && !is_forced_roll && action != ACTION.SPINDASH
 	{
 		vel_y = max(-15.75, vel_y);
 	}

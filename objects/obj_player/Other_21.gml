@@ -14,9 +14,9 @@ switch state
 		scr_player_parameters();
 		scr_player_cpu();
 		
-		if state == PLAYER_STATE.DEFAULT
+		if state == PLAYER_STATE.DEFAULT && action != ACTION.USE_OBJECT
 		{
-			if action != ACTION.USE_OBJECT && action != ACTION.CARRIED
+			if action != ACTION.CARRIED
 			{
 				switch is_grounded
 				{
@@ -136,3 +136,6 @@ switch state
 }
 
 scr_player_palette();
+
+// Reset flag
+interact_flag = true;

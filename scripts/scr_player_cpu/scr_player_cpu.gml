@@ -63,7 +63,7 @@ function scr_player_cpu()
 				
 	            case PLAYER.TAILS:
 					
-	                animation = is_underwater ? ANIM.SWIM : ANIM.FLY;
+	                animation = underwater ? ANIM.SWIM : ANIM.FLY;
 	                play_tails_sound();
 					
 	            break;

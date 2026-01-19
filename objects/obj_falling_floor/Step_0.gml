@@ -1,6 +1,6 @@
 switch state
 {
-    case FALLINGFLOORSTATE.IDLE:
+    case FALLING_FLOOR_STATE.IDLE:
         
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
         {
@@ -10,7 +10,7 @@ switch state
 			
             if !fall_flag
             {
-                fall_flag = solid_touch[_p] == SOLID_TOUCH.TOP;
+                fall_flag = _player.on_object == id;
             }
         }
         
@@ -52,14 +52,14 @@ switch state
         }
         
         visible = false;
-        state = FALLINGFLOORSTATE.FALL;
+        state = FALLING_FLOOR_STATE.FALL;
         wait_timer = _wait_timer;
 		
         audio_play_sfx(snd_break_ledge);
 
     break;
 	
-    case FALLINGFLOORSTATE.FALL:
+    case FALLING_FLOOR_STATE.FALL:
 	
         for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
@@ -81,7 +81,7 @@ switch state
 				}
 			}
 			
-			state++;
+			state = FALLING_FLOOR_STATE.DESTROYED;
 		}
 		
     break;

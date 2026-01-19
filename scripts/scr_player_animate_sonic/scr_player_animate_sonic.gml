@@ -285,7 +285,7 @@ function scr_player_animate_sonic()
 			
 		break;
 		
-		case ANIM.ACT_END:
+		case ANIM.ACT_CLEAR:
 		
 			if sprite_index != spr_sonic_act_clear
 			{

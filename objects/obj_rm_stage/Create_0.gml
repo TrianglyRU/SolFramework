@@ -13,8 +13,8 @@ setup_level = function(_stage_index, _name, _act_index, _bgm, _animals, _next_ro
 
 zone_name = "TEMPLATE";
 act_index = 0;
-bgm_track = -1;
-next_stage = -1;
+bgm_track = undefined;
+next_stage = undefined;
 save_progress = false;
 end_bound = room_width;
 bottom_bound = array_create(CAMERA_COUNT, room_height);

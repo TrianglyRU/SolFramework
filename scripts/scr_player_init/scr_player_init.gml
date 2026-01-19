@@ -64,14 +64,15 @@ function scr_player_init()
 	state = PLAYER_STATE.DEFAULT;
 	is_grounded = true;
 	is_jumping = false;
-	is_underwater = false;
-	forced_roll = false;
+	underwater = false;
+	is_forced_roll = false;
 	air_lock_flag = false;
 	death_state = DEATH_STATE.WAIT;
 	stick_to_convex = false;
-	is_water_running = false;
+	run_on_water = false;
 	on_object = noone;
 	extra_mask = noone;
+	interact_flag = true;
 	
 	vel_x = 0;
 	vel_y = 0;
@@ -188,6 +189,12 @@ function scr_player_init()
 		{
 			y += _floor_dist;
 		}
+	}
+	
+	// Fill up initial record data
+	for (var _i = 0; _i < ds_record_length; _i++)
+	{
+		record_data(_i);
 	}
 	
 	var _saved_shield = global.player_shields[player_index];

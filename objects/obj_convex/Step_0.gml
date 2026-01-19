@@ -20,7 +20,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		
 		if _list_pos == -1
 		{
-			_player.forced_roll = true;
+			_player.is_forced_roll = true;
 			_player.stick_to_convex = true;
 			
 			ds_list_add(ds_player_list, _player);
@@ -28,7 +28,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	else if _list_pos != -1
 	{
-		_player.forced_roll = false;
+		_player.is_forced_roll = false;
 		_player.stick_to_convex = false;
 		
 		ds_list_delete(ds_player_list, _list_pos);

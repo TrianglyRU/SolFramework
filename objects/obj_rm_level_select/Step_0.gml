@@ -166,7 +166,7 @@ else if _input_press.left || _input_press.right
 }
 else if _input_press.action1 || _input_press.start
 {
-    if room_to_load != -1
+    if room_to_load != undefined
     {
         if room_to_load == rm_special
         {

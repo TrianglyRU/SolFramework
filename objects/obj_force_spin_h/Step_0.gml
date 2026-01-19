@@ -27,6 +27,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	}
 	
 	_player.action = ACTION.NONE;
-	_player.forced_roll = !_player.forced_roll;	
+	_player.is_forced_roll = !_player.is_forced_roll;	
 	_player.reset_gravity();
 }

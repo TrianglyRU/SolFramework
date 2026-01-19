@@ -11,7 +11,7 @@ function scr_player_roll_start()
 	    return;
 	}
 	
-	if !forced_roll && (input_down.left || input_down.right)
+	if !is_forced_roll && (input_down.left || input_down.right)
 	{
 	    return;
 	}
@@ -37,7 +37,7 @@ function scr_player_roll_start()
 	    }
 	}
 	
-	if _allowed_to_roll || forced_roll
+	if _allowed_to_roll || is_forced_roll
 	{
 		y += radius_y - radius_y_spin;
 		radius_x = radius_x_spin;

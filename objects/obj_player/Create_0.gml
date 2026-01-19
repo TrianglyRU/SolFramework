@@ -202,14 +202,16 @@ reset_substate = function()
 		break;
 	}
 	
-	// Clear stuff (do not clear is_water_running)
+	// Clear stuff
 	action = ACTION.NONE;
 	shield_state = SHIELD_STATE.NONE;
-	is_jumping = false;
-	is_grounded = false;
-	forced_roll = false;
 	set_push_anim_by = noone;
 	on_object = noone;
+	is_jumping = false;
+	is_grounded = false;
+	is_forced_roll = false;
+	air_lock_flag = false;
+	ground_lock_timer = 0;
 	visual_angle = 0;
 	radius_x = radius_x_normal;
 	radius_y = radius_y_normal;
@@ -219,7 +221,7 @@ reset_substate = function()
 
 reset_gravity = function()
 {
-	grv = is_underwater ? PARAM_GRV_UNDERWATER : PARAM_GRV_DEFAULT;
+	grv = underwater ? PARAM_GRV_UNDERWATER : PARAM_GRV_DEFAULT;
 }
 
 release_glide = function(_frame)
@@ -253,7 +255,7 @@ land = function()
 	
 	if _shield == SHIELD.BUBBLE && shield_state == SHIELD_STATE.ACTIVE
 	{
-		var _force = is_underwater ? -4 : -7.5;
+		var _force = underwater ? -4 : -7.5;
 		
 		vel_y = _force * dcos(angle);
 		vel_x = _force * dsin(angle);
@@ -289,7 +291,7 @@ land = function()
 	visual_angle = angle > 22.5 && angle < 337.5 ? angle : 0;
 	clear_carry();
 	
-	if !is_water_running
+	if !run_on_water
 	{
 		animation = ANIM.MOVE;
 	}
@@ -305,6 +307,7 @@ land = function()
 	
 	if animation != ANIM.SPIN
 	{
+		y -= radius_y_normal - radius_y;
 		radius_x = radius_x_normal;
 		radius_y = radius_y_normal;
 	}
@@ -352,7 +355,7 @@ hurt = function(_sound = snd_hurt, _hazard = other)
 	air_lock_flag = true;
 	inv_frames = 120;
 	
-	if is_underwater
+	if underwater
 	{
 		vel_x *= 0.5;
 		vel_y *= 0.5;
@@ -474,7 +477,7 @@ record_data = function(_insert_pos)
 
 play_tails_sound = function()
 {
-	if (obj_game.frame_counter + 8) % 16 != 0 || is_underwater || !instance_is_drawn()
+	if (obj_game.frame_counter + 8) % 16 != 0 || underwater || !instance_is_drawn()
 	{
 		return;
 	}
@@ -487,6 +490,14 @@ play_tails_sound = function()
 	{
 		audio_play_sfx(snd_flight);
 	}
+}
+
+set_victory_pose = function()
+{
+	y -= radius_y_normal - radius_y;
+	action = ACTION.NONE;
+	state = PLAYER_STATE.DEFAULT_LOCKED;
+	animation = ANIM.ACT_CLEAR;
 }
 
 is_true_glide = function()
@@ -526,7 +537,7 @@ restart_bgm = function(_default_bgm)
     {
         audio_play_bgm(snd_bgm_highspeed);
     }
-    else
+    else if _default_bgm != undefined
     {
         audio_play_bgm(_default_bgm);
     }

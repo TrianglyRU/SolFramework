@@ -4,9 +4,10 @@ event_inherited();
 enum RESULTS_STATE
 {
 	LOAD,
-	MOVE,
+	MOVE_IN,
 	TALLY,
-	WAIT_EXIT,
+	POST_TALLY,
+	MOVE_OUT,
 	EXIT
 }
 
@@ -14,21 +15,24 @@ load_next_room = function()
 {
 	if !audio_is_bgm_playing()
 	{
-		game_clear_level_data_all();
-					
-		if next_room == -1
+		var _next_room = obj_rm_stage.next_stage;
+		
+		if _next_room == undefined
 		{
 			room_restart();
 		}
 		else
 		{
-			room_goto(next_room);
+			room_goto(_next_room);
 		}
+		
+		game_clear_level_data_all();
 		
 		return true;
 	}
 }
 
+obj_rm_stage.bgm_track = undefined;
 obj_game.allow_pause = false;
 
 depth = RENDER_DEPTH_HUD;
@@ -45,15 +49,14 @@ state_timer = 40;
 total_bonus = 0;
 ring_bonus = global.player_rings * 100;
 player = player_get(0);
-next_room = obj_rm_stage.next_stage;
 
-audio_play_bgm(snd_bgm_actclear);
+audio_play_bgm(snd_bgm_act_clear);
 
 var _stage_time = obj_gui_hud.local_timer;
 
 if _stage_time < 1800			// < 0:30
 {
-	time_bonus = 5000;
+	time_bonus = 50000;
 }
 else if _stage_time < 2700		// < 0:45
 {

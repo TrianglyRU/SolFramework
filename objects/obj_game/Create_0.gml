@@ -21,6 +21,7 @@ frame_counter = 0;
 oscillation_angle = 0;
 player_count = 0;
 allow_pause = false;
+clear_vram_on_room_end = true;
 
 depth = 16000;
 
@@ -37,14 +38,15 @@ enum CHANNEL_STATE
 #macro AUDIO_CHANNEL_JINGLE (AUDIO_CHANNEL_COUNT - 1)
 
 audio_channel_states = array_create(AUDIO_CHANNEL_COUNT, CHANNEL_STATE.DEFAULT);
-audio_channel_bgms = array_create(AUDIO_CHANNEL_COUNT, -1);
-audio_emitter_sfx = audio_emitter_create();
-audio_emitter_bgm = array_create(AUDIO_CHANNEL_COUNT, undefined);
 audio_current_loop_data = array_create(AUDIO_CHANNEL_COUNT, undefined);
+audio_channel_bgms = array_create(AUDIO_CHANNEL_COUNT, undefined);
+audio_emitter_bgm = array_create(AUDIO_CHANNEL_COUNT, undefined);
+audio_emitter_sfx = audio_emitter_create();
 
 // TODO: enable in LTS'26
 // audio_bus_sfx = audio_bus_create();
 // audio_bus_bgm = audio_bus_create();
+
 // audio_emitter_bus(audio_emitter_sfx, audio_bus_sfx);
 audio_emitter_gain(audio_emitter_sfx, global.sound_volume);
 
@@ -189,8 +191,8 @@ fade_game_control = false;
 fade_step = 0;
 fade_frequency_timer = 0;
 fade_frequency_target = 0;
-fade_in_action = -1;
-fade_out_action = -1;
+fade_in_action = undefined;
+fade_out_action = undefined;
 
 #endregion
 

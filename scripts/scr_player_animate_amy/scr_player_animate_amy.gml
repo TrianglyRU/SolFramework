@@ -245,5 +245,14 @@ function scr_player_animate_amy()
 			}
 		
 		break;
+		
+		case ANIM.ACT_CLEAR:
+		
+			if sprite_index != spr_amy_act_clear
+			{
+				animator.start(spr_amy_act_clear, 0, 43, 1);
+			}
+		
+		break;
 	}
 }

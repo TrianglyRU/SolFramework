@@ -107,7 +107,7 @@ switch state
 	            default:
 					
 	                global.life_count++;
-	                audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
+	                audio_play_bgm(snd_bgm_extra_life, AUDIO_CHANNEL_JINGLE);
 				
 	            break;
 	        }

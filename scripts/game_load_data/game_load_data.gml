@@ -5,7 +5,7 @@ function game_load_data(_slot)
 {
 	var _filename = "save" + string(_slot) + ".bin";
 	
-	if _slot == -1 || !file_exists(_filename)
+	if _slot == undefined || !file_exists(_filename)
 	{
 		return;
 	}

@@ -49,7 +49,7 @@ function scr_player_movement_ground_roll()
 	    spd = min(spd + frc_roll, 0);
 	}
 
-	if !forced_roll
+	if !is_forced_roll
 	{
 	    if spd == 0 || global.player_physics == PHYSICS.SK && abs(spd) < 0.5
 	    {

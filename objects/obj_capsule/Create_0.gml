@@ -7,7 +7,8 @@ enum CAPSULE_STATE
 	IDLE,
 	BREAK,
 	SPAWN_ANIMALS,
-	WAIT_ANIMALS
+	CHECK_RESULTS,
+	RESULTS
 }
 
 obj_rm_stage.end_bound = x + camera_get_width(0) * 0.5;

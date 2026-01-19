@@ -4,5 +4,5 @@
 /// @returns {Bool}
 function audio_is_bgm_playing(_index = 0)
 {
-    return obj_game.audio_channel_bgms[_index] != -1;
+    return obj_game.audio_channel_bgms[_index] != undefined;
 }

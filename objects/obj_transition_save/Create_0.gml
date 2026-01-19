@@ -20,6 +20,7 @@ save_data = function()
 	switch room
 	{
 		case rm_stage_template:
+		case rm_stage_ghz1:
 			_background_transition = true;
 		break;
 	}

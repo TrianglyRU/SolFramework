@@ -6,9 +6,11 @@ switch state
 		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
-			if solid_touch[_p] == SOLID_TOUCH.TOP
+			var _player = player_get(_p);
+			
+			if _player != noone && _player.on_object == id
 			{
-				_found_player = true;
+				_found_player = true; break;
 			}
 		}
 		

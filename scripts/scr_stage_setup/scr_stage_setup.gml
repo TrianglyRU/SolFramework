@@ -4,12 +4,11 @@ function scr_stage_setup()
 	switch room
 	{
 		case rm_stage_ghz1:
-		case rm_stage_ghz2:
 		
 			// Use S1 physics (reverts back to default on room end)
 			global.player_physics = PHYSICS.S1;
 			
-			setup_level(96, "RETRO LEVELS", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], rm_stage_ghz2, false);
+			setup_level(96, "RETRO LEVELS", 0, snd_bgm_ghz, [spr_animal_flicky, spr_animal_pocky], rm_stage_ehz1, false);
 			
 			bg_convert("Clouds_1", 0.375, -0.03125, -1, 0, 0);
 			bg_convert("Clouds_2", 0.375, -0.03125, -0.5, 0, 0);

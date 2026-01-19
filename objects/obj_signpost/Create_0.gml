@@ -7,7 +7,8 @@ enum SIGNPOST_STATE
 {
 	IDLE,
 	ROTATE,
-	CONTROL_PLAYER
+	CHECK_RESULTS,
+	RESULTS
 }
 
 obj_rm_stage.end_bound = x + camera_get_width(0) * 0.5;

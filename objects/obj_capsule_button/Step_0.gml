@@ -6,7 +6,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	solid_object(_player, SOLID_TYPE.FULL);
 	
-	if offset_y == 0 && solid_touch[_p] == SOLID_TOUCH.TOP
+	if offset_y == 0 && _player.on_object == id
 	{
 		offset_y = 8;
 	}

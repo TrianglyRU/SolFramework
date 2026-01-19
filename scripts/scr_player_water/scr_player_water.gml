@@ -1,6 +1,7 @@
 /// @self obj_player
 function scr_player_water()
 {
+	// If just died, exit
 	if state == PLAYER_STATE.DEATH || !instance_exists(obj_water) 
 	{
 		return;
@@ -8,58 +9,17 @@ function scr_player_water()
 	
 	var _shield = global.player_shields[player_index];
 	var _water_level = obj_water.y;
-	var _water_run_level = _water_level - radius_y;
+	var _y = floor(y);
 	
-	// This code is run by the water trail object itself in S3K
-	if !is_water_running
+	// Dive
+	if !underwater
 	{
-		if vel_y == 0 && abs(vel_x) >= 7 && floor(y) == _water_run_level
-		{
-			is_water_running = true;
-			facing = sign(vel_x);
-			
-			with instance_create(0, 0, obj_water_trail)
-			{
-				player = other.id;
-			}
-		}
-	}	
-	else if input_press_action_any()
-	{
-		// S3K's chopped-off version of the jump routine to make player jump if they weren't grounded
-		is_water_running = false;
-		radius_x = radius_x_spin;
-		radius_y = radius_y_spin;
-		is_jumping = true;
-		is_grounded = false;
-		animation = ANIM.SPIN;
-		vel_y = jump_vel;			// S3K does not check if the player is Knuckles and overrides vel_y with -6.5
-		
-		audio_play_sfx(snd_jump);	// S3K does not play the sound, so if the game hasn't processed a jump via its default routine yet... yikes!
-	}
-	else if floor(y) >= _water_run_level && abs(vel_x) >= 7
-	{
-		y = _water_run_level;
-		vel_y = 0;
-		
-		if !is_grounded && !input_press.left && !input_press.right
-		{
-			vel_x -= 0.046875 * sign(vel_x);
-		}
-	}
-	else
-	{
-		is_water_running = false;
-	}
-	
-	if !is_underwater
-	{
-		if floor(y) < _water_level
+		if _y < _water_level
 		{
 			return;
 		}
 		
-		is_underwater = true;
+		underwater = true;
 		air_timer = AIR_TIMER_DEFAULT;
 		vel_x *= 0.5;
 		vel_y *= 0.25;
@@ -87,6 +47,36 @@ function scr_player_water()
 		}
 	}
 	
+	// Emerge
+	else if _y < _water_level
+	{
+		underwater = false;
+	
+		_set_gravity();
+		_spawn_splash();
+
+		if action == ACTION.FLIGHT
+		{
+			audio_play_sfx(snd_flight);
+		}
+
+		if player_index == 0 && audio_is_playing(snd_bgm_drowning) && instance_exists(obj_rm_stage)
+		{
+			restart_bgm(obj_rm_stage.bgm_track);
+		}
+	
+		if global.player_physics <= PHYSICS.S2 || vel_y >= -4
+		{
+			vel_y *= 2;
+		}
+	
+		vel_y = max(-16, vel_y);
+		
+		// Do not run air timer
+		return;
+	}
+	
+	// Air timer
 	if _shield != SHIELD.BUBBLE
 	{
 		if air_timer > 0
@@ -133,37 +123,8 @@ function scr_player_water()
 				{
 					camera_data.allow_movement = false;
 				}
-				
-				return;
 		}
 	}
-	
-	if floor(y) >= _water_level
-	{
-		return;
-	}
-
-	is_underwater = false;
-	
-	_set_gravity();
-	_spawn_splash();
-
-	if action == ACTION.FLIGHT
-	{
-		audio_play_sfx(snd_flight);
-	}
-
-	if player_index == 0 && audio_is_playing(snd_bgm_drowning) && instance_exists(obj_rm_stage)
-	{
-		restart_bgm(obj_rm_stage.bgm_track);
-	}
-	
-	if global.player_physics <= PHYSICS.S2 || vel_y >= -4
-	{
-		vel_y *= 2;
-	}
-	
-	vel_y = max(-16, vel_y);
 }
 
 /// @self scr_player_water
@@ -173,7 +134,7 @@ function _spawn_splash()
 	
 	if vel_y != 0
 	{
-		if action != ACTION.CLIMB && cpu_state != CPU_STATE.RESPAWN && !is_true_glide()
+		if action != ACTION.USE_OBJECT && action != ACTION.CLIMB && !is_true_glide() && cpu_state != CPU_STATE.RESPAWN
 		{
 			instance_create(x, obj_water.y, obj_water_splash);
 			audio_play_sfx(snd_splash);

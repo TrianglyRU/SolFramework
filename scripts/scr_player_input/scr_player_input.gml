@@ -4,7 +4,8 @@ function scr_player_input()
 	var _replay_data_buttons = array_length(replay_data);
 	if _replay_data_buttons > 0
 	{
-		var _inputs = array_create(_replay_data_buttons, false);	
+		var _inputs = array_create(_replay_data_buttons, false);
+		
 		var _keys = variable_struct_get_names(input_down);
 		
 		for (var _i = 0; _i < _replay_data_buttons; _i++)

@@ -26,4 +26,4 @@ message_emerald = false;
 ring_bonus = 50;
 total_score = 0;
 
-audio_play_bgm(snd_bgm_actclear);
+audio_play_bgm(snd_bgm_act_clear);

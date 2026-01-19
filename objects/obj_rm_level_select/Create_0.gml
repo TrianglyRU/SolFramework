@@ -37,7 +37,7 @@ is_string_entry = function(_entry_index)
 
 set_room_to_load = function()
 {
-	room_to_load = -1;
+	room_to_load = undefined;
 	down_cooldown = 0;
 	
 	for (var _i = 0; _i < array_length(level_rediretions); _i += 2)
@@ -56,11 +56,11 @@ fade_out_function = function()
 	{
 		var _player_index = global.selected_player_index;
 	
-		if room_to_load != -1
+		if room_to_load != undefined
 		{
 			global.player_main = _player_index < 2 ? PLAYER.SONIC : _player_index - 1;
 			global.player_cpu = _player_index == 0 ? PLAYER.TAILS : PLAYER.NONE;
-			global.current_save_slot = -1;
+			global.current_save_slot = undefined;
 			global.score_count = 0;
 			global.life_count = 3;
 		
@@ -80,7 +80,7 @@ fade_out_function = function()
 
 cheat_code_string = "";
 down_cooldown = 0;
-room_to_load = -1;
+room_to_load = undefined;
 level_entries =
 [
 	"GREEN HILL|1",

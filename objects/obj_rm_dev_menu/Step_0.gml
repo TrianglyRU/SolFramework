@@ -139,7 +139,7 @@ switch category_id
 		else
 		{
 			load_category(4);
-			global.current_save_slot = -1;
+			global.current_save_slot = undefined;
 		}
 		
 	break;
@@ -176,7 +176,7 @@ switch category_id
 				}
 
 				global.music_volume = clamp(global.music_volume, 0, 1);
-				audio_play_bgm(snd_bgm_actclear);
+				audio_play_bgm(snd_bgm_act_clear);
 				
 			break;
 			

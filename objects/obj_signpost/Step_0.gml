@@ -79,7 +79,7 @@ switch state
 				
 				case 3:
 					
-					state = SIGNPOST_STATE.CONTROL_PLAYER;
+					state = SIGNPOST_STATE.CHECK_RESULTS;
 					animator.clear(0);
 					
 				break;
@@ -103,61 +103,69 @@ switch state
 		
 	break;
 	
-	case SIGNPOST_STATE.CONTROL_PLAYER:
+	case SIGNPOST_STATE.CHECK_RESULTS:
+	case SIGNPOST_STATE.RESULTS:
 		
-		var _transition_exists = instance_exists(obj_transition_save);
-		var _results_exist = instance_exists(obj_gui_results);
+		var _is_transition = instance_exists(obj_transition_save);
 		
-		var _is_grounded = player.is_grounded;
-		var _reached_end = player.x >= obj_rm_stage.end_bound - 24;
-
 		with obj_player
 		{
 		    if state >= PLAYER_STATE.DEBUG_MODE
 			{
 				continue;
 			}
-    
-		    if !input_no_control
-			{
-		        var _should_take_control = false;
-        
-		        if !_transition_exists
-				{
-		            _should_take_control = true;
-		        }
-				else if _is_grounded
-				{
-		            _should_take_control = true;
-		        }
-        
-		        if _should_take_control
-				{
-		            input_no_control = true;
-		            input_down = input_create();
-		            input_press = input_create();
-					
-		            if !_transition_exists && player_index == 0
-					{
-		                input_down.right = true;
-		            }
-		        }
-		    }
-			else if _transition_exists
-			{
-		        state = PLAYER_STATE.DEFAULT_LOCKED;
-				animation = ANIM.ACT_CLEAR;
-		    }
 			
-		    cpu_control_timer = 0;
+			cpu_control_timer = 0;
+			
+			if _is_transition
+			{
+				if is_grounded && animation != ANIM.ACT_CLEAR 
+				{
+					set_victory_pose();
+				}
+			}
+			else if other.state == SIGNPOST_STATE.CHECK_RESULTS
+			{
+				// This is what causes a player to keep their control during the act results screen
+				/*
+				if id == other.player && !is_grounded
+				{
+					continue;
+				}
+				*/
+				
+				if !input_no_control
+				{
+					input_no_control = true;
+					input_down = input_create();
+					input_press = input_create();
+					
+					if player_index == camera_data.index
+					{
+						input_down.right = true;
+					}
+				}
+			}
 		}
 		
-		if !_results_exist
+		if state == SIGNPOST_STATE.CHECK_RESULTS
 		{
-		    if !_transition_exists && _reached_end || _transition_exists && _is_grounded
+			if _is_transition
 			{
-		        instance_create(0, 0, obj_gui_results);
-		    }
+				if !player.is_grounded
+				{
+					break;
+				}
+			}
+			else if player.x < obj_rm_stage.end_bound - 24
+			{
+				break;
+			}
+			
+			instance_create(0, 0, obj_gui_results);
+			
+			// Do not run these checks anymore
+			state = SIGNPOST_STATE.RESULTS;
 		}
 		
 	break;

@@ -18,9 +18,9 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		
 		if iv_type == TUBE_TYPE.STOP
 		{
-			_player.forced_roll = false;
+			_player.is_forced_roll = false;
 		}
-		else if iv_type == TUBE_TYPE.KEEP_SPEED && _player.forced_roll
+		else if iv_type == TUBE_TYPE.KEEP_SPEED && _player.is_forced_roll
 		{
 			if _player.spd > 0 && _player.spd < 12
 			{
@@ -41,7 +41,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 				}
 				
 				_player.action = ACTION.NONE;
-				_player.forced_roll = true;
+				_player.is_forced_roll = true;
 				_player.reset_gravity();
 			}
 			

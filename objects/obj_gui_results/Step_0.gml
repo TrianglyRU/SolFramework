@@ -7,64 +7,36 @@ switch state
             break;
         }
 		
-		// Fallthrough to RESULTS_STATE.MOVE
+		// Fallthrough to RESULTS_STATE.MOVE_IN
         state_timer = 180;
-        state++;
+        state = RESULTS_STATE.MOVE_IN;
 	
-    case RESULTS_STATE.MOVE:
-    case RESULTS_STATE.WAIT_EXIT:
+    case RESULTS_STATE.MOVE_IN:
+	case RESULTS_STATE.MOVE_OUT:
 	
-        if state == RESULTS_STATE.MOVE
-        {
-            offset_line1 = min(offset_line1 + speed_x, 0);
-            offset_line2 = max(offset_line2 - speed_x, 0);
-            offset_time = max(offset_time - speed_x, 0);
-            offset_rings = max(offset_rings - speed_x, 0);
-            offset_perfect = max(offset_perfect - speed_x, 0);
-            offset_total = max(offset_total - speed_x, 0);
-        }
+		offset_line1 = min(offset_line1 + speed_x, 0);
+        offset_line2 = max(offset_line2 - speed_x, 0);
+        offset_time = max(offset_time - speed_x, 0);
+        offset_rings = max(offset_rings - speed_x, 0);
+        offset_perfect = max(offset_perfect - speed_x, 0);
+        offset_total = max(offset_total - speed_x, 0);
 		
-		if continue_timer >= 0
+		if state == RESULTS_STATE.MOVE_IN
 		{
-			if ++continue_timer == 60
+			if --state_timer == 0
 			{
-				audio_play_sfx(snd_continue);
-			}
+				state = RESULTS_STATE.TALLY;
+			}	
+		}
+		else if offset_total >= 560
+		{
+			obj_game.clear_vram_on_room_end = false;
+			obj_transition_save.save_data();
+			
+			load_next_room();
 		}
 		
-        if --state_timer != 0
-        {
-            break;
-        }
-		
-        if state == RESULTS_STATE.WAIT_EXIT
-        {	
-			state = RESULTS_STATE.EXIT;
-			
-            if obj_rm_stage.save_progress
-            {
-                game_save_data(global.current_save_slot);
-            }
-			
-			if instance_exists(obj_transition_save)
-			{
-				obj_transition_save.save_data();
-				load_next_room();
-			}
-			else
-			{
-				fade_perform_black(FADE_DIRECTION.OUT, 1, function()
-				{
-					return load_next_room();
-				});
-			}
-        }
-		else
-		{
-			state = RESULTS_STATE.TALLY;
-		}
-		
-    break;
+	break;
 	
     case RESULTS_STATE.TALLY:
 	
@@ -105,6 +77,8 @@ switch state
             break;
         }
 		
+		state = RESULTS_STATE.POST_TALLY;
+		
         if total_bonus >= 10000
         {
 			continue_timer = 0;
@@ -116,8 +90,44 @@ switch state
             state_timer = 180;
         }
 		
-		state = RESULTS_STATE.WAIT_EXIT;
         audio_play_sfx(snd_tally);
+		
+    break;
+	
+	case RESULTS_STATE.POST_TALLY:
+	
+		if continue_timer >= 0
+		{
+			if ++continue_timer == 60
+			{
+				audio_play_sfx(snd_continue);
+			}
+		}
+		
+        if --state_timer != 0
+        {
+            break;
+        }
+		
+        if obj_rm_stage.save_progress
+        {
+            game_save_data(global.current_save_slot);
+        }
+		
+		if instance_exists(obj_transition_save)
+		{
+			state = RESULTS_STATE.MOVE_OUT;
+			speed_x *= -2;
+		}
+		else
+		{
+			fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+			{
+				return load_next_room();
+			});
+			
+			state = RESULTS_STATE.EXIT;
+		}
 		
     break;
 }

@@ -10,12 +10,12 @@
 /// @returns {Bool}
 function collision_player(_player, _use_extra_mask = false, _bbleft = bbox_left, _bbtop = bbox_top, _bbright = bbox_right, _bbbottom = bbox_bottom, _inst_id = id)
 {
-	if _player.state != PLAYER_STATE.DEFAULT && _player.state != PLAYER_STATE.DEFAULT_LOCKED
+	if !_player.interact_flag
 	{
 		return false;
 	}
 	
-	if _player.cpu_state == CPU_STATE.RESPAWN || _player.cpu_state == CPU_STATE.RESPAWN_INIT
+	if _player.state != PLAYER_STATE.DEFAULT || _player.cpu_state == CPU_STATE.RESPAWN || _player.cpu_state == CPU_STATE.RESPAWN_INIT
 	{
 		return false;
 	}
@@ -31,6 +31,11 @@ function collision_player(_player, _use_extra_mask = false, _bbleft = bbox_left,
 										 floor(_bbleft),		   floor(_bbtop),			floor(_bbright) - 1,		   floor(_bbbottom) - 1);
 	
 	_player.mask_index = _prev_mask;
+	
+	if _result
+	{
+		_player.interact_flag = false;
+	}
 	
 	return _result;
 }

@@ -24,7 +24,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 	var _state = audio_channel_states[_i];
     var _bgm = audio_channel_bgms[_i];
 	
-    if _bgm == -1
+    if _bgm == undefined
     {
         continue;
     }
@@ -33,7 +33,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
     if audio_sound_length(_bgm) == -1 || _state == CHANNEL_STATE.STOP && audio_sound_get_gain(_bgm) == 0
     {
 		audio_channel_states[_i] = CHANNEL_STATE.DEFAULT;
-		audio_channel_bgms[_i] = -1;
+		audio_channel_bgms[_i] = undefined;
 		audio_stop_sound(_bgm);
 		
         continue;
@@ -64,7 +64,7 @@ for (var _i = 0; _i < AUDIO_CHANNEL_COUNT; _i++)
 	    }
 	}
 	
-    if _jingle_bgm != -1
+    if _jingle_bgm != undefined
     {
         if _state != CHANNEL_STATE.MUTE
         {
@@ -152,7 +152,12 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		
 		if _camera_data.max_vel_x < CAMERA_MAX_VEL_X
 		{
-			_camera_data.max_vel_x++;
+			_camera_data.max_vel_x += 0.5;
+		}
+		
+		if _camera_data.max_vel_y < CAMERA_MAX_VEL_Y
+		{
+			_camera_data.max_vel_y += 0.5;
 		}
 		
 	    if _camera_data.shake_timer > 0
@@ -231,7 +236,7 @@ if state != GAME_STATE.PAUSED
 	
 	if _life_count_prev != global.life_count
 	{
-		audio_play_bgm(snd_bgm_extralife, AUDIO_CHANNEL_JINGLE);
+		audio_play_bgm(snd_bgm_extra_life, AUDIO_CHANNEL_JINGLE);
 	}
 	
 	// Scroll the background
@@ -271,7 +276,7 @@ else if sprite_update_enabled
 	    sprite_set_speed(sprite_array[_i], 0, spritespeed_framespergameframe);
 	}
 	
-	sprite_update_enabled = true;
+	sprite_update_enabled = false;
 }
 
 // Activate stopped objects to let the engine draw them

@@ -14,6 +14,7 @@ function scr_player_debug_mode_enter()
 	if input_press.action2
 	{
 		state = PLAYER_STATE.DEBUG_MODE;
+		on_object = noone;
 		image_alpha = 1;
 		visible = true;
 		depth = base_depth;

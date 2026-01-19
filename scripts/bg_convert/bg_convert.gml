@@ -6,6 +6,7 @@
 /// @param {Real} _scroll_x			Horizontal scrolling speed multiplier.
 /// @param {Real} _scroll_y			Vertical scrolling speed multiplier.
 /// @param {Real} _frame_duration	Duration of each animation frame in game steps.
+/// @returns {Id.Instance}
 function bg_convert(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _frame_duration)
 {
 	// If you want the vertical scrolling to perfectly align the background's bottom edge with the room's bottom edge,

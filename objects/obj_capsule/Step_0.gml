@@ -59,12 +59,12 @@ switch state
         }
         else if --wait_timer == 0
         {
-            state = CAPSULE_STATE.WAIT_ANIMALS;
+            state = CAPSULE_STATE.CHECK_RESULTS;
         }
         
     break;
 	
-    case CAPSULE_STATE.WAIT_ANIMALS:
+    case CAPSULE_STATE.CHECK_RESULTS:
 		
 		var _start_results = true;
 		
@@ -78,16 +78,28 @@ switch state
 		
 	    if _start_results
 	    {
-	        audio_play_bgm(snd_bgm_actclear);
-	        instance_create(0, 0, obj_gui_results);
+			instance_create(0, 0, obj_gui_results);
 			
-	        state++;
+			// Do not run this check anymore
+	        state = CAPSULE_STATE.RESULTS;
 	    }
-		
+			
 	break;
 }
 
+var _is_results_state = state == CAPSULE_STATE.RESULTS;
+
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
-	solid_object(player_get(_p), SOLID_TYPE.FULL);
+	var _player = player_get(_p);
+	
+	if _player != noone
+	{
+		if _is_results_state && _player.is_grounded && _player.animation != ANIM.ACT_CLEAR
+		{
+			_player.set_victory_pose();
+		}
+	}
+	
+	solid_object(_player, SOLID_TYPE.FULL);
 }

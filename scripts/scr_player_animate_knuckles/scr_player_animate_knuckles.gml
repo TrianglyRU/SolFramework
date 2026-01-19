@@ -283,5 +283,14 @@ function scr_player_animate_knuckles()
 			}
 			
 		break;
+		
+		case ANIM.ACT_CLEAR:
+		
+			if sprite_index != spr_knuckles_act_clear
+			{
+				animator.start(spr_knuckles_act_clear, 0, 5, 6);
+			}
+		
+		break;
 	}
 }

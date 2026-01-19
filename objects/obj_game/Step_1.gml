@@ -147,7 +147,7 @@ else if fade_timer == FADE_TIMER_MAX
 	{
 		if fade_in_action()
 		{
-			fade_in_action = -1;
+			fade_in_action = undefined;
 		}
 	}
 }
@@ -159,7 +159,7 @@ else if fade_timer == 0
 	{
 		if fade_out_action()
 		{
-			fade_out_action = -1;
+			fade_out_action = undefined;
 		}
 	}
 }

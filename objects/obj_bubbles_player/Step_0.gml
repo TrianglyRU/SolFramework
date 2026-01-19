@@ -1,4 +1,4 @@
-if !instance_exists(player) || !player.is_underwater
+if !instance_exists(player) || !player.underwater
 {
     instance_destroy();
     return;
@@ -17,7 +17,7 @@ if _player_state == PLAYER_STATE.HURT || _player_state == PLAYER_STATE.DEBUG_MOD
 }
 
 var _player_facing = player.facing;
-var _spawn_direction = player.forced_roll ? 1 : _player_facing;
+var _spawn_direction = player.is_forced_roll ? 1 : _player_facing;
 var _x = player.x + 6 * _player_facing;
 var _y = player.y;
 var _air_timer = player.air_timer;

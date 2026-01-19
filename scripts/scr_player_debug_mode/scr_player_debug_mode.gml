@@ -66,8 +66,7 @@ function scr_player_debug_mode()
 	{
 	    state = PLAYER_STATE.DEFAULT;
 	    animation = ANIM.MOVE;
-	    is_underwater = false;
-		air_lock_flag = false;
+	    underwater = false;
 	    debug_mode_spd = 0;
 	    spd = 0;
 	    vel_x = 0;
