@@ -34,7 +34,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Emerald Hill",
-    "path": "folders/Objects/Emerald Hill.yy",
+    "name": "Stage",
+    "path": "folders/Objects/Stage.yy",
   },
 }

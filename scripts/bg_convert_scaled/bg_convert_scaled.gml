@@ -1,5 +1,5 @@
 /// @self
-/// @description					Initialises a background parallax object with scaling effects, replacing the specified layer. This function requires the assigned sprite to have "Separate Texture Page" enabled.
+/// @description					Initialises a background parallax object with scaling effects, replacing the specified layer. This function requires the assigned sprite to have "Separate Texture Page" enabled, and the sprite's width must be a power of two.
 /// @param {String} _layer			The name of the background layer to convert into an object.
 /// @param {Real} _factor_x			Horizontal parallax factor.
 /// @param {Real} _factor_y			Vertical parallax factor.

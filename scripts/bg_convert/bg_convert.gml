@@ -31,16 +31,21 @@ function bg_convert(_layer, _factor_x, _factor_y, _scroll_x, _scroll_y, _frame_d
 		_object.rendered[_i] = _is_visible;
 	}
 	
-	_object.sprite_index = _sprite_id;
-	_object.htiled = layer_background_get_htiled(_bg_layer);
-	_object.vtiled = layer_background_get_vtiled(_bg_layer);
-	_object.offset_x = layer_get_x(_layer);
-	_object.offset_y = layer_get_y(_layer);
-	_object.factor_x = _factor_x;
-    _object.factor_y = _factor_y;
-	_object.scroll_mult_x = _scroll_x;
-    _object.scroll_mult_y = _scroll_y;
-	_object.frame_duration = _frame_duration;
+	with _object
+	{
+		sprite_index = _sprite_id;
+		htiled = layer_background_get_htiled(_bg_layer);
+		vtiled = layer_background_get_vtiled(_bg_layer);
+		offset_x = layer_get_x(_layer);
+		offset_y = layer_get_y(_layer);
+		width = sprite_get_width(_sprite_id);
+		height = sprite_get_height(_sprite_id);
+		factor_x = _factor_x;
+	    factor_y = _factor_y;
+		scroll_mult_x = _scroll_x;
+	    scroll_mult_y = _scroll_y;
+		frame_duration = _frame_duration;
+	}
 	
 	layer_destroy(_layer);
 	sprite_set_offset(_sprite_id, 0, 0);

@@ -6,10 +6,9 @@ varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
 uniform vec2 u_pos;
-uniform vec2 u_texel_size;
+uniform vec2 u_size;
 uniform float u_camera_x;
 uniform float u_offset_x;
-uniform float u_sprite_h;
 uniform float u_line_h;
 uniform float u_lines_total;
 uniform float u_yscale;
@@ -29,13 +28,13 @@ void main() {
 		offsetFactor = 1.0 - offsetFactor;
 	}
 	
-	float scroll = u_camera_x * distanceFactor;					// base
-	scroll += u_offset_x * offsetFactor * -sign(u_increment);	// offset
-	scroll *= sign(u_yscale);									// yscale
+	float shift = u_camera_x * distanceFactor;					// base shift
+	shift += u_offset_x * offsetFactor * -sign(u_increment);	// + offset
+	shift *= sign(u_yscale);									// + yscale
 	
-	// This requires the texture to be the only one on its page!
-    uv.x = fract(uv.x + scroll / u_texel_size.x);
-	uv.x = (u_yscale < 0.0) ? 1.0 - uv.x : uv.x;
+	// This requires the sprite to be the only one on its texture page
+	// and to have a width that is a power of two
+    uv.x = fract(uv.x + (shift / u_size.x));
 	
     gl_FragColor = texture2D(gm_BaseTexture, uv) * v_vColour;
 }
