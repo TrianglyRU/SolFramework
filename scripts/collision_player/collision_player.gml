@@ -10,12 +10,7 @@
 /// @returns {Bool}
 function collision_player(_player, _use_extra_mask = false, _bbleft = bbox_left, _bbtop = bbox_top, _bbright = bbox_right, _bbbottom = bbox_bottom, _inst_id = id)
 {
-	if !_player.interact_flag
-	{
-		return false;
-	}
-	
-	if _player.state != PLAYER_STATE.DEFAULT || _player.cpu_state == CPU_STATE.RESPAWN || _player.cpu_state == CPU_STATE.RESPAWN_INIT
+	if !_player.interact_flag || _player.state != PLAYER_STATE.DEFAULT
 	{
 		return false;
 	}

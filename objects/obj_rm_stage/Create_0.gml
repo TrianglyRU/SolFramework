@@ -1,8 +1,8 @@
 #macro ACT_SINGLE 3
 
-setup_level = function(_stage_index, _name, _act_index, _bgm, _animals, _next_room, _do_save)
+setup_level = function(_progress_value, _name, _act_index, _bgm, _animals, _next_room, _do_save)
 {
-    global.stage_index = _stage_index;
+    progress_value = _progress_value;
     zone_name = _name;
     act_index = _act_index;
     bgm_track = _bgm;
@@ -13,9 +13,10 @@ setup_level = function(_stage_index, _name, _act_index, _bgm, _animals, _next_ro
 
 zone_name = "TEMPLATE";
 act_index = 0;
+progress_value = 0;
+save_progress = false;
 bgm_track = undefined;
 next_stage = undefined;
-save_progress = false;
 end_bound = room_width;
 bottom_bound = array_create(CAMERA_COUNT, room_height);
 top_bound = array_create(CAMERA_COUNT, 0);

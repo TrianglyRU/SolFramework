@@ -78,7 +78,17 @@ fade_perform_black(FADE_DIRECTION.OUT, 1, function()
 		else
 		{
 			game_clear_level_data_all();
-			room_goto(rm_level_select);
+			
+			// GAME_PROGRESS_MAX is also used when loading into a stage from the room select dev menu
+			if global.game_progress_value == GAME_PROGRESS_MAX
+			{
+				room_goto(rm_level_select);
+			}
+			else
+			{
+				room_goto(rm_dev_menu);
+			}
+			
 		}
 		
 		return true;

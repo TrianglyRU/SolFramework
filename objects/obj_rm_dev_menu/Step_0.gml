@@ -103,25 +103,17 @@ switch category_id
 	break;
 	
 	// Start game
-	case 1:	
+	case 1:
 	
 		global.current_save_slot = option_id - 1;
-
-		if !game_check_data(global.current_save_slot)
+		
+		var _new_game_stage = scr_menu_start_load_game();
+		
+		if _new_game_stage != undefined
 		{
-			room_to_load = rm_stage_ghz1;
+			global.game_progress_value = 0;
+			room_to_load = _new_game_stage;
 			load_category(4);
-			
-			break;
-		}
-		
-		game_clear_level_data_all();
-		game_load_data(global.current_save_slot);
-		
-		switch global.stage_index
-		{
-			default:
-				room_goto(rm_stage_ghz1);
 		}
 		
 	break;
@@ -138,8 +130,10 @@ switch category_id
 		}
 		else
 		{
-			load_category(4);
 			global.current_save_slot = undefined;
+			global.game_progress_value = GAME_PROGRESS_MAX;
+			
+			load_category(4);
 		}
 		
 	break;
@@ -254,8 +248,8 @@ switch category_id
 		global.score_count = 0;
 		global.life_count = 3;
 		
-		game_clear_level_data_all();
 		game_save_data(global.current_save_slot);
+		game_clear_level_data_all();
 		room_goto(room_to_load);
 		
 	break;

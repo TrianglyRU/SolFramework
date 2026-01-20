@@ -53,7 +53,7 @@ function scr_player_cpu()
 	        {
 	            break;
 	        }
-
+			
 	        switch player_type
 	        {
 	            case PLAYER.SONIC:
@@ -162,8 +162,13 @@ function scr_player_cpu()
 	        {
 	            break;
 	        }
-
-	        if carry_target != noone || action == ACTION.CARRIED || state >= PLAYER_STATE.DEFAULT_LOCKED
+			
+			if state >= PLAYER_STATE.DEFAULT_LOCKED
+			{
+				break;
+			}
+			
+	        if carry_target != noone || action == ACTION.CARRIED || action == ACTION.LOCKED
 	        {
 	            break;
 	        }

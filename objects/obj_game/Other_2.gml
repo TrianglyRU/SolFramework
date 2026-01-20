@@ -12,7 +12,7 @@ global.gamepad_list = ds_list_create();
 global.discord_data = ["", "", "", ""];
 global.previous_room_id = room;
 global.current_save_slot = undefined;
-global.stage_index = 0;
+global.game_progress_value = 0;
 global.debug_collision = false;
 global.debug_framework = false;
 

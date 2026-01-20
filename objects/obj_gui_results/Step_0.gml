@@ -111,6 +111,11 @@ switch state
 		
         if obj_rm_stage.save_progress
         {
+			if global.game_progress_value != GAME_PROGRESS_MAX
+			{
+				global.game_progress_value = obj_rm_stage.progress_value;
+			}
+			
             game_save_data(global.current_save_slot);
         }
 		

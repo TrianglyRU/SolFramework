@@ -1,6 +1,6 @@
 /// @self
-/// @description		Saves game data to the specified save slot.
-/// @param {Real} _slot	The slot index to save data to.
+/// @description					Saves game data to the specified save slot.
+/// @param {Real|Undefined} _slot	The slot index to save data to.
 function game_save_data(_slot)
 {
 	if _slot == undefined
@@ -12,7 +12,7 @@ function game_save_data(_slot)
 	var _file = file_bin_open(_filename, 1);
 	
 	file_bin_rewrite(_file);
-	file_bin_write_byte(_file, global.stage_index);
+	file_bin_write_byte(_file, global.game_progress_value);
 	file_bin_write_byte(_file, global.player_main);
 	file_bin_write_byte(_file, global.player_cpu);
 	file_bin_write_byte(_file, global.emerald_count);
