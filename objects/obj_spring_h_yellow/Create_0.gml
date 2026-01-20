@@ -1,8 +1,7 @@
 // Inherit the parent event
 event_inherited();
-	
-obj_set_solid(8, 14);
-obj_set_priority(5);
-obj_set_culling(ACTIVEIF.INBOUNDS);
+event_animator();
+event_culler(CULL_ACTION.PAUSE);
 
+depth = draw_depth(60);
 launch_force = 10;

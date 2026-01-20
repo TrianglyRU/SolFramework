@@ -1,11 +1,4 @@
-enum GIANTRINGSTATE
-{
-	IDLE,
-	ENTRY,
-	TRANSITION
-}
-
-if (ds_list_find_index(global.ds_giant_rings, id) != -1)
+if ds_list_find_index(global.ds_giant_rings, id) != -1
 {
 	instance_destroy();
 	return;
@@ -13,11 +6,15 @@ if (ds_list_find_index(global.ds_giant_rings, id) != -1)
 
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.PAUSE);
 
-obj_set_priority(3);
-obj_set_hitbox(8, 16);
-obj_set_culling(ACTIVEIF.INBOUNDS);
+enum GIANT_RING_STATE
+{
+	IDLE,
+	ENTRY
+}
 
-state = GIANTRINGSTATE.IDLE;
+depth = draw_depth(30);
+state = GIANT_RING_STATE.IDLE;
 wait_timer = 32;
-image_xscale = 1;

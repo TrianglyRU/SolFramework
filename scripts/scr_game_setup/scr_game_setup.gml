@@ -1,24 +1,25 @@
 /// @self obj_game
-/// @function scr_game_setup()
 function scr_game_setup()
 {
 	// Change the rm_startup's size to set up the game's default
 	// internal (application_surface) and camera resolution
-
+	
 	global.dev_mode = true;
-	global.window_name = "GameMaker - Sol Framework"
-	global.start_fullscreen = true;
+	global.window_name = "GameMaker - Orbinaut Framework"
+	global.start_fullscreen = false;
 	global.window_scale = 2;
+	global.use_vsync = true;
 	global.gamepad_rumble = false;
 	global.music_volume = 0.5;
 	global.sound_volume = 0.5;
-	global.start_room = rm_branding;
+	global.start_room = rm_level_select;
 	global.discord_ready = np_initdiscord("1286956015241265174", true, 0);
 	
 	global.player_physics = PHYSICS.S2;
-	global.cpu_behaviour = CPUBEHAVIOUR.S3;
-	global.rotation_mode = ROTATION.MANIA;
-	global.rotation_range = RANGE.DEFAULT;
+	global.cpu_behaviour = CPU_BEHAVIOUR.S3;
+	global.rotation_mode = ROTATION.CLASSIC;
+	global.better_solid_collision = false;
+	global.better_angle_snap = false;
 	global.spin_dash = true;
 	global.dash	= true;
 	global.drop_dash = false;
@@ -28,16 +29,14 @@ function scr_game_setup()
 	global.roll_lock = true;
 	global.speed_cap = false;
 	global.roll_speed_cap = true;
-	global.better_solid_collision = true;
-	global.better_angle_snap = true;
 	
-	game_font_register(spr_font_large, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
-	game_font_register(spr_font_large_alt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
-	game_font_register(spr_font_small, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*.:!-+_", false, 0);
-	game_font_register(spr_font_digits, "0123456789:';", false, 1);
-	game_font_register(spr_font_digits_alt, "0123456789:';", false, 1);
-	game_font_register(spr_font_digits_small, "0123456789", false, 1);
-	game_font_register(spr_font_system, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'(!?)+-*=_[]{}<>|#$%&^@~/", false, 0);
+	font_register(spr_font_large, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
+	font_register(spr_font_large_alt, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", true, 0);
+	font_register(spr_font_small, "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*.:!-+_", false, 0);
+	font_register(spr_font_digits, "0123456789:';", false, 1);
+	font_register(spr_font_digits_alt, "0123456789:';", false, 1);
+	font_register(spr_font_digits_small, "0123456789", false, 1);
+	font_register(spr_font_system, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.:,;'(!?)+-*=_[]{}<>|#$%&^@~/", false, 0);
 	
 	#region AUDIO LOOPS
 	
@@ -49,8 +48,9 @@ function scr_game_setup()
 	audio_set_bgm_loop(snd_bgm_special, 1.71, 51.21);
 	audio_set_bgm_loop(snd_bgm_boss, 19.40, 83.20);
 	audio_set_bgm_loop(snd_bgm_ghz, 14.80, 53.20);
-	audio_set_bgm_loop(snd_bgm_ehz, 3.47, 44.94);
-	audio_set_bgm_loop(snd_bgm_dwz, 12.88, 123.15);
+	audio_set_bgm_loop(snd_bgm_ehz, 3.53 , 44.67);
+	audio_set_bgm_loop(snd_bgm_ssz, 0.37 , 64.37);
+	audio_set_bgm_loop(snd_bgm_dwz, 6.38, 79.45);
 	audio_set_bgm_loop(snd_bgm_level_select, 0.92, 60.65);
 	
 	#endregion
@@ -69,12 +69,34 @@ function scr_game_setup()
 	
 	tile_calculate_data(spr_collision_default, _default_angle_data, 16);
 	
+	// Sunset Shore collision
+	tile_calculate_data(spr_collision_ssz, undefined, 20);
+	
+	tile_alter_angle(spr_collision_ssz, [
+		[2, 11.25],
+		[3, 11.25],
+		[4, 43.59375],
+		[25, 22.5],
+		[26, 22.5],
+		[27, 22.5],
+		[29, 22.5],
+		[30, 22.5],
+		[49, 63.28],
+		[52, 90],
+		[156, 18.28],
+		[157, 18.28],
+		[158, 18.28]
+	]);
+	
 	// Delta World collision
 	tile_calculate_data(spr_collision_dwz, undefined, 16);
-	tile_alter_angle(spr_collision_dwz, 2, 11.25);
-	tile_alter_angle(spr_collision_dwz, 3, 11.25);
-	tile_alter_angle(spr_collision_dwz, 104, 18.28);
-	tile_alter_angle(spr_collision_dwz, 105, 35.15625);
+	
+	tile_alter_angle(spr_collision_dwz, [
+		[2, 11.25],
+		[3, 11.25],
+		[104, 18.28],
+		[105, 35.15625]
+	]);
 	
 	// Sonic 1 collision
 	var _s1_angle_data =
@@ -121,6 +143,7 @@ function scr_game_setup()
 	tile_calculate_data(spr_collision_s2, _s2_angle_data, 16);
 	
 	// Sonic 3K collision
+	/*
 	var _s3_angle_data =
 	[
 			 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 
@@ -142,6 +165,7 @@ function scr_game_setup()
 	]
 	
 	tile_calculate_data(spr_collision_s3, _s3_angle_data, 16);
+	*/
 	
 	#endregion
 }

@@ -32,7 +32,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Controllers",
-    "path": "folders/Controllers.yy",
+    "name": "Directors",
+    "path": "folders/Directors.yy",
   },
 }

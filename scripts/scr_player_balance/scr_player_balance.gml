@@ -1,181 +1,172 @@
 /// @self obj_player
-/// @function scr_player_balance
 function scr_player_balance()
+{
+	if action == ACTION.SPINDASH || action == ACTION.DASH || spd != 0
+	{
+		return;
+	}
+	
+	if global.player_physics == PHYSICS.SK
+	{
+		if input_down.down || input_down.up && global.dash
+		{
+			return;
+		}
+	}
+	
+	if on_object == noone
+	{
+		if math_get_quadrant(angle) != QUADRANT.DOWN
+		{
+			return;
+		}
+		
+		var _floor_dist = collision_tile_v(x, y + radius_y - 1, 1, secondary_layer)[0];	
+		
+		if _floor_dist < 12
+		{
+			return;
+		}
+		
+		var _angle_left = collision_tile_v(x - radius_x, y + radius_y - 1, 1, secondary_layer)[1];
+		var _angle_right = collision_tile_v(x + radius_x - 1, y + radius_y - 1, 1, secondary_layer)[1];
+		
+		if _angle_left == TILE_EMPTY_ANGLE && _angle_right == TILE_EMPTY_ANGLE
+		|| _angle_left != TILE_EMPTY_ANGLE && _angle_right != TILE_EMPTY_ANGLE
+		{
+			return;
+		}
+		
+		if _angle_left == TILE_EMPTY_ANGLE
+		{	
+			_balance_left(collision_tile_v(x + 5, y + radius_y - 1, 1, secondary_layer)[0] >= 12);
+		}
+		else if _angle_right == TILE_EMPTY_ANGLE
+		{
+			_balance_right(collision_tile_v(x - 6, y + radius_y - 1, 1, secondary_layer)[0] >= 12);
+		}
+	}
+	else if instance_exists(on_object) && on_object.solid_balance
+	{
+		var _px = floor(x);
+		var _left_edge = floor(on_object.bbox_left) + 2;
+		var _right_edge = floor(on_object.bbox_right) - 2;
+		
+		if _px < _left_edge
+		{
+			_balance_left(_px < _left_edge - 4);
+		}
+		else if _px > _right_edge
+		{
+			_balance_right(_px > _right_edge + 3);
+		}
+	}
+}
+
+/// @self scr_player_balance
+function _balance_left(_panic_cond)
 {
 	gml_pragma("forceinline");
 	
-	if (action == ACTION.SPINDASH || action == ACTION.DASH || spd_ground != 0)
+	switch player_type
 	{
-		return;
-	}
-	
-	if (global.player_physics == PHYSICS.SK)
-	{
-		if (input_down.down || input_down.up && global.dash)
-		{
-			return;
-		}
-	}
-
-	/// @method _balance_left()
-	var _balance_left = function(_panic_cond)
-	{
-		switch (vd_player_type)
-		{
-			case PLAYER.SONIC:
+		case PLAYER.SONIC:
 			
-				if (super_timer > 0)
-				{
-					animation = ANIM.BALANCE;
-					facing = DIRECTION.NEGATIVE;
-				}
-				else if (!_panic_cond)
-				{
-					animation = facing == DIRECTION.NEGATIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
-				}
-				else if (facing == DIRECTION.POSITIVE)
-				{
-					animation = ANIM.BALANCE_TURN;
-					facing = DIRECTION.NEGATIVE;
-				}
-				else if (animation != ANIM.BALANCE_TURN)
-				{
-					animation = ANIM.BALANCE_PANIC;
-				}
-			
-			break;
-			
-			case PLAYER.TAILS:
-			case PLAYER.AMY:
-				
+			if super_timer > 0
+			{
 				animation = ANIM.BALANCE;
-				facing = DIRECTION.NEGATIVE;
+				facing = -1;
+			}
+			else if !_panic_cond
+			{
+				animation = facing == -1 ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
+			}
+			else if facing == 1
+			{
+				animation = ANIM.BALANCE_TURN;
+				facing = -1;
+			}
+			else if animation != ANIM.BALANCE_TURN
+			{
+				animation = ANIM.BALANCE_PANIC;
+			}
 			
-			break;
+		break;
 			
-			case PLAYER.KNUCKLES:
-			
-				if (facing == DIRECTION.NEGATIVE)
-				{
-					animation = ANIM.BALANCE;
-				}
-				else if (animation != ANIM.BALANCE_FLIP)
-				{
-					animation = ANIM.BALANCE_FLIP;
-					facing = DIRECTION.NEGATIVE;
-				}
-			
-			break;
-		}
-	}
-	
-	/// @method _balance_right()
-	var _balance_right = function(_panic_cond)
-	{
-		switch (vd_player_type)
-		{
-			case PLAYER.SONIC:
-			
-				if (super_timer > 0)
-				{
-					animation = ANIM.BALANCE;
-					facing = DIRECTION.POSITIVE;
-				}
-				else if (!_panic_cond)
-				{
-					animation = facing == DIRECTION.POSITIVE ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
-				}
-				else if (facing == DIRECTION.NEGATIVE)
-				{
-					animation = ANIM.BALANCE_TURN;
-					facing = DIRECTION.POSITIVE;
-				}
-				else if animation != ANIM.BALANCE_TURN
-				{
-					animation = ANIM.BALANCE_PANIC;
-				}
-			
-			break;
-			
-			case PLAYER.TAILS:
-			case PLAYER.AMY:
+		case PLAYER.TAILS:
+		case PLAYER.AMY:
 				
+			animation = ANIM.BALANCE;
+			facing = -1;
+			
+		break;
+			
+		case PLAYER.KNUCKLES:
+			
+			if facing == -1
+			{
 				animation = ANIM.BALANCE;
-				facing = DIRECTION.POSITIVE;
+			}
+			else if animation != ANIM.BALANCE_FLIP
+			{
+				animation = ANIM.BALANCE_FLIP;
+				facing = -1;
+			}
 			
-			break;
-			
-			case PLAYER.KNUCKLES:
-			
-				if (facing == DIRECTION.POSITIVE)
-				{
-					animation = ANIM.BALANCE;
-				}
-				else if (animation != ANIM.BALANCE_FLIP)
-				{
-					animation = ANIM.BALANCE_FLIP;
-					facing = DIRECTION.POSITIVE;
-				}
-			
-			break;
-		}
+		break;
 	}
+}
 
-	if (on_object == noone)
+/// @self scr_player_balance
+function _balance_right(_panic_cond)
+{
+	gml_pragma("forceinline");
+		
+	switch player_type
 	{
-		/// @feather ignore GM1041
-		if (math_get_quadrant(angle) != QUADRANT.DOWN)
-		{
-			return;
-		}
+		case PLAYER.SONIC:
+			
+			if super_timer > 0
+			{
+				animation = ANIM.BALANCE;
+				facing = 1;
+			}
+			else if !_panic_cond
+			{
+				animation = facing == 1 ? ANIM.BALANCE : ANIM.BALANCE_FLIP;
+			}
+			else if facing == -1
+			{
+				animation = ANIM.BALANCE_TURN;
+				facing = 1;
+			}
+			else if animation != ANIM.BALANCE_TURN
+			{
+				animation = ANIM.BALANCE_PANIC;
+			}
+
+		break;
 		
-		var _y = y + radius_y;
-		var _floor_dist = tile_find_v(x, _y, DIRECTION.POSITIVE, secondary_layer)[0];	
+		case PLAYER.TAILS:
+		case PLAYER.AMY:
+				
+			animation = ANIM.BALANCE;
+			facing = 1;
+			
+		break;
 		
-		if (_floor_dist < 12)
-		{
-			return;
-		}
-		
-		var _angle_left = tile_find_v(x - radius_x, _y, DIRECTION.POSITIVE, secondary_layer)[1];
-		var _angle_right = tile_find_v(x + radius_x, _y, DIRECTION.POSITIVE, secondary_layer)[1];
-		
-		if (_angle_left == TILE_EMPTY_ANGLE && _angle_right == TILE_EMPTY_ANGLE
-		|| _angle_left != TILE_EMPTY_ANGLE && _angle_right != TILE_EMPTY_ANGLE)
-		{
-			return;
-		}
-		
-		if (_angle_left == TILE_EMPTY_ANGLE)
-		{	
-			_balance_left(tile_find_v(x + 6, _y, DIRECTION.POSITIVE, secondary_layer)[0] >= 12);
-		}
-		else if (_angle_right == TILE_EMPTY_ANGLE)
-		{
-			_balance_right(tile_find_v(x - 6, _y, DIRECTION.POSITIVE, secondary_layer)[0] >= 12);
-		}
-		
-		return;
-	}
-	else if (instance_exists(on_object))
-	{
-		var _obj = on_object;
-		if (_obj.solid_disable_balance)
-		{
-			return;
-		}
-		
-		var _left_edge = 2;
-		var _right_edge = _obj.solid_radius_x * 2 - _left_edge;
-		var _player_x = _obj.solid_radius_x - floor(_obj.x) + floor(x);
-		
-		if (_player_x < _left_edge)
-		{
-			_balance_left(_player_x < _left_edge - 4);
-		}
-		else if (_player_x > _right_edge)
-		{
-			_balance_right(_player_x > _right_edge + 4);
-		}
+		case PLAYER.KNUCKLES:
+			
+			if facing == 1
+			{
+				animation = ANIM.BALANCE;
+			}
+			else if animation != ANIM.BALANCE_FLIP
+			{
+				animation = ANIM.BALANCE_FLIP;
+				facing = 1;
+			}
+			
+		break;
 	}
 }

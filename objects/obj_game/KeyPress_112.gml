@@ -1,5 +1,6 @@
-/// @description Dev Menu
-if (global.dev_mode)
-{
-	room_goto(rm_dev_menu);
-}
+/// @description Window Scale 1x
+global.window_scale = 1;
+
+window_set_fullscreen(false);
+window_set_cursor(cr_default);
+window_resize();

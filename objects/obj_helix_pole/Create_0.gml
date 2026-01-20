@@ -1,5 +1,6 @@
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.PAUSE);
 
-obj_set_priority(4);
-obj_set_culling(ACTIVEIF.INBOUNDS);
+depth = draw_depth(40);
+offset_x = 0;

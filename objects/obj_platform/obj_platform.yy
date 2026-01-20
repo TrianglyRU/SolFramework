@@ -12,8 +12,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_game_object",
-    "path": "objects/obj_game_object/obj_game_object.yy",
+    "name": "obj_solid",
+    "path": "objects/obj_solid/obj_solid.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -30,18 +30,20 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":4,"eventType":7,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":1,"collisionObjectId":null,},
   ],
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_type","varType":6,"value":"PLATFORMTYPE.DEFAULT","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
-        "PLATFORMTYPE.DEFAULT",
-        "PLATFORMTYPE.FALL",
-        "PLATFORMTYPE.HORIZONTAL",
-        "PLATFORMTYPE.VERTICAL",
-        "PLATFORMTYPE.CIRCULAR",
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_type","varType":6,"value":"PLATFORM_TYPE.DEFAULT","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
+        "PLATFORM_TYPE.DEFAULT",
+        "PLATFORM_TYPE.FALL",
+        "PLATFORM_TYPE.HORIZONTAL",
+        "PLATFORM_TYPE.VERTICAL",
+        "PLATFORM_TYPE.CIRCULAR",
       ],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_angle_offset","varType":1,"value":"0","rangeEnabled":true,"rangeMin":0.0,"rangeMax":360.0,"listItems":[],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_distance","varType":0,"value":"64","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_speed_multiplier","varType":0,"value":"256","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_angle_offset","varType":1,"value":"0","rangeEnabled":true,"rangeMin":0.0,"rangeMax":360.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_radius","varType":0,"value":"64","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_speed_multiplier","varType":0,"value":"1","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],
   "parent": {

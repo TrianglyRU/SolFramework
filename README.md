@@ -3,14 +3,15 @@ This is a director's cut / fork of the [Orbinaut Framework 2](https://github.com
 
 # Is it different?
 Yes and no. The core idea and overall presentation remain the same, but several modifications have been made:
-- All framework modules have been flattened and are now direct properties of the controller itself.
-- The organization of methods (function variables) has been reworked.
 - The animation system now supports more features from the original Mega Drive engine.
 - The rendering system has been overhauled: shaders are now separated, and palette and fade effects are applied at the camera level rather than per sprite.
 - The background and distortion systems have been reworked, allowing for greater flexibility and fewer limitations.
-- The entire codebase has been reviewed, with slight changes to the coding style.
-- Tile collision now introduces a common layer that objects always collide with, along with automatically calculated angles and three-tile-type system being replaced by marker layers.
+- Tile collision now introduces a common layer that objects always collide with, along with automatically calculated angles, and the three-tile-type system has been replaced by marker layers.
+- Player-to-solid-object collision has been rewritten for perfect accuracy, and basic object-to-object collision now uses GameMaker’s built-in collision mask system.
+- All framework modules have been flattened and are now direct properties of the controller itself.
+- The organization of methods (function variables) has been reworked.
 - Function names and descriptions have been updated.
+- The entire codebase has been reviewed, with slight changes to the coding style.
 
 # For what GameMaker version is this for?
 Latest available **LTS** (Long-Term Stable) build only. Due to the absence of certain features, like native track looping support, some parts of the code are either missing or temporarily rewritten.

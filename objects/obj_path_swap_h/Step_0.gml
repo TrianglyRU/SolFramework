@@ -1,12 +1,13 @@
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
-	if (_p == 0)
+	
+	if _p == 0
 	{
-		visible = _player.state == PLAYERSTATE.DEBUG_MODE;
+		visible = _player.state == PLAYER_STATE.DEBUG_MODE;
 	}
 	
-	if (_player.state >= PLAYERSTATE.LOCKED || !_player.is_grounded && vd_ground_only)
+	if _player.state >= PLAYER_STATE.DEFAULT_LOCKED || !_player.is_grounded && iv_ground_only
 	{
 		continue;
 	}
@@ -15,16 +16,16 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _y = _player.y;
 	var _x = _player.x;
 	
-	if (_x < bbox_left || _x >= bbox_right)
+	if _x < bbox_left || _x >= bbox_right
 	{
 		continue;
 	}
 	
-	if (_y_last < y && _y >= y)
+	if _y_last < y && _y >= y
 	{
 		_player.secondary_layer = layer_data[1];
 	}
-	else if (_y_last >= y && _y < y)
+	else if _y_last >= y && _y < y
 	{
 		_player.secondary_layer = layer_data[0];
 	}

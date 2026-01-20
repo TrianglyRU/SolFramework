@@ -1,6 +1,6 @@
 /// @self
-/// @description A wrapper around camera_get_view_width().
-/// @param {Real} _index The viewport index.
+/// @description			Returns the corrected width of the camera created by camera_new() function.
+/// @param {Real} _index	The camera index.
 /// @returns {Real}
 function camera_get_width(_index)
 {

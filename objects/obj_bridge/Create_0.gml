@@ -1,9 +1,9 @@
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.PAUSE);
 
-// Override data
-solid_disable_balance = true;
-
+depth = draw_depth(40);
+solid_balance = false;
 log_size = 16;
 log_size_half = floor(log_size * 0.5);
 active_log = 0;
@@ -20,7 +20,3 @@ for (var _i = 0; _i < log_amount; _i++)
 	log_y[_i] = y;
 	dip[_i] = _i < floor(log_amount * 0.5) ? (_i + 1) * 2 : (log_amount - _i) * 2;
 }
-
-obj_set_priority(4);
-obj_set_solid(log_amount * log_size_half, log_size_half);
-obj_set_culling(ACTIVEIF.INBOUNDS);

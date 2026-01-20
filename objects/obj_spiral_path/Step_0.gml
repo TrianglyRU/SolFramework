@@ -1,26 +1,34 @@
+// Feather ignore GM2018
+
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
-	var _speed = abs(_player.spd_ground);
+	var _speed = abs(_player.spd);
+	var _on_object = _player.on_object;
 	
-	if (_player.on_object != id)
+	if _on_object != id
 	{
-		if (!_player.is_grounded || _player.action == ACTION.DASH || _speed < 6)
+		if !_player.is_grounded || _player.action == ACTION.DASH || _speed < 6
 		{
 			continue;
 		}
 		
-		var _bound_inner = 192;
-		var	_bound_outer = 208;
-		
-		if (_player.on_object != noone)
+		if _player.state >= PLAYER_STATE.DEFAULT_LOCKED
 		{
-			_bound_inner = 176;
+			continue;
+		}
+		
+		var _bound_outer, _bound_inner;
+		
+		if _on_object != noone && _on_object.object_index == obj_spiral_path
+		{
 			_bound_outer = 192;
+			_bound_inner = 176;
 		}
-		else if (_player.state >= PLAYERSTATE.LOCKED)
+		else
 		{
-			continue;
+			_bound_outer = 208;
+			_bound_inner = 192;	
 		}
 		
 		var _dist_x = floor(_player.x) - x;
@@ -31,14 +39,14 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			continue;
 		}
 		
-		if (_player.vel_x < 0)
+		if _player.vel_x < 0
 		{
-			if (_dist_x < _bound_inner || _dist_x > _bound_outer)
+			if _dist_x < _bound_inner || _dist_x > _bound_outer
 			{
 				continue;
 			}
 		}
-		else if (_dist_x < -_bound_outer || _dist_x > -_bound_inner)
+		else if _dist_x < -_bound_outer || _dist_x > -_bound_inner
 		{
 			continue;
 		}
@@ -46,23 +54,28 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		// Not in the original Sonic 2, but is required in some scenarios
 		_player.facing = sign(_player.vel_x);
 		
-		_player.spd_ground = _player.vel_x;
+		_player.spd = _player.vel_x;
 		_player.vel_y = 0;
 		_player.angle = 0;
 		_player.on_object = id;
 		_player.action = ACTION.NONE;
 		
-		if (_player.animation != ANIM.SPIN)
+		if _player.animation != ANIM.SPIN
 		{
 			_player.animation = ANIM.FLIP;
 		}
 	}
 	else
 	{
-		var _dist_x = floor(_player.x) - x + 208;
-		if (_dist_x < 0 || abs(_dist_x) >= 416 || !_player.is_grounded || _speed < 6)
+		// Note: player's is_grounded flag IS set while running on the path due to on_object flag
+		// preventing the collision script to check if there's ground below the player or not
+	
+		var _total_width = 416;
+		var _dist_x = floor(_player.x) - x + _total_width * 0.5;
+		
+		if _dist_x < 0 || abs(_dist_x) >= _total_width || !_player.is_grounded || _speed < 6
 		{
-			if (_speed >= 6 && _player.animation == ANIM.FLIP)
+			if _speed >= 6 && _player.animation == ANIM.FLIP
 			{
 				_player.animation = ANIM.MOVE;
 			}
@@ -71,14 +84,17 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		}
 		else
 		{
-			if (_player.animation == ANIM.FLIP)
+			// Override player's animation frame
+			if _player.animation == ANIM.FLIP
 			{
 				var _frame_index = floor(_dist_x / 32);
-				if (_player.facing == DIRECTION.NEGATIVE)
+				
+				if _player.facing == -1
 				{
-					_frame_index = array_length(flip_frame_table) - _frame_index - 1;
+					_frame_index = array_length(flip_frame_table) - 1 - _frame_index;
 				}
 				
+				_player.animator.timer = _player.animator.duration;
 				_player.image_index = flip_frame_table[_frame_index];
 			}
 			

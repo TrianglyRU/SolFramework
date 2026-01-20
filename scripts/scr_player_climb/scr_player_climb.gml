@@ -1,38 +1,37 @@
 /// @self obj_player
-/// @function scr_player_climb()
 function scr_player_climb()
 {
-	gml_pragma("forceinline");
-	
-	if (action != ACTION.CLIMB)
+	if action != ACTION.CLIMB
 	{
 		return;
 	}
 
 	var _steps_per_climb_frame = 4;
-	switch (action_state)
-	{
-		case CLIMBSTATE.NORMAL:
 	
-			if (x != xprevious || vel_x != 0)
+	switch action_state
+	{
+		case CLIMB_STATE.NORMAL:
+		
+			if x != xprevious || vel_x != 0
 			{
 				release_glide(1);
 				break;
 			}
 			
 			var _max_animation_value = image_number * _steps_per_climb_frame;
-			if (input_down.up)
+			
+			if input_down.up
 			{
-				if (++climb_value > _max_animation_value)
+				if ++climb_value > _max_animation_value
 				{
 					climb_value = 0;
 				}
 				
 				vel_y = -acc_climb;
 			}
-			else if (input_down.down)
+			else if input_down.down
 			{
-				if (--climb_value < 0)
+				if --climb_value < 0
 				{
 					climb_value = _max_animation_value;
 				}
@@ -43,32 +42,31 @@ function scr_player_climb()
 			{
 				vel_y = 0;
 			}
-		
-			var _radius_x = radius_x;
-			if (facing == DIRECTION.NEGATIVE)
+			
+			var _radius_x = facing >= 0 ? radius_x - 1 : -radius_x;		
+			
+			if vel_y < 0
 			{
-				_radius_x++;
-			}
-		
-			if (vel_y < 0)
-			{
-				var _wall_dist = tile_find_h(x + _radius_x * facing, y - radius_y - 1, facing, secondary_layer)[0];
-				if (_wall_dist >= 4)
+				var _wall_dist = collision_tile_h(x + _radius_x, y - radius_y - 1, facing, secondary_layer)[0];
+				
+				if _wall_dist >= 4
 				{
-					action_state = CLIMBSTATE.LEDGE;
+					action_state = CLIMB_STATE.LEDGE;
 					vel_y = 0;
 					grv = 0;
 					
 					break;
 				}
 				
-				if (_wall_dist != 0)
+				if _wall_dist != 0
 				{
 					vel_y = 0;
 				}
-			
-				var _ceil_dist = tile_find_v(x + _radius_x * facing, y - radius_y_normal + 1, DIRECTION.NEGATIVE, secondary_layer)[0];
-				if (_ceil_dist < 0)
+				
+				// Original game adds 1 to y coordinate for some reason...
+				var _ceil_dist = collision_tile_v(x + _radius_x, y - radius_y_normal + 1, -1, secondary_layer)[0];
+				
+				if _ceil_dist < 0
 				{
 					y -= _ceil_dist;
 					vel_y = 0;
@@ -76,29 +74,31 @@ function scr_player_climb()
 			}
 			else
 			{
-				var _wall_dist = tile_find_h(x + _radius_x * facing, y + radius_y + 1, facing, secondary_layer)[0];
-				if (_wall_dist != 0)
+				var _wall_dist = collision_tile_h(x + _radius_x, y + radius_y - 1, facing, secondary_layer)[0];
+				
+				if _wall_dist != 0
 				{
 					release_glide(1);
 					break;
 				}
 				
-				var _floor_data = tile_find_v(x + _radius_x * facing, y + radius_y_normal, DIRECTION.POSITIVE, secondary_layer);
+				var _floor_data = collision_tile_v(x + _radius_x, y + radius_y_normal - 1, 1, secondary_layer);
 				var _floor_dist = _floor_data[0];
 				var _floor_angle = _floor_data[1];
 				
-				if (_floor_dist < 0)
+				if _floor_dist < 0
 				{
 					land();
-					y += _floor_dist + radius_y;
-					angle = _floor_angle;
-					animation = ANIM.IDLE;
 					vel_y = 0;
+					animation = ANIM.IDLE;
+					angle = _floor_angle;
+					y += _floor_dist + radius_y;
+					
 					break;
 				}
 			}
 			
-			if (input_press.action_any)
+			if input_press_action_any()
 			{
 				animation = ANIM.SPIN;
 				action = ACTION.NONE;
@@ -108,30 +108,30 @@ function scr_player_climb()
 				vel_y = jump_min_vel;
 				radius_x = radius_x_spin;
 				radius_y = radius_y_spin;
+				reset_gravity();
 				
 				audio_play_sfx(snd_jump);
-				reset_gravity();
 				break;
 			}
 			
-			if (vel_y != 0)
+			if vel_y != 0
 			{
 				image_index = floor(climb_value / _steps_per_climb_frame);
 			}
 	
 		break;
 	
-		case CLIMBSTATE.LEDGE:
+		case CLIMB_STATE.LEDGE:
 			
-			if (animation != ANIM.CLIMB_LEDGE)
+			if animation != ANIM.CLIMB_LEDGE
 			{
 				animation = ANIM.CLIMB_LEDGE;
 				x += 3 * facing;
 				y -= 3;
 			}
-			else if (anim_frame_changed)
+			else if animator.timer == animator.duration
 			{
-				switch (image_index)
+				switch image_index
 				{
 					case 1:
 					
@@ -148,18 +148,12 @@ function scr_player_climb()
 					break;
 				}
 			}
-			else if (obj_is_anim_ended())
+			else if animator.timer < 0
 			{
 				land();
-				
 				animation = ANIM.IDLE;
 				x += 8 * facing;
 				y += 4;
-				
-				if (facing == DIRECTION.NEGATIVE)
-				{
-					x--;
-				}
 			}
 	
 		break;

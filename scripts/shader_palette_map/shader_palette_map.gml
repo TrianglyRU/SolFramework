@@ -1,10 +1,8 @@
 /// @self
-/// @description Applies a colour swap to subsequent draw calls using the properties of the given camera and the palette map data defined in obj_game.
-/// @param {Real} _camera_index The index of the camera whose parameters to use.
+/// @description				Applies a colour swap to subsequent draw calls using the properties of the given camera and the palette map data defined in obj_game.
+/// @param {Real} _camera_index	The index of the camera whose parameters to use.
 function shader_palette_map(_camera_index)
 {
-	gml_pragma("forceinline");
-	
 	var _data = obj_game.palette_data;
 	var _screen_space_bound = obj_game.palette_bound - camera_get_y(_camera_index);
 	var _camera_height = camera_get_height(_camera_index);
@@ -13,12 +11,13 @@ function shader_palette_map(_camera_index)
 	var _u_bound = shader_get_uniform(sh_palette_map, "u_bound");
 	var _u_indicies = shader_get_uniform(sh_palette_map, "u_indices");
 	
+	// Feather ignore GM2003
 	shader_set(sh_palette_map);
 	shader_set_uniform_f(_u_bound, _screen_space_bound * _scale_y);
 	shader_set_uniform_f_array(_u_indicies, obj_game.palette_indices);
 	
 	// Palette A
-	if (_screen_space_bound >= 0 && _data[0] != undefined)
+	if _screen_space_bound >= 0 && _data[0] != undefined
 	{
 		var _texture = _data[0][0];
 		var _texel_x = _data[0][1];
@@ -37,7 +36,7 @@ function shader_palette_map(_camera_index)
 	}
 	
 	// Palette B
-	if (_screen_space_bound < _camera_height && _data[1] != undefined)
+	if _screen_space_bound < _camera_height && _data[1] != undefined
 	{
 		var _texture = _data[1][0];
 		var _texel_x = _data[1][1];

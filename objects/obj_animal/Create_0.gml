@@ -1,31 +1,36 @@
-enum ANIMALSTATE
+// Inherit the parent event
+event_inherited();
+event_animator();
+event_culler(CULL_ACTION.DESTROY);
+
+enum ANIMAL_STATE
 {
 	APPEAR,
 	MOVE,
 	CAPSULE
 }
 
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(7);
-obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
-
-state = vd_release_timer == 0 ? ANIMALSTATE.APPEAR : ANIMALSTATE.CAPSULE;
+state = ANIMAL_STATE.APPEAR;
+state_timer = 0;
 grv = 0.21875;
 vel_x = 0;
 vel_y = -4;
 vel_x_bounce = 0;
 vel_y_bounce = 0;
 
-/// @feather ignore GM1041
-var _animal_count = array_length(obj_rm_stage.animal_set);
-if (_animal_count > 0)
+depth = draw_depth(70);
+
+if instance_exists(obj_rm_stage)
 {
-    sprite_index = obj_rm_stage.animal_set[irandom(_animal_count - 1)];
+	var _animal_count = array_length(obj_rm_stage.animal_set);
+	
+	if _animal_count > 0
+	{
+	    sprite_index = obj_rm_stage.animal_set[irandom(_animal_count - 1)];
+	}
 }
 
-switch (sprite_index)
+switch sprite_index
 {
     case spr_animal_flicky:
 	
@@ -40,35 +45,35 @@ switch (sprite_index)
         vel_y_bounce = -4;
 		
     break;
-
+	
     case spr_animal_cucky:
 	
         vel_x_bounce = 2;
         vel_y_bounce = -3;
 		
     break;
-
+	
     case spr_animal_pecky:
 	
         vel_x_bounce = 1.5;
         vel_y_bounce = -3;
 		
     break;
-
+	
     case spr_animal_picky:
 	
         vel_x_bounce = 1.75;
         vel_y_bounce = -3;
 		
     break;
-
+	
     case spr_animal_ricky:
 	
         vel_x_bounce = 2.5;
         vel_y_bounce = -3.5;
 		
     break;
-
+	
     case spr_animal_rocky:
 	
         vel_x_bounce = 1.25;

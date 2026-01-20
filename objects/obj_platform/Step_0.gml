@@ -1,91 +1,95 @@
-switch (state)
+switch state
 {
-	case PLATFORMSTATE.MOVE:
+	case PLATFORM_STATE.MOVE:
 	
-		var _player_touch = false;
+		var _found_player = false;
+		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
 			var _player = player_get(_p);
-			if (obj_check_solid(_player, SOLIDCOLLISION.TOP))
+			
+			if _player != noone && _player.on_object == id
 			{
-				_player_touch = true;
+				_found_player = true; break;
 			}
 		}
 		
 		var _weight_inc = 5.625;
-		if (_player_touch)
+		
+		if _found_player
 		{
-			if (weight < 90)
+			if weight < 90
 			{
 				weight += _weight_inc;
 			}
 		}
-		else if (weight > 0)
+		else if weight > 0
 		{
 			weight -= _weight_inc;
 		}
 		
-		var _osc_angle = obj_game.frame_counter * ANGLE_INCREMENT;
-		var _spd = 256 / vd_speed_multiplier;
-
-		switch (vd_type)
+		var _osc_angle = obj_game.oscillation_angle;
+	
+		switch iv_type
 		{
-			case PLATFORMTYPE.DEFAULT:
+			case PLATFORM_TYPE.DEFAULT:
 				y = ystart;
 			break;
 			
-			case PLATFORMTYPE.HORIZONTAL:
+			case PLATFORM_TYPE.HORIZONTAL:
 			
-				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
+				x = math_oscillate_x(xstart, _osc_angle, iv_radius, iv_speed_multiplier, iv_angle_offset);
 				y = ystart;
 				
 			break;
-
-			case PLATFORMTYPE.VERTICAL:
-				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
-			break;
-
-			case PLATFORMTYPE.CIRCULAR:
 			
-				x = math_oscillate_x(xstart, _osc_angle, vd_distance, _spd, vd_angle_offset);
-				y = math_oscillate_y(ystart, _osc_angle, vd_distance, _spd, vd_angle_offset + 270);
+			case PLATFORM_TYPE.VERTICAL:
+				y = math_oscillate_y(ystart, _osc_angle - 90, iv_radius, iv_speed_multiplier, iv_angle_offset);
+			break;
+			
+			case PLATFORM_TYPE.CIRCULAR:
+			
+				x = math_oscillate_x(xstart, _osc_angle, iv_radius, iv_speed_multiplier, iv_angle_offset);
+				y = math_oscillate_y(ystart, _osc_angle - 180, iv_radius, iv_speed_multiplier, iv_angle_offset);
 				
 			break;
-
-			case PLATFORMTYPE.FALL:
+			
+			case PLATFORM_TYPE.FALL:
 				
 				y = ystart;
-				if (wait_timer == 0)
+				
+				if wait_timer == 0
 				{
-					if (_player_touch)
+					if _found_player
 					{
 						wait_timer = 30;
 					}
 				}
-				else if (--wait_timer == 0)
+				else if --wait_timer == 0
 				{
-					state = PLATFORMSTATE.FALL;
+					state = PLATFORM_STATE.FALL;
 					wait_timer = 32;
 				}
 				
 			break;
 		}
-
+		
 		y += dsin(weight) * 4;
+		
 		for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		{
-			obj_act_solid(player_get(_p), SOLIDOBJECT.TOP);
+			solid_object(player_get(_p), SOLID_TYPE.TOP);
 		}
 
 	break;
-
-	case PLATFORMSTATE.FALL:
 	
-		if (--wait_timer == 0)
+	case PLATFORM_STATE.FALL:
+		
+		if --wait_timer == 0
 		{
-			with (obj_player)
+			with obj_player
 			{
-				if (on_object == other.id)
+				if on_object == other.id
 				{
 					on_object = noone;
 					is_grounded = false;
@@ -93,31 +97,49 @@ switch (state)
 				}
 			}
 		}
-
+		
 		y += vel_y;
 		vel_y += 0.21875;
 		
-		if (wait_timer > 0)
+		if wait_timer > 0
 		{
 			for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			{
-				obj_act_solid(player_get(_p), SOLIDOBJECT.TOP, SOLIDATTACH.NONE);
+				solid_object(player_get(_p), SOLID_TYPE.TOP_NO_LAND);
 			}
 		}
 
 	break;
 }
 
-if (vd_type == PLATFORMTYPE.DEFAULT)
+// Sync objects
+var _list_size = ds_list_size(synced_objects);
+var _x = floor(x);
+var _y = floor(y) - SYNC_SEARCH_TOLERANCE;
+
+if _list_size > 0
 {
-	var _itembox = instance_place(xprevious, yprevious - 1, obj_itembox);
-	if (_itembox != noone)
+	for (var _i = 0; _i < _list_size; _i++)
 	{
-		// Item Box's state may not be initialised yet
-		if (!variable_instance_exists(_itembox, "state") || _itembox.state != ITEMBOXSTATE.FALL)
+		var _obj = synced_objects[| _i];
+		
+		if !instance_exists(_obj)
 		{
-			_itembox.x += x - xprevious;
-			_itembox.y += y - yprevious;
+			continue;
 		}
+		
+		// Do not sync falling Item Box
+		if _obj.object_index == obj_item_box && _obj.state == ITEM_BOX_STATE.FALLING
+		{
+			continue;
+		}
+		
+		if !place_meeting(_x, _y, _obj)
+		{
+			continue;
+		}
+		
+		_obj.x = _obj.xstart + x - xstart;
+		_obj.y = _obj.ystart + y - ystart;
 	}
 }

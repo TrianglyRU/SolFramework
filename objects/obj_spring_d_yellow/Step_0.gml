@@ -1,42 +1,44 @@
-if (obj_is_anim_ended())
+if animator.timer < 0
 {
-	obj_stop_anim(0);
+	animator.clear(0);
 }
 
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
 	var _player = player_get(_p);
-	obj_act_solid(_player, SOLIDOBJECT.FULL, SOLIDATTACH.RESET_PLAYER);
+	var _prev_anim = _player.animation;
+	var _touch_side = image_yscale >= 0 ? SOLID_TOUCH.TOP : SOLID_TOUCH.BOTTOM;
 	
-	if (!obj_is_anim_stopped() || (floor(_player.x) - x + 4 * image_xscale) * image_xscale < 0)
+	solid_object(_player, SOLID_TYPE.FULL_RESET);
+	
+	if image_index != 0 || solid_touch[_p] != _touch_side
+    {
+        continue;
+    }
+	
+	if image_xscale * (floor(_player.x) - x + 4 * image_xscale) < 0
 	{
 		continue;
 	}
 	
-	var _collision_side = image_yscale >= 0 ? SOLIDCOLLISION.TOP : SOLIDCOLLISION.BOTTOM;
-	if (!obj_check_solid(_player, _collision_side))
+	if image_yscale >= 0
 	{
-		continue;
-	}
-	
-	if (image_yscale >= 0)
-	{
-		if (vd_flip_player)
+		if iv_bounce_animation == ANIM.FLIP
 		{
 			_player.animation = launch_force > 10 ? ANIM.FLIP_EXTENDED : ANIM.FLIP;
 		}
 		else
 		{
-			_player.animation = ANIM.BOUNCE;
+			_player.animation = iv_bounce_animation;
 		}
 		
-		with (_player)
+		if _prev_anim == _player.animation
 		{
-			obj_restart_anim();
+			_player.animator.restart();
 		}
 	}
 	
-	var _result_force = vd_use_sine ? launch_force * dsin(45) : launch_force;
+	var _result_force = iv_use_sine ? launch_force * dsin(45) : launch_force;
 	
 	_player.y += image_yscale * 8;
 	_player.facing = image_xscale;
@@ -44,7 +46,8 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	_player.vel_y = -_result_force * image_yscale;
 	_player.reset_substate();
 	
-	obj_set_anim(sprite_index, 1, 1, function(){ obj_stop_anim(0); });
+	animator.start(sprite_index, 1, 9, 1);
+	
 	audio_play_sfx(snd_spring);
 	input_set_rumble(_p, 0.20, INPUT_RUMBLE_MEDIUM);
 }

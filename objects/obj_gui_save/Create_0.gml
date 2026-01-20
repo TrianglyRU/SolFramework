@@ -1,12 +1,11 @@
-with (obj_gui_save) 
-{
-	if (id != other.id)
-	{
-		instance_destroy();
-	}
-}
+// Inherit the parent event
+event_inherited();
 
-switch (global.player_main)
+depth = RENDER_DEPTH_HUD;
+allowed_game_state = GAME_STATE.PAUSED;
+timer = 0;
+
+switch global.player_main
 {
 	case PLAYER.TAILS:
 		sprite_index = spr_gui_save_tails;
@@ -21,4 +20,10 @@ switch (global.player_main)
 	break;
 }
 
-timer = 0;
+with obj_gui_save
+{
+	if id != other.id
+	{
+		instance_destroy();
+	}
+}

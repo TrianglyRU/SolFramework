@@ -1,19 +1,17 @@
-enum BUZZERSTATE
+// Inherit the parent event
+event_inherited();
+event_culler(CULL_ACTION.RESET);
+
+#macro BUZZER_DEFAULT_MOVE_TIMER 256
+
+enum BUZZER_STATE
 {
 	ROAM,
 	SHOOT
 }
 
-#macro BUZZER_DEFAULT_MOVE_TIMER 256
-
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(4);
-obj_set_hitbox(16, 8);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
-state = BUZZERSTATE.ROAM;
+depth = draw_depth(40);
+state = BUZZER_STATE.ROAM;
 move_timer = BUZZER_DEFAULT_MOVE_TIMER;
 turn_timer = 0;
 shot_timer = 0;

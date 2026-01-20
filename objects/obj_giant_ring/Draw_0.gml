@@ -1,7 +1,7 @@
-if (state == GIANTRINGSTATE.IDLE)
+if state == GIANT_RING_STATE.IDLE
 {
-	sprite_animate(obj_game.frame_counter, 6);
+	instance_animate(obj_game.frame_counter, 6);
 }
-	
+
 // Inherit the parent event
 event_inherited();

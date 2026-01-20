@@ -1,24 +1,18 @@
-if (obj_game.fade_state == FADESTATE.PLAINCOLOUR)
+if obj_game.fade_state != FADE_STATE.NONE
 {
-    room_goto(global.previous_room_id);
 	return;
 }
 
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-    return;
-}
-
 var _input_press = input_get_pressed(0);
-if (_input_press.action1)
+
+if _input_press.action1
 {
-    audio_play_sfx(snd_ring_left);
-    audio_play_sfx(snd_ring_right);
+    audio_play_ring_sfx();
 	
 	rings_earned += 10;
     global.player_rings = min(global.player_rings + 10, 999);
 	
-    if (!continue_earned && rings_earned >= 50)
+    if !continue_earned && rings_earned >= 50
     {
         continue_earned = true;
         global.continue_count++;
@@ -26,7 +20,7 @@ if (_input_press.action1)
         audio_play_sfx(snd_continue);
     }
 }
-else if (_input_press.action2)
+else if _input_press.action2
 {
     var _shield = choose(SHIELD.NORMAL, SHIELD.FIRE, SHIELD.BUBBLE, SHIELD.LIGHTNING);
 	
@@ -35,7 +29,7 @@ else if (_input_press.action2)
         global.player_shields[_i] = _shield;
     }
 	
-    switch (_shield)
+    switch _shield
     {
         case SHIELD.NORMAL:
             audio_play_sfx(snd_shield);
@@ -54,8 +48,17 @@ else if (_input_press.action2)
         break;
     }
 }
-else if (_input_press.start )
+else if _input_press.start
 {
-    fade_perform_black(FADEROUTINE.OUT, 1);
-    audio_stop_bgm(0.5);
+    audio_stop_bgm(1);
+	fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+	{
+		if !audio_is_bgm_playing()
+		{
+			room_goto(global.previous_room_id);
+			return true;
+		}
+	});
+	
+	return false;
 }

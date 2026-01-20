@@ -1,6 +1,7 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.DESTROY);
 
-obj_set_priority(0);
-obj_set_culling(ACTIVEIF.INBOUNDS_DELETE);
-obj_set_anim(sprite_index, 2, 0, function(){ instance_destroy(); });
+depth = draw_depth(0);
+animator.start(sprite_index, 0, 9, 2);

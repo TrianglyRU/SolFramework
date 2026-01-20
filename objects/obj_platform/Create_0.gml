@@ -1,10 +1,14 @@
-enum PLATFORMSTATE
+// Inherit the parent event
+event_inherited();
+event_culler(CULL_ACTION.RESET);
+
+enum PLATFORM_STATE
 {
 	MOVE,
 	FALL
 }
 
-enum PLATFORMTYPE
+enum PLATFORM_TYPE
 {
 	DEFAULT,
 	FALL,
@@ -13,20 +17,15 @@ enum PLATFORMTYPE
 	CIRCULAR
 }
 
-// Inherit the parent event
-event_inherited();
+#macro SYNC_SEARCH_TOLERANCE 8
 
-obj_set_priority(5);
-obj_set_solid(30, 8);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
-state = PLATFORMSTATE.MOVE;
-player_touch = false;
+depth = draw_depth(50);
+state = PLATFORM_STATE.MOVE;
 wait_timer = 0;
 weight = 0;
 vel_y = 0;
 
-// Update position immediately
-xprevious = x;
-yprevious = y;
-event_perform(ev_step, ev_step_normal);
+if !variable_instance_exists(id, "synced_objects")
+{
+	synced_objects = ds_list_create();
+}

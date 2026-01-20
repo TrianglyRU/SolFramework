@@ -1,20 +1,19 @@
-enum FALLINGFLOORSTATE
-{
-	IDLE,
-	FALL
-}
-
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.RESET);
 
-obj_set_priority(5);
-obj_set_solid(32, 8);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
+enum FALLING_FLOOR_STATE
+{
+	IDLE,
+	FALL,
+	DESTROYED
+}
 
-state = FALLINGFLOORSTATE.IDLE;
+depth = draw_depth(40); // 50 by default
+state = FALLING_FLOOR_STATE.IDLE;
 wait_timer = 8;
 fall_flag = false;
 corner_x = floor(x - sprite_get_xoffset(sprite_index));
 corner_y = floor(y - sprite_get_yoffset(sprite_index));
-width  = sprite_get_width(sprite_index);
+width = sprite_get_width(sprite_index);
 height = sprite_get_height(sprite_index);

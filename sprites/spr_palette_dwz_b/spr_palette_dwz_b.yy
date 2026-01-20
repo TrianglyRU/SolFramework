@@ -13,13 +13,13 @@
   "bbox_left": 0,
   "bbox_right": 21,
   "bbox_top": 0,
-  "bbox_bottom": 56,
+  "bbox_bottom": 70,
   "HTile": false,
   "VTile": false,
   "For3D": false,
   "DynamicTexturePage": false,
   "width": 22,
-  "height": 57,
+  "height": 71,
   "textureGroupId": {
     "name": "texgroup_dwz_graphics",
     "path": "texturegroups/texgroup_dwz_graphics",
@@ -28,7 +28,7 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"1a9a60e0-10e2-4d1c-ae08-13487b611c6a",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"bc9ddfe7-083a-4fae-b5e1-5f3c9b99b538",},
   ],
   "sequence": {
     "resourceType": "GMSequence",
@@ -45,7 +45,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"b48e2e1f-f27e-488a-a9e4-7013d7f908f4","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1a9a60e0-10e2-4d1c-ae08-13487b611c6a","path":"sprites/spr_palette_dwz_b/spr_palette_dwz_b.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"a4b3147b-35c7-4ff6-9c22-df8b46f74ba9","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"bc9ddfe7-083a-4fae-b5e1-5f3c9b99b538","path":"sprites/spr_palette_dwz_b/spr_palette_dwz_b.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
@@ -59,7 +59,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 11,
-    "yorigin": 28,
+    "yorigin": 35,
     "eventToFunction": {},
     "eventStubScript": null,
   },

@@ -1,67 +1,69 @@
-if (!obj_act_enemy())
-{
-	return;
-}
+// Inherit the parent event
+event_inherited();
 
-switch (state)
+switch state
 {
-	case BUZZBOMBERSTATE.HOVER:
+	case BUZZ_BOMBER_STATE.HOVER:
 	
-		if (--state_timer < 0)
+		if --state_timer < 0
 		{
-			state = BUZZBOMBERSTATE.ROAM;
+			state = BUZZ_BOMBER_STATE.ROAM;
 			state_timer = 127;
-			obj_set_anim(spr_buzz_bomber_roam, 2, 0, 0);
+			animator.start(spr_buzz_bomber_roam, 0, 0, 2);
 		}
 		
 	break;
 	
-	case BUZZBOMBERSTATE.FIRE:
+	case BUZZ_BOMBER_STATE.FIRE:
 	
-		if (--state_timer < 0)
+		if --state_timer < 0
 		{
-			state = BUZZBOMBERSTATE.HOVER;
+			projectile = instance_create(x - 29 * image_xscale, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale });
+			state = BUZZ_BOMBER_STATE.HOVER;
 			state_timer = 59;
 			shot_flag = true;
-			instance_create_child(x - 29 * image_xscale, y + 28, obj_buzz_bomber_projectile, { image_xscale: image_xscale });
-			obj_set_anim(spr_buzz_bomber_fire, 2, 0, 0);
+			animator.start(spr_buzz_bomber_fire, 0, 0, 2);
 		}
 		
 	break;
 	
-	case BUZZBOMBERSTATE.ROAM:
+	case BUZZ_BOMBER_STATE.ROAM:
 	
-		if (--state_timer < 0)
+		if --state_timer < 0
 		{
-			state = BUZZBOMBERSTATE.HOVER;
+			image_xscale *= -1;
+			state = BUZZ_BOMBER_STATE.HOVER;
 			shot_flag = false;
 			state_timer = 59;
-			image_xscale *= -1;
-			obj_set_anim(spr_buzz_bomber_hover, 2, 0, 0);
+			animator.start(spr_buzz_bomber_hover, 0, 0, 2);
+			
 			break;
 		}
 		
 		x -= 4 * sign(image_xscale);
 		
-		if (shot_flag)
+		if !shot_flag
 		{
-			break;
-		}
-		
-		var _player = player_get(obj_game.frame_counter % PLAYER_COUNT);
-	    var _dist_x = x - floor(_player.x);
-		
-		if (_dist_x < 0)
-		{
-			_dist_x *= -1;
-		}
-		
-		if (_dist_x >= 0 && _dist_x < 96 && obj_is_visible())
-		{
-			state = BUZZBOMBERSTATE.FIRE;
-			state_timer = 29;
-			obj_set_anim(spr_buzz_bomber_hover, 2, 0, 0);
+			var _player = player_get(obj_game.frame_counter % PLAYER_COUNT);
+			var _dist_x = x - floor(_player.x);
+			
+			if _dist_x < 0
+			{
+				_dist_x *= -1;
+			}
+			
+			if _dist_x >= 0 && _dist_x < 96 && instance_is_drawn()
+			{
+				state = BUZZ_BOMBER_STATE.FIRE;
+				state_timer = 29;
+				animator.start(spr_buzz_bomber_hover, 0, 0, 2);
+			}
 		}
 		
 	break;
+}
+
+if instance_exists(projectile) && projectile.sprite_index != spr_buzz_bomber_projectile_flare
+{
+	projectile = noone;
 }

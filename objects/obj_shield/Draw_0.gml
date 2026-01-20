@@ -1,14 +1,5 @@
-// Override draw
-if (sprite_index < 0)
+// TODO: sprite_index check shouldn't be here 
+if sprite_index != -1 && player.super_timer <= 0 && player.item_inv_timer == 0 && player.state != PLAYER_STATE.DEATH
 {
-	return;
-}
-
-var _player = vd_target_player;
-if (_player.super_timer <= 0 && _player.item_inv_timer == 0 && _player.state != PLAYERSTATE.DEATH)
-{
-	draw_sprite_ext
-	(
-		sprite_index, image_index, floor(_player.x), floor(_player.y), _player.facing, image_yscale, image_angle, c_white, image_alpha
-	);
+	draw_sprite_ext(sprite_index, image_index, floor(player.x), floor(player.y), player.facing, image_yscale, image_angle, draw_get_colour(), image_alpha);
 }

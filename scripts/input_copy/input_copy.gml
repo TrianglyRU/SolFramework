@@ -1,6 +1,6 @@
 /// @self
-/// @description Creates a duplicate of a given input struct.
-/// @param {Struct} _struct The input struct to copy.
+/// @description			Creates a duplicate of a given input struct.
+/// @param {Struct} _struct	The input struct to copy.
 /// @returns {Struct}
 function input_copy(_struct)
 {
@@ -13,7 +13,6 @@ function input_copy(_struct)
 		action1: _struct.action1,
 		action2: _struct.action2,
 		action3: _struct.action3,
-		action_any: _struct.action_any,
 		start: _struct.start
 	};
 }

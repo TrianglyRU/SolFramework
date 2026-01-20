@@ -1,7 +1,9 @@
 // Inherit the parent event
 event_inherited();
+event_animator();
 
-obj_set_priority(0);
-obj_set_anim(sprite_index, 1, 0, function(){ visible = false; });
-
+depth = draw_depth(0);
+allowed_game_state = GAME_STATE.STOP_OBJECTS;
 attack_timer = 14;
+player = noone;
+animator.start(sprite_index, 0, 5, 1);

@@ -1,5 +1,12 @@
+enum FORCE_SPIN
+{
+	UNIVERSAL,
+	START_ONLY,
+	END_ONLY
+}
+
 // Inherit the parent event
 event_inherited();
-obj_set_culling(ACTIVEIF.INBOUNDS);
+event_culler(CULL_ACTION.PAUSE);
 
-depth = RENDERER_DEPTH_HIGHEST;
+depth = RENDER_DEPTH_PRIORITY;

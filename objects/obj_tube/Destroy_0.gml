@@ -1,0 +1,1 @@
+ds_list_destroy(ds_player_list);

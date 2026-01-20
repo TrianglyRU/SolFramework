@@ -1,16 +1,18 @@
 /// @self
-/// @description Loads the saved data for the specified slot.
-/// @param {Real} _slot The slot index of the saved data to load.
+/// @description					Loads the saved data for the specified slot.
+/// @param {Real|Undefined} _slot	The slot index of the saved data to load.
 function game_load_data(_slot)
 {
 	var _filename = "save" + string(_slot) + ".bin";
-	if (_slot == -1 || !file_exists(_filename))
+	
+	if _slot == undefined || !file_exists(_filename)
 	{
 		return;
 	}
 	
 	var _file = file_bin_open(_filename, 0);
-	global.stage_index = file_bin_read_byte(_file);
+	
+	global.game_progress_value = file_bin_read_byte(_file);
 	global.player_main = file_bin_read_byte(_file);
 	global.player_cpu = file_bin_read_byte(_file);
 	global.emerald_count = file_bin_read_byte(_file);

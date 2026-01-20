@@ -1,9 +1,10 @@
-#macro SUPERSTAR_LAST_FRAME image_number - 1
-
 // Inherit the parent event
 event_inherited();
+event_animator();
 
-obj_set_priority(1);
-obj_set_culling(ACTIVEIF.ENGINE_RUNNING);
+#macro SUPER_STAR_LAST_FRAME image_number - 1
 
-image_index = SUPERSTAR_LAST_FRAME;
+depth = draw_depth(10);
+image_index = SUPER_STAR_LAST_FRAME;
+allowed_game_state = GAME_STATE.STOP_OBJECTS;
+player = noone;

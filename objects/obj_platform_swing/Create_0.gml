@@ -1,14 +1,12 @@
-#macro SWING_CHAIN_SIZE 16
-
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.PAUSE);
 
-obj_set_priority(4);
-obj_set_solid(24, 8);
-obj_set_culling(ACTIVEIF.INBOUNDS);
+#macro SWING_CHAIN_SIZE 16
 
-osc_angle = 0;
-distance = vd_chain_amount * SWING_CHAIN_SIZE - SWING_CHAIN_SIZE * 0.5;
+depth = draw_depth(40);
+sprite_index = spr_platform_swing_base;
 sprite_chain = spr_platform_swing_chain;
 sprite_pendulum = spr_platform_swing_bob;
-sprite_index = spr_platform_swing_base;
+distance = iv_chains * SWING_CHAIN_SIZE - SWING_CHAIN_SIZE * 0.5;
+osc_angle = 0;

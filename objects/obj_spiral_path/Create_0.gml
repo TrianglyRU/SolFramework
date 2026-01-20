@@ -1,6 +1,6 @@
 // Inherit the parent event
 event_inherited();
-obj_set_culling(ACTIVEIF.INBOUNDS);
+event_culler(CULL_ACTION.PAUSE);
 
 offset_table = 
 [

@@ -12,7 +12,6 @@ function input_create()
 		action1: false,
 		action2: false,
 		action3: false,
-		action_any: false,
 		start: false
 	};
 }

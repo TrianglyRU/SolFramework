@@ -1,6 +1,16 @@
-if (vd_bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_rm_stage.water_level)
+if sprite_index == spr_bubble_burst
 {
-    if (image_index == 5)
+	if animator.timer < 0
+	{
+		instance_destroy();
+	}
+	
+	return;
+}
+
+if bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_water.y
+{
+    if image_index == 5
     {
         burst();
     }
@@ -12,26 +22,32 @@ if (vd_bubble_type != BUBBLE.COUNTDOWN && floor(y) < obj_rm_stage.water_level)
     return;
 }
 
-wobble_offset = (++wobble_offset) % (array_length(wobble_data) - 1);
+wobble_offset++;
+wobble_offset %= (array_length(wobble_data) - 1);
 
-x = xstart + wobble_data[wobble_offset] * vd_wobble_direction;
+x = xstart + wobble_data[wobble_offset] * wobble_direction;
 y += vel_y;
 
-if (vd_bubble_type != BUBBLE.COUNTDOWN)
+if bubble_type != BUBBLE.COUNTDOWN
 {
-    if (image_index == 1 + vd_bubble_type * 2)
+    if animator.timer > 0 && image_index == 1 + bubble_type * 2
     {
-        obj_stop_anim();
+		animator.clear(image_index);
     }
 }
-else if (obj_is_anim_ended())
+else if animator.timer < 0
 {
-    instance_destroy();
-    instance_create(x, y, obj_countdown, { image_index: vd_countdown_frame });
+	instance_destroy();
+	
+    with instance_create(x, y, obj_countdown)
+	{
+		image_index = other.countdown_frame;
+	}
+	
     return;
 }
 
-if (vd_bubble_type != BUBBLE.LARGE || !obj_is_anim_stopped())
+if bubble_type != BUBBLE.LARGE || animator.timer != 0
 {
     return;
 }
@@ -39,38 +55,35 @@ if (vd_bubble_type != BUBBLE.LARGE || !obj_is_anim_stopped())
 for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
-    if (_player.state >= PLAYERSTATE.LOCKED || global.player_shields[_p] == SHIELD.BUBBLE)
+	
+    if _player.state >= PLAYER_STATE.DEFAULT_LOCKED || global.player_shields[_p] == SHIELD.BUBBLE
     {
         continue;
     }
 
-    var _dist_x = floor(_player.x) - floor(x);
-    var _dist_y = floor(_player.y) - floor(y);
-    
-    if (_dist_x < -16 || _dist_x >= 16 || _dist_y < 0 || _dist_y >= 16)
-    {
-        continue;
-    }
-	
-	burst();
-	
-    if (_player.player_index == 0 && audio_is_playing(snd_bgm_drowning))
-    {
-        audio_reset_bgm(obj_rm_stage.bgm_track, _player);
-    }
-	
-	if (_player.action != ACTION.FLIGHT && (_player.action != ACTION.GLIDE || _player.action_state == GLIDESTATE.FALL))
+	if point_in_rectangle(floor(_player.x), floor(_player.y), floor(bbox_left), floor(bbox_top), floor(bbox_right) - 1, floor(bbox_bottom) - 1)
 	{
-		_player.animation = ANIM.BREATHE;
-		_player.reset_substate();
-	}
+		burst();
 		
-	_player.air_timer = AIR_TIMER_DEFAULT;
-	_player.ground_lock_timer = 35;
-	_player.vel_x = 0;
-	_player.vel_y = 0;
-	_player.spd_ground = 0;
-	
-    audio_play_sfx(snd_breathe);
-	break;
+	    if _player.player_index == 0 && audio_is_playing(snd_bgm_drowning)
+	    {
+	        _player.restart_bgm(obj_rm_stage.bgm_track);
+	    }
+		
+		if _player.action != ACTION.FLIGHT && !_player.is_true_glide()
+		{
+			_player.animation = ANIM.BREATHE;
+			_player.reset_substate();
+		}
+		
+		_player.air_timer = AIR_TIMER_DEFAULT;
+		_player.ground_lock_timer = 35;
+		_player.vel_x = 0;
+		_player.vel_y = 0;
+		_player.spd = 0;
+		
+	    audio_play_sfx(snd_breathe);
+		
+		break;
+	}
 }

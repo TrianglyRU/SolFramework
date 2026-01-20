@@ -10,6 +10,5 @@ function input_reset(_struct)
 	_struct.action1 = false;
 	_struct.action2 = false;
 	_struct.action3 = false;
-	_struct.action_any = false;
 	_struct.start = false;
 }

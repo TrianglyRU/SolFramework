@@ -1,1 +1,0 @@
-// Do not draw the object

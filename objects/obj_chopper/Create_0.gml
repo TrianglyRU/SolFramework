@@ -1,10 +1,9 @@
-#macro CHOPPER_VEL_Y_DEFAULT -7
-
 // Inherit the parent event
 event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESET);
 
-obj_set_priority(5);
-obj_set_hitbox(12, 16);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
+#macro CHOPPER_VEL_Y_DEFAULT -7
 
+depth = draw_depth(50);
 vel_y = CHOPPER_VEL_Y_DEFAULT;

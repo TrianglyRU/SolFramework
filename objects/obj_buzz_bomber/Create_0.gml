@@ -1,17 +1,17 @@
-enum BUZZBOMBERSTATE
+// Inherit the parent event
+event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESET);
+
+enum BUZZ_BOMBER_STATE
 {
 	ROAM,
 	HOVER,
 	FIRE
 }
 
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(4);
-obj_set_hitbox(24, 12);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
-state = BUZZBOMBERSTATE.HOVER;
+depth = draw_depth(40);
+state = BUZZ_BOMBER_STATE.HOVER;
 state_timer = 0;
 shot_flag = false;
+projectile = noone;

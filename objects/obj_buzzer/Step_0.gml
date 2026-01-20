@@ -1,35 +1,33 @@
-if (!obj_act_enemy())
-{
-	return;
-}
+// Inherit the parent event
+event_inherited();
 
-if (turn_timer <= 0)
+if turn_timer <= 0
 {
 	flame_timer++;
 }
 
-switch (state)
+switch state
 {
-	case BUZZERSTATE.ROAM:
+	case BUZZER_STATE.ROAM:
 	
-	    if (shot_flag)
+	    if shot_flag
 	    {
 	        var _player = player_get(obj_game.frame_counter % PLAYER_COUNT);
 	        var _dist_x = x - floor(_player.x);
 	        var _abs_dist_x = abs(_dist_x);
 			
-	        if (_abs_dist_x >= 40 && _abs_dist_x <= 48 && sign(_dist_x) == sign(image_xscale))
+	        if _abs_dist_x >= 40 && _abs_dist_x <= 48 && sign(_dist_x) == sign(image_xscale)
 	        {
-	            state = BUZZERSTATE.SHOOT;
+	            state = BUZZER_STATE.SHOOT;
 				shot_timer = 50;
 	            shot_flag = false;
 	            image_index = 1;
 	        }
 	    }
 		
-	    if (--turn_timer >= 0)
+	    if --turn_timer >= 0
 	    {
-	        if (turn_timer == 15)
+	        if turn_timer == 15
 	        {
 	            move_timer = BUZZER_DEFAULT_MOVE_TIMER;
 	            shot_flag = true;
@@ -39,7 +37,7 @@ switch (state)
 	        break;
 	    }
         
-	    if (--move_timer > 0)
+	    if --move_timer > 0
 	    {
 	        x -= sign(image_xscale);
 	    }
@@ -50,15 +48,15 @@ switch (state)
 	    }
 		
 	break;
-    
-	case BUZZERSTATE.SHOOT:
 	
-	    if (--shot_timer < 0)
+	case BUZZER_STATE.SHOOT:
+		
+	    if --shot_timer < 0
 	    {
-	        state = BUZZERSTATE.ROAM;
+	        state = BUZZER_STATE.ROAM;
 	        image_index = 0;
 	    }
-	    else if (shot_timer == 20)
+	    else if shot_timer == 20
 	    {
 	        instance_create(x + 5 * image_xscale, y + 26, obj_buzzer_projectile, { image_xscale: image_xscale });
 	    }

@@ -1,4 +1,4 @@
-if (++display_timer > 60)
+if ++display_timer > 60
 {
 	instance_destroy();
 }

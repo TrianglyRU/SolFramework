@@ -1,10 +1,15 @@
-enum NEWTRONTYPE
+// Inherit the parent event
+event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESET);
+
+enum NEWTRON_TYPE
 {
 	FALL,
 	FIRE
 }
 
-enum NEWTRONSTATE
+enum NEWTRON_STATE
 {
 	FIND_TARGET,
 	FALL,
@@ -13,14 +18,8 @@ enum NEWTRONSTATE
 	FIRE
 }
 
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(4);
-obj_set_hitbox(20, 16);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
-state = NEWTRONSTATE.FIND_TARGET;
+depth = draw_depth(40);
+state = NEWTRON_STATE.FIND_TARGET;
 vel_y = 0;
 target_player = noone;
 shot_flag = false;

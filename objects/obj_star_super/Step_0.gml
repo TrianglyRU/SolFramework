@@ -1,24 +1,24 @@
-if (!instance_exists(vd_target_player) || vd_target_player.super_timer <= 0)
+if !instance_exists(player) || player.super_timer <= 0
 {
-	if (image_index == SUPERSTAR_LAST_FRAME)
+	if image_index == SUPER_STAR_LAST_FRAME
 	{
 		instance_destroy();
 	}
-	
-	return;
 }
-
-if (vd_target_player.action != ACTION.DASH && abs(vd_target_player.spd_ground) >= vd_target_player.acc_top)
+else if player.action != ACTION.DASH && abs(player.spd) >= player.acc_top
 {
-	obj_set_anim(sprite_index, 2, 0, 0);
-	
-	if (anim_play_count < 1 || anim_frame_changed && image_index == 0)
+	if animator.timer <= 0
 	{
-		x = vd_target_player.x;
-		y = vd_target_player.y;
+		animator.start(sprite_index, 0, 0, 2);
+	}
+	
+	if animator.play_count == 0 || animator.duration == animator.timer && image_index == 0
+	{
+		x = player.x;
+		y = player.y;
 	}
 }
-else if (image_index == SUPERSTAR_LAST_FRAME && anim_duration > 0)
+else if image_index == SUPER_STAR_LAST_FRAME && animator.timer >= 0
 {
-	obj_stop_anim();
+	animator.clear(image_index);
 }

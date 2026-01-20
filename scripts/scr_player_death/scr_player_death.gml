@@ -1,58 +1,56 @@
 /// @self obj_player
-/// @function scr_player_death()
 function scr_player_death()
 {
-	gml_pragma("forceinline");
-	
-	switch (death_state)
+	switch death_state
 	{
-	    case DEATHSTATE.WAIT:
-			
+	    case DEATH_STATE.WAIT:
+		
+	        var _index = camera_data.index;
+			var _cy = camera_get_y(_index);
+			var _ch = camera_get_height(_index);
 			var _pos_y = floor(y);
-	        if (air_timer == 0)
+			var _bound = 32;
+			
+	        if air_timer == 0
 	        {
-	            var _index = camera_data.index;
-	            if (_pos_y <= camera_get_y(_index) + camera_get_height(_index) + 276)
+	            if _pos_y <= _cy + _ch + 276
 	            {
 	                break;
 	            }
 				
-	            if (player_index == 0)
+	            if player_index == 0
 	            {
-	                obj_game.state = GAMESTATE.STOP_OBJECTS;
+	                obj_game.state = GAME_STATE.STOP_OBJECTS;
 	            }
 	        }
-        
-	        var _bound = 32;
-	        var _index = camera_data.index;
 			
-	        if (global.player_physics < PHYSICS.S3)
+	        if global.player_physics < PHYSICS.S3
 	        {
 	            _bound += camera_data.bottom_bound;
 	        }
 	        else
 	        {
-	            _bound += camera_get_y(_index) + camera_get_height(_index);
+	            _bound += _cy + _ch;
 	        }
 			
-	        if (_pos_y <= _bound)
+	        if _pos_y <= _bound
 	        {
 	            break;
 	        }
 			
-	        if (player_index == 0)
+	        if player_index == 0
 	        {
 	            obj_gui_hud.update_timer = false;
 				
-	            if (--global.life_count > 0 && obj_game.frame_counter < 36000)
+	            if --global.life_count > 0 && obj_game.frame_counter < 36000
 	            {
-	                death_state = DEATHSTATE.RESTART;
+	                death_state = DEATH_STATE.RESTART;
 	                restart_timer = 60;
 	            }
 	            else
 	            {
 	                death_state--;
-	                instance_create_depth(0, 0, RENDERER_DEPTH_HUD, obj_gui_gameover);
+	                instance_create(0, 0, obj_gui_gameover);
 	            }
 	        }
 	        else
@@ -61,28 +59,24 @@ function scr_player_death()
 	        }
 			
 	    break;
-
-	    case DEATHSTATE.RESTART:
+		
+	    case DEATH_STATE.RESTART:
 			
-	        if (restart_timer > 0)
+	        if restart_timer > 0 && --restart_timer == 0
 	        {
-	            if (--restart_timer != 0)
-	            {
-	                break;
-	            }
-				
-	            obj_set_culling(ACTIVEIF.ALWAYS);
-	            audio_stop_bgm(0.5);
-	            fade_perform_black(FADEROUTINE.OUT, 1);    
-	        }
-			
-	        if (obj_game.fade_state != FADESTATE.PLAINCOLOUR)
-	        {
-	            break;
-	        }
-			
-	        game_clear_level_data(false);
-	        room_restart();
+			    audio_stop_bgm(1);	
+			    fade_perform_black(FADE_DIRECTION.OUT, 1, function()
+				{
+					if !audio_is_bgm_playing()
+					{
+						game_clear_level_data();
+						room_restart();
+						return true;
+					}
+					
+					return false;
+				}); 
+		    }
 			
 	    break;
 	}

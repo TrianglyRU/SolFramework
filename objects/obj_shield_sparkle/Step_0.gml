@@ -1,10 +1,11 @@
 visible = !visible;
 
-if (display_timer < 24)
+if display_timer < 24
 {
-	x += vd_sparkle_id < 2 ? -2 : 2;
-	y += vd_sparkle_id % 2 == 0 ? -2 : 2;
-	display_timer++;
+	instance_animate(display_timer++, 2);
+	
+	x += sparkle_index < 2 ? -2 : 2;
+	y += sparkle_index % 2 == 0 ? -2 : 2;
 }
 else
 {

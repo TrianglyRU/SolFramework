@@ -1,0 +1,1 @@
+obj_game.allow_pause = true;

@@ -9,11 +9,14 @@
   "solid": false,
   "visible": false,
   "managed": true,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "spr_newtron_fire_blue",
+    "path": "sprites/spr_newtron_fire_blue/spr_newtron_fire_blue.yy",
+  },
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_game_object",
-    "path": "objects/obj_game_object/obj_game_object.yy",
+    "name": "obj_enemy",
+    "path": "objects/obj_enemy/obj_enemy.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -32,9 +35,9 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"vd_type","varType":6,"value":"NEWTRONTYPE.FALL","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
-        "NEWTRONTYPE.FALL",
-        "NEWTRONTYPE.FIRE",
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"iv_type","varType":6,"value":"NEWTRON_TYPE.FALL","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[
+        "NEWTRON_TYPE.FALL",
+        "NEWTRON_TYPE.FIRE",
       ],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],

@@ -1,1 +1,8 @@
-y = obj_rm_stage.water_level;
+if animator.timer < 0
+{
+	instance_destroy();
+}
+else
+{
+	y = obj_water.y;
+}

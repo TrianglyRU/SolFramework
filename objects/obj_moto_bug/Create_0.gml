@@ -1,18 +1,17 @@
-enum MOTOBUGSTATE
+// Inherit the parent event
+event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESET);
+
+enum MOTOBUG_STATE
 {
 	INIT,
 	WAIT,
 	ROAM
 }
 
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(5);
-obj_set_hitbox(20, 14);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
-state = MOTOBUGSTATE.INIT;
+depth = draw_depth(50);
+state = MOTOBUG_STATE.INIT;
 move_timer = 0;
 smoke_timer = 0;
 vel_x = 0;

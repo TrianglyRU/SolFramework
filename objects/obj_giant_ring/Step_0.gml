@@ -1,62 +1,64 @@
-switch (state)
+switch state
 {
-    case GIANTRINGSTATE.IDLE:
+    case GIANT_RING_STATE.IDLE:
         
         var _player = player_get(0);
-        if (!obj_check_hitbox(_player))
-        {
-            break;
-        }
+		
+        if !collision_player(_player)
+		{
+			break;
+		}
         
         audio_play_sfx(snd_ring_giant);
         ds_list_add(global.ds_giant_rings, id);
         
-        if (global.emerald_count >= 7)
+        if global.emerald_count >= 7
         {
-            global.player_rings = min(global.player_rings + 50, 999);
-            instance_destroy();
-            break;
+			instance_destroy();
+            global.player_rings = min(global.player_rings + 50, 999);  
         }
+        else
+		{
+			_player.visible = false;
+			_player.state = PLAYER_STATE.DEFAULT_LOCKED;
+			
+			animator.start(spr_giant_ring_flash, 0, 7, 2);
+			
+	        global.giant_ring_data =
+	        [
+	            x, y, obj_game.frame_counter, obj_rm_stage.top_bound[0], obj_rm_stage.bottom_bound[0], obj_rm_stage.left_bound[0], obj_rm_stage.right_bound[0]
+	        ];
         
-		_player.visible = false;
-		_player.state = PLAYERSTATE.LOCKED;
-		
-        obj_set_anim(spr_giant_ring_flash, 2, 0, 7);
-        
-        global.giant_ring_data =
-        [
-            x, y, obj_game.frame_counter, obj_rm_stage.top_bound[0], obj_rm_stage.bottom_bound[0], obj_rm_stage.left_bound[0], obj_rm_stage.right_bound[0]
-        ];
-        
-        state = GIANTRINGSTATE.ENTRY;
+	        state = GIANT_RING_STATE.ENTRY;
+		}
 		
     break;
-    
-    case GIANTRINGSTATE.ENTRY:
+	
+    case GIANT_RING_STATE.ENTRY:
         
-        if (!obj_is_anim_ended())
-        {
-            break;
-        }
+        if animator.timer >= 0
+		{
+			break;
+		}
         
         visible = false;
-        if (--wait_timer == 0)
+		
+        if --wait_timer == 0
         {
-            state = GIANTRINGSTATE.TRANSITION;
-            audio_stop_bgm(0.5);
+            audio_stop_bgm(1);
             audio_play_sfx(snd_warp);
-			obj_set_culling(ACTIVEIF.ALWAYS);
-            fade_perform_white(FADEROUTINE.OUT, 1);
+			
+            fade_perform_white(FADE_DIRECTION.OUT, 1, function()
+			{
+				if !audio_is_playing(snd_warp)
+				{
+					room_goto(rm_special);
+					return true;
+				}
+				
+				return false;
+			});
         }
         
     break;
-    
-    case GIANTRINGSTATE.TRANSITION:
-    
-        if (obj_game.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp))
-        {
-            room_goto(rm_special);
-        }
-   
-	break;    
 }

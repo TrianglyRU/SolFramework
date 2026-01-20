@@ -1,43 +1,62 @@
+// Inherit the parent event
+event_inherited();
+event_animator();
+
 #region METHODS
 
-/// @method clear_fire_shield_dash()
-clear_fire_shield_dash = function()
+bubble_shield_animation = function()
 {
-	obj_set_anim(spr_shield_fire, 2, 0, 0);
+	animator.start(spr_shield_bubble, 0, 0, 2);
+}
+
+bubble_shield_drop_animation = function()
+{
+	animator.start(spr_shield_bubble_drop, 0, 3, 6);
+}
+
+bubble_shield_bounce_animation = function()
+{
+	animator.start(spr_shield_bubble_bounce, 0, 2, 6);
+}
+
+fire_shield_animation = function()
+{
+	animator.start(spr_shield_fire, 0, 0, 2);
+}
+
+reset_fire_shield_dash = function()
+{
+	fire_shield_animation();
 	
-	if (vd_target_player.shield_state == SHIELDSTATE.ACTIVE)
+	if player.shield_state == SHIELD_STATE.ACTIVE
 	{
-		vd_target_player.shield_state = SHIELDSTATE.DISABLED;
+		player.shield_state = SHIELD_STATE.DISABLED;
 	}
-				
-	vd_target_player.air_lock_flag = false;
+	
+	player.air_lock_flag = false;
 }
 
 #endregion
 
-// Inherit the parent event
-event_inherited();
+var _shield = global.player_shields[player.player_index];
 
-var _shield = global.player_shields[vd_target_player.player_index];
-
-obj_set_priority(_shield == SHIELD.FIRE ? 3 : 1);
-obj_set_culling(ACTIVEIF.ENGINE_RUNNING);
-
-switch (_shield)
+switch _shield
 {
 	case SHIELD.NORMAL:
-		obj_set_anim(spr_shield, 1, 0, 0);
+		animator.start(spr_shield, 0, 0, 1);
 	break;
-			
+	
 	case SHIELD.BUBBLE:
-		obj_set_anim(spr_shield_bubble, 2, 0, 0);
+		bubble_shield_animation();
 	break;
-		
+	
 	case SHIELD.FIRE:
-		obj_set_anim(spr_shield_fire, 2, 0, 0);	
+		fire_shield_animation();
 	break;
-		
+	
 	case SHIELD.LIGHTNING:
-		obj_set_anim(spr_shield_lightning, 2, 0, 0);
+		animator.start(spr_shield_lightning, 0, 0, 2);
 	break;
 }
+
+depth = draw_depth(_shield == SHIELD.FIRE ? 30 : 10);

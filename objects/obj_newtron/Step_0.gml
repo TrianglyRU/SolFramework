@@ -1,29 +1,26 @@
-var _floor_dist;
+// Feather ignore GM2044
 
-switch (state)
+switch state
 {
-	case NEWTRONSTATE.FIND_TARGET:
+	case NEWTRON_STATE.FIND_TARGET:
 		
 		var _player = player_get(obj_game.frame_counter % PLAYER_COUNT);
 		var _dist_x = floor(_player.x) - x;
 		
-		if (abs(_dist_x) >= 128)
+		if abs(_dist_x) >= 128
 		{
 			break;
 		}
 		
-		if (vd_type == NEWTRONTYPE.FIRE)
+		if iv_type == NEWTRON_TYPE.FIRE
 		{
-			state = NEWTRONSTATE.FIRE;
- 			obj_set_anim(image_index == 0 ? spr_newtron_fire_blue : spr_newtron_fire_green, 20, 0, function()
-			{
-				instance_destroy();
-			});
+			state = NEWTRON_STATE.FIRE;
+			animator.start(image_index == 0 ? spr_newtron_fire_blue : spr_newtron_fire_green, 0, 6, 20);
 		}
 		else
 		{
-			state = NEWTRONSTATE.FALL;
-			obj_set_anim(image_index == 0 ? spr_newtron_fall_blue : spr_newtron_fall_green, 20, 0, 4);
+			state = NEWTRON_STATE.FALL;
+			animator.start(image_index == 0 ? spr_newtron_fall_blue : spr_newtron_fall_green, 0, 4, 20);
 		}
 		
 		visible = true;
@@ -32,23 +29,32 @@ switch (state)
 	
 	break;
 	
-	case NEWTRONSTATE.FIRE:
+	case NEWTRON_STATE.FIRE:
 		
-		if (image_index == 3 && !shot_flag)
+		if animator.timer >= 0
 		{
-			shot_flag = true;
-			instance_create(x - 20 * image_xscale, y - 8, obj_newtron_projectile, { image_xscale: image_xscale });
+			if image_index == 3 && !shot_flag
+			{
+				shot_flag = true;
+				instance_create(x - 20 * image_xscale, y - 8, obj_newtron_projectile, { image_xscale: image_xscale });
+			}
+		
+			if image_index > 0
+			{
+				// Inherit the parent event
+				event_inherited();
+			}
 		}
-		else if (image_index > 0)
+		else
 		{
-			obj_act_enemy();
+			instance_destroy();
 		}
 	
 	break;
 	
-	case NEWTRONSTATE.FALL:
+	case NEWTRON_STATE.FALL:
 		
-		if (image_index < 3)
+		if image_index < 3
 		{
 			image_xscale = floor(target_player.x) - x < 0 ? 1 : -1;
 			break;
@@ -57,34 +63,35 @@ switch (state)
 		y += vel_y;
 		vel_y += 0.21875;
 		
-		_floor_dist = tile_find_v(x, y + 16, DIRECTION.POSITIVE)[0];
-		if (_floor_dist < 0)
-		{
+		var _floor_dist = collision_tile_v(x, bbox_bottom + 8 - 1, 1)[0];
+		
+		if _floor_dist < 0
+		{			
 			y += _floor_dist;
-			state = NEWTRONSTATE.FLOOR;
+			state = NEWTRON_STATE.FLOOR;
 			vel_y = 0;
-			obj_set_hitbox(20, 8);
-			obj_set_anim(sprite_index == spr_newtron_fall_blue ? spr_newtron_fly_blue : spr_newtron_fly_green, 3, 0, 0);
+			animator.start(sprite_index == spr_newtron_fall_blue ? spr_newtron_fly_blue : spr_newtron_fly_green, 0, 0, 3);	
+			
+			mask_index = spr_newtron_fly_blue;
 		}
 	
 	break;
 	
-	case NEWTRONSTATE.FLOOR:
-	case NEWTRONSTATE.FLY:
+	case NEWTRON_STATE.FLOOR:
+	case NEWTRON_STATE.FLY:
 		
-		if (!obj_act_enemy())
-		{
-			return;
-		}
-		
+		// Inherit the parent event
+		event_inherited();
+
 		x -= 2 * sign(image_xscale);
 		
-		if (state == NEWTRONSTATE.FLOOR)
+		if state == NEWTRON_STATE.FLOOR
 		{
-			_floor_dist = tile_find_v(x, y + 16, DIRECTION.POSITIVE)[0];
-			if (_floor_dist < -8 || _floor_dist >= 12)
+			var _floor_dist = collision_tile_v(x, bbox_bottom + 8 - 1, 1)[0];
+			
+			if _floor_dist < -8 || _floor_dist >= 12
 			{
-				state = NEWTRONSTATE.FLY;
+				state = NEWTRON_STATE.FLY;
 			}
 			else
 			{

@@ -1,4 +1,4 @@
-if (vd_target_player.state != PLAYERSTATE.DEATH)
+if player.state != PLAYER_STATE.DEATH
 {
 	// Inherit the parent event
 	event_inherited();

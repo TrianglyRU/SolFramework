@@ -1,77 +1,85 @@
 /// @self obj_player
-/// @function scr_player_init()
 function scr_player_init()
 {
-	if (vd_player_type == PLAYER.NONE)
-	{
-		instance_destroy();
-		return;
-	}
-	
 	var _is_respawned = variable_instance_exists(id, "player_index");
 	var _start_y = y;
 	
-	if (!_is_respawned)
+	if !_is_respawned
 	{
+		base_depth = depth + 20;
 		player_index = PLAYER_COUNT - 1;
 	}
 	else
 	{
 		ds_list_destroy(ds_record_data);
-		ds_record_data = -1;
-		
 		global.player_shields[player_index] = SHIELD.NONE;
 	}
 	
-	switch (vd_player_type)
+	switch player_type
 	{
 		case PLAYER.TAILS:
 		
-			radius_x_normal = 9;
-			radius_y_normal = 15;
-			radius_x_spin = 7;
-			radius_y_spin = 14;
+			radius_x_normal = 10;
+			radius_y_normal = 16;
+			radius_x_spin = 8;
+			radius_y_spin = 15;
+			palette_colours = [4, 5, 6];
+			
+		break;
+		
+		case PLAYER.KNUCKLES:
+		
+			radius_x_normal = 10;
+			radius_y_normal = 20;
+			radius_x_spin = 8;
+			radius_y_spin = 15;
+			palette_colours = [7, 8, 9];
 			
 		break;
 		
 		case PLAYER.AMY:
 		
-			radius_x_normal = 9;
-			radius_y_normal = 16;
-			radius_x_spin = 7;
-			radius_y_spin = 12;
+			radius_x_normal = 10;
+			radius_y_normal = 17;
+			radius_x_spin = 8;
+			radius_y_spin = 13;
+			palette_colours = [10, 11, 12];
 		
 		break;
 		
+		// PLAYER.SONIC
 		default:
 		
-			radius_x_normal = 9;
-			radius_y_normal = 19;
-			radius_x_spin = 7;
-			radius_y_spin = 14;
+			radius_x_normal = 10;
+			radius_y_normal = 20;
+			radius_x_spin = 8;
+			radius_y_spin = 15;
+			palette_colours = [0, 1, 2, 3];
 	}
-	
-	state = PLAYERSTATE.DEFAULT;
-	is_grounded = true;
-	is_jumping = false;
-	is_underwater = false;
-	forced_roll = false;
-	air_lock_flag = false;
-	death_state = DEATHSTATE.WAIT;
-	
-	is_water_running = false;
 	
 	radius_x = radius_x_normal;
 	radius_y = radius_y_normal;
+	radius_wall = radius_x_normal + 1;
+	
+	state = PLAYER_STATE.DEFAULT;
+	is_grounded = true;
+	is_jumping = false;
+	underwater = false;
+	is_forced_roll = false;
+	air_lock_flag = false;
+	death_state = DEATH_STATE.WAIT;
+	stick_to_convex = false;
+	run_on_water = false;
+	on_object = noone;
+	extra_mask = noone;
+	interact_flag = true;
+	
 	vel_x = 0;
 	vel_y = 0;
-	spd_ground = 0;
-	water_vel = -1;
+	spd = 0;
 	angle = 0;
 	grv = PARAM_GRV_DEFAULT;
-	stick_to_convex = false;
-	on_object = noone;
-
+	
 	acc_glide = 0;
 	acc_climb = 0;
 	acc = 0;
@@ -116,23 +124,18 @@ function scr_player_init()
 	carry_target_x = 0;
 	carry_target_y = 0;
 	cpu_target = noone;
-	cpu_state = CPUSTATE.MAIN;
+	cpu_state = CPU_STATE.MAIN;
 	cpu_timer_respawn = 0;
-	cpu_timer_input = 0;
-	cpu_jump_flag = false;
+	cpu_control_timer = 0;
+	cpu_auto_jump = false;
 	
-	ext_hitbox_radius_x = 0;
-	ext_hitbox_radius_y = 0;
-	ext_hitbox_offset_x = 0;
-	ext_hitbox_offset_y = 0;
-	
-	input_no_control = false;
+	input_lock_control = false;
 	input_press = input_create();
 	input_down = input_create();
 	
 	// replay_data is a 2D array for input playback. Each sub-array matches the key order
 	// defined in the input_down struct and holds frame counts between input state changes:
-	// even indices = released, odd indices = pressed.
+	// even indices = released, odd indices = pressed
 	//
 	// Example: 
 	// [ 
@@ -140,97 +143,105 @@ function scr_player_init()
 	//    [2, 6]
 	// ]
 	// - up: 5 frames released, 3 held, 10 released
-	// - down 1: 2 released, 6 held
+	// - down: 2 released, 6 held
 	
 	replay_data = [];
 	replay_button_timer = array_create(9, -1);
 	replay_button_state = array_create(9, 0);
 	
-	secondary_layer = TILELAYER.SECONDARY_A;
-	shield_state = SHIELDSTATE.NONE;
-	facing = DIRECTION.POSITIVE;
+	secondary_layer = TILE_LAYER.PATH_A;
+	shield_state = SHIELD_STATE.NONE;
+	facing = 1;
 	animation = ANIM.IDLE;
 	visual_angle = 0;
 	set_push_anim_by = noone;
-	image_angle = 0;
-	image_alpha = 1.0;
 	
 	ds_record_data = ds_list_create();
-	ds_record_length = player_index == 0 ? max(PARAM_RECORD_LENGTH, PLAYER_MAX_COUNT * PARAM_CPU_DELAY) : PARAM_RECORD_LENGTH;
+	ds_record_length = player_index == 0 ? PLAYER_MAX_COUNT * PARAM_CPU_DELAY : PARAM_RECORD_LENGTH;
+	
+	depth = base_depth;
+	image_angle = 0;
+	image_alpha = 1;
 
 	var _ring_data = global.giant_ring_data;
 	var _checkpoint_data = global.checkpoint_data;
 	
-	if (is_not_null_array(_ring_data))
+	if array_length(_ring_data) > 0
 	{
 		x = _ring_data[0];
 		y = _ring_data[1];
 	}
 	else
 	{
-		if (is_not_null_array(_checkpoint_data))
+		if array_length(_checkpoint_data) > 0
 		{
 			x = _checkpoint_data[0];
 			y = _checkpoint_data[1];
 		}
 		else
 		{
-			y -= radius_y + 1;
+			y -= radius_y;
 		}
 		
-		// Align with the floor
-		var _floor_dist = tile_find_2v(x - radius_x, y + radius_y, x + radius_x, y + radius_y, DIRECTION.POSITIVE, secondary_layer)[0];
-		if (_floor_dist < 14)
+		var _floor_dist = collision_tile_2v(x - radius_x, y + radius_y - 1, x + radius_x - 1, y + radius_y - 1, 1, secondary_layer)[0];
+		
+		if _floor_dist < 14
 		{
 			y += _floor_dist;
 		}
 	}
 	
+	// Fill up initial record data
 	for (var _i = 0; _i < ds_record_length; _i++)
 	{
 		record_data(_i);
 	}
 	
 	var _saved_shield = global.player_shields[player_index];
-	if (_saved_shield != SHIELD.NONE)
+	
+	if _saved_shield != SHIELD.NONE
 	{
-		instance_create(x, y, obj_shield, { vd_target_player: id });
+		instance_create(x, y, obj_shield, { player: id });
 	}
-
-	if (vd_player_type == PLAYER.TAILS)
+	
+	if player_type == PLAYER.TAILS
 	{
-		with (obj_tail)
+		with obj_tail
 		{
-			if (vd_target_player == other.id)
+			if player == other.id
 			{
 				instance_destroy();
 			}
 		}
 		
-		instance_create(0, 0, obj_tail, { vd_target_player: id });
+		with instance_create(0, 0, obj_tail)
+		{
+			player = other.id;
+		}
 	}
 	
 	camera_data = camera_get_data(0);
-	if (player_index > 0)
+	
+	if player_index > 0
 	{
 		var _camera_data = camera_get_data(player_index);
-		if (_camera_data != undefined)
+		
+		if _camera_data != undefined
 		{
 			camera_data = _camera_data;
 		}
 	}
 	
-	if (!_is_respawned && camera_data.index == player_index)
+	if !_is_respawned && camera_data.index == player_index
 	{
-		camera_data.pos_x = x - camera_get_width(camera_data.index) * 0.5;
-		camera_data.pos_y = y - camera_get_height(camera_data.index) * 0.5 + 16;
+		camera_data.raw_x = x - camera_get_width(camera_data.index) * 0.5;
+		camera_data.raw_y = y - camera_get_height(camera_data.index) * 0.5 + 16;
+	}
+	
+	if player_index == 0 && global.player_cpu != PLAYER.NONE
+	{
+		player_spawn(x - 16, _start_y, global.player_cpu, depth + player_index);
 	}
 	
 	scr_player_animate();
-	
-	// Spawn a CPU
-	if (player_index == 0 && global.player_cpu != PLAYER.NONE)
-	{
-		player_spawn(x - 16, _start_y, global.player_cpu, depth + player_index + 1);
-	}
 }

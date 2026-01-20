@@ -1,6 +1,5 @@
 #region METHODS
 
-/// @method add_category()
 add_category = function(_title, _entry_array)
 {
 	// previous category_id, stored option_id, title
@@ -11,18 +10,15 @@ add_category = function(_title, _entry_array)
         array_push(_data, _entry_array[_i]);
     }
 	
-    ds_map_add(all_categories_data, categories_count, _data);
-	
-    categories_count++;
+    ds_map_add(all_categories_data, categories_count++, _data);
 }
 
-/// @method load_category()
 load_category = function(_new_category_id)
 {
 	var _new_data = all_categories_data[? _new_category_id];
 	var _current_data = all_categories_data[? category_id];
 	
-	if (_new_category_id == _current_data[0])
+	if _new_category_id == _current_data[0]
 	{
 	    _current_data[1] = 0;
 	    option_id = _new_data[1];
@@ -38,7 +34,7 @@ load_category = function(_new_category_id)
 	category_data = _new_data;
     category_options_count = array_length(_new_data) - 3;
 	
-    if (_new_category_id == 3)
+    if _new_category_id == 3
     {
         for (var _i = 0; _i < category_options_count; _i++)
         {
@@ -47,23 +43,21 @@ load_category = function(_new_category_id)
     } 
 }
 
-/// @method alter_option()
 alter_option = function(_id, _string)
 {
     category_data[_id + 3] = _string;
 }
 
-/// @method alter_setting()
 alter_setting = function(_setting_id)
 {
     alter_option(_setting_id, string_split(category_data[_setting_id + 3], ":")[0] + get_setting(_setting_id));
 }
 
-/// @method get_setting()
 get_setting = function(_id)
 {
 	var _display = "GET_SETTING() NOT SET";
-    switch (_id)
+	
+    switch _id
     {
         case 0: 
 			_display = global.gamepad_rumble ? "TRUE" : "FALSE";
@@ -84,6 +78,10 @@ get_setting = function(_id)
 		case 4:
 			_display = window_get_fullscreen() ? "TRUE" : "FALSE";
 		break;
+		
+		case 5:
+			_display = global.use_vsync ? "TRUE" : "FALSE";
+		break;
     }
 	
 	return ": " + _display;
@@ -99,6 +97,14 @@ category_options_count = 0;
 option_id = 0;
 room_to_load = -1;
 
+// Automatically generate room list
+var _room_list = [];
+
+for (var _i = 1; _i <= room_last; _i++)
+{
+	_room_list[_i - 1] = string_upper(room_get_name(_i));
+}
+
 add_category    // ID 0
 (
     "ORBINAUT FRAMEWORK DEV MENU\n(Sol Version)",
@@ -109,7 +115,6 @@ add_category    // ID 0
 		"CLOSE GAME"
 	]
 );
-
 add_category    // ID 1
 (
     "START GAME\nPress action 3 to delete a save file",
@@ -121,19 +126,10 @@ add_category    // ID 1
 	    "SAVE 3"
 	]
 );
-
-// Automatically generate room list
-var _room_list = [];
-for (var _i = 1; _i <= room_last; _i++)
-{
-	_room_list[_i - 1] = string_upper(room_get_name(_i));
-}
-
 add_category    // ID 2
 (
     "ROOM SELECT", _room_list
 );
-
 add_category    // ID 3
 (
     "SETTINGS",
@@ -142,10 +138,10 @@ add_category    // ID 3
 	    "BGM VOLUME",
 	    "SFX VOLUME",
 	    "WINDOW SCALE",
-	    "FULLSCREEN"
+	    "FULLSCREEN",
+		"FULLSCREEN VSYNC"
 	]
 );
-
 add_category    // ID 4
 (
     "PLAYER 1 SELECT",
@@ -156,7 +152,6 @@ add_category    // ID 4
 	    "AMY"
 	]
 );
-
 add_category    // ID 5
 (
     "PLAYER 2 SELECT",
@@ -168,6 +163,6 @@ add_category    // ID 5
 	    "NO PLAYER 2"
 	]
 );
-
 load_category(0);
+
 discord_set_data("In Menus", "", "", "");

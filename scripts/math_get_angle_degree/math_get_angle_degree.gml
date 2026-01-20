@@ -1,6 +1,6 @@
 /// @self
-/// @description Converts a raw angle to degrees.
-/// @param {Real} _raw The raw angle to convert.
+/// @description		Converts a raw angle to degrees.
+/// @param {Real} _raw	The raw angle to convert.
 /// @returns {Real}
 function math_get_angle_degree(_raw)
 {

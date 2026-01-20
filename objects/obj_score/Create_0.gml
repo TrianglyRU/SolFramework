@@ -1,14 +1,7 @@
 // Inherit the parent event
 event_inherited();
-obj_set_priority(1);
+event_culler(CULL_ACTION.DESTROY);
 
-if (vd_score_combo < 4)
-{
-	image_index = vd_score_combo;
-}
-else
-{
-	image_index = vd_score_combo < 16 ? 4 : 5;
-}
-
+depth = draw_depth(10);
 vel_y = -3;
+combo = 0;

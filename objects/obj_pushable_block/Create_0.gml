@@ -1,18 +1,15 @@
-enum PUSHABLEBLOCKSTATE
-{
-	GROUND,
-	LEDGE,
-	FALL
-}
-	
 // Inherit the parent event
 event_inherited();
+event_culler(CULL_ACTION.RESET);
 
-obj_set_priority(4);
-obj_set_culling(ACTIVEIF.INBOUNDS);
-obj_set_solid(16, 16);
+enum PUSH_BLOCK_STATE
+{
+	GROUNDED,
+	ON_LEDGE,
+	FALLING
+}
 
-state = PUSHABLEBLOCKSTATE.GROUND;
-direction_x = DIRECTION.POSITIVE;
+depth = draw_depth(40);
+state = PUSH_BLOCK_STATE.GROUNDED;
 vel_x = 0;
 vel_y = 0;

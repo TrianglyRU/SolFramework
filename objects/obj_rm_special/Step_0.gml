@@ -1,46 +1,29 @@
-if (state = SPECIALSTAGESTATE.RESULTS)
+if obj_game.fade_state != FADE_STATE.NONE || state = SPECIAL_STAGE_STATE.RESULTS
 {
-    exit;
+	return;
 }
 
-if (obj_game.fade_state == FADESTATE.PLAINCOLOUR && !audio_is_playing(snd_warp_2))
-{
-    var _give_emerald = state == SPECIALSTAGESTATE.EMERALD;
-    if (_give_emerald && global.emerald_count < 7)
-    {
-        global.emerald_count++;
-    }
-	
-	bg_clear_all();
-	dist_clear_all();
-    fade_perform_white(FADEROUTINE.IN, 0);
-    instance_create(0, 0, obj_gui_results_special, { EmeraldEarned: _give_emerald });
-	
-    state = SPECIALSTAGESTATE.RESULTS;
-}
-
-if (obj_game.state == GAMESTATE.PAUSED)
-{
-    exit;
-}
-
-if (state != SPECIALSTAGESTATE.EMERALD)
+if state == SPECIAL_STAGE_STATE.IDLE
 {
     var _input_press = input_get_pressed(0);
-    if (_input_press.action1)
+    var _input_held = input_get(0);
+	
+    if _input_press.action1
+    { 
+		state = _input_held.action2 ? SPECIAL_STAGE_STATE.ALL_EMERALDS
+									: SPECIAL_STAGE_STATE.EMERALD;
+			
+		audio_play_bgm(snd_bgm_emerald);
+    }
+    else if _input_press.start
     {
-        audio_play_bgm(snd_bgm_emerald);
-        state = SPECIALSTAGESTATE.EMERALD;
-    }    
-    else if (_input_press.start)
-    {
-        fade_perform_white(FADEROUTINE.OUT, 3);
-        audio_stop_bgm(0.5);
+		audio_stop_bgm(1);
         audio_play_sfx(snd_warp_2);
+        fade_perform_white(FADE_DIRECTION.OUT, 3, fade_out_function);  
     }
 }
-else if (!audio_is_playing(snd_bgm_emerald))
+else if !audio_is_playing(snd_bgm_emerald)
 {
-    fade_perform_white(FADEROUTINE.OUT, 3);
-    audio_play_sfx(snd_warp_2);
+	audio_play_sfx(snd_warp_2);
+    fade_perform_white(FADE_DIRECTION.OUT, 3, fade_out_function);
 }

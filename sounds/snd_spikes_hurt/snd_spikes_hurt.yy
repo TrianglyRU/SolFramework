@@ -11,13 +11,13 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "audiogroup_global",
+    "path": "audiogroups/audiogroup_global",
   },
   "soundFile": "snd_spikes_hurt.wav",
   "duration": 0.696054,
   "parent": {
-    "name": "SFX",
-    "path": "folders/Sounds/SFX.yy",
+    "name": "Global",
+    "path": "folders/Sounds/SFX/Global.yy",
   },
 }

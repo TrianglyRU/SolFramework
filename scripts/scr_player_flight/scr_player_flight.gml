@@ -1,25 +1,23 @@
 /// @self obj_player()
-/// @function scr_player_flight()
 function scr_player_flight()
 {
-	gml_pragma("forceinline");
-	
-	if (action != ACTION.FLIGHT)
+	if action != ACTION.FLIGHT
 	{
 	    return;
 	}
 	
-	if (flight_timer > 0)
+	if flight_timer > 0
 	{
 	    flight_timer--;
 	}
-
-	if (ascend_timer > 0)
+	
+	if ascend_timer > 0
 	{
-	    if (vel_y >= -1)
+	    if vel_y >= -1
 	    {
 	        grv = PARAM_GRV_TAILS_UP;
-	        if (++ascend_timer == 31)
+			
+	        if ++ascend_timer == 31
 	        {
 	            ascend_timer = 0;
 	        }
@@ -31,7 +29,7 @@ function scr_player_flight()
 	}
 	else
 	{
-	    if (input_press.action_any && flight_timer > 0 && (!is_underwater || carry_target == noone))
+	    if flight_timer > 0 && (!underwater || carry_target == noone) && input_press_action_any()
 	    {
 	        ascend_timer = 1;
 	    }
@@ -41,7 +39,7 @@ function scr_player_flight()
 	
 	play_tails_sound();
 	
-	if (is_underwater)
+	if underwater
 	{
 	    animation = flight_timer > 0 ? ANIM.SWIM : ANIM.SWIM_TIRED;
 	}

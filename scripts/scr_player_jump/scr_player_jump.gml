@@ -1,100 +1,101 @@
 /// @self obj_player
-/// @function scr_player_jump()
 function scr_player_jump()
 {
-	gml_pragma("forceinline");
-	
-	if (!is_jumping)
+	if !is_jumping
 	{
-		return;
+		return false;
 	}
-
-	if (!input_down.action_any)
+	
+	if !input_down_action_any()
 	{
 		vel_y = max(vel_y, jump_min_vel);
 	}
 
-	if (vel_y < jump_min_vel || player_index > 0 && cpu_timer_input == 0)
+	if vel_y < jump_min_vel || player_index > 0 && cpu_control_timer == 0
 	{
-		return;
+		return false;
 	}
 	
-	if (input_press.action3 && super_timer == 0 && global.player_rings >= 50 && global.emerald_count == 7)
+	if input_press.action3 && super_timer == 0 && global.player_rings >= 50 && global.emerald_count == 7
 	{
-		reset_substate();
 		audio_play_sfx(snd_transform);
 		audio_play_bgm(snd_bgm_super);
 		
-		state = PLAYERSTATE.LOCKED;
+		reset_substate();
+		state = PLAYER_STATE.DEFAULT_LOCKED;
 		animation = ANIM.TRANSFORM;
 		action = ACTION.TRANSFORM;
 		inv_frames = 0;
 		item_inv_timer = 0;
 		super_timer = 1;
 		transform_timer = global.player_physics >= PHYSICS.S3 ? 26 : 36;
-		image_alpha = 1.0;
+		image_alpha = 1;
 		
+		// Exit the player control routine
 		return true;
 	}
 
-	switch (vd_player_type)
+	switch player_type
 	{
 		case PLAYER.SONIC:
 			
 			var _shield = global.player_shields[player_index];
-			if (global.drop_dash && action == ACTION.NONE && shield_state == SHIELDSTATE.NONE && !input_down.action_any)
+			
+			if global.drop_dash && action == ACTION.NONE && shield_state == SHIELD_STATE.NONE && !input_down_action_any()
 			{
-				if (_shield <= SHIELD.NORMAL || super_timer > 0 || item_inv_timer > 0)
+				if super_timer > 0 || item_inv_timer > 0 || _shield <= SHIELD.NORMAL
 				{
 					action = ACTION.DROPDASH;
 					dropdash_charge = 0;
 				}
 			}
 			
-			if (!input_press.action_any || shield_state != SHIELDSTATE.NONE || super_timer > 0 || item_inv_timer > 0)
+			if !input_press_action_any() || shield_state != SHIELD_STATE.NONE || super_timer > 0 || item_inv_timer > 0
 			{
 				break;
 			}
-
-			shield_state = SHIELDSTATE.ACTIVE;
-			air_lock_flag = false;
 			
-			switch (_shield)
+			switch _shield
 			{
 				case SHIELD.NONE:
 				
-					if (!global.double_spin)
+					if !global.double_spin
 					{
 						break;
 					}
-
-					with (obj_double_spin)
+					
+					with obj_double_spin
 					{
-						if (vd_target_player == other.id)
+						if player == other.id
 						{
 							instance_destroy();
 						}
 					}
 					
-					shield_state = SHIELDSTATE.DOUBLESPIN;
-					instance_create(0, 0, obj_double_spin, { vd_target_player: id });
+					shield_state = SHIELD_STATE.DOUBLE_SPIN;
+					air_lock_flag = false;
+					
+					with instance_create(0, 0, obj_double_spin)
+					{
+						player = other.id;
+					}
+					
 					audio_play_sfx(snd_double_spin);
 					
 				break;
 
 				case SHIELD.BUBBLE:
 				
+					shield_state = SHIELD_STATE.ACTIVE;
+					air_lock_flag = false;
 					vel_x = 0;
 					vel_y = 8;
 					
-					with (obj_shield)
+					with obj_shield
 					{
-						if (vd_target_player == other.id)
+						if player == other.id
 						{
-							obj_set_anim(spr_shield_bubble_drop, 6, 0, function()
-							{ 
-								obj_set_anim(spr_shield_bubble, 2, 0, 0); 
-							});
+							bubble_shield_drop_animation();
 						}
 					}
 					
@@ -103,28 +104,29 @@ function scr_player_jump()
 				break;
 
 				case SHIELD.FIRE:
-				
-					set_camera_delay(16);
 					
+					set_camera_delay(16);
+					shield_state = SHIELD_STATE.ACTIVE;
 					air_lock_flag = true;
 					vel_x = 8 * facing;
 					vel_y = 0;
 					
-					with (obj_shield)
+					with obj_shield
 					{
-						if (vd_target_player == other.id)
+						if player == other.id
 						{
 							var _dash_sprite = spr_shield_fire_dash;
-							if (sprite_index != _dash_sprite)
+							
+							if sprite_index != _dash_sprite
 							{
-								obj_set_anim(_dash_sprite, 2, 0, function(){ clear_fire_shield_dash(); });
+								animator.start(_dash_sprite, 0, 11, 2);
 							}
 							else
 							{
-								obj_restart_anim();
+								animator.restart();
 							}
 							
-							obj_set_priority(1);
+							depth = draw_depth(10);
 						}
 					}
 					
@@ -134,12 +136,16 @@ function scr_player_jump()
 
 				case SHIELD.LIGHTNING:
 				
-					shield_state = SHIELDSTATE.DISABLED;
+					shield_state = SHIELD_STATE.DISABLED;
+					air_lock_flag = false;
 					vel_y = -5.5;
 					
 					for (var _i = 0; _i < 4; _i++)
 					{
-						instance_create(x, y, obj_shield_sparkle, { vd_sparkle_id: _i });
+						with instance_create(x, y, obj_shield_sparkle)
+						{
+							sparkle_index = _i;
+						}
 					}
 					
 					audio_play_sfx(snd_shield_lightning_2);
@@ -151,7 +157,7 @@ function scr_player_jump()
 		
 		case PLAYER.TAILS:
 		
-			if (action != ACTION.NONE || !input_press.action_any)
+			if action != ACTION.NONE || !input_press_action_any()
 			{
 				break;
 			}
@@ -165,28 +171,33 @@ function scr_player_jump()
 			ascend_timer = 0;
 			radius_x = radius_x_normal;
 			radius_y = radius_y_normal;
-			input_down.action_any = false;
-			input_press.action_any = false;
+			
+			input_down.action1 = false;
+			input_down.action2 = false;
+			input_down.action3 = false;
+			input_press.action1 = false;
+			input_press.action2 = false;
+			input_press.action3 = false;
 			
 		break;
 		
 		case PLAYER.KNUCKLES:
 		
-			if (action != ACTION.NONE || !input_press.action_any)
+			if action != ACTION.NONE || !input_press_action_any()
 			{
 				break;
 			}
 			
 			animation = ANIM.GLIDE_AIR;	
 			action = ACTION.GLIDE;
-			action_state = GLIDESTATE.AIR;
+			action_state = GLIDE_STATE.AIR;
 			air_lock_flag = false;
 			is_jumping = false;
-			spd_ground = 4;
+			spd = 4;
 			glide_value = 0;
-			glide_angle = facing == DIRECTION.NEGATIVE ? 0 : 180;
-			radius_x = 10;
-			radius_y = 10;
+			glide_angle = facing < 0 ? 0 : 180;
+			radius_x = radius_x_normal + 1;
+			radius_y = radius_x;
 			vel_x = 0;
 			vel_y = max(0, vel_y + 2);
 			
@@ -194,18 +205,19 @@ function scr_player_jump()
 		
 		case PLAYER.AMY:
 		
-			if (action != ACTION.NONE || !input_press.action_any)
+			if action != ACTION.NONE || !input_press_action_any()
 			{
 				break;
 			}
 			
-			if (!global.roll_lock)
+			if !global.roll_lock
 			{
 				air_lock_flag = false;
 			}
 			
 			action = ACTION.HAMMERSPIN;
 			dropdash_charge = 0;
+			
 			audio_play_sfx(snd_hammer);
 			
 		break;

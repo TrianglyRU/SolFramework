@@ -11,13 +11,13 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "audiogroup_global",
+    "path": "audiogroups/audiogroup_global",
   },
   "soundFile": "snd_charge_spin.wav",
   "duration": 1.23415,
   "parent": {
-    "name": "SFX",
-    "path": "folders/Sounds/SFX.yy",
+    "name": "Global",
+    "path": "folders/Sounds/SFX/Global.yy",
   },
 }

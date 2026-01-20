@@ -1,4 +1,9 @@
-enum COCONUTSSTATE
+// Inherit the parent event
+event_inherited();
+event_animator();
+event_culler(CULL_ACTION.RESET);
+
+enum COCONUTS_STATE
 {
 	IDLE,
 	START_CLIMB,
@@ -7,14 +12,8 @@ enum COCONUTSSTATE
 	THROW
 }
 
-// Inherit the parent event
-event_inherited();
-
-obj_set_priority(4);
-obj_set_hitbox(12, 16);
-obj_set_culling(ACTIVEIF.INBOUNDS_RESET);
-
-state = COCONUTSSTATE.IDLE;
+depth = draw_depth(40);
+state = COCONUTS_STATE.IDLE;
 state_timer = 16;
 vel_y = 0;
 climb_table_index = 0;
@@ -23,7 +22,7 @@ attack_flag = false;
 hand_frame = 0;
 climb_data =
 [
-	// vel_y	timer
+//   vel	    timer
 	-1,			32,
 	 1,			24, 
     -1,			16,

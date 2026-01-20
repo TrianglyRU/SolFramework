@@ -4,22 +4,22 @@ enum QUADRANT
 }
 
 /// @self
-/// @description Converts an angle in degrees to its corresponding quadrant (0 to 3).
-/// @param {Real} _angle The angle in degrees.
+/// @description			Converts an angle in degrees to its corresponding quadrant (0 to 3).
+/// @param {Real} _angle	The angle in degrees.
 /// @returns {Enum.QUADRANT}
 function math_get_quadrant(_angle)
 {
-	if (_angle > 45 && _angle < 135)
+	if _angle > 45 && _angle < 135
 	{
 		return QUADRANT.RIGHT;
 	}
 	
-	if (_angle >= 135 && _angle <= 225)
+	if _angle >= 135 && _angle <= 225
 	{
 		return QUADRANT.UP;
 	}
 	
-	if (_angle > 225 && _angle < 315)
+	if _angle > 225 && _angle < 315
 	{
 		return QUADRANT.LEFT;
 	}

@@ -1,6 +1,6 @@
 /// @self
-/// @description A wrapper around camera_get_view_height().
-/// @param {Real} _index The viewport index.
+/// @description			Returns the height of the camera created by camera_new() function.
+/// @param {Real} _index	The camera index.
 /// @returns {Real}
 function camera_get_height(_index)
 {

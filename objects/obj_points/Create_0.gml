@@ -1,6 +1,6 @@
 // Inherit the parent event
 event_inherited();
-obj_set_culling(ACTIVEIF.INBOUNDS);
+event_culler(CULL_ACTION.PAUSE);
 
+depth = RENDER_DEPTH_PRIORITY;
 wait_timer = 119;
-depth = RENDERER_DEPTH_HIGHEST;
