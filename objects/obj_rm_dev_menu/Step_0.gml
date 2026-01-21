@@ -251,7 +251,7 @@ switch category_id
 	
 		global.player_cpu = option_id == (category_options_count - 1) ? PLAYER.NONE : option_id;
 		global.continue_count = 3;
-		global.emerald_count = 7;
+		global.emerald_count = 0;
 		global.score_count = 0;
 		global.life_count = 3;
 		
