@@ -35,7 +35,7 @@ var _do_line_scroll = line_height >= 0;
 
 if _do_line_scroll
 {
-	shader_line_scroll(_camera_x + obj_game.bg_distance_x, _scroll_x, _x, _y, width, height, _scale, line_factor_x - factor_x, line_height);
+	shader_line_shift(_camera_x + obj_game.bg_distance_x, _scroll_x, _x, _y, width, height, _scale, line_factor_x - factor_x, line_height);
 }
 else
 {

@@ -4,7 +4,7 @@
 /// @param {Enum.FADE_TYPE} _type				The blending type of the fade effect.
 /// @param {Real} _speed						The speed at which the fade occurs.
 /// @param {Real} [_frequency]					The number of game steps between display updates (default is 1).
-/// @param {Function|Undefined} [_fade_action]	A callback function executed once per game step after the fade completes until it returns true or is forcibly cleared.
+/// @param {Function|Undefined} [_fade_action]	A callback function executed once per game step after the fade completes until it returns true or is forcibly cleared (default is undefined).
 /// @param {Bool} [_game_control]				Whether to pause game updates during the fade (default is true).
 function fade_perform(_direction, _type, _speed, _frequency = 1, _fade_action = undefined, _game_control = true)
 {

@@ -40,7 +40,7 @@ function scr_player_input()
 		return;
 	}
 	
-	if input_no_control
+	if input_lock_control
 	{
 		return;
 	}

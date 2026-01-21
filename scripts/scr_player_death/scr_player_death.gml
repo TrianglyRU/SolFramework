@@ -71,9 +71,10 @@ function scr_player_death()
 					{
 						game_clear_level_data();
 						room_restart();
-						
 						return true;
 					}
+					
+					return false;
 				}); 
 		    }
 			

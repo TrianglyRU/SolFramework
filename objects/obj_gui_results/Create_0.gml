@@ -27,9 +27,10 @@ load_next_room = function()
 		}
 		
 		game_clear_level_data_all();
-		
 		return true;
 	}
+	
+	return false;
 }
 
 obj_rm_stage.bgm_track = undefined;

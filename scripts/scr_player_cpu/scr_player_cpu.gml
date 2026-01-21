@@ -177,7 +177,7 @@ function scr_player_cpu()
 	        {
 	            cpu_control_timer--;
 				
-	            if !input_no_control
+	            if !input_lock_control
 	            {
 	                break;
 	            }

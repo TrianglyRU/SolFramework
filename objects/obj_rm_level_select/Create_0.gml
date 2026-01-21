@@ -74,6 +74,8 @@ fade_out_function = function()
 		
 		return true;
 	}
+	
+	return false;
 }
 
 #endregion

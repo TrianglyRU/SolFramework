@@ -117,29 +117,18 @@ switch state
 			
 			cpu_control_timer = 0;
 			
-			if _is_transition
+			if is_grounded
 			{
-				if is_grounded
+				if _is_transition
 				{
 					set_victory_pose();
 				}
-			}
-			else if other.state == SIGNPOST_STATE.CHECK_RESULTS
-			{
-				// This is what causes a player to keep their control during the act results screen
-				/*
-				if id == other.player && !is_grounded
+				else if !input_lock_control
 				{
-					continue;
-				}
-				*/
-				
-				if !input_no_control
-				{
-					input_no_control = true;
+					input_lock_control = true;
 					input_down = input_create();
 					input_press = input_create();
-					
+				
 					if player_index == camera_data.index
 					{
 						input_down.right = true;
@@ -150,14 +139,12 @@ switch state
 		
 		if state == SIGNPOST_STATE.CHECK_RESULTS
 		{
-			if _is_transition
+			if !player.is_grounded
 			{
-				if !player.is_grounded
-				{
-					break;
-				}
+				break;
 			}
-			else if player.x < obj_rm_stage.end_bound - 24
+			
+			if !_is_transition && player.x < obj_rm_stage.end_bound - 24
 			{
 				break;
 			}

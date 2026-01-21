@@ -129,7 +129,7 @@ function scr_player_init()
 	cpu_control_timer = 0;
 	cpu_auto_jump = false;
 	
-	input_no_control = false;
+	input_lock_control = false;
 	input_press = input_create();
 	input_down = input_create();
 	

@@ -34,6 +34,8 @@ fade_out_function = function()
 	
 		return true;
 	}
+	
+	return false;
 }
 
 state = SPECIAL_STAGE_STATE.IDLE;

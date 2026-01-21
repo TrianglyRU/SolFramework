@@ -3,12 +3,12 @@ function scr_player_jump_start()
 {
 	if action == ACTION.SPINDASH || action == ACTION.DASH
 	{
-		return;
+		return false;
 	}
 
 	if !input_press_action_any()
 	{
-		return;
+		return false;
 	}
 	
 	var _angle_quad = math_get_quadrant(angle);
@@ -33,7 +33,7 @@ function scr_player_jump_start()
 
 	if _ceil_dist < _max_dist
 	{
-		return;
+		return false;
 	}
 	
 	if animation != ANIM.SPIN

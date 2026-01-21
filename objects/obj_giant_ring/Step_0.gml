@@ -55,6 +55,8 @@ switch state
 					room_goto(rm_special);
 					return true;
 				}
+				
+				return false;
 			});
         }
         

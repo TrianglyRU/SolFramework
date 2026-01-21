@@ -24,7 +24,7 @@ switch state
 			{
 				if audio_is_bgm_playing()
 				{
-					return;
+					return false;
 				}
 				
 				if image_index == 1

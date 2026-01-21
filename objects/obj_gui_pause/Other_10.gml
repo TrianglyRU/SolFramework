@@ -93,4 +93,6 @@ fade_perform_black(FADE_DIRECTION.OUT, 1, function()
 		
 		return true;
 	}
+	
+	return false;
 });

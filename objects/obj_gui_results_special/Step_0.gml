@@ -40,6 +40,8 @@ switch state
 						room_goto(global.previous_room_id);
 						return true;
 					}
+					
+					return false;
 				});
 			});
         }

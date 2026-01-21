@@ -25,6 +25,8 @@ if timer >= 128 && !transition_flag && collision_player(player_get(0))
 			room_goto(rm_bonus);
 			return true;
 		}
+		
+		return false;
 	});
 }
 

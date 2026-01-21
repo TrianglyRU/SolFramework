@@ -3,7 +3,7 @@ function scr_player_spindash()
 {
 	if !global.spin_dash
 	{
-		return;
+		return false;
 	}
 	
 	if action != ACTION.SPINDASH

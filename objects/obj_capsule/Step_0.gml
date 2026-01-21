@@ -51,7 +51,7 @@ switch state
         
         if obj_game.frame_counter % 8 == 0
         {
-			with instance_create(x + irandom_range(-25, 25), y, obj_animal)
+			with instance_create(x + irandom_range(-25, 24), y, obj_animal)
 			{
 				state = ANIMAL_STATE.CAPSULE;
 				state_timer = 12;

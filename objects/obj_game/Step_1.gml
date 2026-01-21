@@ -143,7 +143,7 @@ else if fade_timer == FADE_TIMER_MAX
 	
 	fade_state = FADE_STATE.NONE;
 	
-	if is_method(fade_in_action)
+	if fade_in_action != undefined && is_method(fade_in_action)
 	{
 		if fade_in_action()
 		{
@@ -155,7 +155,7 @@ else if fade_timer == 0
 {
 	fade_state = FADE_STATE.PLAIN_COLOUR;
 	
-	if is_method(fade_out_action)
+	if fade_out_action != undefined && is_method(fade_out_action)
 	{
 		if fade_out_action()
 		{
