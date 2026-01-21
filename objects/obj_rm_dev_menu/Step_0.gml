@@ -104,8 +104,15 @@ switch category_id
 	
 	// Start game
 	case 1:
-	
-		global.current_save_slot = option_id - 1;
+		
+		if option_id == 0
+		{
+			global.current_save_slot = undefined;
+		}
+		else
+		{
+			global.current_save_slot = option_id - 1;
+		}
 		
 		var _new_game_stage = scr_menu_start_load_game();
 		
