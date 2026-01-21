@@ -530,6 +530,15 @@ clear_solid_push_by = function(_inst_id)
 	}
 }
 
+release_from_solid = function(_inst_id)
+{
+	if on_object == _inst_id
+	{
+		is_grounded = false;
+		on_object = noone;
+	}
+}
+
 restart_bgm = function(_default_bgm)
 {
 	if super_timer > 0
