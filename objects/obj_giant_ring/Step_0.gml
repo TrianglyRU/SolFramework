@@ -20,7 +20,7 @@ switch state
         else
 		{
 			_player.visible = false;
-			_player.state = PLAYER_STATE.DEFAULT_LOCKED;
+			_player.state = PLAYER_STATE.NO_INTERACT;
 			
 			animator.start(spr_giant_ring_flash, 0, 7, 2);
 			

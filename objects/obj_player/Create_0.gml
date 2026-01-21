@@ -29,7 +29,8 @@ enum PLAYER_STATE
 {
 	DEFAULT,
 	HURT,
-	DEFAULT_LOCKED,
+	FROZEN,
+	NO_INTERACT,
 	DEBUG_MODE,
 	DEATH,
 	RESPAWN
@@ -70,8 +71,7 @@ enum ACTION
 	TRANSFORM,
 	HAMMERDASH,
 	HAMMERSPIN,
-	CARRIED,
-	LOCKED
+	CARRIED
 }
 
 enum GLIDE_STATE
@@ -176,7 +176,7 @@ respawn = function()
 		visible = false;
 		depth = RENDER_DEPTH_PRIORITY + player_index;	
 		cpu_state = CPU_STATE.RESPAWN_INIT;
-		state = PLAYER_STATE.DEFAULT_LOCKED;
+		state = PLAYER_STATE.NO_INTERACT;
 		is_grounded = false;
 	}
 	else
@@ -503,7 +503,7 @@ set_victory_pose = function()
 	radius_y = radius_y_normal;
 	vel_x = 0;
 	vel_y = 0;
-	action = ACTION.LOCKED;
+	state = PLAYER_STATE.FROZEN;
 	animation = ANIM.ACT_CLEAR;
 }
 

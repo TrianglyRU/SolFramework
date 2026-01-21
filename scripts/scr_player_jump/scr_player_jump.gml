@@ -22,7 +22,7 @@ function scr_player_jump()
 		audio_play_bgm(snd_bgm_super);
 		
 		reset_substate();
-		state = PLAYER_STATE.DEFAULT_LOCKED;
+		state = PLAYER_STATE.NO_INTERACT;
 		animation = ANIM.TRANSFORM;
 		action = ACTION.TRANSFORM;
 		inv_frames = 0;

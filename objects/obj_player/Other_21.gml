@@ -4,7 +4,8 @@ scr_player_input();
 switch state
 {
 	case PLAYER_STATE.DEFAULT:
-	case PLAYER_STATE.DEFAULT_LOCKED:
+	case PLAYER_STATE.NO_INTERACT:
+	case PLAYER_STATE.FROZEN:
 		
 		if scr_player_debug_mode_enter()
 		{
@@ -14,7 +15,7 @@ switch state
 		scr_player_parameters();
 		scr_player_cpu();
 		
-		if state != PLAYER_STATE.DEFAULT_LOCKED && action != ACTION.LOCKED
+		if state == PLAYER_STATE.DEFAULT
 		{
 			if action != ACTION.CARRIED
 			{

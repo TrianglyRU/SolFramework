@@ -56,7 +56,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 {
     var _player = player_get(_p);
 	
-    if _player.state >= PLAYER_STATE.DEFAULT_LOCKED || global.player_shields[_p] == SHIELD.BUBBLE
+    if _player.state >= PLAYER_STATE.NO_INTERACT || global.player_shields[_p] == SHIELD.BUBBLE
     {
         continue;
     }

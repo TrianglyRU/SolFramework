@@ -13,7 +13,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 			continue;
 		}
 		
-		if _player.state >= PLAYER_STATE.DEFAULT_LOCKED
+		if _player.state >= PLAYER_STATE.NO_INTERACT
 		{
 			continue;
 		}

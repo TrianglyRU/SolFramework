@@ -11,7 +11,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if point_in_rectangle(floor(_player.x), floor(_player.y), bbox_left, bbox_top, bbox_right - 1, bbox_bottom - 1)
 	{
-		if _player.state >= PLAYER_STATE.DEFAULT_LOCKED
+		if _player.state >= PLAYER_STATE.NO_INTERACT
 		{
 			continue;
 		}

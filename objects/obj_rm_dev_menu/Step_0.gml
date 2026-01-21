@@ -9,7 +9,7 @@ if _input_press.down
 }
 else if _input_press.up
 {
-	if (--option_id < 0)
+	if --option_id < 0
 	{
 		option_id = category_options_count - 1;
 	}

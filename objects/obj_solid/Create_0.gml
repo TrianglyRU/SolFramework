@@ -31,7 +31,7 @@ solid_object = function(_player, _type)
 	solid_touch[_p] = SOLID_TOUCH.NONE;
 	solid_push[_p] = false;
 	
-	if _player.state >= PLAYER_STATE.DEFAULT_LOCKED
+	if _player.state >= PLAYER_STATE.NO_INTERACT
 	{
 		return;
 	}

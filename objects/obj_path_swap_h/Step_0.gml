@@ -7,7 +7,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		visible = _player.state == PLAYER_STATE.DEBUG_MODE;
 	}
 	
-	if _player.state >= PLAYER_STATE.DEFAULT_LOCKED || !_player.is_grounded && iv_ground_only
+	if _player.state >= PLAYER_STATE.NO_INTERACT || !_player.is_grounded && iv_ground_only
 	{
 		continue;
 	}

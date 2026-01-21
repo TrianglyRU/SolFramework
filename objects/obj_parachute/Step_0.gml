@@ -8,14 +8,14 @@ switch state
 		{
 			var _player = player_get(_p);
 			
-			if _player.action == ACTION.LOCKED || !collision_player(_player)
+			if !collision_player(_player)
 			{
 				continue;
 			}
 			
 			player = _player;
 			player.reset_substate();
-			player.action = ACTION.LOCKED;
+			player.state = PLAYER_STATE.FROZEN;
 			player.animation = ANIM.GRAB;
 			player.vel_y = 0;
 			player.spd = 0;
@@ -41,7 +41,7 @@ switch state
 	
 	case PARACHUTE_STATE.CARRY_PLAYER:
 		
-		if player.action != ACTION.LOCKED
+		if player.state != PLAYER_STATE.FROZEN
 		{
 			state = PARACHUTE_STATE.LEFTOVER;
 		}
