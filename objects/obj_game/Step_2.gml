@@ -152,12 +152,12 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 		
 		if _camera_data.max_vel_x < CAMERA_MAX_VEL_X
 		{
-			_camera_data.max_vel_x += 0.5;
+			_camera_data.max_vel_x += 0.25;
 		}
 		
 		if _camera_data.max_vel_y < CAMERA_MAX_VEL_Y
 		{
-			_camera_data.max_vel_y += 0.5;
+			_camera_data.max_vel_y += 0.25;
 		}
 		
 	    if _camera_data.shake_timer > 0

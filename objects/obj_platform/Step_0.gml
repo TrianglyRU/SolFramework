@@ -89,12 +89,7 @@ switch state
 		{
 			with obj_player
 			{
-				if on_object == other.id
-				{
-					on_object = noone;
-					is_grounded = false;
-					vel_y = other.vel_y;
-				}
+				release_from_solid(other.id);
 			}
 		}
 		

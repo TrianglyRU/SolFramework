@@ -1,3 +1,3 @@
 // Inherit the parent event
 event_inherited();
-event_culler(CULL_ACTION.RESET);
+event_culler(CULL_ACTION.PAUSE);

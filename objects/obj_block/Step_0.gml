@@ -12,11 +12,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	with obj_player
 	{
-		if on_object == other.id
-		{
-			on_object = noone;
-			is_grounded = false;
-		}
+		release_from_solid(other.id);
 	}
 	
 	_player.vel_y = -3;

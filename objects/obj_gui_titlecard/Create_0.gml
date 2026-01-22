@@ -12,14 +12,7 @@ offset_banner = -224;
 speed_x = 16;
 speed_y = 16;
 
-if global.stage_transition_data != undefined
-{
-	for (var _i = 0; _i < CAMERA_COUNT; _i++)
-	{
-		camera_toggle_movement(_i, false);
-	}
-}
-else
+if global.stage_transition_data == undefined
 {
 	fade_perform_black(FADE_DIRECTION.OUT, 0);
 }

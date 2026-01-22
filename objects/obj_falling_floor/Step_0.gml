@@ -74,11 +74,7 @@ switch state
 		{
 			with obj_player
 			{
-				if on_object == other.id
-				{
-					on_object = noone;
-					is_grounded = false;
-				}
+				release_from_solid(other.id);
 			}
 			
 			state = FALLING_FLOOR_STATE.DESTROYED;
