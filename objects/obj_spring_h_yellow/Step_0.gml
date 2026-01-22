@@ -10,7 +10,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	solid_object(_player, SOLID_TYPE.FULL);
 	
-	if (image_index != 0 || !_player.is_grounded)
+	if image_index != 0 || !_player.is_grounded
 	{
 		continue;
 	}
@@ -24,19 +24,23 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		
 		var _x = floor(_player.x);
 		var _y = floor(_player.y);
+		var _this_y = floor(y);
 		
-		if _y < y - 24 || _y >= y + 24
+		if _y < _this_y - 24 || _y >= _this_y + 24
 		{
 			continue;
 		}
 		
-		var _l_bound = x;
-		var _r_bound = x + 40;
-				
+		var _l_bound = floor(x);
+		var _r_bound = _l_bound;
+		
 		if image_xscale < 0
 		{
-			_l_bound = x - 40;
-			_r_bound = x;
+			_l_bound -= 40;
+		}
+		else
+		{
+			_r_bound += 40;
 		}
 		
 		if _x < _l_bound || _x >= _r_bound

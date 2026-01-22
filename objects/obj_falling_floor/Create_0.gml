@@ -9,7 +9,7 @@ enum FALLING_FLOOR_STATE
 	DESTROYED
 }
 
-depth = draw_depth(40); // 50 by default
+depth = draw_depth(50);
 state = FALLING_FLOOR_STATE.IDLE;
 wait_timer = 8;
 fall_flag = false;

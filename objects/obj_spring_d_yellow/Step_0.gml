@@ -23,6 +23,11 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	
 	if image_yscale >= 0
 	{
+		if _prev_anim == iv_bounce_animation || _prev_anim == ANIM.FLIP_EXTENDED
+		{
+			_player.animator.restart();
+		}
+		
 		if iv_bounce_animation == ANIM.FLIP
 		{
 			_player.animation = launch_force > 10 ? ANIM.FLIP_EXTENDED : ANIM.FLIP;
@@ -30,11 +35,6 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 		else
 		{
 			_player.animation = iv_bounce_animation;
-		}
-		
-		if _prev_anim == _player.animation
-		{
-			_player.animator.restart();
 		}
 	}
 	
