@@ -9,7 +9,7 @@ for (var _p = 0; _p < PLAYER_COUNT; _p++)
 	var _prev_anim = _player.animation;
 	var _touch_side = image_yscale >= 0 ? SOLID_TOUCH.TOP : SOLID_TOUCH.BOTTOM;
 	
-	solid_object(_player, SOLID_TYPE.FULL_RESET);
+	solid_object(_player, SOLID_TYPE.FULL_CLEAR_PLAYER);
 	
 	if image_index != 0 || solid_touch[_p] != _touch_side
     {

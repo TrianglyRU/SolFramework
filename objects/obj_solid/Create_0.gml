@@ -6,10 +6,10 @@ enum SOLID_TYPE
 	ITEM_BOX,
 	SIDES,
 	FULL,
-	FULL_RESET,
+	FULL_CLEAR_PLAYER,
 	FULL_NO_LAND,
 	TOP,
-	TOP_RESET,
+	TOP_CLEAR_PLAYER,
 	TOP_NO_LAND
 }
 
@@ -322,7 +322,7 @@ attach_player = function(_type, _player, _bbtop)
 		return;
 	}
 	
-	if _type == SOLID_TYPE.FULL_RESET || _type == SOLID_TYPE.TOP_RESET
+	if _type == SOLID_TYPE.FULL_CLEAR_PLAYER || _type == SOLID_TYPE.TOP_CLEAR_PLAYER
 	{
 		_player.reset_substate();
 	}

@@ -22,6 +22,14 @@ with obj_player
 	y = _y - _data.offset_y;
 	facing = _data.facing;
 	
+	// Restore shield
+	global.player_shields[player_index] = _data.shield;
+	
+	if _data.shield != SHIELD.NONE
+	{
+		instance_create(x, y, obj_shield, { player: id });
+	}
+	
 	// Re-fill up initial record data
 	for (var _i = 0; _i < ds_record_length; _i++)
 	{

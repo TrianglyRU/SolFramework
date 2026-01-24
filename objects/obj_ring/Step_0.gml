@@ -105,7 +105,7 @@ switch state
 		
 		if vel_y >= 0 && _spill_timer % 4 == 0
 		{
-			var _floor_dist = collision_tile_v(x, bbox_bottom + 1, 1)[0];
+			var _floor_dist = collision_tile_v(x, bbox_bottom + 2 - 1, 1)[0];
 			
 			if _floor_dist < 0
 			{

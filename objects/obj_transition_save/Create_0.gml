@@ -48,7 +48,8 @@ save_data = function()
 			offset_y: y - floor(_player.y),
 			camera_offset_x: x - camera_get_x(_p),
 			camera_offset_y: y - camera_get_y(_p),
-			facing: _player.facing
+			facing: _player.facing,
+			shield: global.player_shields[_p]
 		}
 	}
 	
