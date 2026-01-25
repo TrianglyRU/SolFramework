@@ -14,7 +14,7 @@ for (var _i = 0; _i < CAMERA_COUNT; _i++)
 	
 		if point_in_rectangle(_x, _y, bbox_left, bbox_top, bbox_right - 1, bbox_bottom - 1)
 		{
-			toggle_background(_i);
+			toggle_palette();
 		}
 	}
 }

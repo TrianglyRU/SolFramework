@@ -254,9 +254,14 @@ if state != GAME_STATE.PAUSED
 		{
 		    if ++palette_indices[_i] > palette_end_indices[_i]
 		    {
-		        palette_indices[_i] = palette_loop_indices[_i];	
-		    }
+				palette_indices[_i] = palette_loop_indices[_i];	
 				
+				if palette_loop_indices[_i] == palette_end_indices[_i]
+				{
+					palette_durations[_i] = 0;
+				}
+		    }
+			
 			palette_timers[_i] = _duration;
 		}
 	}
