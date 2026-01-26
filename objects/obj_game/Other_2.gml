@@ -44,11 +44,6 @@ randomise();
 
 audio_group_load(audiogroup_global);
 
-if os_type == os_windows
-{
-	display_set_timing_method(tm_sleep);
-}
-
 surface_depth_disable(true);
 display_reset(0, global.use_vsync);
 

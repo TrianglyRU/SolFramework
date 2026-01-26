@@ -18,4 +18,4 @@ speed_x = 16;
 image_index = global.life_count > 0 && obj_game.frame_counter >= 36000;
 depth = RENDER_DEPTH_HUD;
 
-audio_play_bgm(snd_bgm_gameover);
+audio_play_bgm(snd_bgm_game_over);

@@ -73,6 +73,10 @@ bg_scroll_y = 0;
 
 #region CAMERA & RENDERER
 
+// Feather ignore GM2017
+#macro draw_colour draw_get_colour()
+#macro draw_color draw_get_colour()
+
 #macro RENDER_DEPTH_PRIORITY 0
 #macro RENDER_DEPTH_HUD -100
 #macro RENDER_DEPTH_OVERLAY -200

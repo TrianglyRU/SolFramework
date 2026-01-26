@@ -67,6 +67,7 @@ switch state
 				if vel_x > 3
 				{
 					vel_x *= 0.8125;
+					
 					if vel_x < 3
 					{
 						vel_x = 3;
@@ -75,6 +76,7 @@ switch state
 				else
 				{
 					vel_x += 0.0625;
+					
 					if vel_x > 3
 					{
 						vel_x = 3;
@@ -91,6 +93,7 @@ switch state
 				if vel_x < -3
 				{
 					vel_x *= 0.8125;
+					
 					if vel_x > -3
 					{
 						vel_x = -3;
@@ -99,6 +102,7 @@ switch state
 				else
 				{
 					vel_x -= 0.0625;
+					
 					if vel_x < -3
 					{
 						vel_x = -3;
@@ -117,12 +121,10 @@ switch state
 			// Collide with the level
 			scr_player_collision_air_regular();
 			
-			other.sync_with_player();
-			
 			if input_press_action_any()
 			{
 				other.state = PARACHUTE_STATE.LEFTOVER;
-				action = ACTION.NONE;
+				state = PLAYER_STATE.DEFAULT;
 				animation = ANIM.SPIN;
 				vel_y = -4;
 				is_jumping = true;
@@ -131,6 +133,10 @@ switch state
 				reset_gravity();
 				
 				audio_play_sfx(snd_jump);
+			}
+			else
+			{
+				other.sync_with_player();
 			}
 		}
 		

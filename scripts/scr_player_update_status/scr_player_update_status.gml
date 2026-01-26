@@ -19,17 +19,17 @@ function scr_player_update_status()
 		}
 	}
 
-	if item_speed_timer > 0
+	if item_speed_timer > 0 && --item_speed_timer == 0
 	{
-		if --item_speed_timer == 0 && audio_is_playing(snd_bgm_highspeed) && instance_exists(obj_rm_stage)
+		if (audio_is_playing(snd_bgm_high_speed) || !audio_is_bgm_playing()) && instance_exists(obj_rm_stage)
 		{
 			restart_bgm(obj_rm_stage.bgm_track);
 		}
 	}
-	
-	if item_inv_timer > 0
+
+	if item_inv_timer > 0 && --item_inv_timer == 0
 	{
-		if --item_inv_timer == 0 && audio_is_playing(snd_bgm_invincibility) && instance_exists(obj_rm_stage)
+		if (audio_is_playing(snd_bgm_invincibility) || !audio_is_bgm_playing()) && instance_exists(obj_rm_stage)
 		{
 			restart_bgm(obj_rm_stage.bgm_track);
 		}

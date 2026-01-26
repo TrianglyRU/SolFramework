@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "snd_bgm_highspeed",
+  "name": "snd_bgm_game_over",
   "conversionMode": 0,
   "compression": 3,
   "volume": 1.0,
@@ -14,8 +14,8 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "snd_bgm_highspeed.ogg",
-  "duration": 27.533787,
+  "soundFile": "snd_bgm_game_over.ogg",
+  "duration": 8.362993,
   "parent": {
     "name": "BGM",
     "path": "folders/Sounds/BGM.yy",

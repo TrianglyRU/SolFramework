@@ -551,7 +551,7 @@ restart_bgm = function(_default_bgm)
     }
     else if item_speed_timer > 0
     {
-        audio_play_bgm(snd_bgm_highspeed);
+        audio_play_bgm(snd_bgm_high_speed);
     }
     else if _default_bgm != undefined
     {

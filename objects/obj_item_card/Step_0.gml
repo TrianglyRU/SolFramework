@@ -33,7 +33,7 @@ switch state
 			
 	                if _player.super_timer <= 0
 	                {
-	                    audio_play_bgm(snd_bgm_highspeed);
+	                    audio_play_bgm(snd_bgm_high_speed);
 	                }
 				
 	                _player.item_speed_timer = 1200;
